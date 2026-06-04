@@ -11,6 +11,7 @@
   :root {
     --paper: #f4ede0;
     --paper-deep: #ebe1cd;
+    --card-bg: #fbf7ee;          /* slightly off-white card background */
     --ink: #1f1a14;
     --ink-soft: #4a3f2f;
     --rojo: #c43d2a;
@@ -29,6 +30,7 @@
   :root[data-theme="cosmic"] {
     --paper: #0c0e1a;            /* deep space body background */
     --paper-deep: #161a2e;       /* slightly lighter — for cards, sections */
+    --card-bg: #161a2e;          /* dark navy for card backgrounds */
     --ink: #e8eaf6;              /* cool white text */
     --ink-soft: #9ba3c4;         /* muted cool gray */
     --rojo: #ff5f8f;             /* neon pink/magenta — DEFAULT cosmic accent */
@@ -79,6 +81,16 @@
   [data-theme="cosmic"] h3 em {
     text-shadow: 0 0 24px currentColor;
   }
+
+  /* Cosmic-mode hover for home page cards — don't flip to white, just brighten + glow */
+  [data-theme="cosmic"] .hero-meta a:hover {
+    background: rgba(255, 209, 102, 0.08);
+    color: var(--ink);
+    border-color: var(--ocre);
+    box-shadow: 0 0 24px rgba(255, 209, 102, 0.15);
+  }
+  [data-theme="cosmic"] .hero-meta a:hover .desc { color: var(--ink-soft); }
+  [data-theme="cosmic"] .hero-meta a:hover .num { color: var(--ocre); }
 
   /* Theme toggle button styling */
   .theme-toggle {
@@ -272,7 +284,7 @@
   .hero-meta a {
     text-decoration: none;
     color: var(--ink);
-    background: #fbf7ee;
+    background: var(--card-bg);
     border: 1px solid var(--line);
     padding: 20px 24px;
     transition: all 0.25s;
@@ -377,7 +389,7 @@
     position: absolute;
     inset: 0;
     backface-visibility: hidden;
-    background: #fbf7ee;
+    background: var(--card-bg);
     border: 1px solid var(--line);
     border-radius: 4px;
     padding: 40px;
@@ -483,7 +495,7 @@
     align-items: start;
   }
   .conj-prompt {
-    background: #fbf7ee;
+    background: var(--card-bg);
     border: 1px solid var(--line);
     padding: 48px;
     position: relative;
@@ -569,7 +581,7 @@
     gap: 60px;
   }
   .reading-passage {
-    background: #fbf7ee;
+    background: var(--card-bg);
     padding: 48px;
     border: 1px solid var(--line);
     position: relative;
@@ -659,7 +671,7 @@
     gap: 24px;
   }
   .listen-card {
-    background: #fbf7ee;
+    background: var(--card-bg);
     border: 1px solid var(--line);
     padding: 32px;
     transition: all 0.3s;
@@ -755,7 +767,7 @@
 
   /* DICTATION & FILL-BLANK ROWS */
   .listen-row {
-    background: #fbf7ee;
+    background: var(--card-bg);
     border: 1px solid var(--line);
     padding: 18px 20px;
     margin-bottom: 12px;
@@ -854,7 +866,7 @@
 
   /* COMPREHENSION CARDS */
   .comp-card {
-    background: #fbf7ee;
+    background: var(--card-bg);
     border: 1px solid var(--line);
     padding: 24px;
     margin-bottom: 16px;
@@ -944,7 +956,7 @@
   .write-area textarea {
     width: 100%;
     min-height: 320px;
-    background: #fbf7ee;
+    background: var(--card-bg);
     border: 1px solid var(--line);
     padding: 24px;
     font-family: 'Fraunces', serif;
@@ -1025,7 +1037,7 @@
     gap: 16px;
   }
   .recording-item {
-    background: #fbf7ee;
+    background: var(--card-bg);
     border: 1px solid var(--line);
     padding: 20px 24px;
     display: grid;
@@ -1116,7 +1128,7 @@
     gap: 16px;
   }
   .country-card {
-    background: #fbf7ee;
+    background: var(--card-bg);
     border: 1px solid var(--line);
     cursor: pointer;
     transition: all 0.25s;
@@ -1256,7 +1268,7 @@
     gap: 6px;
   }
   .modal-section .tag-list span {
-    background: #fbf7ee;
+    background: var(--card-bg);
     border: 1px solid var(--line);
     padding: 6px 12px;
     font-size: 14px;
@@ -1399,7 +1411,7 @@
     text-transform: uppercase;
   }
   .mundo-empty {
-    background: #fbf7ee;
+    background: var(--card-bg);
     border: 1px dashed var(--line);
     padding: 32px;
     text-align: center;
@@ -1837,7 +1849,7 @@
 
   /* VERB DRILL */
   .drill-board {
-    background: #fbf7ee;
+    background: var(--card-bg);
     border: 1px solid var(--line);
     padding: 24px 28px;
     margin-bottom: 24px;
@@ -2052,7 +2064,7 @@
     border: 1px solid var(--line);
   }
   .topic-row {
-    background: #fbf7ee;
+    background: var(--card-bg);
     padding: 12px 18px;
     text-decoration: none;
     color: inherit;
@@ -2194,7 +2206,7 @@
     font-style: normal;
   }
   .topic-card {
-    background: #fbf7ee;
+    background: var(--card-bg);
     border: 1px solid var(--line);
     padding: 28px;
     cursor: pointer;
@@ -2295,7 +2307,7 @@
     text-align: center;
     padding: 64px 24px;
     color: var(--ink-soft);
-    background: #fbf7ee;
+    background: var(--card-bg);
     border: 1px dashed var(--line);
   }
   .topic-empty h4 {
@@ -2311,7 +2323,7 @@
     max-width: 900px !important;
   }
   .topic-prompt-card {
-    background: #fbf7ee;
+    background: var(--card-bg);
     border: 1px solid var(--line);
     padding: 36px 40px;
     margin-bottom: 32px;
@@ -2378,7 +2390,7 @@
     padding: 20px 0;
   }
   .response-item {
-    background: #fbf7ee;
+    background: var(--card-bg);
     border: 1px solid var(--line);
     padding: 20px 24px;
     margin-bottom: 12px;
@@ -2453,7 +2465,7 @@
     padding: 20px;
     display: flex;
     flex-direction: column;
-    background: #fbf7ee;
+    background: var(--card-bg);
   }
   .slang-card-front {
     text-align: center;
@@ -2557,7 +2569,7 @@
     gap: 16px;
   }
   .known-card {
-    background: #fbf7ee;
+    background: var(--card-bg);
     border: 1px solid var(--line);
     padding: 24px;
     transition: all 0.25s;
@@ -2615,7 +2627,7 @@
     gap: 16px;
   }
   .person-card {
-    background: #fbf7ee;
+    background: var(--card-bg);
     border: 1px solid var(--line);
     cursor: pointer;
     transition: all 0.25s;
@@ -2716,7 +2728,7 @@
     gap: 16px;
   }
   .reading-card {
-    background: #fbf7ee;
+    background: var(--card-bg);
     border: 1px solid var(--line);
     padding: 28px;
     cursor: pointer;
@@ -2827,7 +2839,7 @@
   /* READING DETAIL PAGE */
   #reading-detail { max-width: 900px !important; }
   .reading-passage-card {
-    background: #fbf7ee;
+    background: var(--card-bg);
     border: 1px solid var(--line);
     padding: 48px 56px;
     margin-bottom: 32px;
@@ -2840,7 +2852,7 @@
   }
   .reading-passage-card.spotlight {
     border-left-color: var(--azul);
-    background: #fbf7ee;
+    background: var(--card-bg);
   }
   .reading-passage-card.spotlight .text-body {
     font-size: 17px;
@@ -2962,7 +2974,7 @@
     border: 1px solid var(--line);
   }
   .lesson-row {
-    background: #fbf7ee;
+    background: var(--card-bg);
     padding: 12px 18px;
     text-decoration: none;
     color: inherit;
@@ -3038,7 +3050,7 @@
     .lesson-row .row-title { font-size: 14px; }
   }
   .lesson-card {
-    background: #fbf7ee;
+    background: var(--card-bg);
     border: 1px solid var(--line);
     padding: 28px;
     cursor: pointer;
@@ -3112,7 +3124,7 @@
   /* LESSON DETAIL */
   #lesson-detail { max-width: 760px !important; }
   .lesson-detail-card {
-    background: #fbf7ee;
+    background: var(--card-bg);
     border: 1px solid var(--line);
     padding: 48px 56px;
     margin-bottom: 24px;
@@ -3303,7 +3315,7 @@
     align-items: center;
     gap: 14px;
     padding: 14px 16px;
-    background: #fbf7ee;
+    background: var(--card-bg);
     border: 1px solid var(--line);
     text-decoration: none;
     color: inherit;
@@ -3359,7 +3371,7 @@
     gap: 16px;
   }
   .game-card {
-    background: #fbf7ee;
+    background: var(--card-bg);
     border: 1px solid var(--line);
     padding: 32px 28px;
     cursor: pointer;
@@ -3395,7 +3407,7 @@
     gap: 10px;
   }
   .match-deck-btn {
-    background: #fbf7ee;
+    background: var(--card-bg);
     border: 1px solid var(--line);
     padding: 16px 18px;
     cursor: pointer;
@@ -3464,7 +3476,7 @@
     .match-grid { grid-template-columns: repeat(2, 1fr); }
   }
   .match-tile {
-    background: #fbf7ee;
+    background: var(--card-bg);
     border: 1px solid var(--line);
     padding: 18px 12px;
     min-height: 72px;
@@ -3479,7 +3491,7 @@
     text-align: center;
     line-height: 1.3;
   }
-  .match-tile.es { background: #fbf7ee; }
+  .match-tile.es { background: var(--card-bg); }
   .match-tile.en {
     background: #f3eee2;
     font-style: italic;
@@ -3576,7 +3588,7 @@
     padding-top: 12px;
   }
   .best-score-card {
-    background: #fbf7ee;
+    background: var(--card-bg);
     border: 1px solid var(--line);
     padding: 14px 18px;
     display: flex;
@@ -3679,7 +3691,7 @@
   .game-feedback.wrong { color: #f4a896; }
 
   .game-results {
-    background: #fbf7ee;
+    background: var(--card-bg);
     border: 1px solid var(--line);
     padding: 40px;
     text-align: center;
@@ -3732,7 +3744,7 @@
     gap: 16px;
   }
   .shop-item {
-    background: #fbf7ee;
+    background: var(--card-bg);
     border: 1px solid var(--line);
     padding: 24px;
     display: flex;
@@ -3861,7 +3873,7 @@
     gap: 16px;
   }
   .aviso {
-    background: #fbf7ee;
+    background: var(--card-bg);
     border: 1px solid var(--line);
     padding: 28px;
     transition: all 0.25s;
@@ -4030,7 +4042,7 @@
   }
   .avatar-option {
     aspect-ratio: 1;
-    background: #fbf7ee;
+    background: var(--card-bg);
     border: 2px solid var(--line);
     cursor: pointer;
     display: flex;
@@ -4461,7 +4473,7 @@
     gap: 20px;
   }
   .achievement {
-    background: #fbf7ee;
+    background: var(--card-bg);
     border: 1px solid var(--line);
     padding: 24px;
     text-align: center;
@@ -4636,7 +4648,7 @@
     <p style="font-family: 'Fraunces', serif; font-size: 15px; color: var(--ink-soft); line-height: 1.5; margin-bottom: 18px;">
       Signing in lets you keep your Lucas, save your progress, and unlock the Shop. Just pick a name — first name, nickname, anything you want.
     </p>
-    <div style="background: #fbf7ee; border-left: 3px solid var(--ocre); padding: 10px 14px; margin-bottom: 18px; font-size: 13px; color: var(--ink-soft); line-height: 1.4;">
+    <div style="background: var(--card-bg); border-left: 3px solid var(--ocre); padding: 10px 14px; margin-bottom: 18px; font-size: 13px; color: var(--ink-soft); line-height: 1.4;">
       <strong>Private:</strong> Your name is saved only on this device. Nothing is sent anywhere. You can sign out anytime.
     </div>
     <label style="font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--ink-soft); display: block; margin-bottom: 8px;">Your name</label>
@@ -5090,7 +5102,7 @@
           <button type="button" id="trFlipBtn" title="Flip direction" style="background: none; border: 1px solid var(--line); color: var(--ink-soft); width: 28px; height: 22px; border-radius: 3px; cursor: pointer; font-size: 12px; line-height: 1; padding: 0;">⇄</button>
           <span id="trDirHint" style="font-family: 'Fraunces', serif; font-style: italic; font-size: 11px; color: var(--ink-soft);">auto-detected</span>
         </div>
-        <textarea id="trInput" placeholder="Type or paste here…" rows="4" spellcheck="false" autocomplete="off" autocapitalize="none" autocorrect="off" style="width: 100%; box-sizing: border-box; padding: 12px 14px; font-family: 'Fraunces', serif; font-size: 15px; line-height: 1.45; color: var(--ink); background: #fbf7ee; border: 1px solid var(--line); border-radius: 3px; resize: vertical; min-height: 100px;"></textarea>
+        <textarea id="trInput" placeholder="Type or paste here…" rows="4" spellcheck="false" autocomplete="off" autocapitalize="none" autocorrect="off" style="width: 100%; box-sizing: border-box; padding: 12px 14px; font-family: 'Fraunces', serif; font-size: 15px; line-height: 1.45; color: var(--ink); background: var(--card-bg); border: 1px solid var(--line); border-radius: 3px; resize: vertical; min-height: 100px;"></textarea>
       </div>
       <!-- Right: output -->
       <div>
@@ -5098,7 +5110,7 @@
           <span id="trDirTo" style="font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--ink-soft); font-weight: 600;">ENGLISH</span>
           <span id="trStatus" style="font-family: 'Fraunces', serif; font-style: italic; font-size: 11px; color: var(--ink-soft);"></span>
         </div>
-        <div id="trOutput" style="width: 100%; box-sizing: border-box; padding: 12px 14px; font-family: 'Fraunces', serif; font-size: 15px; line-height: 1.45; color: var(--ink); background: #fbf7ee; border: 1px solid var(--line); border-radius: 3px; min-height: 100px; white-space: pre-wrap;"></div>
+        <div id="trOutput" style="width: 100%; box-sizing: border-box; padding: 12px 14px; font-family: 'Fraunces', serif; font-size: 15px; line-height: 1.45; color: var(--ink); background: var(--card-bg); border: 1px solid var(--line); border-radius: 3px; min-height: 100px; white-space: pre-wrap;"></div>
       </div>
     </div>
 
@@ -5750,7 +5762,7 @@
       <a href="#/mundo/quiz/capitales" class="mini-game-card">
         <span class="mini-game-icon">🏛️</span>
         <div class="mini-game-name">Capitals Quiz</div>
-        <div class="mini-game-desc">Match capital to country · 3 Lucas</div>
+        <div class="mini-game-desc">Find the capital dot · 3 Lucas</div>
         <span class="mini-game-arrow">→</span>
       </a>
             
@@ -5797,7 +5809,7 @@
     <h2>Site <em>quiz</em></h2>
     <div class="section-num">Mini-game</div>
   </div>
-  <div style="background: #fbf7ee; border: 1px solid var(--line); padding: 48px; margin-top: 24px;">
+  <div style="background: var(--card-bg); border: 1px solid var(--line); padding: 48px; margin-top: 24px;">
     <div style="display: grid; grid-template-columns: 1.4fr 1fr; gap: 48px; align-items: center;">
       <div>
         <div id="siteQuizImage" style="margin-bottom: 0; display: flex; justify-content: center; aspect-ratio: 4/3; background: var(--paper); overflow: hidden; border: 1px solid var(--line);"></div>
@@ -6039,6 +6051,33 @@
         pointer-events: none;
         opacity: 0.55;
       }
+      
+      /* CAPITAL DOTS — hidden in country-finding mode, visible in capitals mode.
+         The wrapping div (.capitals-mode) toggles dot visibility & disables 
+         country clicks. */
+      .capital-dot {
+        display: none;
+        fill: var(--rojo);
+        stroke: var(--paper);
+        stroke-width: 1.5;
+        cursor: pointer;
+        transition: r 0.15s ease, fill 0.15s ease;
+        pointer-events: all;
+      }
+      [data-theme="cosmic"] .capital-dot {
+        stroke: #0c0e1a;
+      }
+      .capital-dot.glow {
+        filter: drop-shadow(0 0 4px currentColor);
+      }
+      .capitals-mode .capital-dot { display: inline; }
+      .capitals-mode .country-region { pointer-events: none; cursor: default; }
+      .capitals-mode .country-region:hover { fill: var(--paper-deep); }
+      [data-theme="cosmic"] .capitals-mode .country-region:hover { fill: #1f2540; }
+      .capital-dot:hover { r: 8; fill: var(--ocre); }
+      .capital-dot.correct { fill: var(--verde) !important; r: 9; }
+      .capital-dot.wrong { fill: var(--rojo) !important; r: 9; }
+      .capital-dot.reveal { fill: var(--ocre) !important; r: 10; }
     </style>
   </defs>
   <rect class="ocean-bg" x="0" y="0" width="800" height="800"/>
@@ -6074,19 +6113,38 @@
   <path class="country-region" data-country="ES" data-name="España" d="M637.893,168.299L636.592,161.785L642.417,154.334L644.565,148.906L639.137,142.984L643.491,129.766L637.214,117.564L644,115.906L644.622,106.195L647.167,103.199L647.336,87.027L654.631,81.369L650.22,70.84L641.059,70.09L638.402,72.767L629.128,72.767L625.169,62.422L618.779,65.509L613.068,70.876L613.859,55.794L607.413,46.48L629.636,30.895L648.863,34.79L669.956,34.68L686.695,38.381L699.701,37.246L725.092,37.942L731.369,46.334L760.265,56.046L765.977,51.453L783.677,61.092L801.885,58.319L802.734,70.662L787.861,84.625L767.73,89.037L766.316,96.031L756.646,107.447L750.595,124.073L756.703,135.64L747.655,144.577L744.262,157.527L732.386,161.484L721.246,176.609L701.341,176.908L686.355,176.543L676.516,183.456L670.522,190.797L662.831,189.187L657.006,182.63L652.539,171.363Z"><title>España</title></path>
   <path class="country-region" data-country="GQ" data-name="Guinea Ecuatorial" d="M681.669,238.936L766.869,240.089L767.246,303.127L691.093,302.595L673.375,305.697L663.573,297.72Z"><title>Guinea Ecuatorial</title></path>
 
-  <!-- Inset frame for Spain — not to scale -->
   <rect class="inset-box" x="620" y="40" width="160" height="140"/>
   <text class="inset-label" x="775" y="50">ESPAÑA</text>
   <text class="scale-note" x="775" y="172">(no a escala)</text>
-
-  <!-- Inset frame for Equatorial Guinea — not to scale -->
   <rect class="inset-box" x="650" y="240" width="120" height="80"/>
   <text class="inset-label" x="765" y="252">GUINEA EC.</text>
   <text class="scale-note" x="765" y="313">(no a escala)</text>
 
-  <!-- Title -->
+  <!-- Capital city dots — only visible in .capitals-mode container -->
+  <circle class="capital-dot" data-capital="MX" cx="160.0" cy="221.9" r="6"><title>Ciudad de México</title></circle>
+  <circle class="capital-dot" data-capital="GT" cx="217.1" cy="255.2" r="6"><title>Ciudad de Guatemala</title></circle>
+  <circle class="capital-dot" data-capital="HN" cx="239.2" cy="259.1" r="6"><title>Tegucigalpa</title></circle>
+  <circle class="capital-dot" data-capital="SV" cx="225.7" cy="261.7" r="6"><title>San Salvador</title></circle>
+  <circle class="capital-dot" data-capital="NI" cx="245.4" cy="272.2" r="6"><title>Managua</title></circle>
+  <circle class="capital-dot" data-capital="CR" cx="259.7" cy="287.1" r="6"><title>San José</title></circle>
+  <circle class="capital-dot" data-capital="PA" cx="290.0" cy="293.5" r="6"><title>Ciudad de Panamá</title></circle>
+  <circle class="capital-dot" data-capital="CU" cx="271.1" cy="195.7" r="6"><title>La Habana</title></circle>
+  <circle class="capital-dot" data-capital="DO" cx="353.6" cy="228.5" r="6"><title>Santo Domingo</title></circle>
+  <circle class="capital-dot" data-capital="PR" cx="379.0" cy="228.7" r="6"><title>San Juan</title></circle>
+  <circle class="capital-dot" data-capital="CO" cx="326.2" cy="322.1" r="6"><title>Bogotá</title></circle>
+  <circle class="capital-dot" data-capital="VE" cx="373.7" cy="283.4" r="6"><title>Caracas</title></circle>
+  <circle class="capital-dot" data-capital="EC" cx="297.0" cy="354.5" r="6"><title>Quito</title></circle>
+  <circle class="capital-dot" data-capital="PE" cx="306.5" cy="433.9" r="6"><title>Lima</title></circle>
+  <circle class="capital-dot" data-capital="BO" cx="365.4" cy="464.3" r="6"><title>La Paz</title></circle>
+  <circle class="capital-dot" data-capital="CL" cx="348.7" cy="589.0" r="6"><title>Santiago</title></circle>
+  <circle class="capital-dot" data-capital="AR" cx="430.2" cy="598.2" r="6"><title>Buenos Aires</title></circle>
+  <circle class="capital-dot" data-capital="UY" cx="445.0" cy="600.6" r="6"><title>Montevideo</title></circle>
+  <circle class="capital-dot" data-capital="PY" cx="435.5" cy="526.6" r="6"><title>Asunción</title></circle>
+  <circle class="capital-dot" data-capital="ES" cx="696.9" cy="101.4" r="6"><title>Madrid</title></circle>
+  <circle class="capital-dot" data-capital="GQ" cx="634.0" cy="162.1" r="6"><title>Malabo</title></circle>
+
   <text x="20" y="30" style="font-family: 'DM Serif Display', serif; font-size: 14px; fill: var(--ink-soft); font-style: italic;">El mundo hispanohablante</text>
-  <text x="20" y="48" style="font-family: 'JetBrains Mono', monospace; font-size: 9px; fill: var(--ink-soft); letter-spacing: 0.1em;">21 COUNTRIES · HOVER FOR NAMES · CLICK TO ANSWER</text>
+  <text id="mapSubtitle" x="20" y="48" style="font-family: 'JetBrains Mono', monospace; font-size: 9px; fill: var(--ink-soft); letter-spacing: 0.1em;">21 COUNTRIES · HOVER FOR NAMES · CLICK TO ANSWER</text>
 </svg>
 </div>
     <div id="mapQuizAnswer" style="font-size: 14px; line-height: 1.5; color: var(--ink); margin-top: 14px; min-height: 1px;"></div>
@@ -6101,19 +6159,19 @@
   <a href="#/mundo" class="aviso-link" style="display: inline-block; margin-bottom: 16px;">← Back to Mundo</a>
   <div class="section-header">
     <h2>Capitals <em>quiz</em></h2>
-    <div class="section-num">Mini-game · Match the capital</div>
+    <div class="section-num">Mini-game · Click the capital on the map</div>
   </div>
   <div style="background: var(--paper); border: 1px solid var(--line); padding: 24px; border-radius: 4px; margin-top: 24px;">
     <div style="display: flex; align-items: baseline; justify-content: space-between; margin-bottom: 16px; flex-wrap: wrap; gap: 12px;">
       <div>
-        <h3 id="mapQuizPrompt" style="font-family: 'DM Serif Display', serif; font-size: 28px; line-height: 1.2; font-weight: 400; color: var(--ink); margin: 0 0 4px;">Match the capital</h3>
+        <h3 id="mapQuizPrompt" style="font-family: 'DM Serif Display', serif; font-size: 28px; line-height: 1.2; font-weight: 400; color: var(--ink); margin: 0 0 4px;">Find the capital</h3>
         <div id="mapQuizHint" style="font-family: 'Fraunces', serif; font-style: italic; font-size: 13px; color: var(--ink-soft);">Click the country on the map</div>
       </div>
       <div style="font-family: 'JetBrains Mono', monospace; font-size: 12px; color: var(--ink-soft);">
         Correct: <strong style="color: var(--ink);" id="mapCorrect">0</strong> · Attempts: <strong style="color: var(--ink);" id="mapTries">0</strong>
       </div>
     </div>
-    <div id="mapQuizSvg" onclick="handleMapClick(event)">
+    <div id="mapQuizSvg" class="capitals-mode" onclick="handleMapClick(event)">
 <svg id="hispanoMap" viewBox="0 0 800 800" xmlns="http://www.w3.org/2000/svg" style="width: 100%; height: auto; display: block; user-select: none;">
   <defs>
     <style>
@@ -6172,6 +6230,33 @@
         pointer-events: none;
         opacity: 0.55;
       }
+      
+      /* CAPITAL DOTS — hidden in country-finding mode, visible in capitals mode.
+         The wrapping div (.capitals-mode) toggles dot visibility & disables 
+         country clicks. */
+      .capital-dot {
+        display: none;
+        fill: var(--rojo);
+        stroke: var(--paper);
+        stroke-width: 1.5;
+        cursor: pointer;
+        transition: r 0.15s ease, fill 0.15s ease;
+        pointer-events: all;
+      }
+      [data-theme="cosmic"] .capital-dot {
+        stroke: #0c0e1a;
+      }
+      .capital-dot.glow {
+        filter: drop-shadow(0 0 4px currentColor);
+      }
+      .capitals-mode .capital-dot { display: inline; }
+      .capitals-mode .country-region { pointer-events: none; cursor: default; }
+      .capitals-mode .country-region:hover { fill: var(--paper-deep); }
+      [data-theme="cosmic"] .capitals-mode .country-region:hover { fill: #1f2540; }
+      .capital-dot:hover { r: 8; fill: var(--ocre); }
+      .capital-dot.correct { fill: var(--verde) !important; r: 9; }
+      .capital-dot.wrong { fill: var(--rojo) !important; r: 9; }
+      .capital-dot.reveal { fill: var(--ocre) !important; r: 10; }
     </style>
   </defs>
   <rect class="ocean-bg" x="0" y="0" width="800" height="800"/>
@@ -6207,19 +6292,38 @@
   <path class="country-region" data-country="ES" data-name="España" d="M637.893,168.299L636.592,161.785L642.417,154.334L644.565,148.906L639.137,142.984L643.491,129.766L637.214,117.564L644,115.906L644.622,106.195L647.167,103.199L647.336,87.027L654.631,81.369L650.22,70.84L641.059,70.09L638.402,72.767L629.128,72.767L625.169,62.422L618.779,65.509L613.068,70.876L613.859,55.794L607.413,46.48L629.636,30.895L648.863,34.79L669.956,34.68L686.695,38.381L699.701,37.246L725.092,37.942L731.369,46.334L760.265,56.046L765.977,51.453L783.677,61.092L801.885,58.319L802.734,70.662L787.861,84.625L767.73,89.037L766.316,96.031L756.646,107.447L750.595,124.073L756.703,135.64L747.655,144.577L744.262,157.527L732.386,161.484L721.246,176.609L701.341,176.908L686.355,176.543L676.516,183.456L670.522,190.797L662.831,189.187L657.006,182.63L652.539,171.363Z"><title>España</title></path>
   <path class="country-region" data-country="GQ" data-name="Guinea Ecuatorial" d="M681.669,238.936L766.869,240.089L767.246,303.127L691.093,302.595L673.375,305.697L663.573,297.72Z"><title>Guinea Ecuatorial</title></path>
 
-  <!-- Inset frame for Spain — not to scale -->
   <rect class="inset-box" x="620" y="40" width="160" height="140"/>
   <text class="inset-label" x="775" y="50">ESPAÑA</text>
   <text class="scale-note" x="775" y="172">(no a escala)</text>
-
-  <!-- Inset frame for Equatorial Guinea — not to scale -->
   <rect class="inset-box" x="650" y="240" width="120" height="80"/>
   <text class="inset-label" x="765" y="252">GUINEA EC.</text>
   <text class="scale-note" x="765" y="313">(no a escala)</text>
 
-  <!-- Title -->
+  <!-- Capital city dots — only visible in .capitals-mode container -->
+  <circle class="capital-dot" data-capital="MX" cx="160.0" cy="221.9" r="6"><title>Ciudad de México</title></circle>
+  <circle class="capital-dot" data-capital="GT" cx="217.1" cy="255.2" r="6"><title>Ciudad de Guatemala</title></circle>
+  <circle class="capital-dot" data-capital="HN" cx="239.2" cy="259.1" r="6"><title>Tegucigalpa</title></circle>
+  <circle class="capital-dot" data-capital="SV" cx="225.7" cy="261.7" r="6"><title>San Salvador</title></circle>
+  <circle class="capital-dot" data-capital="NI" cx="245.4" cy="272.2" r="6"><title>Managua</title></circle>
+  <circle class="capital-dot" data-capital="CR" cx="259.7" cy="287.1" r="6"><title>San José</title></circle>
+  <circle class="capital-dot" data-capital="PA" cx="290.0" cy="293.5" r="6"><title>Ciudad de Panamá</title></circle>
+  <circle class="capital-dot" data-capital="CU" cx="271.1" cy="195.7" r="6"><title>La Habana</title></circle>
+  <circle class="capital-dot" data-capital="DO" cx="353.6" cy="228.5" r="6"><title>Santo Domingo</title></circle>
+  <circle class="capital-dot" data-capital="PR" cx="379.0" cy="228.7" r="6"><title>San Juan</title></circle>
+  <circle class="capital-dot" data-capital="CO" cx="326.2" cy="322.1" r="6"><title>Bogotá</title></circle>
+  <circle class="capital-dot" data-capital="VE" cx="373.7" cy="283.4" r="6"><title>Caracas</title></circle>
+  <circle class="capital-dot" data-capital="EC" cx="297.0" cy="354.5" r="6"><title>Quito</title></circle>
+  <circle class="capital-dot" data-capital="PE" cx="306.5" cy="433.9" r="6"><title>Lima</title></circle>
+  <circle class="capital-dot" data-capital="BO" cx="365.4" cy="464.3" r="6"><title>La Paz</title></circle>
+  <circle class="capital-dot" data-capital="CL" cx="348.7" cy="589.0" r="6"><title>Santiago</title></circle>
+  <circle class="capital-dot" data-capital="AR" cx="430.2" cy="598.2" r="6"><title>Buenos Aires</title></circle>
+  <circle class="capital-dot" data-capital="UY" cx="445.0" cy="600.6" r="6"><title>Montevideo</title></circle>
+  <circle class="capital-dot" data-capital="PY" cx="435.5" cy="526.6" r="6"><title>Asunción</title></circle>
+  <circle class="capital-dot" data-capital="ES" cx="696.9" cy="101.4" r="6"><title>Madrid</title></circle>
+  <circle class="capital-dot" data-capital="GQ" cx="634.0" cy="162.1" r="6"><title>Malabo</title></circle>
+
   <text x="20" y="30" style="font-family: 'DM Serif Display', serif; font-size: 14px; fill: var(--ink-soft); font-style: italic;">El mundo hispanohablante</text>
-  <text x="20" y="48" style="font-family: 'JetBrains Mono', monospace; font-size: 9px; fill: var(--ink-soft); letter-spacing: 0.1em;">21 COUNTRIES · HOVER FOR NAMES · CLICK TO ANSWER</text>
+  <text id="mapSubtitle" x="20" y="48" style="font-family: 'JetBrains Mono', monospace; font-size: 9px; fill: var(--ink-soft); letter-spacing: 0.1em;">21 COUNTRIES · HOVER FOR NAMES · CLICK TO ANSWER</text>
 </svg>
 </div>
     <div id="mapQuizAnswer" style="font-size: 14px; line-height: 1.5; color: var(--ink); margin-top: 14px; min-height: 1px;"></div>
@@ -14727,7 +14831,7 @@
         <h3>Write your <em>response</em></h3>
         <p style="color: var(--ink-soft); font-size: 14px; margin-bottom: 16px;">Write in Spanish. Aim for 200+ words to earn the long-form bonus. You can save and come back anytime.</p>
         <textarea id="topic-write-text" placeholder="Empieza a escribir aquí…" oninput="updateTopicWriteStats()"
-          style="width: 100%; min-height: 280px; background: #fbf7ee; border: 1px solid var(--line); padding: 20px; font-family: 'Fraunces', serif; font-size: 17px; line-height: 1.7; color: var(--ink); resize: vertical; outline: none;"></textarea>
+          style="width: 100%; min-height: 280px; background: var(--card-bg); border: 1px solid var(--line); padding: 20px; font-family: 'Fraunces', serif; font-size: 17px; line-height: 1.7; color: var(--ink); resize: vertical; outline: none;"></textarea>
         <div style="display: flex; justify-content: space-between; margin-top: 12px; font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--ink-soft);">
           <span>Words: <strong id="topic-word-count">0</strong></span>
           <span>Characters: <strong id="topic-char-count">0</strong></span>
@@ -15981,29 +16085,40 @@
   // Generic init — used by both quiz subpages with a 'mode' argument
   function newMapQuiz(mode) {
     mapAnswered = false;
-    // Pick a random target country
-    const codes = Array.from(document.querySelectorAll('#mapQuizSvg .country-region')).map(el => el.getAttribute('data-country'));
-    if (codes.length === 0) return;
-    const target = codes[Math.floor(Math.random() * codes.length)];
+    let target;
+    if (mode === 'capital') {
+      // Pick from countries that have capitals + dots on the map
+      const dots = Array.from(document.querySelectorAll('#mapQuizSvg .capital-dot'));
+      if (dots.length === 0) return;
+      const targetDot = dots[Math.floor(Math.random() * dots.length)];
+      target = targetDot.getAttribute('data-capital');
+    } else {
+      // Pick from clickable country regions
+      const codes = Array.from(document.querySelectorAll('#mapQuizSvg .country-region')).map(el => el.getAttribute('data-country'));
+      if (codes.length === 0) return;
+      target = codes[Math.floor(Math.random() * codes.length)];
+    }
     mapQuizState = { target, mode };
 
-    // Build the prompt
     const country = COUNTRIES.find(c => c.code === target);
     const promptEl = document.getElementById('mapQuizPrompt');
     const hintEl = document.getElementById('mapQuizHint');
     if (promptEl) {
       if (mode === 'capital') {
         const cap = (typeof CAPITALS !== 'undefined') ? CAPITALS[target] : '';
-        promptEl.innerHTML = '¿De qué país es <em style="color: var(--ocre);">' + cap + '</em> la capital?';
-        if (hintEl) hintEl.textContent = 'Click the country on the map';
+        promptEl.innerHTML = 'Find <em style="color: var(--ocre);">' + cap + '</em>';
+        if (hintEl) hintEl.textContent = 'Click the red dot on the map';
       } else {
         promptEl.innerHTML = 'Find <em style="color: var(--ocre);">' + (country ? country.name : target) + '</em>';
         if (hintEl) hintEl.textContent = 'Click the country on the map';
       }
     }
 
-    // Reset all regions to default styling
+    // Reset all regions AND dots to default styling
     document.querySelectorAll('#mapQuizSvg .country-region').forEach(el => {
+      el.classList.remove('correct', 'wrong', 'reveal');
+    });
+    document.querySelectorAll('#mapQuizSvg .capital-dot').forEach(el => {
       el.classList.remove('correct', 'wrong', 'reveal');
     });
     document.getElementById('mapQuizAnswer').textContent = '';
@@ -16012,8 +16127,15 @@
   function handleMapClick(evt) {
     if (mapAnswered || !mapQuizState) return;
     const target = evt.target;
-    if (!target.classList || !target.classList.contains('country-region')) return;
-    const clickedCode = target.getAttribute('data-country');
+    if (!target.classList) return;
+    const isDot = target.classList.contains('capital-dot');
+    const isCountry = target.classList.contains('country-region');
+    if (!isDot && !isCountry) return;
+    // Mode check — in capital mode only accept dot clicks; in country mode only accept country clicks
+    if (mapQuizState.mode === 'capital' && !isDot) return;
+    if (mapQuizState.mode === 'country' && !isCountry) return;
+
+    const clickedCode = isDot ? target.getAttribute('data-capital') : target.getAttribute('data-country');
     mapAnswered = true;
     mapTriesCount++;
     const correctCode = mapQuizState.target;
@@ -16024,21 +16146,26 @@
       if (typeof awardCoins === 'function') awardCoins(3, 'Map quiz · correct');
       let msg;
       if (mapQuizState.mode === 'capital') {
-        msg = '✓ <strong>' + (correctCountry ? correctCountry.name : correctCode) + '</strong> — that\'s correct.';
+        const cap = (typeof CAPITALS !== 'undefined') ? CAPITALS[correctCode] : '';
+        msg = '✓ Correct! ' + cap + ' is the capital of <strong>' + (correctCountry ? correctCountry.name : correctCode) + '</strong>.';
       } else {
         msg = '✓ Correct! That\'s <strong>' + (correctCountry ? correctCountry.name : correctCode) + '</strong>.';
       }
       document.getElementById('mapQuizAnswer').innerHTML = msg;
     } else {
       target.classList.add('wrong');
-      // Reveal the correct one
-      const correctEl = document.querySelector('#mapQuizSvg .country-region[data-country="' + correctCode + '"]');
+      // Reveal the correct dot or country
+      const selector = isDot
+        ? '#mapQuizSvg .capital-dot[data-capital="' + correctCode + '"]'
+        : '#mapQuizSvg .country-region[data-country="' + correctCode + '"]';
+      const correctEl = document.querySelector(selector);
       if (correctEl) correctEl.classList.add('reveal');
       const clickedCountry = COUNTRIES.find(c => c.code === clickedCode);
       let msg;
       if (mapQuizState.mode === 'capital') {
         const cap = (typeof CAPITALS !== 'undefined') ? CAPITALS[correctCode] : '';
-        msg = '✗ You clicked <strong>' + (clickedCountry ? clickedCountry.name : clickedCode) + '</strong>. ' + cap + ' is the capital of <strong>' + (correctCountry ? correctCountry.name : correctCode) + '</strong> (highlighted).';
+        const clickedCap = (typeof CAPITALS !== 'undefined') ? CAPITALS[clickedCode] : '';
+        msg = '✗ That dot is <strong>' + clickedCap + '</strong> (' + (clickedCountry ? clickedCountry.name : '') + '). ' + cap + ' is the highlighted dot.';
       } else {
         msg = '✗ You clicked <strong>' + (clickedCountry ? clickedCountry.name : clickedCode) + '</strong>. The correct one is <strong>' + (correctCountry ? correctCountry.name : correctCode) + '</strong> (highlighted).';
       }
@@ -16185,13 +16312,13 @@
     // Build question + options
     let questionText, options, correctValue, valueAttr;
     if (questionType === 'artist') {
-      questionText = '¿Quién pintó esta obra?';
+      questionText = 'Who painted this?';
       correctValue = target.artist.name;
       const others = ARTISTS.filter(a => a.name !== target.artist.name).sort(() => Math.random() - 0.5).slice(0, 3).map(a => a.name);
       options = [correctValue, ...others].sort(() => Math.random() - 0.5);
       valueAttr = 'artist';
     } else if (questionType === 'title') {
-      questionText = '¿Cómo se llama esta obra?';
+      questionText = 'What is this painting called?';
       correctValue = target.work.title;
       const otherTitles = [];
       ARTISTS.forEach(a => a.works.forEach(w => { if (w.title !== correctValue) otherTitles.push(w.title); }));
@@ -16199,7 +16326,7 @@
       options = [correctValue, ...others].sort(() => Math.random() - 0.5);
       valueAttr = 'title';
     } else {
-      questionText = '¿En qué país nació el/la artista?';
+      questionText = 'Where is the artist from?';
       const correctCountry = COUNTRIES.find(c => c.code === target.artist.country);
       correctValue = correctCountry ? correctCountry.name : target.artist.country;
       const otherCountries = COUNTRIES.filter(c => c.code !== target.artist.country).sort(() => Math.random() - 0.5).slice(0, 3).map(c => c.name);
@@ -17292,7 +17419,7 @@
       `).join('');
 
       const viewingHtml = c.furtherViewing && c.furtherViewing.length > 0 ? `
-        <div style="margin-top: 24px; padding: 20px 24px; background: #fbf7ee; border-left: 4px solid var(--rojo); border-radius: 4px;">
+        <div style="margin-top: 24px; padding: 20px 24px; background: var(--card-bg); border-left: 4px solid var(--rojo); border-radius: 4px;">
           <div style="font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--ink-soft); margin-bottom: 12px;">Para profundizar — films & documentaries:</div>
           <ul style="font-family: 'Fraunces', serif; font-size: 14px; line-height: 1.6; color: var(--ink); padding-left: 22px; margin: 0;">
             ${c.furtherViewing.map(f => '<li>' + f + '</li>').join('')}
@@ -17321,7 +17448,7 @@
     // Note about more countries being added — only when viewing all countries
     if (mundoCountryFilter === 'all' && HISTORIA.length < 12) {
       container.innerHTML += `
-        <div style="background: #fbf7ee; border: 1px dashed var(--line); padding: 24px; text-align: center; color: var(--ink-soft); font-family: 'Fraunces', serif; font-style: italic; font-size: 15px;">
+        <div style="background: var(--card-bg); border: 1px dashed var(--line); padding: 24px; text-align: center; color: var(--ink-soft); font-family: 'Fraunces', serif; font-style: italic; font-size: 15px;">
           More countries planned — Guatemala, Honduras, Nicaragua, Dominican Republic, Puerto Rico, Bolivia, Ecuador, and others.
         </div>
       `;
@@ -17867,7 +17994,7 @@
         <h5>Where it's eaten</h5>
         <p>${d.where}</p>
       </div>
-      <div style="margin-top: 16px; padding: 12px 14px; background: #fbf7ee; border-left: 3px solid var(--ocre); font-family: 'Fraunces', serif; font-style: italic; font-size: 13px; color: var(--ink-soft); line-height: 1.5;">
+      <div style="margin-top: 16px; padding: 12px 14px; background: var(--card-bg); border-left: 3px solid var(--ocre); font-family: 'Fraunces', serif; font-style: italic; font-size: 13px; color: var(--ink-soft); line-height: 1.5;">
         Recipe descriptions are simplified for cultural learning, not precise measurements. For a tested recipe, search the dish name with "receta auténtica" online.
       </div>
     `;
