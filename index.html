@@ -4467,7 +4467,7 @@
   }
 
   /* Achievements section */
-  #logros .achievements-grid {
+  #lucas .achievements-grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
     gap: 20px;
@@ -4569,6 +4569,46 @@
     .toast-container { right: 12px; bottom: 12px; left: 12px; }
     .toast { min-width: 0; }
   }
+
+  /* HISTORIA HUB CARDS */
+  .historia-hub-card {
+    background: var(--paper);
+    border: 1px solid var(--line);
+    padding: 22px 18px;
+    text-decoration: none;
+    color: inherit;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 8px;
+    border-radius: 4px;
+    transition: all 0.18s ease;
+  }
+  .historia-hub-card:hover {
+    border-color: var(--rojo);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 18px rgba(0,0,0,0.06);
+  }
+  .historia-hub-flag {
+    font-size: 44px;
+    line-height: 1;
+  }
+  .historia-hub-name {
+    font-family: 'DM Serif Display', serif;
+    font-size: 19px;
+    font-weight: 400;
+    line-height: 1.1;
+    color: var(--ink);
+  }
+  .historia-hub-count {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+  }
+
 </style>
 <link rel="prefetch" href="historia.js" as="script">
 <script>
@@ -4616,6 +4656,7 @@
     <a href="#/escritura">Writing</a>
     <a href="#/voces">Voices</a>
     <a href="#/mundo">Mundo</a>
+    <a href="#/historia">Historia</a>
     <a href="#/lecciones">Lessons</a>
     <a href="#/recursos">Resources</a>
   </div>
@@ -4625,7 +4666,7 @@
       <span class="avatar-display avatar-chip-inline" id="avatarBtn"></span>
       <span class="name-chip-label" id="nameChipLabel"></span>
     </div>
-    <div class="coin-counter" id="coinCounter" onclick="navigate('logros')" title="Your Lucas — tap to see achievements" style="display:none">
+    <div class="coin-counter" id="coinCounter" onclick="navigate('lucas')" title="Your Lucas — tap to see achievements" style="display:none">
       <span class="coin-icon"></span>
       <span id="coinTotal">0</span>
     </div>
@@ -4844,15 +4885,10 @@
       <span class="label-big">Practice games</span>
       <span class="desc">11 games · numbers · time · grammar</span>
     </a>
-    <a href="#/logros">
-      <span class="num">★ Rewards</span>
-      <span class="label-big">Lucas & achievements</span>
-      <span class="desc">Your progress and coins</span>
-    </a>
-    <a href="#/tienda">
-      <span class="num">🛍 Shop</span>
-      <span class="label-big">Spend your Lucas</span>
-      <span class="desc">Digital unlocks & teacher rewards</span>
+    <a href="#/lucas">
+      <span class="num">★ Lucas</span>
+      <span class="label-big">Rewards, achievements & shop</span>
+      <span class="desc">Your progress, your coins, and where to spend them</span>
     </a>
     <a href="#/recursos">
       <span class="num">🔗 Resources</span>
@@ -5697,11 +5733,6 @@
         <span class="label-big">Arte</span>
         <span class="desc">Famous paintings and the artists behind them — Velázquez, Goya, Frida, Botero, Picasso. With trivia.</span>
       </a>
-      <a href="#/mundo/historia">
-        <span class="num">★ Why countries are how they are</span>
-        <span class="label-big">Historia</span>
-        <span class="desc">Coups, revolutions, dictatorships, conquests. The history US Spanish classes rarely teach.</span>
-      </a>
     </div>
   </div>
 
@@ -6408,21 +6439,25 @@
   <div id="arteGrid" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 18px; margin-top: 24px;"></div>
 </section></div>
 
-<!-- MUNDO SUBPAGE: HISTORIA -->
-<div class="page" data-page="mundo-historia"><section id="mundo-historia">
-  <a href="#/mundo" class="aviso-link" style="display: inline-block; margin-bottom: 16px;">← Back to Mundo</a>
+<!-- HISTORIA HUB (top-level) -->
+<div class="page" data-page="historia"><section id="historia">
   <div class="section-header">
     <h2><em>Historia</em></h2>
-    <div class="section-num">07 · Why countries are how they are</div>
+    <div class="section-num">★ · Why countries are how they are</div>
   </div>
   <p style="font-size: 16px; color: var(--ink-soft); line-height: 1.6; max-width: 720px; margin-bottom: 12px;">
     To understand a Spanish-speaking country today, you have to understand its past. These pages cover the historical events US Spanish classes typically don't teach — coups, revolutions, dictatorships, conquests, and the long shadows they cast on present-day politics, culture, and identity.
   </p>
   <p style="font-size: 14px; color: var(--ink-soft); line-height: 1.6; max-width: 720px; margin-bottom: 32px; font-style: italic;">
-    Note: Some of this is difficult content — violence, repression, political controversy. It's presented honestly because that's what history is. Skip what isn't useful to you. Talk to your teacher if anything is confusing or disturbing.
+    Note: Some of this is difficult content. It's presented honestly because that's what history is. Skip what isn't useful. Talk to your teacher if anything is confusing or disturbing.
   </p>
-  <div id="historiaTabs"></div>
-  <div id="historiaCountryList" style="display: flex; flex-direction: column; gap: 32px;"></div>
+  <div id="historiaHubGrid" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 14px;"></div>
+</section></div>
+
+<!-- HISTORIA COUNTRY DETAIL (one country, full timeline) -->
+<div class="page" data-page="historia-country"><section id="historia-country">
+  <a href="#/historia" class="aviso-link" style="display: inline-block; margin-bottom: 16px;">← Back to Historia</a>
+  <div id="historiaCountryContent"></div>
 </section></div>
 
 <!-- Country detail modal -->
@@ -6435,18 +6470,17 @@
 </div>
 
 
-<div class="page" data-page="logros"><section id="logros">
+<div class="page" data-page="lucas"><section id="lucas">
   <div class="section-header">
-    <h2>Lucas &amp; <em>achievements</em></h2>
-    <div class="section-num">★ / Rewards</div>
+    <h2>Lucas &amp; <em>shop</em></h2>
+    <div class="section-num">★ · Rewards · Achievements · Redemptions</div>
   </div>
-  <div id="lukaCodeBox">
-    <h4>Redeem a <em>teacher code</em></h4>
-    <p>Did your teacher give you a Luca code? Enter it here to claim your reward.</p>
-    <div class="code-input-row">
-      <input type="text" id="lukaCodeInput" placeholder="ABC-DEF-GHI" autocomplete="off">
-      <button class="btn primary" onclick="redeemLukaCode()">Redeem</button>
-    </div>
+
+  <!-- 1. Welcome + stats -->
+  <div style="margin-bottom: 28px; max-width: 760px;">
+    <p style="font-size: 18px; color: var(--ink-soft); line-height: 1.6;">
+      Hi, <em style="color:var(--rojo);font-style:italic" id="studentWelcome">Student</em>. Lucas are earned through real practice — completed drills, long writing, quality recordings. Spend them below.
+    </p>
   </div>
 
   <div class="stats-bar">
@@ -6467,43 +6501,70 @@
       <div class="value" id="statTime">0</div>
     </div>
   </div>
-  <div style="margin-bottom: 40px; max-width: 700px;">
-    <p style="font-size: 19px; color: var(--ink-soft); line-height: 1.6;">
-      Hi, <em style="color:var(--rojo);font-style:italic" id="studentWelcome">Student</em>. Lucas are earned through real practice — completed drills, long writing, quality recordings. Your progress is saved automatically on this device.
-    </p>
-    <div class="card-controls" style="margin-top: 20px;">
-      <button class="btn" onclick="switchStudent()">Switch user</button>
-      <button class="btn" style="border-color:var(--rojo);color:var(--rojo)" onclick="resetProgress()">Reset progress</button>
+
+  <!-- 2. Teacher code redemption -->
+  <div id="lukaCodeBox" style="margin-top: 28px;">
+    <h4>Redeem a <em>teacher code</em></h4>
+    <p>Did your teacher give you a Luca code? Enter it here to claim your reward.</p>
+    <div class="code-input-row">
+      <input type="text" id="lukaCodeInput" placeholder="ABC-DEF-GHI" autocomplete="off">
+      <button class="btn primary" onclick="redeemLukaCode()">Redeem</button>
     </div>
   </div>
-  <div class="achievements-grid" id="achievementsGrid">
-    <!-- populated by JS -->
+
+  <!-- 3. Account controls -->
+  <div class="card-controls" style="margin-top: 24px; margin-bottom: 48px;">
+    <button class="btn" onclick="switchStudent()">Switch user</button>
+    <button class="btn" style="border-color:var(--rojo);color:var(--rojo)" onclick="resetProgress()">Reset progress</button>
+  </div>
+
+  <!-- 4. Achievements -->
+  <div style="border-top: 1px solid var(--line); padding-top: 40px; margin-bottom: 48px;">
+    <h3 style="font-family: 'DM Serif Display', serif; font-size: 28px; font-weight: 400; margin: 0 0 18px 0;">Your <em style="color: var(--rojo); font-style: italic;">achievements</em></h3>
+    <div class="achievements-grid" id="achievementsGrid">
+      <!-- populated by JS -->
+    </div>
+  </div>
+
+  <!-- 5. Shop -->
+  <div style="border-top: 1px solid var(--line); padding-top: 40px;">
+    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 40px; margin-bottom: 24px; align-items: end;">
+      <div>
+        <h3 style="font-family: 'DM Serif Display', serif; font-size: 28px; font-weight: 400; margin: 0 0 10px 0;">The <em style="color: var(--rojo); font-style: italic;">shop</em></h3>
+        <p style="font-size: 15px; color: var(--ink-soft); line-height: 1.5; margin: 0;">
+          Spend your Lucas. Digital unlocks happen instantly. Teacher rewards generate a code you show your teacher.
+        </p>
+      </div>
+      <div style="display: flex; gap: 8px; justify-content: flex-end; flex-wrap: wrap;">
+        <button class="pill active" onclick="filterShop('all', this)">All</button>
+        <button class="pill" onclick="filterShop('digital', this)">Digital unlocks</button>
+        <button class="pill" onclick="filterShop('teacher', this)">Teacher rewards</button>
+      </div>
+    </div>
+    <div class="shop-grid" id="shopGrid"></div>
+    <div id="redemptionHistory" style="margin-top: 48px;"></div>
   </div>
 </section></div>
 
-<!-- TIENDA / SHOP -->
-<div class="page" data-page="tienda"><section id="tienda">
-  <div class="section-header">
-    <h2>The <em>shop</em></h2>
-    <div class="section-num">★ / Tienda</div>
-  </div>
-  <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 40px; margin-bottom: 32px; align-items: end;">
-    <div>
-      <p style="font-size: 18px; color: var(--ink-soft); line-height: 1.5;">
-        Spend your Lucas. Some rewards unlock new things on the site instantly. Others — like a homework pass or class snack — generate a redemption code you'll show your teacher.
-      </p>
+<!-- Redemption code modal -->
+<div class="country-modal-bg" id="redeemModal" onclick="if(event.target===this) closeRedeemModal()">
+  <div class="country-modal" style="max-width: 520px;">
+    <button class="modal-close" onclick="closeRedeemModal()">✕</button>
+    <div class="modal-body" style="padding: 40px;">
+      <div style="font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--rojo); margin-bottom: 12px;">Redemption code</div>
+      <h3 id="redeemTitle" style="font-family: 'DM Serif Display', serif; font-size: 32px; font-weight: 400; line-height: 1.1; margin-bottom: 8px;">—</h3>
+      <p id="redeemDesc" style="color: var(--ink-soft); margin-bottom: 24px;">—</p>
+      <div style="background: var(--ink); color: var(--ocre); padding: 24px; text-align: center; margin-bottom: 16px;">
+        <div style="font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; color: rgba(244,237,224,0.5); margin-bottom: 8px;">Show this code to your teacher</div>
+        <div id="redeemCode" style="font-family: 'DM Serif Display', serif; font-size: 36px; letter-spacing: 0.05em;">XXX-XXX</div>
+      </div>
+      <p style="font-size: 13px; color: var(--ink-soft);">Your teacher can verify the code and your username (<strong id="redeemStudent">—</strong>) match this redemption. Tap "I redeemed it" once your teacher confirms.</p>
+      <div class="card-controls" style="margin-top: 20px;">
+        <button class="btn" onclick="closeRedeemModal()">Close</button>
+      </div>
     </div>
-    <div style="display: flex; gap: 8px; justify-content: flex-end; flex-wrap: wrap;">
-      <button class="pill active" onclick="filterShop('all', this)">All</button>
-      <button class="pill" onclick="filterShop('digital', this)">Digital unlocks</button>
-      <button class="pill" onclick="filterShop('teacher', this)">Teacher rewards</button>
-    </div>
   </div>
-
-  <div class="shop-grid" id="shopGrid"></div>
-
-  <div id="redemptionHistory" style="margin-top: 48px;"></div>
-</section></div>
+</div>
 
 <!-- Redemption code modal -->
 <div class="country-modal-bg" id="redeemModal" onclick="if(event.target===this) closeRedeemModal()">
@@ -6551,7 +6612,8 @@
     'mundo-people': 'People · World',
     'mundo-slang': 'Slang · World',
     'mundo-dishes': 'Dishes · World',
-    'mundo-historia': 'Historia · World',
+    historia: 'Historia',
+    'historia-country': 'Country · Historia',
     'mundo-quiz-flags': 'Flag Quiz · World',
     'mundo-quiz-sites': 'Site Quiz · World',
     'mundo-quiz-people': 'Person Quiz · World',
@@ -6559,8 +6621,7 @@
     'mundo-quiz-dishes': 'Dish Quiz · World',
     'mundo-quiz-years': 'Which Came First · World',
     'mundo-quiz-origin': 'Where are they from · World',
-    logros: 'Rewards',
-    tienda: 'Shop',
+    lucas: 'Lucas · Rewards & Shop',
     topic: 'Topic',
     juegos: 'Games',
     game: 'Game',
@@ -6604,6 +6665,21 @@
       page = subpage;
       param = null;
     }
+    // Historia subpath: #/historia/peru → page = 'historia-country', param = 'peru'
+    if (page === 'historia' && param) {
+      page = 'historia-country';
+      // param stays as the country code
+    }
+    // Backwards-compat: redirect old #/mundo/historia → #/historia
+    if (page === 'mundo-historia') {
+      page = 'historia';
+      param = null;
+    }
+    // Backwards-compat: old separate logros / tienda → unified lucas
+    if (page === 'logros' || page === 'tienda') {
+      page = 'lucas';
+      param = null;
+    }
     // Hide all, show one
     document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
     const target = document.querySelector('.page[data-page="' + page + '"]');
@@ -6635,7 +6711,8 @@
     if (page === 'mundo-dishes' && typeof renderDishes === 'function') renderDishes();
     if (page === 'mundo-arte' && typeof renderArte === 'function') renderArte();
     if (page === 'recursos' && typeof window.__initTranslator === 'function') window.__initTranslator();
-    if (page === 'mundo-historia') loadHistoriaModule().then(() => { if (typeof renderHistoria === 'function') renderHistoria(); }).catch(() => {});
+    if (page === 'historia') loadHistoriaModule().then(() => { if (typeof renderHistoriaHub === 'function') renderHistoriaHub(); }).catch(() => {});
+    if (page === 'historia-country') loadHistoriaModule().then(() => { if (typeof renderHistoriaCountry === 'function') renderHistoriaCountry(param); }).catch(() => {});
     if (page === 'mundo-quiz-flags' && typeof newFlagQuiz === 'function') newFlagQuiz();
     if (page === 'mundo-quiz-sites' && typeof newSiteQuiz === 'function') newSiteQuiz();
     if (page === 'mundo-quiz-people' && typeof newPersonQuiz === 'function') newPersonQuiz();
@@ -6646,8 +6723,10 @@
     if (page === 'mundo-quiz-map' && typeof newCountryMapQuiz === 'function') newCountryMapQuiz();
     if (page === 'mundo-quiz-capitales' && typeof newCapitalMapQuiz === 'function') newCapitalMapQuiz();
     if (page === 'mundo-quiz-origin' && typeof newOriginQuiz === 'function') newOriginQuiz();
-    if (page === 'tienda' && typeof renderShop === 'function') renderShop();
-    if (page === 'logros' && typeof renderAchievements === 'function') { renderAchievements(); updateStats(); }
+    if (page === 'lucas') {
+      if (typeof renderShop === 'function') renderShop();
+      if (typeof renderAchievements === 'function') { renderAchievements(); updateStats(); }
+    }
     if (page === 'escritura' && typeof renderTopicList === 'function') renderTopicList('writing');
     if (page === 'voces' && typeof renderTopicList === 'function') renderTopicList('speaking');
     if (page === 'topic' && typeof renderTopicDetail === 'function') renderTopicDetail(param);
@@ -17036,90 +17115,99 @@
     return __historiaLoadPromise;
   }
 
-  function renderHistoria() {
-    // If HISTORIA hasn't loaded yet, show a brief loader instead of an empty page.
+  function renderHistoriaHub() {
     if (!HISTORIA || HISTORIA.length === 0) {
-      const grid = document.getElementById('historiaGrid');
+      const grid = document.getElementById('historiaHubGrid');
       if (grid) {
-        grid.innerHTML = '<div style="padding: 40px; text-align: center; color: var(--ink-soft); font-family: \'Fraunces\', serif; font-style: italic;">Loading historical timelines…</div>';
+        grid.innerHTML = '<div style="padding: 40px; text-align: center; color: var(--ink-soft); font-family: \'Fraunces\', serif; font-style: italic; grid-column: 1 / -1;">Loading historical timelines…</div>';
       }
-      loadHistoriaModule().then(() => renderHistoria()).catch(() => {
-        if (grid) grid.innerHTML = '<div style="padding: 40px; text-align: center; color: var(--rojo);">Could not load historical data. Make sure historia.js is uploaded alongside the main file.</div>';
+      loadHistoriaModule().then(() => renderHistoriaHub()).catch(() => {
+        if (grid) grid.innerHTML = '<div style="padding: 40px; text-align: center; color: var(--rojo); grid-column: 1 / -1;">Could not load historical data. Make sure historia.js is uploaded alongside the main file.</div>';
       });
       return;
     }
-    const container = document.getElementById('historiaCountryList');
-    const tabs = document.getElementById('historiaTabs');
-    if (!container) return;
-
-    const availableCodes = HISTORIA.map(c => c.country);
-    if (tabs) tabs.innerHTML = buildMundoCountryTabs(availableCodes);
-
-    const countriesToRender = mundoCountryFilter === 'all'
-      ? HISTORIA
-      : HISTORIA.filter(c => c.country === mundoCountryFilter);
-
-    if (countriesToRender.length === 0) {
-      container.innerHTML = `<div class="mundo-empty">No Historia content for the selected country yet — try another, or pick "All countries" to browse.</div>`;
-      return;
-    }
-
-    container.innerHTML = countriesToRender.map(c => {
-      const eventsHtml = c.events.map((e, idx) => `
-        <details class="historia-event" ${idx === 0 ? 'open' : ''} style="background: var(--paper); border: 1px solid var(--line); padding: 20px 24px; margin-bottom: 10px; border-radius: 4px;">
-          <summary style="cursor: pointer; list-style: none; outline: none; display: flex; align-items: baseline; gap: 16px; padding: 0;">
-            <span style="font-family: 'JetBrains Mono', monospace; font-size: 13px; font-weight: 600; color: var(--rojo); flex-shrink: 0; min-width: 90px;">${e.year}</span>
-            <span style="font-family: 'Fraunces', serif; font-size: 18px; line-height: 1.3; color: var(--ink); font-weight: 500;">${e.title}</span>
-          </summary>
-          <div style="margin-top: 14px; padding-top: 14px; border-top: 1px solid var(--line);">
-            <div style="font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--ink-soft); margin-bottom: 10px;">En español: <em style="font-style: italic; text-transform: none; letter-spacing: 0; color: var(--rojo);">${e.spanish}</em></div>
-            <div style="font-family: 'Fraunces', serif; font-size: 15px; line-height: 1.65; color: var(--ink);">${e.body}</div>
-            <div style="margin-top: 16px; padding-top: 14px; border-top: 1px dashed var(--line);">
-              <div style="font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--ink-soft); margin-bottom: 8px;">Vocabulary to know:</div>
-              <div style="display: flex; flex-wrap: wrap; gap: 6px;">
-                ${e.vocab.map(v => '<span style="background: var(--ocre); color: var(--ink); padding: 3px 10px; border-radius: 3px; font-size: 13px; font-family: \'Fraunces\', serif;">' + v + '</span>').join('')}
-              </div>
-            </div>
-          </div>
-        </details>
-      `).join('');
-
-      const viewingHtml = c.furtherViewing && c.furtherViewing.length > 0 ? `
-        <div style="margin-top: 24px; padding: 20px 24px; background: var(--card-bg); border-left: 4px solid var(--rojo); border-radius: 4px;">
-          <div style="font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--ink-soft); margin-bottom: 12px;">Para profundizar — films & documentaries:</div>
-          <ul style="font-family: 'Fraunces', serif; font-size: 14px; line-height: 1.6; color: var(--ink); padding-left: 22px; margin: 0;">
-            ${c.furtherViewing.map(f => '<li>' + f + '</li>').join('')}
-          </ul>
-        </div>
-      ` : '';
-
+    const grid = document.getElementById('historiaHubGrid');
+    if (!grid) return;
+    // Sort alphabetically by country name
+    const sorted = HISTORIA.slice().sort((a, b) => a.countryName.localeCompare(b.countryName));
+    grid.innerHTML = sorted.map(c => {
+      const code = (c.country || '').toLowerCase();
       return `
-        <div class="historia-country" style="background: var(--paper); border: 1px solid var(--line); padding: 32px;">
-          <div style="display: flex; align-items: center; gap: 16px; margin-bottom: 16px;">
-            <div style="font-size: 40px;">${FLAGS[c.country] || ''}</div>
-            <div>
-              <h3 style="font-family: 'DM Serif Display', serif; font-size: 32px; font-weight: 400; line-height: 1.1; margin: 0; color: var(--ink);">${c.countryName}</h3>
-              <div style="font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--ink-soft); margin-top: 4px;">${c.events.length} events</div>
-            </div>
-          </div>
-          <p style="font-family: 'Fraunces', serif; font-size: 16px; line-height: 1.6; color: var(--ink); margin-bottom: 24px; font-style: italic;">${c.arc}</p>
-          <div>
-            ${eventsHtml}
-          </div>
-          ${viewingHtml}
-        </div>
+        <a href="#/historia/${code}" class="historia-hub-card">
+          <div class="historia-hub-flag">${FLAGS[c.country] || '🏳'}</div>
+          <div class="historia-hub-name">${c.countryName}</div>
+          <div class="historia-hub-count">${c.events.length} event${c.events.length === 1 ? '' : 's'}</div>
+        </a>
       `;
     }).join('');
-
-    // Note about more countries being added — only when viewing all countries
-    if (mundoCountryFilter === 'all' && HISTORIA.length < 12) {
-      container.innerHTML += `
-        <div style="background: var(--card-bg); border: 1px dashed var(--line); padding: 24px; text-align: center; color: var(--ink-soft); font-family: 'Fraunces', serif; font-style: italic; font-size: 15px;">
-          More countries planned — Guatemala, Honduras, Nicaragua, Dominican Republic, Puerto Rico, Bolivia, Ecuador, and others.
-        </div>
-      `;
-    }
   }
+
+  function renderHistoriaCountry(code) {
+    if (!HISTORIA || HISTORIA.length === 0) {
+      const container = document.getElementById('historiaCountryContent');
+      if (container) {
+        container.innerHTML = '<div style="padding: 40px; text-align: center; color: var(--ink-soft); font-family: \'Fraunces\', serif; font-style: italic;">Loading historical timelines…</div>';
+      }
+      loadHistoriaModule().then(() => renderHistoriaCountry(code)).catch(() => {
+        if (container) container.innerHTML = '<div style="padding: 40px; text-align: center; color: var(--rojo);">Could not load historical data.</div>';
+      });
+      return;
+    }
+    const container = document.getElementById('historiaCountryContent');
+    if (!container) return;
+    const upper = (code || '').toUpperCase();
+    const c = HISTORIA.find(x => x.country === upper);
+    if (!c) {
+      container.innerHTML = '<div style="padding: 40px; text-align: center; color: var(--ink-soft); font-family: \'Fraunces\', serif; font-style: italic;">No historia available for this country yet. <a href="#/historia" style="color: var(--rojo);">Back to Historia</a>.</div>';
+      return;
+    }
+    const eventsHtml = c.events.map((e, idx) => `
+      <details class="historia-event" ${idx === 0 ? 'open' : ''} style="background: var(--paper); border: 1px solid var(--line); padding: 20px 24px; margin-bottom: 10px; border-radius: 4px;">
+        <summary style="cursor: pointer; list-style: none; outline: none; display: flex; align-items: baseline; gap: 16px; padding: 0;">
+          <span style="font-family: 'JetBrains Mono', monospace; font-size: 13px; font-weight: 600; color: var(--rojo); flex-shrink: 0; min-width: 90px;">${e.year}</span>
+          <span style="font-family: 'Fraunces', serif; font-size: 18px; line-height: 1.3; color: var(--ink); font-weight: 500;">${e.title}</span>
+        </summary>
+        <div style="margin-top: 14px; padding-top: 14px; border-top: 1px solid var(--line);">
+          <div style="font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--ink-soft); margin-bottom: 10px;">En español: <em style="font-style: italic; text-transform: none; letter-spacing: 0; color: var(--rojo);">${e.spanish}</em></div>
+          <div style="font-family: 'Fraunces', serif; font-size: 15px; line-height: 1.65; color: var(--ink);">${e.body}</div>
+          <div style="margin-top: 16px; padding-top: 14px; border-top: 1px dashed var(--line);">
+            <div style="font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--ink-soft); margin-bottom: 8px;">Vocabulary to know:</div>
+            <div style="display: flex; flex-wrap: wrap; gap: 6px;">
+              ${(e.vocab || []).map(v => '<span style="background: var(--ocre); color: var(--ink); padding: 3px 10px; border-radius: 3px; font-size: 13px; font-family: \'Fraunces\', serif;">' + v + '</span>').join('')}
+            </div>
+          </div>
+        </div>
+      </details>
+    `).join('');
+
+    const viewingHtml = c.furtherViewing && c.furtherViewing.length > 0 ? `
+      <div style="margin-top: 24px; padding: 20px 24px; background: var(--card-bg); border-left: 4px solid var(--rojo); border-radius: 4px;">
+        <div style="font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--ink-soft); margin-bottom: 12px;">Para profundizar — films & documentaries:</div>
+        <ul style="font-family: 'Fraunces', serif; font-size: 14px; line-height: 1.6; color: var(--ink); padding-left: 22px; margin: 0;">
+          ${c.furtherViewing.map(f => '<li>' + f + '</li>').join('')}
+        </ul>
+      </div>
+    ` : '';
+
+    container.innerHTML = `
+      <div style="display: flex; align-items: center; gap: 16px; margin-bottom: 16px;">
+        <div style="font-size: 56px;">${FLAGS[c.country] || ''}</div>
+        <div>
+          <h2 style="font-family: 'DM Serif Display', serif; font-size: clamp(32px, 4vw, 48px); font-weight: 400; line-height: 1.05; margin: 0; color: var(--ink);">${c.countryName}</h2>
+          <div style="font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--ink-soft); margin-top: 6px;">${c.events.length} historical event${c.events.length === 1 ? '' : 's'}</div>
+        </div>
+      </div>
+      <p style="font-family: 'Fraunces', serif; font-size: 17px; line-height: 1.6; color: var(--ink); margin-bottom: 28px; font-style: italic; max-width: 760px;">${c.arc}</p>
+      <div>
+        ${eventsHtml}
+      </div>
+      ${viewingHtml}
+    `;
+  }
+
+  // Kept as alias for backwards-compat (the historia trivia game still works via this name)
+  function renderHistoria() { renderHistoriaHub(); }
+
 
   function renderPeople() {
     const grid = document.getElementById('peopleGrid');
@@ -17129,65 +17217,44 @@
     const availableCodes = Array.from(new Set(PEOPLE.map(p => p.country)));
     if (tabs) tabs.innerHTML = buildMundoCountryTabs(availableCodes);
 
-    // For people filter we need the original index so openPersonModal still works correctly.
-    // Build array of {p, originalIdx} pairs, then filter.
-    const indexed = PEOPLE.map((p, i) => ({ p, i }));
     const peopleToShow = mundoCountryFilter === 'all'
-      ? indexed
-      : indexed.filter(x => x.p.country === mundoCountryFilter);
+      ? PEOPLE
+      : PEOPLE.filter(p => p.country === mundoCountryFilter);
 
     if (peopleToShow.length === 0) {
       grid.innerHTML = `<div class="mundo-empty">No people from the selected country yet.</div>`;
       return;
     }
 
-    grid.innerHTML = peopleToShow.map(({ p, i }) => {
-      const initial = p.name.charAt(0);
+    grid.innerHTML = peopleToShow.map(p => {
+      const flag = FLAGS[p.country] || '';
+      const initials = (p.name || '?').split(' ').map(w => w[0]).filter(Boolean).slice(0, 2).join('');
+      const photoHtml = p.img
+        ? `<img src="${p.img}" alt="${escapeHtml(p.name)}" loading="lazy" onerror="this.style.display='none'; this.nextElementSibling && (this.nextElementSibling.style.display='flex');"><div class="photo-fallback" style="display:none">${initials}</div>`
+        : `<div class="photo-fallback">${initials}</div>`;
       return `
-        <div class="person-card" onclick="openPersonModal(${i})">
+        <div class="person-card">
           <div class="person-photo">
-            <div class="photo-fallback">${initial}</div>
-            <img src="${p.img}" alt="${p.name}" loading="lazy" onerror="this.style.display='none'">
-            <div class="country-badge">${FLAGS[p.country] || ''}</div>
+            ${photoHtml}
+            <div class="country-badge" title="${p.country}">${flag}</div>
           </div>
           <div class="person-info">
-            <h4>${p.name}</h4>
-            <div class="role">${p.role}</div>
-            <div class="blurb">${p.blurb}</div>
+            <h4>${escapeHtml(p.name)}</h4>
+            <div class="role">${escapeHtml(p.role || '')}</div>
+            <div class="blurb">${p.blurb || ''}</div>
           </div>
         </div>
       `;
     }).join('');
   }
 
-  function openPersonModal(idx) {
-    const p = PEOPLE[idx];
-    if (!p) return;
-    const country = COUNTRIES.find(c => c.code === p.country);
-    document.getElementById('modalFlag').innerHTML = `<div class="person-modal-photo"><img src="${p.img}" alt="${p.name}" onerror="this.parentElement.innerHTML='<div style=\\'padding:60px;text-align:center;color:var(--ocre);font-family:DM Serif Display, serif;font-size:72px;font-style:italic;\\'>${p.name.charAt(0)}</div>'"></div>`;
-    document.getElementById('modalBody').innerHTML = `
-      <h3>${p.name}</h3>
-      <div class="modal-sub">${p.role} · ${country ? country.name : ''}</div>
-      <div class="modal-stats">
-        <div><div class="label">From</div><div class="value">${country ? country.name : '—'}</div></div>
-        <div><div class="label">Known as</div><div class="value">${p.role}</div></div>
-        <div><div class="label">Photo</div><div class="value" style="font-size:11px;font-family:'JetBrains Mono',monospace;">${p.credit}</div></div>
-      </div>
-      <div class="modal-section">
-        <h5>About</h5>
-        <p>${p.blurb}</p>
-      </div>
-    `;
-    document.getElementById('countryModal').classList.add('open');
-  }
-
-  /* ============== SLANG & COLLOQUIAL EXPRESSIONS ============== */
-  // Each entry: { phrase, literal (word-for-word English), meaning (real meaning),
-  //   example (Spanish sentence), country (code for flag), where (regions used) }
-  // Curated to be high-school appropriate. No profanity or insults beyond mild teasing.
+  /* ============== SLANG / EVERYDAY EXPRESSIONS ============== */
+  // Each: { phrase, literal, meaning, example, country, where }
+  // Authentic slang that Spanish learners rarely encounter in textbooks but hear daily
+  // in Spanish-speaking countries. Includes tone notes where appropriate.
   const SLANG = [
     // ARGENTINA
-    { phrase: '¡Che!', literal: '"hey!" (filler word)', meaning: 'A catch-all "hey" or "dude" used to get attention or as a verbal filler. Argentina\'s most iconic word — Che Guevara got his nickname from saying it constantly.', example: '¿Che, vamos al cine?', country: 'AR', where: 'Argentina, Uruguay' },
+    { phrase: 'Che', literal: 'hey / dude', meaning: 'The most iconic Argentine word — used to get someone\'s attention or as a filler like "you know." Where Che Guevara got his nickname (he used it constantly, so other Latin Americans called him "Che").', example: '¡Che, vení para acá!', country: 'AR', where: 'Argentina, Uruguay' },
     { phrase: 'Boludo', literal: 'sort of: "fool" or "idiot"', meaning: 'Among close friends, it means "dude" or "bro" — completely affectionate. But with strangers, it\'s an insult. Tone is everything.', example: 'Che boludo, ¿cómo andás?', country: 'AR', where: 'Argentina' },
     { phrase: 'Quilombo', literal: '"a mess"', meaning: 'A chaotic situation, a huge mess, total disorder. Useful for describing everything from a messy room to a political crisis.', example: '¡Qué quilombo hay en el centro!', country: 'AR', where: 'Argentina, Uruguay' },
 
@@ -26541,7 +26608,7 @@
 
   function filterShop(kind, btn) {
     shopFilter = kind;
-    document.querySelectorAll('#tienda .pill').forEach(p => p.classList.remove('active'));
+    document.querySelectorAll('#lucas .pill').forEach(p => p.classList.remove('active'));
     btn.classList.add('active');
     renderShop();
   }
