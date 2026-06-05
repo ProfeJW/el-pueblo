@@ -4570,19 +4570,67 @@
     .toast { min-width: 0; }
   }
 
-  /* HISTORIA HUB CARDS */
+  /* HISTORIA HUB — QUICK ACTIONS */
+  .historia-actions {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 12px;
+    margin-bottom: 28px;
+  }
+  .historia-action-btn {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    padding: 16px 18px;
+    background: var(--card-bg);
+    border: 1px solid var(--line);
+    border-left: 4px solid var(--rojo);
+    text-decoration: none;
+    color: inherit;
+    transition: all 0.15s ease;
+  }
+  .historia-action-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 18px rgba(0,0,0,0.06);
+    border-color: var(--rojo);
+  }
+  .historia-action-icon { font-size: 22px; line-height: 1; margin-bottom: 4px; }
+  .historia-action-label {
+    font-family: 'DM Serif Display', serif;
+    font-size: 18px;
+    font-weight: 400;
+    color: var(--ink);
+  }
+  .historia-action-desc {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    color: var(--ink-soft);
+    letter-spacing: 0.05em;
+  }
+
+  /* HISTORIA HUB — VIEW TOGGLE */
+  .historia-view-toggle {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 20px;
+    flex-wrap: wrap;
+  }
+
+  /* HISTORIA HUB — GRID */
+  .historia-hub-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+    gap: 14px;
+  }
   .historia-hub-card {
     background: var(--paper);
     border: 1px solid var(--line);
-    padding: 22px 18px;
+    padding: 18px 18px 16px;
     text-decoration: none;
     color: inherit;
     display: flex;
     flex-direction: column;
-    align-items: center;
-    text-align: center;
-    gap: 8px;
-    border-radius: 4px;
+    gap: 6px;
     transition: all 0.18s ease;
   }
   .historia-hub-card:hover {
@@ -4590,13 +4638,16 @@
     transform: translateY(-2px);
     box-shadow: 0 6px 18px rgba(0,0,0,0.06);
   }
-  .historia-hub-flag {
-    font-size: 44px;
-    line-height: 1;
+  .historia-hub-card-top {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 4px;
   }
+  .historia-hub-flag { font-size: 32px; line-height: 1; }
   .historia-hub-name {
     font-family: 'DM Serif Display', serif;
-    font-size: 19px;
+    font-size: 22px;
     font-weight: 400;
     line-height: 1.1;
     color: var(--ink);
@@ -4606,9 +4657,50 @@
     font-size: 10px;
     letter-spacing: 0.18em;
     text-transform: uppercase;
+    color: var(--rojo);
+  }
+  .historia-hub-blurb {
+    font-family: 'Fraunces', serif;
+    font-size: 13.5px;
+    line-height: 1.5;
     color: var(--ink-soft);
+    font-style: italic;
   }
 
+  /* HISTORIA MAP — clickable country regions */
+  #historiaMapContainer .country-region {
+    cursor: pointer;
+    transition: fill 0.15s ease;
+  }
+  #historiaMapContainer .country-region:hover {
+    fill: var(--rojo) !important;
+  }
+
+
+
+  /* HISTORIA MAP — country name label */
+  .historia-map-label {
+    font-family: 'DM Serif Display', serif;
+    font-size: 22px;
+    font-weight: 400;
+    color: var(--ink);
+    text-align: center;
+    padding: 12px 0 14px;
+    border-bottom: 1px dashed var(--line);
+    margin-bottom: 14px;
+    min-height: 48px;
+    transition: color 0.2s ease;
+  }
+  .historia-map-label.active { color: var(--rojo); }
+  .historia-map-label .historia-map-label-meta {
+    display: block;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+    margin-top: 4px;
+  }
 </style>
 <link rel="prefetch" href="historia.js" as="script">
 <script>
@@ -4874,6 +4966,11 @@
       <span class="num">🌎 Mundo</span>
       <span class="label-big">Cultura y geografía</span>
       <span class="desc">21 countries · flags · traditions</span>
+    </a>
+    <a href="#/historia">
+      <span class="num">📜 Historia</span>
+      <span class="label-big">Historia of Spanish-Speaking Nations</span>
+      <span class="desc">15 countries · coups, revolutions, dictatorships, conquests</span>
     </a>
     <a href="#/lecciones">
       <span class="num">📘 Lessons</span>
@@ -6442,16 +6539,50 @@
 <!-- HISTORIA HUB (top-level) -->
 <div class="page" data-page="historia"><section id="historia">
   <div class="section-header">
-    <h2><em>Historia</em></h2>
-    <div class="section-num">★ · Why countries are how they are</div>
+    <h2>Historia of <em>Spanish-Speaking Nations</em></h2>
   </div>
-  <p style="font-size: 16px; color: var(--ink-soft); line-height: 1.6; max-width: 720px; margin-bottom: 12px;">
-    To understand a Spanish-speaking country today, you have to understand its past. These pages cover the historical events US Spanish classes typically don't teach — coups, revolutions, dictatorships, conquests, and the long shadows they cast on present-day politics, culture, and identity.
-  </p>
-  <p style="font-size: 14px; color: var(--ink-soft); line-height: 1.6; max-width: 720px; margin-bottom: 32px; font-style: italic;">
-    Note: Some of this is difficult content. It's presented honestly because that's what history is. Skip what isn't useful. Talk to your teacher if anything is confusing or disturbing.
-  </p>
-  <div id="historiaHubGrid" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 14px;"></div>
+
+  <!-- VIEW TOGGLE (small, inline) -->
+  <div class="historia-view-toggle">
+    <button class="pill active" data-view="map" onclick="setHistoriaView('map', this)">🗺 Map</button>
+    <button class="pill" data-view="grid" onclick="setHistoriaView('grid', this)">📋 List</button>
+  </div>
+
+  <!-- MAP VIEW (default) -->
+  <div id="historiaHubMap">
+    <div id="historiaMapLabel" class="historia-map-label">&nbsp;</div>
+    <div id="historiaMapContainer" style="background: var(--card-bg); border: 1px solid var(--line); padding: 16px;"></div>
+  </div>
+
+  <!-- GRID VIEW (hidden by default) -->
+  <div id="historiaHubGrid" class="historia-hub-grid" style="display: none;"></div>
+
+  <!-- INTRO + CONTENT WARNING (below the fold) -->
+  <div style="margin-top: 56px; padding-top: 28px; border-top: 1px solid var(--line);">
+    <p style="font-size: 15px; color: var(--ink-soft); line-height: 1.6; max-width: 760px; margin-bottom: 12px;">
+      To understand a Spanish-speaking country today, you have to understand its past. These timelines cover the historical events US Spanish classes typically don't teach — coups, revolutions, dictatorships, conquests, and the shadows they cast on present-day politics, culture, and identity.
+    </p>
+    <p style="font-size: 13px; color: var(--ink-soft); line-height: 1.5; max-width: 760px; font-style: italic;">
+      Some of this is difficult content. It's presented honestly because that's what history is. Skip what isn't useful. Talk to your teacher if anything is confusing or disturbing.
+    </p>
+  </div>
+
+  <!-- GAMES (at the bottom) -->
+  <div style="margin-top: 40px;">
+    <h3 style="font-family: 'DM Serif Display', serif; font-size: 22px; font-weight: 400; margin: 0 0 14px 0;">Test your <em style="color: var(--rojo); font-style: italic;">historia</em></h3>
+    <div class="historia-actions">
+      <a href="#/mundo/quiz/historia" class="historia-action-btn">
+        <span class="historia-action-icon">🎯</span>
+        <span class="historia-action-label">Trivia game</span>
+        <span class="historia-action-desc">Random questions from these timelines</span>
+      </a>
+      <a href="#/mundo/quiz/years" class="historia-action-btn">
+        <span class="historia-action-icon">📅</span>
+        <span class="historia-action-label">Which came first?</span>
+        <span class="historia-action-desc">Put historical events in chronological order</span>
+      </a>
+    </div>
+  </div>
 </section></div>
 
 <!-- HISTORIA COUNTRY DETAIL (one country, full timeline) -->
@@ -6711,14 +6842,18 @@
     if (page === 'mundo-dishes' && typeof renderDishes === 'function') renderDishes();
     if (page === 'mundo-arte' && typeof renderArte === 'function') renderArte();
     if (page === 'recursos' && typeof window.__initTranslator === 'function') window.__initTranslator();
-    if (page === 'historia') loadHistoriaModule().then(() => { if (typeof renderHistoriaHub === 'function') renderHistoriaHub(); }).catch(() => {});
+    if (page === 'historia') {
+      if (typeof renderHistoriaHub === 'function') renderHistoriaHub();
+      // Populate the map view (it's the default) — needs DOM elements ready
+      setTimeout(() => { if (typeof populateHistoriaMap === 'function') populateHistoriaMap(); }, 0);
+    }
     if (page === 'historia-country') loadHistoriaModule().then(() => { if (typeof renderHistoriaCountry === 'function') renderHistoriaCountry(param); }).catch(() => {});
     if (page === 'mundo-quiz-flags' && typeof newFlagQuiz === 'function') newFlagQuiz();
     if (page === 'mundo-quiz-sites' && typeof newSiteQuiz === 'function') newSiteQuiz();
     if (page === 'mundo-quiz-people' && typeof newPersonQuiz === 'function') newPersonQuiz();
-    if (page === 'mundo-quiz-historia') loadHistoriaModule().then(() => { if (typeof newTriviaQuiz === 'function') newTriviaQuiz(); }).catch(() => {});
+    if (page === 'mundo-quiz-historia') loadHistoriaModule().then(() => { if (typeof newTriviaQuiz === 'function') newTriviaQuiz(); }).catch(() => { const el = document.getElementById('triviaQuestion'); if (el) el.innerHTML = '<div style="font-style: italic; opacity: 0.7;">Questions unavailable right now. <a href="#/historia" style="color: var(--ocre);">Back to Historia</a>.</div>'; });
     if (page === 'mundo-quiz-dishes' && typeof newDishQuiz === 'function') newDishQuiz();
-    if (page === 'mundo-quiz-years') loadHistoriaModule().then(() => { if (typeof newYearQuiz === 'function') newYearQuiz(); }).catch(() => {});
+    if (page === 'mundo-quiz-years') loadHistoriaModule().then(() => { if (typeof newYearQuiz === 'function') newYearQuiz(); }).catch(() => { const el = document.getElementById('yearQuizOptions'); if (el) el.innerHTML = '<div style="font-style: italic; opacity: 0.7; padding: 16px;">Events unavailable right now. <a href="#/historia" style="color: var(--rojo);">Back to Historia</a>.</div>'; });
     if (page === 'mundo-quiz-arte' && typeof newArtQuiz === 'function') newArtQuiz();
     if (page === 'mundo-quiz-map' && typeof newCountryMapQuiz === 'function') newCountryMapQuiz();
     if (page === 'mundo-quiz-capitales' && typeof newCapitalMapQuiz === 'function') newCapitalMapQuiz();
@@ -15978,7 +16113,13 @@
   function newTriviaQuiz() {
     triviaAnswered = false;
     if (!HISTORIA || HISTORIA.length === 0) {
-      document.getElementById('triviaQuestion').textContent = 'No Historia data loaded yet.';
+      const el = document.getElementById('triviaQuestion');
+      if (el) el.innerHTML = '<div style="font-style: italic; opacity: 0.7;">Loading questions…</div>';
+      if (typeof loadHistoriaModule === 'function') {
+        loadHistoriaModule().then(() => newTriviaQuiz()).catch(() => {
+          if (el) el.innerHTML = '<div style="font-style: italic; opacity: 0.7;">Questions unavailable right now. <a href="#/historia" style="color: var(--ocre);">Back to Historia</a>.</div>';
+        });
+      }
       return;
     }
 
@@ -16188,7 +16329,12 @@
     yearAnswered = false;
     if (!HISTORIA || HISTORIA.length === 0) {
       const el = document.getElementById('yearQuizOptions');
-      if (el) el.textContent = 'No Historia data loaded yet.';
+      if (el) el.innerHTML = '<div style="font-style: italic; opacity: 0.7; padding: 16px;">Loading events…</div>';
+      if (typeof loadHistoriaModule === 'function') {
+        loadHistoriaModule().then(() => newYearQuiz()).catch(() => {
+          if (el) el.innerHTML = '<div style="font-style: italic; opacity: 0.7; padding: 16px;">Events unavailable right now. <a href="#/historia" style="color: var(--rojo);">Back to Historia</a>.</div>';
+        });
+      }
       return;
     }
     // Collect all events with a parseable year
@@ -17081,6 +17227,30 @@
     { name: 'Fernando Botero', country: 'CO', role: 'Painter · Sculptor', img: 'https://commons.wikimedia.org/wiki/Special:FilePath/Fernando_Botero_2009.jpg', blurb: 'Famous for painting people, animals, and objects in exaggerated, voluptuous proportions. A style now called Boterismo.', credit: 'Wikimedia / CC BY-SA' }
   ];
 
+
+  // ============== HISTORIA INDEX ==============
+  // Lightweight country metadata for the Historia hub. The full event content
+  // lives in historia.js (lazy-loaded). This index lets the hub page render
+  // immediately and remain usable even if historia.js fails to load.
+  // To regenerate: derive from historia.js HISTORIA array.
+  const HISTORIA_INDEX = [
+    { code: 'AR', name: 'Argentina',     events: 10, blurb: 'Perón, dictatorship, Falklands, Maradona, Mafalda.' },
+    { code: 'BO', name: 'Bolivia',       events: 6,  blurb: 'Tiwanaku, Potosí silver, Evo Morales, and the 2019 crisis.' },
+    { code: 'CL', name: 'Chile',         events: 5,  blurb: 'Allende, Pinochet, the 1988 NO, and the 2019 estallido.' },
+    { code: 'CO', name: 'Colombia',      events: 9,  blurb: 'Bolívar, La Violencia, Pablo Escobar, the FARC peace.' },
+    { code: 'CU', name: 'Cuba',          events: 9,  blurb: 'Slavery, 1898, the Revolution, Bay of Pigs, the Special Period.' },
+    { code: 'ES', name: 'España',        events: 10, blurb: 'Al-Andalus, the Inquisition, civil war, Franco, La Movida.' },
+    { code: 'GT', name: 'Guatemala',     events: 6,  blurb: 'The Maya, the 1954 US-backed coup, civil war, Rigoberta Menchú.' },
+    { code: 'HN', name: 'Honduras',      events: 6,  blurb: 'Banana republics, the Soccer War, 2009 coup, the caravans.' },
+    { code: 'MX', name: 'México',        events: 10, blurb: 'Aztec, Conquest, Independence, Revolution, NAFTA, narcoviolencia.' },
+    { code: 'PY', name: 'Paraguay',      events: 6,  blurb: 'Jesuit Reductions, Francia, Triple Alliance, Stroessner.' },
+    { code: 'PE', name: 'Perú',          events: 10, blurb: 'Inca, Conquest, Independence, Sendero Luminoso, Fujimori.' },
+    { code: 'PR', name: 'Puerto Rico',   events: 6,  blurb: 'Taíno, 1898, Operation Bootstrap, María, the status question.' },
+    { code: 'SV', name: 'El Salvador',   events: 8,  blurb: 'Pipil, Romero, civil war, the maras, Bukele\'s mega-prison.' },
+    { code: 'UY', name: 'Uruguay',       events: 6,  blurb: 'Artigas, Batlle, El Maracanazo, dictatorship, Mujica.' },
+    { code: 'VE', name: 'Venezuela',     events: 6,  blurb: 'Bolívar, the oil era, Caracazo, Chávez, the exodus.' }
+  ];
+
   // HISTORIA — historical content by country.
   // Each country has an arc-overview and a series of events with explanations.
   // English explanations (high school students need accessibility), with key Spanish
@@ -17116,53 +17286,172 @@
   }
 
   function renderHistoriaHub() {
-    if (!HISTORIA || HISTORIA.length === 0) {
-      const grid = document.getElementById('historiaHubGrid');
-      if (grid) {
-        grid.innerHTML = '<div style="padding: 40px; text-align: center; color: var(--ink-soft); font-family: \'Fraunces\', serif; font-style: italic; grid-column: 1 / -1;">Loading historical timelines…</div>';
-      }
-      loadHistoriaModule().then(() => renderHistoriaHub()).catch(() => {
-        if (grid) grid.innerHTML = '<div style="padding: 40px; text-align: center; color: var(--rojo); grid-column: 1 / -1;">Could not load historical data. Make sure historia.js is uploaded alongside the main file.</div>';
-      });
-      return;
-    }
     const grid = document.getElementById('historiaHubGrid');
     if (!grid) return;
-    // Sort alphabetically by country name
-    const sorted = HISTORIA.slice().sort((a, b) => a.countryName.localeCompare(b.countryName));
+    // Use HISTORIA_INDEX (always available inline). If historia.js has loaded,
+    // use its real event counts; otherwise fall back to the index counts.
+    const lookup = {};
+    if (HISTORIA && HISTORIA.length > 0) {
+      HISTORIA.forEach(c => { lookup[c.country] = c.events.length; });
+    }
+    const sorted = HISTORIA_INDEX.slice().sort((a, b) => a.name.localeCompare(b.name));
     grid.innerHTML = sorted.map(c => {
-      const code = (c.country || '').toLowerCase();
+      const code = c.code.toLowerCase();
+      const events = lookup[c.code] || c.events;
+      const flag = (typeof FLAGS !== 'undefined' && FLAGS[c.code]) ? FLAGS[c.code] : '';
       return `
         <a href="#/historia/${code}" class="historia-hub-card">
-          <div class="historia-hub-flag">${FLAGS[c.country] || '🏳'}</div>
-          <div class="historia-hub-name">${c.countryName}</div>
-          <div class="historia-hub-count">${c.events.length} event${c.events.length === 1 ? '' : 's'}</div>
+          <div class="historia-hub-card-top">
+            <div class="historia-hub-flag">${flag}</div>
+            <div>
+              <div class="historia-hub-name">${c.name}</div>
+              <div class="historia-hub-count">${events} event${events === 1 ? '' : 's'}</div>
+            </div>
+          </div>
+          <div class="historia-hub-blurb">${c.blurb}</div>
         </a>
       `;
     }).join('');
+    // Quietly load historia.js in the background so detail pages are instant when clicked.
+    loadHistoriaModule().then(() => {
+      // Refresh counts if HISTORIA filled in after first render
+      if (HISTORIA && HISTORIA.length > 0) renderHistoriaHub();
+    }).catch(() => {
+      // Silent — the cards are still usable from HISTORIA_INDEX
+    });
+  }
+
+  // View toggle between grid (default) and map
+  function setHistoriaView(view, btn) {
+    document.querySelectorAll('.historia-view-toggle .pill').forEach(b => b.classList.remove('active'));
+    if (btn) btn.classList.add('active');
+    const grid = document.getElementById('historiaHubGrid');
+    const map = document.getElementById('historiaHubMap');
+    if (view === 'map') {
+      if (grid) grid.style.display = 'none';
+      if (map) map.style.display = 'block';
+      populateHistoriaMap();
+    } else {
+      if (grid) grid.style.display = 'grid';
+      if (map) map.style.display = 'none';
+    }
+  }
+
+  // Clone the existing map SVG into the historia hub container.
+  // Click handlers navigate to /historia/{code} instead of triggering quiz logic.
+  function populateHistoriaMap() {
+    const container = document.getElementById('historiaMapContainer');
+    const label = document.getElementById('historiaMapLabel');
+    if (!container || container.querySelector('svg')) return; // already populated
+
+    const source = document.querySelector('svg#hispanoMap, svg#mapQuizSvg, svg#capQuizSvg');
+    if (!source) {
+      container.innerHTML = '<div style="padding: 40px; text-align: center; color: var(--ink-soft); font-style: italic; font-family: \'Fraunces\', serif;">Map view loading… try the list view if this doesn\'t appear.</div>';
+      return;
+    }
+
+    const clone = source.cloneNode(true);
+    clone.removeAttribute('id');
+    clone.querySelectorAll('.capital-dot, .capital-label, .map-overlay').forEach(el => el.remove());
+
+    const haveHistoria = new Set(HISTORIA_INDEX.map(c => c.code));
+    const indexLookup = {};
+    HISTORIA_INDEX.forEach(c => { indexLookup[c.code] = c; });
+
+    const resetLabel = () => {
+      if (!label) return;
+      label.classList.remove('active');
+      label.innerHTML = '&nbsp;';
+    };
+
+    clone.querySelectorAll('.country-region').forEach(region => {
+      const code = region.getAttribute('data-country');
+      if (!code) return;
+      const indexEntry = indexLookup[code];
+
+      // Get the country name from the SVG's <title> child (always present)
+      // or from the index entry as fallback
+      const titleEl = region.querySelector('title');
+      const countryName = (indexEntry && indexEntry.name) || (titleEl && titleEl.textContent) || code;
+
+      if (!haveHistoria.has(code)) {
+        // Faded — still hoverable for name, but not clickable
+        region.style.opacity = '0.35';
+        region.style.cursor = 'default';
+        region.addEventListener('mouseenter', () => {
+          if (label) { label.classList.remove('active'); label.textContent = countryName; }
+        });
+        region.addEventListener('mouseleave', resetLabel);
+        return;
+      }
+
+      // Clickable
+      region.style.cursor = 'pointer';
+      region.addEventListener('mouseenter', () => {
+        if (label) { label.classList.add('active'); label.textContent = countryName; }
+      });
+      region.addEventListener('mouseleave', resetLabel);
+      region.addEventListener('click', () => {
+        window.location.hash = '#/historia/' + code.toLowerCase();
+      });
+    });
+
+    container.appendChild(clone);
   }
 
   function renderHistoriaCountry(code) {
-    if (!HISTORIA || HISTORIA.length === 0) {
-      const container = document.getElementById('historiaCountryContent');
-      if (container) {
-        container.innerHTML = '<div style="padding: 40px; text-align: center; color: var(--ink-soft); font-family: \'Fraunces\', serif; font-style: italic;">Loading historical timelines…</div>';
-      }
-      loadHistoriaModule().then(() => renderHistoriaCountry(code)).catch(() => {
-        if (container) container.innerHTML = '<div style="padding: 40px; text-align: center; color: var(--rojo);">Could not load historical data.</div>';
-      });
-      return;
-    }
     const container = document.getElementById('historiaCountryContent');
     if (!container) return;
     const upper = (code || '').toUpperCase();
+
+    // If the full HISTORIA data isn't loaded, show a stub from HISTORIA_INDEX,
+    // then quietly fetch historia.js and re-render once ready.
+    if (!HISTORIA || HISTORIA.length === 0) {
+      const indexEntry = HISTORIA_INDEX.find(c => c.code === upper);
+      const flag = (typeof FLAGS !== 'undefined' && FLAGS[upper]) ? FLAGS[upper] : '';
+      if (indexEntry) {
+        container.innerHTML = `
+          <div style="display: flex; align-items: center; gap: 16px; margin-bottom: 16px;">
+            <div style="font-size: 56px;">${flag}</div>
+            <div>
+              <h2 style="font-family: 'DM Serif Display', serif; font-size: clamp(32px, 4vw, 48px); font-weight: 400; line-height: 1.05; margin: 0; color: var(--ink);">${indexEntry.name}</h2>
+              <div style="font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--ink-soft); margin-top: 6px;">${indexEntry.events} historical event${indexEntry.events === 1 ? '' : 's'}</div>
+            </div>
+          </div>
+          <p style="font-family: 'Fraunces', serif; font-size: 17px; line-height: 1.6; color: var(--ink); margin-bottom: 24px; font-style: italic; max-width: 760px;">${indexEntry.blurb}</p>
+          <div style="padding: 14px 0; color: var(--ink-soft); font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.15em; text-transform: uppercase; opacity: 0.7;">Loading timeline…</div>
+        `;
+      } else {
+        container.innerHTML = '<div style="padding: 40px; text-align: center; color: var(--ink-soft); font-family: \'Fraunces\', serif; font-style: italic;">No historia available for this country yet. <a href="#/historia" style="color: var(--rojo);">Back to Historia</a>.</div>';
+      }
+      loadHistoriaModule().then(() => renderHistoriaCountry(code)).catch(() => {
+        if (indexEntry) {
+          // Replace the loading message with a friendly note (no scary error)
+          container.innerHTML = `
+            <div style="display: flex; align-items: center; gap: 16px; margin-bottom: 16px;">
+              <div style="font-size: 56px;">${flag}</div>
+              <div>
+                <h2 style="font-family: 'DM Serif Display', serif; font-size: clamp(32px, 4vw, 48px); font-weight: 400; line-height: 1.05; margin: 0; color: var(--ink);">${indexEntry.name}</h2>
+                <div style="font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--ink-soft); margin-top: 6px;">${indexEntry.events} historical event${indexEntry.events === 1 ? '' : 's'}</div>
+              </div>
+            </div>
+            <p style="font-family: 'Fraunces', serif; font-size: 17px; line-height: 1.6; color: var(--ink); margin-bottom: 24px; font-style: italic; max-width: 760px;">${indexEntry.blurb}</p>
+            <div style="padding: 20px 0; color: var(--ink-soft); font-family: 'Fraunces', serif; font-style: italic; font-size: 14px;">
+              Detailed events couldn't load. <a href="#/historia" style="color: var(--rojo);">Back to Historia</a>.
+            </div>
+          `;
+        }
+      });
+      return;
+    }
+    // Full data is loaded — render properly
     const c = HISTORIA.find(x => x.country === upper);
     if (!c) {
       container.innerHTML = '<div style="padding: 40px; text-align: center; color: var(--ink-soft); font-family: \'Fraunces\', serif; font-style: italic;">No historia available for this country yet. <a href="#/historia" style="color: var(--rojo);">Back to Historia</a>.</div>';
       return;
     }
     const eventsHtml = c.events.map((e, idx) => `
-      <details class="historia-event" ${idx === 0 ? 'open' : ''} style="background: var(--paper); border: 1px solid var(--line); padding: 20px 24px; margin-bottom: 10px; border-radius: 4px;">
+      <details class="historia-event" style="background: var(--paper); border: 1px solid var(--line); padding: 20px 24px; margin-bottom: 10px; border-radius: 4px;">
         <summary style="cursor: pointer; list-style: none; outline: none; display: flex; align-items: baseline; gap: 16px; padding: 0;">
           <span style="font-family: 'JetBrains Mono', monospace; font-size: 13px; font-weight: 600; color: var(--rojo); flex-shrink: 0; min-width: 90px;">${e.year}</span>
           <span style="font-family: 'Fraunces', serif; font-size: 18px; line-height: 1.3; color: var(--ink); font-weight: 500;">${e.title}</span>
