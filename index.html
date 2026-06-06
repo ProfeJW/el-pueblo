@@ -4701,6 +4701,25 @@
     color: var(--ink-soft);
     margin-top: 4px;
   }
+
+  /* HISTORIA MAP — floating country name that follows the cursor on hover */
+  .historia-map-tip {
+    position: absolute;
+    transform: translate(-50%, calc(-100% - 14px));
+    background: var(--ink);
+    color: var(--paper);
+    font-family: 'DM Serif Display', serif;
+    font-size: 15px;
+    line-height: 1;
+    padding: 6px 12px;
+    border-radius: 5px;
+    white-space: nowrap;
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.12s ease;
+    z-index: 5;
+  }
+  .historia-map-tip.visible { opacity: 1; }
 </style>
 <link rel="prefetch" href="historia.js" as="script">
 <script>
@@ -17430,6 +17449,21 @@
       label.innerHTML = '&nbsp;';
     };
 
+    // Floating tooltip that follows the cursor so the country name is always
+    // visible right where the user is pointing (the label bar above the map can
+    // be far from the cursor when hovering a country low on the map).
+    container.style.position = 'relative';
+    const tip = document.createElement('div');
+    tip.className = 'historia-map-tip';
+    container.appendChild(tip);
+    const showTip = (name) => { tip.textContent = name; tip.classList.add('visible'); };
+    const hideTip = () => { tip.classList.remove('visible'); };
+    container.addEventListener('mousemove', (e) => {
+      const rect = container.getBoundingClientRect();
+      tip.style.left = (e.clientX - rect.left) + 'px';
+      tip.style.top = (e.clientY - rect.top) + 'px';
+    });
+
     clone.querySelectorAll('.country-region').forEach(region => {
       const code = region.getAttribute('data-country');
       if (!code) return;
@@ -17446,8 +17480,9 @@
         region.style.cursor = 'default';
         region.addEventListener('mouseenter', () => {
           if (label) { label.classList.remove('active'); label.textContent = countryName; }
+          showTip(countryName);
         });
-        region.addEventListener('mouseleave', resetLabel);
+        region.addEventListener('mouseleave', () => { resetLabel(); hideTip(); });
         return;
       }
 
@@ -17455,8 +17490,9 @@
       region.style.cursor = 'pointer';
       region.addEventListener('mouseenter', () => {
         if (label) { label.classList.add('active'); label.textContent = countryName; }
+        showTip(countryName);
       });
-      region.addEventListener('mouseleave', resetLabel);
+      region.addEventListener('mouseleave', () => { resetLabel(); hideTip(); });
       region.addEventListener('click', () => {
         window.location.hash = '#/historia/' + code.toLowerCase();
       });
