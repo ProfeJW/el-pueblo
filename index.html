@@ -1262,6 +1262,26 @@
     margin-bottom: 8px;
   }
   .modal-section p { font-size: 16px; line-height: 1.5; }
+  /* MONEY — stylized bill + live exchange rate in the country modal */
+  .money-bill {
+    display: block;
+    width: 100%;
+    max-width: 340px;
+    height: auto;
+    margin: 2px 0 12px;
+    border-radius: 12px;
+    box-shadow: 0 3px 10px rgba(0,0,0,0.15);
+  }
+  .money-rate {
+    display: inline-block;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 13px;
+    color: var(--ink);
+    background: var(--card-bg);
+    border: 1px solid var(--line);
+    border-radius: 6px;
+    padding: 6px 12px;
+  }
   .modal-section .tag-list {
     display: flex;
     flex-wrap: wrap;
@@ -5011,6 +5031,33 @@
       <span class="label-big">Student resources</span>
       <span class="desc">ProgressBook · IXL · Google Classroom · Spanish helpers</span>
     </a>
+  </div>
+
+  <!-- WHY "LUCAS"? — explains where the reward-currency name comes from -->
+  <div style="margin-top: 56px;">
+    <div style="display: flex; align-items: center; gap: 22px; background: var(--card-bg); border: 1px solid var(--line); border-left: 4px solid var(--ocre); border-radius: 10px; padding: 22px 26px; max-width: 780px;">
+      <div style="flex-shrink: 0;">
+        <svg width="74" height="74" viewBox="0 0 74 74" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <defs>
+            <radialGradient id="lucaCoin" cx="38%" cy="33%" r="72%">
+              <stop offset="0%" stop-color="#fbe7a1"/>
+              <stop offset="55%" stop-color="#e8b54b"/>
+              <stop offset="100%" stop-color="#b97e1e"/>
+            </radialGradient>
+          </defs>
+          <circle cx="37" cy="37" r="34.5" fill="none" stroke="#9a6612" stroke-width="3" stroke-dasharray="2 2.2"/>
+          <circle cx="37" cy="37" r="32" fill="url(#lucaCoin)" stroke="#9a6612" stroke-width="1.5"/>
+          <circle cx="37" cy="37" r="25" fill="none" stroke="#fff4d0" stroke-width="1.5" opacity="0.7"/>
+          <text x="37" y="50" text-anchor="middle" font-family="'DM Serif Display', Georgia, serif" font-size="36" fill="#7a4e12">L</text>
+        </svg>
+      </div>
+      <div>
+        <div style="font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--ink-soft); margin-bottom: 7px;">¿Por qué se llaman "Lucas"?</div>
+        <p style="font-family: 'Fraunces', serif; font-size: 16px; line-height: 1.62; color: var(--ink); margin: 0;">
+          The coins you earn here are called <em style="color: var(--ocre); font-style: italic;">Lucas</em> for a reason. In Chile, Argentina, and across much of South America, <strong>una luca</strong> is everyday slang for money — specifically <em>mil pesos</em>, a thousand pesos. So every Luca you rack up is named after the real slang Spanish speakers use for cash. <span style="color: var(--ink-soft);">— «¿Cuánto cuesta?» «Como diez&nbsp;lucas.»</span>
+        </p>
+      </div>
+    </div>
   </div>
 
   <!-- ANNOUNCEMENTS FEED (lives on home) -->
@@ -15831,6 +15878,131 @@
     renderCountries();
   }
 
+  // ============== MONEY / CURRENCY ==============
+  // Per-country currency info used to draw a stylized "bill" in the country
+  // modal and to show a live USD exchange rate. iso = ISO-4217 code (for the
+  // rate lookup); sym = display symbol; c1/c2 = two flag colors; denom = a
+  // representative banknote value; note = optional caveat (e.g. official rate).
+  const MONEY = {
+    AR: { iso:'ARS', sym:'$',    c1:'#74acdf', c2:'#f6b40e', denom:1000 },
+    BO: { iso:'BOB', sym:'Bs',   c1:'#d52b1e', c2:'#007934', denom:200 },
+    CL: { iso:'CLP', sym:'$',    c1:'#0039a6', c2:'#d52b1e', denom:5000 },
+    CO: { iso:'COP', sym:'$',    c1:'#003893', c2:'#fcd116', denom:20000 },
+    CR: { iso:'CRC', sym:'₡', c1:'#002b7f', c2:'#ce1126', denom:5000 },
+    CU: { iso:'CUP', sym:'$',    c1:'#002a8f', c2:'#cf142b', denom:200, note:'official rate' },
+    DO: { iso:'DOP', sym:'RD$',  c1:'#002d62', c2:'#ce1126', denom:200 },
+    EC: { iso:'USD', sym:'$',    c1:'#034ea2', c2:'#ffd100', denom:20 },
+    SV: { iso:'USD', sym:'$',    c1:'#0f47af', c2:'#ffffff', denom:20 },
+    GQ: { iso:'XAF', sym:'FCFA', c1:'#3e9a00', c2:'#0073ce', denom:5000 },
+    GT: { iso:'GTQ', sym:'Q',    c1:'#4997d0', c2:'#ffffff', denom:100 },
+    HN: { iso:'HNL', sym:'L',    c1:'#0073cf', c2:'#ffffff', denom:100 },
+    MX: { iso:'MXN', sym:'$',    c1:'#006847', c2:'#ce1126', denom:200 },
+    NI: { iso:'NIO', sym:'C$',   c1:'#0067c6', c2:'#ffffff', denom:200 },
+    PA: { iso:'PAB', sym:'B/.',  c1:'#005293', c2:'#d21034', denom:20 },
+    PY: { iso:'PYG', sym:'₲', c1:'#d52b1e', c2:'#0038a8', denom:10000 },
+    PE: { iso:'PEN', sym:'S/',   c1:'#d91023', c2:'#ffffff', denom:100 },
+    PR: { iso:'USD', sym:'$',    c1:'#0050a4', c2:'#ed0000', denom:20 },
+    ES: { iso:'EUR', sym:'€', c1:'#c60b1e', c2:'#ffc400', denom:50 },
+    UY: { iso:'UYU', sym:'$U',   c1:'#0038a8', c2:'#f6b40e', denom:200 },
+    VE: { iso:'VES', sym:'Bs',   c1:'#ffce00', c2:'#cf142b', denom:100, note:'official rate' }
+  };
+
+  // Insert "." every three digits (Spanish thousands separator): 20000 -> 20.000
+  function fmtMiles(n) { return String(n).replace(/\B(?=(\d{3})+(?!\d))/g, '.'); }
+
+  // Format an exchange rate for display, scaled to its magnitude.
+  function fmtRate(r) {
+    if (r >= 1000) return fmtMiles(Math.round(r));
+    if (r >= 100)  return String(Math.round(r));
+    if (r >= 10)   return r.toFixed(1);
+    return r.toFixed(2);
+  }
+
+  // Fetch USD-based exchange rates once, cache in memory + localStorage (12h).
+  // Free, no-key, CORS-enabled endpoint. Resolves to a { ISO: rate } object.
+  let __fxRates = null, __fxPromise = null;
+  function getFxRates() {
+    if (__fxRates) return Promise.resolve(__fxRates);
+    try {
+      const raw = localStorage.getItem('elPueblo_fx');
+      if (raw) {
+        const o = JSON.parse(raw);
+        if (o && o.rates && (Date.now() - o.ts) < 12 * 3600 * 1000) { __fxRates = o.rates; return Promise.resolve(__fxRates); }
+      }
+    } catch (e) {}
+    if (typeof fetch !== 'function') return Promise.reject(new Error('no fetch'));
+    if (__fxPromise) return __fxPromise;
+    __fxPromise = fetch('https://open.er-api.com/v6/latest/USD')
+      .then(r => r.json())
+      .then(d => {
+        if (d && d.rates) {
+          __fxRates = d.rates;
+          try { localStorage.setItem('elPueblo_fx', JSON.stringify({ ts: Date.now(), rates: d.rates })); } catch (e) {}
+          return __fxRates;
+        }
+        throw new Error('no rates');
+      });
+    return __fxPromise;
+  }
+
+  // Draw the stylized banknote for a country as inline SVG (always renders —
+  // no external images). Uses flag colors, currency symbol, name and code.
+  function buildBill(code) {
+    const m = MONEY[code];
+    const c = COUNTRIES.find(x => x.code === code);
+    if (!m || !c) return '';
+    const denom = fmtMiles(m.denom);
+    const cname = c.name.toUpperCase();
+    return `
+      <svg class="money-bill" viewBox="0 0 400 190" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="${c.currency} banknote" style="font-family:'DM Serif Display',Georgia,serif;">
+        <defs>
+          <pattern id="bg_${code}" width="22" height="22" patternUnits="userSpaceOnUse" patternTransform="rotate(20)">
+            <path d="M0 11 Q5.5 0 11 11 T22 11" fill="none" stroke="#000" stroke-width="0.4" opacity="0.05"/>
+          </pattern>
+          <clipPath id="band_${code}"><rect width="20" height="190" rx="12"/></clipPath>
+          <clipPath id="seal_${code}"><circle cx="338" cy="92" r="36"/></clipPath>
+        </defs>
+        <rect width="400" height="190" rx="12" fill="#f7f2e8"/>
+        <rect width="400" height="190" rx="12" fill="url(#bg_${code})"/>
+        <rect x="5" y="5" width="390" height="180" rx="9" fill="none" stroke="${m.c1}" stroke-width="2.5"/>
+        <rect x="11" y="11" width="378" height="168" rx="6" fill="none" stroke="${m.c2}" stroke-width="0.8" opacity="0.6"/>
+        <g clip-path="url(#band_${code})">
+          <rect y="0" width="20" height="64" fill="${m.c1}"/>
+          <rect y="64" width="20" height="62" fill="#ffffff"/>
+          <rect y="126" width="20" height="64" fill="${m.c2}"/>
+        </g>
+        <text x="44" y="40" font-family="'JetBrains Mono',monospace" font-size="11" letter-spacing="2.5" fill="#7a6f5c">${cname}</text>
+        <text x="42" y="116"><tspan font-size="30" fill="#1f1b17">${m.sym}</tspan><tspan font-size="56" dx="3" fill="#1f1b17">${denom}</tspan></text>
+        <text x="46" y="148" font-size="20" font-style="italic" fill="${m.c1}">${c.currency}</text>
+        <text x="46" y="170" font-family="'JetBrains Mono',monospace" font-size="12" letter-spacing="2" fill="#8a8175">${m.iso} · ${m.sym}</text>
+        <circle cx="338" cy="92" r="40" fill="#fff" stroke="${m.c1}" stroke-width="2"/>
+        <g clip-path="url(#seal_${code})">
+          <rect x="298" y="56" width="27" height="72" fill="${m.c1}"/>
+          <rect x="325" y="56" width="26" height="72" fill="#ffffff"/>
+          <rect x="351" y="56" width="27" height="72" fill="${m.c2}"/>
+        </g>
+      </svg>`;
+  }
+
+  // Fill in the live "1 USD = …" line inside the open country modal.
+  function loadModalRate(code) {
+    const m = MONEY[code];
+    const el = document.getElementById('modalFxRate');
+    if (!m || !el) return;
+    if (m.iso === 'USD') { el.textContent = 'Uses the US dollar — 1 USD = 1.00 USD'; return; }
+    getFxRates().then(rates => {
+      const cur = document.getElementById('modalFxRate');
+      if (!cur) return;
+      const r = rates[m.iso];
+      cur.textContent = r
+        ? ('1 USD = ' + fmtRate(r) + ' ' + m.iso + (m.note ? ' · ' + m.note : ''))
+        : (m.iso + ' — live rate unavailable');
+    }).catch(() => {
+      const cur = document.getElementById('modalFxRate');
+      if (cur) cur.textContent = 'Live rate unavailable (offline)';
+    });
+  }
+
   function openCountry(code) {
     const c = COUNTRIES.find(x => x.code === code);
     if (!c) return;
@@ -15854,6 +16026,11 @@
         <div><div class="label">Population</div><div class="value">${c.pop}</div></div>
         <div><div class="label">Currency</div><div class="value">${c.currency}</div></div>
         <div><div class="label">Region</div><div class="value">${({america:'Americas',caribe:'Caribbean',europa:'Europe',africa:'Africa'})[c.region] || c.region}</div></div>
+      </div>
+      <div class="modal-section">
+        <h5>💵 Money</h5>
+        ${buildBill(code)}
+        <div class="money-rate" id="modalFxRate">Loading current rate…</div>
       </div>
       ${knownForHtml}
       <div class="modal-section">
@@ -15880,6 +16057,7 @@
       </div>
     `;
     document.getElementById('countryModal').classList.add('open');
+    loadModalRate(code);
     // Award 1 Luca per unique country viewed
     if (!STATE.countriesViewed.has(code)) {
       STATE.countriesViewed.add(code);
