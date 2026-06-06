@@ -17397,13 +17397,18 @@
         </a>
       `;
     }).join('');
-    // Quietly load historia.js in the background so detail pages are instant when clicked.
-    loadHistoriaModule().then(() => {
-      // Refresh counts if HISTORIA filled in after first render
-      if (HISTORIA && HISTORIA.length > 0) renderHistoriaHub();
-    }).catch(() => {
-      // Silent — the cards are still usable from HISTORIA_INDEX
-    });
+    // Load historia.js in the background and refresh the counts ONCE when it
+    // arrives. Only do this while the data is still missing — if HISTORIA is
+    // already loaded, loadHistoriaModule() resolves synchronously and calling
+    // renderHistoriaHub() again here would re-subscribe every pass, creating an
+    // infinite render loop that locks up the page.
+    if (!HISTORIA || HISTORIA.length === 0) {
+      loadHistoriaModule().then(() => {
+        if (HISTORIA && HISTORIA.length > 0) renderHistoriaHub();
+      }).catch(() => {
+        // Silent — the cards are still usable from HISTORIA_INDEX
+      });
+    }
   }
 
   // View toggle between grid (default) and map
