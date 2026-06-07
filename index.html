@@ -6056,7 +6056,7 @@
         </div>
         <div id="personQuizOptions" style="display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-bottom: 16px;"></div>
         <div id="personQuizAnswer" style="font-size: 14px; line-height: 1.5; color: var(--ink); margin-bottom: 16px; min-height: 1px; opacity: 0.85;"></div>
-        <button class="btn" style="border-color: var(--ink); color: var(--ink);" onclick="newPersonQuiz()">New person →</button>
+        <button class="btn primary" onclick="newPersonQuiz()">New person →</button>
       </div>
     </div>
   </div>
@@ -6083,7 +6083,7 @@
         <div id="triviaQuestion" style="background: rgba(244,237,224,0.08); padding: 24px; border-radius: 4px; margin-bottom: 16px; min-height: 80px; font-family: 'Fraunces', serif; font-size: 17px; line-height: 1.5; color: var(--paper);"></div>
         <div id="triviaOptions" style="display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-bottom: 16px;"></div>
         <div id="triviaAnswer" style="font-size: 14px; line-height: 1.5; color: var(--paper); margin-bottom: 16px; min-height: 1px; opacity: 0.85;"></div>
-        <button class="btn" style="border-color: var(--ocre); color: var(--ocre);" onclick="newTriviaQuiz()">New question →</button>
+        <button class="btn primary" onclick="newTriviaQuiz()">New question →</button>
       </div>
     </div>
   </div>
@@ -6110,7 +6110,7 @@
         <div id="dishQuizCard" style="background: rgba(244,237,224,0.08); padding: 24px; border-radius: 4px; margin-bottom: 16px; min-height: 120px; color: var(--paper);"></div>
         <div id="dishQuizOptions" style="display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-bottom: 16px;"></div>
         <div id="dishQuizAnswer" style="font-size: 14px; line-height: 1.5; color: var(--paper); margin-bottom: 16px; min-height: 1px; opacity: 0.85;"></div>
-        <button class="btn" style="border-color: var(--ocre); color: var(--ocre);" onclick="newDishQuiz()">New dish →</button>
+        <button class="btn primary" onclick="newDishQuiz()">New dish →</button>
       </div>
     </div>
   </div>
@@ -6136,7 +6136,7 @@
       <div>
         <div id="yearQuizOptions" style="display: flex; flex-direction: column; gap: 8px; margin-bottom: 16px;"></div>
         <div id="yearQuizAnswer" style="font-size: 14px; line-height: 1.5; color: var(--paper); margin-bottom: 16px; min-height: 1px; opacity: 0.85;"></div>
-        <button class="btn" style="border-color: var(--ocre); color: var(--ocre);" onclick="newYearQuiz()">New question →</button>
+        <button class="btn primary" onclick="newYearQuiz()">New question →</button>
       </div>
     </div>
   </div>
@@ -6163,7 +6163,7 @@
         <div style="font-family: 'JetBrains Mono', monospace; font-size: 12px; color: var(--paper); opacity: 0.65; margin-bottom: 16px;">
           Correct: <strong style="opacity: 1;" id="artCorrect">0</strong> · Attempts: <strong style="opacity: 1;" id="artTries">0</strong>
         </div>
-        <button class="btn" style="border-color: var(--ocre); color: var(--ocre);" onclick="newArtQuiz()">New artwork →</button>
+        <button class="btn primary" onclick="newArtQuiz()">New artwork →</button>
       </div>
     </div>
   </div>
@@ -6525,7 +6525,7 @@
         <div id="originQuizPerson" style="background: rgba(244,237,224,0.08); padding: 20px; border-radius: 4px; margin-bottom: 16px; text-align: center; min-height: 200px;"></div>
         <div id="originQuizOptions" style="display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-bottom: 16px;"></div>
         <div id="originQuizAnswer" style="font-size: 14px; line-height: 1.5; color: var(--paper); margin-bottom: 16px; min-height: 1px; opacity: 0.85;"></div>
-        <button class="btn" style="border-color: var(--ocre); color: var(--ocre);" onclick="newOriginQuiz()">New person →</button>
+        <button class="btn primary" onclick="newOriginQuiz()">New person →</button>
       </div>
     </div>
   </div>
@@ -16368,6 +16368,56 @@
   // Question types vary: year, country, event title.
   // Wrong answers tell the student which event the answer relates to,
   // making mistakes pedagogically useful.
+  // Country name / adjective aliases (English + Spanish + demonyms). Used to
+  // redact giveaways from auto-generated questions, so the prompt never prints
+  // the country that is also the correct answer. Covers all 21 countries.
+  const COUNTRY_ALIASES = {
+    AR: ['Argentina', 'Argentine', 'Argentinian', 'Argentinean'],
+    BO: ['Bolivia', 'Bolivian'],
+    CL: ['Chile', 'Chilean'],
+    CO: ['Colombia', 'Colombian'],
+    CR: ['Costa Rica', 'Costa Rican'],
+    CU: ['Cuba', 'Cuban'],
+    DO: ['Dominican Republic', 'República Dominicana', 'Dominican'],
+    EC: ['Ecuador', 'Ecuadorian', 'Ecuadorean'],
+    ES: ['España', 'Spain', 'Spanish', 'Spaniard', 'Spaniards'],
+    GQ: ['Equatorial Guinea', 'Guinea Ecuatorial', 'Equatoguinean', 'Equatorial Guinean'],
+    GT: ['Guatemala', 'Guatemalan'],
+    HN: ['Honduras', 'Honduran'],
+    MX: ['México', 'Mexico', 'Mexican'],
+    NI: ['Nicaragua', 'Nicaraguan'],
+    PA: ['Panamá', 'Panama', 'Panamanian'],
+    PE: ['Perú', 'Peru', 'Peruvian'],
+    PR: ['Puerto Rico', 'Puerto Rican'],
+    PY: ['Paraguay', 'Paraguayan'],
+    SV: ['El Salvador', 'Salvadoran', 'Salvadorean', 'Salvadorian'],
+    UY: ['Uruguay', 'Uruguayan'],
+    VE: ['Venezuela', 'Venezuelan']
+  };
+  // Longest terms first so multi-word names ("Costa Rica") are matched before
+  // any substring could be.
+  const ALL_COUNTRY_TERMS = Object.values(COUNTRY_ALIASES).flat().sort((a, b) => b.length - a.length);
+
+  // Replace every country name/adjective in a string with a neutral blank, using
+  // Unicode-aware boundaries so accented names (Perú, México, Panamá) match too.
+  function redactCountryNames(text) {
+    if (!text) return '';
+    let out = String(text);
+    ALL_COUNTRY_TERMS.forEach(term => {
+      const esc = term.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+      let re;
+      try {
+        // Letter-boundary without lookbehind: capture the preceding non-letter
+        // (or start) and re-emit it; lookahead guards the trailing edge.
+        re = new RegExp('([^\\p{L}]|^)' + esc + '(?![\\p{L}])', 'giu');
+      } catch (e) {
+        re = new RegExp('(\\b)' + esc + '(\\b)', 'gi');
+      }
+      out = out.replace(re, '$1———');
+    });
+    return out.replace(/(\s*———\s*)+/g, ' ——— ').trim();
+  }
+
   let triviaTarget = null;
   let triviaQuestionType = null;
   let triviaCorrectCount = 0, triviaTriesCount = 0;
@@ -16392,7 +16442,7 @@
     triviaTarget = { country, event };
 
     // Pick a random question type
-    const questionTypes = ['country', 'year', 'event-title'];
+    const questionTypes = ['country', 'year', 'event-title', 'arc-country'];
     triviaQuestionType = questionTypes[Math.floor(Math.random() * questionTypes.length)];
 
     const allCountries = HISTORIA.map(c => c.countryName);
@@ -16401,13 +16451,9 @@
     if (triviaQuestionType === 'country') {
       // "In which country did X happen?"
       // Use the event title (minus any obvious country giveaway) as the question
-      let titleCue = event.title.replace(/\bChile\b/gi, '___').replace(/\bArgentina\b/gi, '___')
-        .replace(/\bColombia\b/gi, '___').replace(/\bPerú\b/gi, '___').replace(/\bPeru\b/gi, '___')
-        .replace(/\bEspaña\b/gi, '___').replace(/\bSpain\b/gi, '___').replace(/\bSpanish\b/gi, '___')
-        .replace(/\bCuba\b/gi, '___').replace(/\bMexico\b/gi, '___').replace(/\bMéxico\b/gi, '___')
-        .replace(/\bEl Salvador\b/gi, '___').replace(/\bSalvador\b/gi, '___').replace(/\bSalvadoran\b/gi, '___');
-      // Strip HTML tags from title for clean question display
-      titleCue = titleCue.replace(/<[^>]+>/g, '');
+      // Strip HTML, then redact every country name/adjective so the answer
+      // isn't given away in the prompt (works for all 21 countries).
+      const titleCue = redactCountryNames(event.title.replace(/<[^>]+>/g, ''));
       question = `In which country did this event occur — "${titleCue}" (${event.year})?`;
       correctAnswer = country.countryName;
       // Distractors: 3 other random countries
@@ -16439,6 +16485,16 @@
         if (t !== correctAnswer) otherEvents.push(t);
       }));
       const distractors = otherEvents.sort(() => Math.random() - 0.5).slice(0, 3);
+      options = [correctAnswer, ...distractors].sort(() => Math.random() - 0.5);
+
+    } else if (triviaQuestionType === 'arc-country') {
+      // "Which country's history is described here?" — show the country's arc
+      // overview with all country names/adjectives redacted, ask for the country.
+      let arc = redactCountryNames((country.arc || '').replace(/<[^>]+>/g, ''));
+      if (arc.length > 320) arc = arc.slice(0, 317).replace(/\s+\S*$/, '') + '…';
+      question = `Which country's history is described here? "${arc}"`;
+      correctAnswer = country.countryName;
+      const distractors = allCountries.filter(c => c !== correctAnswer).sort(() => Math.random() - 0.5).slice(0, 3);
       options = [correctAnswer, ...distractors].sort(() => Math.random() - 0.5);
     }
 
@@ -16476,10 +16532,16 @@
       });
     }
 
-    // Reveal: pedagogically useful — name the country, year, and event so the student can go read about it
-    const cleanTitle = triviaTarget.event.title.replace(/<[^>]+>/g, '');
-    document.getElementById('triviaAnswer').innerHTML = 
-      `<strong>${cleanTitle}</strong> · ${triviaTarget.country.countryName} · ${triviaTarget.event.year}<br><span style="font-size: 13px; opacity: 0.7;">Read about this on the Historia page above.</span>`;
+    // Reveal: pedagogically useful — name the country (and the specific event,
+    // when the question was about one) so the student can go read about it.
+    if (triviaQuestionType === 'arc-country') {
+      document.getElementById('triviaAnswer').innerHTML =
+        `<strong>${triviaTarget.country.countryName}</strong><br><span style="font-size: 13px; opacity: 0.7;">Read ${triviaTarget.country.countryName}'s full timeline on the Historia page above.</span>`;
+    } else {
+      const cleanTitle = triviaTarget.event.title.replace(/<[^>]+>/g, '');
+      document.getElementById('triviaAnswer').innerHTML =
+        `<strong>${cleanTitle}</strong> · ${triviaTarget.country.countryName} · ${triviaTarget.event.year}<br><span style="font-size: 13px; opacity: 0.7;">Read about this on the Historia page above.</span>`;
+    }
     document.getElementById('triviaCorrect').textContent = triviaCorrectCount;
     document.getElementById('triviaTries').textContent = triviaTriesCount;
   }
@@ -17487,7 +17549,40 @@
     { name: 'Mario Vargas Llosa', country: 'PE', role: 'Novelist', img: 'https://commons.wikimedia.org/wiki/Special:FilePath/Mario_Vargas_Llosa_(2011).jpg', blurb: 'Peruvian Nobel laureate (2010). His novels — La ciudad y los perros, La fiesta del Chivo — shaped the Latin American Boom.', credit: 'Wikimedia / CC BY-SA' },
     { name: 'Gabriel García Márquez', country: 'CO', role: 'Novelist', img: 'https://commons.wikimedia.org/wiki/Special:FilePath/Gabriel_Garcia_Marquez,_2009_(cropped).jpg', blurb: 'Nobel laureate (1982). Father of magical realism. Wrote One Hundred Years of Solitude — the most influential Latin American novel.', credit: 'Wikimedia / CC BY-SA' },
     { name: 'Shakira', country: 'CO', role: 'Musician', img: 'https://commons.wikimedia.org/wiki/Special:FilePath/Shakira_(Cannes_2022).jpg', blurb: 'Colombian superstar from Barranquilla. Multiple Latin Grammys, Grammys, and Billboard Hot 100 #1s in two languages.', credit: 'Wikimedia / CC BY-SA' },
-    { name: 'Fernando Botero', country: 'CO', role: 'Painter · Sculptor', img: 'https://commons.wikimedia.org/wiki/Special:FilePath/Fernando_Botero_2009.jpg', blurb: 'Famous for painting people, animals, and objects in exaggerated, voluptuous proportions. A style now called Boterismo.', credit: 'Wikimedia / CC BY-SA' }
+    { name: 'Fernando Botero', country: 'CO', role: 'Painter · Sculptor', img: 'https://commons.wikimedia.org/wiki/Special:FilePath/Fernando_Botero_2009.jpg', blurb: 'Famous for painting people, animals, and objects in exaggerated, voluptuous proportions. A style now called Boterismo.', credit: 'Wikimedia / CC BY-SA' },
+
+    // Added 2026-06 — coverage for the remaining countries (BO, CR, EC, GQ, HN, NI, PA, PY)
+    // BOLIVIA
+    { name: 'Evo Morales', country: 'BO', role: 'Former president', img: 'https://commons.wikimedia.org/wiki/Special:FilePath/Evo_Morales_2_(cropped).jpg', blurb: 'Bolivia\'s first Indigenous president (2006–2019). An Aymara former coca-growers\' union leader who reshaped the country before resigning amid the disputed 2019 election.', credit: 'Wikimedia / CC BY-SA' },
+    { name: 'Jaime Escalante', country: 'BO', role: 'Educator', img: 'https://commons.wikimedia.org/wiki/Special:FilePath/Jaime_Escalante.jpg', blurb: 'Bolivian-born math teacher whose work with struggling East L.A. students inspired the film Stand and Deliver (1988).', credit: 'Wikimedia / CC BY-SA' },
+
+    // COSTA RICA
+    { name: 'Óscar Arias', country: 'CR', role: 'Statesman', img: 'https://commons.wikimedia.org/wiki/Special:FilePath/Óscar_Arias_2009.jpg', blurb: 'President of Costa Rica who won the 1987 Nobel Peace Prize for his plan to end Central America\'s civil wars.', credit: 'Wikimedia / CC BY-SA' },
+    { name: 'Keylor Navas', country: 'CR', role: 'Footballer', img: 'https://commons.wikimedia.org/wiki/Special:FilePath/Keylor_Navas_2018.jpg', blurb: 'Star goalkeeper who won three consecutive Champions League titles with Real Madrid — Costa Rica\'s most famous footballer.', credit: 'Wikimedia / CC BY-SA' },
+
+    // ECUADOR
+    { name: 'Oswaldo Guayasamín', country: 'EC', role: 'Painter', img: 'https://commons.wikimedia.org/wiki/Special:FilePath/Oswaldo_Guayasamín.jpg', blurb: 'Ecuador\'s most celebrated painter. His anguished portraits protested poverty, war, and injustice across Latin America.', credit: 'Wikimedia / CC BY-SA' },
+    { name: 'Antonio Valencia', country: 'EC', role: 'Footballer', img: 'https://commons.wikimedia.org/wiki/Special:FilePath/Antonio_Valencia_2018.jpg', blurb: 'Winger and right-back who captained both Manchester United and Ecuador\'s national team.', credit: 'Wikimedia / CC BY-SA' },
+
+    // EQUATORIAL GUINEA
+    { name: 'Donato Ndongo', country: 'GQ', role: 'Writer', img: 'https://commons.wikimedia.org/wiki/Special:FilePath/Donato_Ndongo.jpg', blurb: 'Equatorial Guinea\'s best-known writer and historian, author of Shadows of Your Black Memory. Long exiled for opposing the dictatorship.', credit: 'Wikimedia / CC BY-SA' },
+    { name: 'Eric Moussambani', country: 'GQ', role: 'Olympic swimmer', img: 'https://commons.wikimedia.org/wiki/Special:FilePath/Eric_Moussambani.jpg', blurb: 'Swimmer nicknamed "Eric the Eel" after his slow but heroic 100m freestyle at the 2000 Sydney Olympics — a global symbol of the Olympic spirit.', credit: 'Wikimedia / CC BY-SA' },
+
+    // HONDURAS
+    { name: 'David Suazo', country: 'HN', role: 'Footballer', img: 'https://commons.wikimedia.org/wiki/Special:FilePath/David_Suazo.jpg', blurb: 'Honduras\'s most successful footballer, a prolific striker in Italy\'s Serie A with Cagliari and Inter Milan.', credit: 'Wikimedia / CC BY-SA' },
+    { name: 'Salvador Moncada', country: 'HN', role: 'Scientist', img: 'https://commons.wikimedia.org/wiki/Special:FilePath/Salvador_Moncada.jpg', blurb: 'Honduran-born pharmacologist whose research on nitric oxide and how aspirin works made him one of the world\'s most-cited scientists.', credit: 'Wikimedia / CC BY-SA' },
+
+    // NICARAGUA
+    { name: 'Rubén Darío', country: 'NI', role: 'Poet', img: 'https://commons.wikimedia.org/wiki/Special:FilePath/Ruben_dario.jpg', blurb: 'Nicaraguan poet who founded Modernismo and transformed poetry in the Spanish language. Revered as the "Prince of Castilian Letters."', credit: 'Wikimedia / Public Domain' },
+    { name: 'Gioconda Belli', country: 'NI', role: 'Writer', img: 'https://commons.wikimedia.org/wiki/Special:FilePath/Gioconda_Belli_2016.jpg', blurb: 'Nicaraguan poet and novelist, and former Sandinista revolutionary, known for The Inhabited Woman and her award-winning verse.', credit: 'Wikimedia / CC BY-SA' },
+
+    // PANAMA
+    { name: 'Rubén Blades', country: 'PA', role: 'Singer · Actor', img: 'https://commons.wikimedia.org/wiki/Special:FilePath/Rubén_Blades_2014.jpg', blurb: 'Panamanian salsa legend, actor, and former presidential candidate who turned dance music into political storytelling.', credit: 'Wikimedia / CC BY-SA' },
+    { name: 'Mariano Rivera', country: 'PA', role: 'Baseball legend', img: 'https://commons.wikimedia.org/wiki/Special:FilePath/Mariano_Rivera_2017.jpg', blurb: 'Panamanian pitcher regarded as the greatest closer in baseball history — and the first player ever elected to the Hall of Fame unanimously.', credit: 'Wikimedia / CC BY-SA' },
+
+    // PARAGUAY
+    { name: 'Augusto Roa Bastos', country: 'PY', role: 'Writer', img: 'https://commons.wikimedia.org/wiki/Special:FilePath/Augusto_Roa_Bastos.jpg', blurb: 'Paraguay\'s greatest writer, author of the dictator-novel Yo el Supremo. Won the Cervantes Prize, the top honor in Spanish-language literature.', credit: 'Wikimedia / CC BY-SA' },
+    { name: 'Roque Santa Cruz', country: 'PY', role: 'Footballer', img: 'https://commons.wikimedia.org/wiki/Special:FilePath/Roque_Santa_Cruz_2016.jpg', blurb: 'Paraguay\'s record-appearance footballer, a striker for Bayern Munich, Manchester City, and the national team.', credit: 'Wikimedia / CC BY-SA' }
   ];
 
 
@@ -17501,14 +17596,20 @@
     { code: 'BO', name: 'Bolivia',       events: 6,  blurb: 'Tiwanaku, Potosí silver, Evo Morales, and the 2019 crisis.' },
     { code: 'CL', name: 'Chile',         events: 5,  blurb: 'Allende, Pinochet, the 1988 NO, and the 2019 estallido.' },
     { code: 'CO', name: 'Colombia',      events: 9,  blurb: 'Bolívar, La Violencia, Pablo Escobar, the FARC peace.' },
+    { code: 'CR', name: 'Costa Rica',    events: 6,  blurb: 'Coffee, abolishing the army in 1948, Óscar Arias, pura vida.' },
     { code: 'CU', name: 'Cuba',          events: 9,  blurb: 'Slavery, 1898, the Revolution, Bay of Pigs, the Special Period.' },
+    { code: 'DO', name: 'Rep. Dominicana', events: 6, blurb: 'Santo Domingo, independence from Haiti, Trujillo, baseball.' },
+    { code: 'EC', name: 'Ecuador',       events: 6,  blurb: 'Quito and the Inca, Pichincha, Amazon oil, the indigenous movement.' },
     { code: 'ES', name: 'España',        events: 10, blurb: 'Al-Andalus, the Inquisition, civil war, Franco, La Movida.' },
+    { code: 'GQ', name: 'Guinea Ecuatorial', events: 6, blurb: 'Spanish colony in Africa, Macías\'s terror, Obiang, oil wealth.' },
     { code: 'GT', name: 'Guatemala',     events: 6,  blurb: 'The Maya, the 1954 US-backed coup, civil war, Rigoberta Menchú.' },
     { code: 'HN', name: 'Honduras',      events: 6,  blurb: 'Banana republics, the Soccer War, 2009 coup, the caravans.' },
     { code: 'MX', name: 'México',        events: 10, blurb: 'Aztec, Conquest, Independence, Revolution, NAFTA, narcoviolencia.' },
-    { code: 'PY', name: 'Paraguay',      events: 6,  blurb: 'Jesuit Reductions, Francia, Triple Alliance, Stroessner.' },
+    { code: 'NI', name: 'Nicaragua',     events: 6,  blurb: 'William Walker, Sandino, the Somozas, the Revolution, Ortega.' },
+    { code: 'PA', name: 'Panamá',        events: 6,  blurb: 'The treasure route, separation from Colombia, the Canal, Noriega.' },
     { code: 'PE', name: 'Perú',          events: 10, blurb: 'Inca, Conquest, Independence, Sendero Luminoso, Fujimori.' },
     { code: 'PR', name: 'Puerto Rico',   events: 6,  blurb: 'Taíno, 1898, Operation Bootstrap, María, the status question.' },
+    { code: 'PY', name: 'Paraguay',      events: 6,  blurb: 'Jesuit Reductions, Francia, Triple Alliance, Stroessner.' },
     { code: 'SV', name: 'El Salvador',   events: 8,  blurb: 'Pipil, Romero, civil war, the maras, Bukele\'s mega-prison.' },
     { code: 'UY', name: 'Uruguay',       events: 6,  blurb: 'Artigas, Batlle, El Maracanazo, dictatorship, Mujica.' },
     { code: 'VE', name: 'Venezuela',     events: 6,  blurb: 'Bolívar, the oil era, Caracazo, Chávez, the exodus.' }

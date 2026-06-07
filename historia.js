@@ -975,10 +975,337 @@ window.HISTORIA = [
           vocab: ['Hurricane María', 'el huracán', 'la diáspora', '#RickyRenuncia', 'la protesta', 'la Junta', 'la deuda']
         }
       ]
+    },
+    {
+      country: 'CR',
+      countryName: 'Costa Rica',
+      arc: 'Costa Rica is Central America\'s great exception: it abolished its army in 1948, built the region\'s most stable welfare democracy, stayed (mostly) out of the wars that consumed its neighbors, and reinvented itself as a global leader in conservation and ecotourism. But its peaceful image rests on a real and sometimes harder history — a poor and neglected colony, a coffee oligarchy, foreign-owned banana enclaves, a 1948 civil war, and a delicate balancing act during the Central American conflicts of the 1980s.',
+      events: [
+        {
+          year: '1502–1821',
+          title: 'The poorest colony: Costa Rica before independence',
+          spanish: 'la colonia olvidada',
+          body: 'Columbus landed on the Caribbean coast in <strong>1502</strong>, on his fourth and final voyage, and the region was eventually named <em>"Costa Rica"</em> — the "Rich Coast" — in the expectation of gold. The name turned out to be one of history\'s great ironies. Costa Rica had <strong>no major gold or silver deposits</strong> and a relatively small indigenous population, which meant the Spanish found neither treasure to plunder nor large numbers of people to force into labor.<br><br>As a result, Costa Rica became one of the <strong>poorest and most neglected corners of the Spanish Empire</strong> — a remote backwater of the Captaincy General of Guatemala. Most colonists were small farmers who worked their own land because they couldn\'t afford enslaved laborers or large indigenous workforces.<br><br>Out of this poverty grew one of Costa Rica\'s most powerful national myths: the idea of a <strong>"rural democracy"</strong> (<em>la democracia rural</em>) — a society of modest, equal, hardworking farmers, without the brutal plantation oligarchies of its neighbors. Historians note the myth oversimplifies (there was inequality, and indigenous and Afro-descendant people are often written out of it), but the relative absence of a colonial plantation aristocracy did shape Costa Rica\'s more egalitarian later development.',
+          vocab: ['la colonia', 'el oro', 'Costa Rica', 'el campesino', 'la democracia rural', 'la pobreza']
+        },
+        {
+          year: '1821–1900',
+          title: 'Independence and the coffee republic',
+          spanish: 'el grano de oro',
+          body: 'Costa Rica gained independence from Spain in <strong>1821</strong>, almost as an afterthought — news of Central American independence reportedly took weeks to arrive. It briefly joined the Mexican Empire, then the <strong>Federal Republic of Central America</strong> (1823–1838), before becoming fully independent when that federation collapsed.<br><br>What transformed Costa Rica was <strong>coffee</strong> (<em>el café</em>). Introduced in the early 1800s, it thrived in the volcanic soil of the Central Valley. By the 1840s, Costa Rica was exporting coffee to Europe — the first Central American country to do so commercially. Coffee became known as <em>"el grano de oro"</em> — "the golden bean" — and it built modern Costa Rica.<br><br>Coffee wealth created a class of growers and exporters (<em>los cafetaleros</em>) who became the country\'s economic and political elite. Unlike the harsh landed oligarchies elsewhere, Costa Rican coffee was often grown on smaller family farms (though processing and export were controlled by a wealthy few). Coffee money paid for the National Theater, roads, and schools, and connected Costa Rica to the world economy.',
+          vocab: ['la independencia', 'el café', 'el grano de oro', 'el cafetalero', 'la exportación', 'el Valle Central']
+        },
+        {
+          year: '1870s–1930s',
+          title: 'Bananas, railroads, and the Caribbean coast',
+          spanish: 'la república bananera',
+          body: 'To get coffee to European markets, Costa Rica needed a railroad from the Central Valley to the Caribbean port of Limón. The government contracted an American businessman, <strong>Minor Keith</strong>, to build it. The project was deadly — thousands of workers died building the line through jungle and swamp.<br><br>To make the railroad profitable, Keith planted <strong>bananas</strong> along the route. They were a spectacular success. His operations merged in 1899 into the <strong>United Fruit Company</strong> (<em>la United Fruit</em>) — the same company that would dominate and destabilize much of Central America for decades, giving rise to the term <strong>"banana republic"</strong> (<em>república bananera</em>).<br><br>The banana industry reshaped Costa Rica\'s Caribbean coast. United Fruit imported thousands of <strong>Afro-Caribbean workers</strong>, mostly from Jamaica, to work the plantations around Limón. Their descendants form Costa Rica\'s English-and-Creole-speaking Black community, with its own distinct culture, food, and music — though for decades they faced legal discrimination (they were long barred from settling in the highlands). Limón remains the heart of Afro-Costa Rican culture today.',
+          vocab: ['el banano', 'la United Fruit', 'la república bananera', 'el ferrocarril', 'Limón', 'el afrocaribeño']
+        },
+        {
+          year: '1948',
+          title: 'The civil war and José Figueres',
+          spanish: 'la guerra civil del 48',
+          body: 'Costa Rica\'s defining modern moment came in <strong>1948</strong>. A disputed presidential election — the sitting government annulled results it didn\'t like — triggered a <strong>44-day civil war</strong>, the bloodiest event in modern Costa Rican history, with around 2,000 dead.<br><br>The winner was <strong>José Figueres Ferrer</strong>, known as <em>"Don Pepe"</em> — a coffee farmer and engineer who led the rebel army to victory. He took power at the head of a temporary governing <strong>Junta</strong>.<br><br>What Figueres did with that power is why he\'s remembered as the father of modern Costa Rica. Rather than entrenching himself, his junta governed for 18 months, enacted sweeping reforms, and then <strong>handed power to the elected winner</strong>. The reforms were remarkable: he gave <strong>women the right to vote</strong>, granted full citizenship to the Afro-Caribbean population of Limón, nationalized the banks, abolished the Communist Party (a Cold War move), and built a modern civil service. But his single most famous act was still to come.',
+          vocab: ['la guerra civil', 'la junta', 'Don Pepe', 'el voto femenino', 'la reforma', 'la elección']
+        },
+        {
+          year: '1948–1949',
+          title: 'Abolishing the army',
+          spanish: 'la abolición del ejército',
+          body: 'On <strong>December 1, 1948</strong>, José Figueres did something almost no country has ever done: he <strong>abolished Costa Rica\'s military</strong>. In a symbolic ceremony, a soldier smashed a hole in the wall of the Cuartel Bellavista army barracks (now the National Museum) with a sledgehammer.<br><br>The abolition was written into the new <strong>1949 Constitution</strong>, which permanently banned a standing army. The reasoning was both idealistic and practical: a military was expensive, it was a standing threat to democracy (armies stage coups), and Costa Rica had just seen what armed conflict cost.<br><br>The money that would have funded an army was redirected to <strong>education and health care</strong>. A famous phrase captures the national pride in this choice: Costa Ricans say they have <em>"más maestros que soldados"</em> — "more teachers than soldiers." Today Costa Rica is one of the very few nations on Earth with no military, and the decision is central to its self-image as Central America\'s peaceful exception. National security is handled by civilian police forces.',
+          vocab: ['el ejército', 'la abolición', 'la constitución', 'el maestro', 'el soldado', 'la paz']
+        },
+        {
+          year: '1949–present',
+          title: 'The welfare democracy, Óscar Arias, and pura vida',
+          spanish: 'la Suiza centroamericana',
+          body: 'With no army and steady income — first coffee and bananas, later technology and tourism — Costa Rica built the most stable <strong>social democracy</strong> in Central America, sometimes called <em>"la Suiza centroamericana"</em> ("the Switzerland of Central America"). It created a universal public health system (the <strong>Caja</strong>, or CCSS) and invested heavily in schools, producing literacy and life expectancy that rival wealthy nations.<br><br>While its neighbors burned through the 1980s — civil wars in Nicaragua, El Salvador, and Guatemala — Costa Rica stayed mostly out of the fighting, though it came under heavy US pressure to support the anti-Sandinista Contras based near its northern border. President <strong>Óscar Arias</strong> resisted, and instead authored the <strong>Esquipulas Peace Plan</strong>, a regional framework that helped end Central America\'s wars. He won the <strong>1987 Nobel Peace Prize</strong> for it.<br><br>In recent decades Costa Rica reinvented itself again — as a global leader in <strong>environmental conservation and ecotourism</strong>. About a quarter of its territory is protected; it generates nearly all its electricity from renewables; and its biodiversity (it holds roughly 5% of the world\'s species) draws millions of visitors. The national catchphrase, <em>"pura vida"</em> ("pure life"), works as hello, goodbye, thank you, and a whole philosophy of relaxed contentment. Costa Rica isn\'t a utopia — it faces inequality, debt, and rising drug-trade violence — but its army-free welfare-democracy model remains genuinely exceptional.',
+          vocab: ['la pura vida', 'la Caja', 'Óscar Arias', 'el Premio Nobel', 'el ecoturismo', 'la democracia']
+        }
+      ],
+      furtherViewing: [
+        '<em>Caribe</em> (2004) — Costa Rican drama set on the Caribbean coast amid the banana plantations',
+        '<em>Agua fría de mar</em> / Cold Water of the Sea (2010) — Acclaimed film by Paz Fábrega, winner at Rotterdam',
+        '<em>El regreso</em> / The Return (2011) — Hernán Jiménez\'s comedy-drama about coming home to Costa Rica',
+        '<em>A Bold Peace</em> (2016) — Documentary on Costa Rica\'s decision to abolish its army'
+      ]
+    },
+    {
+      country: 'DO',
+      countryName: 'República Dominicana',
+      arc: 'The Dominican Republic shares the island of Hispaniola with Haiti, and the two nations\' histories are inseparable. It was the site of the first permanent European settlement in the Americas, won its independence uniquely from a neighbor (Haiti) rather than from Europe, endured one of Latin America\'s most total and bizarre dictatorships under Trujillo, was twice occupied by US troops, and today is a fast-growing democracy famous for baseball, merengue, and a huge diaspora — still wrestling with the centuries-old question of its relationship to Haiti and to its own African heritage.',
+      events: [
+        {
+          year: '1492–1795',
+          title: 'Hispaniola: the first European colony in the Americas',
+          spanish: 'La Española',
+          body: 'On his first voyage in <strong>1492</strong>, Christopher Columbus landed on the island the Taíno called <strong>Quisqueya</strong>. He named it <em>La Española</em> — Hispaniola. It became the site of the <strong>first permanent European settlement in the Americas</strong>, and <strong>Santo Domingo</strong> (founded 1496) is the oldest continuously inhabited European-built city in the hemisphere, with the oldest cathedral and university.<br><br>The island was the laboratory for everything that followed in Spanish America: the first encomiendas (forced-labor grants), the first large-scale gold mining, and the first catastrophic <strong>collapse of an indigenous population</strong>. The Taíno, who may have numbered hundreds of thousands, were nearly wiped out within a few decades by disease, violence, and forced labor.<br><br>To replace them, the Spanish brought <strong>enslaved Africans</strong> to work sugar plantations — Hispaniola saw some of the earliest African slavery in the Americas. But as Spain shifted its attention and wealth to Mexico and Peru, Santo Domingo became a neglected backwater. Spain eventually ceded the western third of the island to <strong>France</strong> (1697), which built it into the fabulously rich sugar colony of Saint-Domingue — the future Haiti.',
+          vocab: ['La Española', 'Santo Domingo', 'los taínos', 'la encomienda', 'la esclavitud', 'Quisqueya']
+        },
+        {
+          year: '1791–1844',
+          title: 'The Haitian Revolution and independence from Haiti',
+          spanish: 'la independencia de Haití',
+          body: 'The most important fact about Dominican history is that the island is shared with <strong>Haiti</strong>. In 1791, enslaved people in French Saint-Domingue launched the <strong>Haitian Revolution</strong> — the only successful slave revolt to found a nation. Haiti became independent in 1804.<br><br>The revolution spilled across the whole island. Haitian forces invaded the Spanish side repeatedly, and from <strong>1822 to 1844</strong>, a unified Haiti ruled the entire island of Hispaniola. Haitian rule abolished slavery on the Spanish side (a lasting positive legacy) but was also experienced by many Spanish-speaking Dominicans as a foreign occupation that suppressed their language, the Catholic Church, and their customs.<br><br>This is what makes Dominican independence unique in Latin America: it was won <strong>not from a European empire, but from a neighboring country</strong>. On <strong>February 27, 1844</strong>, a secret society called <em>La Trinitaria</em>, led by <strong>Juan Pablo Duarte</strong>, declared independence from Haiti and founded the Dominican Republic. This origin — independence FROM Haiti — planted the seeds of an anti-Haitian, anti-Black strain in Dominican national identity that later leaders would exploit with horrific results.',
+          vocab: ['Haití', 'la Trinitaria', 'Juan Pablo Duarte', 'la independencia', 'la isla', 'la frontera']
+        },
+        {
+          year: '1844–1916',
+          title: 'Instability, re-annexation, and US intervention',
+          spanish: 'la inestabilidad',
+          body: 'The young republic was chronically unstable, caught between fear of Haiti and the ambitions of rival <em>caudillos</em> (strongmen). So insecure was the new nation that in <strong>1861</strong>, President Pedro Santana actually asked <strong>Spain to re-annex the country</strong> — the only Latin American nation to voluntarily return to colonial rule. It went badly, and a guerrilla <strong>War of Restoration</strong> (1863–1865) won independence back a second time.<br><br>There was even a serious proposal in 1870 to <strong>annex the Dominican Republic to the United States</strong>; President Ulysses S. Grant pushed for it, but the US Senate rejected the treaty.<br><br>Decades of debt, dictatorship, and coups followed. As the Dominican government defaulted on European loans, the United States — invoking the Monroe Doctrine and worried about European intervention — took over the country\'s customs houses to collect its debts. In <strong>1916</strong>, the US went further and sent in the Marines, beginning a <strong>military occupation that lasted until 1924</strong>. The occupation built roads and a centralized national army — and that US-trained military would soon produce the country\'s most notorious figure.',
+          vocab: ['el caudillo', 'la anexión', 'la Restauración', 'la deuda', 'la ocupación', 'los marines']
+        },
+        {
+          year: '1930–1961',
+          title: 'The Trujillo dictatorship and the Parsley Massacre',
+          spanish: 'la Era de Trujillo',
+          body: 'In 1930, <strong>Rafael Leónidas Trujillo</strong>, head of the US-trained National Army, seized power. For <strong>31 years</strong> he ran one of the most total and bizarre dictatorships in Latin American history — a period Dominicans call simply <em>"la Era de Trujillo."</em><br><br>The personality cult was extreme. He renamed the capital <strong>Ciudad Trujillo</strong> and the country\'s highest peak <strong>Pico Trujillo</strong>. Churches hung signs reading "God in Heaven, Trujillo on Earth." He personally controlled much of the national economy, and his secret police tortured and disappeared opponents.<br><br>His worst atrocity was the <strong>Parsley Massacre</strong> (<em>la Masacre del Perejil</em>) of <strong>1937</strong>: over a few days, Trujillo\'s soldiers murdered an estimated <strong>15,000–20,000 Haitians and Black Dominicans</strong> near the border. Soldiers reportedly held up a sprig of parsley (<em>perejil</em>) and demanded the victim pronounce it — the rolled Spanish "r" being hard for Haitian Creole speakers — using accent as a death sentence. It was racial massacre dressed as nationalism.<br><br>The regime\'s end began with the murder of the <strong>Mirabal sisters</strong> (<em>Las Mariposas</em>, "the Butterflies"), three women who opposed Trujillo and were beaten to death in 1960. Their murder horrified the nation and the world; the date, <strong>November 25</strong>, is now the International Day for the Elimination of Violence Against Women. In 1961, Trujillo was assassinated in an ambush on a highway outside the capital.',
+          vocab: ['Trujillo', 'la dictadura', 'la Masacre del Perejil', 'las hermanas Mirabal', 'Las Mariposas', 'la masacre']
+        },
+        {
+          year: '1961–1996',
+          title: 'Bosch, the 1965 US invasion, and Balaguer',
+          spanish: 'la Guerra de Abril',
+          body: 'Trujillo\'s death opened a turbulent period. In 1962, the Dominican Republic held its first free elections in decades, choosing the leftist writer <strong>Juan Bosch</strong> as president. He lasted only seven months before a military coup overthrew him in 1963.<br><br>In April 1965, pro-Bosch military officers and civilians rose up to restore him — the <strong>Guerra de Abril</strong> (the April War). Fearing "a second Cuba," US President Lyndon Johnson sent over <strong>40,000 US troops</strong> to occupy Santo Domingo and crush the revolt — the largest US military intervention in Latin America of that era. The Americans installed a transitional government and supervised new elections.<br><br>The man who emerged to dominate the next three decades was <strong>Joaquín Balaguer</strong>, a former Trujillo aide. He served as president for <strong>22 years</strong> across several terms (1966–1978 and 1986–1996), ruling in a semi-authoritarian style marked by repression of the left, but also overseeing infrastructure growth. His 1994 re-election was so blatantly fraudulent that international pressure forced him to cut the term short — finally opening the door to genuine multiparty democracy.',
+          vocab: ['Juan Bosch', 'la Guerra de Abril', 'la invasión', 'Balaguer', 'el golpe', 'la democracia']
+        },
+        {
+          year: '1996–present',
+          title: 'Modern DR: baseball, tourism, diaspora, and the Haiti question',
+          spanish: 'la República Dominicana hoy',
+          body: 'Since the mid-1990s, the Dominican Republic has been a functioning democracy and one of the <strong>fastest-growing economies in Latin America</strong>, driven by tourism (it\'s the most-visited country in the Caribbean), mining, free-trade manufacturing zones, and remittances.<br><br>Two cultural exports define the modern DR globally. First, <strong>baseball</strong> (<em>el béisbol</em>): the country produces more Major League Baseball players per capita than anywhere on Earth — the town of San Pedro de Macorís alone has sent dozens to the majors. Second, its <strong>music</strong> — <em>merengue</em> and <em>bachata</em> — has gone worldwide.<br><br>The Dominican <strong>diaspora</strong> is huge, with around two million people of Dominican descent in the United States, concentrated in New York City (especially Washington Heights). The remittances they send home are a pillar of the economy, and writers like Pulitzer winner <strong>Junot Díaz</strong> have brought the Dominican-American experience into world literature.<br><br>The unresolved shadow remains the <strong>relationship with Haiti</strong>. Hundreds of thousands of Haitians live and work in the DR, often in harsh conditions on sugar plantations (<em>los bateyes</em>). In <strong>2013</strong>, a Dominican court ruling retroactively stripped citizenship from many people of Haitian descent — even those born in the country — leaving tens of thousands effectively stateless and drawing international condemnation. The centuries-old tension between the two nations sharing one island is still a defining issue of Dominican politics.',
+          vocab: ['el béisbol', 'el merengue', 'la bachata', 'la diáspora', 'las remesas', 'el batey']
+        }
+      ],
+      furtherViewing: [
+        '<em>In the Time of the Butterflies</em> (2001) — Film of Julia Álvarez\'s novel about the Mirabal sisters and Trujillo',
+        '<em>The Feast of the Goat</em> / La Fiesta del Chivo (2005) — Film of Mario Vargas Llosa\'s novel about the dictatorship',
+        '<em>Sugar</em> / Azúcar (2008) — Drama following a young Dominican pitcher chasing the major leagues',
+        '<em>The Brief Wondrous Life of Oscar Wao</em> — Junot Díaz\'s Pulitzer-winning novel steeped in Trujillo-era history (book)'
+      ]
+    },
+    {
+      country: 'EC',
+      countryName: 'Ecuador',
+      arc: 'Ecuador — named for the equator that crosses it — packs extraordinary diversity into a small country: Andean highlands, Amazon rainforest, Pacific coast, and the Galápagos Islands. Its history runs from the northern Inca capital at Quito, through Spanish conquest and the artistic golden age of colonial Quito, to independence under Bolívar and Sucre, a turbulent modern era of coups and presidential instability, an oil boom that transformed and polluted the Amazon, a powerful indigenous political movement, and a frightening recent surge of drug violence.',
+      events: [
+        {
+          year: '~1450–1534',
+          title: 'Quito, the Inca, and the last emperor Atahualpa',
+          spanish: 'el imperio inca',
+          body: 'The Andean highlands of Ecuador were home to many peoples — the Quitus, Cañaris, and others — long before the Inca arrived. In the late 1400s, the <strong>Inca Empire</strong> expanded north from Peru and conquered the region after fierce resistance (the Cañari fought so hard the Inca nearly destroyed them). <strong>Quito</strong> became the empire\'s important northern capital.<br><br>The emperor Huayna Capac loved Quito and lived there. When he died (around 1527, probably of European smallpox that had raced south ahead of the Spanish themselves), his empire was split between two sons: <strong>Huáscar</strong> in Cusco and <strong>Atahualpa</strong> in Quito. The resulting <strong>civil war</strong> between the brothers tore the Inca Empire apart — and it was precisely at this weakened moment that the Spanish arrived.<br><br>Atahualpa won the civil war but was almost immediately captured by Francisco Pizarro in 1532 and executed in 1533. The conquistador <strong>Sebastián de Benalcázar</strong> then marched on Quito; the Inca general Rumiñahui burned the city rather than surrender it intact. The Spanish refounded <strong>San Francisco de Quito</strong> in <strong>1534</strong>.',
+          vocab: ['el imperio inca', 'Quito', 'Atahualpa', 'la guerra civil', 'el conquistador', 'Rumiñahui']
+        },
+        {
+          year: '1534–1809',
+          title: 'Colonial Quito and the Quito School of art',
+          spanish: 'la Escuela Quiteña',
+          body: 'Under Spanish rule, Quito became the seat of a <strong>Real Audiencia</strong> (royal court district), first within the Viceroyalty of Peru and later New Granada. The economy ran on highland textile workshops (<em>obrajes</em>), which exploited indigenous labor brutally, and on agriculture.<br><br>Colonial Quito\'s greatest legacy was artistic. The <strong>Quito School</strong> (<em>la Escuela Quiteña</em>) was one of the most remarkable artistic movements of colonial Latin America — a fusion of European Catholic styles with indigenous and mestizo craftsmanship. Quiteño artists produced extraordinarily detailed religious sculpture and painting, famous for hyper-realistic polychrome statues with glass eyes and real eyelashes. Quito\'s historic center, packed with these baroque churches, was named one of the first <strong>UNESCO World Heritage Sites</strong> in 1978.<br><br>On <strong>August 10, 1809</strong>, Quito\'s elite staged what Ecuadorians proudly call the <em>"Primer Grito de Independencia"</em> — the "First Cry of Independence" — one of the earliest independence uprisings anywhere in Spanish America. It was crushed and its leaders killed within a year, but the date is Ecuador\'s national day, and the city is nicknamed <em>"Luz de América"</em> — "Light of America."',
+          vocab: ['la Real Audiencia', 'la Escuela Quiteña', 'el obraje', 'el Primer Grito', 'el patrimonio', 'Luz de América']
+        },
+        {
+          year: '1820–1830',
+          title: 'Independence, Pichincha, and the birth of Ecuador',
+          spanish: 'la Batalla de Pichincha',
+          body: 'Ecuador\'s independence came as part of <strong>Simón Bolívar\'s</strong> sweeping liberation of northern South America. The port city of <strong>Guayaquil</strong> declared independence in 1820. The decisive battle came on <strong>May 24, 1822</strong>, when Bolívar\'s brilliant general <strong>Antonio José de Sucre</strong> defeated the Spanish on the slopes of the <strong>Pichincha</strong> volcano overlooking Quito. The Battle of Pichincha freed the region for good.<br><br>Soon after, in July 1822, Bolívar and the Argentine liberator <strong>José de San Martín</strong> held their famous secret meeting in Guayaquil — the <em>Entrevista de Guayaquil</em> — to decide the future of South American independence. What they said remains a historical mystery; afterward San Martín withdrew from public life entirely.<br><br>The liberated region joined Bolívar\'s grand union, <strong>Gran Colombia</strong> (alongside Colombia, Venezuela, and Panama). But that union fractured, and in <strong>1830</strong> the region broke away as a separate republic. It took the name <strong>Ecuador</strong> — Spanish for "equator" — after the imaginary line that runs across it. (You can stand astride the monument at <em>la Mitad del Mundo</em>, "the Middle of the World," just outside Quito.)',
+          vocab: ['la Batalla de Pichincha', 'Sucre', 'Guayaquil', 'la Gran Colombia', 'el ecuador', 'la Mitad del Mundo']
+        },
+        {
+          year: '1860–1925',
+          title: 'García Moreno, Eloy Alfaro, and the liberal-conservative wars',
+          spanish: 'la Revolución Liberal',
+          body: 'Independent Ecuador spent the 19th century locked in a struggle between <strong>Conservatives</strong> (centered in highland, Catholic Quito) and <strong>Liberals</strong> (centered in the trading port of Guayaquil) — a regional and ideological divide that still echoes today.<br><br>The towering conservative figure was <strong>Gabriel García Moreno</strong>, president in the 1860s–70s, a devout authoritarian who tied the state tightly to the Catholic Church — he literally <strong>dedicated the Republic of Ecuador to the Sacred Heart of Jesus</strong> and made Catholicism a requirement of citizenship. He modernized infrastructure and (Church-run) education but ruled with an iron hand. He was assassinated with a machete on the steps of the presidential palace in 1875.<br><br>The towering liberal figure was <strong>Eloy Alfaro</strong>, leader of the <strong>Liberal Revolution of 1895</strong>. He separated church and state, legalized civil marriage and divorce, secularized education, and completed the great <strong>Guayaquil–Quito railroad</strong> through the Andes — an engineering marvel that finally linked the coast and highlands. Alfaro\'s end was brutal: overthrown and jailed, he was dragged from prison by a mob in 1912, killed, and his body burned in a Quito park.',
+          vocab: ['el conservador', 'el liberal', 'García Moreno', 'Eloy Alfaro', 'la Revolución Liberal', 'el ferrocarril']
+        },
+        {
+          year: '1925–1979',
+          title: 'Instability, the 1941 war with Peru, and oil',
+          spanish: 'la inestabilidad y el petróleo',
+          body: 'The 20th century brought chronic political instability. The emblematic figure was <strong>José María Velasco Ibarra</strong>, a populist orator elected president <strong>five times</strong> — and overthrown in all but one of them. He once boasted, "Give me a balcony and I will be president," capturing how Ecuadorian politics ran on charisma and crowds more than institutions.<br><br>A national trauma came in <strong>1941</strong>, when a border war with <strong>Peru</strong> ended in defeat. The 1942 <strong>Rio Protocol</strong> forced Ecuador to give up a vast claimed swath of the <strong>Amazon</strong> — territory the size of a country. Ecuadorians long refused to accept the loss; school maps showed the lost land for generations, and border tension with Peru flared into brief wars again in 1981 and 1995 before a final peace in 1998.<br><br>Everything changed in the <strong>1970s</strong> with the discovery of large <strong>oil</strong> reserves in the Amazon. Petroleum turned Ecuador into an exporter, funded a wave of modernization, and bankrolled a period of military government. But oil also brought a darker legacy: the company <strong>Texaco</strong> (later Chevron) drilled in the Amazon for decades and left behind massive contamination of rainforest and indigenous lands — the basis of one of the longest environmental lawsuits in history.',
+          vocab: ['Velasco Ibarra', 'el populismo', 'la guerra con Perú', 'el Protocolo de Río', 'el petróleo', 'la Amazonía']
+        },
+        {
+          year: '1990–present',
+          title: 'The indigenous movement, dollarization, and Correa',
+          spanish: 'el levantamiento indígena',
+          body: 'Ecuador has one of the largest <strong>indigenous populations</strong> in the Americas, and since 1990 it has been a powerful political force. That year, the confederation <strong>CONAIE</strong> led a massive <em>levantamiento</em> (uprising) that paralyzed the country and put indigenous rights at the center of national politics. Indigenous movements have since helped topple presidents and win constitutional recognition of Ecuador as a <strong>"plurinational"</strong> state — even granting legal "rights of nature" (<em>los derechos de la naturaleza</em>) in the 2008 constitution, a world first.<br><br>The late 1990s brought economic catastrophe: a banking collapse wiped out savings and triggered mass emigration (many Ecuadorians moved to Spain and the US). In <strong>2000</strong>, the government took the drastic step of <strong>abandoning its currency, the sucre, and adopting the US dollar</strong> (<em>la dolarización</em>). It ended hyperinflation but tied Ecuador\'s economy permanently to the dollar. The era was so unstable that <strong>three presidents were ousted between 1997 and 2005</strong>.<br><br>Stability returned with <strong>Rafael Correa</strong> (2007–2017), a charismatic leftist whose "Citizens\' Revolution" used the oil boom to fund roads, schools, and hospitals and lift many out of poverty — though critics accused him of authoritarian tendencies and of silencing the press. Since the late 2010s, Ecuador has faced a frightening new crisis: it has become a key transit hub for <strong>cocaine trafficking</strong>, and once-peaceful cities like Guayaquil have seen explosive gang violence, prison massacres, and political assassinations — a dramatic and ongoing emergency.',
+          vocab: ['el levantamiento indígena', 'CONAIE', 'plurinacional', 'la dolarización', 'Correa', 'el narcotráfico']
+        }
+      ],
+      furtherViewing: [
+        '<em>Ratas, ratones, rateros</em> (1999) — Sebastián Cordero\'s gritty crime drama, a landmark of Ecuadorian cinema',
+        '<em>Qué tan lejos</em> / How Much Further (2006) — Beloved Ecuadorian road movie across the Andes',
+        '<em>Crude</em> (2009) — Documentary on the Texaco/Chevron Amazon pollution lawsuit',
+        '<em>La Tigra</em> (1990) — Classic Ecuadorian film based on a story by José de la Cuadra'
+      ]
+    },
+    {
+      country: 'GQ',
+      countryName: 'Guinea Ecuatorial',
+      arc: 'Equatorial Guinea is the only sovereign nation in Sub-Saharan Africa where Spanish is an official language — a small, oil-rich country on the Atlantic coast of Central Africa, made up of a mainland region (Río Muni) and islands including Bioko, home to the capital, Malabo. Its history runs from Bubi and Fang societies, through a historical accident that made a slice of Africa Spanish-speaking, to independence in 1968 and one of the most horrifying dictatorships in modern African history under Macías, followed by a second long dictatorship under his nephew Obiang amid enormous oil wealth that has barely reached its people.',
+      events: [
+        {
+          year: 'pre-1471',
+          title: 'The Bubi, the Fang, and the lands before Spain',
+          spanish: 'los pueblos originarios',
+          body: 'Equatorial Guinea is made up of two very different parts: a chunk of <strong>mainland</strong> Central Africa called <strong>Río Muni</strong>, and several <strong>islands</strong> in the Atlantic, the largest being <strong>Bioko</strong> (historically called Fernando Po), which holds the capital, <strong>Malabo</strong>.<br><br>Long before Europeans came, the island of Bioko was home to the <strong>Bubi</strong> people, a Bantu group who had crossed from the mainland centuries earlier and developed their own distinct island society and language. The mainland was home to the <strong>Fang</strong>, a larger Bantu people whose communities spread across what is now Equatorial Guinea, Gabon, and southern Cameroon, along with coastal peoples like the Ndowe.<br><br>These distinct origins still shape the country today: the Fang are the demographic and political majority (the ruling family is Fang), while the Bubi of Bioko have at times sought autonomy. Understanding Equatorial Guinea means remembering it is a single state stitched together from an island and a mainland that were never historically one nation.',
+          vocab: ['los bubi', 'los fang', 'Bioko', 'Río Muni', 'la isla', 'Malabo']
+        },
+        {
+          year: '1471–1900',
+          title: 'From Portugal to Spain: how a Spanish colony reached Africa',
+          spanish: 'la Guinea Española',
+          body: 'In the early 1470s, the Portuguese navigator <strong>Fernão do Pó</strong> reached the island that would bear his name (Fernando Po, today Bioko) while exploring the West African coast for Portugal. Portugal held the islands for three centuries.<br><br>The Spanish connection came through a swap. In the <strong>Treaty of El Pardo (1778)</strong>, Portugal ceded Fernando Po, the nearby island of Annobón, and trading rights on the mainland coast to <strong>Spain</strong> — in exchange for territory in South America. This is the historical accident that made a slice of Central Africa <strong>Spanish-speaking</strong>: Spain wanted an African base near its trade routes.<br><br>For decades Spain barely used the territory; at one point Britain even leased Fernando Po as a base for its anti-slavery naval patrols, and the island\'s main town was named <strong>Port Clarence</strong> (later Santa Isabel, today Malabo). Only toward the end of the 1800s did Spain seriously colonize, pushing inland into Río Muni and establishing <strong>cocoa</strong> plantations on Bioko\'s rich volcanic soil.',
+          vocab: ['Fernando Po', 'el Tratado de El Pardo', 'España', 'la colonia', 'el cacao', 'Santa Isabel']
+        },
+        {
+          year: '1900–1968',
+          title: 'Spanish Guinea, cocoa, and late colonial rule',
+          spanish: 'la época colonial',
+          body: 'In the 20th century Spain consolidated its scattered holdings into the colony of <strong>Spanish Guinea</strong> (<em>la Guinea Española</em>). The economy centered on <strong>cocoa</strong> (<em>el cacao</em>) and coffee plantations on Bioko, plus timber on the mainland. The plantations were so labor-hungry that workers were imported from Nigeria, and the colony became, by some measures, relatively prosperous and one of the more literate in colonial Africa — though that prosperity rested on a coercive plantation system.<br><br>Under Francisco Franco\'s dictatorship, Spain governed the territory tightly and promoted Catholicism and the Spanish language through mission schools. In the 1960s, as the rest of Africa decolonized, Spain reorganized the colony — briefly "provincializing" it as if it were part of Spain, then granting limited autonomy.<br><br>Under pressure from the United Nations and the global wave of African independence, Spain finally moved toward granting independence. A constitution was drafted, elections were held — and in those elections a charismatic, fiery nationalist named <strong>Francisco Macías Nguema</strong> won the presidency. Few foresaw the catastrophe to come.',
+          vocab: ['la Guinea Española', 'el cacao', 'Franco', 'la misión', 'la autonomía', 'la independencia']
+        },
+        {
+          year: '1968–1979',
+          title: 'Independence and the terror of Macías Nguema',
+          spanish: 'la dictadura de Macías',
+          body: 'Equatorial Guinea became <strong>independent on October 12, 1968</strong>, with <strong>Francisco Macías Nguema</strong> as its first president. Within a few years he had built one of the most horrifying regimes in modern African history.<br><br>Macías declared himself president for life and ruled through pure terror. He banned the word <em>"intellectual,"</em> closed schools, and outlawed the Catholic Church. He gave himself grandiose titles like <em>"Unique Miracle."</em> Anyone suspected of disloyalty — real or imagined — was liable to be tortured and murdered, and he hoarded the national treasury for himself.<br><br>The human toll was staggering. It is estimated that Macías killed tens of thousands and drove perhaps <strong>a third of the entire population into exile or death</strong>. The educated class was destroyed or fled, and the economy collapsed completely. Observers called the country <em>"the Dachau of Africa."</em> On a single Christmas Eve, he reportedly had scores of alleged opponents executed in a stadium while loudspeakers played pop music — a grotesque emblem of the regime\'s cruelty.',
+          vocab: ['la independencia', 'Macías Nguema', 'la dictadura', 'el terror', 'el exilio', 'el intelectual']
+        },
+        {
+          year: '1979–1995',
+          title: 'The Obiang coup and the discovery of oil',
+          spanish: 'el golpe de Obiang',
+          body: 'In <strong>August 1979</strong>, Macías was overthrown in a coup led by his own nephew and head of the National Guard, <strong>Teodoro Obiang Nguema Mbasogo</strong>. Macías was captured, tried, and executed by firing squad (reportedly carried out by foreign soldiers, because local troops feared his rumored magical powers).<br><br>Obiang promised a new era and was, at first, welcomed simply for not being his uncle. But he kept the country firmly under one-party, authoritarian rule. He has now held power for over <strong>four decades</strong>, making him the <strong>longest-serving president in the world</strong> (and the longest-ruling non-royal head of state anywhere).<br><br>The event that transformed everything came in the <strong>mid-1990s</strong>: the discovery of major <strong>offshore oil</strong> reserves. Almost overnight, this tiny, impoverished country became one of Sub-Saharan Africa\'s largest oil producers. With oil came enormous wealth — and the central question of modern Equatorial Guinea: where did all that money go?',
+          vocab: ['el golpe', 'Obiang', 'la Guardia Nacional', 'el fusilamiento', 'el petróleo', 'el poder']
+        },
+        {
+          year: '1996–present',
+          title: 'Oil wealth, kleptocracy, and a Spanish-speaking Africa',
+          spanish: 'la maldición del petróleo',
+          body: 'On paper, Equatorial Guinea has one of the <strong>highest GDP-per-capita figures in Africa</strong> — its oil wealth, divided among barely 1.5 million people, should make it rich. In reality, it is a textbook case of the <strong>"resource curse"</strong> and one of the world\'s most notorious <strong>kleptocracies</strong>. Most citizens still lack clean water, reliable electricity, and basic health care, while the ruling Obiang family lives in extravagant luxury.<br><br>The most infamous example is Obiang\'s son and chosen successor, <strong>Teodoro "Teodorín" Nguema Obiang</strong>, the vice president, who became a global symbol of stolen wealth. Foreign courts in France and the United States have <strong>seized his fleet of supercars, a Malibu mansion, and Michael Jackson memorabilia</strong>, ruling they were bought with embezzled state funds. France convicted him of corruption in 2017.<br><br>What keeps Equatorial Guinea in this story is language and identity. It is the <strong>only sovereign nation in Sub-Saharan Africa where Spanish is an official language</strong> (alongside French and Portuguese), a living legacy of its colonial history. It belongs to the community of Spanish-speaking nations even as its government remains one of the most repressive and corrupt on Earth. It is the part of the Spanish-speaking world that students rarely learn about — and that makes it worth knowing.',
+          vocab: ['la maldición de los recursos', 'la cleptocracia', 'Teodorín', 'la corrupción', 'el español', 'África']
+        }
+      ],
+      furtherViewing: [
+        '<em>By Night the Mountain Burns</em> / Arde el monte de noche — Novel by Juan Tomás Ávila Laurel, the country\'s best-known living writer (book)',
+        '<em>Shadows of Your Black Memory</em> / Las tinieblas de tu memoria negra — Donato Ndongo\'s novel of the colonial-to-independence era (book)',
+        '<em>Where the Road Runs Out</em> (2014) — Feature drama filmed in Equatorial Guinea',
+        'News documentaries on the corruption trials of "Teodorín" Obiang in France and the US'
+      ]
+    },
+    {
+      country: 'NI',
+      countryName: 'Nicaragua',
+      arc: 'Nicaragua\'s history is dominated by its strategic geography and a long story of foreign intervention and revolution: the American filibuster William Walker, decades of US Marine occupation, the guerrilla resistance of Sandino, the Somoza family dynasty, the Sandinista Revolution of 1979, the US-backed Contra War of the 1980s, and the troubling return and entrenchment of Daniel Ortega as an authoritarian ruler in the 21st century.',
+      events: [
+        {
+          year: '1520s–1821',
+          title: 'Conquest, the lakes, and colonial Nicaragua',
+          spanish: 'la colonia',
+          body: 'When the Spanish arrived in the 1520s, the Pacific side of Nicaragua was densely populated by indigenous peoples, including the <strong>Nicarao</strong> (from whose name "Nicaragua" likely derives). The conquistador <strong>Gil González Dávila</strong> explored the region, and <strong>Francisco Hernández de Córdoba</strong> founded the two cities that would define colonial Nicaragua: <strong>Granada</strong> (on Lake Nicaragua) and <strong>León</strong>. Hernández de Córdoba gave his name to the country\'s currency, the <strong>córdoba</strong>, still used today.<br><br>Colonial Nicaragua was a quiet agricultural province of the Captaincy General of Guatemala, but its geography made it strategically tempting. <strong>Lake Nicaragua</strong> drains to the Caribbean via the <strong>San Juan River</strong>, and only a thin strip of land separates the lake from the Pacific. This made Nicaragua, for centuries, one of the most promising potential routes for a <strong>canal between the two oceans</strong> — a fact that would shape its entire history.<br><br>The Caribbean (eastern) coast developed completely differently. Spain never really controlled it; instead the <strong>British</strong> allied with the indigenous <strong>Miskito</strong> people and ran the "Mosquito Coast" as a protectorate. That coast remains culturally distinct — English-Creole-speaking, Protestant, and Afro-indigenous — to this day.',
+          vocab: ['la conquista', 'Granada', 'León', 'el córdoba', 'el lago', 'la Costa Miskita']
+        },
+        {
+          year: '1821–1857',
+          title: 'Independence, the León–Granada wars, and William Walker',
+          spanish: 'el filibustero',
+          body: 'After independence from Spain (1821), Nicaragua was paralyzed by a bitter rivalry between two cities: <strong>liberal León</strong> and <strong>conservative Granada</strong>. Their feud erupted into repeated civil wars that crippled the young nation.<br><br>That instability set up one of the strangest episodes in Latin American history. In 1855, the León liberals made the catastrophic mistake of inviting an American adventurer to help them fight Granada. His name was <strong>William Walker</strong> — a <em>filibustero</em> (filibuster), a private American mercenary bent on conquering Latin American territory. Walker and his armed band seized control, and in 1856 he had himself <strong>declared president of Nicaragua</strong>.<br><br>Walker\'s rule was openly imperialist and racist: he <strong>made English an official language and re-legalized slavery</strong> (which had been abolished), aiming to annex Nicaragua to the slaveholding US South. This united Central America against him. A coalition of armies from Costa Rica, Honduras, El Salvador, and Guatemala — backed by the shipping magnate Cornelius Vanderbilt, whose transit business Walker had seized — drove him out in 1857. Walker tried again in 1860, was captured in Honduras, and executed by firing squad. The war against Walker is remembered across the region as a heroic moment of Central American unity.',
+          vocab: ['el filibustero', 'William Walker', 'León', 'Granada', 'la esclavitud', 'la unidad centroamericana']
+        },
+        {
+          year: '1893–1933',
+          title: 'Zelaya, the canal that went to Panama, and the US Marines',
+          spanish: 'la ocupación estadounidense',
+          body: 'In 1893, the liberal modernizer <strong>José Santos Zelaya</strong> took power and ruled for 16 years, finally unifying the country (including reincorporating the Caribbean coast) and building infrastructure. But Zelaya made a fatal enemy: he wanted to build an inter-oceanic canal and was willing to deal with powers other than the United States.<br><br>The US had its own plans. In 1903 it chose to build its canal in <strong>Panama</strong> instead of Nicaragua — and it did not want a rival Nicaraguan canal, or an independent-minded Nicaraguan leader. When Zelaya angered Washington, the US backed his overthrow in 1909.<br><br>What followed was decades of <strong>US military intervention</strong>. American <strong>Marines occupied Nicaragua almost continuously from 1912 to 1933</strong>, propping up cooperative conservative governments, running the customs, and effectively controlling the country to protect US strategic and business interests. For most of the early 20th century, Nicaragua was, in practice, a US protectorate — and that occupation provoked the resistance that would define the nation\'s identity.',
+          vocab: ['Zelaya', 'el canal', 'Panamá', 'los marines', 'la ocupación', 'el protectorado']
+        },
+        {
+          year: '1927–1956',
+          title: 'Sandino\'s resistance and the rise of Somoza',
+          spanish: 'Sandino y la Guardia Nacional',
+          body: 'One man refused to accept the US occupation: <strong>Augusto César Sandino</strong>. From 1927 to 1933, Sandino led a <strong>guerrilla war</strong> against the US Marines in the mountains of northern Nicaragua. Though hugely outgunned, his fighters fought the Marines to a standstill, and Sandino became a symbol of anti-imperialism across Latin America — the original guerrilla resisting a superpower.<br><br>Unable to defeat him outright, the US changed strategy: it built and trained a <strong>National Guard</strong> (<em>la Guardia Nacional</em>) to police Nicaragua, then withdrew the Marines in 1933. They left the Guard in the hands of an ambitious, US-friendly commander: <strong>Anastasio Somoza García</strong>.<br><br>In 1934, Somoza invited Sandino to peace talks — and then had him <strong>assassinated</strong> as he left the dinner. With his only rival gone, Somoza used the National Guard to seize the presidency in 1936. He founded a <strong>family dynasty</strong> that would rule Nicaragua as a personal possession for the next 43 years. (Decades later, revolutionaries would name their movement "Sandinista" in Sandino\'s honor.)',
+          vocab: ['Sandino', 'la guerrilla', 'el antiimperialismo', 'la Guardia Nacional', 'Somoza', 'el asesinato']
+        },
+        {
+          year: '1936–1979',
+          title: 'The Somoza dynasty and the Sandinista Revolution',
+          spanish: 'la Revolución Sandinista',
+          body: 'For <strong>43 years</strong>, the <strong>Somoza family</strong> ruled Nicaragua — first Anastasio Somoza García, then his two sons. They treated the country as private property, amassing a fortune that eventually included a huge share of the national economy. A US president supposedly summed up Washington\'s tolerance of them with the line, "He may be a son of a bitch, but he\'s our son of a bitch."<br><br>The regime\'s greed became unbearable after the <strong>1972 Managua earthquake</strong>, which killed thousands and flattened the capital. The Somozas and the National Guard <strong>stole much of the international relief aid</strong> meant for survivors. This naked corruption turned even the business class against the dynasty.<br><br>Opposition crystallized around the <strong>FSLN</strong> — the <em>Frente Sandinista de Liberación Nacional</em> (Sandinista National Liberation Front), named for Augusto Sandino. The 1978 assassination of <strong>Pedro Joaquín Chamorro</strong>, a beloved opposition newspaper editor, ignited a national uprising. After a brutal insurrection, the last Somoza fled the country, and on <strong>July 19, 1979</strong>, the Sandinistas marched victorious into Managua. The revolution had won.',
+          vocab: ['la dinastía', 'el terremoto', 'la corrupción', 'el FSLN', 'la Revolución', 'el sandinismo']
+        },
+        {
+          year: '1979–present',
+          title: 'The Contra War and the Ortega era',
+          spanish: 'la Contra y Daniel Ortega',
+          body: 'The Sandinista government, led by <strong>Daniel Ortega</strong>, launched ambitious reforms — a celebrated <strong>literacy campaign</strong> that taught hundreds of thousands to read, land redistribution, and health programs. But it was also Marxist-leaning and allied with Cuba and the Soviet Union, which alarmed the United States.<br><br>The US response defined the 1980s. President Ronald Reagan funded, armed, and trained a counter-revolutionary guerrilla army known as the <strong>Contras</strong> (<em>la Contra</em>) to overthrow the Sandinistas. The resulting <strong>Contra War</strong> killed tens of thousands and devastated the economy. When the US Congress banned funding the Contras, the Reagan administration secretly funded them anyway through illegal arms sales to Iran — the infamous <strong>Iran-Contra scandal</strong>.<br><br>Exhausted by war, Nicaraguans voted the Sandinistas out in <strong>1990</strong>, electing <strong>Violeta Chamorro</strong> (widow of the murdered editor) — the first woman elected president of a country in the Americas. Ortega accepted defeat and the war ended.<br><br>But the story did not end there. <strong>Daniel Ortega returned to the presidency in 2007</strong> and has never left. Over time he dismantled term limits, captured the courts and electoral system, and installed his wife, <strong>Rosario Murillo</strong>, as vice president. When mass protests erupted in <strong>2018</strong>, his government killed hundreds of demonstrators and jailed or exiled the opposition. He "won" a 2021 election after imprisoning his rivals, and has shuttered churches, NGOs, and universities. The revolutionary who once toppled a dynasty now runs an entrenched <strong>family dictatorship</strong> of his own — a bitter irony at the heart of modern Nicaragua.',
+          vocab: ['la Contra', 'Reagan', 'el Irán-Contra', 'Violeta Chamorro', 'Daniel Ortega', 'la dictadura']
+        }
+      ],
+      furtherViewing: [
+        '<em>Walker</em> (1987) — Alex Cox\'s surreal satire of the filibuster William Walker',
+        '<em>Carla\'s Song</em> (1996) — Ken Loach film about the Contra War, partly set in Nicaragua',
+        '<em>Pictures from a Revolution</em> (1991) — Susan Meiselas documentary revisiting the Sandinista Revolution',
+        '<em>The World Stopped Watching</em> (2003) — Documentary following Nicaraguans years after the Contra War'
+      ]
+    },
+    {
+      country: 'PA',
+      countryName: 'Panamá',
+      arc: 'Panama is defined by its geography — the narrowest point between the Atlantic and Pacific oceans. That isthmus made it Spain\'s great treasure-transit route, the reason the United States severed it from Colombia in 1903, the site of the world\'s most strategic canal, the object of a US military presence that lasted nearly a century, the target of a 1989 US invasion to capture Manuel Noriega, and finally a sovereign nation that took full control of its canal in 1999.',
+      events: [
+        {
+          year: '1501–1671',
+          title: 'Balboa, the treasure route, and the burning of Panama',
+          spanish: 'la ruta del tesoro',
+          body: 'The Spanish reached the isthmus of Panama early — it was one of the first parts of the American mainland they colonized. In <strong>1513</strong>, <strong>Vasco Núñez de Balboa</strong> crossed the narrow strip of jungle and became the first European to see the <strong>Pacific Ocean</strong> from the Americas, claiming it (and "all its shores") for Spain. In 1519 the Spanish founded <strong>Panama City</strong> on the Pacific side.<br><br>Geography made Panama priceless. The isthmus is the <strong>narrowest point between the Atlantic and Pacific</strong> in the Americas. The Spanish used it as the great transit route for the silver of <strong>Peru</strong>: treasure was shipped up the Pacific coast to Panama, hauled overland by mule train across the isthmus (the <em>Camino Real</em>), and loaded onto treasure fleets bound for Spain. For two centuries, much of the wealth of the Spanish Empire crossed this tiny strip of land.<br><br>All that treasure attracted pirates. In <strong>1671</strong>, the Welsh buccaneer <strong>Henry Morgan</strong> crossed the isthmus and sacked and burned Panama City to the ground. The ruins, <strong>Panamá Viejo</strong>, still stand; survivors rebuilt the city a few miles away, where the colonial old town (Casco Viejo) remains today.',
+          vocab: ['Balboa', 'el océano Pacífico', 'el istmo', 'la ruta del tesoro', 'el Camino Real', 'Panamá Viejo']
+        },
+        {
+          year: '1821–1903',
+          title: 'Part of Colombia, and the gold-rush railroad',
+          spanish: 'el istmo colombiano',
+          body: 'When Panama won independence from Spain in <strong>1821</strong>, it did not become a separate country. Instead it joined <strong>Simón Bolívar\'s Gran Colombia</strong>, and when that broke apart, Panama remained a province of <strong>Colombia</strong> for the next 82 years. (Panamanians attempted to separate several times during the 1800s.)<br><br>The isthmus regained global importance with the <strong>California Gold Rush</strong> of 1849. Tens of thousands of Americans rushing to the goldfields found it faster to sail to Panama, cross the isthmus, and sail up the Pacific coast than to cross the entire United States overland. To serve them, an American company built the <strong>Panama Railroad</strong> (completed 1855) — the first transcontinental railroad in the Americas, and a fantastically profitable one. Thousands of workers, many of them Afro-Caribbean and Chinese laborers, died building it through the disease-ridden jungle.<br><br>The railroad proved a permanent truth: whoever controlled this crossing controlled a chokepoint of world trade. The dream of cutting an actual <strong>canal</strong> through it was now irresistible — and it would soon cost Panama its connection to Colombia.',
+          vocab: ['la Gran Colombia', 'Colombia', 'la provincia', 'la fiebre del oro', 'el ferrocarril', 'el istmo']
+        },
+        {
+          year: '1881–1903',
+          title: 'The French failure and US-backed separation',
+          spanish: 'la separación de Colombia',
+          body: 'The first attempt to dig a canal was French. <strong>Ferdinand de Lesseps</strong>, the hero who had built Egypt\'s Suez Canal, began a French effort in 1881. It was a disaster. The jungle, landslides, and above all <strong>tropical disease</strong> — yellow fever and malaria — killed an estimated <strong>22,000 workers</strong>. The company went spectacularly bankrupt in 1889, ruining thousands of French investors in one of the great financial scandals of the era.<br><br>The United States then took up the project. But it needed permission, and the government of <strong>Colombia</strong> rejected the treaty terms Washington offered. President <strong>Theodore Roosevelt</strong>, determined to have his canal, took a different path: he <strong>backed a Panamanian independence movement</strong>.<br><br>In <strong>November 1903</strong>, Panama declared independence from Colombia. A US warship conveniently prevented Colombian troops from landing to stop it, and Washington <strong>recognized the new Republic of Panama within days</strong>. Almost immediately, the US signed the <strong>Hay–Bunau-Varilla Treaty</strong> — negotiated for Panama largely by a Frenchman — granting the United States control of a Canal Zone "<strong>in perpetuity</strong>." Panama was born as a nation, but its most valuable territory was signed away to a foreign power on day one. Colombia refused to recognize Panama for decades.',
+          vocab: ['de Lesseps', 'la fiebre amarilla', 'Theodore Roosevelt', 'la separación', 'el tratado', 'la Zona del Canal']
+        },
+        {
+          year: '1904–1914',
+          title: 'Building the Panama Canal',
+          spanish: 'la construcción del Canal',
+          body: 'The United States began canal construction in 1904 and succeeded where France had failed — largely because of a <strong>medical breakthrough</strong>. Dr. <strong>William Gorgas</strong>, applying the new understanding that mosquitoes carried <strong>yellow fever and malaria</strong>, launched a massive campaign to drain swamps, fumigate, and control mosquitoes. Conquering disease made the project possible.<br><br>The engineering was monumental: rather than a sea-level cut, engineers built a system of <strong>locks</strong> that raise and lower ships over the continental divide using an artificial lake (Gatún Lake), created by what was then the largest dam in the world. The labor force was enormous and overwhelmingly <strong>West Indian</strong> — tens of thousands of Afro-Caribbean workers, especially from Barbados and Jamaica, did the most dangerous work and died in large numbers. Their descendants are a major part of Panama\'s population and culture today.<br><br>The <strong>Panama Canal opened in August 1914</strong>. It instantly became one of the most strategically and economically important waterways on Earth, cutting the sea voyage between the US east and west coasts by thousands of miles. But it came with a permanent wound: a <strong>strip of US sovereign territory, the Canal Zone</strong>, ran right through the middle of Panama, splitting the country in two and governed entirely by Americans.',
+          vocab: ['el Canal', 'Gorgas', 'la fiebre amarilla', 'las esclusas', 'el obrero antillano', 'la Zona del Canal']
+        },
+        {
+          year: '1914–1977',
+          title: 'The Canal Zone, the Martyrs, and the Torrijos treaties',
+          spanish: 'la soberanía',
+          body: 'For most of the 20th century, the <strong>Canal Zone</strong> was a source of deep national grievance. It was a ten-mile-wide strip of US-controlled land cutting across Panama — complete with American towns, schools, courts, and military bases — where Panamanian law did not apply and (for decades) the Panamanian flag could not fly. Many Panamanians saw it as a humiliating colonial enclave in the heart of their own country.<br><br>Tensions exploded on <strong>January 9, 1964</strong>, when Panamanian students tried to raise their flag alongside the US flag in the Zone. The confrontation triggered days of riots in which around <strong>21 Panamanians were killed</strong>. The date is commemorated as <strong>Día de los Mártires</strong> (Martyrs\' Day), and it became the rallying point for demanding the canal back.<br><br>The push for sovereignty was led by General <strong>Omar Torrijos</strong>, Panama\'s populist military ruler in the 1970s. After tough negotiations, he and US President <strong>Jimmy Carter</strong> signed the <strong>Torrijos–Carter Treaties in 1977</strong>, which set a historic timetable: the United States would gradually hand over the canal and dissolve the Canal Zone, with <strong>full Panamanian control by the end of 1999</strong>. It was a landmark of peaceful decolonization — but Panama\'s path to that handover would first pass through a dictatorship and a US invasion.',
+          vocab: ['la Zona del Canal', 'la soberanía', 'el Día de los Mártires', 'Omar Torrijos', 'Carter', 'el tratado']
+        },
+        {
+          year: '1983–present',
+          title: 'Noriega, the US invasion, and the canal handover',
+          spanish: 'la invasión y el Canal panameño',
+          body: 'After Torrijos died in a 1981 plane crash, real power fell to the head of the military, General <strong>Manuel Antonio Noriega</strong>. Noriega was a longtime <strong>CIA asset</strong> and US ally — but also a brutal strongman deeply involved in <strong>drug trafficking</strong> and money laundering. As his behavior grew more flagrant (annulling elections, killing opponents), he went from US partner to US target.<br><br>In December <strong>1989</strong>, President George H. W. Bush launched <strong>"Operation Just Cause,"</strong> a full-scale <strong>US military invasion of Panama</strong> to remove Noriega. It was the largest US combat operation since Vietnam at the time. Hundreds — by some estimates well over a thousand — Panamanians died, and the poor Panama City neighborhood of El Chorrillo was largely destroyed. Noriega took refuge in the Vatican embassy (where US troops famously blasted loud rock music to drive him out), surrendered, and was taken to the United States, where he was <strong>convicted and imprisoned on drug charges</strong>.<br><br>Democracy was restored, and Panama then achieved its century-old dream. On <strong>December 31, 1999</strong>, in accordance with the Torrijos–Carter Treaties, the United States <strong>handed full control of the Panama Canal to Panama</strong>. Panamanians now run the canal themselves — and run it well. A massive <strong>expansion</strong> opened in 2016 to fit today\'s giant ships. The canal and the banking and shipping economy built around it have made Panama one of Latin America\'s wealthiest and fastest-growing nations — though that financial-hub status also produced scandals like the 2016 <strong>"Panama Papers."</strong> The little isthmus the world always wanted to cross finally belongs to the people who live on it.',
+          vocab: ['Noriega', 'el narcotráfico', 'la invasión', 'Operación Causa Justa', 'el traspaso del Canal', 'la ampliación']
+        }
+      ],
+      furtherViewing: [
+        '<em>The Panama Deception</em> (1992) — Academy Award-winning documentary on the 1989 US invasion',
+        '<em>Invasión</em> (2014) — Abner Benaim\'s documentary on Panamanians\' memory of the invasion',
+        '<em>Historias del Canal</em> / Panama Canal Stories (2014) — Panamanian anthology film spanning the canal\'s century',
+        '<em>The Tailor of Panama</em> (2001) — Spy film, from John le Carré\'s novel, set around the canal handover'
+      ]
     }
-    // Future countries: 
-    // GT (civil war, indigenous genocide), 
-    // additional Central America (HN, NI, CR, PA), Caribbean (PR, DO), Andean (BO, EC), Southern Cone (UY, PY)
   ];
 
 // Tell the main app that historia has loaded
