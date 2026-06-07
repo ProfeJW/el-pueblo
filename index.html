@@ -92,6 +92,66 @@
   [data-theme="cosmic"] .hero-meta a:hover .desc { color: var(--ink-soft); }
   [data-theme="cosmic"] .hero-meta a:hover .num { color: var(--ocre); }
 
+  /* ════════════════════════════════════════════════════════════════════════
+     COSMIC CONTRAST FIXES
+     The light theme builds many panels/badges as either a "dark card"
+     (background: var(--ink), with light var(--paper) / neon var(--ocre) text)
+     or a "bright chip" (background: var(--ocre), with dark var(--ink) text).
+     Cosmic swaps --ink (#1f1a14 ⇄ #e8eaf6) and --paper (#f4ede0 ⇄ #0c0e1a),
+     which inverts both kinds and leaves the text illegible — light-on-light
+     inside the inverted dark cards, and light-on-yellow on the bright chips.
+     This is what makes the trivia/mini-game panels (and a lot of small badges)
+     unreadable in dark mode. The rules below restore contrast in cosmic only.
+     ──────────────────────────────────────────────────────────────────────── */
+
+  /* (1) Dark feature / quiz / code panels (inline background: var(--ink)).
+     In cosmic var(--ink) resolves to near-white, so the whole card inverts to a
+     glaring light panel and every neon/light accent inside vanishes. Pin them to
+     the dark card colour and re-light the body text (authored as color: var(--paper)).
+     Small buttons/links that legitimately invert to a light fill are excluded. */
+  [data-theme="cosmic"] [style*="background: var(--ink)"]:not(.btn):not(a),
+  [data-theme="cosmic"] [style*="background:var(--ink)"]:not(.btn):not(a) {
+    background: var(--card-bg) !important;
+    --paper: #e8eaf6;
+  }
+  /* Neon action buttons inside those panels keep dark text on their bright fill. */
+  [data-theme="cosmic"] [style*="background: var(--ink)"]:not(.btn):not(a) .btn.primary,
+  [data-theme="cosmic"] [style*="background: var(--ink)"]:not(.btn):not(a) .btn:hover,
+  [data-theme="cosmic"] [style*="background: var(--ink)"]:not(.btn):not(a) .trivia-opt.correct,
+  [data-theme="cosmic"] [style*="background: var(--ink)"]:not(.btn):not(a) .trivia-opt.wrong {
+    color: #0c0e1a !important;
+  }
+
+  /* (2) Bright ocré chips / pills / badges / completion ticks stay yellow in
+     cosmic, so their text must be DARK — but they're authored with the
+     light-in-cosmic color: var(--ink). Force dark text back on. */
+  [data-theme="cosmic"] .prompt-card,
+  [data-theme="cosmic"] .known-for-pill,
+  [data-theme="cosmic"] .topic-card.completed::after,
+  [data-theme="cosmic"] .reading-card.completed::after,
+  [data-theme="cosmic"] .lesson-row .row-level,
+  [data-theme="cosmic"] .lesson-card.completed::after,
+  [data-theme="cosmic"] .redemption-row .status,
+  [data-theme="cosmic"] .aviso.link .aviso-tag,
+  [data-theme="cosmic"] .avatar-display,
+  [data-theme="cosmic"] .teacher-tool button,
+  [data-theme="cosmic"] .luka-presets .preset-btn.active,
+  [data-theme="cosmic"] .achievement.unlocked::before {
+    color: #1f1a14 !important;
+  }
+  /* Inline ocré panels/chips (e.g. the "Guess the person" quiz, vocab chips):
+     re-scope --ink dark so their color: var(--ink) text reads on the yellow.
+     A nested near-black sub-box (background: var(--paper)) gets its light back. */
+  [data-theme="cosmic"] [style*="background: var(--ocre)"] { --ink: #1f1a14; }
+  [data-theme="cosmic"] [style*="background: var(--ocre)"] [style*="background: var(--paper)"] { --ink: #e8eaf6; }
+
+  /* (3) Gold accent text (eyebrows, title <em>) on a bright verde/rojo hero
+     panel is near-invisible in cosmic (yellow-on-mint / yellow-on-pink). Darken it. */
+  [data-theme="cosmic"] [style*="background: var(--verde)"] [style*="color: var(--ocre)"],
+  [data-theme="cosmic"] [style*="background: var(--rojo)"] [style*="color: var(--ocre)"] {
+    color: #0c0e1a !important;
+  }
+
   /* Theme toggle button styling */
   .theme-toggle {
     background: transparent;
