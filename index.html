@@ -76,6 +76,25 @@
     background: rgba(255, 209, 102, 0.06) !important;
   }
 
+  /* Cosmic: the mini-game hero panels use background: var(--ink) / --rojo /
+     --verde / --ocre, which become light-ish in dark mode — making the ocré
+     accent caption and headings unreadable. Render them as a proper dark panel
+     so the star-yellow accent and light text pop. The signature below is unique
+     to the 7 quiz hero panels. */
+  [data-theme="cosmic"] [style*="padding: 48px; border-radius: 4px; margin-top: 24px"] {
+    background: #1a1f38 !important;
+    color: #e8eaf6 !important;
+  }
+  [data-theme="cosmic"] [style*="padding: 48px; border-radius: 4px; margin-top: 24px"] [style*="color: var(--paper)"] {
+    color: #e8eaf6 !important;
+  }
+  /* Cosmic: small boxes that put ocré text directly on var(--ink) (e.g. the
+     Lucas rewards page) also invert to light — keep them dark so the accent
+     text stays legible. */
+  [data-theme="cosmic"] [style*="background: var(--ink)"][style*="color: var(--ocre)"] {
+    background: #1a1f38 !important;
+  }
+
   /* Cosmic-mode subtle glow on primary headers */
   [data-theme="cosmic"] h2 em,
   [data-theme="cosmic"] h3 em {
