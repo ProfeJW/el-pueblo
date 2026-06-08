@@ -28155,7 +28155,12 @@
     entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
   }, { threshold: 0.1 });
   document.querySelectorAll('section').forEach(s => { s.classList.add('reveal'); obs.observe(s); });
+
+  // Bridge for external modules (e.g. practice-games.js) so we can keep growing
+  // content without pushing index.html past GitHub's single-file size limit.
+  window.ELP = { decks, GAMES };
 </script>
+<script src="practice-games.js"></script>
 
 </body>
 </html>
