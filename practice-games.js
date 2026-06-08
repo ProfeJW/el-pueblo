@@ -1,0 +1,275 @@
+/* ==========================================================================
+ * El Pueblo — Deck-powered practice games
+ * --------------------------------------------------------------------------
+ * Loaded as a separate file (after the main inline script) to keep index.html
+ * under GitHub's ~1.99 MB single-file limit.
+ *
+ * These games reuse the existing `decks` vocabulary (word / cat / back / ex /
+ * exEn) so they automatically cover EVERY theme — add a new deck and these
+ * games pick it up for free, no extra authoring.
+ *
+ * Integration contract (from index.html):
+ *   - window.ELP = { decks, GAMES }  ... bridge exposed by the inline script.
+ *   - Each GAMES[id] needs: { title, icon, maxReward, generate() }.
+ *   - generate() returns { promptLabel, promptDisplay, answer, hint, validAnswers? }.
+ *   - The runner compares typed input with normalize(); validAnswers[] allows
+ *     several acceptable spellings (e.g. with or without the article).
+ *   - Cards link to #/game/<id>; the existing hash router + startGame() handle
+ *     navigation and scoring/rewards/best-scores with no extra wiring.
+ * ======================================================================== */
+(function () {
+  'use strict';
+
+  var BRIDGE = window.ELP || {};
+  var decks = BRIDGE.decks;
+  var GAMES = BRIDGE.GAMES;
+  if (!decks || !GAMES) {
+    console.warn('[practice-games] Bridge (window.ELP) unavailable — vocab games not loaded.');
+    return;
+  }
+
+  // ---- small helpers -------------------------------------------------------
+  var ARTICLES = ['el', 'la', 'los', 'las', 'un', 'una', 'unos', 'unas'];
+
+  function splitArticle(word) {
+    var parts = String(word).trim().split(/\s+/);
+    if (parts.length > 1 && ARTICLES.indexOf(parts[0].toLowerCase()) !== -1) {
+      return { article: parts[0].toLowerCase(), bare: parts.slice(1).join(' ') };
+    }
+    return { article: null, bare: String(word).trim() };
+  }
+
+  function pick(arr) { return arr[Math.floor(Math.random() * arr.length)]; }
+
+  function escapeReg(s) { return s.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'); }
+
+  // Escape a value for safe embedding inside a single-quoted JS string that
+  // itself lives inside an HTML attribute (used by the listening game button).
+  function jsAttr(s) {
+    return String(s).replace(/\\/g, '\\\\').replace(/'/g, "\\'").replace(/"/g, '&quot;');
+  }
+
+  // ---- pooled card sources (built lazily, cached) --------------------------
+  var _all = null;
+  function allCards() {
+    if (_all) return _all;
+    _all = [];
+    for (var k in decks) {
+      var arr = decks[k];
+      if (!Array.isArray(arr)) continue;
+      for (var i = 0; i < arr.length; i++) {
+        var c = arr[i];
+        if (c && c.word && c.back) _all.push(c);
+      }
+    }
+    return _all;
+  }
+
+  // Single-word targets only (reliable to scramble / blank / spell).
+  function isSingleWord(bare) {
+    return bare && !/\s/.test(bare) && /^[a-záéíóúüñ]{3,14}$/i.test(bare);
+  }
+
+  var _scramble = null;
+  function scramblePool() {
+    if (_scramble) return _scramble;
+    _scramble = allCards().filter(function (c) {
+      return isSingleWord(splitArticle(c.word).bare);
+    });
+    return _scramble;
+  }
+
+  var _gender = null;
+  function genderPool() {
+    if (_gender) return _gender;
+    _gender = allCards().filter(function (c) {
+      // Ground-truth: only singular nouns written with an explicit el/la article.
+      var p = String(c.word).trim().split(/\s+/);
+      return p.length >= 2 && (p[0].toLowerCase() === 'el' || p[0].toLowerCase() === 'la');
+    });
+    return _gender;
+  }
+
+  var _cloze = null;
+  function clozePool() {
+    if (_cloze) return _cloze;
+    _cloze = [];
+    var cards = allCards();
+    for (var i = 0; i < cards.length; i++) {
+      var c = cards[i];
+      if (!c.ex) continue;
+      var bare = splitArticle(c.word).bare;
+      if (!isSingleWord(bare)) continue;
+      // Whole-word, case-insensitive, accent-sensitive match inside the example.
+      var re = new RegExp('(^|[^\\p{L}])(' + escapeReg(bare) + ')(?=[^\\p{L}]|$)', 'iu');
+      var m = c.ex.match(re);
+      if (m) _cloze.push({ card: c, token: m[2] });
+    }
+    return _cloze;
+  }
+
+  function shuffleLetters(word) {
+    var a = word.split('');
+    for (var attempt = 0; attempt < 8; attempt++) {
+      for (var i = a.length - 1; i > 0; i--) {
+        var j = Math.floor(Math.random() * (i + 1));
+        var t = a[i]; a[i] = a[j]; a[j] = t;
+      }
+      if (a.join('') !== word) break;
+    }
+    return a.join('');
+  }
+
+  // ---- game definitions ----------------------------------------------------
+  var NEW_GAMES = {
+    'vocab-recall': {
+      title: 'Vocab <em>recall</em>',
+      icon: '🧠',
+      maxReward: 35,
+      generate: function () {
+        var c = pick(allCards());
+        var bare = splitArticle(c.word).bare;
+        return {
+          promptLabel: 'Write this in Spanish',
+          promptDisplay: c.back,
+          answer: c.word,
+          validAnswers: [c.word, bare],
+          hint: c.cat || 'Type the Spanish word'
+        };
+      }
+    },
+    'vocab-scramble': {
+      title: 'Word <em>scramble</em>',
+      icon: '🔤',
+      maxReward: 30,
+      generate: function () {
+        var c = pick(scramblePool());
+        var bare = splitArticle(c.word).bare;
+        return {
+          promptLabel: 'Unscramble the Spanish word',
+          promptDisplay: shuffleLetters(bare).toUpperCase().split('').join(' '),
+          answer: bare,
+          validAnswers: [bare, c.word],
+          hint: '“' + c.back + '”'
+        };
+      }
+    },
+    'vocab-gender': {
+      title: 'El o <em>la</em>',
+      icon: '🏷️',
+      maxReward: 25,
+      generate: function () {
+        var c = pick(genderPool());
+        var sp = splitArticle(c.word);
+        return {
+          promptLabel: 'Which article — el or la?',
+          promptDisplay: sp.bare,
+          answer: sp.article,
+          validAnswers: [sp.article],
+          hint: 'Type “el” or “la”'
+        };
+      }
+    },
+    'vocab-cloze': {
+      title: 'Sentence <em>cloze</em>',
+      icon: '✏️',
+      maxReward: 40,
+      generate: function () {
+        var entry = pick(clozePool());
+        var c = entry.card;
+        var bare = splitArticle(c.word).bare;
+        var blanked = c.ex.replace(entry.token, '______');
+        return {
+          promptLabel: 'Fill in the missing word',
+          promptDisplay: blanked,
+          answer: entry.token,
+          validAnswers: [entry.token, bare],
+          hint: c.exEn || ('Means: “' + c.back + '”')
+        };
+      }
+    },
+    'vocab-listen': {
+      title: 'Listen & <em>spell</em>',
+      icon: '🎧',
+      maxReward: 35,
+      generate: function () {
+        var c = pick(allCards());
+        var bare = splitArticle(c.word).bare;
+        var safe = jsAttr(c.word);
+        var play =
+          '<button type="button" class="btn" style="font-size:18px;padding:14px 24px;" ' +
+          'onclick="speakSpanish(\'' + safe + '\')">🔊 Play again</button>' +
+          '<img src="data:," alt="" style="display:none" ' +
+          'onerror="this.remove();if(window.speakSpanish)speakSpanish(\'' + safe + '\')">';
+        return {
+          promptLabel: 'Listen and type what you hear',
+          promptDisplay: play,
+          answer: c.word,
+          validAnswers: [c.word, bare],
+          hint: '“' + c.back + '”'
+        };
+      }
+    }
+  };
+
+  // Register without clobbering anything that somehow already exists.
+  Object.keys(NEW_GAMES).forEach(function (id) {
+    if (!GAMES[id]) GAMES[id] = NEW_GAMES[id];
+  });
+
+  // ---- discoverability: inject clickable cards into the games hub ----------
+  var CARDS = [
+    { id: 'vocab-recall',   icon: '🧠', title: 'Vocab <em>recall</em>',     desc: 'See the English, type the Spanish word. Draws from every vocab deck.', reward: 'up to 35 Lucas' },
+    { id: 'vocab-scramble', icon: '🔤', title: 'Word <em>scramble</em>',    desc: 'Letters are jumbled — rebuild the Spanish word. Meaning shown as a hint.', reward: 'up to 30 Lucas' },
+    { id: 'vocab-gender',   icon: '🏷️', title: 'El o <em>la</em>',          desc: 'Masculine or feminine? Pick the right article for each noun.', reward: 'up to 25 Lucas' },
+    { id: 'vocab-cloze',    icon: '✏️', title: 'Sentence <em>cloze</em>',   desc: 'A real example sentence with one word missing — fill the blank.', reward: 'up to 40 Lucas' },
+    { id: 'vocab-listen',   icon: '🎧', title: 'Listen & <em>spell</em>',   desc: 'Hear the word, then spell it. Listening + vocabulary in one.', reward: 'up to 35 Lucas' }
+  ];
+
+  function cardHTML(c) {
+    return '' +
+      '<a href="#/game/' + c.id + '" class="game-card">' +
+        '<div class="game-icon">' + c.icon + '</div>' +
+        '<h3>' + c.title + '</h3>' +
+        '<p>' + c.desc + '</p>' +
+        '<div class="game-reward">All decks · ' + c.reward + '</div>' +
+      '</a>';
+  }
+
+  function injectHub() {
+    var grid = document.getElementById('gameGrid');
+    if (!grid || document.getElementById('vocabGamesSection')) return;
+
+    var section = document.createElement('div');
+    section.id = 'vocabGamesSection';
+    section.style.marginTop = '64px';
+    section.style.paddingTop = '32px';
+    section.style.borderTop = '1px solid var(--line)';
+    section.innerHTML =
+      '<div style="display:flex;align-items:baseline;justify-content:space-between;margin-bottom:6px;">' +
+        '<h3 style="font-family:\'DM Serif Display\',serif;font-size:24px;font-weight:400;margin:0;">' +
+          'Vocabulary <em style="color:var(--rojo);font-style:italic;">games</em></h3>' +
+        '<div style="font-family:\'JetBrains Mono\',monospace;font-size:11px;letter-spacing:0.15em;color:var(--ink-soft);text-transform:uppercase;">' +
+          'Powered by every deck</div>' +
+      '</div>' +
+      '<p style="font-size:14px;color:var(--ink-soft);line-height:1.5;max-width:720px;margin-bottom:24px;">' +
+        'These pull from all your flashcard decks at random, so they grow automatically as the vocabulary grows. ' +
+        'Ten rounds each, score-based Lucas.</p>' +
+      '<div class="game-grid">' + CARDS.map(cardHTML).join('') + '</div>';
+
+    // Place it right after the basic-games grid (before the verb sprints).
+    grid.parentNode.insertBefore(section, grid.nextSibling);
+
+    // If we're already sitting on the games page, refresh the best-scores panel
+    // so the new games show up immediately.
+    if (typeof window.renderGamesHub === 'function' && /juegos/.test(location.hash)) {
+      try { window.renderGamesHub(); } catch (e) { /* non-fatal */ }
+    }
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', injectHub);
+  } else {
+    injectHub();
+  }
+})();

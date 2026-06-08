@@ -5034,7 +5034,7 @@
     <a href="#/vocabulario">
       <span class="num">🃏 Vocabulario</span>
       <span class="label-big">Vocabulary</span>
-      <span class="desc">Flashcards · 26 themed decks</span>
+      <span class="desc">Flashcards · 58 themed decks</span>
     </a>
     <a href="#/verbos">
       <span class="num">🔄 Verbos</span>
@@ -5114,7 +5114,7 @@
       <div>
         <div style="font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--ink-soft); margin-bottom: 7px;">¿Por qué se llaman "Lucas"?</div>
         <p style="font-family: 'Fraunces', serif; font-size: 16px; line-height: 1.62; color: var(--ink); margin: 0;">
-          The coins you earn here are called <em style="color: var(--ocre); font-style: italic;">Lucas</em> for a reason. In Chile, Argentina, and across much of South America, <strong>una luca</strong> is everyday slang for money — specifically <em>mil pesos</em>, a thousand pesos. So every Luca you rack up is named after the real slang Spanish speakers use for cash. <span style="color: var(--ink-soft);">— «¿Cuánto cuesta?» «Como diez&nbsp;lucas.»</span>
+          The coins you earn here are called <em style="color: var(--ocre); font-style: italic;">Lucas</em> for a reason. In Peru, <strong>una luca</strong> is everyday slang for a <em>buck</em> — money itself, not necessarily a thousand of anything (a few <em>lucas</em> is just "a few bucks"). The slang travels: in Chile, Argentina, and the rest of the Southern Cone, <strong>una luca</strong> sharpens to mean <em>mil</em> — a thousand of the local currency. Either way, every Luca you rack up is named after the real slang Spanish speakers use for cash. <span style="color: var(--ink-soft);">— «¿Cuánto cuesta?» «Como diez&nbsp;lucas.»</span>
         </p>
       </div>
     </div>
@@ -5188,6 +5188,7 @@
         <button class="pill" onclick="loadDeck('familia', this)">Family</button>
         <button class="pill" onclick="loadDeck('comida', this)">Food</button>
         <button class="pill" onclick="loadDeck('saludos', this)">Greetings</button>
+        <button class="pill" onclick="loadDeck('gente', this)">People</button>
         <button class="pill" onclick="loadDeck('viajes', this)">Travel</button>
         <button class="pill" onclick="loadDeck('deportes', this)">Sports</button>
         <button class="pill" onclick="loadDeck('colores', this)">Colors</button>
@@ -5209,6 +5210,26 @@
         <button class="pill" onclick="loadDeck('verbosAr', this)">-AR verbs</button>
         <button class="pill" onclick="loadDeck('verbosEr', this)">-ER verbs</button>
         <button class="pill" onclick="loadDeck('verbosIr', this)">-IR verbs</button>
+        <button class="pill" onclick="loadDeck('pronombres', this)">Pronouns</button>
+        <button class="pill" onclick="loadDeck('teneridioms', this)">Tener idioms</button>
+        <button class="pill" onclick="loadDeck('numeros', this)">Numbers</button>
+        <button class="pill" onclick="loadDeck('calendario', this)">Calendar</button>
+        <button class="pill" onclick="loadDeck('tiempo', this)">Weather &amp; seasons</button>
+        <button class="pill" onclick="loadDeck('aeropuerto', this)">Air travel</button>
+        <button class="pill" onclick="loadDeck('rutina', this)">Daily routine</button>
+        <button class="pill" onclick="loadDeck('restaurante', this)">Restaurant</button>
+        <button class="pill" onclick="loadDeck('fiestas', this)">Holidays</button>
+        <button class="pill" onclick="loadDeck('tecnologia', this)">Technology</button>
+        <button class="pill" onclick="loadDeck('preguntas', this)">Question words</button>
+        <button class="pill" onclick="loadDeck('gustar', this)">Gustar verbs</button>
+        <button class="pill" onclick="loadDeck('ropa', this)">Clothing</button>
+        <button class="pill" onclick="loadDeck('lugares', this)">Places in town</button>
+        <button class="pill" onclick="loadDeck('casa', this)">House &amp; furniture</button>
+        <button class="pill" onclick="loadDeck('preposiciones', this)">Prepositions</button>
+        <button class="pill" onclick="loadDeck('profesiones', this)">Professions</button>
+        <button class="pill" onclick="loadDeck('animales', this)">Animals</button>
+        <button class="pill" onclick="loadDeck('hora', this)">Telling time</button>
+        <button class="pill" onclick="loadDeck('mandatos', this)">Classroom commands</button>
         <button class="pill" onclick="loadDeck('emociones', this)">Emotions</button>
         <button class="pill" onclick="loadDeck('literatura', this)">Literature</button>
       </div>
@@ -5586,7 +5607,7 @@
       <div class="game-icon">🃏</div>
       <h3>Match <em>it</em></h3>
       <p>Pick any vocab deck and race the clock to match Spanish to English. New every time.</p>
-      <div class="game-reward">Any of 25+ decks · beat your best time</div>
+      <div class="game-reward">Any of 55+ decks · beat your best time</div>
     </a>
     <a href="#/game/days" class="game-card">
       <div class="game-icon">📅</div>
@@ -8488,7 +8509,31 @@
       { word: 'bienvenido', cat: 'Adjective (m.)', back: 'welcome (m.)', ex: '"Bienvenido a nuestra casa."', exEn: 'Welcome to our home.' },
       { word: 'bienvenida', cat: 'Adjective (f.)', back: 'welcome (f.)', ex: '"Bienvenida, María."', exEn: 'Welcome, María.' },
       { word: '¿de dónde eres?', cat: 'Question', back: 'where are you from? (informal)', ex: '"¿De dónde eres tú?"', exEn: 'Where are you from?' },
-      { word: 'soy de…', cat: 'Phrase', back: 'I am from…', ex: '"Soy de Cincinnati."', exEn: 'I am from Cincinnati.' }
+      { word: 'soy de…', cat: 'Phrase', back: 'I am from…', ex: '"Soy de Cincinnati."', exEn: 'I am from Cincinnati.' },
+      { word: 'el señor', cat: 'Title · Masculine', back: 'sir / Mr. / gentleman', ex: '"Buenos días, señor López."', exEn: 'Good morning, Mr. López.' },
+      { word: 'la señora', cat: 'Title · Feminine', back: 'ma\'am / Mrs. / lady', ex: '"La señora García es mi vecina."', exEn: 'Mrs. García is my neighbor.' },
+      { word: 'la señorita', cat: 'Title · Feminine', back: 'miss / young lady', ex: '"Señorita, ¿me puede ayudar?"', exEn: 'Miss, can you help me?' }
+    ],
+    gente: [
+      { word: 'el hombre', cat: 'Noun · Masculine', back: 'man', ex: '"El hombre lee el periódico."', exEn: 'The man reads the newspaper.' },
+      { word: 'la mujer', cat: 'Noun · Feminine', back: 'woman', ex: '"La mujer es doctora."', exEn: 'The woman is a doctor.' },
+      { word: 'el niño', cat: 'Noun · Masculine', back: 'boy / child', ex: '"El niño juega en el parque."', exEn: 'The boy plays in the park.' },
+      { word: 'la niña', cat: 'Noun · Feminine', back: 'girl', ex: '"La niña dibuja un sol."', exEn: 'The girl draws a sun.' },
+      { word: 'el chico', cat: 'Noun · Masculine', back: 'boy / young guy', ex: '"El chico es muy simpático."', exEn: 'The boy is really nice.' },
+      { word: 'la chica', cat: 'Noun · Feminine', back: 'girl / young woman', ex: '"La chica estudia medicina."', exEn: 'The girl studies medicine.' },
+      { word: 'el joven', cat: 'Noun · Masculine', back: 'young man', ex: '"El joven trabaja en la tienda."', exEn: 'The young man works at the store.' },
+      { word: 'la joven', cat: 'Noun · Feminine', back: 'young woman', ex: '"La joven canta en el coro."', exEn: 'The young woman sings in the choir.' }
+    ],
+    pronombres: [
+      { word: 'yo', cat: 'Pronoun · subject', back: 'I', ex: '"Yo soy estudiante."', exEn: 'I am a student.' },
+      { word: 'tú', cat: 'Pronoun · subject', back: 'you (informal)', ex: '"¿Tú hablas español?"', exEn: 'Do you speak Spanish?' },
+      { word: 'usted', cat: 'Pronoun · subject', back: 'you (formal)', ex: '"¿Cómo está usted?"', exEn: 'How are you? (formal)' },
+      { word: 'él', cat: 'Pronoun · subject', back: 'he', ex: '"Él es mi hermano."', exEn: 'He is my brother.' },
+      { word: 'ella', cat: 'Pronoun · subject', back: 'she', ex: '"Ella vive en Lima."', exEn: 'She lives in Lima.' },
+      { word: 'nosotros / nosotras', cat: 'Pronoun · subject', back: 'we', ex: '"Nosotros estudiamos juntos."', exEn: 'We study together.' },
+      { word: 'vosotros / vosotras', cat: 'Pronoun · subject · Spain', back: 'you all (informal, Spain)', ex: '"¿Vosotros venís?"', exEn: 'Are you all coming?' },
+      { word: 'ellos / ellas', cat: 'Pronoun · subject', back: 'they', ex: '"Ellos son mis amigos."', exEn: 'They are my friends.' },
+      { word: 'ustedes', cat: 'Pronoun · subject', back: 'you all', ex: '"¿Ustedes hablan inglés?"', exEn: 'Do you all speak English?' }
     ],
     deportes: [
       { word: 'el fútbol', cat: 'Noun · Masculine', back: 'soccer', ex: '"El fútbol es muy popular."', exEn: 'Soccer is very popular.' },
@@ -8523,7 +8568,24 @@
       { word: 'escuchar música', cat: 'Phrase', back: 'to listen to music', ex: '"Escucho música mientras estudio."', exEn: 'I listen to music while I study.' },
       { word: 'el pasatiempo', cat: 'Noun · Masculine', back: 'hobby / pastime', ex: '"Mi pasatiempo favorito es leer."', exEn: 'My favorite hobby is reading.' },
       { word: 'divertirse', cat: 'Reflexive verb', back: 'to have fun', ex: '"Nos divertimos en la fiesta."', exEn: 'We had fun at the party.' },
-      { word: 'el deporte', cat: 'Noun · Masculine', back: 'sport', ex: '"Mi deporte favorito es el fútbol."', exEn: 'My favorite sport is soccer.' }
+      { word: 'el deporte', cat: 'Noun · Masculine', back: 'sport', ex: '"Mi deporte favorito es el fútbol."', exEn: 'My favorite sport is soccer.' },
+      { word: 'el básquetbol', cat: 'Noun · Masculine', back: 'basketball (Lat. Am.)', ex: '"Juegan al básquetbol en las tardes."', exEn: 'They play basketball in the afternoons.' },
+      { word: 'el fútbol americano', cat: 'Noun · Masculine', back: 'football (American)', ex: '"El fútbol americano es popular en EE.UU."', exEn: 'American football is popular in the US.' },
+      { word: 'los videojuegos', cat: 'Noun · Masc. plural', back: 'video games', ex: '"Juego videojuegos los fines de semana."', exEn: 'I play video games on weekends.' },
+      { word: 'la pista y campo / el atletismo', cat: 'Noun', back: 'track and field', ex: '"Su deporte favorito es la pista y campo."', exEn: 'Her favorite sport is track and field.' },
+      { word: 'la lucha libre', cat: 'Noun · Feminine', back: 'wrestling', ex: '"La lucha libre es un espectáculo en México."', exEn: 'Lucha libre is a spectacle in Mexico.' },
+      { word: 'el boxeo', cat: 'Noun · Masculine', back: 'boxing', ex: '"A Pedro no le encanta el boxeo."', exEn: 'Pedro doesn\'t love boxing.' },
+      { word: 'las artes marciales', cat: 'Noun · Fem. plural', back: 'martial arts', ex: '"Ella practica artes marciales."', exEn: 'She practices martial arts.' },
+      { word: 'el ajedrez', cat: 'Noun · Masculine', back: 'chess', ex: '"A veces juego al ajedrez con mi hermana."', exEn: 'Sometimes I play chess with my sister.' },
+      { word: 'los juegos de mesa', cat: 'Noun · Masc. plural', back: 'board games', ex: '"Jugamos juegos de mesa en familia."', exEn: 'We play board games as a family.' },
+      { word: 'las cartas', cat: 'Noun · Fem. plural', back: 'playing cards', ex: '"Rara vez jugamos cartas en casa."', exEn: 'We rarely play cards at home.' },
+      { word: 'el puntaje', cat: 'Noun · Masculine', back: 'score', ex: '"¿Cuál es el puntaje del partido?"', exEn: 'What\'s the score of the game?' },
+      { word: 'el arco', cat: 'Noun · Masculine', back: 'goal / hoop', ex: '"El balón entró en el arco."', exEn: 'The ball went into the goal.' },
+      { word: 'el ataque', cat: 'Noun · Masculine', back: 'offense / attack', ex: '"El equipo tiene un buen ataque."', exEn: 'The team has a good offense.' },
+      { word: 'la defensa', cat: 'Noun · Feminine', back: 'defense', ex: '"Ella juega en la defensa."', exEn: 'She plays defense.' },
+      { word: 'empatar', cat: '-AR verb', back: 'to tie (the score)', ex: '"Nos choca empatar."', exEn: 'We hate to tie.' },
+      { word: 'rara vez', cat: 'Adverb · frequency', back: 'rarely', ex: '"Rara vez pierdo."', exEn: 'I rarely lose.' },
+      { word: 'de vez en cuando', cat: 'Phrase · frequency', back: 'once in a while', ex: '"De vez en cuando juego al tenis."', exEn: 'Once in a while I play tennis.' }
     ],
     colores: [
       { word: 'rojo', cat: 'Color (m.)', back: 'red', ex: '"Una manzana roja."', exEn: 'A red apple.' },
@@ -9556,7 +9618,9 @@
       { word: 'terminar', cat: '-AR verb', back: 'to finish', ex: '"Terminamos la tarea."', exEn: 'We finish the homework.' },
       { word: 'empezar', cat: '-AR verb (e→ie)', back: 'to begin / to start', ex: '"La clase empieza a las nueve."', exEn: 'The class starts at nine.' },
       { word: 'pensar', cat: '-AR verb (e→ie)', back: 'to think', ex: '"Pienso en mi familia."', exEn: 'I think about my family.' },
-      { word: 'jugar', cat: '-AR verb (u→ue)', back: 'to play', ex: '"Juego al fútbol."', exEn: 'I play soccer.' }
+      { word: 'jugar', cat: '-AR verb (u→ue)', back: 'to play', ex: '"Juego al fútbol."', exEn: 'I play soccer.' },
+      { word: 'estar', cat: '-AR verb (irreg.)', back: 'to be (state / location)', ex: '"Estoy en casa."', exEn: 'I am at home.' },
+      { word: 'dar', cat: '-AR verb (irreg.)', back: 'to give', ex: '"Doy un regalo a mi amigo."', exEn: 'I give a gift to my friend.' }
     ],
     verbosEr: [
       { word: 'comer', cat: '-ER verb', back: 'to eat', ex: '"Comemos a las dos."', exEn: 'We eat at two.' },
@@ -9588,7 +9652,19 @@
       { word: 'sorprender', cat: '-ER verb', back: 'to surprise', ex: '"Su respuesta me sorprende."', exEn: 'His answer surprises me.' },
       { word: 'ofrecer', cat: '-ER verb', back: 'to offer', ex: '"Ofrezco mi ayuda."', exEn: 'I offer my help.' },
       { word: 'parecer', cat: '-ER verb', back: 'to seem / to appear', ex: '"Parece cansado."', exEn: 'He seems tired.' },
-      { word: 'reconocer', cat: '-ER verb', back: 'to recognize', ex: '"Reconozco a esa persona."', exEn: 'I recognize that person.' }
+      { word: 'reconocer', cat: '-ER verb', back: 'to recognize', ex: '"Reconozco a esa persona."', exEn: 'I recognize that person.' },
+      { word: 'recoger', cat: '-ER verb (g→j: recojo)', back: 'to pick up / to collect', ex: '"Recojo mis libros del suelo."', exEn: 'I pick up my books off the floor.' },
+      { word: 'escoger', cat: '-ER verb (g→j: escojo)', back: 'to choose', ex: '"Escojo el color azul."', exEn: 'I choose the color blue.' },
+      { word: 'esconder', cat: '-ER verb', back: 'to hide', ex: '"El niño esconde el regalo."', exEn: 'The boy hides the gift.' },
+      { word: 'atender', cat: '-ER verb (e→ie)', back: 'to attend to / to wait on', ex: '"El mesero atiende a los clientes."', exEn: 'The waiter waits on the customers.' },
+      { word: 'mantener', cat: '-ER verb (irreg., like tener)', back: 'to maintain / to keep', ex: '"Mantengo mi cuarto limpio."', exEn: 'I keep my room clean.' },
+      { word: 'ser', cat: '-ER verb (irreg.)', back: 'to be (permanent / essential)', ex: '"Soy estudiante."', exEn: 'I am a student.' },
+      { word: 'detener', cat: '-ER verb (irreg., like tener)', back: 'to stop / to detain', ex: '"La policía detiene al ladrón."', exEn: 'The police stop the thief.' },
+      { word: 'entretener', cat: '-ER verb (irreg., like tener)', back: 'to entertain', ex: '"El payaso entretiene a los niños."', exEn: 'The clown entertains the children.' },
+      { word: 'sostener', cat: '-ER verb (irreg., like tener)', back: 'to hold / to support / to sustain', ex: '"Sostengo la puerta abierta."', exEn: 'I hold the door open.' },
+      { word: 'contener', cat: '-ER verb (irreg., like tener)', back: 'to contain', ex: '"La caja contiene libros."', exEn: 'The box contains books.' },
+      { word: 'retener', cat: '-ER verb (irreg., like tener)', back: 'to retain / to hold back', ex: '"Es difícil retener tanta información."', exEn: 'It\'s hard to retain so much information.' },
+      { word: 'obtener', cat: '-ER verb (irreg., like tener)', back: 'to obtain / to get', ex: '"Obtengo buenas notas."', exEn: 'I get good grades.' }
     ],
     verbosIr: [
       { word: 'vivir', cat: '-IR verb', back: 'to live', ex: '"Vivo en Cincinnati."', exEn: 'I live in Cincinnati.' },
@@ -9606,6 +9682,7 @@
       { word: 'permitir', cat: '-IR verb', back: 'to permit / to allow', ex: '"Mis padres me permiten salir."', exEn: 'My parents allow me to go out.' },
       { word: 'decidir', cat: '-IR verb', back: 'to decide', ex: '"Decido estudiar más."', exEn: 'I decide to study more.' },
       { word: 'existir', cat: '-IR verb', back: 'to exist', ex: '"Existen muchas posibilidades."', exEn: 'Many possibilities exist.' },
+      { word: 'admitir', cat: '-IR verb', back: 'to admit', ex: '"Admito mi error."', exEn: 'I admit my mistake.' },
       { word: 'añadir', cat: '-IR verb', back: 'to add', ex: '"Añado azúcar al café."', exEn: 'I add sugar to the coffee.' },
       { word: 'cumplir', cat: '-IR verb', back: 'to complete / to fulfill / to turn (age)', ex: '"Cumplo dieciséis años."', exEn: 'I turn sixteen.' },
       { word: 'ocurrir', cat: '-IR verb', back: 'to occur / to happen', ex: '"¿Qué ocurre?"', exEn: 'What\'s happening?' },
@@ -9623,6 +9700,457 @@
       { word: 'preferir', cat: '-IR verb (e→ie)', back: 'to prefer', ex: '"Prefiero el café."', exEn: 'I prefer coffee.' },
       { word: 'sentir', cat: '-IR verb (e→ie)', back: 'to feel', ex: '"Siento mucho calor."', exEn: 'I feel very hot.' },
       { word: 'mentir', cat: '-IR verb (e→ie)', back: 'to lie', ex: '"No miento nunca."', exEn: 'I never lie.' }
+    ],
+    teneridioms: [
+      { word: 'tener … años', cat: 'Idiom (tener +)', back: 'to be … years old', ex: '"Tengo quince años."', exEn: 'I am fifteen years old.' },
+      { word: 'tener hambre', cat: 'Idiom (tener +)', back: 'to be hungry', ex: '"Tengo hambre, quiero comer."', exEn: 'I\'m hungry, I want to eat.' },
+      { word: 'tener sed', cat: 'Idiom (tener +)', back: 'to be thirsty', ex: '"Después de correr, tengo sed."', exEn: 'After running, I\'m thirsty.' },
+      { word: 'tener celos', cat: 'Idiom (tener +)', back: 'to be jealous', ex: '"El niño tiene celos de su hermano."', exEn: 'The boy is jealous of his brother.' },
+      { word: 'tener prisa', cat: 'Idiom (tener +)', back: 'to be in a hurry', ex: '"Tengo prisa, llego tarde."', exEn: 'I\'m in a hurry, I\'m late.' },
+      { word: 'tener miedo', cat: 'Idiom (tener +)', back: 'to be afraid', ex: '"Tengo miedo de las arañas."', exEn: 'I\'m afraid of spiders.' },
+      { word: 'tener ganas de', cat: 'Idiom (tener +)', back: 'to feel like (doing something)', ex: '"Tengo ganas de bailar."', exEn: 'I feel like dancing.' },
+      { word: 'tener éxito', cat: 'Idiom (tener +)', back: 'to be successful', ex: '"Su negocio tiene mucho éxito."', exEn: 'Her business is very successful.' },
+      { word: 'tener frío', cat: 'Idiom (tener +)', back: 'to be cold', ex: '"Tengo frío, necesito un suéter."', exEn: 'I\'m cold, I need a sweater.' },
+      { word: 'tener calor', cat: 'Idiom (tener +)', back: 'to be hot', ex: '"En verano siempre tengo calor."', exEn: 'In summer I\'m always hot.' },
+      { word: 'tener vergüenza', cat: 'Idiom (tener +)', back: 'to be embarrassed / ashamed', ex: '"Tiene vergüenza de hablar en público."', exEn: 'He\'s embarrassed to speak in public.' },
+      { word: 'tener sueño', cat: 'Idiom (tener +)', back: 'to be sleepy', ex: '"Es tarde y tengo sueño."', exEn: 'It\'s late and I\'m sleepy.' },
+      { word: 'tener razón', cat: 'Idiom (tener +)', back: 'to be right', ex: '"Tú tienes razón."', exEn: 'You are right.' },
+      { word: 'tener suerte', cat: 'Idiom (tener +)', back: 'to be lucky', ex: '"Tienes suerte de ganar."', exEn: 'You\'re lucky to win.' },
+      { word: 'tener cuidado', cat: 'Idiom (tener +)', back: 'to be careful', ex: '"Ten cuidado con el perro."', exEn: 'Be careful with the dog.' },
+      { word: 'tener confianza', cat: 'Idiom (tener +)', back: 'to be confident / to trust', ex: '"Tengo confianza en mi equipo."', exEn: 'I have confidence in my team.' }
+    ],
+    numeros: [
+      { word: 'cero', cat: 'Number', back: 'zero', ex: '"Cero grados."', exEn: 'Zero degrees.' },
+      { word: 'uno', cat: 'Number (→ un / una)', back: 'one', ex: '"Tengo un perro."', exEn: 'I have one dog.' },
+      { word: 'dos', cat: 'Number', back: 'two', ex: '"Tengo dos hermanos."', exEn: 'I have two siblings.' },
+      { word: 'tres', cat: 'Number', back: 'three', ex: '"Son las tres."', exEn: 'It\'s three o\'clock.' },
+      { word: 'cuatro', cat: 'Number', back: 'four', ex: '"Cuatro estaciones."', exEn: 'Four seasons.' },
+      { word: 'cinco', cat: 'Number', back: 'five', ex: '"Cinco dedos."', exEn: 'Five fingers.' },
+      { word: 'seis', cat: 'Number', back: 'six', ex: '"Seis huevos."', exEn: 'Six eggs.' },
+      { word: 'siete', cat: 'Number', back: 'seven', ex: '"Siete días."', exEn: 'Seven days.' },
+      { word: 'ocho', cat: 'Number', back: 'eight', ex: '"Ocho horas de sueño."', exEn: 'Eight hours of sleep.' },
+      { word: 'nueve', cat: 'Number', back: 'nine', ex: '"Nueve meses."', exEn: 'Nine months.' },
+      { word: 'diez', cat: 'Number', back: 'ten', ex: '"Diez dólares."', exEn: 'Ten dollars.' },
+      { word: 'once', cat: 'Number', back: 'eleven', ex: '"Once jugadores."', exEn: 'Eleven players.' },
+      { word: 'doce', cat: 'Number', back: 'twelve', ex: '"Doce meses."', exEn: 'Twelve months.' },
+      { word: 'trece', cat: 'Number', back: 'thirteen', ex: '"Trece años."', exEn: 'Thirteen years old.' },
+      { word: 'catorce', cat: 'Number', back: 'fourteen', ex: '"Catorce días."', exEn: 'Fourteen days.' },
+      { word: 'quince', cat: 'Number', back: 'fifteen', ex: '"La fiesta de quince."', exEn: 'The fifteenth-birthday party.' },
+      { word: 'dieciséis', cat: 'Number', back: 'sixteen', ex: '"Cumplo dieciséis."', exEn: 'I\'m turning sixteen.' },
+      { word: 'diecisiete', cat: 'Number', back: 'seventeen', ex: '"Diecisiete estudiantes."', exEn: 'Seventeen students.' },
+      { word: 'dieciocho', cat: 'Number', back: 'eighteen', ex: '"A los dieciocho votas."', exEn: 'At eighteen you vote.' },
+      { word: 'diecinueve', cat: 'Number', back: 'nineteen', ex: '"Diecinueve grados."', exEn: 'Nineteen degrees.' },
+      { word: 'veinte', cat: 'Number', back: 'twenty', ex: '"Veinte minutos."', exEn: 'Twenty minutes.' },
+      { word: 'treinta', cat: 'Number', back: 'thirty', ex: '"Treinta días tiene noviembre."', exEn: 'November has thirty days.' },
+      { word: 'cuarenta', cat: 'Number', back: 'forty', ex: '"Cuarenta años."', exEn: 'Forty years.' },
+      { word: 'cincuenta', cat: 'Number', back: 'fifty', ex: '"Cincuenta estados."', exEn: 'Fifty states.' },
+      { word: 'sesenta', cat: 'Number', back: 'sixty', ex: '"Sesenta segundos."', exEn: 'Sixty seconds.' },
+      { word: 'setenta', cat: 'Number', back: 'seventy', ex: '"Setenta kilómetros."', exEn: 'Seventy kilometers.' },
+      { word: 'ochenta', cat: 'Number', back: 'eighty', ex: '"Ochenta por ciento."', exEn: 'Eighty percent.' },
+      { word: 'noventa', cat: 'Number', back: 'ninety', ex: '"Noventa minutos."', exEn: 'Ninety minutes.' },
+      { word: 'cien', cat: 'Number', back: 'one hundred', ex: '"Cien por ciento."', exEn: 'One hundred percent.' }
+    ],
+    calendario: [
+      { word: 'lunes', cat: 'Day · Masculine', back: 'Monday', ex: '"El lunes tengo clase."', exEn: 'On Monday I have class.' },
+      { word: 'martes', cat: 'Day · Masculine', back: 'Tuesday', ex: '"El martes es mi cumpleaños."', exEn: 'Tuesday is my birthday.' },
+      { word: 'miércoles', cat: 'Day · Masculine', back: 'Wednesday', ex: '"Los miércoles juego fútbol."', exEn: 'On Wednesdays I play soccer.' },
+      { word: 'jueves', cat: 'Day · Masculine', back: 'Thursday', ex: '"El jueves hay examen."', exEn: 'Thursday there\'s a test.' },
+      { word: 'viernes', cat: 'Day · Masculine', back: 'Friday', ex: '"El viernes salgo con amigos."', exEn: 'On Friday I go out with friends.' },
+      { word: 'sábado', cat: 'Day · Masculine', back: 'Saturday', ex: '"El sábado descanso."', exEn: 'On Saturday I rest.' },
+      { word: 'domingo', cat: 'Day · Masculine', back: 'Sunday', ex: '"El domingo como con mi familia."', exEn: 'On Sunday I eat with my family.' },
+      { word: 'enero', cat: 'Month', back: 'January', ex: '"Enero es el primer mes."', exEn: 'January is the first month.' },
+      { word: 'febrero', cat: 'Month', back: 'February', ex: '"Febrero tiene veintiocho días."', exEn: 'February has twenty-eight days.' },
+      { word: 'marzo', cat: 'Month', back: 'March', ex: '"En marzo empieza la primavera."', exEn: 'Spring begins in March.' },
+      { word: 'abril', cat: 'Month', back: 'April', ex: '"Abril trae lluvia."', exEn: 'April brings rain.' },
+      { word: 'mayo', cat: 'Month', back: 'May', ex: '"El cinco de mayo."', exEn: 'The fifth of May.' },
+      { word: 'junio', cat: 'Month', back: 'June', ex: '"En junio termina la escuela."', exEn: 'School ends in June.' },
+      { word: 'julio', cat: 'Month', back: 'July', ex: '"Julio es caluroso."', exEn: 'July is hot.' },
+      { word: 'agosto', cat: 'Month', back: 'August', ex: '"Agosto es el mes de vacaciones."', exEn: 'August is the vacation month.' },
+      { word: 'septiembre', cat: 'Month', back: 'September', ex: '"En septiembre vuelvo a clase."', exEn: 'In September I go back to class.' },
+      { word: 'octubre', cat: 'Month', back: 'October', ex: '"Octubre tiene Halloween."', exEn: 'October has Halloween.' },
+      { word: 'noviembre', cat: 'Month', back: 'November', ex: '"Noviembre es fresco."', exEn: 'November is cool.' },
+      { word: 'diciembre', cat: 'Month', back: 'December', ex: '"Diciembre trae fiestas."', exEn: 'December brings holidays.' },
+      { word: '¿Qué hora es?', cat: 'Phrase · time', back: 'What time is it?', ex: '"¿Qué hora es? — Son las dos."', exEn: 'What time is it? — It\'s two.' },
+      { word: 'Hoy es…', cat: 'Phrase · date', back: 'Today is…', ex: '"Hoy es lunes."', exEn: 'Today is Monday.' }
+    ],
+    tiempo: [
+      { word: '¿Qué tiempo hace?', cat: 'Phrase · weather', back: 'What\'s the weather like?', ex: '"¿Qué tiempo hace hoy?"', exEn: 'What\'s the weather like today?' },
+      { word: 'hace sol', cat: 'Weather (hace +)', back: 'it\'s sunny', ex: '"Hoy hace sol."', exEn: 'It\'s sunny today.' },
+      { word: 'hace calor', cat: 'Weather (hace +)', back: 'it\'s hot', ex: '"En verano hace calor."', exEn: 'In summer it\'s hot.' },
+      { word: 'hace frío', cat: 'Weather (hace +)', back: 'it\'s cold', ex: '"En invierno hace frío."', exEn: 'In winter it\'s cold.' },
+      { word: 'hace viento', cat: 'Weather (hace +)', back: 'it\'s windy', ex: '"Hace viento en la playa."', exEn: 'It\'s windy at the beach.' },
+      { word: 'está nublado', cat: 'Weather (está +)', back: 'it\'s cloudy', ex: '"Hoy está nublado."', exEn: 'It\'s cloudy today.' },
+      { word: 'llueve', cat: 'Weather · verb (llover)', back: 'it\'s raining / it rains', ex: '"Llueve mucho en abril."', exEn: 'It rains a lot in April.' },
+      { word: 'nieva', cat: 'Weather · verb (nevar)', back: 'it\'s snowing / it snows', ex: '"Nieva en las montañas."', exEn: 'It snows in the mountains.' },
+      { word: 'la primavera', cat: 'Season · Feminine', back: 'spring', ex: '"Las flores crecen en primavera."', exEn: 'Flowers grow in spring.' },
+      { word: 'el verano', cat: 'Season · Masculine', back: 'summer', ex: '"En verano vamos a la playa."', exEn: 'In summer we go to the beach.' },
+      { word: 'el otoño', cat: 'Season · Masculine', back: 'fall / autumn', ex: '"En otoño caen las hojas."', exEn: 'In fall the leaves fall.' },
+      { word: 'el invierno', cat: 'Season · Masculine', back: 'winter', ex: '"En invierno nieva."', exEn: 'In winter it snows.' }
+    ],
+    aeropuerto: [
+      { word: 'hacer un viaje', cat: 'Phrase · travel', back: 'to take a trip', ex: '"Hacemos un viaje a Perú."', exEn: 'We\'re taking a trip to Peru.' },
+      { word: 'la tarjeta de embarque', cat: 'Noun · Feminine', back: 'boarding pass', ex: '"Muestro mi tarjeta de embarque."', exEn: 'I show my boarding pass.' },
+      { word: 'facturar', cat: '-AR verb', back: 'to check (luggage)', ex: '"Facturo las maletas en el mostrador."', exEn: 'I check my bags at the counter.' },
+      { word: 'el mostrador', cat: 'Noun · Masculine', back: 'counter', ex: '"El agente está en el mostrador."', exEn: 'The agent is at the counter.' },
+      { word: 'hacer la maleta', cat: 'Phrase · travel', back: 'to pack a suitcase', ex: '"Hago la maleta antes del viaje."', exEn: 'I pack my suitcase before the trip.' },
+      { word: 'el equipaje de mano', cat: 'Noun · Masculine', back: 'carry-on luggage', ex: '"Llevo mi equipaje de mano al avión."', exEn: 'I take my carry-on onto the plane.' },
+      { word: 'el compartimiento superior', cat: 'Noun · Masculine', back: 'overhead bin', ex: '"Pongo la mochila en el compartimiento superior."', exEn: 'I put my backpack in the overhead bin.' },
+      { word: 'la maletera', cat: 'Noun · Feminine', back: 'trunk (of a car)', ex: '"Las maletas van en la maletera."', exEn: 'The suitcases go in the trunk.' },
+      { word: 'el pasajero', cat: 'Noun · Masculine', back: 'passenger', ex: '"El pasajero busca su asiento."', exEn: 'The passenger looks for his seat.' },
+      { word: 'el agente', cat: 'Noun · Masculine', back: 'agent', ex: '"El agente revisa los boletos."', exEn: 'The agent checks the tickets.' },
+      { word: 'el asistente de vuelo', cat: 'Noun · Masculine', back: 'flight attendant', ex: '"El asistente de vuelo ayuda a los pasajeros."', exEn: 'The flight attendant helps the passengers.' },
+      { word: 'el número de vuelo', cat: 'Noun · Masculine', back: 'flight number', ex: '"¿Cuál es el número de vuelo?"', exEn: 'What\'s the flight number?' },
+      { word: 'el número de asiento', cat: 'Noun · Masculine', back: 'seat number', ex: '"Mi número de asiento es 14C."', exEn: 'My seat number is 14C.' },
+      { word: 'el pasillo', cat: 'Noun · Masculine', back: 'aisle', ex: '"Prefiero un asiento de pasillo."', exEn: 'I prefer an aisle seat.' },
+      { word: 'la ventanilla', cat: 'Noun · Feminine', back: 'window (seat)', ex: '"Me gusta la ventanilla."', exEn: 'I like the window seat.' },
+      { word: 'el asiento', cat: 'Noun · Masculine', back: 'seat', ex: '"Este asiento está libre."', exEn: 'This seat is free.' },
+      { word: 'el cinturón de seguridad', cat: 'Noun · Masculine', back: 'seatbelt', ex: '"Abróchate el cinturón de seguridad."', exEn: 'Fasten your seatbelt.' },
+      { word: 'el control de seguridad', cat: 'Noun · Masculine', back: 'security checkpoint', ex: '"Pasamos por el control de seguridad."', exEn: 'We go through security.' },
+      { word: 'hacer cola', cat: 'Phrase · travel', back: 'to stand in line', ex: '"Hacemos cola en el aeropuerto."', exEn: 'We wait in line at the airport.' },
+      { word: 'la puerta', cat: 'Noun · Feminine', back: 'gate', ex: '"Salimos de la puerta catorce."', exEn: 'We leave from gate fourteen.' },
+      { word: 'abordar', cat: '-AR verb', back: 'to board', ex: '"Abordamos el avión ahora."', exEn: 'We board the plane now.' },
+      { word: 'despegar', cat: '-AR verb', back: 'to take off', ex: '"El avión despega a las seis."', exEn: 'The plane takes off at six.' },
+      { word: 'aterrizar', cat: '-AR verb', back: 'to land', ex: '"El vuelo aterriza a tiempo."', exEn: 'The flight lands on time.' },
+      { word: 'el despegue', cat: 'Noun · Masculine', back: 'takeoff', ex: '"El despegue es muy rápido."', exEn: 'The takeoff is very fast.' },
+      { word: 'el aterrizaje', cat: 'Noun · Masculine', back: 'landing', ex: '"El aterrizaje fue suave."', exEn: 'The landing was smooth.' },
+      { word: 'la hora de salida', cat: 'Noun · Feminine', back: 'departure time', ex: '"¿Cuál es la hora de salida?"', exEn: 'What\'s the departure time?' },
+      { word: 'la hora de embarque', cat: 'Noun · Feminine', back: 'boarding time', ex: '"La hora de embarque es a las cinco."', exEn: 'Boarding time is at five.' },
+      { word: 'el retraso / la demora', cat: 'Noun', back: 'delay', ex: '"Hay un retraso de una hora."', exEn: 'There\'s a one-hour delay.' },
+      { word: 'mostrar', cat: '-AR verb (o→ue)', back: 'to show', ex: '"Muestro mi pasaporte."', exEn: 'I show my passport.' },
+      { word: 'a tiempo', cat: 'Phrase · time', back: 'on time', ex: '"Llegamos a tiempo."', exEn: 'We arrive on time.' },
+      { word: 'dentro de poco', cat: 'Phrase · time', back: 'shortly / soon', ex: '"El vuelo sale dentro de poco."', exEn: 'The flight leaves shortly.' },
+      { word: 'a veces', cat: 'Phrase · frequency', back: 'sometimes', ex: '"A veces viajo solo."', exEn: 'Sometimes I travel alone.' }
+    ],
+    rutina: [
+      { word: 'levantarse', cat: 'Reflexive · -AR', back: 'to get up', ex: '"Me levanto a las siete."', exEn: 'I get up at seven.' },
+      { word: 'despertarse', cat: 'Reflexive (e→ie)', back: 'to wake up', ex: '"Me despierto temprano."', exEn: 'I wake up early.' },
+      { word: 'acostarse', cat: 'Reflexive (o→ue)', back: 'to go to bed / lie down', ex: '"Me acuesto a las diez."', exEn: 'I go to bed at ten.' },
+      { word: 'dormirse', cat: 'Reflexive (o→ue)', back: 'to fall asleep', ex: '"Me duermo enseguida."', exEn: 'I fall asleep right away.' },
+      { word: 'ducharse', cat: 'Reflexive · -AR', back: 'to take a shower', ex: '"Me ducho por la mañana."', exEn: 'I shower in the morning.' },
+      { word: 'bañarse', cat: 'Reflexive · -AR', back: 'to bathe / take a bath', ex: '"Me baño antes de dormir."', exEn: 'I bathe before sleeping.' },
+      { word: 'lavarse', cat: 'Reflexive · -AR', back: 'to wash (oneself)', ex: '"Me lavo la cara."', exEn: 'I wash my face.' },
+      { word: 'cepillarse', cat: 'Reflexive · -AR', back: 'to brush (teeth/hair)', ex: '"Me cepillo los dientes."', exEn: 'I brush my teeth.' },
+      { word: 'peinarse', cat: 'Reflexive · -AR', back: 'to comb one\'s hair', ex: '"Me peino frente al espejo."', exEn: 'I comb my hair in front of the mirror.' },
+      { word: 'afeitarse', cat: 'Reflexive · -AR', back: 'to shave', ex: '"Mi padre se afeita cada día."', exEn: 'My dad shaves every day.' },
+      { word: 'vestirse', cat: 'Reflexive (e→i)', back: 'to get dressed', ex: '"Me visto rápido."', exEn: 'I get dressed quickly.' },
+      { word: 'ponerse', cat: 'Reflexive (irreg.)', back: 'to put on (clothing)', ex: '"Me pongo un suéter."', exEn: 'I put on a sweater.' },
+      { word: 'quitarse', cat: 'Reflexive · -AR', back: 'to take off (clothing)', ex: '"Me quito los zapatos."', exEn: 'I take off my shoes.' },
+      { word: 'mirarse', cat: 'Reflexive · -AR', back: 'to look at oneself', ex: '"Se mira en el espejo."', exEn: 'He looks at himself in the mirror.' },
+      { word: 'sentarse', cat: 'Reflexive (e→ie)', back: 'to sit down', ex: '"Me siento a la mesa."', exEn: 'I sit at the table.' },
+      { word: 'divertirse', cat: 'Reflexive (e→ie)', back: 'to have fun', ex: '"Nos divertimos mucho."', exEn: 'We have a lot of fun.' },
+      { word: 'el jabón', cat: 'Noun · Masculine', back: 'soap', ex: '"Me lavo las manos con jabón."', exEn: 'I wash my hands with soap.' },
+      { word: 'el champú', cat: 'Noun · Masculine', back: 'shampoo', ex: '"Necesito champú para el pelo."', exEn: 'I need shampoo for my hair.' },
+      { word: 'el cepillo de dientes', cat: 'Noun · Masculine', back: 'toothbrush', ex: '"Uso un cepillo de dientes nuevo."', exEn: 'I use a new toothbrush.' },
+      { word: 'la pasta de dientes', cat: 'Noun · Feminine', back: 'toothpaste', ex: '"La pasta de dientes es de menta."', exEn: 'The toothpaste is mint.' },
+      { word: 'el peine', cat: 'Noun · Masculine', back: 'comb', ex: '"Me peino con un peine."', exEn: 'I comb my hair with a comb.' },
+      { word: 'el espejo', cat: 'Noun · Masculine', back: 'mirror', ex: '"Me miro en el espejo."', exEn: 'I look at myself in the mirror.' },
+      { word: 'la toalla', cat: 'Noun · Feminine', back: 'towel', ex: '"Me seco con la toalla."', exEn: 'I dry off with the towel.' },
+      { word: 'el secador', cat: 'Noun · Masculine', back: 'hair dryer', ex: '"Uso el secador después de la ducha."', exEn: 'I use the hair dryer after the shower.' },
+      { word: 'el desodorante', cat: 'Noun · Masculine', back: 'deodorant', ex: '"Me pongo desodorante."', exEn: 'I put on deodorant.' },
+      { word: 'el papel higiénico', cat: 'Noun · Masculine', back: 'toilet paper', ex: '"No hay papel higiénico."', exEn: 'There\'s no toilet paper.' },
+      { word: 'la tienda de campaña', cat: 'Noun · Feminine · camping', back: 'tent', ex: '"Dormimos en una tienda de campaña."', exEn: 'We sleep in a tent.' },
+      { word: 'el saco de dormir', cat: 'Noun · Masculine · camping', back: 'sleeping bag', ex: '"Me acuesto en mi saco de dormir."', exEn: 'I lie down in my sleeping bag.' },
+      { word: 'dar una caminata', cat: 'Phrase · camping', back: 'to take a hike', ex: '"Damos una caminata por la playa."', exEn: 'We take a hike on the beach.' }
+    ],
+    restaurante: [
+      { word: 'el mesero / la mesera', cat: 'Noun', back: 'waiter / waitress', ex: '"El mesero nos trae el menú."', exEn: 'The waiter brings us the menu.' },
+      { word: 'el menú', cat: 'Noun · Masculine', back: 'menu', ex: '"¿Me trae el menú, por favor?"', exEn: 'Can you bring me the menu, please?' },
+      { word: 'la cuenta', cat: 'Noun · Feminine', back: 'the check / bill', ex: '"La cuenta, por favor."', exEn: 'The check, please.' },
+      { word: 'la propina', cat: 'Noun · Feminine', back: 'tip', ex: '"Dejamos una buena propina."', exEn: 'We leave a good tip.' },
+      { word: 'pedir', cat: '-IR verb (e→i)', back: 'to order / ask for', ex: '"Pido el biftec."', exEn: 'I order the steak.' },
+      { word: 'servir', cat: '-IR verb (e→i)', back: 'to serve', ex: '"El mesero sirve la comida."', exEn: 'The waiter serves the food.' },
+      { word: 'poner la mesa', cat: 'Phrase', back: 'to set the table', ex: '"Pongo la mesa antes de comer."', exEn: 'I set the table before eating.' },
+      { word: 'levantar la mesa', cat: 'Phrase', back: 'to clear the table', ex: '"Levanto la mesa después de comer."', exEn: 'I clear the table after eating.' },
+      { word: 'el mantel', cat: 'Noun · Masculine', back: 'tablecloth', ex: '"El mantel es blanco."', exEn: 'The tablecloth is white.' },
+      { word: 'la servilleta', cat: 'Noun · Feminine', back: 'napkin', ex: '"Uso la servilleta para limpiarme."', exEn: 'I use the napkin to clean myself.' },
+      { word: 'el tenedor', cat: 'Noun · Masculine', back: 'fork', ex: '"Como la ensalada con el tenedor."', exEn: 'I eat the salad with the fork.' },
+      { word: 'el cuchillo', cat: 'Noun · Masculine', back: 'knife', ex: '"Corto la carne con el cuchillo."', exEn: 'I cut the meat with the knife.' },
+      { word: 'la cuchara', cat: 'Noun · Feminine', back: 'spoon', ex: '"Como la sopa con la cuchara."', exEn: 'I eat the soup with the spoon.' },
+      { word: 'la cucharita', cat: 'Noun · Feminine', back: 'teaspoon', ex: '"Uso la cucharita para el café."', exEn: 'I use the teaspoon for my coffee.' },
+      { word: 'el vaso', cat: 'Noun · Masculine', back: 'glass', ex: '"Bebo agua en un vaso."', exEn: 'I drink water from a glass.' },
+      { word: 'la taza', cat: 'Noun · Feminine', back: 'cup / mug', ex: '"Tomo café en una taza."', exEn: 'I drink coffee in a mug.' },
+      { word: 'el plato', cat: 'Noun · Masculine', back: 'plate / dish', ex: '"El plato está caliente."', exEn: 'The plate is hot.' },
+      { word: 'el biftec', cat: 'Noun · Masculine · meat', back: 'steak', ex: '"El biftec está delicioso."', exEn: 'The steak is delicious.' },
+      { word: 'el cordero', cat: 'Noun · Masculine · meat', back: 'lamb', ex: '"El cordero es típico en Pascua."', exEn: 'Lamb is typical at Easter.' },
+      { word: 'el cerdo / el chancho / el puerco', cat: 'Noun · Masculine · meat', back: 'pork', ex: '"Comemos cerdo asado."', exEn: 'We eat roast pork.' },
+      { word: 'la chuleta', cat: 'Noun · Feminine · meat', back: '(pork) chop', ex: '"Pido una chuleta de cerdo."', exEn: 'I order a pork chop.' },
+      { word: 'el jamón', cat: 'Noun · Masculine · meat', back: 'ham', ex: '"Un sándwich de jamón."', exEn: 'A ham sandwich.' },
+      { word: 'la res', cat: 'Noun · Feminine · meat', back: 'beef / cattle', ex: '"La carne de res es popular."', exEn: 'Beef is popular.' },
+      { word: 'los mariscos', cat: 'Noun · Masc. plural · food', back: 'seafood / shellfish', ex: '"Me encantan los mariscos."', exEn: 'I love seafood.' },
+      { word: 'los camarones', cat: 'Noun · Masc. plural · food', back: 'shrimp', ex: '"Comemos camarones al ajillo."', exEn: 'We eat garlic shrimp.' },
+      { word: 'la langosta', cat: 'Noun · Feminine · food', back: 'lobster', ex: '"La langosta es cara."', exEn: 'Lobster is expensive.' },
+      { word: 'los mejillones / los choros', cat: 'Noun · Masc. plural · food', back: 'mussels', ex: '"Los mejillones están frescos."', exEn: 'The mussels are fresh.' },
+      { word: 'las almejas / las conchas', cat: 'Noun · Fem. plural · food', back: 'clams', ex: '"Pedimos almejas de entrada."', exEn: 'We order clams as an appetizer.' },
+      { word: 'el ceviche', cat: 'Noun · Masculine · food', back: 'ceviche (citrus-cured seafood)', ex: '"El ceviche peruano es famoso."', exEn: 'Peruvian ceviche is famous.' },
+      { word: 'el tiburón', cat: 'Noun · Masculine', back: 'shark', ex: '"El tiburón vive en el mar."', exEn: 'The shark lives in the sea.' },
+      { word: 'el aceite', cat: 'Noun · Masculine · condiment', back: 'oil', ex: '"Aliño la ensalada con aceite."', exEn: 'I dress the salad with oil.' },
+      { word: 'el vinagre', cat: 'Noun · Masculine · condiment', back: 'vinegar', ex: '"Aceite y vinagre en la ensalada."', exEn: 'Oil and vinegar on the salad.' },
+      { word: 'la salsa', cat: 'Noun · Feminine · condiment', back: 'sauce', ex: '"La salsa está muy picante."', exEn: 'The sauce is very spicy.' },
+      { word: 'casi crudo', cat: 'Phrase · cooking', back: 'rare (undercooked)', ex: '"Quiero el biftec casi crudo."', exEn: 'I want the steak rare.' },
+      { word: 'a término medio', cat: 'Phrase · cooking', back: 'medium', ex: '"Prefiero la carne a término medio."', exEn: 'I prefer the meat medium.' },
+      { word: 'bien hecho', cat: 'Phrase · cooking', back: 'well done', ex: '"Lo quiero bien hecho."', exEn: 'I want it well done.' }
+    ],
+    fiestas: [
+      { word: 'el muerto / el difunto', cat: 'Noun · Masculine', back: 'dead person / the deceased', ex: '"La familia recuerda a sus difuntos."', exEn: 'The family remembers their deceased.' },
+      { word: 'los parientes', cat: 'Noun · Masc. plural', back: 'relatives', ex: '"Mis parientes vienen a la fiesta."', exEn: 'My relatives come to the party.' },
+      { word: 'enterrar', cat: '-AR verb (e→ie)', back: 'to bury', ex: '"Entierran a los muertos en el cementerio."', exEn: 'They bury the dead in the cemetery.' },
+      { word: 'la tumba', cat: 'Noun · Feminine', back: 'grave / tomb', ex: '"Ponen flores en la tumba."', exEn: 'They put flowers on the grave.' },
+      { word: 'el mausoleo', cat: 'Noun · Masculine', back: 'mausoleum', ex: '"Hay mausoleos familiares en el cementerio."', exEn: 'There are family mausoleums in the cemetery.' },
+      { word: 'el cráneo', cat: 'Noun · Masculine', back: 'skull', ex: '"El cráneo es parte del esqueleto."', exEn: 'The skull is part of the skeleton.' },
+      { word: 'los huesos', cat: 'Noun · Masc. plural', back: 'bones', ex: '"El esqueleto tiene muchos huesos."', exEn: 'The skeleton has many bones.' },
+      { word: 'la corona de flores', cat: 'Noun · Feminine', back: 'wreath / flower crown', ex: '"Dejan una corona de flores en la tumba."', exEn: 'They leave a wreath on the grave.' },
+      { word: 'el desfile', cat: 'Noun · Masculine', back: 'parade', ex: '"Hay un desfile por las calles."', exEn: 'There\'s a parade through the streets.' },
+      { word: 'la procesión', cat: 'Noun · Feminine', back: 'procession', ex: '"La procesión pasa por el pueblo."', exEn: 'The procession passes through the town.' },
+      { word: 'la máscara', cat: 'Noun · Feminine', back: 'mask', ex: '"La máscara cubre la cara."', exEn: 'The mask covers the face.' },
+      { word: 'el disfraz', cat: 'Noun · Masculine', back: 'costume / disguise', ex: '"Llevan un disfraz para la fiesta."', exEn: 'They wear a costume to the party.' },
+      { word: 'los bizcochos', cat: 'Noun · Masc. plural', back: 'cookies / biscuits', ex: '"La señora elaboraba bizcochos."', exEn: 'The lady would make cookies.' },
+      { word: 'el santo patrón', cat: 'Noun · Masculine', back: 'patron saint', ex: '"Celebran al santo patrón del pueblo."', exEn: 'They celebrate the town\'s patron saint.' },
+      { word: 'el aguinaldo', cat: 'Noun · Masculine', back: 'Christmas gift / bonus', ex: '"Los niños reciben aguinaldos."', exEn: 'The children receive Christmas gifts.' },
+      { word: 'la Nochebuena', cat: 'Noun · Feminine', back: 'Christmas Eve', ex: '"Cenamos en familia en Nochebuena."', exEn: 'We have a family dinner on Christmas Eve.' },
+      { word: 'el árbol de Navidad', cat: 'Noun · Masculine', back: 'Christmas tree', ex: '"Decoramos el árbol de Navidad."', exEn: 'We decorate the Christmas tree.' },
+      { word: 'los Reyes Magos', cat: 'Noun · Masc. plural', back: 'the Three Wise Men / Kings', ex: '"Los Reyes Magos traen regalos."', exEn: 'The Three Kings bring gifts.' },
+      { word: 'la menora', cat: 'Noun · Feminine', back: 'menorah', ex: '"Encienden las velas de la menora."', exEn: 'They light the candles of the menorah.' },
+      { word: 'la chimenea', cat: 'Noun · Feminine', back: 'fireplace / chimney', ex: '"Las medias cuelgan de la chimenea."', exEn: 'The stockings hang from the fireplace.' },
+      { word: 'los fuegos artificiales', cat: 'Noun · Masc. plural', back: 'fireworks', ex: '"Hay fuegos artificiales en la celebración."', exEn: 'There are fireworks at the celebration.' },
+      { word: 'la paja', cat: 'Noun · Feminine', back: 'straw', ex: '"El pesebre tiene paja."', exEn: 'The nativity scene has straw.' },
+      { word: 'el cielo', cat: 'Noun · Masculine', back: 'sky / heaven', ex: '"Las luces iluminan el cielo."', exEn: 'The lights light up the sky.' },
+      { word: 'encender', cat: '-ER verb (e→ie)', back: 'to light / turn on', ex: '"Encienden una vela cada noche."', exEn: 'They light a candle each night.' },
+      { word: 'tocar', cat: '-AR verb', back: 'to play (an instrument) / to touch', ex: '"La banda toca música."', exEn: 'The band plays music.' }
+    ],
+    tecnologia: [
+      { word: 'el ordenador / la computadora', cat: 'Noun', back: 'computer', ex: '"Trabajo en la computadora."', exEn: 'I work on the computer.' },
+      { word: 'la pantalla', cat: 'Noun · Feminine', back: 'screen', ex: '"La pantalla es grande."', exEn: 'The screen is large.' },
+      { word: 'el ratón', cat: 'Noun · Masculine', back: 'mouse', ex: '"Hago clic con el ratón."', exEn: 'I click with the mouse.' },
+      { word: 'la alfombrilla', cat: 'Noun · Feminine', back: 'mouse pad', ex: '"El ratón va en la alfombrilla."', exEn: 'The mouse goes on the mouse pad.' },
+      { word: 'hacer clic / pulsar', cat: 'Verb phrase', back: 'to click', ex: '"Haz clic en el icono."', exEn: 'Click on the icon.' },
+      { word: 'oprimir', cat: '-IR verb', back: 'to press', ex: '"Oprimo el botón."', exEn: 'I press the button.' },
+      { word: 'el icono', cat: 'Noun · Masculine', back: 'icon', ex: '"Hago clic en el icono."', exEn: 'I click on the icon.' },
+      { word: 'la barra de herramientas', cat: 'Noun · Feminine', back: 'toolbar', ex: '"El menú está en la barra de herramientas."', exEn: 'The menu is on the toolbar.' },
+      { word: 'la página inicial', cat: 'Noun · Feminine', back: 'home page', ex: '"Regreso a la página inicial."', exEn: 'I go back to the home page.' },
+      { word: 'la red', cat: 'Noun · Feminine', back: 'the net / web', ex: '"Busco información en la red."', exEn: 'I look for information on the web.' },
+      { word: 'guardar', cat: '-AR verb', back: 'to save', ex: '"Guardo el archivo."', exEn: 'I save the file.' },
+      { word: 'borrar', cat: '-AR verb', back: 'to erase / delete', ex: '"Borro el correo."', exEn: 'I delete the email.' },
+      { word: 'imprimir', cat: '-IR verb', back: 'to print', ex: '"Imprimo el documento."', exEn: 'I print the document.' },
+      { word: 'la copia dura / impresa', cat: 'Noun · Feminine', back: 'hard copy', ex: '"Necesito una copia impresa."', exEn: 'I need a hard copy.' },
+      { word: 'el archivo', cat: 'Noun · Masculine', back: 'file', ex: '"Abro el archivo."', exEn: 'I open the file.' },
+      { word: 'el archivo adjunto', cat: 'Noun · Masculine', back: 'attachment', ex: '"El correo tiene un archivo adjunto."', exEn: 'The email has an attachment.' },
+      { word: 'prender', cat: '-ER verb', back: 'to turn on', ex: '"Prendo la computadora."', exEn: 'I turn on the computer.' },
+      { word: 'apagar', cat: '-AR verb', back: 'to turn off', ex: '"Apago la pantalla."', exEn: 'I turn off the screen.' },
+      { word: 'descargar', cat: '-AR verb', back: 'to download', ex: '"Descargo una canción."', exEn: 'I download a song.' },
+      { word: 'el correo electrónico', cat: 'Noun · Masculine', back: 'email', ex: '"Leo mi correo electrónico."', exEn: 'I read my email.' },
+      { word: 'arroba', cat: 'Noun · symbol', back: 'the @ symbol', ex: '"Mi correo lleva una arroba."', exEn: 'My email has an @ sign.' },
+      { word: 'el destinatario', cat: 'Noun · Masculine', back: 'recipient / addressee', ex: '"Escribo el destinatario del correo."', exEn: 'I write the recipient of the email.' },
+      { word: 'enviar', cat: '-AR verb', back: 'to send', ex: '"Envío el correo."', exEn: 'I send the email.' },
+      { word: 'el móvil / el celular', cat: 'Noun · Masculine', back: 'cell phone', ex: '"Hablo por el celular."', exEn: 'I talk on the cell phone.' },
+      { word: 'el timbre', cat: 'Noun · Masculine', back: 'ringtone', ex: '"Mi móvil tiene un timbre nuevo."', exEn: 'My phone has a new ringtone.' },
+      { word: 'la llamada', cat: 'Noun · Feminine', back: 'call', ex: '"Hago una llamada."', exEn: 'I make a call.' },
+      { word: 'la llamada caída', cat: 'Noun · Feminine', back: 'dropped call', ex: '"Se nos cortó: fue una llamada caída."', exEn: 'We got cut off: it was a dropped call.' },
+      { word: 'la llamada perdida', cat: 'Noun · Feminine', back: 'missed call', ex: '"Tengo dos llamadas perdidas."', exEn: 'I have two missed calls.' },
+      { word: 'el auricular', cat: 'Noun · Masculine', back: 'receiver / handset', ex: '"Descuelgo el auricular."', exEn: 'I pick up the receiver.' },
+      { word: 'el tono', cat: 'Noun · Masculine', back: 'dial tone', ex: '"Espero el tono antes de marcar."', exEn: 'I wait for the dial tone before dialing.' },
+      { word: 'marcar', cat: '-AR verb', back: 'to dial', ex: '"Marco el número."', exEn: 'I dial the number.' },
+      { word: 'descolgar', cat: '-AR verb (o→ue)', back: 'to pick up (the phone)', ex: '"Descuelgo el teléfono."', exEn: 'I pick up the phone.' },
+      { word: 'la ranura', cat: 'Noun · Feminine', back: 'slot', ex: '"Inserto la tarjeta en la ranura."', exEn: 'I insert the card in the slot.' },
+      { word: 'la clave', cat: 'Noun · Feminine', back: 'password / PIN / code', ex: '"Escribo mi clave secreta."', exEn: 'I enter my secret password.' },
+      { word: 'el prefijo del país', cat: 'Noun · Masculine', back: 'country code', ex: '"Marco el prefijo del país primero."', exEn: 'I dial the country code first.' },
+      { word: 'la tarjeta telefónica', cat: 'Noun · Feminine', back: 'phone card', ex: '"Compro una tarjeta telefónica."', exEn: 'I buy a phone card.' },
+      { word: 'dejar un mensaje', cat: 'Phrase', back: 'to leave a message', ex: '"Dejo un mensaje en el buzón."', exEn: 'I leave a message on the voicemail.' },
+      { word: 'la guía telefónica', cat: 'Noun · Feminine', back: 'phone book', ex: '"Busco el número en la guía telefónica."', exEn: 'I look up the number in the phone book.' },
+      { word: 'la cámara digital', cat: 'Noun · Feminine', back: 'digital camera', ex: '"El móvil tiene una cámara digital."', exEn: 'The phone has a digital camera.' }
+    ],
+    gustar: [
+      { word: 'gustar', cat: 'Verb · like gustar', back: 'to like (to be pleasing)', ex: '"Me gusta el café."', exEn: 'I like coffee.' },
+      { word: 'encantar', cat: 'Verb · like gustar', back: 'to love / really like', ex: '"Me encanta bailar."', exEn: 'I love to dance.' },
+      { word: 'interesar', cat: 'Verb · like gustar', back: 'to interest', ex: '"Me interesa la historia."', exEn: 'I\'m interested in history.' },
+      { word: 'importar', cat: 'Verb · like gustar', back: 'to matter / to mind', ex: '"No me importa esperar."', exEn: 'I don\'t mind waiting.' },
+      { word: 'molestar', cat: 'Verb · like gustar', back: 'to bother / annoy', ex: '"Me molesta el ruido."', exEn: 'The noise bothers me.' },
+      { word: 'aburrir', cat: 'Verb · like gustar', back: 'to bore', ex: '"Me aburre la clase."', exEn: 'The class bores me.' },
+      { word: 'fascinar', cat: 'Verb · like gustar', back: 'to fascinate', ex: '"Me fascinan los idiomas."', exEn: 'Languages fascinate me.' },
+      { word: 'faltar', cat: 'Verb · like gustar', back: 'to lack / be missing', ex: '"Me falta un dólar."', exEn: 'I\'m one dollar short.' },
+      { word: 'quedar', cat: 'Verb · like gustar', back: 'to have left / to fit', ex: '"Me quedan dos."', exEn: 'I have two left.' },
+      { word: 'doler', cat: 'Verb · like gustar (o→ue)', back: 'to hurt / ache', ex: '"Me duele la cabeza."', exEn: 'My head hurts.' },
+      { word: 'chocar', cat: 'Verb · like gustar (colloq.)', back: 'to hate / to be bothered by', ex: '"Me choca perder."', exEn: 'I hate losing.' },
+      { word: 'caer bien / mal', cat: 'Verb · like gustar', back: 'to like / dislike (a person)', ex: '"Me cae bien tu amigo."', exEn: 'I like your friend.' }
+    ],
+    preguntas: [
+      { word: '¿qué?', cat: 'Question word', back: 'what?', ex: '"¿Qué quieres?"', exEn: 'What do you want?' },
+      { word: '¿quién? / ¿quiénes?', cat: 'Question word', back: 'who?', ex: '"¿Quién es ella?"', exEn: 'Who is she?' },
+      { word: '¿cuándo?', cat: 'Question word', back: 'when?', ex: '"¿Cuándo llegas?"', exEn: 'When do you arrive?' },
+      { word: '¿dónde?', cat: 'Question word', back: 'where?', ex: '"¿Dónde vives?"', exEn: 'Where do you live?' },
+      { word: '¿adónde?', cat: 'Question word', back: '(to) where?', ex: '"¿Adónde vas?"', exEn: 'Where are you going?' },
+      { word: '¿de dónde?', cat: 'Question word', back: 'from where?', ex: '"¿De dónde eres?"', exEn: 'Where are you from?' },
+      { word: '¿por qué?', cat: 'Question word', back: 'why?', ex: '"¿Por qué lloras?"', exEn: 'Why are you crying?' },
+      { word: '¿cómo?', cat: 'Question word', back: 'how? / what?', ex: '"¿Cómo estás?"', exEn: 'How are you?' },
+      { word: '¿cuánto? / ¿cuánta?', cat: 'Question word', back: 'how much?', ex: '"¿Cuánto cuesta?"', exEn: 'How much does it cost?' },
+      { word: '¿cuántos? / ¿cuántas?', cat: 'Question word', back: 'how many?', ex: '"¿Cuántos años tienes?"', exEn: 'How old are you?' },
+      { word: '¿cuál? / ¿cuáles?', cat: 'Question word', back: 'which? / what?', ex: '"¿Cuál prefieres?"', exEn: 'Which do you prefer?' },
+      { word: '¿para qué?', cat: 'Question word', back: 'what for?', ex: '"¿Para qué sirve?"', exEn: 'What\'s it for?' }
+    ],
+    ropa: [
+      { word: 'la ropa', cat: 'Noun · Feminine', back: 'clothes / clothing', ex: '"Guardo la ropa en el armario."', exEn: 'I keep my clothes in the closet.' },
+      { word: 'la camisa', cat: 'Noun · Feminine', back: 'shirt', ex: '"Llevo una camisa blanca."', exEn: 'I\'m wearing a white shirt.' },
+      { word: 'la camiseta', cat: 'Noun · Feminine', back: 't-shirt', ex: '"Una camiseta cómoda."', exEn: 'A comfortable t-shirt.' },
+      { word: 'los pantalones', cat: 'Noun · Masc. plural', back: 'pants', ex: '"Los pantalones son negros."', exEn: 'The pants are black.' },
+      { word: 'los vaqueros / los jeans', cat: 'Noun · Masc. plural', back: 'jeans', ex: '"Llevo vaqueros azules."', exEn: 'I wear blue jeans.' },
+      { word: 'los pantalones cortos', cat: 'Noun · Masc. plural', back: 'shorts', ex: '"Pantalones cortos para el verano."', exEn: 'Shorts for summer.' },
+      { word: 'el vestido', cat: 'Noun · Masculine', back: 'dress', ex: '"Un vestido elegante."', exEn: 'An elegant dress.' },
+      { word: 'la falda', cat: 'Noun · Feminine', back: 'skirt', ex: '"Una falda larga."', exEn: 'A long skirt.' },
+      { word: 'la chaqueta', cat: 'Noun · Feminine', back: 'jacket', ex: '"Hace frío, necesito una chaqueta."', exEn: 'It\'s cold, I need a jacket.' },
+      { word: 'el abrigo', cat: 'Noun · Masculine', back: 'coat', ex: '"El abrigo es de invierno."', exEn: 'The coat is for winter.' },
+      { word: 'el suéter', cat: 'Noun · Masculine', back: 'sweater', ex: '"Me pongo un suéter."', exEn: 'I put on a sweater.' },
+      { word: 'los zapatos', cat: 'Noun · Masc. plural', back: 'shoes', ex: '"Los zapatos son nuevos."', exEn: 'The shoes are new.' },
+      { word: 'los tenis / las zapatillas', cat: 'Noun · plural', back: 'sneakers', ex: '"Corro con tenis."', exEn: 'I run in sneakers.' },
+      { word: 'las botas', cat: 'Noun · Fem. plural', back: 'boots', ex: '"Botas para la lluvia."', exEn: 'Boots for the rain.' },
+      { word: 'los calcetines', cat: 'Noun · Masc. plural', back: 'socks', ex: '"Llevo calcetines blancos."', exEn: 'I wear white socks.' },
+      { word: 'la gorra', cat: 'Noun · Feminine', back: 'cap', ex: '"Una gorra de béisbol."', exEn: 'A baseball cap.' },
+      { word: 'el sombrero', cat: 'Noun · Masculine', back: 'hat', ex: '"Un sombrero para el sol."', exEn: 'A hat for the sun.' },
+      { word: 'los guantes', cat: 'Noun · Masc. plural', back: 'gloves', ex: '"Guantes para el frío."', exEn: 'Gloves for the cold.' },
+      { word: 'la bufanda', cat: 'Noun · Feminine', back: 'scarf', ex: '"Una bufanda de lana."', exEn: 'A wool scarf.' },
+      { word: 'el cinturón', cat: 'Noun · Masculine', back: 'belt', ex: '"El cinturón es de cuero."', exEn: 'The belt is leather.' },
+      { word: 'el traje', cat: 'Noun · Masculine', back: 'suit', ex: '"Lleva un traje al trabajo."', exEn: 'He wears a suit to work.' },
+      { word: 'la corbata', cat: 'Noun · Feminine', back: 'tie', ex: '"Una corbata roja."', exEn: 'A red tie.' },
+      { word: 'el traje de baño', cat: 'Noun · Masculine', back: 'swimsuit', ex: '"Un traje de baño para la playa."', exEn: 'A swimsuit for the beach.' },
+      { word: 'llevar', cat: '-AR verb', back: 'to wear / to carry', ex: '"Llevo una chaqueta azul."', exEn: 'I\'m wearing a blue jacket.' }
+    ],
+    lugares: [
+      { word: 'la tienda', cat: 'Noun · Feminine', back: 'store / shop', ex: '"Compro pan en la tienda."', exEn: 'I buy bread at the store.' },
+      { word: 'el supermercado', cat: 'Noun · Masculine', back: 'supermarket', ex: '"Voy al supermercado los sábados."', exEn: 'I go to the supermarket on Saturdays.' },
+      { word: 'el mercado', cat: 'Noun · Masculine', back: 'market', ex: '"Compro frutas en el mercado."', exEn: 'I buy fruit at the market.' },
+      { word: 'el centro comercial', cat: 'Noun · Masculine', back: 'mall', ex: '"Voy de compras al centro comercial."', exEn: 'I go shopping at the mall.' },
+      { word: 'el banco', cat: 'Noun · Masculine', back: 'bank', ex: '"Saco dinero del banco."', exEn: 'I take money out of the bank.' },
+      { word: 'la biblioteca', cat: 'Noun · Feminine', back: 'library', ex: '"Estudio en la biblioteca."', exEn: 'I study at the library.' },
+      { word: 'la escuela', cat: 'Noun · Feminine', back: 'school', ex: '"Voy a la escuela en autobús."', exEn: 'I go to school by bus.' },
+      { word: 'el hospital', cat: 'Noun · Masculine', back: 'hospital', ex: '"El hospital está cerca."', exEn: 'The hospital is nearby.' },
+      { word: 'la farmacia', cat: 'Noun · Feminine', back: 'pharmacy', ex: '"Compro medicina en la farmacia."', exEn: 'I buy medicine at the pharmacy.' },
+      { word: 'el cine', cat: 'Noun · Masculine', back: 'movie theater', ex: '"Vemos una película en el cine."', exEn: 'We watch a movie at the theater.' },
+      { word: 'el parque', cat: 'Noun · Masculine', back: 'park', ex: '"Camino en el parque."', exEn: 'I walk in the park.' },
+      { word: 'la iglesia', cat: 'Noun · Feminine', back: 'church', ex: '"La iglesia es muy antigua."', exEn: 'The church is very old.' },
+      { word: 'el correo', cat: 'Noun · Masculine', back: 'post office', ex: '"Envío una carta en el correo."', exEn: 'I send a letter at the post office.' },
+      { word: 'la plaza', cat: 'Noun · Feminine', back: 'square / plaza', ex: '"Nos reunimos en la plaza."', exEn: 'We meet in the plaza.' },
+      { word: 'la panadería', cat: 'Noun · Feminine', back: 'bakery', ex: '"El pan fresco de la panadería."', exEn: 'Fresh bread from the bakery.' },
+      { word: 'la oficina', cat: 'Noun · Feminine', back: 'office', ex: '"Mi padre trabaja en una oficina."', exEn: 'My dad works in an office.' },
+      { word: 'el café', cat: 'Noun · Masculine', back: 'café', ex: '"Tomo un café en el café de la esquina."', exEn: 'I have a coffee at the corner café.' },
+      { word: 'ir de compras', cat: 'Phrase', back: 'to go shopping', ex: '"Vamos de compras el sábado."', exEn: 'We go shopping on Saturday.' }
+    ],
+    casa: [
+      { word: 'la casa', cat: 'Noun · Feminine', back: 'house', ex: '"Vivo en una casa grande."', exEn: 'I live in a big house.' },
+      { word: 'el apartamento', cat: 'Noun · Masculine', back: 'apartment', ex: '"Mi apartamento es pequeño."', exEn: 'My apartment is small.' },
+      { word: 'la cocina', cat: 'Noun · Feminine', back: 'kitchen', ex: '"Cocino en la cocina."', exEn: 'I cook in the kitchen.' },
+      { word: 'la sala', cat: 'Noun · Feminine', back: 'living room', ex: '"Vemos la tele en la sala."', exEn: 'We watch TV in the living room.' },
+      { word: 'el comedor', cat: 'Noun · Masculine', back: 'dining room', ex: '"Comemos en el comedor."', exEn: 'We eat in the dining room.' },
+      { word: 'el dormitorio', cat: 'Noun · Masculine', back: 'bedroom', ex: '"Duermo en mi dormitorio."', exEn: 'I sleep in my bedroom.' },
+      { word: 'el baño', cat: 'Noun · Masculine', back: 'bathroom', ex: '"Me ducho en el baño."', exEn: 'I shower in the bathroom.' },
+      { word: 'el jardín', cat: 'Noun · Masculine', back: 'garden / yard', ex: '"Las flores están en el jardín."', exEn: 'The flowers are in the garden.' },
+      { word: 'el garaje', cat: 'Noun · Masculine', back: 'garage', ex: '"El carro está en el garaje."', exEn: 'The car is in the garage.' },
+      { word: 'la escalera', cat: 'Noun · Feminine', back: 'stairs', ex: '"Subo la escalera."', exEn: 'I go up the stairs.' },
+      { word: 'la cama', cat: 'Noun · Feminine', back: 'bed', ex: '"Hago la cama por la mañana."', exEn: 'I make the bed in the morning.' },
+      { word: 'la mesa', cat: 'Noun · Feminine', back: 'table', ex: '"Pongo los platos en la mesa."', exEn: 'I put the plates on the table.' },
+      { word: 'la silla', cat: 'Noun · Feminine', back: 'chair', ex: '"Me siento en la silla."', exEn: 'I sit on the chair.' },
+      { word: 'el sofá', cat: 'Noun · Masculine', back: 'couch / sofa', ex: '"Descanso en el sofá."', exEn: 'I rest on the couch.' },
+      { word: 'el sillón', cat: 'Noun · Masculine', back: 'armchair', ex: '"Mi abuelo lee en el sillón."', exEn: 'My grandpa reads in the armchair.' },
+      { word: 'el armario', cat: 'Noun · Masculine', back: 'closet / wardrobe', ex: '"Guardo la ropa en el armario."', exEn: 'I keep my clothes in the closet.' },
+      { word: 'el escritorio', cat: 'Noun · Masculine', back: 'desk', ex: '"Estudio en el escritorio."', exEn: 'I study at the desk.' },
+      { word: 'la lámpara', cat: 'Noun · Feminine', back: 'lamp', ex: '"Enciendo la lámpara para leer."', exEn: 'I turn on the lamp to read.' },
+      { word: 'el estante', cat: 'Noun · Masculine', back: 'shelf', ex: '"Los libros están en el estante."', exEn: 'The books are on the shelf.' },
+      { word: 'la ventana', cat: 'Noun · Feminine', back: 'window', ex: '"Abro la ventana."', exEn: 'I open the window.' },
+      { word: 'la pared', cat: 'Noun · Feminine', back: 'wall', ex: '"Hay un cuadro en la pared."', exEn: 'There\'s a painting on the wall.' },
+      { word: 'el refrigerador / la nevera', cat: 'Noun', back: 'refrigerator', ex: '"La leche está en el refrigerador."', exEn: 'The milk is in the fridge.' },
+      { word: 'la estufa', cat: 'Noun · Feminine', back: 'stove', ex: '"Cocino en la estufa."', exEn: 'I cook on the stove.' }
+    ],
+    preposiciones: [
+      { word: 'encima de', cat: 'Preposition of place', back: 'on top of', ex: '"El libro está encima de la mesa."', exEn: 'The book is on top of the table.' },
+      { word: 'debajo de', cat: 'Preposition of place', back: 'under / beneath', ex: '"El gato está debajo de la silla."', exEn: 'The cat is under the chair.' },
+      { word: 'al lado de', cat: 'Preposition of place', back: 'next to', ex: '"El banco está al lado de la tienda."', exEn: 'The bank is next to the store.' },
+      { word: 'delante de', cat: 'Preposition of place', back: 'in front of', ex: '"Estoy delante de la clase."', exEn: 'I\'m in front of the class.' },
+      { word: 'detrás de', cat: 'Preposition of place', back: 'behind', ex: '"El jardín está detrás de la casa."', exEn: 'The garden is behind the house.' },
+      { word: 'entre', cat: 'Preposition of place', back: 'between', ex: '"La silla está entre la mesa y la cama."', exEn: 'The chair is between the table and the bed.' },
+      { word: 'cerca de', cat: 'Preposition of place', back: 'near / close to', ex: '"Vivo cerca de la escuela."', exEn: 'I live near the school.' },
+      { word: 'lejos de', cat: 'Preposition of place', back: 'far from', ex: '"El aeropuerto está lejos del centro."', exEn: 'The airport is far from downtown.' },
+      { word: 'dentro de', cat: 'Preposition of place', back: 'inside (of)', ex: '"La ropa está dentro del armario."', exEn: 'The clothes are inside the closet.' },
+      { word: 'fuera de', cat: 'Preposition of place', back: 'outside (of)', ex: '"Los niños juegan fuera de la casa."', exEn: 'The children play outside the house.' },
+      { word: 'sobre', cat: 'Preposition of place', back: 'on / above / about', ex: '"El mapa está sobre la mesa."', exEn: 'The map is on the table.' },
+      { word: 'enfrente de', cat: 'Preposition of place', back: 'across from / facing', ex: '"La iglesia está enfrente del parque."', exEn: 'The church is across from the park.' },
+      { word: 'a la derecha de', cat: 'Preposition of place', back: 'to the right of', ex: '"La farmacia está a la derecha del banco."', exEn: 'The pharmacy is to the right of the bank.' },
+      { word: 'a la izquierda de', cat: 'Preposition of place', back: 'to the left of', ex: '"El cine está a la izquierda de la plaza."', exEn: 'The theater is to the left of the plaza.' }
+    ],
+    profesiones: [
+      { word: 'el médico / la médica', cat: 'Profession', back: 'doctor', ex: '"La médica trabaja en el hospital."', exEn: 'The doctor works at the hospital.' },
+      { word: 'el enfermero / la enfermera', cat: 'Profession', back: 'nurse', ex: '"El enfermero cuida a los pacientes."', exEn: 'The nurse cares for the patients.' },
+      { word: 'el/la dentista', cat: 'Profession', back: 'dentist', ex: '"El dentista revisa mis dientes."', exEn: 'The dentist checks my teeth.' },
+      { word: 'el maestro / la maestra', cat: 'Profession', back: 'teacher', ex: '"La maestra enseña español."', exEn: 'The teacher teaches Spanish.' },
+      { word: 'el profesor / la profesora', cat: 'Profession', back: 'professor / teacher', ex: '"El profesor explica la lección."', exEn: 'The professor explains the lesson.' },
+      { word: 'el abogado / la abogada', cat: 'Profession', back: 'lawyer', ex: '"La abogada defiende a su cliente."', exEn: 'The lawyer defends her client.' },
+      { word: 'el ingeniero / la ingeniera', cat: 'Profession', back: 'engineer', ex: '"El ingeniero diseña puentes."', exEn: 'The engineer designs bridges.' },
+      { word: 'el/la policía', cat: 'Profession', back: 'police officer', ex: '"El policía dirige el tráfico."', exEn: 'The police officer directs traffic.' },
+      { word: 'el bombero / la bombera', cat: 'Profession', back: 'firefighter', ex: '"La bombera apaga el fuego."', exEn: 'The firefighter puts out the fire.' },
+      { word: 'el cocinero / la cocinera', cat: 'Profession', back: 'cook / chef', ex: '"El cocinero prepara la cena."', exEn: 'The cook prepares dinner.' },
+      { word: 'el/la dependiente', cat: 'Profession', back: 'store clerk', ex: '"El dependiente atiende a los clientes."', exEn: 'The clerk waits on the customers.' },
+      { word: 'el granjero / la granjera', cat: 'Profession', back: 'farmer', ex: '"El granjero cuida el ganado."', exEn: 'The farmer takes care of the cattle.' },
+      { word: 'el/la piloto', cat: 'Profession', back: 'pilot', ex: '"La piloto vuela el avión."', exEn: 'The pilot flies the plane.' },
+      { word: 'el secretario / la secretaria', cat: 'Profession', back: 'secretary', ex: '"La secretaria contesta el teléfono."', exEn: 'The secretary answers the phone.' },
+      { word: 'el/la artista', cat: 'Profession', back: 'artist', ex: '"La artista pinta un mural."', exEn: 'The artist paints a mural.' },
+      { word: 'el/la cantante', cat: 'Profession', back: 'singer', ex: '"El cantante tiene una buena voz."', exEn: 'The singer has a good voice.' },
+      { word: 'el escritor / la escritora', cat: 'Profession', back: 'writer', ex: '"La escritora publica una novela."', exEn: 'The writer publishes a novel.' },
+      { word: 'el hombre / la mujer de negocios', cat: 'Profession', back: 'businessman / businesswoman', ex: '"Es una mujer de negocios exitosa."', exEn: 'She\'s a successful businesswoman.' },
+      { word: '¿En qué trabajas?', cat: 'Phrase · question', back: 'What do you do (for work)?', ex: '"¿En qué trabajas? — Soy maestro."', exEn: 'What do you do? — I\'m a teacher.' }
+    ],
+    animales: [
+      { word: 'el perro', cat: 'Noun · Masculine', back: 'dog', ex: '"El perro corre en el parque."', exEn: 'The dog runs in the park.' },
+      { word: 'el gato', cat: 'Noun · Masculine', back: 'cat', ex: '"El gato duerme todo el día."', exEn: 'The cat sleeps all day.' },
+      { word: 'el pájaro', cat: 'Noun · Masculine', back: 'bird', ex: '"El pájaro canta por la mañana."', exEn: 'The bird sings in the morning.' },
+      { word: 'el pez', cat: 'Noun · Masculine', back: 'fish (live)', ex: '"El pez nada en el agua."', exEn: 'The fish swims in the water.' },
+      { word: 'el caballo', cat: 'Noun · Masculine', back: 'horse', ex: '"El caballo corre rápido."', exEn: 'The horse runs fast.' },
+      { word: 'la vaca', cat: 'Noun · Feminine', back: 'cow', ex: '"La vaca da leche."', exEn: 'The cow gives milk.' },
+      { word: 'el cerdo / el chancho', cat: 'Noun · Masculine', back: 'pig', ex: '"El cerdo vive en la granja."', exEn: 'The pig lives on the farm.' },
+      { word: 'la gallina', cat: 'Noun · Feminine', back: 'hen', ex: '"La gallina pone huevos."', exEn: 'The hen lays eggs.' },
+      { word: 'el gallo', cat: 'Noun · Masculine', back: 'rooster', ex: '"El gallo canta al amanecer."', exEn: 'The rooster crows at dawn.' },
+      { word: 'la oveja', cat: 'Noun · Feminine', back: 'sheep', ex: '"La oveja tiene lana."', exEn: 'The sheep has wool.' },
+      { word: 'el ganado', cat: 'Noun · Masculine', back: 'cattle / livestock', ex: '"El granjero cuida el ganado."', exEn: 'The farmer tends the cattle.' },
+      { word: 'el pato', cat: 'Noun · Masculine', back: 'duck', ex: '"El pato nada en el lago."', exEn: 'The duck swims in the lake.' },
+      { word: 'el conejo', cat: 'Noun · Masculine', back: 'rabbit', ex: '"El conejo come zanahorias."', exEn: 'The rabbit eats carrots.' },
+      { word: 'el león', cat: 'Noun · Masculine', back: 'lion', ex: '"El león es el rey de la selva."', exEn: 'The lion is the king of the jungle.' },
+      { word: 'el elefante', cat: 'Noun · Masculine', back: 'elephant', ex: '"El elefante es muy grande."', exEn: 'The elephant is very big.' },
+      { word: 'el oso', cat: 'Noun · Masculine', back: 'bear', ex: '"El oso vive en el bosque."', exEn: 'The bear lives in the forest.' },
+      { word: 'el mono', cat: 'Noun · Masculine', back: 'monkey', ex: '"El mono trepa los árboles."', exEn: 'The monkey climbs the trees.' },
+      { word: 'el tigre', cat: 'Noun · Masculine', back: 'tiger', ex: '"El tigre tiene rayas."', exEn: 'The tiger has stripes.' },
+      { word: 'la serpiente', cat: 'Noun · Feminine', back: 'snake', ex: '"La serpiente es peligrosa."', exEn: 'The snake is dangerous.' },
+      { word: 'la araña', cat: 'Noun · Feminine', back: 'spider', ex: '"Tengo miedo de las arañas."', exEn: 'I\'m afraid of spiders.' },
+      { word: 'la mariposa', cat: 'Noun · Feminine', back: 'butterfly', ex: '"La mariposa es colorida."', exEn: 'The butterfly is colorful.' }
+    ],
+    hora: [
+      { word: '¿Qué hora es?', cat: 'Phrase · time', back: 'What time is it?', ex: '"¿Qué hora es? — Son las dos."', exEn: 'What time is it? — It\'s two.' },
+      { word: 'Es la una.', cat: 'Phrase · time', back: 'It\'s one o\'clock.', ex: '"Es la una en punto."', exEn: 'It\'s one o\'clock sharp.' },
+      { word: 'Son las dos.', cat: 'Phrase · time', back: 'It\'s two o\'clock. (2+ uses son)', ex: '"Son las dos de la tarde."', exEn: 'It\'s two in the afternoon.' },
+      { word: 'y cuarto', cat: 'Phrase · time', back: 'quarter past', ex: '"Son las tres y cuarto."', exEn: 'It\'s a quarter past three.' },
+      { word: 'y media', cat: 'Phrase · time', back: 'half past', ex: '"Son las cuatro y media."', exEn: 'It\'s half past four.' },
+      { word: 'menos cuarto', cat: 'Phrase · time', back: 'quarter to', ex: '"Son las cinco menos cuarto."', exEn: 'It\'s a quarter to five.' },
+      { word: 'en punto', cat: 'Phrase · time', back: 'on the dot / sharp', ex: '"Son las seis en punto."', exEn: 'It\'s six o\'clock sharp.' },
+      { word: 'de la mañana', cat: 'Phrase · time', back: 'in the morning (a.m.)', ex: '"Son las ocho de la mañana."', exEn: 'It\'s eight a.m.' },
+      { word: 'de la tarde', cat: 'Phrase · time', back: 'in the afternoon (p.m.)', ex: '"Son las tres de la tarde."', exEn: 'It\'s three p.m.' },
+      { word: 'de la noche', cat: 'Phrase · time', back: 'at night (p.m.)', ex: '"Son las diez de la noche."', exEn: 'It\'s ten p.m.' },
+      { word: 'el mediodía', cat: 'Noun · time', back: 'noon / midday', ex: '"Almuerzo al mediodía."', exEn: 'I have lunch at noon.' },
+      { word: 'la medianoche', cat: 'Noun · time', back: 'midnight', ex: '"La fiesta termina a medianoche."', exEn: 'The party ends at midnight.' },
+      { word: '¿A qué hora…?', cat: 'Phrase · time', back: 'At what time…?', ex: '"¿A qué hora empieza la clase?"', exEn: 'At what time does class start?' },
+      { word: 'a la(s)…', cat: 'Phrase · time', back: 'at … o\'clock', ex: '"La clase es a las nueve."', exEn: 'Class is at nine.' }
+    ],
+    mandatos: [
+      { word: 'abre el libro', cat: 'Command (tú)', back: 'open the book', ex: '"Abre el libro en la página diez."', exEn: 'Open the book to page ten.' },
+      { word: 'cierra el libro', cat: 'Command (tú)', back: 'close the book', ex: '"Cierra el libro, por favor."', exEn: 'Close the book, please.' },
+      { word: 'escucha', cat: 'Command (tú)', back: 'listen', ex: '"Escucha con atención."', exEn: 'Listen carefully.' },
+      { word: 'repite', cat: 'Command (tú)', back: 'repeat', ex: '"Repite después de mí."', exEn: 'Repeat after me.' },
+      { word: 'escribe', cat: 'Command (tú)', back: 'write', ex: '"Escribe tu nombre."', exEn: 'Write your name.' },
+      { word: 'lee', cat: 'Command (tú)', back: 'read', ex: '"Lee el párrafo."', exEn: 'Read the paragraph.' },
+      { word: 'habla', cat: 'Command (tú)', back: 'speak', ex: '"Habla en español."', exEn: 'Speak in Spanish.' },
+      { word: 'mira', cat: 'Command (tú)', back: 'look', ex: '"Mira la pizarra."', exEn: 'Look at the board.' },
+      { word: 'levántate', cat: 'Command (tú · reflexive)', back: 'stand up', ex: '"Levántate, por favor."', exEn: 'Stand up, please.' },
+      { word: 'siéntate', cat: 'Command (tú · reflexive)', back: 'sit down', ex: '"Siéntate en tu silla."', exEn: 'Sit down in your chair.' },
+      { word: 'saca una hoja', cat: 'Command (tú)', back: 'take out a sheet of paper', ex: '"Saca una hoja de papel."', exEn: 'Take out a sheet of paper.' },
+      { word: 'guarda tus cosas', cat: 'Command (tú)', back: 'put your things away', ex: '"Guarda tus cosas."', exEn: 'Put your things away.' },
+      { word: 'presta atención', cat: 'Command (tú)', back: 'pay attention', ex: '"Presta atención a la lección."', exEn: 'Pay attention to the lesson.' },
+      { word: 'levanta la mano', cat: 'Command (tú)', back: 'raise your hand', ex: '"Levanta la mano para hablar."', exEn: 'Raise your hand to speak.' },
+      { word: 'ven aquí', cat: 'Command (tú · irreg.)', back: 'come here', ex: '"Ven aquí, por favor."', exEn: 'Come here, please.' },
+      { word: 'trabaja con un compañero', cat: 'Command (tú)', back: 'work with a partner', ex: '"Trabaja con un compañero."', exEn: 'Work with a partner.' },
+      { word: 'guarda silencio', cat: 'Command (tú)', back: 'be quiet', ex: '"Guarda silencio, por favor."', exEn: 'Be quiet, please.' }
     ]
   };
 
@@ -18522,7 +19050,7 @@
       ]
     },
     'articles-gender': {
-      decks: ['cotidiano', 'familia', 'salon'],
+      decks: ['cotidiano', 'familia', 'salon', 'ropa', 'casa', 'lugares'],
       pdfs: [],
       links: [
         { label: 'Definite articles + making nouns plural/singular', url: 'https://docs.google.com/document/d/1cp8M5jaPe8K_DoESOWl00JT7HPV6ScuPDgQV9ADHjyY/edit?usp=sharing' },
@@ -18543,14 +19071,14 @@
       links: []
     },
     'question-words': {
-      decks: ['saludos', 'cotidiano'],
+      decks: ['preguntas', 'saludos', 'cotidiano'],
       pdfs: [],
       links: [
         { label: "Write sentences & questions in Spanish (instructions)", url: 'https://docs.google.com/document/d/1F1nBMggmxZZR9HoFr1JYi8PW2_B7zCkDE780s7nlLgc/edit?usp=sharing' }
       ]
     },
     'hay-there-is': {
-      decks: ['cotidiano', 'salon', 'familia'],
+      decks: ['cotidiano', 'salon', 'familia', 'casa', 'preposiciones', 'lugares'],
       pdfs: [],
       links: []
     },
@@ -18561,7 +19089,7 @@
     },
     'subject-pronouns': {
       drills: [{ tense: 'presente', group: 'all', label: 'Practice with the verb drill' }],
-      decks: ['saludos'],
+      decks: ['pronombres', 'saludos'],
       pdfs: [],
       links: [
         { label: "Subject Pronouns: Worksheet 1", url: 'https://docs.google.com/document/d/1ISqMlcU2fUmRb2lcuiFwRyBzRTYQyAML6cTAYgfJXI8/edit?usp=sharing' }
@@ -18599,6 +19127,7 @@
       ]
     },
     'ser-vs-estar': {
+      decks: ['profesiones'],
       drills: [{ tense: 'serestar', group: 'all', label: 'Drill: Ser vs. Estar (sentence prompts)' }],
       pdfs: [],
       links: [
@@ -18612,7 +19141,7 @@
     },
     'adjective-agreement': {
       games: ['adjectives'],
-      decks: ['adjetivos', 'colores'],
+      decks: ['adjetivos', 'colores', 'ropa', 'animales'],
       pdfs: [],
       links: [
         { label: "Adjectives with ser", url: 'https://docs.google.com/document/d/1iiOhhv90nNPO4hTNj3d99nfRqEacqdLK0gP17Bxz_uE/edit?usp=sharing' },
@@ -18620,6 +19149,7 @@
       ]
     },
     'weather': {
+      decks: ['tiempo'],
       games: ['weather'],
       pdfs: [],
       links: [
@@ -18628,7 +19158,7 @@
       ]
     },
     'gustar': {
-      decks: ['emociones', 'comida', 'deportes'],
+      decks: ['gustar', 'emociones', 'comida', 'deportes'],
       pdfs: [],
       links: [
         { label: 'Food & drinks crossword', url: 'https://docs.google.com/document/d/13jhLECAkJluBxfehEL0vp9NgAjsiUtj9eljuEEP8nD0/edit?usp=sharing' },
@@ -18689,7 +19219,7 @@
     },
     'tener-venir-idioms': {
       drills: [{ tense: 'presente', group: 'irregular', label: 'Drill: Irregular verbs (includes tener & venir)' }],
-      decks: ['emociones'],
+      decks: ['teneridioms', 'emociones'],
       pdfs: [],
       links: [
         { label: 'Tener & venir conjugation and translation practice', url: 'https://docs.google.com/document/d/1kgaO3MW0fWQY1gm5iT8ZwdXxFfJSAPYqj-UDn2ewH6I/edit?usp=sharing' },
@@ -18730,6 +19260,7 @@
       links: []
     },
     'numbers-0-100': {
+      decks: ['numeros'],
       games: ['numbers-small', 'numbers-mid'],
       pdfs: [],
       links: [
@@ -18756,6 +19287,7 @@
       links: []
     },
     'time-and-dates': {
+      decks: ['hora', 'calendario'],
       games: ['time', 'dates', 'days'],
       pdfs: [],
       links: [
@@ -18780,7 +19312,7 @@
     'reflexive-verbs': {
       games: ['reflexives'],
       drills: [{ tense: 'presente', group: 'reflexive', label: 'Drill: Reflexive verbs in present' }],
-      decks: ['cuerpo'],
+      decks: ['rutina', 'cuerpo'],
       pdfs: [],
       links: []
     },
@@ -18874,6 +19406,7 @@
     },
     // ===== COMMANDS FAMILY =====
     'tu-commands': {
+      decks: ['mandatos'],
       drills: [
         { tense: 'tu-commands', group: 'positive-regular', label: 'Drill: Affirmative tú · regular verbs' },
         { tense: 'tu-commands', group: 'positive-irregular', label: 'Drill: Affirmative tú · irregulars (ven, di, sal, haz, ten, ve, pon, sé)' },
@@ -18890,6 +19423,7 @@
       links: []
     },
     'usted-commands': {
+      decks: ['mandatos'],
       drills: [
         { tense: 'usted-commands', group: 'positive-regular', label: 'Drill: Affirmative usted · regular verbs' },
         { tense: 'usted-commands', group: 'positive-irregular', label: 'Drill: Affirmative usted · irregulars (dé, vaya, sea, esté, sepa)' },
@@ -18906,6 +19440,7 @@
       links: []
     },
     'reflexive-commands': {
+      decks: ['mandatos'],
       drills: [
         { tense: 'reflexive-commands', group: 'aff-tu', label: 'Drill: Affirmative tú · reflexive verbs' },
         { tense: 'reflexive-commands', group: 'neg-tu', label: 'Drill: Negative tú · reflexive verbs' },
@@ -25831,7 +26366,12 @@
         viajes: 'Travel', deportes: 'Sports', colores: 'Colors', clases: 'Classes',
         salon: 'Classroom', escuela: 'School Life', relaciones: 'Relationships',
         adjetivos: 'Adjectives', adverbios: 'Adverbs', cuerpo: 'Body parts', peru: 'Perú', espana: 'España', argentina: 'Argentina', mexico: 'México', colombia: 'Colombia', diadelosmuertos: 'Día de los Muertos', futbol: 'El fútbol', cumpleanos: '¡Feliz cumpleaños!', emociones: 'Emotions',
-        literatura: 'Literature', verbosAr: '-AR verbs', verbosEr: '-ER verbs', verbosIr: '-IR verbs'
+        literatura: 'Literature', verbosAr: '-AR verbs', verbosEr: '-ER verbs', verbosIr: '-IR verbs',
+        gente: 'People', pronombres: 'Pronouns', teneridioms: 'Tener idioms', numeros: 'Numbers',
+        calendario: 'Calendar', tiempo: 'Weather & seasons', aeropuerto: 'Air travel', rutina: 'Daily routine',
+        restaurante: 'Restaurant', fiestas: 'Holidays', tecnologia: 'Technology', gustar: 'Gustar verbs',
+        preguntas: 'Question words', ropa: 'Clothing', lugares: 'Places in town', casa: 'House & furniture',
+        preposiciones: 'Prepositions', profesiones: 'Professions', animales: 'Animals', hora: 'Telling time', mandatos: 'Classroom commands'
       };
       items.push({
         icon: '📚',
@@ -26903,7 +27443,14 @@
     bolivia: '🇧🇴 Bolivia', venezuela: '🇻🇪 Venezuela', puertorico: '🇵🇷 Puerto Rico',
     diadelosmuertos: '💀 Día de los Muertos', futbol: '⚽ El fútbol',
     cumpleanos: '🎂 ¡Feliz cumpleaños!', verbosAr: '-AR Verbs',
-    verbosEr: '-ER Verbs', verbosIr: '-IR Verbs'
+    verbosEr: '-ER Verbs', verbosIr: '-IR Verbs',
+    gente: 'People', pronombres: 'Pronouns', teneridioms: 'Tener Idioms',
+    numeros: 'Numbers', calendario: 'Calendar', tiempo: 'Weather & Seasons',
+    aeropuerto: '✈️ Air Travel', rutina: 'Daily Routine', restaurante: '🍽️ Restaurant',
+    fiestas: '🎉 Holidays', tecnologia: '💻 Technology', gustar: 'Gustar Verbs',
+    preguntas: 'Question Words', ropa: '👕 Clothing', lugares: 'Places in Town',
+    casa: '🏠 House & Furniture', preposiciones: 'Prepositions', profesiones: 'Professions',
+    animales: '🐾 Animals', hora: '🕐 Telling Time', mandatos: 'Classroom Commands'
   };
 
   function startMatchGame() {
@@ -27608,7 +28155,12 @@
     entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
   }, { threshold: 0.1 });
   document.querySelectorAll('section').forEach(s => { s.classList.add('reveal'); obs.observe(s); });
+
+  // Bridge for external modules (e.g. practice-games.js) so we can keep growing
+  // content without pushing index.html past GitHub's single-file size limit.
+  window.ELP = { decks, GAMES };
 </script>
+<script src="practice-games.js"></script>
 
 </body>
 </html>
