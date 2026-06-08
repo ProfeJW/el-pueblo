@@ -1679,6 +1679,56 @@
     transform: translateY(-2px);
     box-shadow: 0 6px 14px rgba(45, 35, 25, 0.06);
   }
+  /* Can-Do PDF list rows */
+  .candoc-row {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 11px 16px;
+    background: var(--card-bg, var(--paper));
+    border: 1px solid var(--line);
+    border-radius: 6px;
+    text-decoration: none;
+    color: var(--ink);
+    transition: all 0.18s ease;
+  }
+  .candoc-row:hover {
+    border-color: var(--ink);
+    transform: translateX(2px);
+    box-shadow: 0 4px 12px -4px rgba(31, 26, 20, 0.1);
+  }
+  .candoc-tag {
+    flex-shrink: 0;
+    min-width: 46px;
+    text-align: center;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--paper);
+    background: var(--ocre);
+    border-radius: 4px;
+    padding: 4px 8px;
+  }
+  .candoc-body { flex: 1; min-width: 0; }
+  .candoc-name {
+    display: block;
+    font-family: 'DM Serif Display', serif;
+    font-size: 16px;
+    line-height: 1.2;
+  }
+  .candoc-desc {
+    display: block;
+    font-size: 13px;
+    color: var(--ink-soft);
+    margin-top: 1px;
+  }
+  .candoc-dl {
+    flex-shrink: 0;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 14px;
+    color: var(--ink-soft);
+  }
   .resource-card .resource-icon {
     width: 44px;
     height: 44px;
@@ -5625,6 +5675,67 @@
           <div class="resource-host">actfl.org</div>
         </div>
         <span class="resource-arrow">↗</span>
+      </a>
+
+    </div>
+
+    <!-- NCSSFL-ACTFL Can-Do Statements — downloadable PDFs (list view) -->
+    <h4 style="font-family: 'DM Serif Display', serif; font-size: 18px; font-weight: 400; margin: 30px 0 6px;">Can-Do Statements <em style="color: var(--ink-soft); font-style: italic; font-size: 14px;">— download (PDF)</em></h4>
+    <p style="font-size: 13px; color: var(--ink-soft); line-height: 1.5; margin: 0 0 14px;">The full NCSSFL-ACTFL document set. Tap any title to open the PDF.</p>
+    <div id="canDoList" style="display: flex; flex-direction: column; gap: 8px; max-width: 760px;">
+
+      <a href="standards/World-Readiness-Standards.pdf" target="_blank" rel="noopener" class="candoc-row">
+        <span class="candoc-tag">PDF</span>
+        <span class="candoc-body"><span class="candoc-name">World-Readiness Standards</span><span class="candoc-desc">The full 5 C's framework document.</span></span>
+        <span class="candoc-dl">↓</span>
+      </a>
+
+      <a href="standards/CanDo-Intro-Overview.pdf" target="_blank" rel="noopener" class="candoc-row">
+        <span class="candoc-tag">PDF</span>
+        <span class="candoc-body"><span class="candoc-name">Introduction &amp; Overview</span><span class="candoc-desc">How the Can-Do Statements work and how to use them.</span></span>
+        <span class="candoc-dl">↓</span>
+      </a>
+
+      <a href="standards/CanDo-Novice.pdf" target="_blank" rel="noopener" class="candoc-row">
+        <span class="candoc-tag">NOV</span>
+        <span class="candoc-body"><span class="candoc-name">Novice</span><span class="candoc-desc">Can-Do goals at the Novice level (Low · Mid · High).</span></span>
+        <span class="candoc-dl">↓</span>
+      </a>
+
+      <a href="standards/CanDo-Intermediate.pdf" target="_blank" rel="noopener" class="candoc-row">
+        <span class="candoc-tag">INT</span>
+        <span class="candoc-body"><span class="candoc-name">Intermediate</span><span class="candoc-desc">Creating with language — from sentences to connected paragraphs.</span></span>
+        <span class="candoc-dl">↓</span>
+      </a>
+
+      <a href="standards/CanDo-Advanced.pdf" target="_blank" rel="noopener" class="candoc-row">
+        <span class="candoc-tag">ADV</span>
+        <span class="candoc-body"><span class="candoc-name">Advanced</span><span class="candoc-desc">Paragraph-level narration and description across time frames.</span></span>
+        <span class="candoc-dl">↓</span>
+      </a>
+
+      <a href="standards/CanDo-Superior-Distinguished.pdf" target="_blank" rel="noopener" class="candoc-row">
+        <span class="candoc-tag">SUP</span>
+        <span class="candoc-body"><span class="candoc-name">Superior &amp; Distinguished</span><span class="candoc-desc">The highest proficiency benchmarks.</span></span>
+        <span class="candoc-dl">↓</span>
+      </a>
+
+      <a href="standards/CanDo-Comparison.pdf" target="_blank" rel="noopener" class="candoc-row">
+        <span class="candoc-tag">ALL</span>
+        <span class="candoc-body"><span class="candoc-name">Level Comparison</span><span class="candoc-desc">All proficiency levels side by side.</span></span>
+        <span class="candoc-dl">↓</span>
+      </a>
+
+      <a href="standards/CanDo-Benchmarks-Indicators.pdf" target="_blank" rel="noopener" class="candoc-row">
+        <span class="candoc-tag">CHART</span>
+        <span class="candoc-body"><span class="candoc-name">Benchmarks &amp; Indicators</span><span class="candoc-desc">Benchmarks with sample indicators (11×17 chart).</span></span>
+        <span class="candoc-dl">↓</span>
+      </a>
+
+      <a href="standards/CanDo-Intercultural-Reflection-Tool.pdf" target="_blank" rel="noopener" class="candoc-row">
+        <span class="candoc-tag">IC</span>
+        <span class="candoc-body"><span class="candoc-name">Intercultural &amp; Reflection Tool</span><span class="candoc-desc">Intercultural communication Can-Do plus a self-reflection tool.</span></span>
+        <span class="candoc-dl">↓</span>
       </a>
 
     </div>
