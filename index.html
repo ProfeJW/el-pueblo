@@ -5654,6 +5654,18 @@
       <p>Pick any vocab deck and race the clock to match Spanish to English. New every time.</p>
       <div class="game-reward">Any of 55+ decks · beat your best time</div>
     </a>
+    <a href="#/game/articles" class="game-card">
+      <div class="game-icon">🏷️</div>
+      <h3>El · la · <em>los · las</em></h3>
+      <p>Tap the right article for each noun. Choose your level — from el/la up to un/una/unos/unas.</p>
+      <div class="game-reward">4 levels · 10 rounds · up to 30 Lucas</div>
+    </a>
+    <a href="#/game/articles-translate" class="game-card">
+      <div class="game-icon">🔁</div>
+      <h3>Articles <em>translate</em></h3>
+      <p>"a ball" → "una pelota". Translate the phrase with its article. Pick your level.</p>
+      <div class="game-reward">4 levels · 10 rounds · up to 40 Lucas</div>
+    </a>
     <a href="#/game/days" class="game-card">
       <div class="game-icon">📅</div>
       <h3>Days of the <em>week</em></h3>
@@ -25613,6 +25625,10 @@
       startMatchGame();
       return;
     }
+    if (gameId === 'articles' || gameId === 'articles-translate') {
+      renderArticleLevelPicker(gameId);
+      return;
+    }
     const game = GAMES[gameId];
     const container = document.getElementById('game-detail-content');
     if (!game) {
@@ -25885,6 +25901,7 @@
 
     gameState.current = game.generate();
     gameState.round++;
+    gameState._answered = false;
 
     // For sprints: timer starts on the first round render (so students aren't
     // penalized for the brief moment between clicking "Play" and seeing Q1)
@@ -25898,6 +25915,30 @@
          </div>`
       : '';
 
+    // Interaction: either tappable choice buttons (when the round provides
+    // `choices`, e.g. the article game) or the standard typed-answer input.
+    const interactionHtml = (gameState.current.choices && Array.isArray(gameState.current.choices))
+      ? `<div class="game-choice-row" id="choiceRow" style="display:flex;flex-wrap:wrap;gap:10px;margin-top:8px;">
+           ${gameState.current.choices.map(ch =>
+             `<button type="button" class="game-choice" data-val="${ch}"
+                style="border:1px solid var(--paper);background:transparent;color:var(--paper);font-size:18px;padding:12px 22px;min-width:84px;border-radius:3px;cursor:pointer;font-family:'JetBrains Mono',monospace;"
+                onclick="submitChoice('${ch}')">${ch}</button>`).join('')}
+         </div>
+         <div class="game-feedback" id="gameFeedback">&nbsp;</div>
+         <div style="margin-top: 24px;">
+           <button class="btn" style="border-color: var(--paper); color: var(--paper);" onclick="skipGameRound()">Skip</button>
+         </div>`
+      : `<div class="game-input-row">
+           <input type="text" class="game-input" id="gameInput" autocomplete="off" autocapitalize="off" spellcheck="false"
+                  placeholder="${gameState.current.hint || 'Type your answer…'}"
+                  onkeypress="if(event.key==='Enter') submitGameAnswer()">
+         </div>
+         <div class="game-feedback" id="gameFeedback">&nbsp;</div>
+         <div style="margin-top: 24px;">
+           <button class="btn primary" style="border-color: var(--paper); background: var(--paper); color: var(--ink);" onclick="submitGameAnswer()">Submit ↵</button>
+           <button class="btn" style="border-color: var(--paper); color: var(--paper); margin-left: 8px;" onclick="skipGameRound()">Skip</button>
+         </div>`;
+
     container.innerHTML = `
       <div class="game-prompt-card">
         <div class="game-progress">
@@ -25906,16 +25947,7 @@
         </div>
         <div class="game-prompt-label">${gameState.current.promptLabel}</div>
         <div class="game-prompt-display${gameState.gameId === 'tu-usted' || gameState.gameId === 'object-pronouns' ? ' scenario' : ''}">${gameState.current.promptDisplay}</div>
-        <div class="game-input-row">
-          <input type="text" class="game-input" id="gameInput" autocomplete="off" autocapitalize="off" spellcheck="false"
-                 placeholder="${gameState.current.hint || 'Type your answer…'}"
-                 onkeypress="if(event.key==='Enter') submitGameAnswer()">
-        </div>
-        <div class="game-feedback" id="gameFeedback">&nbsp;</div>
-        <div style="margin-top: 24px;">
-          <button class="btn primary" style="border-color: var(--paper); background: var(--paper); color: var(--ink);" onclick="submitGameAnswer()">Submit ↵</button>
-          <button class="btn" style="border-color: var(--paper); color: var(--paper); margin-left: 8px;" onclick="skipGameRound()">Skip</button>
-        </div>
+        ${interactionHtml}
       </div>
     `;
 
@@ -26002,6 +26034,44 @@
       isCorrect: false
     });
     renderGameRound();
+  }
+
+  // Tap-button answer (used by choice-based games like the article picker).
+  // Mirrors submitGameAnswer's scoring/history, but grades a button value and
+  // gives visual feedback on the buttons instead of a text input.
+  function submitChoice(val) {
+    if (!gameState || !gameState.current || gameState._answered) return;
+    gameState._answered = true;
+    const fb = document.getElementById('gameFeedback');
+    const userAnswer = normalize(val);
+    const correct = normalize(gameState.current.answer);
+    let isCorrect;
+    if (gameState.current.validAnswers && Array.isArray(gameState.current.validAnswers)) {
+      isCorrect = gameState.current.validAnswers.some(ans => normalize(ans) === userAnswer);
+    } else {
+      isCorrect = userAnswer === correct;
+    }
+    if (isCorrect) gameState.score++;
+
+    // Color the buttons: green on the right answer, red on a wrong pick.
+    document.querySelectorAll('#choiceRow .game-choice').forEach(b => {
+      b.disabled = true;
+      const v = normalize(b.getAttribute('data-val') || '');
+      if (v === correct) { b.style.background = 'var(--verde)'; b.style.color = '#fff'; b.style.borderColor = 'var(--verde)'; }
+      else if (v === userAnswer && !isCorrect) { b.style.background = 'var(--rojo)'; b.style.color = '#fff'; b.style.borderColor = 'var(--rojo)'; }
+    });
+    if (fb) {
+      if (isCorrect) { fb.textContent = '✓ Correct!'; fb.className = 'game-feedback correct'; }
+      else { fb.textContent = '✗ Correct answer: ' + gameState.current.answer; fb.className = 'game-feedback wrong'; }
+    }
+
+    gameState.history.push({
+      prompt: gameState.current.promptDisplay,
+      userAnswer: val,
+      correctAnswer: gameState.current.answer,
+      isCorrect
+    });
+    setTimeout(() => renderGameRound(), 1300);
   }
 
   function renderGameResults() {
@@ -26370,6 +26440,169 @@
     entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
   }, { threshold: 0.1 });
   document.querySelectorAll('section').forEach(s => { s.classList.add('reveal'); obs.observe(s); });
+
+  // ============================================================================
+  // ARTICLE GAMES — el/la/los/las and un/una/unos/unas, with levels
+  // ----------------------------------------------------------------------------
+  // Two games sharing one engine:
+  //   • articles            → see a noun, tap the correct article.
+  //   • articles-translate  → see "a ball", type "una pelota" (article + noun).
+  // Both open a level chooser first (like Match), so students play whichever
+  // they want:  L1 el/la · L2 el/la/los/las · L3 un/una · L4 un/una/unos/unas.
+  //
+  // Accuracy note: we ONLY use nouns that already carry an explicit definite
+  // article in the deck (el/la/los/las ...). The definite answer is that literal
+  // article (so "el agua" stays "el", never the naive "la"), and the indefinite
+  // is mapped by FORM — el→un, la→una, los→unos, las→unas — which also handles
+  // the stressed-a exception correctly ("un agua"). No noun is ever pluralized,
+  // so we never invent an irregular plural.
+  // ============================================================================
+  const DEF_ARTICLES = ['el', 'la', 'los', 'las'];
+  const DEF_TO_INDEF = { el: 'un', la: 'una', los: 'unos', las: 'unas' };
+
+  function elpCleanGloss(back) {
+    let g = String(back || '');
+    g = g.split('(')[0].split('/')[0].split(/[;,]/)[0].trim();
+    g = g.replace(/^(the|a|an|some)\s+/i, ''); // strip an English article so we add our own
+    return g;
+  }
+
+  let _articleNouns = null;
+  function articleNounPool() {
+    if (_articleNouns) return _articleNouns;
+    _articleNouns = [];
+    for (const k in decks) {
+      const arr = decks[k];
+      if (!Array.isArray(arr)) continue;
+      for (const c of arr) {
+        if (!c || !c.word || !c.back) continue;
+        const parts = String(c.word).trim().split(/\s+/);
+        const art = parts[0].toLowerCase();
+        if (DEF_ARTICLES.indexOf(art) === -1) continue;
+        const bare = parts.slice(1).join(' ');
+        if (!bare) continue;
+        _articleNouns.push({
+          def: art,
+          indef: DEF_TO_INDEF[art],
+          plural: (art === 'los' || art === 'las'),
+          bare: bare,
+          gloss: elpCleanGloss(c.back)
+        });
+      }
+    }
+    return _articleNouns;
+  }
+
+  function elpPick(arr) { return arr[Math.floor(Math.random() * arr.length)]; }
+
+  function articleRound(level) {
+    const pool = articleNounPool();
+    let options, candidates, indef;
+    if (level === 2)      { options = ['el', 'la', 'los', 'las'];          candidates = pool;                       indef = false; }
+    else if (level === 3) { options = ['un', 'una'];                       candidates = pool.filter(n => !n.plural); indef = true;  }
+    else if (level === 4) { options = ['un', 'una', 'unos', 'unas'];       candidates = pool;                       indef = true;  }
+    else                  { options = ['el', 'la'];                        candidates = pool.filter(n => !n.plural); indef = false; }
+    if (!candidates.length) candidates = pool;
+    const n = elpPick(candidates);
+    const answer = indef ? n.indef : n.def;
+    return {
+      promptLabel: indef ? 'Which article? ( a / some … )' : 'Which article? ( the … )',
+      promptDisplay: '<span style="font-size:36px;font-family:\'DM Serif Display\',serif;">' + n.bare + '</span>'
+        + (n.gloss ? '<div style="margin-top:10px;font-size:14px;color:var(--ink-soft);">“' + n.gloss + '”</div>' : ''),
+      answer: answer,
+      validAnswers: [answer],
+      choices: options
+    };
+  }
+
+  function articleTranslateRound(level) {
+    const pool = articleNounPool().filter(n => n.gloss);
+    let candidates, indef;
+    if (level === 2)      { candidates = pool;                       indef = false; }
+    else if (level === 3) { candidates = pool.filter(n => !n.plural); indef = true;  }
+    else if (level === 4) { candidates = pool;                       indef = true;  }
+    else                  { candidates = pool.filter(n => !n.plural); indef = false; }
+    if (!candidates.length) candidates = pool;
+    const n = elpPick(candidates);
+    let english, answer;
+    if (indef) {
+      english = (n.plural ? 'some ' : 'a ') + n.gloss;
+      answer = n.indef + ' ' + n.bare;
+    } else {
+      english = 'the ' + n.gloss;
+      answer = n.def + ' ' + n.bare;
+    }
+    return {
+      promptLabel: 'Translate to Spanish — include the article',
+      promptDisplay: '<span style="font-size:30px;font-family:\'DM Serif Display\',serif;">' + english + '</span>',
+      answer: answer,
+      validAnswers: [answer],
+      hint: indef ? 'e.g., una casa' : 'e.g., la casa'
+    };
+  }
+
+  GAMES['articles'] = {
+    title: 'El · la · <em>los · las</em>',
+    icon: '🏷️',
+    maxReward: 30,
+    generate: function () { return articleRound((gameState && gameState.level) || 1); }
+  };
+  GAMES['articles-translate'] = {
+    title: 'Articles <em>translate</em>',
+    icon: '🔁',
+    maxReward: 40,
+    generate: function () { return articleTranslateRound((gameState && gameState.level) || 1); }
+  };
+
+  const ARTICLE_LEVELS = [
+    { n: 1, sub: 'el · la',                desc: 'Singular “the” — masculine vs. feminine.' },
+    { n: 2, sub: 'el · la · los · las',    desc: 'Add plurals — singular & plural “the”.' },
+    { n: 3, sub: 'un · una',               desc: 'Singular “a / an”.' },
+    { n: 4, sub: 'un · una · unos · unas', desc: '“a” and “some” — singular & plural.' }
+  ];
+
+  function renderArticleLevelPicker(gameId) {
+    const container = document.getElementById('game-detail-content');
+    if (!container) return;
+    const isTranslate = (gameId === 'articles-translate');
+    const title = isTranslate ? 'Articles <em style="color:var(--rojo);font-style:italic;">translate</em>'
+                              : 'El · la · <em style="color:var(--rojo);font-style:italic;">los · las</em>';
+    const blurb = isTranslate
+      ? 'Pick a level, then translate each phrase with its article — “a ball” → “una pelota”. 10 rounds.'
+      : 'Pick a level, then tap the correct article for each noun. 10 rounds.';
+    container.innerHTML =
+      '<a href="#/juegos" class="aviso-link" style="display:inline-block;margin-bottom:16px;">← Back to games</a>'
+      + '<div class="match-intro">'
+      +   '<h2 style="font-family:\'DM Serif Display\',serif;font-size:32px;font-weight:400;margin-bottom:8px;">' + title + '</h2>'
+      +   '<p style="color:var(--ink-soft);font-size:15px;margin-bottom:24px;">' + blurb + '</p>'
+      +   '<div class="match-deck-grid">'
+      +     ARTICLE_LEVELS.map(function (lv) {
+              return '<button class="match-deck-btn" onclick="beginArticleGame(\'' + gameId + '\',' + lv.n + ')">'
+                +      '<span class="mdb-label">Level ' + lv.n + ' · ' + lv.sub + '</span>'
+                +      '<span class="mdb-best" style="text-transform:none;letter-spacing:0;">' + lv.desc + '</span>'
+                +    '</button>';
+            }).join('')
+      +   '</div>'
+      + '</div>';
+  }
+
+  function beginArticleGame(gameId, level) {
+    if (!GAMES[gameId]) return;
+    gameState = {
+      gameId: gameId,
+      level: level,
+      round: 0,
+      totalRounds: 10,
+      score: 0,
+      current: null,
+      history: [],
+      isSprint: false,
+      sprintStart: null,
+      sprintEnd: null,
+      _answered: false
+    };
+    renderGameRound();
+  }
 
   // Bridge for external modules (e.g. practice-games.js) so we can keep growing
   // content without pushing index.html past GitHub's single-file size limit.
