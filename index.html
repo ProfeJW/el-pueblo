@@ -3445,6 +3445,47 @@
   }
 
   /* GAMES PAGE */
+  /* Quick-jump bar — small pills at the top that go straight to each game */
+  .game-jump {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 36px;
+    padding: 16px 18px;
+    background: var(--paper);
+    border: 1px solid var(--line);
+    border-radius: 4px;
+  }
+  .game-jump-label {
+    flex-basis: 100%;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+    margin-bottom: 2px;
+  }
+  .game-jump a {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 6px 12px;
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    background: var(--paper-deep);
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px;
+    color: var(--ink);
+    text-decoration: none;
+    white-space: nowrap;
+    transition: border-color 0.15s ease, color 0.15s ease, transform 0.15s ease, box-shadow 0.15s ease;
+  }
+  .game-jump a:hover {
+    border-color: var(--rojo);
+    color: var(--rojo);
+    transform: translateY(-1px);
+    box-shadow: 0 2px 8px rgba(31, 26, 20, 0.1);
+  }
   .game-grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
@@ -5701,9 +5742,30 @@
     <h2>Practice <em>games</em></h2>
     <div class="section-num">★ / Juegos</div>
   </div>
-  <p style="font-size: 18px; color: var(--ink-soft); line-height: 1.5; max-width: 640px; margin-bottom: 32px;">
-    Quick games for the basics — days, dates, and numbers. Each game is 10 rounds. Score-based Lucas: the better you do, the more you earn.
+  <p style="font-size: 18px; color: var(--ink-soft); line-height: 1.5; max-width: 640px; margin-bottom: 24px;">
+    Vocab, numbers, dates, grammar — most games run both directions (Spanish→English and English→Spanish). Each game is 10 rounds. Score-based Lucas: the better you do, the more you earn.
   </p>
+
+  <!-- Quick jump — skip the scrolling, go straight to a game -->
+  <nav class="game-jump">
+    <span class="game-jump-label">Quick jump — tap a game to play</span>
+    <a href="#/game/match">🃏 Match it</a>
+    <a href="#/game/vocab-type">⌨️ Type it</a>
+    <a href="#/game/vocab-mc">✅ Pick it</a>
+    <a href="#/game/plurals">🔁 Plurals</a>
+    <a href="#/game/days">📅 Days</a>
+    <a href="#/game/dates">🗓️ Dates</a>
+    <a href="#/game/numbers-small">🔢 1–30</a>
+    <a href="#/game/numbers-mid">🔠 30–100</a>
+    <a href="#/game/numbers-big">💯 100–9999</a>
+    <a href="#/game/time">🕐 Time</a>
+    <a href="#/game/weather">🌤️ Weather</a>
+    <a href="#/game/tu-usted">🗣️ Tú/Usted</a>
+    <a href="#/game/adjectives">✍️ Adjectives</a>
+    <a href="#/game/reflexives">🚿 Reflexives</a>
+    <a href="#/game/object-pronouns">🎯 Pronouns</a>
+    <a href="javascript:void(0)" onclick="document.getElementById('sprintSection').scrollIntoView({behavior:'smooth'})">⚡ Verb sprints</a>
+  </nav>
 
   <!-- Game selector -->
   <div class="game-grid" id="gameGrid">
@@ -5737,46 +5799,64 @@
       <p>The reverse: "una pelota" → "a ball". Read the Spanish, translate into English. Pick your level.</p>
       <div class="game-reward">4 levels · 10 rounds · up to 40 Lucas</div>
     </a>
+    <a href="#/game/vocab-type" class="game-card">
+      <div class="game-icon">⌨️</div>
+      <h3>Type <em>it</em></h3>
+      <p>Same decks, no tiles: we show a word, you type the translation — answer in Spanish, English, or mixed.</p>
+      <div class="game-reward">10 rounds · up to 30 Lucas</div>
+    </a>
+    <a href="#/game/vocab-mc" class="game-card">
+      <div class="game-icon">✅</div>
+      <h3>Pick <em>it</em></h3>
+      <p>Multiple choice vocab: four answers, one is right. The friendly way into a new deck.</p>
+      <div class="game-reward">10 rounds · up to 20 Lucas</div>
+    </a>
+    <a href="#/game/plurals" class="game-card">
+      <div class="game-icon">🔁</div>
+      <h3>Singular ↔ <em>plural</em></h3>
+      <p>Los lápices → el lápiz, la canción → las canciones. Both directions, accents and all.</p>
+      <div class="game-reward">10 rounds · up to 35 Lucas</div>
+    </a>
     <a href="#/game/days" class="game-card">
       <div class="game-icon">📅</div>
       <h3>Days of the <em>week</em></h3>
-      <p>Lunes, martes, miércoles… can you name them all?</p>
+      <p>Lunes, martes, miércoles… both directions: Spanish→English and back.</p>
       <div class="game-reward">10 rounds · up to 25 Lucas</div>
     </a>
     <a href="#/game/dates" class="game-card">
       <div class="game-icon">🗓️</div>
       <h3>Speaking <em>dates</em></h3>
-      <p>How do you say "March 15" in Spanish? Practice writing dates.</p>
+      <p>"March 15" → el quince de marzo — and Spanish dates back into English.</p>
       <div class="game-reward">10 rounds · up to 35 Lucas</div>
     </a>
     <a href="#/game/numbers-small" class="game-card">
       <div class="game-icon">🔢</div>
       <h3>Numbers <em>1–30</em></h3>
-      <p>Uno, dos, tres… start small. Master the foundations.</p>
+      <p>Uno, dos, tres… write the Spanish, or read the Spanish and type the digits.</p>
       <div class="game-reward">10 rounds · up to 25 Lucas</div>
     </a>
     <a href="#/game/numbers-mid" class="game-card">
       <div class="game-icon">🔠</div>
       <h3>Numbers <em>30–100</em></h3>
-      <p>Treinta y cinco… learn the "y" pattern and the trickier tens.</p>
+      <p>Treinta y cinco… the "y" pattern, both directions: words ↔ digits.</p>
       <div class="game-reward">10 rounds · up to 35 Lucas</div>
     </a>
     <a href="#/game/numbers-big" class="game-card">
       <div class="game-icon">💯</div>
       <h3>Numbers <em>100–9999</em></h3>
-      <p>Trescientos cuarenta y siete… big numbers take big concentration.</p>
+      <p>Trescientos cuarenta y siete… big numbers, words ↔ digits.</p>
       <div class="game-reward">10 rounds · up to 50 Lucas</div>
     </a>
     <a href="#/game/time" class="game-card">
       <div class="game-icon">🕐</div>
       <h3>Telling <em>time</em></h3>
-      <p>¿Qué hora es? "Son las tres y media" — practice every form.</p>
+      <p>¿Qué hora es? Write the Spanish — or read "son las tres y media" and type 3:30.</p>
       <div class="game-reward">10 rounds · up to 40 Lucas</div>
     </a>
     <a href="#/game/weather" class="game-card">
       <div class="game-icon">🌤️</div>
       <h3>The <em>weather</em></h3>
-      <p>Hace sol, llueve, está nublado — describe what you see.</p>
+      <p>Hace sol, llueve, está nublado — describe scenes in Spanish, translate back to English.</p>
       <div class="game-reward">10 rounds · up to 30 Lucas</div>
     </a>
     <a href="#/game/tu-usted" class="game-card">
@@ -5806,7 +5886,7 @@
   </div>
 
   <!-- VERB CONJUGATION SPRINTS — separate section with timer + leaderboard -->
-  <div style="margin-top: 64px; padding-top: 32px; border-top: 1px solid var(--line);">
+  <div id="sprintSection" style="margin-top: 64px; padding-top: 32px; border-top: 1px solid var(--line);">
     <div style="display: flex; align-items: baseline; justify-content: space-between; margin-bottom: 6px;">
       <h3 style="font-family: 'DM Serif Display', serif; font-size: 24px; font-weight: 400; margin: 0;">Verb conjugation <em style="color: var(--rojo); font-style: italic;">sprints</em></h3>
       <div style="font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.15em; color: var(--ink-soft); text-transform: uppercase;">10/10 to qualify · time matters</div>
@@ -8094,7 +8174,7 @@
       if (parsed.completedReadings && typeof parsed.completedReadings === 'object') s.completedReadings = parsed.completedReadings;
       if (parsed.completedLessons && typeof parsed.completedLessons === 'object') s.completedLessons = parsed.completedLessons;
       // Game best scores
-      ['game_best_days', 'game_best_dates', 'game_best_numbers-small', 'game_best_numbers-mid', 'game_best_numbers-big', 'game_best_time', 'game_best_weather', 'game_best_tu-usted', 'game_best_adjectives', 'game_best_reflexives', 'game_best_object-pronouns'].forEach(k => {
+      ['game_best_days', 'game_best_dates', 'game_best_numbers-small', 'game_best_numbers-mid', 'game_best_numbers-big', 'game_best_time', 'game_best_weather', 'game_best_tu-usted', 'game_best_adjectives', 'game_best_reflexives', 'game_best_object-pronouns', 'game_best_plurals', 'game_best_vocab-type', 'game_best_vocab-mc'].forEach(k => {
         if (parsed[k] != null) s[k] = parsed[k];
       });
       // Match game best times + listening progress
@@ -8154,6 +8234,9 @@
         game_best_adjectives: STATE.game_best_adjectives || 0,
         game_best_reflexives: STATE.game_best_reflexives || 0,
         'game_best_object-pronouns': STATE['game_best_object-pronouns'] || 0,
+        game_best_plurals: STATE.game_best_plurals || 0,
+        'game_best_vocab-type': STATE['game_best_vocab-type'] || 0,
+        'game_best_vocab-mc': STATE['game_best_vocab-mc'] || 0,
         matchBest: STATE.matchBest || {},
         completedDictation: STATE.completedDictation || {},
         completedComprehension: STATE.completedComprehension || {},
@@ -25385,6 +25468,15 @@
   }
 
   // Game definitions
+  // "15" → "th", "21" → "st" — for accepting "March 15th"-style answers
+  function enOrdinalSuffix(n) {
+    if (n % 100 >= 11 && n % 100 <= 13) return 'th';
+    if (n % 10 === 1) return 'st';
+    if (n % 10 === 2) return 'nd';
+    if (n % 10 === 3) return 'rd';
+    return 'th';
+  }
+
   const GAMES = {
     // Sprint games — all have isSprint:true. 10/10 to qualify for the leaderboard;
     // partial scores still earn Lucas based on accuracy.
@@ -25473,6 +25565,65 @@
         }
       }
     },
+    'plurals': {
+      title: 'Singular ↔ <em>plural</em>',
+      icon: '🔁',
+      maxReward: 35,
+      generate: () => {
+        // Pairs cover the core rules: vowel +s, consonant +es, -z → -ces,
+        // accents that appear (exámenes) and disappear (canciones),
+        // and no-change words (el paraguas → los paraguas).
+        const pairs = [
+          ['el libro', 'los libros'], ['la mesa', 'las mesas'], ['la casa', 'las casas'],
+          ['el estudiante', 'los estudiantes'], ['la clase', 'las clases'],
+          ['el papel', 'los papeles'], ['el profesor', 'los profesores'],
+          ['la ciudad', 'las ciudades'], ['el reloj', 'los relojes'],
+          ['el lápiz', 'los lápices'], ['la luz', 'las luces'],
+          ['la voz', 'las voces'], ['el pez', 'los peces'],
+          ['la canción', 'las canciones'], ['la región', 'las regiones'],
+          ['el autobús', 'los autobuses'], ['el examen', 'los exámenes'],
+          ['el joven', 'los jóvenes'], ['la imagen', 'las imágenes'],
+          ['la mano', 'las manos'], ['el problema', 'los problemas'],
+          ['el mapa', 'los mapas'], ['la flor', 'las flores'],
+          ['el paraguas', 'los paraguas'], ['el cumpleaños', 'los cumpleaños']
+        ];
+        const pick = pairs[Math.floor(Math.random() * pairs.length)];
+        const stripArticle = s => s.replace(/^(el|la|los|las)\s+/, '');
+        // Half the time singular→plural, half plural→singular
+        if (Math.random() < 0.5) {
+          return {
+            promptLabel: 'Make it plural (article too)',
+            promptDisplay: pick[0],
+            answer: pick[1],
+            validAnswers: [pick[1], stripArticle(pick[1])],
+            hint: 'los/las + plural noun'
+          };
+        }
+        return {
+          promptLabel: 'Make it singular (article too)',
+          promptDisplay: pick[1],
+          answer: pick[0],
+          validAnswers: [pick[0], stripArticle(pick[0])],
+          hint: 'el/la + singular noun'
+        };
+      }
+    },
+    // Vocab games run their own deck-picker flow (see startVocabGame) — these
+    // entries exist so they show up in the best-scores grid and reward tiers.
+    'vocab-type': {
+      title: 'Vocab · <em>Type it</em>',
+      icon: '⌨️',
+      maxReward: 30,
+      isCustomFlow: true,
+      generate: () => null
+    },
+    'vocab-mc': {
+      title: 'Vocab · <em>Pick it</em>',
+      icon: '✅',
+      maxReward: 20,
+      isCustomFlow: true,
+      generate: () => null
+    },
     'dates': {
       title: 'Speaking <em>dates</em>',
       icon: '🗓️',
@@ -25483,12 +25634,35 @@
         const day = Math.floor(Math.random() * 28) + 1;
         // Spanish format: "el [day] de [month]" — for the first, "el primero de [month]"
         const dayWord = day === 1 ? 'primero' : numberToSpanish(day);
-        return {
-          promptLabel: 'Write this date in Spanish',
-          promptDisplay: MONTHS_EN[month] + ' ' + day,
-          answer: 'el ' + dayWord + ' de ' + MONTHS_ES[month],
-          hint: 'Format: "el [day] de [month]" — use "primero" for the 1st'
-        };
+        const esDate = 'el ' + dayWord + ' de ' + MONTHS_ES[month];
+        // Half the time EN→ES, half ES→EN
+        if (Math.random() < 0.5) {
+          return {
+            promptLabel: 'Write this date in Spanish',
+            promptDisplay: MONTHS_EN[month] + ' ' + day,
+            answer: esDate,
+            validAnswers: day === 1
+              ? [esDate, 'el uno de ' + MONTHS_ES[month]]
+              : [esDate],
+            hint: 'Format: "el [day] de [month]" — use "primero" for the 1st'
+          };
+        } else {
+          const mEn = MONTHS_EN[month];
+          const ord = enOrdinalSuffix(day);
+          return {
+            promptLabel: 'Write this date in English',
+            promptDisplay: esDate,
+            answer: mEn + ' ' + day,
+            validAnswers: [
+              mEn + ' ' + day,
+              mEn + ' ' + day + ord,
+              'the ' + day + ord + ' of ' + mEn,
+              day + ' ' + mEn,
+              day + ord + ' of ' + mEn
+            ],
+            hint: 'Like "' + MONTHS_EN[(month + 5) % 12] + ' 12"'
+          };
+        }
       }
     },
     'numbers-small': {
@@ -25497,11 +25671,19 @@
       maxReward: 25,
       generate: () => {
         const n = Math.floor(Math.random() * 30) + 1;
+        if (Math.random() < 0.5) {
+          return {
+            promptLabel: 'Write this number in Spanish',
+            promptDisplay: String(n),
+            answer: numberToSpanish(n),
+            hint: 'One word, lowercase'
+          };
+        }
         return {
-          promptLabel: 'Write this number in Spanish',
-          promptDisplay: String(n),
-          answer: numberToSpanish(n),
-          hint: 'One word, lowercase'
+          promptLabel: 'What number is this? Type the digits',
+          promptDisplay: numberToSpanish(n),
+          answer: String(n),
+          hint: 'Digits, like 14'
         };
       }
     },
@@ -25523,11 +25705,19 @@
           // Occasionally 100
           n = 100;
         }
+        if (Math.random() < 0.5) {
+          return {
+            promptLabel: 'Write this number in Spanish',
+            promptDisplay: String(n),
+            answer: numberToSpanish(n),
+            hint: '"treinta y cinco" — use "y" between tens and ones'
+          };
+        }
         return {
-          promptLabel: 'Write this number in Spanish',
-          promptDisplay: String(n),
-          answer: numberToSpanish(n),
-          hint: '"treinta y cinco" — use "y" between tens and ones'
+          promptLabel: 'What number is this? Type the digits',
+          promptDisplay: numberToSpanish(n),
+          answer: String(n),
+          hint: 'Digits, like 47'
         };
       }
     },
@@ -25542,11 +25732,20 @@
         if (r < 0.2) n = (Math.floor(Math.random() * 9) + 1) * 100; // round hundreds
         else if (r < 0.4) n = (Math.floor(Math.random() * 9) + 1) * 1000; // round thousands
         else n = Math.floor(Math.random() * 9900) + 100; // any
+        if (Math.random() < 0.5) {
+          return {
+            promptLabel: 'Write this number in Spanish',
+            promptDisplay: n.toLocaleString('en-US'),
+            answer: numberToSpanish(n),
+            hint: 'Use "y" between tens and ones (cuarenta y cinco). Use "ciento" for 100s combined with more.'
+          };
+        }
         return {
-          promptLabel: 'Write this number in Spanish',
-          promptDisplay: n.toLocaleString('en-US'),
-          answer: numberToSpanish(n),
-          hint: 'Use "y" between tens and ones (cuarenta y cinco). Use "ciento" for 100s combined with more.'
+          promptLabel: 'What number is this? Type the digits',
+          promptDisplay: numberToSpanish(n),
+          answer: n.toLocaleString('en-US'),
+          validAnswers: [String(n), n.toLocaleString('en-US')],
+          hint: 'Digits, like 1250'
         };
       }
     },
@@ -25562,12 +25761,22 @@
         const minute = minuteOptions[Math.floor(Math.random() * minuteOptions.length)];
         const display = hour + ':' + String(minute).padStart(2, '0');
         const validAnswers = timeToSpanish(hour, minute);
+        if (Math.random() < 0.5) {
+          return {
+            promptLabel: '¿Qué hora es? Write it out in Spanish',
+            promptDisplay: display,
+            answer: validAnswers[0], // primary answer shown if wrong
+            validAnswers: validAnswers, // accept any of these
+            hint: 'Es la una... / Son las dos y media / Son las tres menos cuarto / Andean: cinco para las nueve'
+          };
+        }
+        // Reverse: read the Spanish, type the digital time
         return {
-          promptLabel: '¿Qué hora es?',
-          promptDisplay: display,
-          answer: validAnswers[0], // primary answer shown if wrong
-          validAnswers: validAnswers, // accept any of these
-          hint: 'Es la una... / Son las dos y media / Son las tres menos cuarto / Andean: cinco para las nueve'
+          promptLabel: 'What time is this? Type it in digits',
+          promptDisplay: validAnswers[0],
+          answer: display,
+          validAnswers: [display, String(hour).padStart(2, '0') + ':' + String(minute).padStart(2, '0')],
+          hint: 'Digits, like 3:30'
         };
       }
     },
@@ -25600,7 +25809,18 @@
           { display: 'the rain', label: 'Translate to Spanish (include the article)', answers: ['la lluvia', 'lluvia'], primary: 'la lluvia', hint: 'el/la + noun' },
           { display: 'the cloud', label: 'Translate to Spanish (include the article)', answers: ['la nube', 'nube'], primary: 'la nube', hint: 'el/la + noun' },
           { display: 'the lightning', label: 'Translate to Spanish (include the article)', answers: ['el relámpago', 'relámpago'], primary: 'el relámpago', hint: 'el/la + noun' },
-          { display: 'the thunder', label: 'Translate to Spanish (include the article)', answers: ['el trueno', 'trueno'], primary: 'el trueno', hint: 'el/la + noun' }
+          { display: 'the thunder', label: 'Translate to Spanish (include the article)', answers: ['el trueno', 'trueno'], primary: 'el trueno', hint: 'el/la + noun' },
+          // Reverse direction — read the Spanish, answer in English
+          { display: 'Hace sol', label: 'Translate to English', answers: ['it\'s sunny', 'it is sunny', 'its sunny', 'sunny'], primary: 'it\'s sunny', hint: 'In English' },
+          { display: 'Hace frío', label: 'Translate to English', answers: ['it\'s cold', 'it is cold', 'its cold', 'cold'], primary: 'it\'s cold', hint: 'In English' },
+          { display: 'Hace viento', label: 'Translate to English', answers: ['it\'s windy', 'it is windy', 'its windy', 'windy'], primary: 'it\'s windy', hint: 'In English' },
+          { display: 'Está nublado', label: 'Translate to English', answers: ['it\'s cloudy', 'it is cloudy', 'its cloudy', 'cloudy'], primary: 'it\'s cloudy', hint: 'In English' },
+          { display: 'Llueve', label: 'Translate to English', answers: ['it\'s raining', 'it is raining', 'its raining', 'raining', 'it rains'], primary: 'it\'s raining', hint: 'In English' },
+          { display: 'Nieva', label: 'Translate to English', answers: ['it\'s snowing', 'it is snowing', 'its snowing', 'snowing', 'it snows'], primary: 'it\'s snowing', hint: 'In English' },
+          { display: 'Hay niebla', label: 'Translate to English', answers: ['it\'s foggy', 'it is foggy', 'its foggy', 'foggy', 'there is fog', 'there\'s fog'], primary: 'it\'s foggy', hint: 'In English' },
+          { display: 'la lluvia', label: 'Translate to English', answers: ['the rain', 'rain'], primary: 'the rain', hint: 'In English' },
+          { display: 'la nube', label: 'Translate to English', answers: ['the cloud', 'cloud'], primary: 'the cloud', hint: 'In English' },
+          { display: 'el paraguas', label: 'Translate to English', answers: ['the umbrella', 'umbrella'], primary: 'the umbrella', hint: 'In English' }
         ];
         const pick = scenarios[Math.floor(Math.random() * scenarios.length)];
         return {
@@ -26041,6 +26261,8 @@
       renderArticleLevelPicker(gameId);
       return;
     }
+    if (gameId === 'vocab-type') { startVocabGame('type'); return; }
+    if (gameId === 'vocab-mc') { startVocabGame('mc'); return; }
     const game = GAMES[gameId];
     const container = document.getElementById('game-detail-content');
     if (!game) {
@@ -26294,6 +26516,285 @@
   function exitMatch() {
     if (matchState && matchState.timerInterval) clearInterval(matchState.timerInterval);
     renderMatchDeckPicker();
+  }
+
+  // ============================================================================
+  // VOCAB GAMES — Type it (typed translation) & Pick it (multiple choice).
+  // ----------------------------------------------------------------------------
+  // Deck-powered like Match it: pick any vocab deck, choose which language you
+  // answer in (Spanish, English, or mixed), then 10 rounds. Score-based Lucas
+  // with the same tiers as the other games; best score saved per game.
+  // ============================================================================
+  let vocabState = null;
+
+  function startVocabGame(mode) {
+    // Preserve the direction choice across "play again"
+    const prevDir = vocabState && vocabState.mode === mode ? vocabState.direction : 'mixed';
+    vocabState = { mode, direction: prevDir, deck: null, items: [], round: 0, score: 0, history: [], answered: false, currentEntry: null, currentDir: null };
+    renderVocabDeckPicker();
+  }
+
+  function vocabGameId() { return vocabState.mode === 'mc' ? 'vocab-mc' : 'vocab-type'; }
+
+  function setVocabDirection(dir) {
+    if (!vocabState) return;
+    vocabState.direction = dir;
+    renderVocabDeckPicker();
+  }
+
+  function renderVocabDeckPicker() {
+    const container = document.getElementById('game-detail-content');
+    if (!container || !vocabState) return;
+    const isMc = vocabState.mode === 'mc';
+    const deckKeys = Object.keys(decks).filter(k => decks[k] && decks[k].length >= 10);
+    const best = getGameBestScore(vocabGameId());
+    const dirPill = (dir, label) =>
+      `<button class="pill ${vocabState.direction === dir ? 'active' : ''}" onclick="setVocabDirection('${dir}')">${label}</button>`;
+    container.innerHTML = `
+      <a href="#/juegos" class="aviso-link" style="display:inline-block;margin-bottom:16px;">← Back to games</a>
+      <div class="match-intro">
+        <h2 style="font-family:'DM Serif Display',serif;font-size:32px;font-weight:400;margin-bottom:8px;">${isMc ? 'Pick' : 'Type'} <em style="color:var(--rojo);font-style:italic;">it</em></h2>
+        <p style="color:var(--ink-soft);font-size:15px;margin-bottom:8px;">${isMc
+          ? 'Four choices, one right answer. A friendly way into any deck.'
+          : 'We show a word, you type the translation. No choices to lean on.'} 10 rounds.${best > 0 ? ' Your best: ' + best + '/10.' : ''}</p>
+        <div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:20px;">
+          <span style="font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:0.15em;text-transform:uppercase;color:var(--ink-soft);">You answer in:</span>
+          ${dirPill('es', 'Spanish')}
+          ${dirPill('en', 'English')}
+          ${dirPill('mixed', 'Mixed')}
+        </div>
+        <div class="match-deck-grid">
+          ${deckKeys.map(k => `
+            <button class="match-deck-btn" onclick="beginVocabRound('${k}')">
+              <span class="mdb-label">${MATCH_DECK_LABELS[k] || k}</span>
+              <span class="mdb-best">${decks[k].length} words</span>
+            </button>
+          `).join('')}
+        </div>
+      </div>
+    `;
+  }
+
+  // English side of a deck entry, cleaned the same way Match it does
+  function vocabCleanEn(back) {
+    return (back || '').replace(/\s*\(.*?\)\s*/g, '').split(/[;,]/)[0].trim() || back;
+  }
+
+  // All answers accepted for an entry in a given direction
+  function vocabAcceptedAnswers(entry, dir) {
+    const variants = [];
+    if (dir === 'es') {
+      // Answer in Spanish: each slash-variant, with and without its article
+      String(entry.word).split('/').forEach(part => {
+        const t = part.trim();
+        if (!t) return;
+        variants.push(t);
+        const noArt = t.replace(/^(el|la|los|las|un|una|unos|unas)\s+/i, '');
+        if (noArt !== t) variants.push(noArt);
+      });
+    } else {
+      // Answer in English: full meaning, paren-stripped, each alternative,
+      // and verbs with or without the leading "to"
+      const back = String(entry.back || '');
+      variants.push(back);
+      const stripped = back.replace(/\s*\(.*?\)\s*/g, ' ').trim();
+      if (stripped) variants.push(stripped);
+      stripped.split(/[;,\/]/).forEach(part => {
+        const t = part.trim();
+        if (!t) return;
+        variants.push(t);
+        const noTo = t.replace(/^to\s+/i, '');
+        if (noTo !== t) variants.push(noTo);
+      });
+    }
+    return variants;
+  }
+
+  function beginVocabRound(deckKey) {
+    const deck = decks[deckKey];
+    if (!deck || deck.length < 10 || !vocabState) return;
+    const shuffled = [...deck].sort(() => Math.random() - 0.5);
+    vocabState.deck = deckKey;
+    vocabState.items = shuffled.slice(0, 10);
+    vocabState.round = 0;
+    vocabState.score = 0;
+    vocabState.history = [];
+    renderVocabRound();
+  }
+
+  function renderVocabRound() {
+    const vs = vocabState;
+    const container = document.getElementById('game-detail-content');
+    if (!vs || !container) return;
+    if (vs.round >= vs.items.length) { renderVocabResults(); return; }
+
+    const entry = vs.items[vs.round];
+    const dir = vs.direction === 'mixed' ? (Math.random() < 0.5 ? 'es' : 'en') : vs.direction;
+    vs.currentEntry = entry;
+    vs.currentDir = dir;
+    vs.answered = false;
+
+    // dir 'es' → prompt shows English, student answers in Spanish (and vice versa)
+    const promptText = dir === 'es' ? vocabCleanEn(entry.back) : entry.word;
+    const label = dir === 'es' ? 'Give the Spanish for…' : 'What does this mean in English?';
+    const progress = `Round <strong>${vs.round + 1}</strong> / ${vs.items.length} · Score: <strong>${vs.score}</strong>`;
+
+    let answerArea;
+    if (vs.mode === 'mc') {
+      const pool = decks[vs.deck].filter(e => e !== entry).sort(() => Math.random() - 0.5).slice(0, 3);
+      const options = [entry, ...pool].sort(() => Math.random() - 0.5);
+      answerArea = `
+        <div id="vocabOptions" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:10px;margin-top:8px;">
+          ${options.map(o => `
+            <button class="btn" style="border-color:var(--paper);color:var(--paper);text-align:center;padding:14px 16px;font-size:15px;line-height:1.3;"
+                    onclick="pickVocabOption(this, ${o === entry})">${dir === 'es' ? o.word : vocabCleanEn(o.back)}</button>
+          `).join('')}
+        </div>
+        <div class="game-feedback" id="gameFeedback">&nbsp;</div>`;
+    } else {
+      answerArea = `
+        <div class="game-input-row">
+          <input type="text" class="game-input" id="vocabInput" autocomplete="off" autocapitalize="off" spellcheck="false"
+                 placeholder="${dir === 'es' ? 'In Spanish…' : 'In English…'}"
+                 onkeypress="if(event.key==='Enter') submitVocabAnswer()">
+        </div>
+        <div class="game-feedback" id="gameFeedback">&nbsp;</div>
+        <div style="margin-top:24px;">
+          <button class="btn primary" style="border-color:var(--paper);background:var(--paper);color:var(--ink);" onclick="submitVocabAnswer()">Submit ↵</button>
+          <button class="btn" style="border-color:var(--paper);color:var(--paper);margin-left:8px;" onclick="skipVocabRound()">Skip</button>
+        </div>`;
+    }
+
+    container.innerHTML = `
+      <div class="game-prompt-card">
+        <div class="game-progress">${progress}</div>
+        <div class="game-prompt-label">${label} · ${MATCH_DECK_LABELS[vs.deck] || vs.deck}</div>
+        <div class="game-prompt-display">${promptText}</div>
+        ${answerArea}
+      </div>
+    `;
+    if (vs.mode !== 'mc') {
+      setTimeout(() => { const inp = document.getElementById('vocabInput'); if (inp) inp.focus(); }, 50);
+    }
+  }
+
+  function vocabPrimaryAnswer() {
+    const vs = vocabState;
+    return vs.currentDir === 'es' ? vs.currentEntry.word : vocabCleanEn(vs.currentEntry.back);
+  }
+
+  function pickVocabOption(btn, isCorrect) {
+    const vs = vocabState;
+    if (!vs || vs.answered) return;
+    vs.answered = true;
+    const fb = document.getElementById('gameFeedback');
+    document.querySelectorAll('#vocabOptions button').forEach(b => b.disabled = true);
+    if (isCorrect) {
+      vs.score++;
+      btn.style.background = 'var(--verde)';
+      btn.style.borderColor = 'var(--verde)';
+      if (fb) { fb.textContent = '✓ Correct!'; fb.className = 'game-feedback correct'; }
+    } else {
+      btn.style.background = 'var(--rojo)';
+      btn.style.borderColor = 'var(--rojo)';
+      if (fb) { fb.textContent = '✗ Correct answer: ' + vocabPrimaryAnswer(); fb.className = 'game-feedback wrong'; }
+    }
+    vs.history.push({
+      prompt: vs.currentDir === 'es' ? vocabCleanEn(vs.currentEntry.back) : vs.currentEntry.word,
+      userAnswer: btn.textContent.trim(),
+      correctAnswer: vocabPrimaryAnswer(),
+      isCorrect
+    });
+    vs.round++;
+    setTimeout(renderVocabRound, isCorrect ? 900 : 1800);
+  }
+
+  function submitVocabAnswer() {
+    const vs = vocabState;
+    if (!vs || vs.answered) return;
+    const input = document.getElementById('vocabInput');
+    if (!input) return;
+    const userAnswer = normalize(input.value);
+    if (!userAnswer) return;
+    vs.answered = true;
+    const accepted = vocabAcceptedAnswers(vs.currentEntry, vs.currentDir);
+    const isCorrect = accepted.some(a => normalize(a) === userAnswer);
+    const fb = document.getElementById('gameFeedback');
+    if (isCorrect) {
+      vs.score++;
+      input.classList.add('correct');
+      if (fb) { fb.textContent = '✓ Correct!'; fb.className = 'game-feedback correct'; }
+    } else {
+      input.classList.add('wrong');
+      if (fb) { fb.textContent = '✗ Correct answer: ' + vocabPrimaryAnswer(); fb.className = 'game-feedback wrong'; }
+    }
+    input.disabled = true;
+    vs.history.push({
+      prompt: vs.currentDir === 'es' ? vocabCleanEn(vs.currentEntry.back) : vs.currentEntry.word,
+      userAnswer: input.value,
+      correctAnswer: vocabPrimaryAnswer(),
+      isCorrect
+    });
+    vs.round++;
+    setTimeout(renderVocabRound, isCorrect ? 1200 : 2000);
+  }
+
+  function skipVocabRound() {
+    const vs = vocabState;
+    if (!vs || vs.answered) return;
+    vs.history.push({
+      prompt: vs.currentDir === 'es' ? vocabCleanEn(vs.currentEntry.back) : vs.currentEntry.word,
+      userAnswer: '(skipped)',
+      correctAnswer: vocabPrimaryAnswer(),
+      isCorrect: false
+    });
+    vs.round++;
+    renderVocabRound();
+  }
+
+  function renderVocabResults() {
+    const vs = vocabState;
+    const container = document.getElementById('game-detail-content');
+    if (!vs || !container) return;
+    const gameId = vocabGameId();
+    const score = vs.score;
+    const baseTier = GAMES[gameId].maxReward;
+
+    let reward = 0, verdict = '';
+    if (score === 10) { reward = baseTier; verdict = 'Perfect — flawless game'; }
+    else if (score >= 9) { reward = Math.floor(baseTier * 0.7); verdict = 'Excellent'; }
+    else if (score >= 7) { reward = Math.floor(baseTier * 0.5); verdict = 'Solid effort'; }
+    else if (score >= 5) { reward = Math.floor(baseTier * 0.25); verdict = 'Keep practicing'; }
+    else { reward = 0; verdict = 'Try again — you need 5+ to earn'; }
+
+    const isNewBest = score > getGameBestScore(gameId);
+    if (isNewBest && reward > 0) awardCoins(reward, verdict + ' (' + score + '/10) — new best!');
+    setGameBestScore(gameId, score);
+    saveState();
+
+    const reviewHtml = vs.history.map(h => `
+      <div style="display:grid;grid-template-columns:28px 1fr 1.4fr;gap:8px;padding:8px 0;border-bottom:1px dotted var(--line);align-items:center;text-align:left;font-size:14px;">
+        <span>${h.isCorrect ? '✅' : '❌'}</span>
+        <span style="color:var(--ink-soft);">${h.prompt}</span>
+        <span>${h.isCorrect ? h.correctAnswer : '<s style="opacity:0.55;">' + (h.userAnswer || '—') + '</s> → <strong>' + h.correctAnswer + '</strong>'}</span>
+      </div>
+    `).join('');
+
+    container.innerHTML = `
+      <div class="game-results">
+        <h3>${score}/10 — <em>${verdict}</em></h3>
+        <p style="color:var(--ink-soft);font-size:14px;margin-bottom:8px;">${MATCH_DECK_LABELS[vs.deck] || vs.deck} · answered in ${vs.direction === 'es' ? 'Spanish' : vs.direction === 'en' ? 'English' : 'mixed languages'}</p>
+        ${isNewBest && reward > 0
+          ? `<p style="color:var(--verde);font-weight:600;margin-bottom:16px;">+${reward} Lucas — new personal best!</p>`
+          : `<p style="color:var(--ink-soft);font-size:13px;margin-bottom:16px;">${reward > 0 ? 'Lucas are only awarded when you beat your best score (' + getGameBestScore(gameId) + '/10).' : verdict}</p>`}
+        <div style="margin:16px 0;">${reviewHtml}</div>
+        <div style="display:flex;gap:10px;flex-wrap:wrap;justify-content:center;margin-top:20px;">
+          <button class="btn primary" onclick="beginVocabRound('${vs.deck}')">Play again</button>
+          <button class="btn" onclick="renderVocabDeckPicker()">Pick another deck</button>
+          <a href="#/juegos" class="btn" style="text-decoration:none;">All games</a>
+        </div>
+      </div>
+    `;
   }
 
   function renderGameRound() {
