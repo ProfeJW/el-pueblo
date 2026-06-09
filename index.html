@@ -5713,6 +5713,12 @@
       <p>Pick any vocab deck and race the clock to match Spanish to English. New every time.</p>
       <div class="game-reward">Any of 55+ decks · beat your best time</div>
     </a>
+    <a href="#/game/familytree" class="game-card">
+      <div class="game-icon">🌳</div>
+      <h3>Family <em>tree</em></h3>
+      <p>Read the family tree, then answer "¿Quién es la abuela de la prima de…?" Names change every round.</p>
+      <div class="game-reward">10 rounds · up to 40 Lucas</div>
+    </a>
     <a href="#/game/articles" class="game-card">
       <div class="game-icon">🏷️</div>
       <h3>El · la · <em>los · las</em></h3>
@@ -25127,6 +25133,163 @@
     }
   }
 
+  // ============== FAMILY TREE GAME ==============
+  // A fixed 3-generation family. Names are randomized every round, so students must
+  // READ the tree rather than memorize it. Questions ask "¿Quién es [relación] de
+  // [nombre]?" — including chained relations like "la abuela de la prima de X".
+  // Multiple choice (the names shown in the tree). Uses the standard game engine.
+  const FAM_NAMES_M = ['Diego','Mateo','Javier','Carlos','Andrés','Pablo','Tomás','Lucas','Manuel','Felipe','Rafael','Hugo','Emilio','Marcos','Nicolás','Álvaro'];
+  const FAM_NAMES_F = ['Lucía','Sofía','Elena','Carmen','Marta','Valeria','Paula','Isabel','Daniela','Rosa','Clara','Adriana','Pilar','Natalia','Beatriz','Inés'];
+
+  // Fixed graph. Genders are fixed so relationship words stay determinate; only the
+  // names change. Nodes: A,B = grandparents; C,D,E = their children; F = spouse of C;
+  // I = spouse of D; G,H = children of C&F; J,K = children of D&I. (E is single.)
+  const FAM_GENDER  = { A:'m', B:'f', C:'f', F:'m', D:'m', I:'f', E:'f', G:'m', H:'f', J:'f', K:'m' };
+  const FAM_PARENTS = { C:['A','B'], D:['A','B'], E:['A','B'], G:['C','F'], H:['C','F'], J:['D','I'], K:['D','I'] };
+  const FAM_SPOUSE  = { A:'B', B:'A', C:'F', F:'C', D:'I', I:'D' };
+  const FAM_NODES   = ['A','B','C','D','E','F','I','G','H','J','K'];
+
+  function famParents(x) { return FAM_PARENTS[x] || []; }
+  function famChildren(x) { return FAM_NODES.filter(n => famParents(n).includes(x)); }
+  function famSiblings(x) {
+    const p = famParents(x);
+    if (!p.length) return [];
+    return FAM_NODES.filter(n => {
+      if (n === x) return false;
+      const q = famParents(n);
+      return q.length && q.every(r => p.includes(r)) && p.every(r => q.includes(r));
+    });
+  }
+  function famUniq(a) { return Array.from(new Set(a)); }
+  function famByGender(list, g) { return list.filter(n => FAM_GENDER[n] === g); }
+
+  // Each relation: given node x, return the array of matching nodes. The generator
+  // only uses a relation when it yields exactly ONE person in this tree.
+  const FAM_RELS = [
+    { label: 'la madre',   fn: x => famByGender(famParents(x), 'f') },
+    { label: 'el padre',   fn: x => famByGender(famParents(x), 'm') },
+    { label: 'el hijo',    fn: x => famByGender(famChildren(x), 'm') },
+    { label: 'la hija',    fn: x => famByGender(famChildren(x), 'f') },
+    { label: 'el hermano', fn: x => famByGender(famSiblings(x), 'm') },
+    { label: 'la hermana', fn: x => famByGender(famSiblings(x), 'f') },
+    { label: 'el abuelo',  fn: x => famByGender(famUniq(famParents(x).flatMap(famParents)), 'm') },
+    { label: 'la abuela',  fn: x => famByGender(famUniq(famParents(x).flatMap(famParents)), 'f') },
+    { label: 'el nieto',   fn: x => famByGender(famUniq(famChildren(x).flatMap(famChildren)), 'm') },
+    { label: 'la nieta',   fn: x => famByGender(famUniq(famChildren(x).flatMap(famChildren)), 'f') },
+    { label: 'el tío',     fn: x => famByGender(famUniq(famParents(x).flatMap(famSiblings)), 'm') },
+    { label: 'la tía',     fn: x => famByGender(famUniq(famParents(x).flatMap(famSiblings)), 'f') },
+    { label: 'el sobrino', fn: x => famByGender(famUniq(famSiblings(x).flatMap(famChildren)), 'm') },
+    { label: 'la sobrina', fn: x => famByGender(famUniq(famSiblings(x).flatMap(famChildren)), 'f') },
+    { label: 'el primo',   fn: x => famByGender(famUniq(famParents(x).flatMap(famSiblings).flatMap(famChildren)), 'm') },
+    { label: 'la prima',   fn: x => famByGender(famUniq(famParents(x).flatMap(famSiblings).flatMap(famChildren)), 'f') },
+    { label: 'el esposo',  fn: x => (FAM_SPOUSE[x] && FAM_GENDER[FAM_SPOUSE[x]] === 'm') ? [FAM_SPOUSE[x]] : [] },
+    { label: 'la esposa',  fn: x => (FAM_SPOUSE[x] && FAM_GENDER[FAM_SPOUSE[x]] === 'f') ? [FAM_SPOUSE[x]] : [] },
+    { label: 'el suegro',  fn: x => FAM_SPOUSE[x] ? famByGender(famParents(FAM_SPOUSE[x]), 'm') : [] },
+    { label: 'la suegra',  fn: x => FAM_SPOUSE[x] ? famByGender(famParents(FAM_SPOUSE[x]), 'f') : [] },
+    { label: 'el yerno',   fn: x => famByGender(famUniq(famByGender(famChildren(x), 'f').map(c => FAM_SPOUSE[c]).filter(Boolean)), 'm') },
+    { label: 'la nuera',   fn: x => famByGender(famUniq(famByGender(famChildren(x), 'm').map(c => FAM_SPOUSE[c]).filter(Boolean)), 'f') },
+    { label: 'el cuñado',  fn: x => famByGender(famUniq([...famSiblings(x).map(s => FAM_SPOUSE[s]).filter(Boolean), ...(FAM_SPOUSE[x] ? famSiblings(FAM_SPOUSE[x]) : [])]), 'm') },
+    { label: 'la cuñada',  fn: x => famByGender(famUniq([...famSiblings(x).map(s => FAM_SPOUSE[s]).filter(Boolean), ...(FAM_SPOUSE[x] ? famSiblings(FAM_SPOUSE[x]) : [])]), 'f') }
+  ];
+
+  // Assign a distinct, gender-correct name to each node.
+  function famAssignNames() {
+    const m = [...FAM_NAMES_M].sort(() => Math.random() - 0.5);
+    const f = [...FAM_NAMES_F].sort(() => Math.random() - 0.5);
+    const name = {}; let mi = 0, fi = 0;
+    FAM_NODES.forEach(n => { name[n] = FAM_GENDER[n] === 'm' ? m[mi++] : f[fi++]; });
+    return name;
+  }
+
+  // One node box in the SVG tree. `hl` highlights the anchor person of the question.
+  function famBox(x, y, label, hl) {
+    const w = 120, h = 40;
+    return '<rect x="' + x + '" y="' + y + '" width="' + w + '" height="' + h + '" rx="6" '
+      + 'fill="' + (hl ? 'var(--ocre)' : 'var(--paper)') + '" '
+      + 'stroke="' + (hl ? 'var(--rojo)' : 'var(--paper)') + '" stroke-opacity="' + (hl ? 1 : 0.5) + '" stroke-width="' + (hl ? 3 : 1) + '"/>'
+      + '<text x="' + (x + w / 2) + '" y="' + (y + h / 2 + 5.5) + '" text-anchor="middle" font-family="Fraunces, serif" font-size="16" font-weight="600" fill="var(--ink)">' + label + '</text>';
+  }
+
+  // The fixed-layout family tree as inline SVG. Colors use CSS vars so it adapts to
+  // the dark game card (and to themes). `highlight` is the node id to emphasize.
+  function famTreeSVG(name, highlight) {
+    const L = 'stroke="var(--paper)" stroke-opacity="0.4" stroke-width="1.5"';
+    const heart = (x, y) => '<text x="' + x + '" y="' + y + '" text-anchor="middle" font-size="15" fill="var(--ocre)">♥</text>';
+    const lines = ''
+      // gen-1 couple + drop to the children's bus
+      + '<line x1="370" y1="34" x2="390" y2="34" ' + L + '/>' + heart(380, 39)
+      + '<line x1="380" y1="54" x2="380" y2="120" ' + L + '/>'
+      + '<line x1="170" y1="120" x2="600" y2="120" ' + L + '/>'
+      + '<line x1="170" y1="120" x2="170" y2="190" ' + L + '/>'
+      + '<line x1="380" y1="120" x2="380" y2="170" ' + L + '/>'
+      + '<line x1="600" y1="120" x2="600" y2="190" ' + L + '/>'
+      // gen-2 left couple (C–F) + their kids
+      + '<line x1="160" y1="190" x2="180" y2="190" ' + L + '/>' + heart(170, 195)
+      + '<line x1="170" y1="210" x2="170" y2="290" ' + L + '/>'
+      + '<line x1="100" y1="290" x2="240" y2="290" ' + L + '/>'
+      + '<line x1="100" y1="290" x2="100" y2="320" ' + L + '/>'
+      + '<line x1="240" y1="290" x2="240" y2="320" ' + L + '/>'
+      // gen-2 right couple (D–I) + their kids
+      + '<line x1="590" y1="190" x2="610" y2="190" ' + L + '/>' + heart(600, 195)
+      + '<line x1="600" y1="210" x2="600" y2="290" ' + L + '/>'
+      + '<line x1="530" y1="290" x2="670" y2="290" ' + L + '/>'
+      + '<line x1="530" y1="290" x2="530" y2="320" ' + L + '/>'
+      + '<line x1="670" y1="290" x2="670" y2="320" ' + L + '/>';
+    const box = (x, y, id) => famBox(x, y, name[id], id === highlight);
+    return '<svg viewBox="0 0 760 380" width="100%" style="max-width:560px;display:block;margin:0 auto;height:auto;" xmlns="http://www.w3.org/2000/svg">'
+      + lines
+      + box(250, 14, 'A') + box(390, 14, 'B')
+      + box(40, 170, 'C') + box(180, 170, 'F') + box(320, 170, 'E') + box(470, 170, 'D') + box(610, 170, 'I')
+      + box(40, 320, 'G') + box(180, 320, 'H') + box(470, 320, 'J') + box(610, 320, 'K')
+      + '</svg>';
+  }
+
+  // Build one round: pick a single- or two-hop relation chain that resolves to
+  // exactly one person, render the tree (anchor highlighted), and offer 4 names.
+  function generateFamilyTreeRound() {
+    const name = famAssignNames();
+    const rndNode = () => FAM_NODES[Math.floor(Math.random() * FAM_NODES.length)];
+    const rndRel = () => FAM_RELS[Math.floor(Math.random() * FAM_RELS.length)];
+    // single hop: "[r] de X" → exactly one person, not X itself
+    const trySingle = () => {
+      const x = rndNode(), r1 = rndRel();
+      const s1 = famUniq(r1.fn(x));
+      if (s1.length !== 1 || s1[0] === x) return null;
+      return { label: '¿Quién es ' + r1.label + ' de <strong>' + name[x] + '</strong>?', anchor: x, ans: s1[0] };
+    };
+    // two-hop chain: "[r2] de [r1] de X" — each hop resolves to exactly one person
+    const tryChain = () => {
+      const x = rndNode(), r1 = rndRel();
+      const s1 = famUniq(r1.fn(x));
+      if (s1.length !== 1) return null;
+      const y = s1[0], r2 = rndRel();
+      const s2 = famUniq(r2.fn(y));
+      if (s2.length !== 1) return null;
+      const z = s2[0];
+      if (z === x || z === y) return null; // avoid trivial round-trips
+      // "de" + "el …" contracts to "del" (but stays "de" before a proper name)
+      const mid = r1.label.startsWith('el ') ? 'del ' + r1.label.slice(3) : 'de ' + r1.label;
+      return { label: '¿Quién es ' + r2.label + ' ' + mid + ' de <strong>' + name[x] + '</strong>?', anchor: x, ans: z };
+    };
+    // ~55% of rounds aim for a chain (with single-hop as fallback), ~45% the reverse.
+    const chainFirst = Math.random() < 0.55;
+    const first = chainFirst ? tryChain : trySingle;
+    const second = chainFirst ? trySingle : tryChain;
+    let q = null;
+    for (let i = 0; i < 120 && !q; i++) q = first();
+    for (let i = 0; i < 120 && !q; i++) q = second();
+    if (!q) q = { label: '¿Quién es la madre de <strong>' + name['G'] + '</strong>?', anchor: 'G', ans: 'C' };
+    const correctName = name[q.ans];
+    const distractors = FAM_NODES.filter(n => n !== q.ans).map(n => name[n]).sort(() => Math.random() - 0.5);
+    const choices = famUniq([correctName, ...distractors]).slice(0, 4).sort(() => Math.random() - 0.5);
+    return {
+      promptLabel: q.label,
+      promptDisplay: famTreeSVG(name, q.anchor),
+      answer: correctName,
+      choices
+    };
+  }
+
   /* ============== GAMES ============== */
   // Four mini-games: days, dates, small numbers, large numbers.
   // Each game = 10 rounds. Score-based Lucas: 0-3 right=0, 4-6=base, 7-8=base*1.5, 9=base*2, 10=max
@@ -25278,6 +25441,12 @@
       sprintMode: 'condicional',
       sprintLabel: 'Conditional',
       generate: () => generateSprintRound('condicional')
+    },
+    'familytree': {
+      title: 'Family <em>tree</em>',
+      icon: '🌳',
+      maxReward: 40,
+      generate: () => generateFamilyTreeRound()
     },
     'days': {
       title: 'Days of the <em>week</em>',
