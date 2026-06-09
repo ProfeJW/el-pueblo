@@ -136,7 +136,7 @@
   [data-theme="cosmic"] .avatar-display,
   [data-theme="cosmic"] .teacher-tool button,
   [data-theme="cosmic"] .luka-presets .preset-btn.active,
-  [data-theme="cosmic"] .achievement.unlocked::before {
+  [data-theme="cosmic"] .badge.earned::after {
     color: #1f1a14 !important;
   }
   /* Inline ocré panels/chips (e.g. the "Guess the person" quiz, vocab chips):
@@ -4546,72 +4546,77 @@
     100% { transform: translate(var(--fx), var(--fy)) scale(0.4); opacity: 0; }
   }
 
-  /* Achievements section */
-  #lucas .achievements-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
-    gap: 20px;
+  /* Badges / achievements — tiered, grouped, with progress bars */
+  #lucas .achievements-grid { display: block; }
+  .badge-summary {
+    display: flex; align-items: center; gap: 14px; flex-wrap: wrap; margin-bottom: 20px;
   }
-  .achievement {
-    background: var(--card-bg);
-    border: 1px solid var(--line);
-    padding: 24px;
-    text-align: center;
-    position: relative;
-    transition: all 0.3s;
-    overflow: hidden;
+  .badge-summary .big {
+    font-family: 'DM Serif Display', serif; font-style: italic; font-size: 30px; color: var(--rojo);
   }
-  .achievement.unlocked {
-    background: var(--ink);
-    color: var(--paper);
-    border-color: var(--ink);
+  .badge-summary .lbl {
+    font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.12em;
+    text-transform: uppercase; color: var(--ink-soft);
   }
-  .achievement.unlocked::before {
-    content: '✓';
-    position: absolute;
-    top: 12px; right: 12px;
-    width: 24px; height: 24px;
-    border-radius: 50%;
-    background: var(--ocre);
-    color: var(--ink);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-weight: 700;
-    font-size: 14px;
+  .badge-progress-track {
+    flex: 1; min-width: 160px; height: 8px; background: var(--card-bg);
+    border: 1px solid var(--line); border-radius: 999px; overflow: hidden;
   }
-  .achievement-icon {
-    font-size: 36px;
-    margin-bottom: 12px;
-    filter: grayscale(0.6);
-    opacity: 0.4;
-    transition: all 0.3s;
+  .badge-progress-fill { height: 100%; background: var(--ocre); transition: width 0.4s; }
+  .badge-filter { display: flex; gap: 8px; margin-bottom: 26px; flex-wrap: wrap; }
+  .badge-filter button {
+    font-family: 'JetBrains Mono', monospace; font-size: 12px; text-transform: uppercase;
+    letter-spacing: 0.1em; padding: 5px 14px; border: 1px solid var(--line);
+    background: transparent; color: var(--ink-soft); border-radius: 999px; cursor: pointer;
+    transition: all 0.2s;
   }
-  .achievement.unlocked .achievement-icon {
-    filter: none;
-    opacity: 1;
+  .badge-filter button.active { background: var(--ink); color: var(--paper); border-color: var(--ink); }
+  .badge-cat { margin-bottom: 34px; }
+  .badge-cat-head { display: flex; align-items: center; gap: 10px; margin-bottom: 14px; }
+  .badge-cat-head .ic { font-size: 22px; }
+  .badge-cat-head h4 {
+    font-family: 'DM Serif Display', serif; font-style: italic; font-size: 23px;
+    font-weight: 400; margin: 0;
   }
-  .achievement h5 {
-    font-family: 'DM Serif Display', serif;
-    font-size: 19px;
-    font-style: italic;
-    margin-bottom: 6px;
-    font-weight: 400;
+  .badge-cat-head .cnt {
+    font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.1em;
+    color: var(--ink-soft); margin-left: 2px;
   }
-  .achievement p {
-    font-size: 13px;
-    color: var(--ink-soft);
-    line-height: 1.4;
+  .badge-cat-grid {
+    display: grid; grid-template-columns: repeat(auto-fill, minmax(210px, 1fr)); gap: 14px;
   }
-  .achievement.unlocked p { color: rgba(244, 237, 224, 0.7); }
-  .achievement-reward {
-    margin-top: 12px;
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 11px;
-    letter-spacing: 0.15em;
-    text-transform: uppercase;
-    color: var(--ocre);
+  .badge {
+    background: var(--card-bg); border: 1px solid var(--line); border-radius: 6px;
+    padding: 18px; position: relative; transition: all 0.25s;
   }
+  .badge.near { border-color: var(--ocre); }
+  .badge.earned { background: var(--ink); color: var(--paper); border-color: var(--ink); }
+  .badge.earned::after {
+    content: '✓'; position: absolute; top: 10px; right: 10px;
+    width: 22px; height: 22px; border-radius: 50%; background: var(--ocre); color: var(--ink);
+    display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 13px;
+  }
+  .badge .b-icon { font-size: 30px; margin-bottom: 8px; filter: grayscale(0.7); opacity: 0.45; transition: all 0.25s; }
+  .badge.near .b-icon { filter: grayscale(0.3); opacity: 0.8; }
+  .badge.earned .b-icon { filter: none; opacity: 1; }
+  .badge h5 {
+    font-family: 'DM Serif Display', serif; font-style: italic; font-size: 17px;
+    font-weight: 400; margin: 0 0 4px 0;
+  }
+  .badge p { font-size: 12.5px; color: var(--ink-soft); line-height: 1.4; margin: 0 0 10px 0; }
+  .badge.earned p { color: rgba(244, 237, 224, 0.7); }
+  .badge .b-bar {
+    height: 6px; background: var(--paper-deep); border: 1px solid var(--line);
+    border-radius: 999px; overflow: hidden; margin-bottom: 6px;
+  }
+  .badge .b-fill { height: 100%; background: var(--rojo); transition: width 0.4s; }
+  .badge .b-meta {
+    display: flex; justify-content: space-between; align-items: baseline; gap: 8px;
+    font-family: 'JetBrains Mono', monospace; font-size: 10.5px; letter-spacing: 0.06em;
+    text-transform: uppercase; color: var(--ink-soft);
+  }
+  .badge .b-reward { color: var(--ocre); }
+  .badge .b-date { color: rgba(244, 237, 224, 0.6); }
 
   /* Stats dashboard */
   .stats-bar {
@@ -6915,7 +6920,7 @@
 
   <!-- 4. Achievements -->
   <div style="border-top: 1px solid var(--line); padding-top: 40px; margin-bottom: 48px;">
-    <h3 style="font-family: 'DM Serif Display', serif; font-size: 28px; font-weight: 400; margin: 0 0 18px 0;">Your <em style="color: var(--rojo); font-style: italic;">achievements</em></h3>
+    <h3 style="font-family: 'DM Serif Display', serif; font-size: 28px; font-weight: 400; margin: 0 0 18px 0;">Your <em style="color: var(--rojo); font-style: italic;">badges</em></h3>
     <div class="achievements-grid" id="achievementsGrid">
       <!-- populated by JS -->
     </div>
@@ -8017,6 +8022,9 @@
       streakConj: 0,
       bestStreak: 0,
       achievements: new Set(),
+      achievementsAt: {},
+      lifetimeCoins: 0,
+      daysActive: new Set(),
       lastPromptWords: 0,
       currentPromptCompleted: false,
       countriesViewed: new Set(),
@@ -8067,6 +8075,11 @@
       if (Array.isArray(parsed.cardsViewed)) s.cardsViewed = new Set(parsed.cardsViewed);
       if (Array.isArray(parsed.listenedClips)) s.listenedClips = new Set(parsed.listenedClips);
       if (Array.isArray(parsed.achievements)) s.achievements = new Set(parsed.achievements);
+      if (parsed.achievementsAt && typeof parsed.achievementsAt === 'object') s.achievementsAt = parsed.achievementsAt;
+      // Lifetime Lucas: for students from before this field existed, seed from their
+      // current balance so the "earn N all-time" badges aren't unfairly zeroed.
+      s.lifetimeCoins = parsed.lifetimeCoins != null ? parsed.lifetimeCoins : (parsed.coins || 0);
+      if (Array.isArray(parsed.daysActive)) s.daysActive = new Set(parsed.daysActive);
       if (Array.isArray(parsed.countriesViewed)) s.countriesViewed = new Set(parsed.countriesViewed);
       if (Array.isArray(parsed.completedDecks)) s.completedDecks = new Set(parsed.completedDecks);
       if (Array.isArray(parsed.unlockedItems)) s.unlockedItems = new Set(parsed.unlockedItems);
@@ -8109,6 +8122,9 @@
         minutesAwarded: STATE.minutesAwarded,
         bestStreak: STATE.bestStreak,
         achievements: Array.from(STATE.achievements),
+        achievementsAt: STATE.achievementsAt || {},
+        lifetimeCoins: STATE.lifetimeCoins || 0,
+        daysActive: Array.from(STATE.daysActive || []),
         countriesViewed: Array.from(STATE.countriesViewed || []),
         flagsCorrect: STATE.flagsCorrect || 0,
         bestFlagStreak: STATE.bestFlagStreak || 0,
@@ -8320,32 +8336,128 @@
 
   const STATE = loadState();
 
-  const ACHIEVEMENTS = [
-    { id: 'first_card', icon: '📖', title: 'First steps', desc: 'Flip your first vocabulary card', reward: 3, check: () => STATE.cardsViewed.size >= 1 },
-    { id: 'card_50', icon: '📚', title: 'Fifty words', desc: 'See 50 unique flashcards', reward: 20, check: () => STATE.cardsViewed.size >= 50 },
-    { id: 'first_drill', icon: '✏️', title: 'First drill', desc: 'Submit your first verb drill', reward: 5, check: () => (STATE.drillsCompleted || 0) >= 1 },
-    { id: 'drill_perfect', icon: '🎯', title: 'Perfect drill', desc: 'Score 20/20 on a verb drill', reward: 30, check: () => (STATE.perfectDrills || 0) >= 1 },
-    { id: 'drill_5_perfect', icon: '🏆', title: 'Drill master', desc: 'Score 20/20 on five drills', reward: 75, check: () => (STATE.perfectDrills || 0) >= 5 },
-    { id: 'first_quiz', icon: '🧠', title: 'Attentive reader', desc: 'Get a reading question correct', reward: 5, check: () => STATE.quizCorrect >= 1 },
-    { id: 'all_quiz', icon: '🎓', title: 'Total comprehension', desc: 'Get all 3 reading questions right', reward: 15, check: () => STATE.readingPerfect === true },
-    { id: 'first_listen', icon: '🎧', title: 'Open ears', desc: 'Listen to your first audio', reward: 3, check: () => STATE.listenedClips.size >= 1 },
-    { id: 'all_listen', icon: '🌊', title: 'Full immersion', desc: 'Listen to all 4 audios', reward: 15, check: () => STATE.listenedClips.size >= 4 },
-    { id: 'first_words', icon: '📝', title: 'First sentence', desc: 'Write 50 words', reward: 5, check: () => STATE.wordsWritten >= 50 },
-    { id: 'poem_200', icon: '🪶', title: 'Born poet', desc: 'Complete a 200+ word piece', reward: 25, check: () => STATE.poemsCompleted >= 1 },
-    { id: 'three_poems', icon: '📜', title: 'Literary voice', desc: 'Complete 3 long-form pieces', reward: 60, check: () => STATE.poemsCompleted >= 3 },
-    { id: 'first_rec', icon: '🎙️', title: 'Your voice', desc: 'Record your first audio', reward: 5, check: () => STATE.recordingsCount >= 1 },
-    { id: 'quality_rec', icon: '⭐', title: 'Quality recording', desc: 'Record 30+ seconds of clear speech', reward: 25, check: () => STATE.qualityRecordings >= 1 },
-    { id: 'time_15', icon: '⏱️', title: 'Quarter hour', desc: 'Practice 15 minutes total', reward: 10, check: () => STATE.minutesAwarded >= 15 },
-    { id: 'time_60', icon: '🌅', title: 'A full hour', desc: 'Practice 60 minutes total', reward: 40, check: () => STATE.minutesAwarded >= 60 },
-    { id: 'first_country', icon: '🌎', title: 'First destination', desc: 'Explore your first country', reward: 3, check: () => (STATE.countriesViewed && STATE.countriesViewed.size) >= 1 },
-    { id: 'half_world', icon: '🗺️', title: 'Half the world', desc: 'Explore 10 Spanish-speaking countries', reward: 25, check: () => (STATE.countriesViewed && STATE.countriesViewed.size) >= 10 },
-    { id: 'cartographer', icon: '🧭', title: 'Cartographer', desc: 'Explore all 21 countries', reward: 75, check: () => (STATE.countriesViewed && STATE.countriesViewed.size) >= 21 },
-    { id: 'flag_streak_5', icon: '🚩', title: 'Flag streak', desc: 'Get 5 flags right in a row', reward: 20, check: () => (STATE.bestFlagStreak || 0) >= 5 },
-    { id: 'polyglot', icon: '🗝️', title: 'Pueblerino', desc: 'Use all 7 modules at least once — true villager status', reward: 100, check: () => STATE.cardsViewed.size >= 1 && (STATE.drillsCompleted || 0) >= 1 && STATE.quizCorrect >= 1 && STATE.listenedClips.size >= 1 && STATE.wordsWritten >= 50 && STATE.recordingsCount >= 1 && (STATE.countriesViewed && STATE.countriesViewed.size >= 1) }
+  // Mark today as an active practice day (for the Dedicación streak badges).
+  (function () {
+    try {
+      const today = new Date().toISOString().slice(0, 10);
+      if (!STATE.daysActive) STATE.daysActive = new Set();
+      if (!STATE.daysActive.has(today)) { STATE.daysActive.add(today); saveState(); }
+    } catch (e) { /* non-fatal */ }
+  })();
+
+  // Badge categories, in display order. Each badge below belongs to one `cat`.
+  const BADGE_CATS = [
+    { id: 'vocab',      name: 'Vocabulario',      icon: '🗂️' },
+    { id: 'verbs',      name: 'Verbos',           icon: '🔀' },
+    { id: 'reading',    name: 'Lectura',          icon: '📖' },
+    { id: 'listening',  name: 'Escucha',          icon: '🎧' },
+    { id: 'writing',    name: 'Escritura',        icon: '✍️' },
+    { id: 'speaking',   name: 'Habla',            icon: '🎙️' },
+    { id: 'mundo',      name: 'Mundo e Historia', icon: '🌎' },
+    { id: 'dedication', name: 'Dedicación',       icon: '🔥' },
+    { id: 'mastery',    name: 'Maestría',         icon: '👑' }
   ];
+
+  // Small metric helpers so badge progress() functions stay readable.
+  function _objCount(o) { return o && typeof o === 'object' ? Object.keys(o).length : 0; }
+  function _modulesUsed() {
+    return (STATE.cardsViewed.size >= 1 ? 1 : 0)
+      + ((STATE.drillsCompleted || 0) >= 1 ? 1 : 0)
+      + (STATE.quizCorrect >= 1 ? 1 : 0)
+      + (STATE.listenedClips.size >= 1 ? 1 : 0)
+      + (STATE.wordsWritten >= 50 ? 1 : 0)
+      + (STATE.recordingsCount >= 1 ? 1 : 0)
+      + ((STATE.countriesViewed && STATE.countriesViewed.size >= 1) ? 1 : 0);
+  }
+
+  // Ground-up badge system: tiered ladders across 9 categories. Each badge has a
+  // numeric target and a progress() returning the student's current count, so the
+  // UI can render "47 / 50" progress bars generically. Unlocked when progress >= target.
+  // Reward scales with tier difficulty. Legacy ids (first_card, card_50, …) are kept
+  // so badges already earned by signed-in students stay earned after this rework.
+  const ACHIEVEMENTS = [
+    // ── Vocabulario — flashcards & decks ──────────────────────────────
+    { id: 'first_card',      cat: 'vocab', icon: '📖', title: 'First steps',       desc: 'Flip your first flashcard',        reward: 8,   target: 1,    progress: () => STATE.cardsViewed.size },
+    { id: 'card_50',         cat: 'vocab', icon: '📚', title: 'Fifty words',       desc: 'See 50 unique flashcards',         reward: 20,  target: 50,   progress: () => STATE.cardsViewed.size },
+    { id: 'voc_cards_250',   cat: 'vocab', icon: '🧠', title: 'Word hoard',        desc: 'See 250 unique flashcards',        reward: 50,  target: 250,  progress: () => STATE.cardsViewed.size },
+    { id: 'voc_cards_750',   cat: 'vocab', icon: '🏛️', title: 'Lexicon',           desc: 'See 750 unique flashcards',        reward: 100, target: 750,  progress: () => STATE.cardsViewed.size },
+    { id: 'voc_cards_1500',  cat: 'vocab', icon: '👑', title: 'Walking dictionary',desc: 'See 1,500 unique flashcards',      reward: 180, target: 1500, progress: () => STATE.cardsViewed.size },
+    { id: 'voc_deck_1',      cat: 'vocab', icon: '🎴', title: 'Deck done',         desc: 'Finish a full deck',               reward: 10,  target: 1,    progress: () => STATE.completedDecks.size },
+    { id: 'voc_deck_5',      cat: 'vocab', icon: '🗃️', title: 'Five decks',        desc: 'Finish 5 full decks',              reward: 30,  target: 5,    progress: () => STATE.completedDecks.size },
+    { id: 'voc_deck_15',     cat: 'vocab', icon: '📦', title: 'Fifteen decks',     desc: 'Finish 15 full decks',             reward: 70,  target: 15,   progress: () => STATE.completedDecks.size },
+    { id: 'voc_deck_35',     cat: 'vocab', icon: '🎒', title: 'Deck collector',    desc: 'Finish 35 full decks',             reward: 130, target: 35,   progress: () => STATE.completedDecks.size },
+    { id: 'voc_deck_all',    cat: 'vocab', icon: '🏆', title: 'Every last deck',   desc: 'Finish all 58 decks',              reward: 220, target: 58,   progress: () => STATE.completedDecks.size },
+    // ── Verbos — conjugation drills ───────────────────────────────────
+    { id: 'first_drill',     cat: 'verbs', icon: '✏️', title: 'First drill',       desc: 'Submit your first verb drill',     reward: 8,   target: 1,    progress: () => (STATE.drillsCompleted || 0) },
+    { id: 'vrb_drill_10',    cat: 'verbs', icon: '🔁', title: 'Ten drills',        desc: 'Complete 10 verb drills',          reward: 25,  target: 10,   progress: () => (STATE.drillsCompleted || 0) },
+    { id: 'vrb_drill_50',    cat: 'verbs', icon: '⚙️', title: 'Drill machine',     desc: 'Complete 50 verb drills',          reward: 70,  target: 50,   progress: () => (STATE.drillsCompleted || 0) },
+    { id: 'vrb_drill_100',   cat: 'verbs', icon: '🛠️', title: 'Conjugation forge', desc: 'Complete 100 verb drills',         reward: 150, target: 100,  progress: () => (STATE.drillsCompleted || 0) },
+    { id: 'drill_perfect',   cat: 'verbs', icon: '🎯', title: 'Perfect drill',     desc: 'Score 20/20 on a drill',           reward: 20,  target: 1,    progress: () => (STATE.perfectDrills || 0) },
+    { id: 'drill_5_perfect', cat: 'verbs', icon: '🏆', title: 'Drill master',      desc: 'Score 20/20 on five drills',       reward: 60,  target: 5,    progress: () => (STATE.perfectDrills || 0) },
+    { id: 'vrb_perfect_15',  cat: 'verbs', icon: '💎', title: 'Flawless fifteen',  desc: 'Score 20/20 on fifteen drills',    reward: 120, target: 15,   progress: () => (STATE.perfectDrills || 0) },
+    { id: 'vrb_perfect_30',  cat: 'verbs', icon: '🌟', title: 'Conjugation deity', desc: 'Score 20/20 on thirty drills',     reward: 220, target: 30,   progress: () => (STATE.perfectDrills || 0) },
+    // ── Lectura — reading & comprehension ─────────────────────────────
+    { id: 'first_quiz',      cat: 'reading', icon: '🧠', title: 'Attentive reader', desc: 'Answer a reading question right',  reward: 8,   target: 1,    progress: () => STATE.quizCorrect },
+    { id: 'rd_correct_10',   cat: 'reading', icon: '📰', title: 'Close reader',     desc: 'Answer 10 reading questions right',reward: 25,  target: 10,   progress: () => STATE.quizCorrect },
+    { id: 'rd_correct_50',   cat: 'reading', icon: '🔍', title: 'Sharp eyes',       desc: 'Answer 50 reading questions right',reward: 70,  target: 50,   progress: () => STATE.quizCorrect },
+    { id: 'all_quiz',        cat: 'reading', icon: '🎓', title: 'Total comprehension', desc: 'Get a perfect reading score',   reward: 20,  target: 1,    progress: () => (STATE.readingPerfect ? 1 : 0) },
+    { id: 'rd_readings_5',   cat: 'reading', icon: '📕', title: 'Bookworm',         desc: 'Complete 5 readings',              reward: 40,  target: 5,    progress: () => _objCount(STATE.completedReadings) },
+    { id: 'rd_readings_15',  cat: 'reading', icon: '📚', title: 'Well-read',        desc: 'Complete 15 readings',             reward: 100, target: 15,   progress: () => _objCount(STATE.completedReadings) },
+    // ── Escucha — listening & dictation ───────────────────────────────
+    { id: 'first_listen',    cat: 'listening', icon: '🎧', title: 'Open ears',      desc: 'Listen to your first audio',       reward: 8,   target: 1,    progress: () => STATE.listenedClips.size },
+    { id: 'all_listen',      cat: 'listening', icon: '🌊', title: 'Full immersion', desc: 'Listen to 4 audio clips',          reward: 20,  target: 4,    progress: () => STATE.listenedClips.size },
+    { id: 'ls_clips_12',     cat: 'listening', icon: '👂', title: 'Trained ear',    desc: 'Listen to 12 audio clips',         reward: 55,  target: 12,   progress: () => STATE.listenedClips.size },
+    { id: 'ls_dict_1',       cat: 'listening', icon: '📝', title: 'First dictation',desc: 'Complete a dictation',             reward: 10,  target: 1,    progress: () => _objCount(STATE.completedDictation) },
+    { id: 'ls_dict_8',       cat: 'listening', icon: '✒️', title: 'Steady hand',    desc: 'Complete 8 dictations',            reward: 45,  target: 8,    progress: () => _objCount(STATE.completedDictation) },
+    { id: 'ls_dict_20',      cat: 'listening', icon: '🦻', title: 'Dictation pro',  desc: 'Complete 20 dictations',           reward: 110, target: 20,   progress: () => _objCount(STATE.completedDictation) },
+    // ── Escritura — writing ───────────────────────────────────────────
+    { id: 'first_words',     cat: 'writing', icon: '📝', title: 'First sentence',   desc: 'Write 50 words',                   reward: 8,   target: 50,   progress: () => STATE.wordsWritten },
+    { id: 'wr_words_500',    cat: 'writing', icon: '🖋️', title: 'Getting fluent',  desc: 'Write 500 words total',            reward: 30,  target: 500,  progress: () => STATE.wordsWritten },
+    { id: 'wr_words_2000',   cat: 'writing', icon: '📃', title: 'Prolific',         desc: 'Write 2,000 words total',          reward: 80,  target: 2000, progress: () => STATE.wordsWritten },
+    { id: 'wr_words_5000',   cat: 'writing', icon: '🗞️', title: 'Novelist',        desc: 'Write 5,000 words total',          reward: 160, target: 5000, progress: () => STATE.wordsWritten },
+    { id: 'poem_200',        cat: 'writing', icon: '🪶', title: 'Born poet',        desc: 'Finish a 200+ word piece',         reward: 25,  target: 1,    progress: () => STATE.poemsCompleted },
+    { id: 'three_poems',     cat: 'writing', icon: '📜', title: 'Literary voice',   desc: 'Finish 3 long-form pieces',        reward: 60,  target: 3,    progress: () => STATE.poemsCompleted },
+    { id: 'wr_poems_10',     cat: 'writing', icon: '🎭', title: 'Wordsmith',        desc: 'Finish 10 long-form pieces',       reward: 140, target: 10,   progress: () => STATE.poemsCompleted },
+    // ── Habla — speaking ──────────────────────────────────────────────
+    { id: 'first_rec',       cat: 'speaking', icon: '🎙️', title: 'Your voice',     desc: 'Record your first audio',          reward: 8,   target: 1,    progress: () => STATE.recordingsCount },
+    { id: 'sp_rec_5',        cat: 'speaking', icon: '🗣️', title: 'Speaking up',    desc: 'Record 5 responses',               reward: 30,  target: 5,    progress: () => STATE.recordingsCount },
+    { id: 'sp_rec_20',       cat: 'speaking', icon: '📣', title: 'Confident speaker',desc: 'Record 20 responses',            reward: 90,  target: 20,   progress: () => STATE.recordingsCount },
+    { id: 'quality_rec',     cat: 'speaking', icon: '⭐', title: 'Quality recording',desc: 'Record 30+ seconds of speech',   reward: 25,  target: 1,    progress: () => STATE.qualityRecordings },
+    { id: 'sp_quality_5',    cat: 'speaking', icon: '🌟', title: 'Clear and steady',desc: 'Five quality recordings',         reward: 60,  target: 5,    progress: () => STATE.qualityRecordings },
+    { id: 'sp_quality_15',   cat: 'speaking', icon: '🏅', title: 'Native rhythm',   desc: 'Fifteen quality recordings',       reward: 130, target: 15,   progress: () => STATE.qualityRecordings },
+    // ── Mundo e Historia — countries & flags ──────────────────────────
+    { id: 'first_country',   cat: 'mundo', icon: '🌎', title: 'First destination', desc: 'Explore your first country',       reward: 6,   target: 1,    progress: () => (STATE.countriesViewed ? STATE.countriesViewed.size : 0) },
+    { id: 'half_world',      cat: 'mundo', icon: '🗺️', title: 'Half the world',    desc: 'Explore 10 countries',             reward: 30,  target: 10,   progress: () => (STATE.countriesViewed ? STATE.countriesViewed.size : 0) },
+    { id: 'cartographer',    cat: 'mundo', icon: '🧭', title: 'Cartographer',      desc: 'Explore all 21 countries',         reward: 90,  target: 21,   progress: () => (STATE.countriesViewed ? STATE.countriesViewed.size : 0) },
+    { id: 'flag_streak_5',   cat: 'mundo', icon: '🚩', title: 'Flag streak',       desc: 'Get 5 flags right in a row',       reward: 20,  target: 5,    progress: () => (STATE.bestFlagStreak || 0) },
+    { id: 'mn_flag_streak_10',cat: 'mundo',icon: '🎌', title: 'Flag savant',       desc: 'Get 10 flags right in a row',      reward: 50,  target: 10,   progress: () => (STATE.bestFlagStreak || 0) },
+    { id: 'mn_flag_streak_20',cat: 'mundo',icon: '🏴', title: 'Vexillologist',     desc: 'Get 20 flags right in a row',      reward: 110, target: 20,   progress: () => (STATE.bestFlagStreak || 0) },
+    { id: 'mn_flags_50',     cat: 'mundo', icon: '🟥', title: 'Flag fan',          desc: 'Get 50 flags right total',         reward: 35,  target: 50,   progress: () => (STATE.flagsCorrect || 0) },
+    { id: 'mn_flags_150',    cat: 'mundo', icon: '🟨', title: 'Flag legend',       desc: 'Get 150 flags right total',        reward: 90,  target: 150,  progress: () => (STATE.flagsCorrect || 0) },
+    // ── Dedicación — time, streaks, savings ───────────────────────────
+    { id: 'time_15',         cat: 'dedication', icon: '⏱️', title: 'Quarter hour', desc: 'Practice 15 minutes total',        reward: 10,  target: 15,   progress: () => STATE.minutesAwarded },
+    { id: 'time_60',         cat: 'dedication', icon: '🌅', title: 'A full hour',   desc: 'Practice 60 minutes total',        reward: 40,  target: 60,   progress: () => STATE.minutesAwarded },
+    { id: 'dd_time_120',     cat: 'dedication', icon: '🕯️', title: 'Two hours deep',desc: 'Practice 120 minutes total',      reward: 80,  target: 120,  progress: () => STATE.minutesAwarded },
+    { id: 'dd_days_3',       cat: 'dedication', icon: '📅', title: 'Habit forming', desc: 'Practice on 3 different days',      reward: 20,  target: 3,    progress: () => (STATE.daysActive ? STATE.daysActive.size : 0) },
+    { id: 'dd_days_7',       cat: 'dedication', icon: '🗓️', title: 'Week of work',  desc: 'Practice on 7 different days',      reward: 50,  target: 7,    progress: () => (STATE.daysActive ? STATE.daysActive.size : 0) },
+    { id: 'dd_days_30',      cat: 'dedication', icon: '🎖️', title: 'Month of practice',desc: 'Practice on 30 different days', reward: 150, target: 30,   progress: () => (STATE.daysActive ? STATE.daysActive.size : 0) },
+    { id: 'dd_lucas_100',    cat: 'dedication', icon: '🪙', title: 'First hundred', desc: 'Earn 100 Lucas all-time',          reward: 15,  target: 100,  progress: () => (STATE.lifetimeCoins || 0) },
+    { id: 'dd_lucas_500',    cat: 'dedication', icon: '💰', title: 'Saver',         desc: 'Earn 500 Lucas all-time',          reward: 50,  target: 500,  progress: () => (STATE.lifetimeCoins || 0) },
+    { id: 'dd_lucas_2000',   cat: 'dedication', icon: '🏦', title: 'Lucas baron',   desc: 'Earn 2,000 Lucas all-time',        reward: 150, target: 2000, progress: () => (STATE.lifetimeCoins || 0) },
+    // ── Maestría — cross-cutting mastery ──────────────────────────────
+    { id: 'polyglot',        cat: 'mastery', icon: '🗝️', title: 'Pueblerino',      desc: 'Use all 7 modules at least once',  reward: 100, target: 7,    progress: () => _modulesUsed() },
+    { id: 'mt_badges_10',    cat: 'mastery', icon: '🥉', title: 'Collector',       desc: 'Earn 10 badges',                   reward: 30,  target: 10,   progress: () => STATE.achievements.size },
+    { id: 'mt_badges_25',    cat: 'mastery', icon: '🥈', title: 'Achiever',        desc: 'Earn 25 badges',                   reward: 80,  target: 25,   progress: () => STATE.achievements.size },
+    { id: 'mt_badges_50',    cat: 'mastery', icon: '🥇', title: 'Completionist',   desc: 'Earn 50 badges',                   reward: 250, target: 50,   progress: () => STATE.achievements.size }
+  ];
+
+  let badgeFilter = 'all';
+  function setBadgeFilter(f) { badgeFilter = f; renderAchievements(); }
+  function badgeCurrent(a) { try { return a.progress() || 0; } catch (e) { return 0; } }
 
   function awardCoins(amount, reason) {
     STATE.coins += amount;
+    if (amount > 0) STATE.lifetimeCoins = (STATE.lifetimeCoins || 0) + amount;
     document.getElementById('coinTotal').textContent = STATE.coins;
     const stat = document.getElementById('statCoins');
     if (stat) stat.textContent = STATE.coins;
@@ -8392,31 +8504,79 @@
   }
 
   function checkAchievements() {
-    ACHIEVEMENTS.forEach(a => {
-      if (!STATE.achievements.has(a.id) && a.check()) {
-        STATE.achievements.add(a.id);
-        STATE.coins += a.reward;
-        document.getElementById('coinTotal').textContent = STATE.coins;
-        const stat = document.getElementById('statCoins');
-        if (stat) stat.textContent = STATE.coins;
-        showToast('Achievement! ' + a.title, a.reward);
-        renderAchievements();
-        saveState();
-      }
-    });
+    // Loop to a fixpoint so badges that count *other badges* (Collector, Achiever…)
+    // can unlock in the same pass as the badge that tipped them over.
+    let changed = false, guard = 0;
+    do {
+      changed = false; guard++;
+      ACHIEVEMENTS.forEach(a => {
+        if (!STATE.achievements.has(a.id) && badgeCurrent(a) >= a.target) {
+          STATE.achievements.add(a.id);
+          if (!STATE.achievementsAt) STATE.achievementsAt = {};
+          STATE.achievementsAt[a.id] = new Date().toISOString();
+          STATE.coins += a.reward;
+          STATE.lifetimeCoins = (STATE.lifetimeCoins || 0) + a.reward;
+          const ct = document.getElementById('coinTotal');
+          if (ct) ct.textContent = STATE.coins;
+          const stat = document.getElementById('statCoins');
+          if (stat) stat.textContent = STATE.coins;
+          showToast('🏅 Badge: ' + a.title, a.reward);
+          changed = true;
+        }
+      });
+      if (changed) { renderAchievements(); saveState(); }
+    } while (changed && guard < 6);
   }
 
   function renderAchievements() {
     const grid = document.getElementById('achievementsGrid');
     if (!grid) return;
-    grid.innerHTML = ACHIEVEMENTS.map(a => `
-      <div class="achievement ${STATE.achievements.has(a.id) ? 'unlocked' : ''}">
-        <div class="achievement-icon">${a.icon}</div>
-        <h5>${a.title}</h5>
-        <p>${a.desc}</p>
-        <div class="achievement-reward">+${a.reward} Lucas</div>
-      </div>
-    `).join('');
+    const earnedCount = ACHIEVEMENTS.filter(a => STATE.achievements.has(a.id)).length;
+    const total = ACHIEVEMENTS.length;
+    const pct = total ? Math.round(earnedCount / total * 100) : 0;
+    const f = badgeFilter;
+
+    let html = '';
+    html += '<div class="badge-summary">'
+      + '<span class="big">' + earnedCount + ' / ' + total + '</span>'
+      + '<span class="lbl">badges earned</span>'
+      + '<div class="badge-progress-track"><div class="badge-progress-fill" style="width:' + pct + '%"></div></div>'
+      + '<span class="lbl">' + pct + '%</span></div>';
+    html += '<div class="badge-filter">'
+      + [['all', 'All'], ['earned', 'Earned'], ['locked', 'In progress']].map(o =>
+          '<button class="' + (f === o[0] ? 'active' : '') + '" onclick="setBadgeFilter(\'' + o[0] + '\')">' + o[1] + '</button>').join('')
+      + '</div>';
+
+    BADGE_CATS.forEach(cat => {
+      const all = ACHIEVEMENTS.filter(a => a.cat === cat.id);
+      let list = all;
+      if (f === 'earned') list = all.filter(a => STATE.achievements.has(a.id));
+      else if (f === 'locked') list = all.filter(a => !STATE.achievements.has(a.id));
+      if (!list.length) return;
+      const catEarned = all.filter(a => STATE.achievements.has(a.id)).length;
+      html += '<div class="badge-cat"><div class="badge-cat-head"><span class="ic">' + cat.icon + '</span>'
+        + '<h4>' + cat.name + '</h4><span class="cnt">' + catEarned + ' / ' + all.length + '</span></div>'
+        + '<div class="badge-cat-grid">';
+      html += list.map(a => {
+        const isE = STATE.achievements.has(a.id);
+        const cur = Math.min(badgeCurrent(a), a.target);
+        const p = a.target ? Math.min(100, Math.round(cur / a.target * 100)) : 0;
+        const near = !isE && p >= 60;
+        let inner = '<div class="b-icon">' + a.icon + '</div><h5>' + a.title + '</h5><p>' + a.desc + '</p>';
+        if (isE) {
+          const at = STATE.achievementsAt && STATE.achievementsAt[a.id];
+          const d = at ? new Date(at).toLocaleDateString() : '';
+          inner += '<div class="b-meta"><span class="b-reward">+' + a.reward + ' Lucas</span>'
+            + (d ? '<span class="b-date">' + d + '</span>' : '') + '</div>';
+        } else {
+          inner += '<div class="b-bar"><div class="b-fill" style="width:' + p + '%"></div></div>'
+            + '<div class="b-meta"><span>' + cur + ' / ' + a.target + '</span><span class="b-reward">+' + a.reward + '</span></div>';
+        }
+        return '<div class="badge ' + (isE ? 'earned' : (near ? 'near' : '')) + '">' + inner + '</div>';
+      }).join('');
+      html += '</div></div>';
+    });
+    grid.innerHTML = html;
   }
 
   function updateStats() {
@@ -10082,10 +10242,10 @@
     // Lucas reward — TIERED, hard to earn:
     let reward = 0;
     let verdict = '';
-    if (score >= 20) { reward = 50; verdict = 'Perfect — flawless drill'; }
-    else if (score >= 18) { reward = 30; verdict = 'Excellent work'; }
-    else if (score >= 15) { reward = 15; verdict = 'Solid effort'; }
-    else if (score >= 10) { reward = 5;  verdict = 'Keep practicing'; }
+    if (score >= 20) { reward = 25; verdict = 'Perfect — flawless drill'; }
+    else if (score >= 18) { reward = 15; verdict = 'Excellent work'; }
+    else if (score >= 15) { reward = 8;  verdict = 'Solid effort'; }
+    else if (score >= 10) { reward = 3;  verdict = 'Keep practicing'; }
     else { reward = 0; verdict = 'Try the drill again'; }
 
     // Track stats
