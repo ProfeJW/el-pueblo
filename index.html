@@ -5666,6 +5666,12 @@
       <p>"a ball" → "una pelota". Translate the phrase with its article. Pick your level.</p>
       <div class="game-reward">4 levels · 10 rounds · up to 40 Lucas</div>
     </a>
+    <a href="#/game/articles-translate-en" class="game-card">
+      <div class="game-icon">🔀</div>
+      <h3>Articles <em>→ English</em></h3>
+      <p>The reverse: "una pelota" → "a ball". Read the Spanish, translate into English. Pick your level.</p>
+      <div class="game-reward">4 levels · 10 rounds · up to 40 Lucas</div>
+    </a>
     <a href="#/game/days" class="game-card">
       <div class="game-icon">📅</div>
       <h3>Days of the <em>week</em></h3>
@@ -25625,7 +25631,7 @@
       startMatchGame();
       return;
     }
-    if (gameId === 'articles' || gameId === 'articles-translate') {
+    if (gameId === 'articles' || gameId === 'articles-translate' || gameId === 'articles-translate-en') {
       renderArticleLevelPicker(gameId);
       return;
     }
@@ -26467,6 +26473,21 @@
     return g;
   }
 
+  // Every acceptable English sense for a gloss, so the "translate to English"
+  // game can grade leniently (e.g. "task / homework" → both accepted).
+  function glossSenses(back) {
+    return String(back || '')
+      .split('(')[0]
+      .split(/[\/;,]/)
+      .map(s => s.replace(/["“”']/g, '').trim())
+      .map(s => s.replace(/^(the|a|an|some)\s+/i, '').trim())
+      .filter(Boolean);
+  }
+
+  function aOrAn(word) {
+    return /^[aeiou]/i.test(String(word).trim()) ? 'an' : 'a';
+  }
+
   let _articleNouns = null;
   function articleNounPool() {
     if (_articleNouns) return _articleNouns;
@@ -26486,7 +26507,8 @@
           indef: DEF_TO_INDEF[art],
           plural: (art === 'los' || art === 'las'),
           bare: bare,
-          gloss: elpCleanGloss(c.back)
+          gloss: elpCleanGloss(c.back),
+          senses: glossSenses(c.back)
         });
       }
     }
@@ -26541,6 +26563,42 @@
     };
   }
 
+  // Reverse of the above: show the Spanish phrase, type the English. Graded
+  // leniently — every sense in the gloss counts, "a"/"an" are both accepted,
+  // and a plural takes either "some books" or just "books".
+  function articleTranslateEnRound(level) {
+    const pool = articleNounPool().filter(n => n.senses && n.senses.length);
+    let candidates, indef;
+    if (level === 2)      { candidates = pool;                        indef = false; }
+    else if (level === 3) { candidates = pool.filter(n => !n.plural); indef = true;  }
+    else if (level === 4) { candidates = pool;                        indef = true;  }
+    else                  { candidates = pool.filter(n => !n.plural); indef = false; }
+    if (!candidates.length) candidates = pool;
+    const n = elpPick(candidates);
+    const spanish = (indef ? n.indef : n.def) + ' ' + n.bare;
+    const valid = [];
+    let display = '';
+    n.senses.forEach((s, i) => {
+      if (indef && n.plural) {
+        valid.push('some ' + s, s);            // bare plural is a fine translation of "unos X"
+        if (i === 0) display = 'some ' + s;
+      } else if (indef) {
+        valid.push('a ' + s, 'an ' + s);       // a/an is sound-based & fuzzy — accept both
+        if (i === 0) display = aOrAn(s) + ' ' + s;
+      } else {
+        valid.push('the ' + s);
+        if (i === 0) display = 'the ' + s;
+      }
+    });
+    return {
+      promptLabel: 'Translate to English — include the article',
+      promptDisplay: '<span style="font-size:34px;font-family:\'DM Serif Display\',serif;">' + spanish + '</span>',
+      answer: display,
+      validAnswers: valid,
+      hint: indef ? (n.plural ? 'e.g., some books' : 'e.g., a house') : 'e.g., the house'
+    };
+  }
+
   GAMES['articles'] = {
     title: 'El · la · <em>los · las</em>',
     icon: '🏷️',
@@ -26553,6 +26611,12 @@
     maxReward: 40,
     generate: function () { return articleTranslateRound((gameState && gameState.level) || 1); }
   };
+  GAMES['articles-translate-en'] = {
+    title: 'Articles <em>→ English</em>',
+    icon: '🔀',
+    maxReward: 40,
+    generate: function () { return articleTranslateEnRound((gameState && gameState.level) || 1); }
+  };
 
   const ARTICLE_LEVELS = [
     { n: 1, sub: 'el · la',                desc: 'Singular “the” — masculine vs. feminine.' },
@@ -26561,15 +26625,27 @@
     { n: 4, sub: 'un · una · unos · unas', desc: '“a” and “some” — singular & plural.' }
   ];
 
+  const ARTICLE_GAME_INFO = {
+    'articles': {
+      title: 'El · la · <em style="color:var(--rojo);font-style:italic;">los · las</em>',
+      blurb: 'Pick a level, then tap the correct article for each noun. 10 rounds.'
+    },
+    'articles-translate': {
+      title: 'Articles <em style="color:var(--rojo);font-style:italic;">translate</em>',
+      blurb: 'Pick a level, then translate each phrase with its article — “a ball” → “una pelota”. 10 rounds.'
+    },
+    'articles-translate-en': {
+      title: 'Articles <em style="color:var(--rojo);font-style:italic;">→ English</em>',
+      blurb: 'Pick a level, then translate the Spanish into English — “una pelota” → “a ball”. 10 rounds.'
+    }
+  };
+
   function renderArticleLevelPicker(gameId) {
     const container = document.getElementById('game-detail-content');
     if (!container) return;
-    const isTranslate = (gameId === 'articles-translate');
-    const title = isTranslate ? 'Articles <em style="color:var(--rojo);font-style:italic;">translate</em>'
-                              : 'El · la · <em style="color:var(--rojo);font-style:italic;">los · las</em>';
-    const blurb = isTranslate
-      ? 'Pick a level, then translate each phrase with its article — “a ball” → “una pelota”. 10 rounds.'
-      : 'Pick a level, then tap the correct article for each noun. 10 rounds.';
+    const info = ARTICLE_GAME_INFO[gameId] || ARTICLE_GAME_INFO['articles'];
+    const title = info.title;
+    const blurb = info.blurb;
     container.innerHTML =
       '<a href="#/juegos" class="aviso-link" style="display:inline-block;margin-bottom:16px;">← Back to games</a>'
       + '<div class="match-intro">'
