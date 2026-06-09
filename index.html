@@ -25576,30 +25576,31 @@
       icon: '🌤️',
       maxReward: 30,
       generate: () => {
-        // Each scenario: emoji visual + accepted Spanish answers
+        // Each scenario: emoji visual + accepted Spanish answers + its own
+        // hint (shown as the input placeholder) telling the expected form.
         const scenarios = [
-          { display: '☀️', label: 'How would you describe this weather?', answers: ['hace sol', 'está soleado'], primary: 'hace sol' },
-          { display: '🔥 35°C', label: 'How would you describe this weather?', answers: ['hace calor', 'hace mucho calor'], primary: 'hace calor' },
-          { display: '❄️ -5°C', label: 'How would you describe this weather?', answers: ['hace frío', 'hace mucho frío'], primary: 'hace frío' },
-          { display: '💨', label: 'How would you describe this weather?', answers: ['hace viento'], primary: 'hace viento' },
-          { display: '🌧️', label: 'How would you describe this weather?', answers: ['llueve', 'está lloviendo'], primary: 'llueve' },
-          { display: '❄️🌨️', label: 'How would you describe this weather?', answers: ['nieva', 'está nevando'], primary: 'nieva' },
-          { display: '☁️', label: 'How would you describe this weather?', answers: ['está nublado', 'hay nubes'], primary: 'está nublado' },
-          { display: '⛈️', label: 'How would you describe this weather?', answers: ['hay tormenta', 'hace tormenta'], primary: 'hay tormenta' },
-          { display: '🌫️', label: 'How would you describe this weather?', answers: ['hay niebla'], primary: 'hay niebla' },
-          { display: '🌤️', label: 'How would you describe this nice day?', answers: ['hace buen tiempo'], primary: 'hace buen tiempo' },
-          // Season questions
-          { display: '🌸 March, April, May', label: 'What season?', answers: ['la primavera', 'primavera'], primary: 'la primavera' },
-          { display: '☀️ June, July, August', label: 'What season? (Northern Hem.)', answers: ['el verano', 'verano'], primary: 'el verano' },
-          { display: '🍂 September, October, November', label: 'What season? (Northern Hem.)', answers: ['el otoño', 'otoño'], primary: 'el otoño' },
-          { display: '⛄ December, January, February', label: 'What season? (Northern Hem.)', answers: ['el invierno', 'invierno'], primary: 'el invierno' },
-          // Translations
-          { display: 'umbrella', label: 'Translate to Spanish', answers: ['el paraguas', 'paraguas'], primary: 'el paraguas' },
-          { display: 'snow (the noun)', label: 'Translate to Spanish', answers: ['la nieve', 'nieve'], primary: 'la nieve' },
-          { display: 'rain (the noun)', label: 'Translate to Spanish', answers: ['la lluvia', 'lluvia'], primary: 'la lluvia' },
-          { display: 'cloud', label: 'Translate to Spanish', answers: ['la nube', 'nube'], primary: 'la nube' },
-          { display: 'lightning', label: 'Translate to Spanish', answers: ['el relámpago', 'relámpago'], primary: 'el relámpago' },
-          { display: 'thunder', label: 'Translate to Spanish', answers: ['el trueno', 'trueno'], primary: 'el trueno' }
+          { display: '☀️', label: 'How would you describe this weather?', answers: ['hace sol', 'está soleado'], primary: 'hace sol', hint: 'Hace… (a weather expression)' },
+          { display: '🥵 35°C / 95°F', label: 'How would you describe this weather?', answers: ['hace calor', 'hace mucho calor'], primary: 'hace calor', hint: 'Hace… (a weather expression)' },
+          { display: '🥶 -5°C / 23°F', label: 'How would you describe this weather? (the temperature, not snow)', answers: ['hace frío', 'hace mucho frío'], primary: 'hace frío', hint: 'Hace… (a weather expression)' },
+          { display: '💨', label: 'How would you describe this weather?', answers: ['hace viento'], primary: 'hace viento', hint: 'Hace… (a weather expression)' },
+          { display: '🌧️', label: 'How would you say "it\'s raining"?', answers: ['llueve', 'está lloviendo'], primary: 'llueve', hint: 'One verb — or "está + -ando"' },
+          { display: '🌨️', label: 'How would you say "it\'s snowing"?', answers: ['nieva', 'está nevando'], primary: 'nieva', hint: 'One verb — or "está + -ando"' },
+          { display: '☁️', label: 'How would you describe this weather?', answers: ['está nublado', 'hay nubes'], primary: 'está nublado', hint: 'Está + adjective (or Hay + noun)' },
+          { display: '⛈️', label: 'How would you describe this weather? (the storm itself)', answers: ['hay tormenta', 'hace tormenta', 'hay una tormenta'], primary: 'hay tormenta', hint: 'Hay + noun' },
+          { display: '🌫️', label: 'How would you describe this weather? (fog)', answers: ['hay niebla'], primary: 'hay niebla', hint: 'Hay + noun' },
+          { display: '🌤️', label: 'How would you describe this nice day overall?', answers: ['hace buen tiempo'], primary: 'hace buen tiempo', hint: 'Hace ____ tiempo' },
+          // Season questions — la estación, article encouraged
+          { display: '🌸 March, April, May', label: 'What season is it? (la estación)', answers: ['la primavera', 'primavera', 'es primavera', 'es la primavera'], primary: 'la primavera', hint: 'The season, with el/la' },
+          { display: '☀️ June, July, August', label: 'What season is it? (la estación · Northern Hem.)', answers: ['el verano', 'verano', 'es verano', 'es el verano'], primary: 'el verano', hint: 'The season, with el/la' },
+          { display: '🍂 September, October, November', label: 'What season is it? (la estación · Northern Hem.)', answers: ['el otoño', 'otoño', 'es otoño', 'es el otoño'], primary: 'el otoño', hint: 'The season, with el/la' },
+          { display: '⛄ December, January, February', label: 'What season is it? (la estación · Northern Hem.)', answers: ['el invierno', 'invierno', 'es invierno', 'es el invierno'], primary: 'el invierno', hint: 'The season, with el/la' },
+          // Translations — English shows the article so the Spanish gets one too
+          { display: 'the umbrella', label: 'Translate to Spanish (include the article)', answers: ['el paraguas', 'paraguas'], primary: 'el paraguas', hint: 'el/la + noun' },
+          { display: 'the snow', label: 'Translate to Spanish (include the article)', answers: ['la nieve', 'nieve'], primary: 'la nieve', hint: 'el/la + noun' },
+          { display: 'the rain', label: 'Translate to Spanish (include the article)', answers: ['la lluvia', 'lluvia'], primary: 'la lluvia', hint: 'el/la + noun' },
+          { display: 'the cloud', label: 'Translate to Spanish (include the article)', answers: ['la nube', 'nube'], primary: 'la nube', hint: 'el/la + noun' },
+          { display: 'the lightning', label: 'Translate to Spanish (include the article)', answers: ['el relámpago', 'relámpago'], primary: 'el relámpago', hint: 'el/la + noun' },
+          { display: 'the thunder', label: 'Translate to Spanish (include the article)', answers: ['el trueno', 'trueno'], primary: 'el trueno', hint: 'el/la + noun' }
         ];
         const pick = scenarios[Math.floor(Math.random() * scenarios.length)];
         return {
@@ -25607,7 +25608,7 @@
           promptDisplay: pick.display,
           answer: pick.primary,
           validAnswers: pick.answers,
-          hint: 'Hace sol / Llueve / Está nublado / la primavera'
+          hint: pick.hint
         };
       }
     },
