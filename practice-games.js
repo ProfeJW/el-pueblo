@@ -79,17 +79,6 @@
     return _scramble;
   }
 
-  var _gender = null;
-  function genderPool() {
-    if (_gender) return _gender;
-    _gender = allCards().filter(function (c) {
-      // Ground-truth: only singular nouns written with an explicit el/la article.
-      var p = String(c.word).trim().split(/\s+/);
-      return p.length >= 2 && (p[0].toLowerCase() === 'el' || p[0].toLowerCase() === 'la');
-    });
-    return _gender;
-  }
-
   var _cloze = null;
   function clozePool() {
     if (_cloze) return _cloze;
@@ -154,22 +143,6 @@
         };
       }
     },
-    'vocab-gender': {
-      title: 'El o <em>la</em>',
-      icon: '🏷️',
-      maxReward: 25,
-      generate: function () {
-        var c = pick(genderPool());
-        var sp = splitArticle(c.word);
-        return {
-          promptLabel: 'Which article — el or la?',
-          promptDisplay: sp.bare,
-          answer: sp.article,
-          validAnswers: [sp.article],
-          hint: 'Type “el” or “la”'
-        };
-      }
-    },
     'vocab-cloze': {
       title: 'Sentence <em>cloze</em>',
       icon: '✏️',
@@ -221,7 +194,6 @@
   var CARDS = [
     { id: 'vocab-recall',   icon: '🧠', title: 'Vocab <em>recall</em>',     desc: 'See the English, type the Spanish word. Draws from every vocab deck.', reward: 'up to 35 Lucas' },
     { id: 'vocab-scramble', icon: '🔤', title: 'Word <em>scramble</em>',    desc: 'Letters are jumbled — rebuild the Spanish word. Meaning shown as a hint.', reward: 'up to 30 Lucas' },
-    { id: 'vocab-gender',   icon: '🏷️', title: 'El o <em>la</em>',          desc: 'Masculine or feminine? Pick the right article for each noun.', reward: 'up to 25 Lucas' },
     { id: 'vocab-cloze',    icon: '✏️', title: 'Sentence <em>cloze</em>',   desc: 'A real example sentence with one word missing — fill the blank.', reward: 'up to 40 Lucas' },
     { id: 'vocab-listen',   icon: '🎧', title: 'Listen & <em>spell</em>',   desc: 'Hear the word, then spell it. Listening + vocabulary in one.', reward: 'up to 35 Lucas' }
   ];
