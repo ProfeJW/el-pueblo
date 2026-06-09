@@ -5055,12 +5055,21 @@
     .site-search-results .ss-label { font-weight:600; }
     .site-search-results .ss-label span { font-weight:400; }
     .site-search-results .ss-sub { font-size:12px; color:var(--ink-soft); }
+    .site-search-results .ss-word { padding:8px 12px 10px; }
+    .site-search-results .ss-word-head { display:flex; align-items:center; gap:12px; }
+    .site-search-results .ss-chips { display:flex; flex-wrap:wrap; gap:6px; margin:6px 0 0 34px; }
+    .site-search-results .ss-chip {
+      background:var(--paper-deep); border:1px solid var(--line); border-radius:999px;
+      padding:3px 11px; font-size:12px; color:var(--ink); cursor:pointer; font-family:inherit;
+    }
+    .site-search-results .ss-chip:hover, .site-search-results .ss-chip:focus { border-color:var(--rojo); outline:none; }
   </style>
   <div class="site-search" style="max-width:680px;margin:34px 0 8px;position:relative;">
     <input id="siteSearchInput" type="search" autocomplete="off" spellcheck="false"
       placeholder="Search the site — a word, a deck, a game, a country…"
       oninput="if(window.runSiteSearch)runSiteSearch(this.value)"
-      onkeydown="if(event.key==='Enter'){var r=document.querySelector('#siteSearchResults .ss-row');if(r)r.click();}else if(event.key==='Escape'){this.value='';if(window.runSiteSearch)runSiteSearch('');}"
+      onfocus="if(window.primeHistoriaForSearch)primeHistoriaForSearch()"
+      onkeydown="if(event.key==='Enter'){var r=document.querySelector('#siteSearchResults .ss-row, #siteSearchResults .ss-chip');if(r)r.click();}else if(event.key==='Escape'){this.value='';if(window.runSiteSearch)runSiteSearch('');}"
       style="width:100%;padding:14px 18px;font-size:16px;font-family:inherit;color:var(--ink);background:var(--card-bg);border:1px solid var(--line);border-radius:10px;outline:none;box-sizing:border-box;">
     <div id="siteSearchResults" class="site-search-results" style="display:none;"></div>
   </div>
@@ -26750,6 +26759,50 @@
     return String(back || '').split('(')[0].split('/')[0].split(/[;,]/)[0].trim();
   }
 
+  // Historia event vocab → which countries' timelines use each phrase. Built
+  // once Historia is loaded; returns null until then (cross-link degrades
+  // gracefully and fills in on a later keystroke).
+  let _historiaVocabIndex = null;
+  function historiaVocabIndex() {
+    if (!HISTORIA || !HISTORIA.length) return null;
+    if (_historiaVocabIndex) return _historiaVocabIndex;
+    _historiaVocabIndex = [];
+    HISTORIA.forEach(function (c) {
+      const seen = {};
+      (c.events || []).forEach(function (ev) {
+        (ev.vocab || []).forEach(function (v) {
+          const key = searchNorm(v);
+          if (!key || seen[key]) return;
+          seen[key] = true;
+          _historiaVocabIndex.push({ key: key, phrase: v, code: c.country, name: c.countryName });
+        });
+      });
+    });
+    return _historiaVocabIndex;
+  }
+
+  // Pull in historia.js in the background so the cross-link has data. Cached by
+  // the loader; we just clear our derived index so it rebuilds once data lands.
+  function primeHistoriaForSearch() {
+    try {
+      if (typeof loadHistoriaModule === 'function') {
+        loadHistoriaModule().then(function () { _historiaVocabIndex = null; }).catch(function () {});
+      }
+    } catch (e) { /* non-fatal */ }
+  }
+
+  // Relevance: exact match first, then prefix, then substring (Spanish or gloss).
+  // Article-aware: also tests the bare noun so "casa" ranks "la casa" as exact.
+  function rankScore(q, display, gloss) {
+    const d = searchNorm(display), g = searchNorm(gloss || '');
+    const db = d.replace(/^(el|la|los|las|un|una|unos|unas)\s+/, '');
+    if (d === q || g === q || db === q) return 4;
+    if (d.indexOf(q) === 0 || db.indexOf(q) === 0 || g.indexOf(q) === 0) return 3;
+    if (d.indexOf(q) !== -1) return 2;
+    if (g.indexOf(q) !== -1) return 1;
+    return 0;
+  }
+
   // Deck key → friendly label, read once from the flashcard pills (falling back
   // to the Match-game labels, then the raw key).
   let _deckLabels = null;
@@ -26814,6 +26867,7 @@
     if (!box) return;
     const q = searchNorm(raw);
     if (q.length < 2) { box.innerHTML = ''; box.style.display = 'none'; return; }
+    primeHistoriaForSearch(); // load historia.js in the background for cross-links
 
     const groups = [];
 
@@ -26852,26 +26906,64 @@
       .map(c => ssRow('📜', searchEscape(c.name), 'Historia · ' + c.events + ' events', "siteSearchGo('#/historia/" + c.code.toLowerCase() + "')"));
     if (countryRows.length) groups.push(['Historia (countries)', countryRows]);
 
-    // Individual vocab words (Spanish or English), capped
-    const wordRows = [];
-    let count = 0;
-    const deckKeys = Object.keys(decks);
-    for (let di = 0; di < deckKeys.length && count < 12; di++) {
-      const k = deckKeys[di];
+    // Words — consolidated: ONE row per word, listing every place it appears
+    // (each deck + each Historia timeline) as clickable chips. Ranked so exact
+    // matches come first, then the list is capped — so a term in many places
+    // shows its best hits with all their locations rather than 12 stray rows.
+    const wordMap = {}; // normKey -> entry
+    function ssEntry(key, display, gloss) {
+      let e = wordMap[key];
+      if (!e) { e = wordMap[key] = { display: display, gloss: gloss || '', decks: {}, deckOrder: [], countries: {}, countryOrder: [] }; }
+      else if (!e.gloss && gloss) e.gloss = gloss;
+      return e;
+    }
+    for (const k of Object.keys(decks)) {
       const arr = decks[k];
       if (!Array.isArray(arr)) continue;
-      for (let i = 0; i < arr.length && count < 12; i++) {
+      for (let i = 0; i < arr.length; i++) {
         const c = arr[i];
         if (!c || !c.word) continue;
         if (searchNorm(c.word).indexOf(q) !== -1 || searchNorm(c.back).indexOf(q) !== -1) {
-          const lbl = searchEscape(c.word) +
-            ' <span>— ' + searchEscape(searchFirstSense(c.back)) + '</span>';
-          wordRows.push(ssRow('🔤', lbl, (dl[k] || k) + ' deck', "openDeckByKey('" + k + "'," + i + ")"));
-          count++;
+          const e = ssEntry(searchNorm(c.word), c.word, searchFirstSense(c.back));
+          if (!(k in e.decks)) { e.decks[k] = i; e.deckOrder.push(k); }
         }
       }
     }
-    if (wordRows.length) groups.push(['Words', wordRows]);
+    const hvi = historiaVocabIndex();
+    if (hvi) {
+      for (const v of hvi) {
+        if (v.key.indexOf(q) !== -1) {
+          const e = ssEntry(v.key, v.phrase, '');
+          if (!(v.code in e.countries)) { e.countries[v.code] = v.name; e.countryOrder.push(v.code); }
+        }
+      }
+    }
+    const wordEntries = Object.keys(wordMap).map(function (key) {
+      wordMap[key].score = rankScore(q, wordMap[key].display, wordMap[key].gloss);
+      return wordMap[key];
+    }).sort(function (a, b) {
+      if (b.score !== a.score) return b.score - a.score;
+      if (a.display.length !== b.display.length) return a.display.length - b.display.length;
+      return a.display.localeCompare(b.display);
+    }).slice(0, 15);
+
+    if (wordEntries.length) {
+      const wordRows = wordEntries.map(function (e) {
+        const chips = [];
+        e.deckOrder.forEach(function (k) {
+          chips.push('<button type="button" class="ss-chip" onclick="openDeckByKey(\'' + k + '\',' + e.decks[k] + ')">🗂️ ' + searchEscape(dl[k] || k) + '</button>');
+        });
+        e.countryOrder.forEach(function (code) {
+          chips.push('<button type="button" class="ss-chip" onclick="siteSearchGo(\'#/historia/' + code.toLowerCase() + '\')">📜 ' + searchEscape(e.countries[code]) + '</button>');
+        });
+        const labelHtml = searchEscape(e.display) + (e.gloss ? ' <span>— ' + searchEscape(e.gloss) + '</span>' : '');
+        return '<div class="ss-word">' +
+          '<div class="ss-word-head"><span class="ss-icon">🔤</span><span class="ss-label">' + labelHtml + '</span></div>' +
+          '<div class="ss-chips">' + chips.join('') + '</div>' +
+          '</div>';
+      });
+      groups.push(['Words', wordRows]);
+    }
 
     if (!groups.length) {
       box.innerHTML = '<div style="padding:14px 16px;color:var(--ink-soft);font-size:14px;">No matches for “' + searchEscape(raw) + '”.</div>';
