@@ -5030,6 +5030,41 @@
   <p class="lead">
     A space to <em>practice</em>, <em>listen</em>, and <em>share</em>. Built by students, for students — where every word tells a story and every mistake is a beginning. <em style="color:var(--rojo)">El pueblo</em> means "the village" — a place where everyone knows your name and learns together.
   </p>
+
+  <!-- SITE SEARCH — find words, decks, games, sections, and countries -->
+  <style>
+    .site-search-results {
+      position:absolute; left:0; right:0; top:calc(100% + 6px); z-index:50;
+      background:var(--card-bg); border:1px solid var(--line); border-radius:10px;
+      box-shadow:0 12px 36px rgba(0,0,0,0.18); max-height:62vh; overflow-y:auto; padding:6px;
+    }
+    .site-search-results .ss-group-label {
+      font-family:'JetBrains Mono',monospace; font-size:11px; letter-spacing:0.12em; text-transform:uppercase;
+      color:var(--ink-soft); padding:10px 12px 4px;
+    }
+    .site-search-results .ss-row {
+      display:flex; align-items:center; gap:12px; width:100%; text-align:left;
+      background:transparent; border:none; border-radius:7px; padding:9px 12px; cursor:pointer;
+      color:var(--ink); font-family:inherit; font-size:15px;
+    }
+    .site-search-results .ss-row:hover, .site-search-results .ss-row:focus {
+      background:var(--paper-deep); outline:none;
+    }
+    .site-search-results .ss-icon { font-size:18px; flex-shrink:0; width:22px; text-align:center; }
+    .site-search-results .ss-text { display:flex; flex-direction:column; line-height:1.25; min-width:0; }
+    .site-search-results .ss-label { font-weight:600; }
+    .site-search-results .ss-label span { font-weight:400; }
+    .site-search-results .ss-sub { font-size:12px; color:var(--ink-soft); }
+  </style>
+  <div class="site-search" style="max-width:680px;margin:34px 0 8px;position:relative;">
+    <input id="siteSearchInput" type="search" autocomplete="off" spellcheck="false"
+      placeholder="Search the site — a word, a deck, a game, a country…"
+      oninput="if(window.runSiteSearch)runSiteSearch(this.value)"
+      onkeydown="if(event.key==='Enter'){var r=document.querySelector('#siteSearchResults .ss-row');if(r)r.click();}else if(event.key==='Escape'){this.value='';if(window.runSiteSearch)runSiteSearch('');}"
+      style="width:100%;padding:14px 18px;font-size:16px;font-family:inherit;color:var(--ink);background:var(--card-bg);border:1px solid var(--line);border-radius:10px;outline:none;box-sizing:border-box;">
+    <div id="siteSearchResults" class="site-search-results" style="display:none;"></div>
+  </div>
+
   <div class="hero-meta">
     <a href="#/vocabulario">
       <span class="num">🃏 Vocabulario</span>
@@ -26679,6 +26714,181 @@
     };
     renderGameRound();
   }
+
+  // ============================================================================
+  // SITE SEARCH — the home-page "find anything" box
+  // ----------------------------------------------------------------------------
+  // Indexes (live, no precompute): site sections, every game card in the hub
+  // (including the ones injected by companion files), vocab decks, individual
+  // vocab words, and the 21 Historia countries. Each result routes via the hash
+  // router, or — for words/decks — opens that deck in the flashcards view.
+  // ============================================================================
+  const SEARCH_SECTIONS = [
+    { icon: '🃏', label: 'Flashcards (Vocabulary)', hash: '#/vocabulario', kw: 'vocab vocabulary flashcards words deck decks cards study' },
+    { icon: '🔄', label: 'Verb practice',           hash: '#/verbos',      kw: 'verbs verbos conjugation conjugate tenses drill preterite imperfect subjunctive' },
+    { icon: '📘', label: 'Grammar lessons',         hash: '#/lecciones',   kw: 'lessons lecciones grammar spanish 1 2 3 notes' },
+    { icon: '🎮', label: 'Practice games',          hash: '#/juegos',      kw: 'games juegos play practice mini games' },
+    { icon: '📚', label: 'Guided reading',          hash: '#/lectura',     kw: 'reading lectura passages comprehension' },
+    { icon: '🎧', label: 'Listening',               hash: '#/escucha',     kw: 'listening escucha audio dictation comprehension' },
+    { icon: '✍️', label: 'Writing topics',          hash: '#/escritura',   kw: 'writing escritura prompts compositions' },
+    { icon: '🎙️', label: 'Speaking topics',         hash: '#/voces',       kw: 'speaking voces record oral pronunciation' },
+    { icon: '🌎', label: 'Mundo — culture & geography', hash: '#/mundo',   kw: 'mundo culture cultura geography geografia countries flags world capitals' },
+    { icon: '📜', label: 'Historia',                hash: '#/historia',    kw: 'historia history countries events timeline' },
+    { icon: '🔗', label: 'Student resources',       hash: '#/recursos',    kw: 'resources recursos links ixl classroom progressbook translator' },
+    { icon: '★',  label: 'Rewards & shop (Lucas)',  hash: '#/lucas',       kw: 'lucas rewards shop coins store achievements badges' }
+  ];
+
+  function searchNorm(s) {
+    return String(s == null ? '' : s).toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g, '').trim();
+  }
+  function searchEscape(s) {
+    return String(s == null ? '' : s).replace(/[&<>"']/g, function (m) {
+      return ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' })[m];
+    });
+  }
+  function searchFirstSense(back) {
+    return String(back || '').split('(')[0].split('/')[0].split(/[;,]/)[0].trim();
+  }
+
+  // Deck key → friendly label, read once from the flashcard pills (falling back
+  // to the Match-game labels, then the raw key).
+  let _deckLabels = null;
+  function deckLabels() {
+    if (_deckLabels) return _deckLabels;
+    _deckLabels = {};
+    document.querySelectorAll('#vocabulario .pill').forEach(function (p) {
+      const m = (p.getAttribute('onclick') || '').match(/loadDeck\('([^']+)'/);
+      if (m) _deckLabels[m[1]] = (p.textContent || '').trim();
+    });
+    for (const k in decks) {
+      if (!_deckLabels[k]) _deckLabels[k] = (typeof MATCH_DECK_LABELS !== 'undefined' && MATCH_DECK_LABELS[k]) || k;
+    }
+    return _deckLabels;
+  }
+
+  // Open a specific deck (and optionally a specific card) in the flashcards view.
+  function openDeckByKey(key, idx) {
+    if (!decks[key]) return;
+    currentDeck = key;
+    cardIdx = (typeof idx === 'number' && idx >= 0 && idx < decks[key].length) ? idx : 0;
+    closeSiteSearch();
+    if (window.location.hash !== '#/vocabulario') window.location.hash = '#/vocabulario';
+    setTimeout(function () {
+      document.querySelectorAll('#vocabulario .pill').forEach(function (p) {
+        const m = (p.getAttribute('onclick') || '').match(/loadDeck\('([^']+)'/);
+        p.classList.toggle('active', !!(m && m[1] === key));
+      });
+      const nameEl = document.getElementById('deck-name');
+      if (nameEl) nameEl.textContent = deckLabels()[key] || key;
+      if (typeof renderCard === 'function') renderCard();
+    }, 30);
+  }
+
+  function siteSearchGo(hash) {
+    closeSiteSearch();
+    if (window.location.hash === hash) {
+      const r = getRouteFromHash();
+      showPage(r.page, r.param);
+    } else {
+      window.location.hash = hash;
+    }
+  }
+
+  function closeSiteSearch() {
+    const box = document.getElementById('siteSearchResults');
+    if (box) box.style.display = 'none';
+    const inp = document.getElementById('siteSearchInput');
+    if (inp) inp.value = '';
+  }
+
+  function ssRow(icon, labelHtml, sub, onclick) {
+    return '<button type="button" class="ss-row" onclick="' + onclick + '">' +
+      '<span class="ss-icon">' + icon + '</span>' +
+      '<span class="ss-text"><span class="ss-label">' + labelHtml + '</span>' +
+      (sub ? '<span class="ss-sub">' + searchEscape(sub) + '</span>' : '') +
+      '</span></button>';
+  }
+
+  function runSiteSearch(raw) {
+    const box = document.getElementById('siteSearchResults');
+    if (!box) return;
+    const q = searchNorm(raw);
+    if (q.length < 2) { box.innerHTML = ''; box.style.display = 'none'; return; }
+
+    const groups = [];
+
+    // Sections
+    const secRows = SEARCH_SECTIONS
+      .filter(s => searchNorm(s.label).indexOf(q) !== -1 || searchNorm(s.kw).indexOf(q) !== -1)
+      .map(s => ssRow(s.icon, searchEscape(s.label), '', "siteSearchGo('" + s.hash + "')"));
+    if (secRows.length) groups.push(['Sections', secRows]);
+
+    // Games — read straight from the hub so injected games are included
+    const gameRows = [];
+    document.querySelectorAll('#gameGrid a.game-card').forEach(function (a) {
+      const h3 = a.querySelector('h3');
+      const title = h3 ? (h3.textContent || '').trim() : '';
+      const href = a.getAttribute('href') || '';
+      if (title && href && searchNorm(title).indexOf(q) !== -1) {
+        gameRows.push(ssRow('🎮', searchEscape(title), 'Game', "siteSearchGo('" + href + "')"));
+      }
+    });
+    if (gameRows.length) groups.push(['Games', gameRows.slice(0, 8)]);
+
+    // Vocabulary decks
+    const dl = deckLabels();
+    const deckRows = [];
+    Object.keys(dl).forEach(function (k) {
+      if (!decks[k]) return;
+      if (searchNorm(dl[k]).indexOf(q) !== -1 || searchNorm(k).indexOf(q) !== -1) {
+        deckRows.push(ssRow('🗂️', searchEscape(dl[k]), 'Flashcard deck · ' + decks[k].length + ' cards', "openDeckByKey('" + k + "')"));
+      }
+    });
+    if (deckRows.length) groups.push(['Vocabulary decks', deckRows.slice(0, 8)]);
+
+    // Historia countries
+    const countryRows = (typeof HISTORIA_INDEX !== 'undefined' ? HISTORIA_INDEX : [])
+      .filter(c => searchNorm(c.name).indexOf(q) !== -1)
+      .map(c => ssRow('📜', searchEscape(c.name), 'Historia · ' + c.events + ' events', "siteSearchGo('#/historia/" + c.code.toLowerCase() + "')"));
+    if (countryRows.length) groups.push(['Historia (countries)', countryRows]);
+
+    // Individual vocab words (Spanish or English), capped
+    const wordRows = [];
+    let count = 0;
+    const deckKeys = Object.keys(decks);
+    for (let di = 0; di < deckKeys.length && count < 12; di++) {
+      const k = deckKeys[di];
+      const arr = decks[k];
+      if (!Array.isArray(arr)) continue;
+      for (let i = 0; i < arr.length && count < 12; i++) {
+        const c = arr[i];
+        if (!c || !c.word) continue;
+        if (searchNorm(c.word).indexOf(q) !== -1 || searchNorm(c.back).indexOf(q) !== -1) {
+          const lbl = searchEscape(c.word) +
+            ' <span>— ' + searchEscape(searchFirstSense(c.back)) + '</span>';
+          wordRows.push(ssRow('🔤', lbl, (dl[k] || k) + ' deck', "openDeckByKey('" + k + "'," + i + ")"));
+          count++;
+        }
+      }
+    }
+    if (wordRows.length) groups.push(['Words', wordRows]);
+
+    if (!groups.length) {
+      box.innerHTML = '<div style="padding:14px 16px;color:var(--ink-soft);font-size:14px;">No matches for “' + searchEscape(raw) + '”.</div>';
+      box.style.display = 'block';
+      return;
+    }
+    box.innerHTML = groups.map(g => '<div class="ss-group-label">' + g[0] + '</div>' + g[1].join('')).join('');
+    box.style.display = 'block';
+  }
+
+  // Close the results when clicking outside the search box.
+  document.addEventListener('click', function (e) {
+    const wrap = document.querySelector('.site-search');
+    const box = document.getElementById('siteSearchResults');
+    if (!wrap || !box) return;
+    if (!wrap.contains(e.target)) box.style.display = 'none';
+  });
 
   // Bridge for external modules (e.g. practice-games.js) so we can keep growing
   // content without pushing index.html past GitHub's single-file size limit.
