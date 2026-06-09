@@ -16899,6 +16899,27 @@
       </div>
     ` : '';
 
+    // La diáspora — where this country's emigrant communities live today,
+    // worldwide and in the US. Data (sourced) lives in window.ELP_DIASPORA,
+    // appended in historia.js. Rendered only when present for this country.
+    const dia = (typeof window !== 'undefined' && window.ELP_DIASPORA) ? window.ELP_DIASPORA[c.country] : null;
+    const diasporaHtml = dia && dia.hubs && dia.hubs.length ? `
+      <div style="margin-top: 28px; padding: 22px 24px; background: var(--card-bg); border: 1px solid var(--line); border-radius: 4px;">
+        <div style="font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--rojo); margin-bottom: 10px;">La diáspora — where the community lives today</div>
+        ${dia.blurb ? `<p style="font-family: 'Fraunces', serif; font-size: 15px; line-height: 1.6; color: var(--ink); margin: 0 0 16px 0; max-width: 760px;">${dia.blurb}</p>` : ''}
+        <div style="display: flex; flex-direction: column; gap: 11px;">
+          ${dia.hubs.map(h => `
+            <div style="display: flex; flex-wrap: wrap; gap: 8px 12px; align-items: baseline;">
+              <span style="font-family: 'Fraunces', serif; font-weight: 600; font-size: 15px; color: var(--ink);">${h.place}</span>
+              <span style="font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--ink); background: var(--ocre); padding: 2px 8px; border-radius: 3px;">${h.region}</span>
+              <span style="flex: 1; min-width: 200px; font-family: 'Fraunces', serif; font-size: 14px; line-height: 1.5; color: var(--ink-soft);">${h.note}</span>
+            </div>
+          `).join('')}
+        </div>
+        ${dia.sources && dia.sources.length ? `<div style="margin-top: 16px; font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: 0.05em; color: var(--ink-soft); opacity: 0.75;">Sources: ${dia.sources.map((s, i) => `<a href="${s}" target="_blank" rel="noopener" style="color: var(--ink-soft);">[${i + 1}]</a>`).join(' ')}</div>` : ''}
+      </div>
+    ` : '';
+
     container.innerHTML = `
       <div style="display: flex; align-items: center; gap: 16px; margin-bottom: 16px;">
         <div style="font-size: 56px;">${FLAGS[c.country] || ''}</div>
@@ -16912,6 +16933,7 @@
         ${eventsHtml}
       </div>
       ${viewingHtml}
+      ${diasporaHtml}
     `;
   }
 
