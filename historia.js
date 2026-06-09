@@ -1308,6 +1308,221 @@ window.HISTORIA = [
     }
   ];
 
+// ELP_DIASPORA — where each country's emigrant communities live today, worldwide
+// and in the US. Sourced (qualitative) data rendered as "La diáspora" on each
+// Historia country page. Keys are ISO codes matching HISTORIA[].country.
+window.ELP_DIASPORA = {
+  'AR': {
+    blurb: 'The Argentine diaspora is concentrated in Europe and the Americas, driven by waves of emigration during military dictatorship and economic crises, with the largest communities in Spain and Italy.',
+    hubs: [
+      { place: 'Madrid', region: 'Spain', note: 'Spain hosts the largest community of Argentines abroad, with over 450,000 Argentine-born residents as of 2025.' },
+      { place: 'Barcelona', region: 'Spain', note: 'Catalonia and Barcelona are a major destination, part of Spain\'s position as the top country for Argentine emigrants.' },
+      { place: 'Miami, Florida', region: 'USA', note: 'South Florida is a leading U.S. destination for Argentines, with Florida home to the largest share of Argentine Americans.' },
+      { place: 'New York City', region: 'USA', note: 'New York City has historically attracted Argentines, partly due to existing Argentine and Italian communities.' }
+    ],
+    sources: ['https://en.wikipedia.org/wiki/Argentines', 'https://en.wikipedia.org/wiki/Argentines_in_Spain', 'https://en.wikipedia.org/wiki/Argentine_Americans']
+  },
+  'BO': {
+    blurb: 'The Bolivian diaspora numbers roughly a million people, with the largest communities in neighboring Argentina, followed by Spain and the United States.',
+    hubs: [
+      { place: 'Greater Buenos Aires', region: 'Argentina', note: 'Argentina hosts the world\'s largest Bolivian community, concentrated in Greater Buenos Aires districts like La Matanza and Escobar.' },
+      { place: 'Barcelona', region: 'Spain', note: 'Barcelona is home to one of the largest Bolivian migrant communities outside South America.' },
+      { place: 'Washington, D.C. area', region: 'USA', note: 'The D.C. metro area (Virginia and Maryland) holds the largest concentration of Bolivians in the United States.' }
+    ],
+    sources: ['https://en.wikipedia.org/wiki/Bolivians', 'https://en.wikipedia.org/wiki/Bolivian_Americans', 'https://en.wikipedia.org/wiki/Bolivian_Argentines']
+  },
+  'CL': {
+    blurb: 'Roughly 850,000 Chileans live abroad, with about half in neighboring Argentina and significant communities in the United States, Brazil, and Sweden — many tied to exile during the Pinochet dictatorship.',
+    hubs: [
+      { place: 'Argentina', region: 'Argentina', note: 'Argentina is by far the largest destination, hosting more than 215,000 Chileans as of 2020.' },
+      { place: 'New York City', region: 'USA', note: 'Chilean Americans cluster in the New York area, including Queens, alongside Miami, Los Angeles, and Washington, D.C.' },
+      { place: 'Sweden', region: 'Sweden', note: 'Chileans are the largest Latin American community in Sweden, many having fled the 1973 coup and dictatorship.' }
+    ],
+    sources: ['https://en.wikipedia.org/wiki/Chileans', 'https://en.wikipedia.org/wiki/Chilean_Americans', 'https://en.wikipedia.org/wiki/Chilean_Swedes']
+  },
+  'CO': {
+    blurb: 'More than three million Colombians live abroad, with the United States, Spain, and Venezuela together hosting about three-quarters of the diaspora.',
+    hubs: [
+      { place: 'Doral & South Florida', region: 'USA', note: 'South Florida, especially Doral in Miami-Dade County, hosts one of the largest Colombian communities in the U.S.' },
+      { place: 'Jackson Heights, Queens', region: 'USA', note: 'Jackson Heights in Queens is a historic hub, and Queens County holds one of the largest Colombian concentrations of any U.S. county.' },
+      { place: 'Madrid', region: 'Spain', note: 'Spain hosts the second-largest Colombian diaspora, reflecting strong historical and linguistic ties.' },
+      { place: 'Venezuela', region: 'Venezuela', note: 'Venezuela has long hosted a large Colombian population, though estimates vary widely amid the country\'s crisis.' }
+    ],
+    sources: ['https://en.wikipedia.org/wiki/Emigration_from_Colombia', 'https://en.wikipedia.org/wiki/Colombian_Americans', 'https://www.migrationpolicy.org/article/colombian-immigrants-united-states']
+  },
+  'CR': {
+    blurb: 'The Costa Rican diaspora is relatively small and concentrated in the United States, with major communities in Florida, the New York metropolitan area, California, and Texas.',
+    hubs: [
+      { place: 'South Florida', region: 'USA', note: 'Florida hosts the largest state-level Costa Rican population, with clusters in Miami-Dade and Broward counties.' },
+      { place: 'New York area / New Jersey', region: 'USA', note: 'The NY metro area and north-central New Jersey have prominent communities, with New Jersey holding the highest share of Costa Ricans.' },
+      { place: 'Los Angeles, California', region: 'USA', note: 'Los Angeles and California more broadly are among the largest centers of Costa Rican settlement in the U.S.' }
+    ],
+    sources: ['https://en.wikipedia.org/wiki/Costa_Rican_Americans']
+  },
+  'CU': {
+    blurb: 'The Cuban diaspora is overwhelmingly concentrated in the United States, especially South Florida — the legacy of mass exile following the 1959 revolution — with Spain as the largest community outside the U.S.',
+    hubs: [
+      { place: 'Miami, Florida', region: 'USA', note: 'The greater Miami area is home to the majority of Cuban Americans, with Miami-Dade County alone holding over half of Cuban immigrants in the U.S.' },
+      { place: 'Tampa & New Jersey', region: 'USA', note: 'The Tampa and New York/New Jersey metro areas host the next-largest U.S. Cuban communities after Miami.' },
+      { place: 'Spain', region: 'Spain', note: 'Spain is the largest destination for Cubans outside the U.S., with roughly 162,000 residents per U.N. estimates.' }
+    ],
+    sources: ['https://en.wikipedia.org/wiki/Cuban_Americans', 'https://en.wikipedia.org/wiki/Cuban_migration_to_Miami', 'https://www.migrationpolicy.org/article/cuban-immigrants-united-states-2021']
+  },
+  'DO': {
+    blurb: 'About three-quarters of all Dominican migrants live in the United States, concentrated in the New York City area, with Spain hosting the next-largest community.',
+    hubs: [
+      { place: 'New York City', region: 'USA', note: 'Most Dominican Americans live in the New York City area, with large populations in the Bronx and Manhattan.' },
+      { place: 'New Jersey', region: 'USA', note: 'New York and New Jersey together account for about 60 percent of all Dominican immigrants in the U.S.' },
+      { place: 'Madrid', region: 'Spain', note: 'Spain hosts the largest Dominican community outside the U.S., with roughly 185,000 residents.' }
+    ],
+    sources: ['https://en.wikipedia.org/wiki/Dominican_Americans', 'https://en.wikipedia.org/wiki/Dominican_diaspora', 'https://www.migrationpolicy.org/article/dominican-immigrants-united-states']
+  },
+  'EC': {
+    blurb: 'Ecuador\'s emigration surged after its late-1990s financial crisis, and today the great majority of Ecuadorians abroad live in just two countries: the United States and Spain.',
+    hubs: [
+      { place: 'New York City (Queens)', region: 'USA', note: 'The New York metro area is the main U.S. hub, home to roughly half of Ecuadorian Americans, with Queens a longtime first-destination borough.' },
+      { place: 'Madrid', region: 'Spain', note: 'Spain became a primary destination after the 1998–2002 crisis, home to roughly a third of the Ecuadorian diaspora, with Madrid a leading settlement area.' },
+      { place: 'Newark / northern New Jersey', region: 'USA', note: 'New Jersey hosts the second-largest U.S. concentration of Ecuadorians after New York.' },
+      { place: 'Barcelona', region: 'Spain', note: 'Catalonia drew large numbers of Ecuadorian migrants during the 2000s emigration wave.' }
+    ],
+    sources: ['https://en.wikipedia.org/wiki/Ecuadorian_Americans', 'https://en.wikipedia.org/wiki/Emigration_from_Ecuador', 'https://www.migrationpolicy.org/article/ecuador-migration-trends-emigration-venezuelans']
+  },
+  'ES': {
+    blurb: 'Spain\'s diaspora was shaped by mass historical emigration to Latin America and more recent movement within Europe, with millions of Spanish nationals registered as living abroad.',
+    hubs: [
+      { place: 'Buenos Aires', region: 'Argentina', note: 'Argentina has long held the largest population of Spanish nationals abroad, a legacy of mass emigration to South America.' },
+      { place: 'Paris', region: 'France', note: 'France is among the top destinations for Spanish nationals, reflecting both historical and recent intra-European migration.' },
+      { place: 'New York / Miami', region: 'USA', note: 'The United States is one of the three largest destinations for registered Spanish nationals abroad.' },
+      { place: 'Mexico City', region: 'Mexico', note: 'Mexico hosts a major Spanish community and has seen some of the largest recent increases in registered Spaniards.' },
+      { place: 'Havana', region: 'Cuba', note: 'Cuba retains a sizeable community tied to centuries of Spanish settlement in the Caribbean.' }
+    ],
+    sources: ['https://en.wikipedia.org/wiki/Spanish_diaspora', 'https://www.ine.es/dyngs/Prensa/en/PERE2024.htm', 'https://en.wikipedia.org/wiki/Spaniards']
+  },
+  'GQ': {
+    blurb: 'Equatorial Guinea\'s diaspora — one of the larger post-colonial African diasporas relative to population — is overwhelmingly concentrated in its former colonial power, Spain.',
+    hubs: [
+      { place: 'Madrid', region: 'Spain', note: 'Spain hosts the largest Equatoguinean community outside the country, with Madrid a key center and many organizations based there.' },
+      { place: 'Valencia', region: 'Spain', note: 'Valencia ranks among the Spanish cities with the most residents from Equatorial Guinea.' },
+      { place: 'Barcelona', region: 'Spain', note: 'Barcelona is another of the leading Spanish cities for the Equatoguinean community.' },
+      { place: 'Málaga / Marbella', region: 'Spain', note: 'The Málaga area, including Marbella, is among the top settlement areas for Equatoguineans in Spain.' }
+    ],
+    sources: ['https://en.wikipedia.org/wiki/Equatorial_Guinean_immigration_to_Spain', 'https://en.wikipedia.org/wiki/Spanish_diaspora_in_Equatorial_Guinea']
+  },
+  'GT': {
+    blurb: 'The United States is overwhelmingly the main destination for the Guatemalan diaspora, with smaller communities in neighboring Mexico, Belize, and Canada.',
+    hubs: [
+      { place: 'Los Angeles', region: 'USA', note: 'Greater Los Angeles holds the largest Guatemalan population of any place outside Guatemala.' },
+      { place: 'New York / northern New Jersey', region: 'USA', note: 'The New York metro area is the second-largest U.S. hub for Guatemalans.' },
+      { place: 'Washington, D.C.', region: 'USA', note: 'The Washington–Arlington area is among the five U.S. metros holding the bulk of Guatemalan immigrants.' },
+      { place: 'Southern Mexico', region: 'Mexico', note: 'Mexico hosts the largest Guatemalan community outside the United States.' }
+    ],
+    sources: ['https://en.wikipedia.org/wiki/Guatemalan_Americans', 'https://www.migrationpolicy.org/article/guatemalan-immigrants-united-states']
+  },
+  'HN': {
+    blurb: 'Most of the Honduran diaspora lives in the United States, where Hondurans are one of the largest Central American groups, with a notable community in Spain.',
+    hubs: [
+      { place: 'Houston', region: 'USA', note: 'Houston is among the U.S. metros with the largest Honduran-American populations.' },
+      { place: 'New York City', region: 'USA', note: 'New York has long been a major center of Honduran settlement in the United States.' },
+      { place: 'Miami', region: 'USA', note: 'South Florida, centered on Miami, is another leading hub for Honduran Americans.' },
+      { place: 'Madrid', region: 'Spain', note: 'Spain is the largest destination for Hondurans outside the Americas, with a community in the low hundreds of thousands.' }
+    ],
+    sources: ['https://en.wikipedia.org/wiki/Honduran_diaspora', 'https://en.wikipedia.org/wiki/Honduran_Americans']
+  },
+  'MX': {
+    blurb: 'The Mexican diaspora is one of the world\'s largest, and roughly 97 percent of Mexicans living abroad are in the United States, with only small communities elsewhere.',
+    hubs: [
+      { place: 'Los Angeles', region: 'USA', note: 'Los Angeles County alone is home to more than 3.5 million people of Mexican origin, the single largest concentration in the U.S.' },
+      { place: 'Texas (Houston, San Antonio, Dallas)', region: 'USA', note: 'Texas, alongside California, holds more than half of the Mexican-origin population in the United States.' },
+      { place: 'Chicago', region: 'USA', note: 'Chicago anchors a large Mexican-American community among Midwestern cities.' },
+      { place: 'Canada', region: 'Canada', note: 'Canada hosts the largest Mexican community outside the United States, though far smaller than the U.S. diaspora.' },
+      { place: 'Spain', region: 'Spain', note: 'Spain is among the next-largest destinations for Mexicans abroad after the United States and Canada.' }
+    ],
+    sources: ['https://en.wikipedia.org/wiki/Mexican_Americans', 'https://www.migrationpolicy.org/article/mexican-immigrants-united-states']
+  },
+  'NI': {
+    blurb: 'The Nicaraguan diaspora is split mainly between neighboring Costa Rica — its single largest destination — and the United States, where the community centers on South Florida.',
+    hubs: [
+      { place: 'Miami (Sweetwater)', region: 'USA', note: 'Miami-Dade County holds the largest U.S. concentration of Nicaraguan Americans, centered on Sweetwater\'s \'Little Managua.\'' },
+      { place: 'Los Angeles', region: 'USA', note: 'Greater Los Angeles is part of California\'s sizeable Nicaraguan community, the second-largest in the U.S.' },
+      { place: 'San Francisco Bay Area', region: 'USA', note: 'The San Francisco Bay Area is one of the three main U.S. urban centers for Nicaraguans.' },
+      { place: 'Costa Rica', region: 'Costa Rica', note: 'Costa Rica is the primary destination for Nicaraguan migration, hosting a community that makes up a large share of its population.' }
+    ],
+    sources: ['https://en.wikipedia.org/wiki/Nicaraguan_diaspora', 'https://en.wikipedia.org/wiki/Nicaraguan_Americans']
+  },
+  'PA': {
+    blurb: 'The Panamanian diaspora is relatively small and overwhelmingly concentrated in the United States, with smaller communities in neighboring Costa Rica and in Spain.',
+    hubs: [
+      { place: 'New York City', region: 'USA', note: 'Home to the single largest Panamanian American community, concentrated in Brooklyn.' },
+      { place: 'Miami / South Florida', region: 'USA', note: 'Florida hosts one of the largest shares of Panamanian Americans in the country.' },
+      { place: 'San José', region: 'Costa Rica', note: 'Costa Rica is the leading non-U.S. destination, with cross-border migration largely from indigenous communities.' },
+      { place: 'Spain', region: 'Spain', note: 'A smaller but notable share of Panamanian emigrants settle in Spain.' }
+    ],
+    sources: ['https://en.wikipedia.org/wiki/Panamanian_Americans', 'https://www.pewresearch.org/race-and-ethnicity/fact-sheet/us-hispanics-facts-on-panamanian-origin-latinos/']
+  },
+  'PE': {
+    blurb: 'The Peruvian diaspora is spread across the Americas and Europe, with major hubs in the United States, neighboring South American countries, and Italy.',
+    hubs: [
+      { place: 'Paterson, New Jersey', region: 'USA', note: '\'Little Lima\' is considered the largest Peruvian enclave outside South America.' },
+      { place: 'Queens, New York City', region: 'USA', note: 'The New York metropolitan area is a primary settlement zone for Peruvian immigrants.' },
+      { place: 'Florida', region: 'USA', note: 'Florida has one of the largest Peruvian American populations of any US state.' },
+      { place: 'Milan', region: 'Italy', note: 'Italy hosts one of the largest Peruvian communities in Europe.' },
+      { place: 'Santiago', region: 'Chile', note: 'Chile is a major regional destination for Peruvian migrants.' }
+    ],
+    sources: ['https://en.wikipedia.org/wiki/Little_Lima', 'https://en.wikipedia.org/wiki/Peruvian_Americans', 'https://www.vaticannews.va/en/church/news/2025-05/largest-peruvian-community-in-usa-elated-for-pope-leo.html']
+  },
+  'PR': {
+    blurb: 'Puerto Ricans are U.S. citizens, and the stateside diaspora rivals the island\'s own population — concentrated in the Northeast and increasingly in Florida.',
+    hubs: [
+      { place: 'New York City', region: 'USA', note: 'The New York metro area holds the largest concentration of stateside Puerto Ricans.' },
+      { place: 'Orlando, Florida', region: 'USA', note: 'The Orlando metro area is the second-largest and fastest-growing Puerto Rican hub.' },
+      { place: 'Philadelphia', region: 'USA', note: 'North Philadelphia neighborhoods like Fairhill have among the highest Puerto Rican concentrations in the US.' },
+      { place: 'Chicago', region: 'USA', note: 'Humboldt Park\'s Paseo Boricua is one of the largest Puerto Rican communities in the Midwest.' }
+    ],
+    sources: ['https://en.wikipedia.org/wiki/Stateside_Puerto_Ricans', 'https://en.wikipedia.org/wiki/List_of_Stateside_Puerto_Rican_communities']
+  },
+  'PY': {
+    blurb: 'The Paraguayan diaspora is overwhelmingly regional, with by far the largest community in neighboring Argentina and a major secondary hub in Spain.',
+    hubs: [
+      { place: 'Argentina', region: 'Argentina', note: 'Argentina hosts by far the largest Paraguayan diaspora — the country\'s biggest foreign-born community.' },
+      { place: 'Madrid & Barcelona', region: 'Spain', note: 'Spain became a major destination, especially during its pre-2008 economic boom.' },
+      { place: 'Brazil', region: 'Brazil', note: 'Brazil is the second-largest destination country for Paraguayan emigrants.' },
+      { place: 'New York area', region: 'USA', note: 'The New York metro area, especially Queens, holds the largest Paraguayan American community.' }
+    ],
+    sources: ['https://en.wikipedia.org/wiki/Paraguayan_Argentines', 'https://en.wikipedia.org/wiki/Paraguayan_Americans']
+  },
+  'SV': {
+    blurb: 'El Salvador has one of the largest diasporas relative to its size, concentrated heavily in the United States after decades of migration since the 1970s.',
+    hubs: [
+      { place: 'Los Angeles, California', region: 'USA', note: 'The Greater Los Angeles area hosts the single largest Salvadoran population in the US.' },
+      { place: 'Washington, D.C. area', region: 'USA', note: 'The D.C. metro is the only US metro where Salvadorans are the majority among Hispanics.' },
+      { place: 'New York area', region: 'USA', note: 'The New York metro area is the third-largest Salvadoran hub in the country.' },
+      { place: 'Houston, Texas', region: 'USA', note: 'Texas holds the second-largest share of Salvadoran Americans after California.' }
+    ],
+    sources: ['https://en.wikipedia.org/wiki/Salvadoran_Americans', 'https://en.wikipedia.org/wiki/Salvadoran_diaspora_in_Los_Angeles']
+  },
+  'UY': {
+    blurb: 'The Uruguayan diaspora is large relative to the country\'s small population, historically centered on Argentina and now also Spain and the United States.',
+    hubs: [
+      { place: 'Argentina', region: 'Argentina', note: 'Argentina has historically been the main destination, hosting about a third of the diaspora.' },
+      { place: 'Spain', region: 'Spain', note: 'Spain became a leading destination for recent Uruguayan migrants since the early 2000s.' },
+      { place: 'New York area', region: 'USA', note: 'The largest US Uruguayan community is centered in Queens and northern New Jersey cities like Elizabeth.' },
+      { place: 'South Florida', region: 'USA', note: 'The Miami area emerged as a major Uruguayan hub by the early 2010s.' }
+    ],
+    sources: ['https://en.wikipedia.org/wiki/Emigration_from_Uruguay', 'https://en.wikipedia.org/wiki/Uruguayan_Americans']
+  },
+  'VE': {
+    blurb: 'Venezuela has produced one of the world\'s largest recent diasporas, with millions fleeing economic and political crisis — mainly to neighboring South American countries, Spain, and the US.',
+    hubs: [
+      { place: 'Colombia', region: 'Colombia', note: 'Colombia is the primary host country, with the largest Venezuelan population worldwide.' },
+      { place: 'Peru', region: 'Peru', note: 'Peru hosts the second-largest Venezuelan community after Colombia.' },
+      { place: 'Spain', region: 'Spain', note: 'Spain is the leading European destination for Venezuelan migrants.' },
+      { place: 'Doral, Florida', region: 'USA', note: 'Nicknamed \'Doralzuela,\' this Miami suburb is the largest Venezuelan community in the US.' },
+      { place: 'Chile', region: 'Chile', note: 'Chile hosts one of the largest Venezuelan populations in South America.' }
+    ],
+    sources: ['https://en.wikipedia.org/wiki/Venezuelan_diaspora', 'https://www.migrationpolicy.org/article/venezuelan-immigrants-united-states']
+  }
+};
+
 // Tell the main app that historia has loaded
 if (typeof window.__historiaLoaded === 'function') {
   window.__historiaLoaded();
