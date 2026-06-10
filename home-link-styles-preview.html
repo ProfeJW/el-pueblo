@@ -1,0 +1,82 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Home link styles — preview</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Fraunces:ital,opsz,wght@0,9..144,300..900;1,9..144,300..900&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<style>
+:root{--paper:#f4ede0;--paper-deep:#ebe1cd;--ink:#1f1a14;--ink-soft:#6b6051;--rojo:#c43d2a;--ocre:#d4922c;--verde:#4a6b3a;--line:rgba(31,26,20,.18);}
+*{box-sizing:border-box;margin:0;padding:0;}
+body{background:var(--paper);color:var(--ink);font-family:'Fraunces',serif;padding:28px 20px 80px;}
+.wrap{max-width:1050px;margin:0 auto;}
+.banner{background:var(--ocre);color:var(--ink);font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:.14em;text-transform:uppercase;text-align:center;padding:10px;border-radius:4px;margin-bottom:30px;}
+h2.opt{font-family:'DM Serif Display',serif;font-weight:400;font-size:28px;margin:48px 0 4px;}
+h2.opt:first-of-type{margin-top:8px;}
+h2.opt em{font-style:italic;color:var(--rojo);}
+.optsub{font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-soft);margin-bottom:18px;}
+a{text-decoration:none;color:inherit;}
+
+/* ============ OPTION A: COLOR-ACCENTED CARDS ============ */
+.gridA{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:14px;}
+.gridA .tile{position:relative;display:block;background:var(--paper);border:1px solid var(--line);border-radius:8px;padding:20px 18px 18px;overflow:hidden;transition:transform .15s,box-shadow .15s;}
+.gridA .tile::before{content:"";position:absolute;top:0;left:0;right:0;height:4px;transition:height .15s;}
+.gridA .tile:hover{transform:translateY(-3px);box-shadow:0 10px 24px rgba(31,26,20,.12);}
+.gridA .tile:hover::before{height:7px;}
+.gridA .tile:nth-child(6n+1)::before{background:var(--rojo);}
+.gridA .tile:nth-child(6n+2)::before{background:var(--ocre);}
+.gridA .tile:nth-child(6n+3)::before{background:var(--verde);}
+.gridA .tile:nth-child(6n+4)::before{background:var(--ink);}
+.gridA .tile:nth-child(6n+5)::before{background:#3e5a78;}
+.gridA .tile:nth-child(6n+6)::before{background:#8a4a6b;}
+.gridA .ico{font-size:30px;display:block;margin-bottom:8px;}
+.gridA .nm{font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-soft);display:block;}
+.gridA .lb{font-family:'DM Serif Display',serif;font-size:22px;display:block;margin:2px 0 6px;}
+.gridA .ds{font-size:13.5px;color:var(--ink-soft);line-height:1.4;display:block;}
+
+/* ============ OPTION B: ICON-FORWARD & COMPACT ============ */
+.gridB{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:12px;}
+.gridB .tile{display:flex;flex-direction:column;align-items:center;text-align:center;background:var(--paper-deep);border:1px solid var(--line);border-radius:12px;padding:18px 12px;transition:transform .15s,background .15s;}
+.gridB .tile:hover{transform:translateY(-3px);background:var(--paper);border-color:var(--rojo);}
+.gridB .ico{font-size:38px;margin-bottom:8px;}
+.gridB .nm{font-family:'DM Serif Display',serif;font-size:17px;}
+.gridB .lb{font-family:'JetBrains Mono',monospace;font-size:9.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-soft);margin-top:3px;}
+.gridB .ds{display:none;}
+
+/* ============ OPTION C: MINIMAL LIST ============ */
+.gridC{display:grid;grid-template-columns:1fr 1fr;gap:0 40px;}
+.gridC .tile{display:grid;grid-template-columns:30px 1fr;align-items:baseline;gap:14px;padding:16px 4px;border-bottom:1px solid var(--line);}
+.gridC .tile:hover .lb{color:var(--rojo);}
+.gridC .tile:hover .lb::after{width:100%;}
+.gridC .ico{font-size:20px;grid-row:span 2;}
+.gridC .nm{display:none;}
+.gridC .lb{position:relative;font-family:'DM Serif Display',serif;font-size:21px;display:inline-block;transition:color .15s;}
+.gridC .lb::after{content:"";position:absolute;left:0;bottom:-2px;height:2px;width:0;background:var(--rojo);transition:width .2s;}
+.gridC .ds{font-size:13px;color:var(--ink-soft);line-height:1.4;grid-column:2;margin-top:3px;}
+@media(max-width:620px){.gridC{grid-template-columns:1fr;}}
+
+/* ============ OPTION D: CURRENT (reference) ============ */
+.gridD{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:1px;background:var(--line);border:1px solid var(--line);}
+.gridD .tile{background:var(--paper);padding:22px 20px;transition:background .15s;}
+.gridD .tile:hover{background:var(--paper-deep);}
+.gridD .ico{display:none;}
+.gridD .nm{font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:.08em;color:var(--ink);display:block;}
+.gridD .lb{font-family:'DM Serif Display',serif;font-size:20px;display:block;margin:6px 0;}
+.gridD .ds{font-size:13px;color:var(--ink-soft);line-height:1.4;display:block;}
+</style></head><body><div class="wrap">
+<div class="banner">🎨 Home-link style options — pick one. Nothing is applied to the site yet.</div>
+
+<h2 class="opt">Option A — <em>Color-accented cards</em></h2>
+<div class="optsub">Each tile gets a colored top edge that grows on hover</div>
+<div class="gridA"><a class="tile" href="#/abecedario"><span class="ico">🔤</span><span class="nm">Abecedario</span><span class="lb">Alphabet & sounds</span><span class="ds">Tap any letter or vowel to hear it</span></a><a class="tile" href="#/vocabulario"><span class="ico">🃏</span><span class="nm">Vocabulario</span><span class="lb">Vocabulary</span><span class="ds">Flashcards · themed decks</span></a><a class="tile" href="#/verbos"><span class="ico">🔄</span><span class="nm">Verbos</span><span class="lb">Verb practice</span><span class="ds">All major tenses · commands · pronouns</span></a><a class="tile" href="#/lectura"><span class="ico">📚</span><span class="nm">Lectura</span><span class="lb">Guided reading</span><span class="ds">Passages with vocab & quiz</span></a><a class="tile" href="#/escucha"><span class="ico">🎧</span><span class="nm">Escucha</span><span class="lb">Listening</span><span class="ds">Audio at different levels</span></a><a class="tile" href="#/escritura"><span class="ico">✍️</span><span class="nm">Escritura</span><span class="lb">Writing topics</span><span class="ds">Respond in writing to teacher prompts</span></a><a class="tile" href="#/voces"><span class="ico">🎙️</span><span class="nm">Voces</span><span class="lb">Speaking topics</span><span class="ds">Record responses to teacher prompts</span></a><a class="tile" href="#/mundo"><span class="ico">🌎</span><span class="nm">Mundo</span><span class="lb">Cultura y geografía</span><span class="ds">Countries · flags · traditions</span></a><a class="tile" href="#/lecciones"><span class="ico">📘</span><span class="nm">Lessons</span><span class="lb">Grammar lessons</span><span class="ds">Grammar across Spanish 1, 2 & 3</span></a><a class="tile" href="#/juegos"><span class="ico">🎮</span><span class="nm">Games</span><span class="lb">Practice games</span><span class="ds">Numbers · time · grammar & more</span></a><a class="tile" href="#/lucas"><span class="ico">★</span><span class="nm">Lucas</span><span class="lb">Rewards, achievements & shop</span><span class="ds">Your progress, your coins, and where to spend them</span></a><a class="tile" href="#/recursos"><span class="ico">🔗</span><span class="nm">Resources</span><span class="lb">Student resources</span><span class="ds">ProgressBook · IXL · Google Classroom · Spanish helpers</span></a></div>
+
+<h2 class="opt">Option B — <em>Icon-forward & compact</em></h2>
+<div class="optsub">Big icon, short label, denser grid — app-like</div>
+<div class="gridB"><a class="tile" href="#/abecedario"><span class="ico">🔤</span><span class="nm">Abecedario</span><span class="lb">Alphabet & sounds</span><span class="ds">Tap any letter or vowel to hear it</span></a><a class="tile" href="#/vocabulario"><span class="ico">🃏</span><span class="nm">Vocabulario</span><span class="lb">Vocabulary</span><span class="ds">Flashcards · themed decks</span></a><a class="tile" href="#/verbos"><span class="ico">🔄</span><span class="nm">Verbos</span><span class="lb">Verb practice</span><span class="ds">All major tenses · commands · pronouns</span></a><a class="tile" href="#/lectura"><span class="ico">📚</span><span class="nm">Lectura</span><span class="lb">Guided reading</span><span class="ds">Passages with vocab & quiz</span></a><a class="tile" href="#/escucha"><span class="ico">🎧</span><span class="nm">Escucha</span><span class="lb">Listening</span><span class="ds">Audio at different levels</span></a><a class="tile" href="#/escritura"><span class="ico">✍️</span><span class="nm">Escritura</span><span class="lb">Writing topics</span><span class="ds">Respond in writing to teacher prompts</span></a><a class="tile" href="#/voces"><span class="ico">🎙️</span><span class="nm">Voces</span><span class="lb">Speaking topics</span><span class="ds">Record responses to teacher prompts</span></a><a class="tile" href="#/mundo"><span class="ico">🌎</span><span class="nm">Mundo</span><span class="lb">Cultura y geografía</span><span class="ds">Countries · flags · traditions</span></a><a class="tile" href="#/lecciones"><span class="ico">📘</span><span class="nm">Lessons</span><span class="lb">Grammar lessons</span><span class="ds">Grammar across Spanish 1, 2 & 3</span></a><a class="tile" href="#/juegos"><span class="ico">🎮</span><span class="nm">Games</span><span class="lb">Practice games</span><span class="ds">Numbers · time · grammar & more</span></a><a class="tile" href="#/lucas"><span class="ico">★</span><span class="nm">Lucas</span><span class="lb">Rewards, achievements & shop</span><span class="ds">Your progress, your coins, and where to spend them</span></a><a class="tile" href="#/recursos"><span class="ico">🔗</span><span class="nm">Resources</span><span class="lb">Student resources</span><span class="ds">ProgressBook · IXL · Google Classroom · Spanish helpers</span></a></div>
+
+<h2 class="opt">Option C — <em>Minimal list</em></h2>
+<div class="optsub">Flat, two columns, hover-underline — editorial & clean</div>
+<div class="gridC"><a class="tile" href="#/abecedario"><span class="ico">🔤</span><span class="nm">Abecedario</span><span class="lb">Alphabet & sounds</span><span class="ds">Tap any letter or vowel to hear it</span></a><a class="tile" href="#/vocabulario"><span class="ico">🃏</span><span class="nm">Vocabulario</span><span class="lb">Vocabulary</span><span class="ds">Flashcards · themed decks</span></a><a class="tile" href="#/verbos"><span class="ico">🔄</span><span class="nm">Verbos</span><span class="lb">Verb practice</span><span class="ds">All major tenses · commands · pronouns</span></a><a class="tile" href="#/lectura"><span class="ico">📚</span><span class="nm">Lectura</span><span class="lb">Guided reading</span><span class="ds">Passages with vocab & quiz</span></a><a class="tile" href="#/escucha"><span class="ico">🎧</span><span class="nm">Escucha</span><span class="lb">Listening</span><span class="ds">Audio at different levels</span></a><a class="tile" href="#/escritura"><span class="ico">✍️</span><span class="nm">Escritura</span><span class="lb">Writing topics</span><span class="ds">Respond in writing to teacher prompts</span></a><a class="tile" href="#/voces"><span class="ico">🎙️</span><span class="nm">Voces</span><span class="lb">Speaking topics</span><span class="ds">Record responses to teacher prompts</span></a><a class="tile" href="#/mundo"><span class="ico">🌎</span><span class="nm">Mundo</span><span class="lb">Cultura y geografía</span><span class="ds">Countries · flags · traditions</span></a><a class="tile" href="#/lecciones"><span class="ico">📘</span><span class="nm">Lessons</span><span class="lb">Grammar lessons</span><span class="ds">Grammar across Spanish 1, 2 & 3</span></a><a class="tile" href="#/juegos"><span class="ico">🎮</span><span class="nm">Games</span><span class="lb">Practice games</span><span class="ds">Numbers · time · grammar & more</span></a><a class="tile" href="#/lucas"><span class="ico">★</span><span class="nm">Lucas</span><span class="lb">Rewards, achievements & shop</span><span class="ds">Your progress, your coins, and where to spend them</span></a><a class="tile" href="#/recursos"><span class="ico">🔗</span><span class="nm">Resources</span><span class="lb">Student resources</span><span class="ds">ProgressBook · IXL · Google Classroom · Spanish helpers</span></a></div>
+
+<h2 class="opt">Option D — <em>Current</em> (for reference)</h2>
+<div class="optsub">What's on the site now</div>
+<div class="gridD"><a class="tile" href="#/abecedario"><span class="ico">🔤</span><span class="nm">Abecedario</span><span class="lb">Alphabet & sounds</span><span class="ds">Tap any letter or vowel to hear it</span></a><a class="tile" href="#/vocabulario"><span class="ico">🃏</span><span class="nm">Vocabulario</span><span class="lb">Vocabulary</span><span class="ds">Flashcards · themed decks</span></a><a class="tile" href="#/verbos"><span class="ico">🔄</span><span class="nm">Verbos</span><span class="lb">Verb practice</span><span class="ds">All major tenses · commands · pronouns</span></a><a class="tile" href="#/lectura"><span class="ico">📚</span><span class="nm">Lectura</span><span class="lb">Guided reading</span><span class="ds">Passages with vocab & quiz</span></a><a class="tile" href="#/escucha"><span class="ico">🎧</span><span class="nm">Escucha</span><span class="lb">Listening</span><span class="ds">Audio at different levels</span></a><a class="tile" href="#/escritura"><span class="ico">✍️</span><span class="nm">Escritura</span><span class="lb">Writing topics</span><span class="ds">Respond in writing to teacher prompts</span></a><a class="tile" href="#/voces"><span class="ico">🎙️</span><span class="nm">Voces</span><span class="lb">Speaking topics</span><span class="ds">Record responses to teacher prompts</span></a><a class="tile" href="#/mundo"><span class="ico">🌎</span><span class="nm">Mundo</span><span class="lb">Cultura y geografía</span><span class="ds">Countries · flags · traditions</span></a><a class="tile" href="#/lecciones"><span class="ico">📘</span><span class="nm">Lessons</span><span class="lb">Grammar lessons</span><span class="ds">Grammar across Spanish 1, 2 & 3</span></a><a class="tile" href="#/juegos"><span class="ico">🎮</span><span class="nm">Games</span><span class="lb">Practice games</span><span class="ds">Numbers · time · grammar & more</span></a><a class="tile" href="#/lucas"><span class="ico">★</span><span class="nm">Lucas</span><span class="lb">Rewards, achievements & shop</span><span class="ds">Your progress, your coins, and where to spend them</span></a><a class="tile" href="#/recursos"><span class="ico">🔗</span><span class="nm">Resources</span><span class="lb">Student resources</span><span class="ds">ProgressBook · IXL · Google Classroom · Spanish helpers</span></a></div>
+
+</div></body></html>
