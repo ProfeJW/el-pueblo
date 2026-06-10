@@ -3444,6 +3444,152 @@
     .lesson-resources-card { padding: 24px; }
   }
 
+  /* LA RACHA — home widget + daily challenge page */
+  .racha-widget {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+    margin: 32px 0 8px;
+    padding: 18px 22px;
+    background: linear-gradient(120deg, var(--ink), #2c2418);
+    color: var(--paper);
+    border-radius: 6px;
+    text-decoration: none;
+    box-shadow: 0 6px 20px rgba(31, 26, 20, 0.18);
+    transition: transform 0.18s ease, box-shadow 0.18s ease;
+  }
+  .racha-widget:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 28px rgba(31, 26, 20, 0.26);
+  }
+  .racha-flame {
+    font-size: 38px;
+    line-height: 1;
+    filter: drop-shadow(0 2px 6px rgba(196, 61, 42, 0.5));
+    flex-shrink: 0;
+  }
+  .racha-widget.done .racha-flame { animation: rachaPulse 2.4s ease-in-out infinite; }
+  @keyframes rachaPulse { 0%,100% { transform: scale(1); } 50% { transform: scale(1.12); } }
+  .racha-widget-body { flex: 1; min-width: 0; }
+  .racha-widget-kicker {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--ocre);
+    margin-bottom: 4px;
+  }
+  .racha-widget-headline {
+    font-family: 'DM Serif Display', serif;
+    font-size: 22px;
+    line-height: 1.15;
+  }
+  .racha-widget-sub {
+    font-family: 'Fraunces', serif;
+    font-size: 13px;
+    color: rgba(244, 237, 224, 0.72);
+    margin-top: 3px;
+  }
+  .racha-widget-cta {
+    flex-shrink: 0;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 13px;
+    letter-spacing: 0.08em;
+    padding: 9px 16px;
+    border: 1px solid rgba(244, 237, 224, 0.45);
+    border-radius: 999px;
+    white-space: nowrap;
+  }
+  .racha-widget.done .racha-widget-cta {
+    border-color: var(--verde);
+    color: var(--verde);
+  }
+  /* Racha page */
+  .racha-hero {
+    text-align: center;
+    padding: 36px 24px;
+    background: var(--paper);
+    border: 1px solid var(--line);
+    border-radius: 6px;
+    margin-bottom: 24px;
+  }
+  .racha-hero-flame { font-size: 64px; line-height: 1; }
+  .racha-count {
+    font-family: 'DM Serif Display', serif;
+    font-size: 56px;
+    line-height: 1;
+    margin: 8px 0 2px;
+    color: var(--rojo);
+  }
+  .racha-count-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+  }
+  .racha-week {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin: 22px 0 4px;
+    flex-wrap: wrap;
+  }
+  .racha-day {
+    width: 44px;
+    text-align: center;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.05em;
+    color: var(--ink-soft);
+  }
+  .racha-day .dot {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 38px;
+    height: 38px;
+    margin: 0 auto 5px;
+    border-radius: 50%;
+    border: 1px solid var(--line);
+    background: var(--paper-deep);
+    font-size: 16px;
+  }
+  .racha-day.hit .dot { background: var(--verde); border-color: var(--verde); color: var(--paper); }
+  .racha-day.today .dot { border-color: var(--ocre); border-width: 2px; }
+  .racha-stat-row {
+    display: flex;
+    justify-content: center;
+    gap: 28px;
+    margin-top: 18px;
+    flex-wrap: wrap;
+  }
+  .racha-stat .v { font-family: 'DM Serif Display', serif; font-size: 26px; color: var(--ink); }
+  .racha-stat .k { font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--ink-soft); }
+  .racha-q-area {
+    display: flex;
+    gap: 6px;
+    justify-content: center;
+    margin-bottom: 18px;
+    flex-wrap: wrap;
+  }
+  .racha-pip {
+    width: 30px; height: 6px; border-radius: 999px;
+    background: var(--line);
+  }
+  .racha-pip.correct { background: var(--verde); }
+  .racha-pip.wrong { background: var(--rojo); }
+  .racha-pip.current { background: var(--ocre); }
+  .racha-tag {
+    display: inline-block;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--ocre);
+    margin-bottom: 10px;
+  }
+
   /* GAMES PAGE */
   /* Quick-jump bar — small pills at the top that go straight to each game */
   .game-jump {
@@ -4886,6 +5032,7 @@
   </a>
   <div class="nav-links">
     <a href="#/">Home</a>
+    <a href="#/racha">Racha</a>
     <a href="#/vocabulario">Vocab</a>
     <a href="#/verbos">Verbs</a>
     <a href="#/lectura">Reading</a>
@@ -5222,6 +5369,15 @@
   </div>
 </header></div>
 
+<!-- LA RACHA — daily challenge page -->
+<div class="page" data-page="racha"><section id="racha">
+  <div class="section-header">
+    <h2>La <em>Racha</em></h2>
+    <div class="section-num">🔥 Daily challenge</div>
+  </div>
+  <div id="rachaContent"><!-- populated by renderRacha --></div>
+</section></div>
+
 <!-- AVISOS (ANNOUNCEMENTS FEED) -->
 <!-- VOCABULARIO -->
 <div class="page" data-page="vocabulario"><section id="vocabulario">
@@ -5288,9 +5444,13 @@
         <button class="pill" onclick="loadDeck('relaciones', this)">Relationships</button>
         <button class="pill" onclick="loadDeck('adjetivos', this)">Adjectives</button>
         <button class="pill" onclick="loadDeck('adverbios', this)">Adverbs</button>
+        <button class="pill" onclick="loadDeck('verbosAr', this)">-AR verbs</button>
+        <button class="pill" onclick="loadDeck('argentina', this)">Argentina</button>
         <button class="pill" onclick="loadDeck('cuerpo', this)">Body parts</button>
-        <button class="pill" onclick="loadDeck('peru', this)">Perú</button>
-        <button class="pill" onclick="loadDeck('espana', this)">España</button>
+        <button class="pill" onclick="loadDeck('clases', this)">Classes</button>
+        <button class="pill" onclick="loadDeck('salon', this)">Classroom</button>
+        <button class="pill" onclick="loadDeck('colombia', this)">Colombia</button>
+        <button class="pill" onclick="loadDeck('colores', this)">Colors</button>
         <button class="pill" onclick="loadDeck('diadelosmuertos', this)">Día de los Muertos</button>
         <button class="pill" onclick="loadDeck('futbol', this)">El fútbol</button>
         <button class="pill" onclick="loadDeck('cumpleanos', this)">¡Feliz cumpleaños!</button>
@@ -5331,7 +5491,21 @@
         <button class="pill" onclick="loadDeck('hora', this)">Telling time</button>
         <button class="pill" onclick="loadDeck('mandatos', this)">Classroom commands</button>
         <button class="pill" onclick="loadDeck('emociones', this)">Emotions</button>
+        <button class="pill" onclick="loadDeck('verbosEr', this)">-ER verbs</button>
+        <button class="pill" onclick="loadDeck('espana', this)">España</button>
+        <button class="pill active" onclick="loadDeck('cotidiano', this)">Everyday</button>
+        <button class="pill" onclick="loadDeck('familia', this)">Family</button>
+        <button class="pill" onclick="loadDeck('cumpleanos', this)">¡Feliz cumpleaños!</button>
+        <button class="pill" onclick="loadDeck('comida', this)">Food</button>
+        <button class="pill" onclick="loadDeck('saludos', this)">Greetings</button>
+        <button class="pill" onclick="loadDeck('verbosIr', this)">-IR verbs</button>
         <button class="pill" onclick="loadDeck('literatura', this)">Literature</button>
+        <button class="pill" onclick="loadDeck('mexico', this)">México</button>
+        <button class="pill" onclick="loadDeck('peru', this)">Perú</button>
+        <button class="pill" onclick="loadDeck('relaciones', this)">Relationships</button>
+        <button class="pill" onclick="loadDeck('escuela', this)">School Life</button>
+        <button class="pill" onclick="loadDeck('deportes', this)">Sports</button>
+        <button class="pill" onclick="loadDeck('viajes', this)">Travel</button>
       </div>
     </div>
   </div>
@@ -7150,6 +7324,7 @@
     lucas: 'Lucas · Rewards & Shop',
     topic: 'Topic',
     juegos: 'Games',
+    racha: 'La Racha',
     game: 'Game',
     lecciones: 'Grammar lessons',
     lesson: 'Lesson',
@@ -7290,6 +7465,7 @@
     if (page === 'lectura' && typeof renderReadingLibrary === 'function') renderReadingLibrary();
     if (page === 'reading' && typeof renderReadingDetail === 'function') renderReadingDetail(param);
     if (page === 'juegos' && typeof renderGamesHub === 'function') renderGamesHub();
+    if (page === 'racha' && typeof renderRacha === 'function') renderRacha();
     if (page === 'game' && typeof startGame === 'function') startGame(param);
     if (page === 'lecciones' && typeof renderLessonsList === 'function') renderLessonsList();
     if (page === 'lesson' && typeof renderLessonDetail === 'function') renderLessonDetail(param);
@@ -8107,6 +8283,9 @@
       minutesAwarded: 0,
       streakConj: 0,
       bestStreak: 0,
+      rachaStreak: 0,
+      rachaBest: 0,
+      rachaLastDay: null,
       achievements: new Set(),
       achievementsAt: {},
       lifetimeCoins: 0,
@@ -8147,6 +8326,9 @@
       s.poemsCompleted = parsed.poemsCompleted || 0;
       s.minutesAwarded = parsed.minutesAwarded || 0;
       s.bestStreak = parsed.bestStreak || 0;
+      s.rachaStreak = parsed.rachaStreak || 0;
+      s.rachaBest = parsed.rachaBest || 0;
+      s.rachaLastDay = parsed.rachaLastDay || null;
       s.flagsCorrect = parsed.flagsCorrect || 0;
       s.bestFlagStreak = parsed.bestFlagStreak || 0;
       s.drillsCompleted = parsed.drillsCompleted || 0;
@@ -8207,6 +8389,9 @@
         poemsCompleted: STATE.poemsCompleted,
         minutesAwarded: STATE.minutesAwarded,
         bestStreak: STATE.bestStreak,
+        rachaStreak: STATE.rachaStreak || 0,
+        rachaBest: STATE.rachaBest || 0,
+        rachaLastDay: STATE.rachaLastDay || null,
         achievements: Array.from(STATE.achievements),
         achievementsAt: STATE.achievementsAt || {},
         lifetimeCoins: STATE.lifetimeCoins || 0,
@@ -26318,6 +26503,15 @@
     animales: '🐾 Animals', hora: '🕐 Telling Time', mandatos: 'Classroom Commands'
   };
 
+  // Sort deck keys alphabetically by their visible label, ignoring leading
+  // emoji/punctuation and accents (so "Día" sorts as "Dia", "-AR" as "AR").
+  function deckLabelCompare(a, b) {
+    const norm = k => (MATCH_DECK_LABELS[k] || k)
+      .normalize('NFD').replace(/[̀-ͯ]/g, '')
+      .replace(/^[^A-Za-z0-9]+/, '').trim().toLowerCase();
+    return norm(a).localeCompare(norm(b));
+  }
+
   function startMatchGame() {
     matchState = { deck: null, pairs: [], tiles: [], selected: null, matched: 0, startTime: null, timerInterval: null, elapsed: 0, locked: false };
     renderMatchDeckPicker();
@@ -26326,7 +26520,7 @@
   function renderMatchDeckPicker() {
     const container = document.getElementById('game-detail-content');
     if (!container) return;
-    const deckKeys = Object.keys(decks).filter(k => decks[k] && decks[k].length >= 6);
+    const deckKeys = Object.keys(decks).filter(k => decks[k] && decks[k].length >= 6).sort(deckLabelCompare);
     container.innerHTML = `
       <a href="#/juegos" class="aviso-link" style="display:inline-block;margin-bottom:16px;">← Back to games</a>
       <div class="match-intro">
@@ -26546,7 +26740,7 @@
     const container = document.getElementById('game-detail-content');
     if (!container || !vocabState) return;
     const isMc = vocabState.mode === 'mc';
-    const deckKeys = Object.keys(decks).filter(k => decks[k] && decks[k].length >= 10);
+    const deckKeys = Object.keys(decks).filter(k => decks[k] && decks[k].length >= 10).sort(deckLabelCompare);
     const best = getGameBestScore(vocabGameId());
     const dirPill = (dir, label) =>
       `<button class="pill ${vocabState.direction === dir ? 'active' : ''}" onclick="setVocabDirection('${dir}')">${label}</button>`;
@@ -26795,6 +26989,322 @@
         </div>
       </div>
     `;
+  }
+
+  // ============================================================================
+  // LA RACHA — daily challenge + streak
+  // ----------------------------------------------------------------------------
+  // One fixed set of 5 quick questions per calendar day (seeded by the date, so
+  // every student gets the same "racha de hoy"). Completing it keeps the streak
+  // alive: do it today and yesterday → streak grows; miss a day → it resets.
+  // Lucas are awarded once per day, scaled by how many you get right.
+  // ============================================================================
+  let rachaState = null;
+  const RACHA_LEN = 5;
+
+  // Local YYYY-MM-DD for "today" (uses the device's calendar day)
+  function rachaDayKey(d) {
+    const dt = d || new Date();
+    return dt.getFullYear() + '-' + String(dt.getMonth() + 1).padStart(2, '0') + '-' + String(dt.getDate()).padStart(2, '0');
+  }
+  function rachaDayKeyOffset(days) {
+    const dt = new Date();
+    dt.setDate(dt.getDate() + days);
+    return rachaDayKey(dt);
+  }
+
+  // Tiny seeded RNG (mulberry32) so the day's challenge is deterministic
+  function rachaSeedFromString(str) {
+    let h = 1779033703 ^ str.length;
+    for (let i = 0; i < str.length; i++) {
+      h = Math.imul(h ^ str.charCodeAt(i), 3432918353);
+      h = (h << 13) | (h >>> 19);
+    }
+    return h >>> 0;
+  }
+  function rachaRng(seed) {
+    let a = seed >>> 0;
+    return function () {
+      a |= 0; a = (a + 0x6D2B79F5) | 0;
+      let t = Math.imul(a ^ (a >>> 15), 1 | a);
+      t = (t + Math.imul(t ^ (t >>> 7), 61 | t)) ^ t;
+      return ((t ^ (t >>> 14)) >>> 0) / 4294967296;
+    };
+  }
+
+  // Build the 5 questions for a given day key, deterministically.
+  function buildRachaChallenge(dayKey) {
+    const rand = rachaRng(rachaSeedFromString('racha-' + dayKey));
+    const pick = arr => arr[Math.floor(rand() * arr.length)];
+    const PRON_ES = ['yo', 'tú', 'él / ella', 'nosotros', 'vosotros', 'ellos / ellas'];
+
+    // Question generators, each returns {area, label, display, answer, validAnswers, hint}
+    function qVocab() {
+      const deckKeys = Object.keys(decks).filter(k => decks[k] && decks[k].length >= 8);
+      const deck = decks[pick(deckKeys)];
+      const entry = deck[Math.floor(rand() * deck.length)];
+      const toEs = rand() < 0.5;
+      if (toEs) {
+        return { area: 'Vocab', label: 'Give the Spanish for…', display: vocabCleanEn(entry.back),
+          answer: String(entry.word).split('/')[0].trim(), validAnswers: vocabAcceptedAnswers(entry, 'es'), hint: 'In Spanish' };
+      }
+      return { area: 'Vocab', label: 'What does this mean?', display: entry.word,
+        answer: vocabCleanEn(entry.back), validAnswers: vocabAcceptedAnswers(entry, 'en'), hint: 'In English' };
+    }
+    function qVerb() {
+      const v = pick(verbs);
+      // Avoid vosotros (index 4) — most US classrooms skip it
+      const idx = pick([0, 1, 2, 3, 5]);
+      const ans = v.conj.presente[idx];
+      return { area: 'Verbs', label: 'Conjugate · presente', display: v.inf + ' — ' + PRON_ES[idx],
+        answer: ans, validAnswers: [ans], hint: 'Present tense' };
+    }
+    function qCapital() {
+      const c = pick(COUNTRIES);
+      const caps = String(c.capital).split('/').map(s => s.trim());
+      return { area: 'Mundo', label: 'Capital of…', display: c.name,
+        answer: c.capital, validAnswers: caps.concat([c.capital]), hint: 'The capital city' };
+    }
+    function qNumber() {
+      const n = Math.floor(rand() * 100) + 1;
+      return { area: 'Numbers', label: 'Write this number in Spanish', display: String(n),
+        answer: numberToSpanish(n), validAnswers: [numberToSpanish(n)], hint: 'In words' };
+    }
+    function qDay() {
+      const i = Math.floor(rand() * 7);
+      const toEs = rand() < 0.5;
+      if (toEs) return { area: 'Days', label: 'Translate to Spanish', display: DAYS_EN[i],
+        answer: DAYS_ES[i], validAnswers: [DAYS_ES[i]], hint: 'Lowercase' };
+      return { area: 'Days', label: 'Translate to English', display: DAYS_ES[i],
+        answer: DAYS_EN[i].toLowerCase(), validAnswers: [DAYS_EN[i].toLowerCase()], hint: 'In English' };
+    }
+
+    // Each day: 2 vocab + 1 verb + 1 capital + 1 rotating (number or day)
+    const questions = [qVocab(), qVerb(), qVocab(), qCapital(), rand() < 0.5 ? qNumber() : qDay()];
+    // Shuffle so the order varies but stays fixed for the day
+    for (let i = questions.length - 1; i > 0; i--) {
+      const j = Math.floor(rand() * (i + 1));
+      [questions[i], questions[j]] = [questions[j], questions[i]];
+    }
+    return questions;
+  }
+
+  // Is today's racha already completed?
+  function rachaDoneToday() { return STATE.rachaLastDay === rachaDayKey(); }
+
+  // Current streak as it stands right now (broken if last play is older than yesterday)
+  function rachaCurrentStreak() {
+    if (!STATE.rachaLastDay) return 0;
+    const today = rachaDayKey();
+    if (STATE.rachaLastDay === today || STATE.rachaLastDay === rachaDayKeyOffset(-1)) {
+      return STATE.rachaStreak || 0;
+    }
+    return 0; // streak lapsed
+  }
+
+  // Update the home-page widget
+  function updateRachaWidget() {
+    const w = document.getElementById('rachaWidget');
+    if (!w) return;
+    const streak = rachaCurrentStreak();
+    const done = rachaDoneToday();
+    const headline = document.getElementById('rachaWidgetHeadline');
+    const sub = document.getElementById('rachaWidgetSub');
+    const cta = document.getElementById('rachaWidgetCta');
+    const flame = document.getElementById('rachaWidgetFlame');
+    w.classList.toggle('done', done);
+    if (flame) flame.style.opacity = streak > 0 ? '1' : '0.4';
+    if (done) {
+      headline.textContent = streak > 0 ? '¡Racha de ' + streak + ' día' + (streak === 1 ? '' : 's') + '! 🎉' : '¡Completada!';
+      sub.textContent = 'Done for today — come back tomorrow to keep it going.';
+      cta.textContent = 'Review →';
+    } else if (streak > 0) {
+      headline.textContent = streak + '-day streak — keep it alive';
+      sub.textContent = "Today's challenge is waiting. 5 quick questions.";
+      cta.textContent = 'Play →';
+    } else {
+      headline.textContent = 'Start your streak today';
+      sub.textContent = '5 quick questions — vocab, verbs, capitals & more.';
+      cta.textContent = 'Play →';
+    }
+  }
+
+  // Render the racha page (entry / in-progress / done all handled here)
+  function renderRacha() {
+    const container = document.getElementById('rachaContent');
+    if (!container) return;
+    updateRachaWidget();
+    const streak = rachaCurrentStreak();
+    const best = STATE.rachaBest || 0;
+
+    // Build a 7-day strip (Mon..Sun of the current week) marking completed today
+    const weekHtml = (() => {
+      const labels = ['L', 'M', 'X', 'J', 'V', 'S', 'D'];
+      const today = new Date();
+      // JS getDay: 0=Sun..6=Sat → convert to Mon=0
+      const todayMon = (today.getDay() + 6) % 7;
+      let cells = '';
+      for (let i = 0; i < 7; i++) {
+        const isToday = i === todayMon;
+        const isHit = isToday && rachaDoneToday();
+        cells += `<div class="racha-day${isHit ? ' hit' : ''}${isToday ? ' today' : ''}">
+          <div class="dot">${isHit ? '🔥' : (isToday ? '·' : '')}</div>${labels[i]}</div>`;
+      }
+      return cells;
+    })();
+
+    const heroStats = `
+      <div class="racha-hero">
+        <div class="racha-hero-flame">${streak > 0 ? '🔥' : '🪵'}</div>
+        <div class="racha-count">${streak}</div>
+        <div class="racha-count-label">${streak === 1 ? 'day streak' : 'day streak'}</div>
+        <div class="racha-week">${weekHtml}</div>
+        <div class="racha-stat-row">
+          <div class="racha-stat"><div class="v">${best}</div><div class="k">Best streak</div></div>
+          <div class="racha-stat"><div class="v">${rachaDoneToday() ? '✓' : '—'}</div><div class="k">Today</div></div>
+        </div>
+      </div>`;
+
+    if (rachaDoneToday()) {
+      container.innerHTML = heroStats + `
+        <div style="text-align:center; padding: 8px 0 24px;">
+          <p style="font-family:'Fraunces',serif; font-style:italic; font-size:18px; color:var(--ink); margin-bottom:6px;">¡Ya completaste la racha de hoy!</p>
+          <p style="color:var(--ink-soft); font-size:14px; max-width:440px; margin:0 auto 20px;">You've done today's challenge. Come back tomorrow for a new set of 5 and to keep your streak climbing.</p>
+          <a href="#/juegos" class="btn primary" style="text-decoration:none;">Play more games →</a>
+        </div>`;
+      return;
+    }
+
+    container.innerHTML = heroStats + `
+      <div style="text-align:center; padding: 8px 0 28px;">
+        <p style="font-family:'Fraunces',serif; font-style:italic; font-size:18px; color:var(--ink); margin-bottom:6px;">${streak > 0 ? 'Keep your ' + streak + '-day streak alive.' : 'Start your streak.'}</p>
+        <p style="color:var(--ink-soft); font-size:14px; max-width:460px; margin:0 auto 22px;">5 quick questions — a mix of vocab, verbs, capitals, numbers and days. Same set for everyone today. Finish it to keep your 🔥 going.</p>
+        <button class="btn primary" style="font-size:16px; padding:14px 28px;" onclick="startRachaToday()">Empezar la racha →</button>
+      </div>`;
+  }
+
+  function startRachaToday() {
+    rachaState = {
+      questions: buildRachaChallenge(rachaDayKey()),
+      round: 0, score: 0, history: [], answered: false
+    };
+    renderRachaQuestion();
+  }
+
+  function renderRachaQuestion() {
+    const rs = rachaState;
+    const container = document.getElementById('rachaContent');
+    if (!rs || !container) return;
+    if (rs.round >= rs.questions.length) { finishRacha(); return; }
+    rs.answered = false;
+    const q = rs.questions[rs.round];
+
+    const pips = rs.questions.map((_, i) => {
+      let cls = 'racha-pip';
+      if (i < rs.round) cls += rs.history[i] && rs.history[i].isCorrect ? ' correct' : ' wrong';
+      else if (i === rs.round) cls += ' current';
+      return `<div class="${cls}"></div>`;
+    }).join('');
+
+    container.innerHTML = `
+      <div class="racha-q-area">${pips}</div>
+      <div class="game-prompt-card">
+        <div class="game-progress">Question <strong>${rs.round + 1}</strong> / ${rs.questions.length} · Score: <strong>${rs.score}</strong></div>
+        <div class="racha-tag">${q.area}</div>
+        <div class="game-prompt-label">${q.label}</div>
+        <div class="game-prompt-display">${q.display}</div>
+        <div class="game-input-row">
+          <input type="text" class="game-input" id="rachaInput" autocomplete="off" autocapitalize="off" spellcheck="false"
+                 placeholder="${q.hint || 'Type your answer…'}"
+                 onkeypress="if(event.key==='Enter') submitRachaAnswer()">
+        </div>
+        <div class="game-feedback" id="gameFeedback">&nbsp;</div>
+        <div style="margin-top:24px;">
+          <button class="btn primary" style="border-color:var(--paper);background:var(--paper);color:var(--ink);" onclick="submitRachaAnswer()">Submit ↵</button>
+          <button class="btn" style="border-color:var(--paper);color:var(--paper);margin-left:8px;" onclick="skipRachaRound()">Skip</button>
+        </div>
+      </div>`;
+    setTimeout(() => { const inp = document.getElementById('rachaInput'); if (inp) inp.focus(); }, 50);
+  }
+
+  function submitRachaAnswer() {
+    const rs = rachaState;
+    if (!rs || rs.answered) return;
+    const input = document.getElementById('rachaInput');
+    if (!input) return;
+    const userAnswer = normalize(input.value);
+    if (!userAnswer) return;
+    rs.answered = true;
+    const q = rs.questions[rs.round];
+    const isCorrect = (q.validAnswers || [q.answer]).some(a => normalize(a) === userAnswer);
+    const fb = document.getElementById('gameFeedback');
+    if (isCorrect) {
+      rs.score++;
+      input.classList.add('correct');
+      if (fb) { fb.textContent = '✓ ¡Correcto!'; fb.className = 'game-feedback correct'; }
+    } else {
+      input.classList.add('wrong');
+      if (fb) { fb.textContent = '✗ Answer: ' + q.answer; fb.className = 'game-feedback wrong'; }
+    }
+    input.disabled = true;
+    rs.history.push({ prompt: q.display, userAnswer: input.value, correctAnswer: q.answer, isCorrect });
+    rs.round++;
+    setTimeout(renderRachaQuestion, isCorrect ? 1100 : 1900);
+  }
+
+  function skipRachaRound() {
+    const rs = rachaState;
+    if (!rs || rs.answered) return;
+    const q = rs.questions[rs.round];
+    rs.history.push({ prompt: q.display, userAnswer: '(skipped)', correctAnswer: q.answer, isCorrect: false });
+    rs.round++;
+    renderRachaQuestion();
+  }
+
+  function finishRacha() {
+    const rs = rachaState;
+    const container = document.getElementById('rachaContent');
+    if (!rs || !container) return;
+
+    // --- Streak bookkeeping (only counts once per day) ---
+    const today = rachaDayKey();
+    let streakMsg = '';
+    if (STATE.rachaLastDay !== today) {
+      const continued = STATE.rachaLastDay === rachaDayKeyOffset(-1);
+      STATE.rachaStreak = continued ? (STATE.rachaStreak || 0) + 1 : 1;
+      STATE.rachaLastDay = today;
+      if (STATE.rachaStreak > (STATE.rachaBest || 0)) STATE.rachaBest = STATE.rachaStreak;
+      // Lucas: 2 per correct + 5 bonus for a perfect day
+      const reward = rs.score * 2 + (rs.score === RACHA_LEN ? 5 : 0);
+      if (reward > 0) awardCoins(reward, 'La Racha · día ' + STATE.rachaStreak);
+      saveState();
+      streakMsg = continued
+        ? '🔥 Streak extended to <strong>' + STATE.rachaStreak + '</strong> day' + (STATE.rachaStreak === 1 ? '' : 's') + '!'
+        : '🔥 New streak started — <strong>day 1</strong>!';
+    } else {
+      streakMsg = 'Already counted for today — streak stays at <strong>' + STATE.rachaStreak + '</strong>.';
+    }
+    updateRachaWidget();
+
+    const reviewHtml = rs.history.map(h => `
+      <div style="display:grid;grid-template-columns:28px 1fr 1.4fr;gap:8px;padding:8px 0;border-bottom:1px dotted var(--line);align-items:center;text-align:left;font-size:14px;">
+        <span>${h.isCorrect ? '✅' : '❌'}</span>
+        <span style="color:var(--ink-soft);">${h.prompt}</span>
+        <span>${h.isCorrect ? h.correctAnswer : '<s style="opacity:0.55;">' + (h.userAnswer || '—') + '</s> → <strong>' + h.correctAnswer + '</strong>'}</span>
+      </div>`).join('');
+
+    container.innerHTML = `
+      <div class="game-results">
+        <div style="font-size:52px;line-height:1;">${rs.score === RACHA_LEN ? '🌟' : rs.score >= 3 ? '🔥' : '🌱'}</div>
+        <h3>${rs.score}/${RACHA_LEN} hoy</h3>
+        <p style="font-size:16px;color:var(--ink);margin-bottom:6px;">${streakMsg}</p>
+        <p style="color:var(--ink-soft);font-size:13px;margin-bottom:16px;">Best streak: ${STATE.rachaBest || 0} · Come back tomorrow for a new challenge.</p>
+        <div style="margin:16px 0;max-width:560px;margin-left:auto;margin-right:auto;">${reviewHtml}</div>
+        <div style="display:flex;gap:10px;flex-wrap:wrap;justify-content:center;margin-top:20px;">
+          <a href="#/juegos" class="btn primary" style="text-decoration:none;">Play more games →</a>
+          <a href="#/" class="btn" style="text-decoration:none;">Home</a>
+        </div>
+      </div>`;
   }
 
   function renderGameRound() {
@@ -27306,6 +27816,7 @@
   applySavedUnlocks();
   renderAvatar();
   renderAvisos();
+  updateRachaWidget();
   renderCard();
   applyVosotrosPreference();
   newDrill();
