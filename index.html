@@ -341,6 +341,73 @@
     gap: 12px;
     margin-top: 48px;
   }
+  /* LINGÜÍSTICA HUB — color-accented lesson cards */
+  .ling-hub { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 14px; }
+  .ling-card {
+    position: relative; display: block; background: var(--card-bg); border: 1px solid var(--line);
+    border-radius: 10px; padding: 22px 20px 18px; text-decoration: none; color: inherit; overflow: hidden;
+    transition: transform 0.15s ease, box-shadow 0.15s ease;
+  }
+  .ling-card::before { content: ""; position: absolute; top: 0; left: 0; right: 0; height: 4px; transition: height 0.15s ease; }
+  .ling-card:hover { transform: translateY(-3px); box-shadow: 0 10px 24px rgba(31,26,20,0.12); }
+  .ling-card:hover::before { height: 7px; }
+  .ling-card:nth-child(7n+1)::before { background: var(--rojo); }
+  .ling-card:nth-child(7n+2)::before { background: var(--ocre); }
+  .ling-card:nth-child(7n+3)::before { background: var(--verde); }
+  .ling-card:nth-child(7n+4)::before { background: #3e5a78; }
+  .ling-card:nth-child(7n+5)::before { background: #8a4a6b; }
+  .ling-card:nth-child(7n+6)::before { background: var(--ink); }
+  .ling-card:nth-child(7n+7)::before { background: #a8552f; }
+  .ling-card .lc-ico { font-size: 28px; }
+  .ling-card h3 { font-family: 'DM Serif Display', serif; font-weight: 400; font-size: 22px; margin: 10px 0 6px; line-height: 1.15; }
+  .ling-card h3 em { font-style: italic; color: var(--rojo); }
+  .ling-card .lc-tag { font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--ink-soft); }
+  .ling-card p { font-size: 13.5px; color: var(--ink-soft); line-height: 1.45; margin-top: 6px; }
+  .ling-card .lc-done { position: absolute; top: 16px; right: 16px; color: var(--verde); font-size: 15px; display: none; }
+  .ling-card.completed .lc-done { display: block; }
+
+  /* HOME LINK TILES — icon-forward, compact (home page only) */
+  .home-links {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    gap: 12px;
+    margin-top: 40px;
+  }
+  .home-links .hl {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    background: var(--card-bg);
+    border: 1px solid var(--line);
+    border-radius: 14px;
+    padding: 20px 12px 16px;
+    text-decoration: none;
+    color: var(--ink);
+    transition: transform 0.15s ease, background 0.15s ease, border-color 0.15s ease, box-shadow 0.15s ease;
+  }
+  .home-links .hl:hover {
+    transform: translateY(-3px);
+    border-color: var(--rojo);
+    box-shadow: 0 8px 20px rgba(31, 26, 20, 0.1);
+  }
+  .home-links .hl-ico { font-size: 38px; line-height: 1; margin-bottom: 10px; }
+  .home-links .hl-name { font-family: 'DM Serif Display', serif; font-size: 18px; line-height: 1.1; }
+  .home-links .hl-sub {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 9.5px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+    margin-top: 4px;
+  }
+  [data-theme="cosmic"] .home-links .hl:hover .hl-name { color: var(--ocre); }
+  @media (max-width: 520px) {
+    .home-links { grid-template-columns: repeat(3, 1fr); gap: 8px; }
+    .home-links .hl { padding: 16px 6px 12px; border-radius: 12px; }
+    .home-links .hl-ico { font-size: 30px; }
+    .home-links .hl-name { font-size: 15px; }
+  }
   .hero-meta a {
     text-decoration: none;
     color: var(--ink);
@@ -1678,6 +1745,56 @@
     border-color: var(--ink);
     transform: translateY(-2px);
     box-shadow: 0 6px 14px rgba(45, 35, 25, 0.06);
+  }
+  /* Can-Do PDF list rows */
+  .candoc-row {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 11px 16px;
+    background: var(--card-bg, var(--paper));
+    border: 1px solid var(--line);
+    border-radius: 6px;
+    text-decoration: none;
+    color: var(--ink);
+    transition: all 0.18s ease;
+  }
+  .candoc-row:hover {
+    border-color: var(--ink);
+    transform: translateX(2px);
+    box-shadow: 0 4px 12px -4px rgba(31, 26, 20, 0.1);
+  }
+  .candoc-tag {
+    flex-shrink: 0;
+    min-width: 46px;
+    text-align: center;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--paper);
+    background: var(--ocre);
+    border-radius: 4px;
+    padding: 4px 8px;
+  }
+  .candoc-body { flex: 1; min-width: 0; }
+  .candoc-name {
+    display: block;
+    font-family: 'DM Serif Display', serif;
+    font-size: 16px;
+    line-height: 1.2;
+  }
+  .candoc-desc {
+    display: block;
+    font-size: 13px;
+    color: var(--ink-soft);
+    margin-top: 1px;
+  }
+  .candoc-dl {
+    flex-shrink: 0;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 14px;
+    color: var(--ink-soft);
   }
   .resource-card .resource-icon {
     width: 44px;
@@ -3444,7 +3561,366 @@
     .lesson-resources-card { padding: 24px; }
   }
 
+  /* REPASO — spaced repetition */
+  .repaso-cta {
+    display: flex; align-items: center; gap: 10px;
+    margin-top: 16px; padding: 12px 16px;
+    background: var(--ink); color: var(--paper);
+    border-radius: 6px; text-decoration: none; font-size: 14px;
+    transition: transform 0.15s ease, box-shadow 0.15s ease;
+  }
+  .repaso-cta:hover { transform: translateY(-1px); box-shadow: 0 6px 16px rgba(31,26,20,0.2); }
+  .repaso-cta strong { font-family: 'DM Serif Display', serif; font-weight: 400; }
+  .repaso-cta-badge {
+    margin-left: auto; font-family: 'JetBrains Mono', monospace; font-size: 11px;
+    background: var(--rojo); color: var(--paper); padding: 3px 9px; border-radius: 999px;
+    white-space: nowrap; display: none;
+  }
+  .repaso-cta-badge.show { display: inline-block; }
+  .repaso-hero {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+    gap: 14px; margin: 8px 0 26px;
+  }
+  .repaso-stat {
+    background: var(--paper); border: 1px solid var(--line); border-radius: 6px;
+    padding: 18px; text-align: center;
+  }
+  .repaso-stat .v { font-family: 'DM Serif Display', serif; font-size: 34px; line-height: 1; color: var(--ink); }
+  .repaso-stat .v.due { color: var(--rojo); }
+  .repaso-stat .k { font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: 0.15em;
+    text-transform: uppercase; color: var(--ink-soft); margin-top: 7px; }
+  .repaso-card {
+    background: var(--ink); color: var(--paper); border-radius: 10px;
+    padding: 44px 32px; text-align: center; min-height: 280px;
+    display: flex; flex-direction: column; justify-content: center; gap: 14px;
+    position: relative; cursor: pointer; user-select: none;
+  }
+  .repaso-card .rc-tag {
+    position: absolute; top: 14px; left: 0; right: 0;
+    font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: 0.18em;
+    text-transform: uppercase; color: rgba(244,237,224,0.5);
+  }
+  .repaso-card .rc-box { position: absolute; top: 14px; right: 18px; font-size: 13px; letter-spacing: 2px; }
+  .repaso-card .rc-prompt { font-family: 'DM Serif Display', serif; font-size: 40px; line-height: 1.15; }
+  .repaso-card .rc-prompt.small { font-size: 30px; }
+  .repaso-card .rc-sub { font-family: 'Fraunces', serif; font-style: italic; font-size: 14px; color: rgba(244,237,224,0.6); }
+  .repaso-card .rc-answer { display: none; }
+  .repaso-card.flipped .rc-answer { display: block; }
+  .repaso-card .rc-answer .rc-ans-word { font-family: 'DM Serif Display', serif; font-size: 30px; color: var(--ocre); margin-bottom: 8px; }
+  .repaso-card .rc-answer .rc-ex { font-size: 14px; color: rgba(244,237,224,0.85); }
+  .repaso-card .rc-answer .rc-ex-en { font-size: 13px; color: rgba(244,237,224,0.55); font-style: italic; }
+  .repaso-card .rc-hint { font-family: 'JetBrains Mono', monospace; font-size: 11px; color: rgba(244,237,224,0.45); margin-top: 6px; }
+  .repaso-grade { display: flex; gap: 12px; margin-top: 16px; }
+  .repaso-grade button {
+    flex: 1; padding: 16px; border-radius: 8px; cursor: pointer; border: 1px solid var(--line);
+    font-family: 'JetBrains Mono', monospace; font-size: 13px; letter-spacing: 0.05em;
+    transition: transform 0.12s ease;
+  }
+  .repaso-grade button:hover { transform: translateY(-2px); }
+  .repaso-grade .again { background: var(--rojo); color: var(--paper); border-color: var(--rojo); }
+  .repaso-grade .hard { background: var(--ocre); color: var(--ink); border-color: var(--ocre); }
+  .repaso-grade .good { background: var(--verde); color: var(--paper); border-color: var(--verde); }
+  .repaso-progress {
+    height: 6px; background: var(--paper-deep); border-radius: 999px; overflow: hidden; margin-bottom: 16px;
+  }
+  .repaso-progress > div { height: 100%; background: var(--verde); transition: width 0.3s ease; }
+  .repaso-controls { display: flex; gap: 10px; align-items: center; flex-wrap: wrap; margin: 6px 0 22px; }
+
+  /* ABECEDARIO — interactive alphabet */
+  .abc-section-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+    margin: 8px 0 14px;
+  }
+  .abc-vowels {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    gap: 12px;
+    margin-bottom: 36px;
+  }
+  .abc-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(216px, 1fr));
+    gap: 12px;
+  }
+  /* color-coded legend above the alphabet */
+  .abc-legend {
+    display: flex; flex-wrap: wrap; gap: 8px 16px; margin: 0 0 16px;
+  }
+  .abc-legend-item {
+    display: inline-flex; align-items: center; gap: 6px;
+    font-family: 'JetBrains Mono', monospace; font-size: 11px; color: var(--ink-soft);
+  }
+  .abc-legend-dot { width: 11px; height: 11px; border-radius: 3px; display: inline-block; }
+  .abc-tile {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 14px 14px 13px;
+    background: var(--paper);
+    border: 1px solid var(--line);
+    border-radius: 6px;
+    cursor: pointer;
+    text-align: left;
+    transition: transform 0.14s ease, box-shadow 0.14s ease, border-color 0.14s ease;
+    user-select: none;
+  }
+  .abc-tile:hover { transform: translateY(-2px); border-color: var(--rojo); box-shadow: 0 6px 16px rgba(31,26,20,0.12); }
+  .abc-tile:active { transform: translateY(0); }
+  .abc-tile.speaking { border-color: var(--ocre); box-shadow: 0 0 0 3px rgba(212,146,44,0.35); }
+  .abc-tile .abc-letter {
+    font-family: 'DM Serif Display', serif;
+    font-size: 32px;
+    line-height: 1;
+    color: var(--ink);
+  }
+  .abc-tile .abc-name {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.08em;
+    color: var(--rojo);
+    margin-top: 4px;
+  }
+  .abc-tile .abc-chip {
+    display: inline-block; margin-top: 8px;
+    font-family: 'JetBrains Mono', monospace; font-size: 9.5px; letter-spacing: 0.08em;
+    text-transform: uppercase; color: var(--paper); padding: 2px 8px; border-radius: 999px;
+  }
+  .abc-tile .abc-manner {
+    font-family: 'JetBrains Mono', monospace; font-size: 10.5px; line-height: 1.4;
+    color: var(--ink-soft); margin-top: 7px;
+  }
+  .abc-tile .abc-say, .abc-tile .abc-mouth {
+    font-family: 'Fraunces', serif; font-size: 12.5px; line-height: 1.4;
+    color: var(--ink); margin-top: 5px;
+  }
+  .abc-tile .abc-mouth { color: var(--ink-soft); }
+  .abc-tile .abc-word {
+    font-family: 'Fraunces', serif;
+    font-style: italic;
+    font-size: 13px;
+    color: var(--ink-soft);
+    margin-top: 8px;
+    padding-top: 8px;
+    border-top: 1px solid var(--line);
+    width: 100%;
+  }
+  .abc-tile .abc-speaker {
+    position: absolute;
+    top: 10px; right: 11px;
+    font-size: 13px;
+    opacity: 0.4;
+  }
+  .abc-tile:hover .abc-speaker { opacity: 0.85; }
+  .abc-vowels .abc-tile { background: linear-gradient(135deg, var(--paper), var(--paper-deep)); align-items: flex-start; }
+  .abc-vowels .abc-tile .abc-letter { font-size: 42px; color: var(--rojo); }
+  .abc-vowels .abc-tile .abc-sound {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px;
+    color: var(--ink);
+    margin-top: 6px;
+  }
+  .abc-vowels .abc-tile .abc-say, .abc-vowels .abc-tile .abc-mouth {
+    font-family: 'Fraunces', serif; font-size: 12.5px; line-height: 1.4; margin-top: 5px;
+  }
+  @media (max-width: 560px) {
+    .abc-vowels { grid-template-columns: 1fr 1fr; gap: 8px; }
+    .abc-grid { grid-template-columns: 1fr; }
+    .abc-tile .abc-letter { font-size: 30px; }
+  }
+
+  /* LA RACHA — home widget + daily challenge page */
+  .racha-widget {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+    margin: 32px 0 8px;
+    padding: 18px 22px;
+    background: linear-gradient(120deg, var(--ink), #2c2418);
+    color: var(--paper);
+    border-radius: 6px;
+    text-decoration: none;
+    box-shadow: 0 6px 20px rgba(31, 26, 20, 0.18);
+    transition: transform 0.18s ease, box-shadow 0.18s ease;
+  }
+  .racha-widget:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 28px rgba(31, 26, 20, 0.26);
+  }
+  .racha-flame {
+    font-size: 38px;
+    line-height: 1;
+    filter: drop-shadow(0 2px 6px rgba(196, 61, 42, 0.5));
+    flex-shrink: 0;
+  }
+  .racha-widget.done .racha-flame { animation: rachaPulse 2.4s ease-in-out infinite; }
+  @keyframes rachaPulse { 0%,100% { transform: scale(1); } 50% { transform: scale(1.12); } }
+  .racha-widget-body { flex: 1; min-width: 0; }
+  .racha-widget-kicker {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--ocre);
+    margin-bottom: 4px;
+  }
+  .racha-widget-headline {
+    font-family: 'DM Serif Display', serif;
+    font-size: 22px;
+    line-height: 1.15;
+  }
+  .racha-widget-sub {
+    font-family: 'Fraunces', serif;
+    font-size: 13px;
+    color: rgba(244, 237, 224, 0.72);
+    margin-top: 3px;
+  }
+  .racha-widget-cta {
+    flex-shrink: 0;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 13px;
+    letter-spacing: 0.08em;
+    padding: 9px 16px;
+    border: 1px solid rgba(244, 237, 224, 0.45);
+    border-radius: 999px;
+    white-space: nowrap;
+  }
+  .racha-widget.done .racha-widget-cta {
+    border-color: var(--verde);
+    color: var(--verde);
+  }
+  /* Racha page */
+  .racha-hero {
+    text-align: center;
+    padding: 36px 24px;
+    background: var(--paper);
+    border: 1px solid var(--line);
+    border-radius: 6px;
+    margin-bottom: 24px;
+  }
+  .racha-hero-flame { font-size: 64px; line-height: 1; }
+  .racha-count {
+    font-family: 'DM Serif Display', serif;
+    font-size: 56px;
+    line-height: 1;
+    margin: 8px 0 2px;
+    color: var(--rojo);
+  }
+  .racha-count-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+  }
+  .racha-week {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin: 22px 0 4px;
+    flex-wrap: wrap;
+  }
+  .racha-day {
+    width: 44px;
+    text-align: center;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.05em;
+    color: var(--ink-soft);
+  }
+  .racha-day .dot {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 38px;
+    height: 38px;
+    margin: 0 auto 5px;
+    border-radius: 50%;
+    border: 1px solid var(--line);
+    background: var(--paper-deep);
+    font-size: 16px;
+  }
+  .racha-day.hit .dot { background: var(--verde); border-color: var(--verde); color: var(--paper); }
+  .racha-day.today .dot { border-color: var(--ocre); border-width: 2px; }
+  .racha-stat-row {
+    display: flex;
+    justify-content: center;
+    gap: 28px;
+    margin-top: 18px;
+    flex-wrap: wrap;
+  }
+  .racha-stat .v { font-family: 'DM Serif Display', serif; font-size: 26px; color: var(--ink); }
+  .racha-stat .k { font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--ink-soft); }
+  .racha-q-area {
+    display: flex;
+    gap: 6px;
+    justify-content: center;
+    margin-bottom: 18px;
+    flex-wrap: wrap;
+  }
+  .racha-pip {
+    width: 30px; height: 6px; border-radius: 999px;
+    background: var(--line);
+  }
+  .racha-pip.correct { background: var(--verde); }
+  .racha-pip.wrong { background: var(--rojo); }
+  .racha-pip.current { background: var(--ocre); }
+  .racha-tag {
+    display: inline-block;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--ocre);
+    margin-bottom: 10px;
+  }
+
   /* GAMES PAGE */
+  /* Quick-jump bar — small pills at the top that go straight to each game */
+  .game-jump {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 36px;
+    padding: 16px 18px;
+    background: var(--paper);
+    border: 1px solid var(--line);
+    border-radius: 4px;
+  }
+  .game-jump-label {
+    flex-basis: 100%;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+    margin-bottom: 2px;
+  }
+  .game-jump a {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 6px 12px;
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    background: var(--paper-deep);
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px;
+    color: var(--ink);
+    text-decoration: none;
+    white-space: nowrap;
+    transition: border-color 0.15s ease, color 0.15s ease, transform 0.15s ease, box-shadow 0.15s ease;
+  }
+  .game-jump a:hover {
+    border-color: var(--rojo);
+    color: var(--rojo);
+    transform: translateY(-1px);
+    box-shadow: 0 2px 8px rgba(31, 26, 20, 0.1);
+  }
   .game-grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
@@ -4845,7 +5321,10 @@
   </a>
   <div class="nav-links">
     <a href="#/">Home</a>
+    <a href="#/racha">Racha</a>
+    <a href="#/abecedario">Abecedario</a>
     <a href="#/vocabulario">Vocab</a>
+    <a href="#/repaso">Repaso</a>
     <a href="#/verbos">Verbs</a>
     <a href="#/lectura">Reading</a>
     <a href="#/escucha">Listening</a>
@@ -4854,6 +5333,7 @@
     <a href="#/mundo">Mundo</a>
     <a href="#/historia" onclick="return window.__goHistoria ? window.__goHistoria() : true;">Historia</a>
     <a href="#/lecciones">Lessons</a>
+    <a href="#/linguistica">Lingüística</a>
     <a href="#/recursos">Resources</a>
   </div>
   <div style="display:flex;gap:10px;align-items:center;flex-shrink:0">
@@ -5079,67 +5559,21 @@
     <div id="siteSearchResults" class="site-search-results" style="display:none;"></div>
   </div>
 
-  <div class="hero-meta">
-    <a href="#/vocabulario">
-      <span class="num">🃏 Vocabulario</span>
-      <span class="label-big">Vocabulary</span>
-      <span class="desc">Flashcards · 58 themed decks</span>
-    </a>
-    <a href="#/verbos">
-      <span class="num">🔄 Verbos</span>
-      <span class="label-big">Verb practice</span>
-      <span class="desc">All major tenses · commands · pronouns</span>
-    </a>
-    <a href="#/lectura">
-      <span class="num">📚 Lectura</span>
-      <span class="label-big">Guided reading</span>
-      <span class="desc">Passages with vocab & quiz</span>
-    </a>
-    <a href="#/escucha">
-      <span class="num">🎧 Escucha</span>
-      <span class="label-big">Listening</span>
-      <span class="desc">Audio at different levels</span>
-    </a>
-    <a href="#/escritura">
-      <span class="num">✍️ Escritura</span>
-      <span class="label-big">Writing topics</span>
-      <span class="desc">Respond in writing to teacher prompts</span>
-    </a>
-    <a href="#/voces">
-      <span class="num">🎙️ Voces</span>
-      <span class="label-big">Speaking topics</span>
-      <span class="desc">Record responses to teacher prompts</span>
-    </a>
-    <a href="#/mundo">
-      <span class="num">🌎 Mundo</span>
-      <span class="label-big">Cultura y geografía</span>
-      <span class="desc">21 countries · flags · traditions</span>
-    </a>
-    <a href="#/historia" onclick="return window.__goHistoria ? window.__goHistoria() : true;">
-      <span class="num">📜 Historia</span>
-      <span class="label-big">Historia of Spanish-Speaking Nations</span>
-      <span class="desc">15 countries · coups, revolutions, dictatorships, conquests</span>
-    </a>
-    <a href="#/lecciones">
-      <span class="num">📘 Lessons</span>
-      <span class="label-big">Grammar lessons</span>
-      <span class="desc">53 lessons across Spanish 1, 2 & 3</span>
-    </a>
-    <a href="#/juegos">
-      <span class="num">🎮 Games</span>
-      <span class="label-big">Practice games</span>
-      <span class="desc"><span id="gameCountLabel">11</span> games · numbers · grammar · vocab · verbs</span>
-    </a>
-    <a href="#/lucas">
-      <span class="num">★ Lucas</span>
-      <span class="label-big">Rewards, achievements & shop</span>
-      <span class="desc">Your progress, your coins, and where to spend them</span>
-    </a>
-    <a href="#/recursos">
-      <span class="num">🔗 Resources</span>
-      <span class="label-big">Student resources</span>
-      <span class="desc">ProgressBook · IXL · Google Classroom · Spanish helpers</span>
-    </a>
+  <div class="home-links">
+    <a href="#/abecedario" class="hl"><span class="hl-ico">🔤</span><span class="hl-name">Abecedario</span><span class="hl-sub">Alphabet & sounds</span></a>
+    <a href="#/vocabulario" class="hl"><span class="hl-ico">🃏</span><span class="hl-name">Vocabulario</span><span class="hl-sub">Vocabulary</span></a>
+    <a href="#/repaso" class="hl"><span class="hl-ico">🧠</span><span class="hl-name">Repaso</span><span class="hl-sub">Spaced repetition</span></a>
+    <a href="#/verbos" class="hl"><span class="hl-ico">🔄</span><span class="hl-name">Verbos</span><span class="hl-sub">Verb practice</span></a>
+    <a href="#/lectura" class="hl"><span class="hl-ico">📚</span><span class="hl-name">Lectura</span><span class="hl-sub">Guided reading</span></a>
+    <a href="#/escucha" class="hl"><span class="hl-ico">🎧</span><span class="hl-name">Escucha</span><span class="hl-sub">Listening</span></a>
+    <a href="#/escritura" class="hl"><span class="hl-ico">✍️</span><span class="hl-name">Escritura</span><span class="hl-sub">Writing topics</span></a>
+    <a href="#/voces" class="hl"><span class="hl-ico">🎙️</span><span class="hl-name">Voces</span><span class="hl-sub">Speaking topics</span></a>
+    <a href="#/mundo" class="hl"><span class="hl-ico">🌎</span><span class="hl-name">Mundo</span><span class="hl-sub">Cultura y geografía</span></a>
+    <a href="#/lecciones" class="hl"><span class="hl-ico">📘</span><span class="hl-name">Lessons</span><span class="hl-sub">Grammar lessons</span></a>
+    <a href="#/linguistica" class="hl"><span class="hl-ico">🔬</span><span class="hl-name">Lingüística</span><span class="hl-sub">Language science</span></a>
+    <a href="#/juegos" class="hl"><span class="hl-ico">🎮</span><span class="hl-name">Games</span><span class="hl-sub">Practice games</span></a>
+    <a href="#/lucas" class="hl"><span class="hl-ico">★</span><span class="hl-name">Lucas</span><span class="hl-sub">Rewards & shop</span></a>
+    <a href="#/recursos" class="hl"><span class="hl-ico">🔗</span><span class="hl-name">Resources</span><span class="hl-sub">Student links</span></a>
   </div>
 
   <!-- WHY "LUCAS"? — explains where the reward-currency name comes from -->
@@ -5179,7 +5613,51 @@
       <!-- populated by JS from ANNOUNCEMENTS array -->
     </div>
   </div>
+
+  <!-- LA RACHA — daily streak (lives at the bottom; populated by updateRachaWidget) -->
+  <a href="#/racha" class="racha-widget" id="rachaWidget" aria-label="La Racha — today's daily challenge" style="margin-top:56px;">
+    <div class="racha-flame" id="rachaWidgetFlame">🔥</div>
+    <div class="racha-widget-body">
+      <div class="racha-widget-kicker">La Racha · daily challenge</div>
+      <div class="racha-widget-headline" id="rachaWidgetHeadline">Loading your streak…</div>
+      <div class="racha-widget-sub" id="rachaWidgetSub"></div>
+    </div>
+    <div class="racha-widget-cta" id="rachaWidgetCta">Play →</div>
+  </a>
 </header></div>
+
+<!-- LA RACHA — daily challenge page -->
+<div class="page" data-page="racha"><section id="racha">
+  <div class="section-header">
+    <h2>La <em>Racha</em></h2>
+    <div class="section-num">🔥 Daily challenge</div>
+  </div>
+  <div id="rachaContent"><!-- populated by renderRacha --></div>
+</section></div>
+
+<!-- REPASO — spaced-repetition flashcard review -->
+<div class="page" data-page="repaso"><section id="repaso">
+  <div class="section-header">
+    <h2>Smart <em>repaso</em></h2>
+    <div class="section-num">🧠 Spaced repetition</div>
+  </div>
+  <div id="repasoContent"><!-- populated by renderRepaso --></div>
+</section></div>
+
+<!-- ABECEDARIO — interactive alphabet & vowel pronunciation -->
+<div class="page" data-page="abecedario"><section id="abecedario">
+  <div class="section-header">
+    <h2>El <em>abecedario</em></h2>
+    <div class="section-num">🔤 Letras y sonidos</div>
+  </div>
+  <p style="font-size: 17px; color: var(--ink-soft); line-height: 1.5; max-width: 620px; margin-bottom: 8px;">
+    The Spanish alphabet has <strong>27 letters</strong>. Tap any letter to hear its name and an example word out loud. Start with the five vowels — they're the foundation of every Spanish word.
+  </p>
+  <p id="abcVoiceNote" style="font-size: 13px; color: var(--ink-soft); font-style: italic; margin-bottom: 28px; display: none;">
+    🔇 Your browser doesn't support speech synthesis, so audio won't play here.
+  </p>
+  <div id="abecedarioContent"><!-- populated by renderAbecedario --></div>
+</section></div>
 
 <!-- AVISOS (ANNOUNCEMENTS FEED) -->
 <!-- VOCABULARIO -->
@@ -5232,65 +5710,69 @@
         <button class="btn primary" onclick="nextCard()">Next →</button>
         <button class="btn" onclick="shuffleCards()">Shuffle</button>
       </div>
+      <a href="#/repaso" class="repaso-cta" id="vocabRepasoCta">
+        🧠 <span><strong>Smart Repaso</strong> — review with spaced repetition</span>
+        <span class="repaso-cta-badge" id="vocabRepasoBadge"></span>
+      </a>
       <div class="deck-pick" style="flex-wrap: wrap;">
-        <button class="pill active" onclick="loadDeck('cotidiano', this)">Everyday</button>
-        <button class="pill" onclick="loadDeck('familia', this)">Family</button>
-        <button class="pill" onclick="loadDeck('comida', this)">Food</button>
-        <button class="pill" onclick="loadDeck('saludos', this)">Greetings</button>
-        <button class="pill" onclick="loadDeck('gente', this)">People</button>
-        <button class="pill" onclick="loadDeck('viajes', this)">Travel</button>
-        <button class="pill" onclick="loadDeck('deportes', this)">Sports</button>
-        <button class="pill" onclick="loadDeck('colores', this)">Colors</button>
-        <button class="pill" onclick="loadDeck('clases', this)">Classes</button>
-        <button class="pill" onclick="loadDeck('salon', this)">Classroom</button>
-        <button class="pill" onclick="loadDeck('escuela', this)">School Life</button>
-        <button class="pill" onclick="loadDeck('relaciones', this)">Relationships</button>
         <button class="pill" onclick="loadDeck('adjetivos', this)">Adjectives</button>
         <button class="pill" onclick="loadDeck('adverbios', this)">Adverbs</button>
+        <button class="pill" onclick="loadDeck('aeropuerto', this)">Air travel</button>
+        <button class="pill" onclick="loadDeck('animales', this)">Animals</button>
+        <button class="pill" onclick="loadDeck('verbosAr', this)">-AR verbs</button>
+        <button class="pill" onclick="loadDeck('argentina', this)">Argentina</button>
         <button class="pill" onclick="loadDeck('cuerpo', this)">Body parts</button>
-        <button class="pill" onclick="loadDeck('peru', this)">Perú</button>
-        <button class="pill" onclick="loadDeck('espana', this)">España</button>
+        <button class="pill" onclick="loadDeck('bolivia', this)">Bolivia</button>
+        <button class="pill" onclick="loadDeck('calendario', this)">Calendar</button>
+        <button class="pill" onclick="loadDeck('chile', this)">Chile</button>
+        <button class="pill" onclick="loadDeck('clases', this)">Classes</button>
+        <button class="pill" onclick="loadDeck('salon', this)">Classroom</button>
+        <button class="pill" onclick="loadDeck('mandatos', this)">Classroom commands</button>
+        <button class="pill" onclick="loadDeck('ropa', this)">Clothing</button>
+        <button class="pill" onclick="loadDeck('colombia', this)">Colombia</button>
+        <button class="pill" onclick="loadDeck('colores', this)">Colors</button>
+        <button class="pill" onclick="loadDeck('cuba', this)">Cuba</button>
+        <button class="pill" onclick="loadDeck('rutina', this)">Daily routine</button>
         <button class="pill" onclick="loadDeck('diadelosmuertos', this)">Día de los Muertos</button>
         <button class="pill" onclick="loadDeck('futbol', this)">El fútbol</button>
-        <button class="pill" onclick="loadDeck('cumpleanos', this)">¡Feliz cumpleaños!</button>
-        <button class="pill" onclick="loadDeck('argentina', this)">Argentina</button>
-        <button class="pill" onclick="loadDeck('mexico', this)">México</button>
-        <button class="pill" onclick="loadDeck('colombia', this)">Colombia</button>
-        <button class="pill" onclick="loadDeck('chile', this)">Chile</button>
-        <button class="pill" onclick="loadDeck('bolivia', this)">Bolivia</button>
-        <button class="pill" onclick="loadDeck('venezuela', this)">Venezuela</button>
-        <button class="pill" onclick="loadDeck('cuba', this)">Cuba</button>
-        <button class="pill" onclick="loadDeck('guatemala', this)">Guatemala</button>
         <button class="pill" onclick="loadDeck('elsalvador', this)">El Salvador</button>
-        <button class="pill" onclick="loadDeck('honduras', this)">Honduras</button>
-        <button class="pill" onclick="loadDeck('uruguay', this)">Uruguay</button>
-        <button class="pill" onclick="loadDeck('paraguay', this)">Paraguay</button>
-        <button class="pill" onclick="loadDeck('puertorico', this)">Puerto Rico</button>
-        <button class="pill" onclick="loadDeck('verbosAr', this)">-AR verbs</button>
+        <button class="pill" onclick="loadDeck('emociones', this)">Emotions</button>
         <button class="pill" onclick="loadDeck('verbosEr', this)">-ER verbs</button>
-        <button class="pill" onclick="loadDeck('verbosIr', this)">-IR verbs</button>
-        <button class="pill" onclick="loadDeck('pronombres', this)">Pronouns</button>
-        <button class="pill" onclick="loadDeck('teneridioms', this)">Tener idioms</button>
-        <button class="pill" onclick="loadDeck('numeros', this)">Numbers</button>
-        <button class="pill" onclick="loadDeck('calendario', this)">Calendar</button>
-        <button class="pill" onclick="loadDeck('tiempo', this)">Weather &amp; seasons</button>
-        <button class="pill" onclick="loadDeck('aeropuerto', this)">Air travel</button>
-        <button class="pill" onclick="loadDeck('rutina', this)">Daily routine</button>
-        <button class="pill" onclick="loadDeck('restaurante', this)">Restaurant</button>
-        <button class="pill" onclick="loadDeck('fiestas', this)">Holidays</button>
-        <button class="pill" onclick="loadDeck('tecnologia', this)">Technology</button>
-        <button class="pill" onclick="loadDeck('preguntas', this)">Question words</button>
+        <button class="pill" onclick="loadDeck('espana', this)">España</button>
+        <button class="pill active" onclick="loadDeck('cotidiano', this)">Everyday</button>
+        <button class="pill" onclick="loadDeck('familia', this)">Family</button>
+        <button class="pill" onclick="loadDeck('cumpleanos', this)">¡Feliz cumpleaños!</button>
+        <button class="pill" onclick="loadDeck('comida', this)">Food</button>
+        <button class="pill" onclick="loadDeck('saludos', this)">Greetings</button>
+        <button class="pill" onclick="loadDeck('guatemala', this)">Guatemala</button>
         <button class="pill" onclick="loadDeck('gustar', this)">Gustar verbs</button>
-        <button class="pill" onclick="loadDeck('ropa', this)">Clothing</button>
-        <button class="pill" onclick="loadDeck('lugares', this)">Places in town</button>
+        <button class="pill" onclick="loadDeck('fiestas', this)">Holidays</button>
+        <button class="pill" onclick="loadDeck('honduras', this)">Honduras</button>
         <button class="pill" onclick="loadDeck('casa', this)">House &amp; furniture</button>
+        <button class="pill" onclick="loadDeck('verbosIr', this)">-IR verbs</button>
+        <button class="pill" onclick="loadDeck('literatura', this)">Literature</button>
+        <button class="pill" onclick="loadDeck('mexico', this)">México</button>
+        <button class="pill" onclick="loadDeck('numeros', this)">Numbers</button>
+        <button class="pill" onclick="loadDeck('paraguay', this)">Paraguay</button>
+        <button class="pill" onclick="loadDeck('gente', this)">People</button>
+        <button class="pill" onclick="loadDeck('peru', this)">Perú</button>
+        <button class="pill" onclick="loadDeck('lugares', this)">Places in town</button>
         <button class="pill" onclick="loadDeck('preposiciones', this)">Prepositions</button>
         <button class="pill" onclick="loadDeck('profesiones', this)">Professions</button>
-        <button class="pill" onclick="loadDeck('animales', this)">Animals</button>
+        <button class="pill" onclick="loadDeck('pronombres', this)">Pronouns</button>
+        <button class="pill" onclick="loadDeck('puertorico', this)">Puerto Rico</button>
+        <button class="pill" onclick="loadDeck('preguntas', this)">Question words</button>
+        <button class="pill" onclick="loadDeck('relaciones', this)">Relationships</button>
+        <button class="pill" onclick="loadDeck('restaurante', this)">Restaurant</button>
+        <button class="pill" onclick="loadDeck('escuela', this)">School Life</button>
+        <button class="pill" onclick="loadDeck('deportes', this)">Sports</button>
+        <button class="pill" onclick="loadDeck('tecnologia', this)">Technology</button>
         <button class="pill" onclick="loadDeck('hora', this)">Telling time</button>
-        <button class="pill" onclick="loadDeck('mandatos', this)">Classroom commands</button>
-        <button class="pill" onclick="loadDeck('emociones', this)">Emotions</button>
-        <button class="pill" onclick="loadDeck('literatura', this)">Literature</button>
+        <button class="pill" onclick="loadDeck('teneridioms', this)">Tener idioms</button>
+        <button class="pill" onclick="loadDeck('viajes', this)">Travel</button>
+        <button class="pill" onclick="loadDeck('uruguay', this)">Uruguay</button>
+        <button class="pill" onclick="loadDeck('venezuela', this)">Venezuela</button>
+        <button class="pill" onclick="loadDeck('tiempo', this)">Weather &amp; seasons</button>
       </div>
     </div>
   </div>
@@ -5413,6 +5895,18 @@
   <div id="lesson-detail-content">
     <!-- populated by JS -->
   </div>
+</section></div>
+
+<!-- LINGÜÍSTICA — intro-to-linguistics hub -->
+<div class="page" data-page="linguistica"><section id="linguistica">
+  <div class="section-header">
+    <h2>La <em>lingüística</em></h2>
+    <div class="section-num">★ / Language science</div>
+  </div>
+  <p style="font-size: 17px; color: var(--ink-soft); line-height: 1.55; max-width: 660px; margin: 16px 0 28px;">
+    Language isn't just words to memorize — it's a system you can take apart. A short, plain-language tour of how Spanish actually works: its sounds, how its words and sentences are built, where it came from, how it varies, and how we learn it. Each lesson is quick, with a 3-question check.
+  </p>
+  <div id="linguisticaGrid" class="ling-hub"><!-- populated by renderLinguistica --></div>
 </section></div>
 
 <!-- STUDENT RESOURCES -->
@@ -5687,6 +6181,67 @@
       </a>
 
     </div>
+
+    <!-- NCSSFL-ACTFL Can-Do Statements — downloadable PDFs (list view) -->
+    <h4 style="font-family: 'DM Serif Display', serif; font-size: 18px; font-weight: 400; margin: 30px 0 6px;">Can-Do Statements <em style="color: var(--ink-soft); font-style: italic; font-size: 14px;">— download (PDF)</em></h4>
+    <p style="font-size: 13px; color: var(--ink-soft); line-height: 1.5; margin: 0 0 14px;">The full NCSSFL-ACTFL document set. Tap any title to open the PDF.</p>
+    <div id="canDoList" style="display: flex; flex-direction: column; gap: 8px; max-width: 760px;">
+
+      <a href="standards/World-Readiness-Standards.pdf" target="_blank" rel="noopener" class="candoc-row">
+        <span class="candoc-tag">PDF</span>
+        <span class="candoc-body"><span class="candoc-name">World-Readiness Standards</span><span class="candoc-desc">The full 5 C's framework document.</span></span>
+        <span class="candoc-dl">↓</span>
+      </a>
+
+      <a href="standards/CanDo-Intro-Overview.pdf" target="_blank" rel="noopener" class="candoc-row">
+        <span class="candoc-tag">PDF</span>
+        <span class="candoc-body"><span class="candoc-name">Introduction &amp; Overview</span><span class="candoc-desc">How the Can-Do Statements work and how to use them.</span></span>
+        <span class="candoc-dl">↓</span>
+      </a>
+
+      <a href="standards/CanDo-Novice.pdf" target="_blank" rel="noopener" class="candoc-row">
+        <span class="candoc-tag">NOV</span>
+        <span class="candoc-body"><span class="candoc-name">Novice</span><span class="candoc-desc">Can-Do goals at the Novice level (Low · Mid · High).</span></span>
+        <span class="candoc-dl">↓</span>
+      </a>
+
+      <a href="standards/CanDo-Intermediate.pdf" target="_blank" rel="noopener" class="candoc-row">
+        <span class="candoc-tag">INT</span>
+        <span class="candoc-body"><span class="candoc-name">Intermediate</span><span class="candoc-desc">Creating with language — from sentences to connected paragraphs.</span></span>
+        <span class="candoc-dl">↓</span>
+      </a>
+
+      <a href="standards/CanDo-Advanced.pdf" target="_blank" rel="noopener" class="candoc-row">
+        <span class="candoc-tag">ADV</span>
+        <span class="candoc-body"><span class="candoc-name">Advanced</span><span class="candoc-desc">Paragraph-level narration and description across time frames.</span></span>
+        <span class="candoc-dl">↓</span>
+      </a>
+
+      <a href="standards/CanDo-Superior-Distinguished.pdf" target="_blank" rel="noopener" class="candoc-row">
+        <span class="candoc-tag">SUP</span>
+        <span class="candoc-body"><span class="candoc-name">Superior &amp; Distinguished</span><span class="candoc-desc">The highest proficiency benchmarks.</span></span>
+        <span class="candoc-dl">↓</span>
+      </a>
+
+      <a href="standards/CanDo-Comparison.pdf" target="_blank" rel="noopener" class="candoc-row">
+        <span class="candoc-tag">ALL</span>
+        <span class="candoc-body"><span class="candoc-name">Level Comparison</span><span class="candoc-desc">All proficiency levels side by side.</span></span>
+        <span class="candoc-dl">↓</span>
+      </a>
+
+      <a href="standards/CanDo-Benchmarks-Indicators.pdf" target="_blank" rel="noopener" class="candoc-row">
+        <span class="candoc-tag">CHART</span>
+        <span class="candoc-body"><span class="candoc-name">Benchmarks &amp; Indicators</span><span class="candoc-desc">Benchmarks with sample indicators (11×17 chart).</span></span>
+        <span class="candoc-dl">↓</span>
+      </a>
+
+      <a href="standards/CanDo-Intercultural-Reflection-Tool.pdf" target="_blank" rel="noopener" class="candoc-row">
+        <span class="candoc-tag">IC</span>
+        <span class="candoc-body"><span class="candoc-name">Intercultural &amp; Reflection Tool</span><span class="candoc-desc">Intercultural communication Can-Do plus a self-reflection tool.</span></span>
+        <span class="candoc-dl">↓</span>
+      </a>
+
+    </div>
   </div>
 
   <p style="font-family: 'Fraunces', serif; font-style: italic; font-size: 14px; color: var(--ink-soft); margin-top: 24px;">
@@ -5701,9 +6256,30 @@
     <h2>Practice <em>games</em></h2>
     <div class="section-num">★ / Juegos</div>
   </div>
-  <p style="font-size: 18px; color: var(--ink-soft); line-height: 1.5; max-width: 640px; margin-bottom: 32px;">
-    Quick games for the basics — days, dates, and numbers. Each game is 10 rounds. Score-based Lucas: the better you do, the more you earn.
+  <p style="font-size: 18px; color: var(--ink-soft); line-height: 1.5; max-width: 640px; margin-bottom: 24px;">
+    Vocab, numbers, dates, grammar — most games run both directions (Spanish→English and English→Spanish). Each game is 10 rounds. Score-based Lucas: the better you do, the more you earn.
   </p>
+
+  <!-- Quick jump — skip the scrolling, go straight to a game -->
+  <nav class="game-jump">
+    <span class="game-jump-label">Quick jump — tap a game to play</span>
+    <a href="#/game/match">🃏 Match it</a>
+    <a href="#/game/vocab-type">⌨️ Type it</a>
+    <a href="#/game/vocab-mc">✅ Pick it</a>
+    <a href="#/game/plurals">🔁 Plurals</a>
+    <a href="#/game/days">📅 Days</a>
+    <a href="#/game/dates">🗓️ Dates</a>
+    <a href="#/game/numbers-small">🔢 1–30</a>
+    <a href="#/game/numbers-mid">🔠 30–100</a>
+    <a href="#/game/numbers-big">💯 100–9999</a>
+    <a href="#/game/time">🕐 Time</a>
+    <a href="#/game/weather">🌤️ Weather</a>
+    <a href="#/game/tu-usted">🗣️ Tú/Usted</a>
+    <a href="#/game/adjectives">✍️ Adjectives</a>
+    <a href="#/game/reflexives">🚿 Reflexives</a>
+    <a href="#/game/object-pronouns">🎯 Pronouns</a>
+    <a href="javascript:void(0)" onclick="document.getElementById('sprintSection').scrollIntoView({behavior:'smooth'})">⚡ Verb sprints</a>
+  </nav>
 
   <!-- Game selector -->
   <div class="game-grid" id="gameGrid">
@@ -5737,46 +6313,64 @@
       <p>The reverse: "una pelota" → "a ball". Read the Spanish, translate into English. Pick your level.</p>
       <div class="game-reward">4 levels · 10 rounds · up to 40 Lucas</div>
     </a>
+    <a href="#/game/vocab-type" class="game-card">
+      <div class="game-icon">⌨️</div>
+      <h3>Type <em>it</em></h3>
+      <p>Same decks, no tiles: we show a word, you type the translation — answer in Spanish, English, or mixed.</p>
+      <div class="game-reward">10 rounds · up to 30 Lucas</div>
+    </a>
+    <a href="#/game/vocab-mc" class="game-card">
+      <div class="game-icon">✅</div>
+      <h3>Pick <em>it</em></h3>
+      <p>Multiple choice vocab: four answers, one is right. The friendly way into a new deck.</p>
+      <div class="game-reward">10 rounds · up to 20 Lucas</div>
+    </a>
+    <a href="#/game/plurals" class="game-card">
+      <div class="game-icon">🔁</div>
+      <h3>Singular ↔ <em>plural</em></h3>
+      <p>Los lápices → el lápiz, la canción → las canciones. Both directions, accents and all.</p>
+      <div class="game-reward">10 rounds · up to 35 Lucas</div>
+    </a>
     <a href="#/game/days" class="game-card">
       <div class="game-icon">📅</div>
       <h3>Days of the <em>week</em></h3>
-      <p>Lunes, martes, miércoles… can you name them all?</p>
+      <p>Lunes, martes, miércoles… both directions: Spanish→English and back.</p>
       <div class="game-reward">10 rounds · up to 25 Lucas</div>
     </a>
     <a href="#/game/dates" class="game-card">
       <div class="game-icon">🗓️</div>
       <h3>Speaking <em>dates</em></h3>
-      <p>How do you say "March 15" in Spanish? Practice writing dates.</p>
+      <p>"March 15" → el quince de marzo — and Spanish dates back into English.</p>
       <div class="game-reward">10 rounds · up to 35 Lucas</div>
     </a>
     <a href="#/game/numbers-small" class="game-card">
       <div class="game-icon">🔢</div>
       <h3>Numbers <em>1–30</em></h3>
-      <p>Uno, dos, tres… start small. Master the foundations.</p>
+      <p>Uno, dos, tres… write the Spanish, or read the Spanish and type the digits.</p>
       <div class="game-reward">10 rounds · up to 25 Lucas</div>
     </a>
     <a href="#/game/numbers-mid" class="game-card">
       <div class="game-icon">🔠</div>
       <h3>Numbers <em>30–100</em></h3>
-      <p>Treinta y cinco… learn the "y" pattern and the trickier tens.</p>
+      <p>Treinta y cinco… the "y" pattern, both directions: words ↔ digits.</p>
       <div class="game-reward">10 rounds · up to 35 Lucas</div>
     </a>
     <a href="#/game/numbers-big" class="game-card">
       <div class="game-icon">💯</div>
       <h3>Numbers <em>100–9999</em></h3>
-      <p>Trescientos cuarenta y siete… big numbers take big concentration.</p>
+      <p>Trescientos cuarenta y siete… big numbers, words ↔ digits.</p>
       <div class="game-reward">10 rounds · up to 50 Lucas</div>
     </a>
     <a href="#/game/time" class="game-card">
       <div class="game-icon">🕐</div>
       <h3>Telling <em>time</em></h3>
-      <p>¿Qué hora es? "Son las tres y media" — practice every form.</p>
+      <p>¿Qué hora es? Write the Spanish — or read "son las tres y media" and type 3:30.</p>
       <div class="game-reward">10 rounds · up to 40 Lucas</div>
     </a>
     <a href="#/game/weather" class="game-card">
       <div class="game-icon">🌤️</div>
       <h3>The <em>weather</em></h3>
-      <p>Hace sol, llueve, está nublado — describe what you see.</p>
+      <p>Hace sol, llueve, está nublado — describe scenes in Spanish, translate back to English.</p>
       <div class="game-reward">10 rounds · up to 30 Lucas</div>
     </a>
     <a href="#/game/tu-usted" class="game-card">
@@ -5806,7 +6400,7 @@
   </div>
 
   <!-- VERB CONJUGATION SPRINTS — separate section with timer + leaderboard -->
-  <div style="margin-top: 64px; padding-top: 32px; border-top: 1px solid var(--line);">
+  <div id="sprintSection" style="margin-top: 64px; padding-top: 32px; border-top: 1px solid var(--line);">
     <div style="display: flex; align-items: baseline; justify-content: space-between; margin-bottom: 6px;">
       <h3 style="font-family: 'DM Serif Display', serif; font-size: 24px; font-weight: 400; margin: 0;">Verb conjugation <em style="color: var(--rojo); font-style: italic;">sprints</em></h3>
       <div style="font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.15em; color: var(--ink-soft); text-transform: uppercase;">10/10 to qualify · time matters</div>
@@ -5976,6 +6570,7 @@
       <button class="pill active" onclick="setWritingFilter('level','all'); setActivePill(this);">All</button>
       <button class="pill" onclick="setWritingFilter('level','sp1'); setActivePill(this);">Spanish 1</button>
       <button class="pill" onclick="setWritingFilter('level','sp2'); setActivePill(this);">Spanish 2</button>
+      <button class="pill" onclick="setWritingFilter('level','sp3'); setActivePill(this);">Spanish 3</button>
     </div>
     <div class="filter-row">
       <span class="filter-label">Type</span>
@@ -6017,6 +6612,7 @@
       <button class="pill active" onclick="setSpeakingFilter('level','all'); setActivePill(this);">All</button>
       <button class="pill" onclick="setSpeakingFilter('level','sp1'); setActivePill(this);">Spanish 1</button>
       <button class="pill" onclick="setSpeakingFilter('level','sp2'); setActivePill(this);">Spanish 2</button>
+      <button class="pill" onclick="setSpeakingFilter('level','sp3'); setActivePill(this);">Spanish 3</button>
     </div>
     <div class="filter-row">
       <span class="filter-label">Type</span>
@@ -7070,8 +7666,12 @@
     lucas: 'Lucas · Rewards & Shop',
     topic: 'Topic',
     juegos: 'Games',
+    racha: 'La Racha',
+    repaso: 'Repaso',
+    abecedario: 'Abecedario',
     game: 'Game',
     lecciones: 'Grammar lessons',
+    linguistica: 'Lingüística',
     lesson: 'Lesson',
     recursos: 'Student Resources'
   };
@@ -7210,8 +7810,13 @@
     if (page === 'lectura' && typeof renderReadingLibrary === 'function') renderReadingLibrary();
     if (page === 'reading' && typeof renderReadingDetail === 'function') renderReadingDetail(param);
     if (page === 'juegos' && typeof renderGamesHub === 'function') renderGamesHub();
+    if (page === 'vocabulario' && typeof updateRepasoBadges === 'function') updateRepasoBadges();
+    if (page === 'racha' && typeof renderRacha === 'function') renderRacha();
+    if (page === 'repaso' && typeof renderRepaso === 'function') renderRepaso();
+    if (page === 'abecedario' && typeof renderAbecedario === 'function') renderAbecedario();
     if (page === 'game' && typeof startGame === 'function') startGame(param);
     if (page === 'lecciones' && typeof renderLessonsList === 'function') renderLessonsList();
+    if (page === 'linguistica' && typeof renderLinguistica === 'function') renderLinguistica();
     if (page === 'lesson' && typeof renderLessonDetail === 'function') renderLessonDetail(param);
   }
 
@@ -8015,6 +8620,8 @@
     return {
       coins: 0,
       cardsViewed: new Set(),
+      srs: {},
+      srsLastReward: null,
       verbsCorrect: 0,
       verbsAttempted: 0,
       quizCorrect: 0,
@@ -8027,6 +8634,9 @@
       minutesAwarded: 0,
       streakConj: 0,
       bestStreak: 0,
+      rachaStreak: 0,
+      rachaBest: 0,
+      rachaLastDay: null,
       achievements: new Set(),
       achievementsAt: {},
       lifetimeCoins: 0,
@@ -8067,6 +8677,9 @@
       s.poemsCompleted = parsed.poemsCompleted || 0;
       s.minutesAwarded = parsed.minutesAwarded || 0;
       s.bestStreak = parsed.bestStreak || 0;
+      s.rachaStreak = parsed.rachaStreak || 0;
+      s.rachaBest = parsed.rachaBest || 0;
+      s.rachaLastDay = parsed.rachaLastDay || null;
       s.flagsCorrect = parsed.flagsCorrect || 0;
       s.bestFlagStreak = parsed.bestFlagStreak || 0;
       s.drillsCompleted = parsed.drillsCompleted || 0;
@@ -8079,6 +8692,8 @@
       });
       // Restore Sets from arrays
       if (Array.isArray(parsed.cardsViewed)) s.cardsViewed = new Set(parsed.cardsViewed);
+      if (parsed.srs && typeof parsed.srs === 'object') s.srs = parsed.srs;
+      s.srsLastReward = parsed.srsLastReward || null;
       if (Array.isArray(parsed.listenedClips)) s.listenedClips = new Set(parsed.listenedClips);
       if (Array.isArray(parsed.achievements)) s.achievements = new Set(parsed.achievements);
       if (parsed.achievementsAt && typeof parsed.achievementsAt === 'object') s.achievementsAt = parsed.achievementsAt;
@@ -8094,7 +8709,7 @@
       if (parsed.completedReadings && typeof parsed.completedReadings === 'object') s.completedReadings = parsed.completedReadings;
       if (parsed.completedLessons && typeof parsed.completedLessons === 'object') s.completedLessons = parsed.completedLessons;
       // Game best scores
-      ['game_best_days', 'game_best_dates', 'game_best_numbers-small', 'game_best_numbers-mid', 'game_best_numbers-big', 'game_best_time', 'game_best_weather', 'game_best_tu-usted', 'game_best_adjectives', 'game_best_reflexives', 'game_best_object-pronouns'].forEach(k => {
+      ['game_best_days', 'game_best_dates', 'game_best_numbers-small', 'game_best_numbers-mid', 'game_best_numbers-big', 'game_best_time', 'game_best_weather', 'game_best_tu-usted', 'game_best_adjectives', 'game_best_reflexives', 'game_best_object-pronouns', 'game_best_plurals', 'game_best_vocab-type', 'game_best_vocab-mc'].forEach(k => {
         if (parsed[k] != null) s[k] = parsed[k];
       });
       // Match game best times + listening progress
@@ -8117,6 +8732,8 @@
       const toSave = {
         coins: STATE.coins,
         cardsViewed: Array.from(STATE.cardsViewed),
+        srs: STATE.srs || {},
+        srsLastReward: STATE.srsLastReward || null,
         verbsCorrect: STATE.verbsCorrect,
         verbsAttempted: STATE.verbsAttempted,
         quizCorrect: STATE.quizCorrect,
@@ -8127,6 +8744,9 @@
         poemsCompleted: STATE.poemsCompleted,
         minutesAwarded: STATE.minutesAwarded,
         bestStreak: STATE.bestStreak,
+        rachaStreak: STATE.rachaStreak || 0,
+        rachaBest: STATE.rachaBest || 0,
+        rachaLastDay: STATE.rachaLastDay || null,
         achievements: Array.from(STATE.achievements),
         achievementsAt: STATE.achievementsAt || {},
         lifetimeCoins: STATE.lifetimeCoins || 0,
@@ -8154,6 +8774,9 @@
         game_best_adjectives: STATE.game_best_adjectives || 0,
         game_best_reflexives: STATE.game_best_reflexives || 0,
         'game_best_object-pronouns': STATE['game_best_object-pronouns'] || 0,
+        game_best_plurals: STATE.game_best_plurals || 0,
+        'game_best_vocab-type': STATE['game_best_vocab-type'] || 0,
+        'game_best_vocab-mc': STATE['game_best_vocab-mc'] || 0,
         matchBest: STATE.matchBest || {},
         completedDictation: STATE.completedDictation || {},
         completedComprehension: STATE.completedComprehension || {},
@@ -8657,6 +9280,234 @@
     btn.classList.add('active');
     document.getElementById('deck-name').textContent = btn.textContent;
     renderCard();
+  }
+
+  // ============================================================================
+  // REPASO — spaced repetition (Leitner boxes)
+  // ----------------------------------------------------------------------------
+  // Every word lives in a "box" 1–5. Review it: got it → box up (longer wait),
+  // missed it → back to box 1 (see it again tomorrow). Due cards (wait elapsed)
+  // resurface; mastered cards fade for weeks. State persists in STATE.srs keyed
+  // by deck::word, so it works across all decks and survives reloads.
+  // ============================================================================
+  const SRS_DAY_MS = 86400000;
+  // Interval in days before a card in each box becomes due again
+  const SRS_INTERVALS = { 1: 1, 2: 2, 3: 4, 4: 9, 5: 21 };
+  const SRS_MASTERED_BOX = 5;
+  const SRS_SESSION_MAX = 20;      // cards per review session
+  const SRS_NEW_PER_SESSION = 10;  // cap brand-new cards introduced at once
+
+  let srsState = null;            // active session
+  let srsDir = 'es2en';           // 'es2en' (Spanish prompt) or 'en2es'
+
+  function srsKey(deckKey, word) { return deckKey + '::' + word; }
+  function srsCleanEn(back) { return (back || '').replace(/\s*\(.*?\)\s*/g, '').split(/[;,]/)[0].trim() || back; }
+
+  // Gather every card across all decks, tagged with its SRS status
+  function srsScan() {
+    const now = Date.now();
+    const due = [], fresh = [];
+    let tracked = 0, mastered = 0;
+    Object.keys(decks).forEach(dk => {
+      decks[dk].forEach(card => {
+        if (!card || !card.word) return;
+        const key = srsKey(dk, card.word);
+        const st = STATE.srs[key];
+        if (!st) { fresh.push({ dk, card, key }); return; }
+        tracked++;
+        if (st.box >= SRS_MASTERED_BOX) mastered++;
+        if (st.due <= now) due.push({ dk, card, key, box: st.box });
+      });
+    });
+    return { due, fresh, tracked, mastered };
+  }
+
+  function srsDueCount() { return srsScan().due.length; }
+
+  // Refresh the little "X due" badges on the vocab page CTA
+  function updateRepasoBadges() {
+    const scan = srsScan();
+    const total = scan.due.length + scan.fresh.length;
+    const badge = document.getElementById('vocabRepasoBadge');
+    if (badge) {
+      if (scan.due.length > 0) { badge.textContent = scan.due.length + ' due'; badge.classList.add('show'); }
+      else if (total > 0) { badge.textContent = 'start'; badge.classList.add('show'); }
+      else badge.classList.remove('show');
+    }
+  }
+
+  function renderRepaso() {
+    const container = document.getElementById('repasoContent');
+    if (!container) return;
+    updateRepasoBadges();
+    const scan = srsScan();
+    const newAvail = scan.fresh.length;
+    const dirLabel = srsDir === 'es2en' ? 'Spanish → English' : 'English → Spanish';
+
+    container.innerHTML = `
+      <p style="font-size:17px;color:var(--ink-soft);line-height:1.5;max-width:620px;margin-bottom:8px;">
+        Repaso shows you the words you're about to forget. Rate each one honestly — the ones you miss come back fast, the ones you know fade away for weeks. A few minutes a day beats cramming.
+      </p>
+      <div class="repaso-hero">
+        <div class="repaso-stat"><div class="v due">${scan.due.length}</div><div class="k">Due now</div></div>
+        <div class="repaso-stat"><div class="v">${newAvail}</div><div class="k">New to learn</div></div>
+        <div class="repaso-stat"><div class="v">${scan.tracked}</div><div class="k">In progress</div></div>
+        <div class="repaso-stat"><div class="v">${scan.mastered}</div><div class="k">Mastered</div></div>
+      </div>
+      <div class="repaso-controls">
+        <span style="font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:0.12em;text-transform:uppercase;color:var(--ink-soft);">Direction:</span>
+        <button class="pill ${srsDir === 'es2en' ? 'active' : ''}" onclick="setSrsDir('es2en')">Spanish → English</button>
+        <button class="pill ${srsDir === 'en2es' ? 'active' : ''}" onclick="setSrsDir('en2es')">English → Spanish</button>
+      </div>
+      ${(scan.due.length + newAvail) === 0
+        ? `<div style="text-align:center;padding:30px 0;">
+             <div style="font-size:46px;">🎉</div>
+             <p style="font-family:'Fraunces',serif;font-style:italic;font-size:18px;margin:8px 0;">¡Nada que repasar ahora!</p>
+             <p style="color:var(--ink-soft);font-size:14px;">You're all caught up. Browse the <a href="#/vocabulario">flashcards</a> to add new words, then come back.</p>
+           </div>`
+        : `<div style="text-align:center;padding:8px 0 24px;">
+             <p style="font-family:'Fraunces',serif;font-style:italic;font-size:17px;color:var(--ink);margin-bottom:6px;">
+               ${scan.due.length > 0 ? scan.due.length + ' card' + (scan.due.length === 1 ? '' : 's') + ' ready to review' : 'No reviews due — learn some new words?'}
+             </p>
+             <p style="color:var(--ink-soft);font-size:13px;margin-bottom:20px;">Answering in: <strong>${dirLabel}</strong> · up to ${SRS_SESSION_MAX} cards this round</p>
+             <button class="btn primary" style="font-size:16px;padding:14px 28px;" onclick="startRepaso()">Empezar repaso →</button>
+           </div>`}
+      <p style="font-size:12px;color:var(--ink-soft);margin-top:18px;line-height:1.6;text-align:center;">
+        Boxes: 🟥 1 (tomorrow) → 🟧 2 → 🟨 3 → 🟩 4 → ⭐ 5 (mastered, 3 weeks). Miss a card and it drops to box 1.
+      </p>`;
+  }
+
+  function setSrsDir(dir) { srsDir = dir; renderRepaso(); }
+
+  function startRepaso() {
+    const scan = srsScan();
+    // Due cards first (oldest due first), then fill with new cards
+    const dueSorted = scan.due.sort((a, b) => (STATE.srs[a.key].due) - (STATE.srs[b.key].due));
+    const freshShuffled = scan.fresh.sort(() => Math.random() - 0.5).slice(0, SRS_NEW_PER_SESSION);
+    let queue = dueSorted.slice(0, SRS_SESSION_MAX);
+    if (queue.length < SRS_SESSION_MAX) queue = queue.concat(freshShuffled).slice(0, SRS_SESSION_MAX);
+    queue.sort(() => Math.random() - 0.5);
+    if (queue.length === 0) { renderRepaso(); return; }
+    srsState = { queue, idx: 0, total: queue.length, reviewed: 0, correct: 0, flipped: false };
+    renderRepasoCard();
+  }
+
+  function renderRepasoCard() {
+    const s = srsState;
+    const container = document.getElementById('repasoContent');
+    if (!s || !container) return;
+    if (s.idx >= s.queue.length) { finishRepaso(); return; }
+    const item = s.queue[s.idx];
+    const card = item.card;
+    const st = STATE.srs[item.key];
+    const box = st ? st.box : 0;
+    const boxDots = box > 0 ? '●'.repeat(box) + '○'.repeat(5 - box) : '○○○○○ new';
+
+    const prompt = srsDir === 'es2en' ? card.word : srsCleanEn(card.back);
+    const answer = srsDir === 'es2en' ? card.back : card.word;
+    const pct = Math.round((s.idx / s.total) * 100);
+
+    container.innerHTML = `
+      <div class="repaso-progress"><div style="width:${pct}%"></div></div>
+      <div style="font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--ink-soft);text-align:center;margin-bottom:12px;">
+        Card ${s.idx + 1} / ${s.total} · ${MATCH_DECK_LABELS[item.dk] || item.dk}
+      </div>
+      <div class="repaso-card" id="repasoCard" onclick="flipRepaso()">
+        <div class="rc-tag">${box === 0 ? 'New word' : 'Box ' + box}</div>
+        <div class="rc-box">${boxDots}</div>
+        <div class="rc-prompt${prompt.length > 16 ? ' small' : ''}">${prompt}</div>
+        <div class="rc-sub">${srsDir === 'es2en' ? card.cat || '' : 'Type/think the Spanish'}</div>
+        <div class="rc-answer">
+          <div class="rc-ans-word">${answer}</div>
+          ${card.ex ? `<div class="rc-ex">${card.ex}</div>` : ''}
+          ${card.exEn ? `<div class="rc-ex-en">${card.exEn}</div>` : ''}
+        </div>
+        <div class="rc-hint" id="repasoHint">Tap to reveal</div>
+      </div>
+      <div class="repaso-grade" id="repasoGrade" style="display:none;">
+        <button class="again" onclick="gradeRepaso(0)">❌ Otra vez<br><span style="opacity:.8;font-size:10px;">missed it</span></button>
+        <button class="hard" onclick="gradeRepaso(1)">😐 Difícil<br><span style="opacity:.8;font-size:10px;">slow, but got it</span></button>
+        <button class="good" onclick="gradeRepaso(2)">✅ Lo sé<br><span style="opacity:.8;font-size:10px;">easy</span></button>
+      </div>`;
+  }
+
+  function flipRepaso() {
+    const s = srsState;
+    if (!s || s.flipped) return;
+    s.flipped = true;
+    const card = document.getElementById('repasoCard');
+    if (card) card.classList.add('flipped');
+    const hint = document.getElementById('repasoHint');
+    if (hint) hint.textContent = 'How well did you know it?';
+    const grade = document.getElementById('repasoGrade');
+    if (grade) grade.style.display = 'flex';
+  }
+
+  // quality: 0 = again, 1 = hard, 2 = good
+  function gradeRepaso(quality) {
+    const s = srsState;
+    if (!s || !s.flipped) return;
+    const item = s.queue[s.idx];
+    const now = Date.now();
+    const prev = STATE.srs[item.key] || { box: 0, n: 0, ok: 0 };
+    let box = prev.box || 0;
+    if (quality === 0) box = 1;                       // missed → back to box 1
+    else if (quality === 1) box = Math.max(1, box);   // hard → stay (or enter box 1)
+    else box = Math.min(SRS_MASTERED_BOX, (box || 0) + 1); // good → promote
+    if (quality === 1 && (prev.box || 0) === 0) box = 1;   // new + hard → box 1
+    if (quality === 2 && (prev.box || 0) === 0) box = 2;   // new + easy → box 2
+    const intervalDays = SRS_INTERVALS[box] || 1;
+    STATE.srs[item.key] = {
+      box,
+      due: now + intervalDays * SRS_DAY_MS,
+      n: (prev.n || 0) + 1,
+      ok: (prev.ok || 0) + (quality > 0 ? 1 : 0),
+      last: now
+    };
+    s.reviewed++;
+    if (quality > 0) s.correct++;
+    s.idx++;
+    s.flipped = false;
+    saveState();
+    renderRepasoCard();
+  }
+
+  function finishRepaso() {
+    const s = srsState;
+    const container = document.getElementById('repasoContent');
+    if (!s || !container) return;
+
+    // Reward: one small payout per day for doing a real session (pairs with Racha)
+    let rewardMsg = '';
+    const today = (typeof rachaDayKey === 'function') ? rachaDayKey() : new Date().toDateString();
+    if (s.reviewed >= 5 && STATE.srsLastReward !== today) {
+      STATE.srsLastReward = today;
+      if (typeof awardCoins === 'function') awardCoins(10, 'Repaso · daily review');
+      rewardMsg = '+10 Lucas for today\'s review!';
+      saveState();
+    }
+    if (typeof checkAchievements === 'function') checkAchievements();
+    updateRepasoBadges();
+
+    const scan = srsScan();
+    const acc = s.reviewed ? Math.round((s.correct / s.reviewed) * 100) : 0;
+
+    container.innerHTML = `
+      <div style="text-align:center;padding:10px 0;">
+        <div style="font-size:54px;">${acc >= 80 ? '🌟' : acc >= 50 ? '🔥' : '🌱'}</div>
+        <h3 style="font-family:'DM Serif Display',serif;font-weight:400;font-size:30px;margin:6px 0;">¡Repaso completo!</h3>
+        <p style="font-size:16px;color:var(--ink);margin-bottom:4px;">Reviewed <strong>${s.reviewed}</strong> cards · ${s.correct} recalled (${acc}%)</p>
+        ${rewardMsg ? `<p style="color:var(--verde);font-weight:600;margin-bottom:8px;">${rewardMsg}</p>` : ''}
+        <p style="color:var(--ink-soft);font-size:14px;margin-bottom:20px;">
+          ${scan.due.length > 0 ? scan.due.length + ' more due now.' : 'Nothing else due — see you tomorrow.'}
+        </p>
+        <div style="display:flex;gap:10px;flex-wrap:wrap;justify-content:center;">
+          ${scan.due.length > 0 ? `<button class="btn primary" onclick="startRepaso()">Repasar más →</button>` : ''}
+          <a href="#/vocabulario" class="btn" style="text-decoration:none;">Browse flashcards</a>
+          <a href="#/racha" class="btn" style="text-decoration:none;">La Racha 🔥</a>
+        </div>
+      </div>`;
+    srsState = null;
   }
 
   /* ============== CONJUGATION ============== */
@@ -14181,6 +15032,71 @@
       body: 'You\'re helping sort lost items after a class trip, a sleepover, a family reunion, or a school event. There\'s a pile of stuff — phones, jackets, water bottles, snacks — and you need to figure out whose is whose. Use lots of possessive pronouns naturally.<br><br>Imagine the back-and-forth: <em>"¿De quién es esta sudadera? ¿Es tuya? No, no es mía, creo que es de María. Sí, es suya. Y estos zapatos, ¿son tuyos? No, los míos están allá. ¿Y este cargador? Mmm, podría ser de cualquiera — ah, espera, es de Carlos, es suyo."</em><br><br>Cover at least 6 different items. Mix between the question forms (¿es tuyo?, ¿son suyas?) and the answer forms (es mío, es de ella, son los suyos). Use the "de + person" structure to clarify ambiguous cases.',
       tips: ['Use at least 8 possessive pronoun constructions', 'Include questions AND answers', 'When "suyo" would be ambiguous, switch to "de él / de ella / de ellos" for clarity', 'Match gender + number of the THING, not the owner', 'Use both with-article and without-article forms', '60+ seconds', 'Paired with Lesson 34.9'],
       date: 'Dec 16'
+    }
+,
+    {
+      id: 'sp3-opinion-universidad',
+      title: '¿<em>Vale la pena</em> la universidad?',
+      level: 'sp3', category: 'conversation',
+      body: 'Take a clear position: is a four-year university degree still worth it today? Defend your view with at least three reasons, then acknowledge the strongest counterargument and respond to it. Use opinion phrases and the subjunctive of doubt where it fits (<em>no creo que…, es importante que…</em>).',
+      tips: ['Open with your thesis in one sentence', 'Connectors: por un lado / por otro lado, sin embargo, además, en conclusión', 'Subjunctive after doubt and value (no creo que sea, es necesario que)', 'Address a counterargument (aunque algunos digan que…)', '90+ seconds'],
+      date: 'Jan 12'
+    },
+    {
+      id: 'sp3-si-mundo',
+      title: 'Si pudieras <em>cambiar el mundo</em>',
+      level: 'sp3', category: 'conversation',
+      body: 'If you could change one thing about the world or your society, what would it be — and what would happen as a result? Build your whole answer around hypothetical "si" clauses.',
+      tips: ['Use Si + imperfect subjunctive + conditional: "Si pudiera…, cambiaría…"', 'Give at least two hypotheticals', 'Explain consequences (esto haría que… + subjunctive)', 'Stay in the hypothetical, not the real', '75+ seconds'],
+      date: 'Jan 19'
+    },
+    {
+      id: 'sp3-redes',
+      title: 'Las <em>redes sociales</em>: ¿nos unen o nos separan?',
+      level: 'sp3', category: 'conversation',
+      body: 'Do social media bring people together or push them apart? Argue one side, support it with examples from your own experience, and concede one point to the other side before refuting it.',
+      tips: ['Pick ONE side and commit', 'Use real examples (por ejemplo, en mi caso…)', 'Concede then refute: "Es verdad que…, pero…"', 'Advanced connectors: no obstante, por lo tanto', '90+ seconds'],
+      date: 'Jan 26'
+    },
+    {
+      id: 'sp3-momento',
+      title: 'Un momento que <em>lo cambió todo</em>',
+      level: 'sp3', category: 'narrative',
+      body: 'Tell the story of a turning point — in your life or someone else\'s. Set the scene, build to a complication, and reflect on how things changed afterward. Move smoothly between time frames.',
+      tips: ['Imperfect for scene/background (era, había, me sentía)', 'Preterite for the key events (de repente, fue cuando…)', 'End with reflection (desde entonces…, me di cuenta de que…)', 'Narrate in connected paragraphs, not isolated sentences', '2+ minutes'],
+      date: 'Feb 2'
+    },
+    {
+      id: 'sp3-tradiciones',
+      title: 'Tradiciones que vale la pena <em>conservar</em>',
+      level: 'sp3', category: 'cultural',
+      body: 'Choose a tradition — from your family, your community, or the Spanish-speaking world — that you believe should be preserved. Explain its meaning, why it matters, and what would be lost without it. Compare it briefly to a tradition from another culture.',
+      tips: ['Describe the tradition vividly', 'Argue its value (es importante que se conserve…)', 'Make a cross-cultural comparison (a diferencia de…, al igual que…)', 'Subjunctive for value and emotion', '90+ seconds'],
+      date: 'Feb 9'
+    },
+    {
+      id: 'sp3-convence',
+      title: '<em>Convence</em> a la clase',
+      level: 'sp3', category: 'conversation',
+      body: 'Give a short persuasive speech proposing one change at your school or in your community. Win your audience over: state the problem, propose your solution, and end with a call to action.',
+      tips: ['Structure: problema → propuesta → llamado a la acción', 'Use "deberíamos / hay que / es hora de que…"', 'Rhetorical questions to engage (¿No creen que…?)', 'Confident, formal tone', '75+ seconds'],
+      date: 'Feb 16'
+    },
+    {
+      id: 'sp3-exito',
+      title: '¿Qué significa el <em>éxito</em>?',
+      level: 'sp3', category: 'personal',
+      body: 'What does success really mean to you? Go beyond money and grades — define it in your own words, give an example of someone you consider successful, and explain whether your definition has changed over time.',
+      tips: ['Define an abstract idea (para mí, el éxito es…)', 'Support with a concrete example', 'Reflect on change over time (antes pensaba que…, ahora…)', 'Mix present, past, and conditional', '90+ seconds'],
+      date: 'Feb 23'
+    },
+    {
+      id: 'sp3-entrevista',
+      title: '<em>Entrevista</em> de trabajo',
+      level: 'sp3', category: 'roleplay',
+      body: 'Role-play a job interview for a position you would actually want. Greet formally, present your strengths, answer a tough or unexpected question, and ask one question of your own. Use the formal "usted" throughout.',
+      tips: ['Formal register: usted, condicional de cortesía (me gustaría, podría)', 'Sell yourself (soy capaz de…, tengo experiencia en…)', 'Handle a curveball calmly', 'Ask the interviewer a smart question', 'Stay in character · 90+ seconds'],
+      date: 'Mar 2'
     }
   ];
 
@@ -24672,6 +25588,145 @@
         ]}
       ]
     }
+,
+    {
+      id: 'ling-what', num: 'L01', level: 'ling',
+      title: 'What is <em>linguistics?</em>',
+      tag: 'Lingüística · Start here',
+      summary: 'Linguists study language as a system — and they describe how people really speak, not how they "should."',
+      sections: [
+        { heading: 'A science, not a rulebook', body: 'Linguistics is the study of how language actually works. The key mindset: linguists are <strong>descriptive</strong>, not <strong>prescriptive</strong> — they describe how people really speak instead of policing how they "should." Every variety of Spanish, from a professor\'s lecture to street slang, follows precise hidden rules.' },
+        { heading: 'The five branches', body: 'Most of linguistics fits into five questions:<br><br>• <strong>Phonetics &amp; phonology</strong> — what are the sounds?<br>• <strong>Morphology</strong> — how are words built?<br>• <strong>Syntax</strong> — how are sentences built?<br>• <strong>Semantics</strong> — how is meaning made?<br>• <strong>Sociolinguistics &amp; dialectology</strong> — how does language vary by place and group?' },
+        { type: 'tip', heading: 'You already think like a linguist', body: 'Every time you notice "Spanish puts the adjective <em>after</em> the noun" or "they drop the s at the end of words here," you are doing linguistics. This unit just gives names to patterns you already sense.' },
+      ],
+      quiz: [
+        { q: 'Linguistics is mainly…', options: [{ text: 'Descriptive — it describes how people really speak', correct: true }, { text: 'Prescriptive — it enforces "correct" speech', correct: false }, { text: 'Memorizing vocabulary', correct: false }] },
+        { q: 'Which branch studies how <em>sentences</em> are built?', options: [{ text: 'Phonetics', correct: false }, { text: 'Syntax', correct: true }, { text: 'Semantics', correct: false }] },
+        { q: 'Which branch studies how Spanish <em>varies by region</em>?', options: [{ text: 'Sociolinguistics / dialectology', correct: true }, { text: 'Morphology', correct: false }, { text: 'Semantics', correct: false }] },
+      ]
+    },
+    {
+      id: 'ling-sounds', num: 'L02', level: 'ling',
+      title: 'The sounds of <em>Spanish</em>',
+      tag: 'Lingüística · Phonetics',
+      summary: 'Five clean vowels, letters that change sound by position, and a steady machine-gun rhythm.',
+      sections: [
+        { heading: 'Five pure vowels', body: 'Spanish has exactly <strong>five vowel sounds</strong> (a, e, i, o, u), and each never changes. English has around twelve, and they glide. That steadiness is the backbone of the Spanish accent.', examples: [{ es: 'a e i o u', en: 'always “ah eh ee oh oo”' }, { es: 'English “a”', en: 'cat, cake, car, about — all different' }] },
+        { heading: 'The same letter, two sounds', body: 'Spanish sounds shift automatically by position (linguists call these <strong>allophones</strong>). <strong>b, d, g</strong> are hard at the start of a word (<em>burro, dedo, gato</em>) but <strong>soften</strong> between vowels: the <em>d</em> in <em>nada</em> becomes the soft "th" of English <em>this</em>, and the <em>b</em> in <em>la boca</em> turns into a gentle "v"-like sound. Native speakers never notice they do it.' },
+        { heading: 'Crisp, clipped consonants', body: 'English puffs air after p, t, k — say "pin" with a paper at your lips and it flutters. Spanish does not: "pino" leaves it still. Spanish also prefers simple <strong>consonant-vowel</strong> syllables, which adds to its even, clipped feel.' },
+        { heading: 'The signature sounds', body: '<strong>rr</strong> is a rolled trill (perro); a single <strong>r</strong> is a quick tap (pero). <strong>ñ</strong> is "ny" (niño). <strong>j</strong> and soft <strong>g</strong> are a throaty "h" (jirafa, gente).' },
+        { type: 'tip', heading: 'Machine-gun rhythm', body: 'Spanish is <strong>syllable-timed</strong> — every syllable takes about the same length, giving that steady rat-a-tat. English is <strong>stress-timed</strong> and squashes unstressed syllables. It is a big reason the two languages sound so different even at the same speed.' },
+      ],
+      quiz: [
+        { q: 'How many vowel sounds does Spanish have?', options: [{ text: 'Five', correct: true }, { text: 'Twelve', correct: false }, { text: 'Three', correct: false }] },
+        { q: 'Between vowels, the <em>d</em> in <em>nada</em> softens to a sound like…', options: [{ text: 'English "th" in <em>this</em>', correct: true }, { text: 'English "d" in <em>dog</em>', correct: false }, { text: 'It goes silent', correct: false }] },
+        { q: 'Spanish rhythm is described as…', options: [{ text: 'Syllable-timed and steady', correct: true }, { text: 'Stress-timed like English', correct: false }, { text: 'Random', correct: false }] },
+      ]
+    },
+    {
+      id: 'ling-morphology', num: 'L03', level: 'ling',
+      title: 'How words are <em>built</em>',
+      tag: 'Lingüística · Morphology',
+      summary: 'Spanish is inflectional — it packs meaning into endings where English needs extra words.',
+      sections: [
+        { heading: 'Meaning lives in the endings', body: 'Spanish is an <strong>inflectional</strong> language: a single ending can carry several pieces of meaning at once. In <em>habl<strong>amos</strong></em>, the "-amos" says <em>we</em> + <em>present</em> + <em>indicative</em>, all in one. English spreads that across separate words.', examples: [{ es: 'hablo / hablas / hablamos', en: 'I / you / we speak' }] },
+        { heading: 'One verb, dozens of forms', body: 'A single Spanish verb has roughly <strong>50 forms</strong> across its tenses and moods. English usually has four or five: speak, speaks, spoke, spoken, speaking. That is why verb practice is such a big part of Spanish.' },
+        { heading: 'Everything agrees', body: 'Change one thing and the whole phrase follows. <em>el gato negro</em> → <em>los gatos negros</em>: article, noun, and adjective all turn plural together. English only changes the noun ("the black cats").' },
+        { type: 'tip', heading: 'Add a feeling with -ito', body: 'Endings can add emotion, not just grammar. <em>perro</em> → <em>perrito</em> (cute little dog); <em>casa</em> → <em>casona</em> (big old house); <em>ahora</em> → <em>ahorita</em> (right now-ish). English needs whole extra words to do this.' },
+      ],
+      quiz: [
+        { q: 'Calling Spanish "inflectional" means…', options: [{ text: 'Endings carry several meanings at once', correct: true }, { text: 'It has no grammar', correct: false }, { text: 'Word order does all the work', correct: false }] },
+        { q: 'Compared to English, a Spanish verb has…', options: [{ text: 'Far more forms', correct: true }, { text: 'Exactly the same number', correct: false }, { text: 'Only one form', correct: false }] },
+        { q: '<em>perrito</em> is an example of…', options: [{ text: 'A diminutive (adds "cute/small")', correct: true }, { text: 'A plural', correct: false }, { text: 'A verb tense', correct: false }] },
+      ]
+    },
+    {
+      id: 'ling-syntax', num: 'L04', level: 'ling',
+      title: 'How sentences are <em>built</em>',
+      tag: 'Lingüística · Syntax',
+      summary: 'The structural features that make Spanish sentences work differently from English.',
+      sections: [
+        { heading: 'You can drop the subject', body: 'Spanish is a <strong>pro-drop</strong> language: the verb ending already says who, so the subject pronoun is optional. <em>Hablo español</em> needs no "yo." Because the ending carries that information, Spanish can also reorder words freely for emphasis: <em>María lo hizo</em> / <em>Lo hizo María</em>.' },
+        { heading: 'Adjectives usually follow', body: 'Spanish puts most adjectives <strong>after</strong> the noun: <em>casa blanca</em> (white house), not "blanca casa." Putting it before can change the feel: <em>un gran hombre</em> (a great man) vs <em>un hombre grande</em> (a big man).' },
+        { heading: 'Structures English doesn\'t have', body: '• The <strong>personal "a"</strong>: when the object is a specific person, Spanish inserts <em>a</em> — <em>Veo <strong>a</strong> María</em>. English has nothing like it.<br>• <strong>Two verbs for "to be"</strong>: <em>ser</em> (identity/permanent) vs <em>estar</em> (state/location) — <em>es alto</em> (he is tall) vs <em>está cansado</em> (he is tired).' },
+        { type: 'tip', heading: 'Backwards verbs & double negatives', body: '<em>Me gusta el café</em> literally says "the coffee pleases me" — the thing you like is the grammatical subject. And double negatives are <strong>required</strong>, not wrong: <em>No vi nada</em> = "I didn\'t see anything," literally "I didn\'t see nothing."' },
+      ],
+      quiz: [
+        { q: '"Pro-drop" means Spanish can…', options: [{ text: 'Leave out the subject pronoun', correct: true }, { text: 'Drop the verb', correct: false }, { text: 'Skip all articles', correct: false }] },
+        { q: 'The "personal a" appears when the object is…', options: [{ text: 'a specific person', correct: true }, { text: 'a place', correct: false }, { text: 'a number', correct: false }] },
+        { q: '<em>No vi nada</em> shows that Spanish…', options: [{ text: 'Requires double negatives', correct: true }, { text: 'Has no negatives', correct: false }, { text: 'Copies English word order', correct: false }] },
+      ]
+    },
+    {
+      id: 'ling-history', num: 'L05', level: 'ling',
+      title: 'Where Spanish <em>comes from</em>',
+      tag: 'Lingüística · History',
+      summary: 'Spanish is Latin worn smooth by centuries of speech — and the changes are astonishingly regular.',
+      sections: [
+        { heading: 'It started as street Latin', body: 'Spanish is a <strong>Romance language</strong>, a descendant of Latin like French, Italian, and Portuguese. It grew not from the Latin of books but from <em>Vulgar Latin</em> — the everyday speech Roman soldiers and settlers brought to Spain after about 200 BCE.' },
+        { heading: 'Latin, reshaped — regular sound changes', body: 'As Latin wore down into Spanish, the same changes happened again and again:', examples: [{ es: 'petra → piedra · focum → fuego', en: 'stressed Latin e and o broke into ie and ue' }, { es: 'farina → harina · facere → hacer', en: 'Latin f- became h- (now silent)' }, { es: 'noctem → noche · lactem → leche', en: 'Latin -ct- became -ch-' }, { es: 'clamare → llamar · pluvia → lluvia', en: 'cl-, pl-, fl- became ll-' }] },
+        { type: 'tip', heading: 'Why your verbs stem-change', body: 'That first rule is still alive in your grammar. The Latin "stressed o → ue" change is exactly why <em>poder → puede</em> and <em>tener → tiene</em> stem-change today — the diphthong only appears where the stress falls. You have been using a 2,000-year-old sound law all along.' },
+        { heading: 'Arabic and the Americas', body: 'Nearly 800 years of <em>al-Ándalus</em> (711–1492) layered in thousands of Arabic words (<em>ojalá, almohada, azúcar, álgebra</em>) — Arabic is Spanish\'s second-biggest source after Latin. Then, after 1492, indigenous American languages gave Spanish (and the world) <em>papa, tomate, chocolate, huracán</em>.' },
+      ],
+      quiz: [
+        { q: 'Spanish is a "Romance language," meaning it descends from…', options: [{ text: 'Latin', correct: true }, { text: 'Arabic', correct: false }, { text: 'Greek', correct: false }] },
+        { q: 'Spanish verb stem-changes like <em>poder → puede</em> trace back to…', options: [{ text: 'A regular Latin sound change (o → ue)', correct: true }, { text: 'Arabic influence', correct: false }, { text: 'English', correct: false }] },
+        { q: 'After Latin, the biggest source of Spanish vocabulary is…', options: [{ text: 'Arabic', correct: true }, { text: 'German', correct: false }, { text: 'Greek', correct: false }] },
+      ]
+    },
+    {
+      id: 'ling-loanwords', num: 'L06', level: 'ling',
+      title: 'Words Spanish <em>borrowed &amp; shares</em>',
+      tag: 'Lingüística · Vocabulary',
+      summary: 'Free vocabulary from shared Latin roots — plus the false friends that fool you.',
+      sections: [
+        { heading: 'Cognates: free vocabulary', body: 'Because Spanish and English both drew heavily on Latin, <strong>thousands</strong> of words look alike and mean the same: <em>nación/nation, familia/family, animal, importante, posible</em>. Endings are predictable too: English <em>-tion</em> ↔ Spanish <em>-ción</em> (nation → nación). You already recognize more Spanish than you think.' },
+        { heading: 'Words Spanish took in', body: 'Spanish itself is full of borrowings: around <strong>4,000</strong> words from Arabic (<em>ojalá, azúcar, aceite</em>) and many from indigenous American languages (<em>papa, chocolate, huracán</em>). More recently, English tech words (<em>el wifi, tuitear</em>).' },
+        { type: 'mistakes', heading: 'False friends — watch out', body: 'A few words look like English but mean something else:', items: ['<em>embarazada</em> = pregnant (NOT embarrassed)', '<em>éxito</em> = success (NOT exit)', '<em>librería</em> = bookstore (NOT library)', '<em>ropa</em> = clothes (NOT rope)', '<em>actualmente</em> = currently (NOT actually)'] },
+      ],
+      quiz: [
+        { q: 'A "cognate" is a word that…', options: [{ text: 'Looks alike and shares meaning across languages', correct: true }, { text: 'Is always a false friend', correct: false }, { text: 'Has no English relative', correct: false }] },
+        { q: 'English "-tion" usually matches the Spanish ending…', options: [{ text: '-ción', correct: true }, { text: '-mente', correct: false }, { text: '-azo', correct: false }] },
+        { q: '<em>librería</em> means…', options: [{ text: 'Bookstore', correct: true }, { text: 'Library', correct: false }, { text: 'Freedom', correct: false }] },
+      ]
+    },
+    {
+      id: 'ling-acquisition', num: 'L07', level: 'ling',
+      title: 'How we <em>learn languages</em>',
+      tag: 'Lingüística · ¿Sabías que…?',
+      summary: 'The science of picking up a language — and what it means for your own Spanish.',
+      sections: [
+        { heading: 'First language vs. second', body: 'Babies acquire their first language just by being surrounded by it — no lessons, no charts. Learning a second language later takes more effort, but adults have an edge: you can use strategy, patterns, and reading to move faster than a toddler.' },
+        { heading: 'The "critical period"', body: 'There seems to be a window (closing around puberty) for picking up a <strong>native accent</strong> effortlessly — which is why most adult learners keep an accent. The good news: <strong>grammar and vocabulary have no such deadline</strong>. You can master them at any age.' },
+        { heading: 'Comprehensible input', body: 'One influential idea (from Stephen Krashen) is that we acquire language mainly by <strong>understanding messages slightly above our level</strong> — not by drilling rules. That is why lots of reading and listening is so powerful.' },
+        { heading: 'When learning stalls — or fades', body: 'Acquisition is not always forward motion:<br><br>• <strong>Fossilization</strong> — errors can "freeze" and stop improving, even at a fluent level, once you are understood "well enough" and stop getting feedback.<br>• <strong>Attrition</strong> — "use it or lose it." A language you stop using fades — a second language, or even a first for many heritage speakers.<br>• <strong>Suppression</strong> — sometimes a language is lost by force: colonization, school punishments, and social pressure pushed generations to abandon indigenous and immigrant languages. Much of the Spanish-speaking world carries this history.' },
+        { type: 'tip', heading: '¿Sabías que…? — quick facts', body: '• The most common <strong>1,000–2,000 words</strong> cover the great majority of everyday speech.<br>• <strong>Spaced repetition</strong> (reviewing right before you forget) beats cramming — exactly how the <em>Repaso</em> tool here works.<br>• Stress and fear raise the "<strong>affective filter</strong>" and block learning, so low-pressure practice helps.<br>• Lifelong bilingualism is linked to sharper focus and may <strong>delay dementia</strong> symptoms by years.' },
+      ],
+      quiz: [
+        { q: 'According to the "critical period," what is hardest to fully master as an adult?', options: [{ text: 'A native-like accent', correct: true }, { text: 'Vocabulary', correct: false }, { text: 'Reading', correct: false }] },
+        { q: 'When a learner\'s errors "freeze" and stop improving, that is…', options: [{ text: 'Fossilization', correct: true }, { text: 'Attrition', correct: false }, { text: 'Acquisition', correct: false }] },
+        { q: 'Which study method does the science favor?', options: [{ text: 'Spaced repetition over cramming', correct: true }, { text: 'Cramming the night before', correct: false }, { text: 'Never reviewing', correct: false }] },
+      ]
+    },
+    {
+      id: 'ling-dialects', num: 'L08', level: 'ling',
+      title: 'One language, many <em>accents</em>',
+      tag: 'Lingüística · Dialects',
+      summary: 'Spanish spans 20+ countries. Here are the famous features linguists use to tell regions apart.',
+      sections: [
+        { heading: 'How you say "you" — and voseo', body: 'Spanish has several words for "you," and the choice marks where you are from. <strong>tú</strong> (informal) and <strong>usted</strong> (formal) are everywhere; <strong>vosotros</strong> (informal plural) lives in Spain, while Latin America uses <strong>ustedes</strong> for everyone. And about a third of Latin America uses <strong>vos</strong> instead of <em>tú</em>, with its own verbs: <em>vos tenés, vos sos, vos hablás</em>. <em>Voseo</em> is actually an <strong>archaism</strong> — an older form that survived in the Americas after dying out in Spain.' },
+        { heading: 'Seseo: the "th" line', body: 'Most of Spain distinguishes two sounds: <em>casa</em> (/s/) vs <em>caza</em> (a "th" sound, /θ/). Almost everywhere else — all of Latin America, the Canary Islands, southern Spain — both are simply /s/. This merger is called <strong>seseo</strong>. (In parts of Andalusia it flips the other way, using "th" for both: <strong>ceceo</strong>.) Neither is more correct — just different regions.' },
+        { heading: 'Yeísmo: the ll / y merger', body: 'Traditionally <em>ll</em> (/ʎ/) and <em>y</em> (/ʝ/) were different sounds. Today most speakers merge them, so <em>calle</em> and <em>cayó</em> share one sound — that is <strong>yeísmo</strong>. In Argentina and Uruguay the merged sound became a "sh": <em>calle</em> sounds like "ca-she."' },
+        { heading: 'The disappearing "s"', body: 'In the Caribbean, much of coastal Latin America, and southern Spain, an <em>s</em> at the end of a syllable softens to "h" or vanishes: <em>las casas</em> → "lah casah." Linguists call this <strong>s-aspiration</strong> or <strong>debuccalization</strong>. Vocabulary shifts too — a city bus is <em>guagua</em> in the Caribbean, <em>camión</em> in Mexico, <em>colectivo</em> in Argentina.' },
+        { type: 'tip', heading: 'There is no "best" Spanish', body: 'Even pronouns vary: in central Spain you hear <strong>leísmo</strong> — <em>le vi</em> for "I saw him," where the textbook says <em>lo vi</em>. Every region thinks its own Spanish is the "normal" one. Textbooks teach a neutral standard, but all of these varieties are fully correct — knowing the differences just makes you a flexible listener.' },
+      ],
+      quiz: [
+        { q: 'Pronouncing <em>casa</em> and <em>caza</em> both with /s/ is called…', options: [{ text: 'seseo', correct: true }, { text: 'ceceo', correct: false }, { text: 'yeísmo', correct: false }] },
+        { q: 'Yeísmo is the merger of…', options: [{ text: 'll and y', correct: true }, { text: 's and z', correct: false }, { text: 'b and v', correct: false }] },
+        { q: 'In the Caribbean, <em>las casas</em> often sounds like…', options: [{ text: '"lah casah" (s → h)', correct: true }, { text: '"las casas", very crisp', correct: false }, { text: '"lath cathath"', correct: false }] },
+        { q: '<em>vos tenés</em> (voseo) is mainly heard in…', options: [{ text: 'Argentina and parts of Latin America', correct: true }, { text: 'Spain only', correct: false }, { text: 'Nowhere today', correct: false }] },
+      ]
+    }
   ];
 
   function isLessonCompleted(lessonId) {
@@ -24715,6 +25770,30 @@
     return null;
   }
 
+  // Lingüística hub — lists only the linguistics lessons as color-accented cards
+  const LING_ICONS = {
+    'ling-what': '🧠', 'ling-sounds': '🔊', 'ling-morphology': '🧱', 'ling-syntax': '🔗',
+    'ling-history': '📜', 'ling-loanwords': '🌍', 'ling-acquisition': '🧒', 'ling-dialects': '🗣️'
+  };
+  function renderLinguistica() {
+    const grid = document.getElementById('linguisticaGrid');
+    if (!grid) return;
+    const lessons = LESSONS.filter(l => l.level === 'ling');
+    grid.innerHTML = lessons.map(l => {
+      const done = isLessonCompleted(l.id);
+      const ico = LING_ICONS[l.id] || '📐';
+      const tag = (l.tag || '').split('·').pop().trim();
+      return `
+        <a href="#/lesson/${l.id}" class="ling-card ${done ? 'completed' : ''}">
+          <span class="lc-done">✓</span>
+          <span class="lc-ico">${ico}</span>
+          <h3>${l.title}</h3>
+          <div class="lc-tag">${tag}</div>
+          <p>${l.summary || ''}</p>
+        </a>`;
+    }).join('');
+  }
+
   function renderLessonsList() {
     const gridContainer = document.getElementById('lessonGrid');
     const listContainer = document.getElementById('lessonList');
@@ -24732,7 +25811,8 @@
       listBtn.classList.toggle('active', lessonsView === 'list');
     }
 
-    let lessons = LESSONS;
+    // Linguistics lessons live in their own #/linguistica hub, not the grammar list
+    let lessons = LESSONS.filter(l => l.level !== 'ling');
     if (lessonsFilter !== 'all') {
       lessons = lessons.filter(l => {
         const lv = getLessonLevel(l);
@@ -25385,6 +26465,15 @@
   }
 
   // Game definitions
+  // "15" → "th", "21" → "st" — for accepting "March 15th"-style answers
+  function enOrdinalSuffix(n) {
+    if (n % 100 >= 11 && n % 100 <= 13) return 'th';
+    if (n % 10 === 1) return 'st';
+    if (n % 10 === 2) return 'nd';
+    if (n % 10 === 3) return 'rd';
+    return 'th';
+  }
+
   const GAMES = {
     // Sprint games — all have isSprint:true. 10/10 to qualify for the leaderboard;
     // partial scores still earn Lucas based on accuracy.
@@ -25473,6 +26562,65 @@
         }
       }
     },
+    'plurals': {
+      title: 'Singular ↔ <em>plural</em>',
+      icon: '🔁',
+      maxReward: 35,
+      generate: () => {
+        // Pairs cover the core rules: vowel +s, consonant +es, -z → -ces,
+        // accents that appear (exámenes) and disappear (canciones),
+        // and no-change words (el paraguas → los paraguas).
+        const pairs = [
+          ['el libro', 'los libros'], ['la mesa', 'las mesas'], ['la casa', 'las casas'],
+          ['el estudiante', 'los estudiantes'], ['la clase', 'las clases'],
+          ['el papel', 'los papeles'], ['el profesor', 'los profesores'],
+          ['la ciudad', 'las ciudades'], ['el reloj', 'los relojes'],
+          ['el lápiz', 'los lápices'], ['la luz', 'las luces'],
+          ['la voz', 'las voces'], ['el pez', 'los peces'],
+          ['la canción', 'las canciones'], ['la región', 'las regiones'],
+          ['el autobús', 'los autobuses'], ['el examen', 'los exámenes'],
+          ['el joven', 'los jóvenes'], ['la imagen', 'las imágenes'],
+          ['la mano', 'las manos'], ['el problema', 'los problemas'],
+          ['el mapa', 'los mapas'], ['la flor', 'las flores'],
+          ['el paraguas', 'los paraguas'], ['el cumpleaños', 'los cumpleaños']
+        ];
+        const pick = pairs[Math.floor(Math.random() * pairs.length)];
+        const stripArticle = s => s.replace(/^(el|la|los|las)\s+/, '');
+        // Half the time singular→plural, half plural→singular
+        if (Math.random() < 0.5) {
+          return {
+            promptLabel: 'Make it plural (article too)',
+            promptDisplay: pick[0],
+            answer: pick[1],
+            validAnswers: [pick[1], stripArticle(pick[1])],
+            hint: 'los/las + plural noun'
+          };
+        }
+        return {
+          promptLabel: 'Make it singular (article too)',
+          promptDisplay: pick[1],
+          answer: pick[0],
+          validAnswers: [pick[0], stripArticle(pick[0])],
+          hint: 'el/la + singular noun'
+        };
+      }
+    },
+    // Vocab games run their own deck-picker flow (see startVocabGame) — these
+    // entries exist so they show up in the best-scores grid and reward tiers.
+    'vocab-type': {
+      title: 'Vocab · <em>Type it</em>',
+      icon: '⌨️',
+      maxReward: 30,
+      isCustomFlow: true,
+      generate: () => null
+    },
+    'vocab-mc': {
+      title: 'Vocab · <em>Pick it</em>',
+      icon: '✅',
+      maxReward: 20,
+      isCustomFlow: true,
+      generate: () => null
+    },
     'dates': {
       title: 'Speaking <em>dates</em>',
       icon: '🗓️',
@@ -25483,12 +26631,35 @@
         const day = Math.floor(Math.random() * 28) + 1;
         // Spanish format: "el [day] de [month]" — for the first, "el primero de [month]"
         const dayWord = day === 1 ? 'primero' : numberToSpanish(day);
-        return {
-          promptLabel: 'Write this date in Spanish',
-          promptDisplay: MONTHS_EN[month] + ' ' + day,
-          answer: 'el ' + dayWord + ' de ' + MONTHS_ES[month],
-          hint: 'Format: "el [day] de [month]" — use "primero" for the 1st'
-        };
+        const esDate = 'el ' + dayWord + ' de ' + MONTHS_ES[month];
+        // Half the time EN→ES, half ES→EN
+        if (Math.random() < 0.5) {
+          return {
+            promptLabel: 'Write this date in Spanish',
+            promptDisplay: MONTHS_EN[month] + ' ' + day,
+            answer: esDate,
+            validAnswers: day === 1
+              ? [esDate, 'el uno de ' + MONTHS_ES[month]]
+              : [esDate],
+            hint: 'Format: "el [day] de [month]" — use "primero" for the 1st'
+          };
+        } else {
+          const mEn = MONTHS_EN[month];
+          const ord = enOrdinalSuffix(day);
+          return {
+            promptLabel: 'Write this date in English',
+            promptDisplay: esDate,
+            answer: mEn + ' ' + day,
+            validAnswers: [
+              mEn + ' ' + day,
+              mEn + ' ' + day + ord,
+              'the ' + day + ord + ' of ' + mEn,
+              day + ' ' + mEn,
+              day + ord + ' of ' + mEn
+            ],
+            hint: 'Like "' + MONTHS_EN[(month + 5) % 12] + ' 12"'
+          };
+        }
       }
     },
     'numbers-small': {
@@ -25497,11 +26668,19 @@
       maxReward: 25,
       generate: () => {
         const n = Math.floor(Math.random() * 30) + 1;
+        if (Math.random() < 0.5) {
+          return {
+            promptLabel: 'Write this number in Spanish',
+            promptDisplay: String(n),
+            answer: numberToSpanish(n),
+            hint: 'One word, lowercase'
+          };
+        }
         return {
-          promptLabel: 'Write this number in Spanish',
-          promptDisplay: String(n),
-          answer: numberToSpanish(n),
-          hint: 'One word, lowercase'
+          promptLabel: 'What number is this? Type the digits',
+          promptDisplay: numberToSpanish(n),
+          answer: String(n),
+          hint: 'Digits, like 14'
         };
       }
     },
@@ -25523,11 +26702,19 @@
           // Occasionally 100
           n = 100;
         }
+        if (Math.random() < 0.5) {
+          return {
+            promptLabel: 'Write this number in Spanish',
+            promptDisplay: String(n),
+            answer: numberToSpanish(n),
+            hint: '"treinta y cinco" — use "y" between tens and ones'
+          };
+        }
         return {
-          promptLabel: 'Write this number in Spanish',
-          promptDisplay: String(n),
-          answer: numberToSpanish(n),
-          hint: '"treinta y cinco" — use "y" between tens and ones'
+          promptLabel: 'What number is this? Type the digits',
+          promptDisplay: numberToSpanish(n),
+          answer: String(n),
+          hint: 'Digits, like 47'
         };
       }
     },
@@ -25542,11 +26729,20 @@
         if (r < 0.2) n = (Math.floor(Math.random() * 9) + 1) * 100; // round hundreds
         else if (r < 0.4) n = (Math.floor(Math.random() * 9) + 1) * 1000; // round thousands
         else n = Math.floor(Math.random() * 9900) + 100; // any
+        if (Math.random() < 0.5) {
+          return {
+            promptLabel: 'Write this number in Spanish',
+            promptDisplay: n.toLocaleString('en-US'),
+            answer: numberToSpanish(n),
+            hint: 'Use "y" between tens and ones (cuarenta y cinco). Use "ciento" for 100s combined with more.'
+          };
+        }
         return {
-          promptLabel: 'Write this number in Spanish',
-          promptDisplay: n.toLocaleString('en-US'),
-          answer: numberToSpanish(n),
-          hint: 'Use "y" between tens and ones (cuarenta y cinco). Use "ciento" for 100s combined with more.'
+          promptLabel: 'What number is this? Type the digits',
+          promptDisplay: numberToSpanish(n),
+          answer: n.toLocaleString('en-US'),
+          validAnswers: [String(n), n.toLocaleString('en-US')],
+          hint: 'Digits, like 1250'
         };
       }
     },
@@ -25562,12 +26758,22 @@
         const minute = minuteOptions[Math.floor(Math.random() * minuteOptions.length)];
         const display = hour + ':' + String(minute).padStart(2, '0');
         const validAnswers = timeToSpanish(hour, minute);
+        if (Math.random() < 0.5) {
+          return {
+            promptLabel: '¿Qué hora es? Write it out in Spanish',
+            promptDisplay: display,
+            answer: validAnswers[0], // primary answer shown if wrong
+            validAnswers: validAnswers, // accept any of these
+            hint: 'Es la una... / Son las dos y media / Son las tres menos cuarto / Andean: cinco para las nueve'
+          };
+        }
+        // Reverse: read the Spanish, type the digital time
         return {
-          promptLabel: '¿Qué hora es?',
-          promptDisplay: display,
-          answer: validAnswers[0], // primary answer shown if wrong
-          validAnswers: validAnswers, // accept any of these
-          hint: 'Es la una... / Son las dos y media / Son las tres menos cuarto / Andean: cinco para las nueve'
+          promptLabel: 'What time is this? Type it in digits',
+          promptDisplay: validAnswers[0],
+          answer: display,
+          validAnswers: [display, String(hour).padStart(2, '0') + ':' + String(minute).padStart(2, '0')],
+          hint: 'Digits, like 3:30'
         };
       }
     },
@@ -25576,30 +26782,42 @@
       icon: '🌤️',
       maxReward: 30,
       generate: () => {
-        // Each scenario: emoji visual + accepted Spanish answers
+        // Each scenario: emoji visual + accepted Spanish answers + its own
+        // hint (shown as the input placeholder) telling the expected form.
         const scenarios = [
-          { display: '☀️', label: 'How would you describe this weather?', answers: ['hace sol', 'está soleado'], primary: 'hace sol' },
-          { display: '🔥 35°C', label: 'How would you describe this weather?', answers: ['hace calor', 'hace mucho calor'], primary: 'hace calor' },
-          { display: '❄️ -5°C', label: 'How would you describe this weather?', answers: ['hace frío', 'hace mucho frío'], primary: 'hace frío' },
-          { display: '💨', label: 'How would you describe this weather?', answers: ['hace viento'], primary: 'hace viento' },
-          { display: '🌧️', label: 'How would you describe this weather?', answers: ['llueve', 'está lloviendo'], primary: 'llueve' },
-          { display: '❄️🌨️', label: 'How would you describe this weather?', answers: ['nieva', 'está nevando'], primary: 'nieva' },
-          { display: '☁️', label: 'How would you describe this weather?', answers: ['está nublado', 'hay nubes'], primary: 'está nublado' },
-          { display: '⛈️', label: 'How would you describe this weather?', answers: ['hay tormenta', 'hace tormenta'], primary: 'hay tormenta' },
-          { display: '🌫️', label: 'How would you describe this weather?', answers: ['hay niebla'], primary: 'hay niebla' },
-          { display: '🌤️', label: 'How would you describe this nice day?', answers: ['hace buen tiempo'], primary: 'hace buen tiempo' },
-          // Season questions
-          { display: '🌸 March, April, May', label: 'What season?', answers: ['la primavera', 'primavera'], primary: 'la primavera' },
-          { display: '☀️ June, July, August', label: 'What season? (Northern Hem.)', answers: ['el verano', 'verano'], primary: 'el verano' },
-          { display: '🍂 September, October, November', label: 'What season? (Northern Hem.)', answers: ['el otoño', 'otoño'], primary: 'el otoño' },
-          { display: '⛄ December, January, February', label: 'What season? (Northern Hem.)', answers: ['el invierno', 'invierno'], primary: 'el invierno' },
-          // Translations
-          { display: 'umbrella', label: 'Translate to Spanish', answers: ['el paraguas', 'paraguas'], primary: 'el paraguas' },
-          { display: 'snow (the noun)', label: 'Translate to Spanish', answers: ['la nieve', 'nieve'], primary: 'la nieve' },
-          { display: 'rain (the noun)', label: 'Translate to Spanish', answers: ['la lluvia', 'lluvia'], primary: 'la lluvia' },
-          { display: 'cloud', label: 'Translate to Spanish', answers: ['la nube', 'nube'], primary: 'la nube' },
-          { display: 'lightning', label: 'Translate to Spanish', answers: ['el relámpago', 'relámpago'], primary: 'el relámpago' },
-          { display: 'thunder', label: 'Translate to Spanish', answers: ['el trueno', 'trueno'], primary: 'el trueno' }
+          { display: '☀️', label: 'How would you describe this weather?', answers: ['hace sol', 'está soleado'], primary: 'hace sol', hint: 'Hace… (a weather expression)' },
+          { display: '🥵 35°C / 95°F', label: 'How would you describe this weather?', answers: ['hace calor', 'hace mucho calor'], primary: 'hace calor', hint: 'Hace… (a weather expression)' },
+          { display: '🥶 -5°C / 23°F', label: 'How would you describe this weather? (the temperature, not snow)', answers: ['hace frío', 'hace mucho frío'], primary: 'hace frío', hint: 'Hace… (a weather expression)' },
+          { display: '💨', label: 'How would you describe this weather?', answers: ['hace viento'], primary: 'hace viento', hint: 'Hace… (a weather expression)' },
+          { display: '🌧️', label: 'How would you say "it\'s raining"?', answers: ['llueve', 'está lloviendo'], primary: 'llueve', hint: 'One verb — or "está + -ando"' },
+          { display: '🌨️', label: 'How would you say "it\'s snowing"?', answers: ['nieva', 'está nevando'], primary: 'nieva', hint: 'One verb — or "está + -ando"' },
+          { display: '☁️', label: 'How would you describe this weather?', answers: ['está nublado', 'hay nubes'], primary: 'está nublado', hint: 'Está + adjective (or Hay + noun)' },
+          { display: '⛈️', label: 'How would you describe this weather? (the storm itself)', answers: ['hay tormenta', 'hace tormenta', 'hay una tormenta'], primary: 'hay tormenta', hint: 'Hay + noun' },
+          { display: '🌫️', label: 'How would you describe this weather? (fog)', answers: ['hay niebla'], primary: 'hay niebla', hint: 'Hay + noun' },
+          { display: '🌤️', label: 'How would you describe this nice day overall?', answers: ['hace buen tiempo'], primary: 'hace buen tiempo', hint: 'Hace ____ tiempo' },
+          // Season questions — la estación, article encouraged
+          { display: '🌸 March, April, May', label: 'What season is it? (la estación)', answers: ['la primavera', 'primavera', 'es primavera', 'es la primavera'], primary: 'la primavera', hint: 'The season, with el/la' },
+          { display: '☀️ June, July, August', label: 'What season is it? (la estación · Northern Hem.)', answers: ['el verano', 'verano', 'es verano', 'es el verano'], primary: 'el verano', hint: 'The season, with el/la' },
+          { display: '🍂 September, October, November', label: 'What season is it? (la estación · Northern Hem.)', answers: ['el otoño', 'otoño', 'es otoño', 'es el otoño'], primary: 'el otoño', hint: 'The season, with el/la' },
+          { display: '⛄ December, January, February', label: 'What season is it? (la estación · Northern Hem.)', answers: ['el invierno', 'invierno', 'es invierno', 'es el invierno'], primary: 'el invierno', hint: 'The season, with el/la' },
+          // Translations — English shows the article so the Spanish gets one too
+          { display: 'the umbrella', label: 'Translate to Spanish (include the article)', answers: ['el paraguas', 'paraguas'], primary: 'el paraguas', hint: 'el/la + noun' },
+          { display: 'the snow', label: 'Translate to Spanish (include the article)', answers: ['la nieve', 'nieve'], primary: 'la nieve', hint: 'el/la + noun' },
+          { display: 'the rain', label: 'Translate to Spanish (include the article)', answers: ['la lluvia', 'lluvia'], primary: 'la lluvia', hint: 'el/la + noun' },
+          { display: 'the cloud', label: 'Translate to Spanish (include the article)', answers: ['la nube', 'nube'], primary: 'la nube', hint: 'el/la + noun' },
+          { display: 'the lightning', label: 'Translate to Spanish (include the article)', answers: ['el relámpago', 'relámpago'], primary: 'el relámpago', hint: 'el/la + noun' },
+          { display: 'the thunder', label: 'Translate to Spanish (include the article)', answers: ['el trueno', 'trueno'], primary: 'el trueno', hint: 'el/la + noun' },
+          // Reverse direction — read the Spanish, answer in English
+          { display: 'Hace sol', label: 'Translate to English', answers: ['it\'s sunny', 'it is sunny', 'its sunny', 'sunny'], primary: 'it\'s sunny', hint: 'In English' },
+          { display: 'Hace frío', label: 'Translate to English', answers: ['it\'s cold', 'it is cold', 'its cold', 'cold'], primary: 'it\'s cold', hint: 'In English' },
+          { display: 'Hace viento', label: 'Translate to English', answers: ['it\'s windy', 'it is windy', 'its windy', 'windy'], primary: 'it\'s windy', hint: 'In English' },
+          { display: 'Está nublado', label: 'Translate to English', answers: ['it\'s cloudy', 'it is cloudy', 'its cloudy', 'cloudy'], primary: 'it\'s cloudy', hint: 'In English' },
+          { display: 'Llueve', label: 'Translate to English', answers: ['it\'s raining', 'it is raining', 'its raining', 'raining', 'it rains'], primary: 'it\'s raining', hint: 'In English' },
+          { display: 'Nieva', label: 'Translate to English', answers: ['it\'s snowing', 'it is snowing', 'its snowing', 'snowing', 'it snows'], primary: 'it\'s snowing', hint: 'In English' },
+          { display: 'Hay niebla', label: 'Translate to English', answers: ['it\'s foggy', 'it is foggy', 'its foggy', 'foggy', 'there is fog', 'there\'s fog'], primary: 'it\'s foggy', hint: 'In English' },
+          { display: 'la lluvia', label: 'Translate to English', answers: ['the rain', 'rain'], primary: 'the rain', hint: 'In English' },
+          { display: 'la nube', label: 'Translate to English', answers: ['the cloud', 'cloud'], primary: 'the cloud', hint: 'In English' },
+          { display: 'el paraguas', label: 'Translate to English', answers: ['the umbrella', 'umbrella'], primary: 'the umbrella', hint: 'In English' }
         ];
         const pick = scenarios[Math.floor(Math.random() * scenarios.length)];
         return {
@@ -25607,7 +26825,7 @@
           promptDisplay: pick.display,
           answer: pick.primary,
           validAnswers: pick.answers,
-          hint: 'Hace sol / Llueve / Está nublado / la primavera'
+          hint: pick.hint
         };
       }
     },
@@ -26040,6 +27258,8 @@
       renderArticleLevelPicker(gameId);
       return;
     }
+    if (gameId === 'vocab-type') { startVocabGame('type'); return; }
+    if (gameId === 'vocab-mc') { startVocabGame('mc'); return; }
     const game = GAMES[gameId];
     const container = document.getElementById('game-detail-content');
     if (!game) {
@@ -26095,6 +27315,15 @@
     animales: '🐾 Animals', hora: '🕐 Telling Time', mandatos: 'Classroom Commands'
   };
 
+  // Sort deck keys alphabetically by their visible label, ignoring leading
+  // emoji/punctuation and accents (so "Día" sorts as "Dia", "-AR" as "AR").
+  function deckLabelCompare(a, b) {
+    const norm = k => (MATCH_DECK_LABELS[k] || k)
+      .normalize('NFD').replace(/[̀-ͯ]/g, '')
+      .replace(/^[^A-Za-z0-9]+/, '').trim().toLowerCase();
+    return norm(a).localeCompare(norm(b));
+  }
+
   function startMatchGame() {
     matchState = { deck: null, pairs: [], tiles: [], selected: null, matched: 0, startTime: null, timerInterval: null, elapsed: 0, locked: false };
     renderMatchDeckPicker();
@@ -26103,7 +27332,7 @@
   function renderMatchDeckPicker() {
     const container = document.getElementById('game-detail-content');
     if (!container) return;
-    const deckKeys = Object.keys(decks).filter(k => decks[k] && decks[k].length >= 6);
+    const deckKeys = Object.keys(decks).filter(k => decks[k] && decks[k].length >= 6).sort(deckLabelCompare);
     container.innerHTML = `
       <a href="#/juegos" class="aviso-link" style="display:inline-block;margin-bottom:16px;">← Back to games</a>
       <div class="match-intro">
@@ -26293,6 +27522,730 @@
   function exitMatch() {
     if (matchState && matchState.timerInterval) clearInterval(matchState.timerInterval);
     renderMatchDeckPicker();
+  }
+
+  // ============================================================================
+  // VOCAB GAMES — Type it (typed translation) & Pick it (multiple choice).
+  // ----------------------------------------------------------------------------
+  // Deck-powered like Match it: pick any vocab deck, choose which language you
+  // answer in (Spanish, English, or mixed), then 10 rounds. Score-based Lucas
+  // with the same tiers as the other games; best score saved per game.
+  // ============================================================================
+  let vocabState = null;
+
+  function startVocabGame(mode) {
+    // Preserve the direction choice across "play again"
+    const prevDir = vocabState && vocabState.mode === mode ? vocabState.direction : 'mixed';
+    vocabState = { mode, direction: prevDir, deck: null, items: [], round: 0, score: 0, history: [], answered: false, currentEntry: null, currentDir: null };
+    renderVocabDeckPicker();
+  }
+
+  function vocabGameId() { return vocabState.mode === 'mc' ? 'vocab-mc' : 'vocab-type'; }
+
+  function setVocabDirection(dir) {
+    if (!vocabState) return;
+    vocabState.direction = dir;
+    renderVocabDeckPicker();
+  }
+
+  function renderVocabDeckPicker() {
+    const container = document.getElementById('game-detail-content');
+    if (!container || !vocabState) return;
+    const isMc = vocabState.mode === 'mc';
+    const deckKeys = Object.keys(decks).filter(k => decks[k] && decks[k].length >= 10).sort(deckLabelCompare);
+    const best = getGameBestScore(vocabGameId());
+    const dirPill = (dir, label) =>
+      `<button class="pill ${vocabState.direction === dir ? 'active' : ''}" onclick="setVocabDirection('${dir}')">${label}</button>`;
+    container.innerHTML = `
+      <a href="#/juegos" class="aviso-link" style="display:inline-block;margin-bottom:16px;">← Back to games</a>
+      <div class="match-intro">
+        <h2 style="font-family:'DM Serif Display',serif;font-size:32px;font-weight:400;margin-bottom:8px;">${isMc ? 'Pick' : 'Type'} <em style="color:var(--rojo);font-style:italic;">it</em></h2>
+        <p style="color:var(--ink-soft);font-size:15px;margin-bottom:8px;">${isMc
+          ? 'Four choices, one right answer. A friendly way into any deck.'
+          : 'We show a word, you type the translation. No choices to lean on.'} 10 rounds.${best > 0 ? ' Your best: ' + best + '/10.' : ''}</p>
+        <div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:20px;">
+          <span style="font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:0.15em;text-transform:uppercase;color:var(--ink-soft);">You answer in:</span>
+          ${dirPill('es', 'Spanish')}
+          ${dirPill('en', 'English')}
+          ${dirPill('mixed', 'Mixed')}
+        </div>
+        <div class="match-deck-grid">
+          ${deckKeys.map(k => `
+            <button class="match-deck-btn" onclick="beginVocabRound('${k}')">
+              <span class="mdb-label">${MATCH_DECK_LABELS[k] || k}</span>
+              <span class="mdb-best">${decks[k].length} words</span>
+            </button>
+          `).join('')}
+        </div>
+      </div>
+    `;
+  }
+
+  // English side of a deck entry, cleaned the same way Match it does
+  function vocabCleanEn(back) {
+    return (back || '').replace(/\s*\(.*?\)\s*/g, '').split(/[;,]/)[0].trim() || back;
+  }
+
+  // All answers accepted for an entry in a given direction
+  function vocabAcceptedAnswers(entry, dir) {
+    const variants = [];
+    if (dir === 'es') {
+      // Answer in Spanish: each slash-variant, with and without its article
+      String(entry.word).split('/').forEach(part => {
+        const t = part.trim();
+        if (!t) return;
+        variants.push(t);
+        const noArt = t.replace(/^(el|la|los|las|un|una|unos|unas)\s+/i, '');
+        if (noArt !== t) variants.push(noArt);
+      });
+    } else {
+      // Answer in English: full meaning, paren-stripped, each alternative,
+      // and verbs with or without the leading "to"
+      const back = String(entry.back || '');
+      variants.push(back);
+      const stripped = back.replace(/\s*\(.*?\)\s*/g, ' ').trim();
+      if (stripped) variants.push(stripped);
+      stripped.split(/[;,\/]/).forEach(part => {
+        const t = part.trim();
+        if (!t) return;
+        variants.push(t);
+        const noTo = t.replace(/^to\s+/i, '');
+        if (noTo !== t) variants.push(noTo);
+      });
+    }
+    return variants;
+  }
+
+  function beginVocabRound(deckKey) {
+    const deck = decks[deckKey];
+    if (!deck || deck.length < 10 || !vocabState) return;
+    const shuffled = [...deck].sort(() => Math.random() - 0.5);
+    vocabState.deck = deckKey;
+    vocabState.items = shuffled.slice(0, 10);
+    vocabState.round = 0;
+    vocabState.score = 0;
+    vocabState.history = [];
+    renderVocabRound();
+  }
+
+  function renderVocabRound() {
+    const vs = vocabState;
+    const container = document.getElementById('game-detail-content');
+    if (!vs || !container) return;
+    if (vs.round >= vs.items.length) { renderVocabResults(); return; }
+
+    const entry = vs.items[vs.round];
+    const dir = vs.direction === 'mixed' ? (Math.random() < 0.5 ? 'es' : 'en') : vs.direction;
+    vs.currentEntry = entry;
+    vs.currentDir = dir;
+    vs.answered = false;
+
+    // dir 'es' → prompt shows English, student answers in Spanish (and vice versa)
+    const promptText = dir === 'es' ? vocabCleanEn(entry.back) : entry.word;
+    const label = dir === 'es' ? 'Give the Spanish for…' : 'What does this mean in English?';
+    const progress = `Round <strong>${vs.round + 1}</strong> / ${vs.items.length} · Score: <strong>${vs.score}</strong>`;
+
+    let answerArea;
+    if (vs.mode === 'mc') {
+      const pool = decks[vs.deck].filter(e => e !== entry).sort(() => Math.random() - 0.5).slice(0, 3);
+      const options = [entry, ...pool].sort(() => Math.random() - 0.5);
+      answerArea = `
+        <div id="vocabOptions" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:10px;margin-top:8px;">
+          ${options.map(o => `
+            <button class="btn" style="border-color:var(--paper);color:var(--paper);text-align:center;padding:14px 16px;font-size:15px;line-height:1.3;"
+                    onclick="pickVocabOption(this, ${o === entry})">${dir === 'es' ? o.word : vocabCleanEn(o.back)}</button>
+          `).join('')}
+        </div>
+        <div class="game-feedback" id="gameFeedback">&nbsp;</div>`;
+    } else {
+      answerArea = `
+        <div class="game-input-row">
+          <input type="text" class="game-input" id="vocabInput" autocomplete="off" autocapitalize="off" spellcheck="false"
+                 placeholder="${dir === 'es' ? 'In Spanish…' : 'In English…'}"
+                 onkeypress="if(event.key==='Enter') submitVocabAnswer()">
+        </div>
+        <div class="game-feedback" id="gameFeedback">&nbsp;</div>
+        <div style="margin-top:24px;">
+          <button class="btn primary" style="border-color:var(--paper);background:var(--paper);color:var(--ink);" onclick="submitVocabAnswer()">Submit ↵</button>
+          <button class="btn" style="border-color:var(--paper);color:var(--paper);margin-left:8px;" onclick="skipVocabRound()">Skip</button>
+        </div>`;
+    }
+
+    container.innerHTML = `
+      <div class="game-prompt-card">
+        <div class="game-progress">${progress}</div>
+        <div class="game-prompt-label">${label} · ${MATCH_DECK_LABELS[vs.deck] || vs.deck}</div>
+        <div class="game-prompt-display">${promptText}</div>
+        ${answerArea}
+      </div>
+    `;
+    if (vs.mode !== 'mc') {
+      setTimeout(() => { const inp = document.getElementById('vocabInput'); if (inp) inp.focus(); }, 50);
+    }
+  }
+
+  function vocabPrimaryAnswer() {
+    const vs = vocabState;
+    return vs.currentDir === 'es' ? vs.currentEntry.word : vocabCleanEn(vs.currentEntry.back);
+  }
+
+  function pickVocabOption(btn, isCorrect) {
+    const vs = vocabState;
+    if (!vs || vs.answered) return;
+    vs.answered = true;
+    const fb = document.getElementById('gameFeedback');
+    document.querySelectorAll('#vocabOptions button').forEach(b => b.disabled = true);
+    if (isCorrect) {
+      vs.score++;
+      btn.style.background = 'var(--verde)';
+      btn.style.borderColor = 'var(--verde)';
+      if (fb) { fb.textContent = '✓ Correct!'; fb.className = 'game-feedback correct'; }
+    } else {
+      btn.style.background = 'var(--rojo)';
+      btn.style.borderColor = 'var(--rojo)';
+      if (fb) { fb.textContent = '✗ Correct answer: ' + vocabPrimaryAnswer(); fb.className = 'game-feedback wrong'; }
+    }
+    vs.history.push({
+      prompt: vs.currentDir === 'es' ? vocabCleanEn(vs.currentEntry.back) : vs.currentEntry.word,
+      userAnswer: btn.textContent.trim(),
+      correctAnswer: vocabPrimaryAnswer(),
+      isCorrect
+    });
+    vs.round++;
+    setTimeout(renderVocabRound, isCorrect ? 900 : 1800);
+  }
+
+  function submitVocabAnswer() {
+    const vs = vocabState;
+    if (!vs || vs.answered) return;
+    const input = document.getElementById('vocabInput');
+    if (!input) return;
+    const userAnswer = normalize(input.value);
+    if (!userAnswer) return;
+    vs.answered = true;
+    const accepted = vocabAcceptedAnswers(vs.currentEntry, vs.currentDir);
+    const isCorrect = accepted.some(a => normalize(a) === userAnswer);
+    const fb = document.getElementById('gameFeedback');
+    if (isCorrect) {
+      vs.score++;
+      input.classList.add('correct');
+      if (fb) { fb.textContent = '✓ Correct!'; fb.className = 'game-feedback correct'; }
+    } else {
+      input.classList.add('wrong');
+      if (fb) { fb.textContent = '✗ Correct answer: ' + vocabPrimaryAnswer(); fb.className = 'game-feedback wrong'; }
+    }
+    input.disabled = true;
+    vs.history.push({
+      prompt: vs.currentDir === 'es' ? vocabCleanEn(vs.currentEntry.back) : vs.currentEntry.word,
+      userAnswer: input.value,
+      correctAnswer: vocabPrimaryAnswer(),
+      isCorrect
+    });
+    vs.round++;
+    setTimeout(renderVocabRound, isCorrect ? 1200 : 2000);
+  }
+
+  function skipVocabRound() {
+    const vs = vocabState;
+    if (!vs || vs.answered) return;
+    vs.history.push({
+      prompt: vs.currentDir === 'es' ? vocabCleanEn(vs.currentEntry.back) : vs.currentEntry.word,
+      userAnswer: '(skipped)',
+      correctAnswer: vocabPrimaryAnswer(),
+      isCorrect: false
+    });
+    vs.round++;
+    renderVocabRound();
+  }
+
+  function renderVocabResults() {
+    const vs = vocabState;
+    const container = document.getElementById('game-detail-content');
+    if (!vs || !container) return;
+    const gameId = vocabGameId();
+    const score = vs.score;
+    const baseTier = GAMES[gameId].maxReward;
+
+    let reward = 0, verdict = '';
+    if (score === 10) { reward = baseTier; verdict = 'Perfect — flawless game'; }
+    else if (score >= 9) { reward = Math.floor(baseTier * 0.7); verdict = 'Excellent'; }
+    else if (score >= 7) { reward = Math.floor(baseTier * 0.5); verdict = 'Solid effort'; }
+    else if (score >= 5) { reward = Math.floor(baseTier * 0.25); verdict = 'Keep practicing'; }
+    else { reward = 0; verdict = 'Try again — you need 5+ to earn'; }
+
+    const isNewBest = score > getGameBestScore(gameId);
+    if (isNewBest && reward > 0) awardCoins(reward, verdict + ' (' + score + '/10) — new best!');
+    setGameBestScore(gameId, score);
+    saveState();
+
+    const reviewHtml = vs.history.map(h => `
+      <div style="display:grid;grid-template-columns:28px 1fr 1.4fr;gap:8px;padding:8px 0;border-bottom:1px dotted var(--line);align-items:center;text-align:left;font-size:14px;">
+        <span>${h.isCorrect ? '✅' : '❌'}</span>
+        <span style="color:var(--ink-soft);">${h.prompt}</span>
+        <span>${h.isCorrect ? h.correctAnswer : '<s style="opacity:0.55;">' + (h.userAnswer || '—') + '</s> → <strong>' + h.correctAnswer + '</strong>'}</span>
+      </div>
+    `).join('');
+
+    container.innerHTML = `
+      <div class="game-results">
+        <h3>${score}/10 — <em>${verdict}</em></h3>
+        <p style="color:var(--ink-soft);font-size:14px;margin-bottom:8px;">${MATCH_DECK_LABELS[vs.deck] || vs.deck} · answered in ${vs.direction === 'es' ? 'Spanish' : vs.direction === 'en' ? 'English' : 'mixed languages'}</p>
+        ${isNewBest && reward > 0
+          ? `<p style="color:var(--verde);font-weight:600;margin-bottom:16px;">+${reward} Lucas — new personal best!</p>`
+          : `<p style="color:var(--ink-soft);font-size:13px;margin-bottom:16px;">${reward > 0 ? 'Lucas are only awarded when you beat your best score (' + getGameBestScore(gameId) + '/10).' : verdict}</p>`}
+        <div style="margin:16px 0;">${reviewHtml}</div>
+        <div style="display:flex;gap:10px;flex-wrap:wrap;justify-content:center;margin-top:20px;">
+          <button class="btn primary" onclick="beginVocabRound('${vs.deck}')">Play again</button>
+          <button class="btn" onclick="renderVocabDeckPicker()">Pick another deck</button>
+          <a href="#/juegos" class="btn" style="text-decoration:none;">All games</a>
+        </div>
+      </div>
+    `;
+  }
+
+  // ============================================================================
+  // LA RACHA — daily challenge + streak
+  // ----------------------------------------------------------------------------
+  // One fixed set of 5 quick questions per calendar day (seeded by the date, so
+  // every student gets the same "racha de hoy"). Completing it keeps the streak
+  // alive: do it today and yesterday → streak grows; miss a day → it resets.
+  // Lucas are awarded once per day, scaled by how many you get right.
+  // ============================================================================
+  let rachaState = null;
+  const RACHA_LEN = 5;
+
+  // Local YYYY-MM-DD for "today" (uses the device's calendar day)
+  function rachaDayKey(d) {
+    const dt = d || new Date();
+    return dt.getFullYear() + '-' + String(dt.getMonth() + 1).padStart(2, '0') + '-' + String(dt.getDate()).padStart(2, '0');
+  }
+  function rachaDayKeyOffset(days) {
+    const dt = new Date();
+    dt.setDate(dt.getDate() + days);
+    return rachaDayKey(dt);
+  }
+
+  // Tiny seeded RNG (mulberry32) so the day's challenge is deterministic
+  function rachaSeedFromString(str) {
+    let h = 1779033703 ^ str.length;
+    for (let i = 0; i < str.length; i++) {
+      h = Math.imul(h ^ str.charCodeAt(i), 3432918353);
+      h = (h << 13) | (h >>> 19);
+    }
+    return h >>> 0;
+  }
+  function rachaRng(seed) {
+    let a = seed >>> 0;
+    return function () {
+      a |= 0; a = (a + 0x6D2B79F5) | 0;
+      let t = Math.imul(a ^ (a >>> 15), 1 | a);
+      t = (t + Math.imul(t ^ (t >>> 7), 61 | t)) ^ t;
+      return ((t ^ (t >>> 14)) >>> 0) / 4294967296;
+    };
+  }
+
+  // Build the 5 questions for a given day key, deterministically.
+  function buildRachaChallenge(dayKey) {
+    const rand = rachaRng(rachaSeedFromString('racha-' + dayKey));
+    const pick = arr => arr[Math.floor(rand() * arr.length)];
+    const PRON_ES = ['yo', 'tú', 'él / ella', 'nosotros', 'vosotros', 'ellos / ellas'];
+
+    // Question generators, each returns {area, label, display, answer, validAnswers, hint}
+    function qVocab() {
+      const deckKeys = Object.keys(decks).filter(k => decks[k] && decks[k].length >= 8);
+      const deck = decks[pick(deckKeys)];
+      const entry = deck[Math.floor(rand() * deck.length)];
+      const toEs = rand() < 0.5;
+      if (toEs) {
+        return { area: 'Vocab', label: 'Give the Spanish for…', display: vocabCleanEn(entry.back),
+          answer: String(entry.word).split('/')[0].trim(), validAnswers: vocabAcceptedAnswers(entry, 'es'), hint: 'In Spanish' };
+      }
+      return { area: 'Vocab', label: 'What does this mean?', display: entry.word,
+        answer: vocabCleanEn(entry.back), validAnswers: vocabAcceptedAnswers(entry, 'en'), hint: 'In English' };
+    }
+    function qVerb() {
+      const v = pick(verbs);
+      // Avoid vosotros (index 4) — most US classrooms skip it
+      const idx = pick([0, 1, 2, 3, 5]);
+      const ans = v.conj.presente[idx];
+      return { area: 'Verbs', label: 'Conjugate · presente', display: v.inf + ' — ' + PRON_ES[idx],
+        answer: ans, validAnswers: [ans], hint: 'Present tense' };
+    }
+    function qCapital() {
+      const c = pick(COUNTRIES);
+      const caps = String(c.capital).split('/').map(s => s.trim());
+      return { area: 'Mundo', label: 'Capital of…', display: c.name,
+        answer: c.capital, validAnswers: caps.concat([c.capital]), hint: 'The capital city' };
+    }
+    function qNumber() {
+      const n = Math.floor(rand() * 100) + 1;
+      return { area: 'Numbers', label: 'Write this number in Spanish', display: String(n),
+        answer: numberToSpanish(n), validAnswers: [numberToSpanish(n)], hint: 'In words' };
+    }
+    function qDay() {
+      const i = Math.floor(rand() * 7);
+      const toEs = rand() < 0.5;
+      if (toEs) return { area: 'Days', label: 'Translate to Spanish', display: DAYS_EN[i],
+        answer: DAYS_ES[i], validAnswers: [DAYS_ES[i]], hint: 'Lowercase' };
+      return { area: 'Days', label: 'Translate to English', display: DAYS_ES[i],
+        answer: DAYS_EN[i].toLowerCase(), validAnswers: [DAYS_EN[i].toLowerCase()], hint: 'In English' };
+    }
+
+    // Each day: 2 vocab + 1 verb + 1 capital + 1 rotating (number or day)
+    const questions = [qVocab(), qVerb(), qVocab(), qCapital(), rand() < 0.5 ? qNumber() : qDay()];
+    // Shuffle so the order varies but stays fixed for the day
+    for (let i = questions.length - 1; i > 0; i--) {
+      const j = Math.floor(rand() * (i + 1));
+      [questions[i], questions[j]] = [questions[j], questions[i]];
+    }
+    return questions;
+  }
+
+  // Is today's racha already completed?
+  function rachaDoneToday() { return STATE.rachaLastDay === rachaDayKey(); }
+
+  // Current streak as it stands right now (broken if last play is older than yesterday)
+  function rachaCurrentStreak() {
+    if (!STATE.rachaLastDay) return 0;
+    const today = rachaDayKey();
+    if (STATE.rachaLastDay === today || STATE.rachaLastDay === rachaDayKeyOffset(-1)) {
+      return STATE.rachaStreak || 0;
+    }
+    return 0; // streak lapsed
+  }
+
+  // Update the home-page widget
+  function updateRachaWidget() {
+    const w = document.getElementById('rachaWidget');
+    if (!w) return;
+    const streak = rachaCurrentStreak();
+    const done = rachaDoneToday();
+    const headline = document.getElementById('rachaWidgetHeadline');
+    const sub = document.getElementById('rachaWidgetSub');
+    const cta = document.getElementById('rachaWidgetCta');
+    const flame = document.getElementById('rachaWidgetFlame');
+    w.classList.toggle('done', done);
+    if (flame) flame.style.opacity = streak > 0 ? '1' : '0.4';
+    if (done) {
+      headline.textContent = streak > 0 ? '¡Racha de ' + streak + ' día' + (streak === 1 ? '' : 's') + '! 🎉' : '¡Completada!';
+      sub.textContent = 'Done for today — come back tomorrow to keep it going.';
+      cta.textContent = 'Review →';
+    } else if (streak > 0) {
+      headline.textContent = streak + '-day streak — keep it alive';
+      sub.textContent = "Today's challenge is waiting. 5 quick questions.";
+      cta.textContent = 'Play →';
+    } else {
+      headline.textContent = 'Start your streak today';
+      sub.textContent = '5 quick questions — vocab, verbs, capitals & more.';
+      cta.textContent = 'Play →';
+    }
+  }
+
+  // Render the racha page (entry / in-progress / done all handled here)
+  function renderRacha() {
+    const container = document.getElementById('rachaContent');
+    if (!container) return;
+    updateRachaWidget();
+    const streak = rachaCurrentStreak();
+    const best = STATE.rachaBest || 0;
+
+    // Build a 7-day strip (Mon..Sun of the current week) marking completed today
+    const weekHtml = (() => {
+      const labels = ['L', 'M', 'X', 'J', 'V', 'S', 'D'];
+      const today = new Date();
+      // JS getDay: 0=Sun..6=Sat → convert to Mon=0
+      const todayMon = (today.getDay() + 6) % 7;
+      let cells = '';
+      for (let i = 0; i < 7; i++) {
+        const isToday = i === todayMon;
+        const isHit = isToday && rachaDoneToday();
+        cells += `<div class="racha-day${isHit ? ' hit' : ''}${isToday ? ' today' : ''}">
+          <div class="dot">${isHit ? '🔥' : (isToday ? '·' : '')}</div>${labels[i]}</div>`;
+      }
+      return cells;
+    })();
+
+    const heroStats = `
+      <div class="racha-hero">
+        <div class="racha-hero-flame">${streak > 0 ? '🔥' : '🪵'}</div>
+        <div class="racha-count">${streak}</div>
+        <div class="racha-count-label">${streak === 1 ? 'day streak' : 'day streak'}</div>
+        <div class="racha-week">${weekHtml}</div>
+        <div class="racha-stat-row">
+          <div class="racha-stat"><div class="v">${best}</div><div class="k">Best streak</div></div>
+          <div class="racha-stat"><div class="v">${rachaDoneToday() ? '✓' : '—'}</div><div class="k">Today</div></div>
+        </div>
+      </div>`;
+
+    if (rachaDoneToday()) {
+      container.innerHTML = heroStats + `
+        <div style="text-align:center; padding: 8px 0 24px;">
+          <p style="font-family:'Fraunces',serif; font-style:italic; font-size:18px; color:var(--ink); margin-bottom:6px;">¡Ya completaste la racha de hoy!</p>
+          <p style="color:var(--ink-soft); font-size:14px; max-width:440px; margin:0 auto 20px;">You've done today's challenge. Come back tomorrow for a new set of 5 and to keep your streak climbing.</p>
+          <a href="#/juegos" class="btn primary" style="text-decoration:none;">Play more games →</a>
+        </div>`;
+      return;
+    }
+
+    container.innerHTML = heroStats + `
+      <div style="text-align:center; padding: 8px 0 28px;">
+        <p style="font-family:'Fraunces',serif; font-style:italic; font-size:18px; color:var(--ink); margin-bottom:6px;">${streak > 0 ? 'Keep your ' + streak + '-day streak alive.' : 'Start your streak.'}</p>
+        <p style="color:var(--ink-soft); font-size:14px; max-width:460px; margin:0 auto 22px;">5 quick questions — a mix of vocab, verbs, capitals, numbers and days. Same set for everyone today. Finish it to keep your 🔥 going.</p>
+        <button class="btn primary" style="font-size:16px; padding:14px 28px;" onclick="startRachaToday()">Empezar la racha →</button>
+      </div>`;
+  }
+
+  function startRachaToday() {
+    rachaState = {
+      questions: buildRachaChallenge(rachaDayKey()),
+      round: 0, score: 0, history: [], answered: false
+    };
+    renderRachaQuestion();
+  }
+
+  function renderRachaQuestion() {
+    const rs = rachaState;
+    const container = document.getElementById('rachaContent');
+    if (!rs || !container) return;
+    if (rs.round >= rs.questions.length) { finishRacha(); return; }
+    rs.answered = false;
+    const q = rs.questions[rs.round];
+
+    const pips = rs.questions.map((_, i) => {
+      let cls = 'racha-pip';
+      if (i < rs.round) cls += rs.history[i] && rs.history[i].isCorrect ? ' correct' : ' wrong';
+      else if (i === rs.round) cls += ' current';
+      return `<div class="${cls}"></div>`;
+    }).join('');
+
+    container.innerHTML = `
+      <div class="racha-q-area">${pips}</div>
+      <div class="game-prompt-card">
+        <div class="game-progress">Question <strong>${rs.round + 1}</strong> / ${rs.questions.length} · Score: <strong>${rs.score}</strong></div>
+        <div class="racha-tag">${q.area}</div>
+        <div class="game-prompt-label">${q.label}</div>
+        <div class="game-prompt-display">${q.display}</div>
+        <div class="game-input-row">
+          <input type="text" class="game-input" id="rachaInput" autocomplete="off" autocapitalize="off" spellcheck="false"
+                 placeholder="${q.hint || 'Type your answer…'}"
+                 onkeypress="if(event.key==='Enter') submitRachaAnswer()">
+        </div>
+        <div class="game-feedback" id="gameFeedback">&nbsp;</div>
+        <div style="margin-top:24px;">
+          <button class="btn primary" style="border-color:var(--paper);background:var(--paper);color:var(--ink);" onclick="submitRachaAnswer()">Submit ↵</button>
+          <button class="btn" style="border-color:var(--paper);color:var(--paper);margin-left:8px;" onclick="skipRachaRound()">Skip</button>
+        </div>
+      </div>`;
+    setTimeout(() => { const inp = document.getElementById('rachaInput'); if (inp) inp.focus(); }, 50);
+  }
+
+  function submitRachaAnswer() {
+    const rs = rachaState;
+    if (!rs || rs.answered) return;
+    const input = document.getElementById('rachaInput');
+    if (!input) return;
+    const userAnswer = normalize(input.value);
+    if (!userAnswer) return;
+    rs.answered = true;
+    const q = rs.questions[rs.round];
+    const isCorrect = (q.validAnswers || [q.answer]).some(a => normalize(a) === userAnswer);
+    const fb = document.getElementById('gameFeedback');
+    if (isCorrect) {
+      rs.score++;
+      input.classList.add('correct');
+      if (fb) { fb.textContent = '✓ ¡Correcto!'; fb.className = 'game-feedback correct'; }
+    } else {
+      input.classList.add('wrong');
+      if (fb) { fb.textContent = '✗ Answer: ' + q.answer; fb.className = 'game-feedback wrong'; }
+    }
+    input.disabled = true;
+    rs.history.push({ prompt: q.display, userAnswer: input.value, correctAnswer: q.answer, isCorrect });
+    rs.round++;
+    setTimeout(renderRachaQuestion, isCorrect ? 1100 : 1900);
+  }
+
+  function skipRachaRound() {
+    const rs = rachaState;
+    if (!rs || rs.answered) return;
+    const q = rs.questions[rs.round];
+    rs.history.push({ prompt: q.display, userAnswer: '(skipped)', correctAnswer: q.answer, isCorrect: false });
+    rs.round++;
+    renderRachaQuestion();
+  }
+
+  function finishRacha() {
+    const rs = rachaState;
+    const container = document.getElementById('rachaContent');
+    if (!rs || !container) return;
+
+    // --- Streak bookkeeping (only counts once per day) ---
+    const today = rachaDayKey();
+    let streakMsg = '';
+    if (STATE.rachaLastDay !== today) {
+      const continued = STATE.rachaLastDay === rachaDayKeyOffset(-1);
+      STATE.rachaStreak = continued ? (STATE.rachaStreak || 0) + 1 : 1;
+      STATE.rachaLastDay = today;
+      if (STATE.rachaStreak > (STATE.rachaBest || 0)) STATE.rachaBest = STATE.rachaStreak;
+      // Lucas: 2 per correct + 5 bonus for a perfect day
+      const reward = rs.score * 2 + (rs.score === RACHA_LEN ? 5 : 0);
+      if (reward > 0) awardCoins(reward, 'La Racha · día ' + STATE.rachaStreak);
+      saveState();
+      streakMsg = continued
+        ? '🔥 Streak extended to <strong>' + STATE.rachaStreak + '</strong> day' + (STATE.rachaStreak === 1 ? '' : 's') + '!'
+        : '🔥 New streak started — <strong>day 1</strong>!';
+    } else {
+      streakMsg = 'Already counted for today — streak stays at <strong>' + STATE.rachaStreak + '</strong>.';
+    }
+    updateRachaWidget();
+
+    const reviewHtml = rs.history.map(h => `
+      <div style="display:grid;grid-template-columns:28px 1fr 1.4fr;gap:8px;padding:8px 0;border-bottom:1px dotted var(--line);align-items:center;text-align:left;font-size:14px;">
+        <span>${h.isCorrect ? '✅' : '❌'}</span>
+        <span style="color:var(--ink-soft);">${h.prompt}</span>
+        <span>${h.isCorrect ? h.correctAnswer : '<s style="opacity:0.55;">' + (h.userAnswer || '—') + '</s> → <strong>' + h.correctAnswer + '</strong>'}</span>
+      </div>`).join('');
+
+    container.innerHTML = `
+      <div class="game-results">
+        <div style="font-size:52px;line-height:1;">${rs.score === RACHA_LEN ? '🌟' : rs.score >= 3 ? '🔥' : '🌱'}</div>
+        <h3>${rs.score}/${RACHA_LEN} hoy</h3>
+        <p style="font-size:16px;color:var(--ink);margin-bottom:6px;">${streakMsg}</p>
+        <p style="color:var(--ink-soft);font-size:13px;margin-bottom:16px;">Best streak: ${STATE.rachaBest || 0} · Come back tomorrow for a new challenge.</p>
+        <div style="margin:16px 0;max-width:560px;margin-left:auto;margin-right:auto;">${reviewHtml}</div>
+        <div style="display:flex;gap:10px;flex-wrap:wrap;justify-content:center;margin-top:20px;">
+          <a href="#/juegos" class="btn primary" style="text-decoration:none;">Play more games →</a>
+          <a href="#/" class="btn" style="text-decoration:none;">Home</a>
+        </div>
+      </div>`;
+  }
+
+  // ============================================================================
+  // ABECEDARIO — interactive alphabet & vowel pronunciation
+  // ----------------------------------------------------------------------------
+  // Tap a letter → speakSpanish() reads its name + an example word aloud.
+  // 27-letter modern RAE alphabet (includes ñ; ch/ll/rr are no longer separate
+  // letters). Vowels get their own highlighted row with an English sound hint.
+  // ============================================================================
+  // cat = sound family (color + legend) · say = English equivalent · mouth = shape tip
+  const ABC_VOWELS = [
+    { L: 'A', name: 'a', sound: '“ah”', word: 'árbol',    en: 'tree',     cat: 'vowel', say: 'like “a” in father',  mouth: 'open wide, tongue low' },
+    { L: 'E', name: 'e', sound: '“eh”', word: 'elefante', en: 'elephant', cat: 'vowel', say: 'like “e” in bed',     mouth: 'lips relaxed, slightly open' },
+    { L: 'I', name: 'i', sound: '“ee”', word: 'isla',     en: 'island',   cat: 'vowel', say: 'like “ee” in see',    mouth: 'lips spread, like a smile' },
+    { L: 'O', name: 'o', sound: '“oh”', word: 'oso',      en: 'bear',     cat: 'vowel', say: 'like “o” in note',    mouth: 'lips rounded' },
+    { L: 'U', name: 'u', sound: '“oo”', word: 'uvas',     en: 'grapes',   cat: 'vowel', say: 'like “oo” in food',   mouth: 'lips tight and rounded' }
+  ];
+  const ABC_LETTERS = [
+    { L: 'A', name: 'a',          word: 'árbol',    en: 'tree',     cat: 'vowel',     manner: 'Vowel · open',                          say: 'like “a” in father',          mouth: 'open wide, tongue low' },
+    { L: 'B', name: 'be',         word: 'burro',    en: 'donkey',   cat: 'plosive',   manner: 'Plosive · bilabial /b/',                say: 'like “b” in boy',             mouth: 'lips together, then pop open' },
+    { L: 'C', name: 'ce',         word: 'casa',     en: 'house',    cat: 'plosive',   manner: 'Plosive /k/ — fricative /s/ before e,i', say: '“k” (casa) or “s” (cena)',   mouth: 'back of tongue up; or tongue near teeth' },
+    { L: 'D', name: 'de',         word: 'dedo',     en: 'finger',   cat: 'plosive',   manner: 'Plosive · dental /d/',                  say: 'like “d”, softer',            mouth: 'tongue tip on the upper teeth' },
+    { L: 'E', name: 'e',          word: 'elefante', en: 'elephant', cat: 'vowel',     manner: 'Vowel · mid',                           say: 'like “e” in bed',             mouth: 'lips relaxed, slightly open' },
+    { L: 'F', name: 'efe',        word: 'flor',     en: 'flower',   cat: 'fricative', manner: 'Fricative · labiodental /f/',           say: 'like “f” in fun',             mouth: 'top teeth on bottom lip, blow' },
+    { L: 'G', name: 'ge',         word: 'gato',     en: 'cat',      cat: 'plosive',   manner: 'Plosive /g/ — guttural /x/ before e,i', say: '“g” in go (raspy “h” before e/i)', mouth: 'back of tongue to soft palate' },
+    { L: 'H', name: 'hache',      word: 'hola',     en: 'hello',    cat: 'silent',    manner: 'Silent (muda) — no sound',              say: 'no sound at all',             mouth: 'do nothing — skip the h' },
+    { L: 'I', name: 'i',          word: 'isla',     en: 'island',   cat: 'vowel',     manner: 'Vowel · close',                         say: 'like “ee” in see',            mouth: 'lips spread, like a smile' },
+    { L: 'J', name: 'jota',       word: 'jirafa',   en: 'giraffe',  cat: 'fricative', manner: 'Guttural fricative · velar /x/',        say: 'a raspy “h” (as in “loch”)',  mouth: 'back of tongue to throat, push air' },
+    { L: 'K', name: 'ka',         word: 'koala',    en: 'koala',    cat: 'plosive',   manner: 'Plosive · velar /k/',                   say: 'like “k” in kite',            mouth: 'back of tongue up, then release' },
+    { L: 'L', name: 'ele',        word: 'luna',     en: 'moon',     cat: 'liquid',    manner: 'Lateral · alveolar /l/',                say: 'like “l” in light',           mouth: 'tongue tip on ridge behind teeth' },
+    { L: 'M', name: 'eme',        word: 'mano',     en: 'hand',     cat: 'nasal',     manner: 'Nasal · bilabial /m/',                  say: 'like “m” in mom',             mouth: 'lips together, hum through nose' },
+    { L: 'N', name: 'ene',        word: 'nariz',    en: 'nose',     cat: 'nasal',     manner: 'Nasal · alveolar /n/',                  say: 'like “n” in no',              mouth: 'tongue on ridge, hum' },
+    { L: 'Ñ', name: 'eñe',        word: 'niño',     en: 'child',    cat: 'nasal',     manner: 'Nasal · palatal /ɲ/',                   say: 'like “ny” in canyon',         mouth: 'middle of tongue to roof' },
+    { L: 'O', name: 'o',          word: 'oso',      en: 'bear',     cat: 'vowel',     manner: 'Vowel · mid',                           say: 'like “o” in note',            mouth: 'lips rounded' },
+    { L: 'P', name: 'pe',         word: 'perro',    en: 'dog',      cat: 'plosive',   manner: 'Plosive · bilabial /p/',                say: 'like “p”, no puff of air',    mouth: 'lips together, soft release' },
+    { L: 'Q', name: 'cu',         word: 'queso',    en: 'cheese',   cat: 'plosive',   manner: 'Plosive · velar /k/ (qu)',              say: 'like “k” (always written “qu”)', mouth: 'back of tongue up, then release' },
+    { L: 'R', name: 'erre',       word: 'ratón',    en: 'mouse',    cat: 'liquid',    manner: 'Vibrant · tap /ɾ/ or rolled /r/',       say: 'tap like “tt” in butter; or rolled', mouth: 'tongue tip flicks/flutters the ridge' },
+    { L: 'S', name: 'ese',        word: 'sol',      en: 'sun',      cat: 'fricative', manner: 'Fricative · alveolar /s/',              say: 'like “s” in sun',             mouth: 'tongue near ridge, hiss' },
+    { L: 'T', name: 'te',         word: 'tortuga',  en: 'turtle',   cat: 'plosive',   manner: 'Plosive · dental /t/',                  say: 'like “t”, on the teeth',      mouth: 'tongue tip on upper teeth' },
+    { L: 'U', name: 'u',          word: 'uvas',     en: 'grapes',   cat: 'vowel',     manner: 'Vowel · close',                         say: 'like “oo” in food',           mouth: 'lips tight and rounded' },
+    { L: 'V', name: 'uve',        word: 'vaca',     en: 'cow',      cat: 'plosive',   manner: 'Plosive /b/ — sounds like B',           say: 'like “b” (V = B in Spanish!)', mouth: 'lips together, soft' },
+    { L: 'W', name: 'uve doble',  word: 'wifi',     en: 'wifi',     cat: 'glide',     manner: 'Glide · /w/ (foreign words)',           say: 'like “w” in week',            mouth: 'lips rounded, then glide' },
+    { L: 'X', name: 'equis',      word: 'taxi',     en: 'taxi',     cat: 'fricative', manner: 'Fricative /ks/ (guttural /x/ in “México”)', say: 'like “x” in taxi',        mouth: '“k” + “s” run together' },
+    { L: 'Y', name: 'ye',         word: 'yate',     en: 'yacht',    cat: 'glide',     manner: 'Palatal glide /ʝ/ — or vowel /i/',      say: 'like “y” in yes',             mouth: 'middle of tongue toward roof' },
+    { L: 'Z', name: 'zeta',       word: 'zapato',   en: 'shoe',     cat: 'fricative', manner: 'Fricative /s/ (or “th” in Spain)',      say: 'like “s” (or “th” in Spain)', mouth: 'tongue near ridge, hiss' }
+  ];
+  // Sound-family → color + label for the tags and legend
+  const ABC_CATS = {
+    vowel:     { color: 'var(--rojo)',     label: 'Vowel' },
+    plosive:   { color: 'var(--ocre)',     label: 'Plosive (stop)' },
+    fricative: { color: 'var(--verde)',    label: 'Fricative' },
+    nasal:     { color: '#3e5a78',         label: 'Nasal' },
+    liquid:    { color: '#8a4a6b',         label: 'Liquid (l / r)' },
+    glide:     { color: '#b06a3a',         label: 'Glide' },
+    silent:    { color: 'var(--ink-soft)', label: 'Silent' }
+  };
+
+  function renderAbecedario() {
+    const container = document.getElementById('abecedarioContent');
+    if (!container) return;
+    // Warn if speech synthesis isn't available
+    const note = document.getElementById('abcVoiceNote');
+    if (note) note.style.display = ('speechSynthesis' in window) ? 'none' : 'block';
+
+    const vowelTiles = ABC_VOWELS.map((v, i) => `
+      <div class="abc-tile" role="button" tabindex="0" onclick="speakAbc('vowel', ${i})"
+           onkeypress="if(event.key==='Enter'||event.key===' ')speakAbc('vowel', ${i})">
+        <span class="abc-speaker">🔊</span>
+        <span class="abc-letter">${v.L}${v.L.toLowerCase()}</span>
+        <span class="abc-sound">${v.sound}</span>
+        <span class="abc-word">${v.word}</span>
+        <span class="abc-say">🗣 ${v.say}</span>
+        <span class="abc-mouth">👄 ${v.mouth}</span>
+      </div>`).join('');
+
+    const letterTiles = ABC_LETTERS.map((l, i) => {
+      const cat = ABC_CATS[l.cat] || { color: 'var(--ink-soft)', label: '' };
+      return `
+      <div class="abc-tile" role="button" tabindex="0" onclick="speakAbc('letter', ${i})"
+           onkeypress="if(event.key==='Enter'||event.key===' ')speakAbc('letter', ${i})">
+        <span class="abc-speaker">🔊</span>
+        <span class="abc-letter">${l.L}${l.L.toLowerCase()}</span>
+        <span class="abc-name">${l.name}</span>
+        <span class="abc-chip" style="background:${cat.color};">${cat.label}</span>
+        <span class="abc-manner">${l.manner}</span>
+        <span class="abc-say">🗣 ${l.say}</span>
+        <span class="abc-mouth">👄 ${l.mouth}</span>
+        <span class="abc-word">${l.word} · ${l.en}</span>
+      </div>`;
+    }).join('');
+
+    const legend = Object.keys(ABC_CATS).map(k =>
+      `<span class="abc-legend-item"><span class="abc-legend-dot" style="background:${ABC_CATS[k].color};"></span>${ABC_CATS[k].label}</span>`
+    ).join('');
+
+    container.innerHTML = `
+      <div class="abc-section-label">The five vowels — your foundation</div>
+      <div class="abc-vowels">${vowelTiles}</div>
+      <div class="abc-section-label">The full alphabet · 27 letters · <span style="text-transform:none;letter-spacing:0;">tap to hear · color = type of sound</span></div>
+      <div class="abc-legend">${legend}</div>
+      <div class="abc-grid">${letterTiles}</div>
+      <p style="font-size:13px; color:var(--ink-soft); margin-top:24px; line-height:1.6;">
+        Note: <em>ch</em>, <em>ll</em> and <em>rr</em> are digraphs (two-letter sounds), not separate letters in the modern alphabet.
+        The letter <strong>h</strong> is always silent. <strong>R</strong> at the start of a word or <strong>rr</strong> between vowels is the rolled “double r.”
+        Sounds shown are the common Latin-American pronunciation; a few differ in Spain (noted on the tiles).
+      </p>`;
+  }
+
+  // Speak a tile's letter name + example word, with a brief highlight
+  let abcSpeakTimer = null;
+  function speakAbc(kind, idx) {
+    const item = kind === 'vowel' ? ABC_VOWELS[idx] : ABC_LETTERS[idx];
+    if (!item) return;
+    const tiles = document.querySelectorAll(kind === 'vowel' ? '.abc-vowels .abc-tile' : '.abc-grid .abc-tile');
+    const tile = tiles[idx];
+    if (tile) {
+      document.querySelectorAll('.abc-tile.speaking').forEach(t => t.classList.remove('speaking'));
+      tile.classList.add('speaking');
+      clearTimeout(abcSpeakTimer);
+    }
+    const done = () => { if (tile) tile.classList.remove('speaking'); };
+    // Say the letter name, a short pause, then the example word
+    const phrase = item.name + '. ' + item.word;
+    if (typeof speakSpanish === 'function') {
+      speakSpanish(phrase, done);
+      abcSpeakTimer = setTimeout(done, 4000); // safety in case onend never fires
+    } else {
+      done();
+    }
   }
 
   function renderGameRound() {
@@ -26804,6 +28757,8 @@
   applySavedUnlocks();
   renderAvatar();
   renderAvisos();
+  updateRachaWidget();
+  updateRepasoBadges();
   renderCard();
   applyVosotrosPreference();
   newDrill();

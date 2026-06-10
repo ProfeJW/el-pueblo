@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lingüística — layout preview</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Fraunces:ital,opsz,wght@0,9..144,300..900;1,9..144,300..900&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<style>
+  :root{--paper:#f4ede0;--paper-deep:#ebe1cd;--card-bg:#fbf6ec;--ink:#1f1a14;--ink-soft:#6b6051;--rojo:#c43d2a;--ocre:#d4922c;--verde:#4a6b3a;--azul:#3e5a78;--morado:#8a4a6b;--line:rgba(31,26,20,.18);}
+  *{box-sizing:border-box;margin:0;padding:0;}
+  body{background:var(--paper);color:var(--ink);font-family:'Fraunces',serif;padding:26px 20px 90px;}
+  .wrap{max-width:920px;margin:0 auto;}
+  .banner{background:var(--ocre);color:var(--ink);font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:.14em;text-transform:uppercase;text-align:center;padding:10px;border-radius:4px;margin-bottom:30px;}
+  .phase{font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--rojo);margin:46px 0 14px;border-top:1px solid var(--line);padding-top:22px;}
+  .phase:first-of-type{border:none;margin-top:0;padding-top:0;}
+
+  /* ---- section header like the site ---- */
+  .section-header{display:flex;align-items:baseline;justify-content:space-between;border-bottom:1px solid var(--line);padding-bottom:14px;margin-bottom:8px;}
+  .section-header h2{font-family:'DM Serif Display',serif;font-weight:400;font-size:clamp(30px,5vw,44px);letter-spacing:-.02em;}
+  .section-header h2 em{font-style:italic;color:var(--rojo);}
+  .section-num{font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:.12em;color:var(--ink-soft);}
+  .lead{font-size:17px;color:var(--ink-soft);line-height:1.55;max-width:660px;margin:16px 0 28px;}
+
+  /* ---- hub category cards ---- */
+  .hub{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:14px;}
+  .cat{display:block;background:var(--card-bg);border:1px solid var(--line);border-radius:10px;padding:22px 20px;text-decoration:none;color:inherit;position:relative;overflow:hidden;transition:transform .15s,box-shadow .15s;}
+  .cat::before{content:"";position:absolute;top:0;left:0;right:0;height:4px;}
+  .cat:nth-child(1)::before{background:var(--rojo);}
+  .cat:nth-child(2)::before{background:var(--ocre);}
+  .cat:nth-child(3)::before{background:var(--verde);}
+  .cat:nth-child(4)::before{background:var(--azul);}
+  .cat:nth-child(5)::before{background:var(--morado);}
+  .cat:hover{transform:translateY(-3px);box-shadow:0 10px 24px rgba(31,26,20,.12);}
+  .cat .ico{font-size:30px;}
+  .cat h3{font-family:'DM Serif Display',serif;font-weight:400;font-size:23px;margin:10px 0 6px;}
+  .cat h3 em{font-style:italic;color:var(--rojo);}
+  .cat p{font-size:14px;color:var(--ink-soft);line-height:1.45;margin-bottom:12px;}
+  .cat .links{display:flex;flex-wrap:wrap;gap:6px;}
+  .cat .chip{font-family:'JetBrains Mono',monospace;font-size:10.5px;letter-spacing:.04em;background:var(--paper-deep);border:1px solid var(--line);border-radius:999px;padding:3px 10px;color:var(--ink);}
+  .cat .chip.new{background:var(--verde);color:var(--paper);border-color:var(--verde);}
+  .cat .status{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-soft);position:absolute;top:18px;right:18px;}
+
+  /* ---- sample lesson detail ---- */
+  .lesson{background:var(--card-bg);border:1px solid var(--line);border-radius:12px;padding:34px 34px 30px;margin-top:6px;}
+  .lesson .crumbs{font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.1em;color:var(--ink-soft);margin-bottom:14px;}
+  .lesson .badges{display:flex;gap:8px;margin-bottom:14px;}
+  .lvl{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.1em;text-transform:uppercase;padding:3px 10px;border-radius:999px;border:1px solid var(--line);color:var(--ink-soft);}
+  .lvl.sp1{background:var(--verde);color:var(--paper);border-color:var(--verde);}
+  .lesson h1{font-family:'DM Serif Display',serif;font-weight:400;font-size:34px;line-height:1.1;margin-bottom:6px;}
+  .lesson h1 em{font-style:italic;color:var(--rojo);}
+  .lesson .summary{font-style:italic;color:var(--ink-soft);font-size:16px;margin-bottom:26px;}
+  .lesson section{margin-bottom:24px;}
+  .lesson section h4{font-family:'DM Serif Display',serif;font-weight:400;font-size:21px;margin-bottom:8px;}
+  .lesson section h4 em{font-style:italic;color:var(--rojo);}
+  .lesson section p{font-size:15.5px;line-height:1.65;}
+  .lesson .key{background:var(--paper-deep);border-left:3px solid var(--ocre);border-radius:4px;padding:14px 18px;font-size:15px;line-height:1.55;}
+  .lesson .key b{color:var(--rojo);}
+  .vocab-row{display:flex;flex-wrap:wrap;gap:6px;margin-top:6px;}
+  .vocab{background:var(--ocre);color:var(--ink);border-radius:3px;padding:3px 10px;font-size:13px;}
+  .quizbox{border:1px solid var(--line);border-radius:8px;padding:18px;margin-top:8px;}
+  .quizbox .q{font-family:'DM Serif Display',serif;font-size:18px;margin-bottom:12px;}
+  .quizbox .opt{display:block;width:100%;text-align:left;background:var(--paper);border:1px solid var(--line);border-radius:6px;padding:11px 14px;margin-bottom:8px;font-family:inherit;font-size:14px;cursor:pointer;color:var(--ink);}
+  .quizbox .opt:hover{border-color:var(--rojo);}
+  .note{font-size:13px;color:var(--ink-soft);font-style:italic;margin-top:10px;}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="banner">📐 Lingüística — layout preview. Nothing applied to the site yet — approve or tweak.</div>
+
+  <!-- PHASE 1: THE HUB -->
+  <div class="phase">1 · The Lingüística hub (landing page)</div>
+  <div class="section-header">
+    <h2>La <em>lingüística</em></h2>
+    <div class="section-num">★ / Language science</div>
+  </div>
+  <p class="lead">
+    Language isn't just words to memorize — it's a system you can take apart and understand. This is a friendly tour of how Spanish actually works: its sounds, how its words are built, how it changes from country to country, and where it came from. Most of it connects to things you already do on this site.
+  </p>
+  <div class="hub">
+    <a class="cat" href="#">
+      <span class="status">links existing</span>
+      <span class="ico">🔤</span>
+      <h3>Sounds &amp; <em>spelling</em></h3>
+      <p>The building blocks of speech: vowels, consonants, the kinds of sounds (plosive, fricative, nasal…) and how the mouth makes them.</p>
+      <div class="links"><span class="chip">→ Abecedario</span><span class="chip">→ Pronunciation lesson</span></div>
+    </a>
+    <a class="cat" href="#">
+      <span class="status">links existing</span>
+      <span class="ico">🧱</span>
+      <h3>How words are <em>built</em></h3>
+      <p>Morphology: gender &amp; articles, making things plural, and how verbs change their endings to carry meaning.</p>
+      <div class="links"><span class="chip">→ Plurals lesson</span><span class="chip">→ Gender &amp; articles</span><span class="chip">→ Verb drills</span></div>
+    </a>
+    <a class="cat" href="#">
+      <span class="status">links existing</span>
+      <span class="ico">🌎</span>
+      <h3>Spanish around the <em>world</em></h3>
+      <p>Sociolinguistics: why <em>tú/vos/usted</em> differ, the seseo vs. “th” split, and slang that changes country to country.</p>
+      <div class="links"><span class="chip">→ Mundo · slang</span><span class="chip">→ Tú vs. Usted</span></div>
+    </a>
+    <a class="cat" href="#">
+      <span class="status">2 new lessons</span>
+      <span class="ico">📜</span>
+      <h3>Where Spanish <em>comes from</em></h3>
+      <p>A short history: Latin → Castilian, the Arabic influence (<em>ojalá, almohada</em>), and indigenous words the world borrowed (<em>papa, tomate, chocolate</em>).</p>
+      <div class="links"><span class="chip new">NEW · History of the language</span><span class="chip new">NEW · Borrowed words</span></div>
+    </a>
+    <a class="cat" href="#">
+      <span class="status">1 new lesson</span>
+      <span class="ico">🧠</span>
+      <h3>What is <em>linguistics?</em></h3>
+      <p>The big picture: what linguists study (phonetics, morphology, syntax, sociolinguistics) — in plain language, with Spanish examples.</p>
+      <div class="links"><span class="chip new">NEW · The fields of linguistics</span></div>
+    </a>
+  </div>
+
+  <!-- PHASE 2: A SAMPLE NEW LESSON -->
+  <div class="phase">2 · How a new intro lesson would look (sample)</div>
+  <div class="lesson">
+    <div class="crumbs">← Lingüística · Where Spanish comes from</div>
+    <div class="badges"><span class="lvl sp1">Spanish 1</span><span class="lvl">Start here · Language science</span></div>
+    <h1>Where Spanish <em>comes from</em></h1>
+    <div class="summary">In two minutes: how a dialect of Latin spoken by soldiers became the second-most-spoken native language on Earth.</div>
+
+    <section>
+      <h4>It started as <em>street Latin</em></h4>
+      <p>Spanish is a <strong>Romance language</strong> — a child of Latin, like French, Italian, Portuguese, and Romanian. But it didn't come from the polished Latin of books. It grew out of <em>Vulgar Latin</em>: the everyday, spoken Latin that Roman soldiers, traders, and settlers brought to the Iberian Peninsula starting around 200&nbsp;BCE. Over centuries, that spoken Latin drifted, simplified, and reshaped itself into <em>castellano</em> — Castilian — the language we now call Spanish.</p>
+    </section>
+
+    <section>
+      <h4>Then <em>Arabic</em> left its mark</h4>
+      <p>For nearly 800 years (711–1492), much of the peninsula was <em>al-Ándalus</em>, under Muslim rule. Arabic became the language of science, trade, and government — and it loaned Spanish thousands of words. You use them constantly without noticing:</p>
+      <div class="vocab-row">
+        <span class="vocab">ojalá (← <em>law šá lláh</em>)</span>
+        <span class="vocab">almohada · pillow</span>
+        <span class="vocab">aceite · oil</span>
+        <span class="vocab">azúcar · sugar</span>
+        <span class="vocab">álgebra</span>
+        <span class="vocab">almohada</span>
+      </div>
+      <p class="note">Tip: a lot of Spanish words starting with <strong>al-</strong> come from Arabic (the Arabic article “al”).</p>
+    </section>
+
+    <section>
+      <h4>And the <em>Americas</em> gave words back</h4>
+      <p>After 1492, Spanish met hundreds of indigenous languages. It borrowed words for things Europe had never seen — and then passed them on to English and the world:</p>
+      <div class="vocab-row">
+        <span class="vocab">papa · potato (Quechua)</span>
+        <span class="vocab">tomate (Náhuatl)</span>
+        <span class="vocab">chocolate (Náhuatl)</span>
+        <span class="vocab">huracán · hurricane (Taíno)</span>
+      </div>
+    </section>
+
+    <section>
+      <div class="key"><b>Key idea:</b> Spanish is a <b>layered</b> language — Latin bones, Arabic seasoning, and indigenous American words baked in. Every layer is a piece of history you can hear in everyday speech.</div>
+    </section>
+
+    <section>
+      <h4>Quick <em>check</em></h4>
+      <div class="quizbox">
+        <div class="q">The word <em>ojalá</em> (“hopefully”) comes from which language?</div>
+        <button class="opt">Latin</button>
+        <button class="opt">Arabic ✓</button>
+        <button class="opt">Quechua</button>
+        <button class="opt">Náhuatl</button>
+      </div>
+    </section>
+  </div>
+
+  <p style="margin-top:34px;font-size:15px;line-height:1.6;color:var(--ink-soft);">
+    <strong style="color:var(--ink);">What I need from you:</strong> approve this layout (hub cards + lesson style), or tell me what to change — card style, which categories, lesson length/tone, level badges, whether the new lessons get quizzes, etc. Once approved, I'll build the hub + a home tile + nav link, wire the “links existing” chips to the real pages, and draft the new lessons for your accuracy review.
+  </p>
+</div>
+</body>
+</html>
