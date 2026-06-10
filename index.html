@@ -3444,6 +3444,87 @@
     .lesson-resources-card { padding: 24px; }
   }
 
+  /* ABECEDARIO — interactive alphabet */
+  .abc-section-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+    margin: 8px 0 14px;
+  }
+  .abc-vowels {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 12px;
+    margin-bottom: 36px;
+  }
+  .abc-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(116px, 1fr));
+    gap: 12px;
+  }
+  .abc-tile {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 16px 10px 14px;
+    background: var(--paper);
+    border: 1px solid var(--line);
+    border-radius: 6px;
+    cursor: pointer;
+    text-align: center;
+    transition: transform 0.14s ease, box-shadow 0.14s ease, border-color 0.14s ease;
+    user-select: none;
+  }
+  .abc-tile:hover { transform: translateY(-2px); border-color: var(--rojo); box-shadow: 0 6px 16px rgba(31,26,20,0.12); }
+  .abc-tile:active { transform: translateY(0); }
+  .abc-tile.speaking { border-color: var(--ocre); box-shadow: 0 0 0 3px rgba(212,146,44,0.35); }
+  .abc-tile .abc-letter {
+    font-family: 'DM Serif Display', serif;
+    font-size: 34px;
+    line-height: 1;
+    color: var(--ink);
+  }
+  .abc-tile .abc-name {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.08em;
+    color: var(--rojo);
+    margin-top: 6px;
+  }
+  .abc-tile .abc-word {
+    font-family: 'Fraunces', serif;
+    font-style: italic;
+    font-size: 13px;
+    color: var(--ink-soft);
+    margin-top: 4px;
+  }
+  .abc-tile .abc-speaker {
+    position: absolute;
+    top: 8px; right: 9px;
+    font-size: 11px;
+    opacity: 0.4;
+  }
+  .abc-tile:hover .abc-speaker { opacity: 0.85; }
+  .abc-vowels .abc-tile { background: linear-gradient(135deg, var(--paper), var(--paper-deep)); }
+  .abc-vowels .abc-tile .abc-letter { font-size: 44px; color: var(--rojo); }
+  .abc-vowels .abc-tile .abc-sound {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px;
+    color: var(--ink);
+    margin-top: 6px;
+  }
+  @media (max-width: 560px) {
+    .abc-vowels { gap: 8px; }
+    .abc-vowels .abc-tile { padding: 12px 4px; }
+    .abc-vowels .abc-tile .abc-letter { font-size: 32px; }
+    .abc-grid { grid-template-columns: repeat(auto-fill, minmax(92px, 1fr)); }
+    .abc-tile .abc-letter { font-size: 28px; }
+  }
+
   /* LA RACHA — home widget + daily challenge page */
   .racha-widget {
     display: flex;
@@ -5033,6 +5114,7 @@
   <div class="nav-links">
     <a href="#/">Home</a>
     <a href="#/racha">Racha</a>
+    <a href="#/abecedario">Abecedario</a>
     <a href="#/vocabulario">Vocab</a>
     <a href="#/verbos">Verbs</a>
     <a href="#/lectura">Reading</a>
@@ -5268,6 +5350,11 @@
   </div>
 
   <div class="hero-meta">
+    <a href="#/abecedario">
+      <span class="num">🔤 Abecedario</span>
+      <span class="label-big">Alphabet & sounds</span>
+      <span class="desc">Tap any letter or vowel to hear it</span>
+    </a>
     <a href="#/vocabulario">
       <span class="num">🃏 Vocabulario</span>
       <span class="label-big">Vocabulary</span>
@@ -5376,6 +5463,21 @@
     <div class="section-num">🔥 Daily challenge</div>
   </div>
   <div id="rachaContent"><!-- populated by renderRacha --></div>
+</section></div>
+
+<!-- ABECEDARIO — interactive alphabet & vowel pronunciation -->
+<div class="page" data-page="abecedario"><section id="abecedario">
+  <div class="section-header">
+    <h2>El <em>abecedario</em></h2>
+    <div class="section-num">🔤 Letras y sonidos</div>
+  </div>
+  <p style="font-size: 17px; color: var(--ink-soft); line-height: 1.5; max-width: 620px; margin-bottom: 8px;">
+    The Spanish alphabet has <strong>27 letters</strong>. Tap any letter to hear its name and an example word out loud. Start with the five vowels — they're the foundation of every Spanish word.
+  </p>
+  <p id="abcVoiceNote" style="font-size: 13px; color: var(--ink-soft); font-style: italic; margin-bottom: 28px; display: none;">
+    🔇 Your browser doesn't support speech synthesis, so audio won't play here.
+  </p>
+  <div id="abecedarioContent"><!-- populated by renderAbecedario --></div>
 </section></div>
 
 <!-- AVISOS (ANNOUNCEMENTS FEED) -->
@@ -7325,6 +7427,7 @@
     topic: 'Topic',
     juegos: 'Games',
     racha: 'La Racha',
+    abecedario: 'Abecedario',
     game: 'Game',
     lecciones: 'Grammar lessons',
     lesson: 'Lesson',
@@ -7466,6 +7569,7 @@
     if (page === 'reading' && typeof renderReadingDetail === 'function') renderReadingDetail(param);
     if (page === 'juegos' && typeof renderGamesHub === 'function') renderGamesHub();
     if (page === 'racha' && typeof renderRacha === 'function') renderRacha();
+    if (page === 'abecedario' && typeof renderAbecedario === 'function') renderAbecedario();
     if (page === 'game' && typeof startGame === 'function') startGame(param);
     if (page === 'lecciones' && typeof renderLessonsList === 'function') renderLessonsList();
     if (page === 'lesson' && typeof renderLessonDetail === 'function') renderLessonDetail(param);
@@ -27305,6 +27409,109 @@
           <a href="#/" class="btn" style="text-decoration:none;">Home</a>
         </div>
       </div>`;
+  }
+
+  // ============================================================================
+  // ABECEDARIO — interactive alphabet & vowel pronunciation
+  // ----------------------------------------------------------------------------
+  // Tap a letter → speakSpanish() reads its name + an example word aloud.
+  // 27-letter modern RAE alphabet (includes ñ; ch/ll/rr are no longer separate
+  // letters). Vowels get their own highlighted row with an English sound hint.
+  // ============================================================================
+  const ABC_VOWELS = [
+    { L: 'A', name: 'a', sound: '“ah”', word: 'árbol',    en: 'tree' },
+    { L: 'E', name: 'e', sound: '“eh”', word: 'elefante', en: 'elephant' },
+    { L: 'I', name: 'i', sound: '“ee”', word: 'isla',     en: 'island' },
+    { L: 'O', name: 'o', sound: '“oh”', word: 'oso',      en: 'bear' },
+    { L: 'U', name: 'u', sound: '“oo”', word: 'uvas',     en: 'grapes' }
+  ];
+  const ABC_LETTERS = [
+    { L: 'A', name: 'a',          word: 'árbol',    en: 'tree' },
+    { L: 'B', name: 'be',         word: 'burro',    en: 'donkey' },
+    { L: 'C', name: 'ce',         word: 'casa',     en: 'house' },
+    { L: 'D', name: 'de',         word: 'dedo',     en: 'finger' },
+    { L: 'E', name: 'e',          word: 'elefante', en: 'elephant' },
+    { L: 'F', name: 'efe',        word: 'flor',     en: 'flower' },
+    { L: 'G', name: 'ge',         word: 'gato',     en: 'cat' },
+    { L: 'H', name: 'hache',      word: 'hola',     en: 'hello (silent h)' },
+    { L: 'I', name: 'i',          word: 'isla',     en: 'island' },
+    { L: 'J', name: 'jota',       word: 'jirafa',   en: 'giraffe' },
+    { L: 'K', name: 'ka',         word: 'koala',    en: 'koala' },
+    { L: 'L', name: 'ele',        word: 'luna',     en: 'moon' },
+    { L: 'M', name: 'eme',        word: 'mano',     en: 'hand' },
+    { L: 'N', name: 'ene',        word: 'nariz',    en: 'nose' },
+    { L: 'Ñ', name: 'eñe',        word: 'niño',     en: 'child' },
+    { L: 'O', name: 'o',          word: 'oso',      en: 'bear' },
+    { L: 'P', name: 'pe',         word: 'perro',    en: 'dog' },
+    { L: 'Q', name: 'cu',         word: 'queso',    en: 'cheese' },
+    { L: 'R', name: 'erre',       word: 'ratón',    en: 'mouse' },
+    { L: 'S', name: 'ese',        word: 'sol',      en: 'sun' },
+    { L: 'T', name: 'te',         word: 'tortuga',  en: 'turtle' },
+    { L: 'U', name: 'u',          word: 'uvas',     en: 'grapes' },
+    { L: 'V', name: 'uve',        word: 'vaca',     en: 'cow' },
+    { L: 'W', name: 'uve doble',  word: 'wifi',     en: 'wifi' },
+    { L: 'X', name: 'equis',      word: 'xilófono', en: 'xylophone' },
+    { L: 'Y', name: 'ye',         word: 'yate',     en: 'yacht' },
+    { L: 'Z', name: 'zeta',       word: 'zapato',   en: 'shoe' }
+  ];
+
+  function renderAbecedario() {
+    const container = document.getElementById('abecedarioContent');
+    if (!container) return;
+    // Warn if speech synthesis isn't available
+    const note = document.getElementById('abcVoiceNote');
+    if (note) note.style.display = ('speechSynthesis' in window) ? 'none' : 'block';
+
+    const vowelTiles = ABC_VOWELS.map((v, i) => `
+      <div class="abc-tile" role="button" tabindex="0" onclick="speakAbc('vowel', ${i})"
+           onkeypress="if(event.key==='Enter'||event.key===' ')speakAbc('vowel', ${i})">
+        <span class="abc-speaker">🔊</span>
+        <span class="abc-letter">${v.L}${v.L.toLowerCase()}</span>
+        <span class="abc-sound">${v.sound}</span>
+        <span class="abc-word">${v.word}</span>
+      </div>`).join('');
+
+    const letterTiles = ABC_LETTERS.map((l, i) => `
+      <div class="abc-tile" role="button" tabindex="0" onclick="speakAbc('letter', ${i})"
+           onkeypress="if(event.key==='Enter'||event.key===' ')speakAbc('letter', ${i})">
+        <span class="abc-speaker">🔊</span>
+        <span class="abc-letter">${l.L}${l.L.toLowerCase()}</span>
+        <span class="abc-name">${l.name}</span>
+        <span class="abc-word">${l.word} · ${l.en}</span>
+      </div>`).join('');
+
+    container.innerHTML = `
+      <div class="abc-section-label">The five vowels — your foundation</div>
+      <div class="abc-vowels">${vowelTiles}</div>
+      <div class="abc-section-label">The full alphabet · 27 letters</div>
+      <div class="abc-grid">${letterTiles}</div>
+      <p style="font-size:13px; color:var(--ink-soft); margin-top:24px; line-height:1.6;">
+        Note: <em>ch</em>, <em>ll</em> and <em>rr</em> are digraphs (two-letter sounds), not separate letters in the modern alphabet.
+        The letter <strong>h</strong> is always silent. <strong>R</strong> at the start of a word or <strong>rr</strong> between vowels is the rolled “double r.”
+      </p>`;
+  }
+
+  // Speak a tile's letter name + example word, with a brief highlight
+  let abcSpeakTimer = null;
+  function speakAbc(kind, idx) {
+    const item = kind === 'vowel' ? ABC_VOWELS[idx] : ABC_LETTERS[idx];
+    if (!item) return;
+    const tiles = document.querySelectorAll(kind === 'vowel' ? '.abc-vowels .abc-tile' : '.abc-grid .abc-tile');
+    const tile = tiles[idx];
+    if (tile) {
+      document.querySelectorAll('.abc-tile.speaking').forEach(t => t.classList.remove('speaking'));
+      tile.classList.add('speaking');
+      clearTimeout(abcSpeakTimer);
+    }
+    const done = () => { if (tile) tile.classList.remove('speaking'); };
+    // Say the letter name, a short pause, then the example word
+    const phrase = item.name + '. ' + item.word;
+    if (typeof speakSpanish === 'function') {
+      speakSpanish(phrase, done);
+      abcSpeakTimer = setTimeout(done, 4000); // safety in case onend never fires
+    } else {
+      done();
+    }
   }
 
   function renderGameRound() {
