@@ -3520,27 +3520,35 @@
   }
   .abc-vowels {
     display: grid;
-    grid-template-columns: repeat(5, 1fr);
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
     gap: 12px;
     margin-bottom: 36px;
   }
   .abc-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(116px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(216px, 1fr));
     gap: 12px;
   }
+  /* color-coded legend above the alphabet */
+  .abc-legend {
+    display: flex; flex-wrap: wrap; gap: 8px 16px; margin: 0 0 16px;
+  }
+  .abc-legend-item {
+    display: inline-flex; align-items: center; gap: 6px;
+    font-family: 'JetBrains Mono', monospace; font-size: 11px; color: var(--ink-soft);
+  }
+  .abc-legend-dot { width: 11px; height: 11px; border-radius: 3px; display: inline-block; }
   .abc-tile {
     position: relative;
     display: flex;
     flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    padding: 16px 10px 14px;
+    align-items: flex-start;
+    padding: 14px 14px 13px;
     background: var(--paper);
     border: 1px solid var(--line);
     border-radius: 6px;
     cursor: pointer;
-    text-align: center;
+    text-align: left;
     transition: transform 0.14s ease, box-shadow 0.14s ease, border-color 0.14s ease;
     user-select: none;
   }
@@ -3549,7 +3557,7 @@
   .abc-tile.speaking { border-color: var(--ocre); box-shadow: 0 0 0 3px rgba(212,146,44,0.35); }
   .abc-tile .abc-letter {
     font-family: 'DM Serif Display', serif;
-    font-size: 34px;
+    font-size: 32px;
     line-height: 1;
     color: var(--ink);
   }
@@ -3558,36 +3566,54 @@
     font-size: 11px;
     letter-spacing: 0.08em;
     color: var(--rojo);
-    margin-top: 6px;
+    margin-top: 4px;
   }
+  .abc-tile .abc-chip {
+    display: inline-block; margin-top: 8px;
+    font-family: 'JetBrains Mono', monospace; font-size: 9.5px; letter-spacing: 0.08em;
+    text-transform: uppercase; color: var(--paper); padding: 2px 8px; border-radius: 999px;
+  }
+  .abc-tile .abc-manner {
+    font-family: 'JetBrains Mono', monospace; font-size: 10.5px; line-height: 1.4;
+    color: var(--ink-soft); margin-top: 7px;
+  }
+  .abc-tile .abc-say, .abc-tile .abc-mouth {
+    font-family: 'Fraunces', serif; font-size: 12.5px; line-height: 1.4;
+    color: var(--ink); margin-top: 5px;
+  }
+  .abc-tile .abc-mouth { color: var(--ink-soft); }
   .abc-tile .abc-word {
     font-family: 'Fraunces', serif;
     font-style: italic;
     font-size: 13px;
     color: var(--ink-soft);
-    margin-top: 4px;
+    margin-top: 8px;
+    padding-top: 8px;
+    border-top: 1px solid var(--line);
+    width: 100%;
   }
   .abc-tile .abc-speaker {
     position: absolute;
-    top: 8px; right: 9px;
-    font-size: 11px;
+    top: 10px; right: 11px;
+    font-size: 13px;
     opacity: 0.4;
   }
   .abc-tile:hover .abc-speaker { opacity: 0.85; }
-  .abc-vowels .abc-tile { background: linear-gradient(135deg, var(--paper), var(--paper-deep)); }
-  .abc-vowels .abc-tile .abc-letter { font-size: 44px; color: var(--rojo); }
+  .abc-vowels .abc-tile { background: linear-gradient(135deg, var(--paper), var(--paper-deep)); align-items: flex-start; }
+  .abc-vowels .abc-tile .abc-letter { font-size: 42px; color: var(--rojo); }
   .abc-vowels .abc-tile .abc-sound {
     font-family: 'JetBrains Mono', monospace;
     font-size: 12px;
     color: var(--ink);
     margin-top: 6px;
   }
+  .abc-vowels .abc-tile .abc-say, .abc-vowels .abc-tile .abc-mouth {
+    font-family: 'Fraunces', serif; font-size: 12.5px; line-height: 1.4; margin-top: 5px;
+  }
   @media (max-width: 560px) {
-    .abc-vowels { gap: 8px; }
-    .abc-vowels .abc-tile { padding: 12px 4px; }
-    .abc-vowels .abc-tile .abc-letter { font-size: 32px; }
-    .abc-grid { grid-template-columns: repeat(auto-fill, minmax(92px, 1fr)); }
-    .abc-tile .abc-letter { font-size: 28px; }
+    .abc-vowels { grid-template-columns: 1fr 1fr; gap: 8px; }
+    .abc-grid { grid-template-columns: 1fr; }
+    .abc-tile .abc-letter { font-size: 30px; }
   }
 
   /* LA RACHA — home widget + daily challenge page */
@@ -27734,42 +27760,53 @@
   // 27-letter modern RAE alphabet (includes ñ; ch/ll/rr are no longer separate
   // letters). Vowels get their own highlighted row with an English sound hint.
   // ============================================================================
+  // cat = sound family (color + legend) · say = English equivalent · mouth = shape tip
   const ABC_VOWELS = [
-    { L: 'A', name: 'a', sound: '“ah”', word: 'árbol',    en: 'tree' },
-    { L: 'E', name: 'e', sound: '“eh”', word: 'elefante', en: 'elephant' },
-    { L: 'I', name: 'i', sound: '“ee”', word: 'isla',     en: 'island' },
-    { L: 'O', name: 'o', sound: '“oh”', word: 'oso',      en: 'bear' },
-    { L: 'U', name: 'u', sound: '“oo”', word: 'uvas',     en: 'grapes' }
+    { L: 'A', name: 'a', sound: '“ah”', word: 'árbol',    en: 'tree',     cat: 'vowel', say: 'like “a” in father',  mouth: 'open wide, tongue low' },
+    { L: 'E', name: 'e', sound: '“eh”', word: 'elefante', en: 'elephant', cat: 'vowel', say: 'like “e” in bed',     mouth: 'lips relaxed, slightly open' },
+    { L: 'I', name: 'i', sound: '“ee”', word: 'isla',     en: 'island',   cat: 'vowel', say: 'like “ee” in see',    mouth: 'lips spread, like a smile' },
+    { L: 'O', name: 'o', sound: '“oh”', word: 'oso',      en: 'bear',     cat: 'vowel', say: 'like “o” in note',    mouth: 'lips rounded' },
+    { L: 'U', name: 'u', sound: '“oo”', word: 'uvas',     en: 'grapes',   cat: 'vowel', say: 'like “oo” in food',   mouth: 'lips tight and rounded' }
   ];
   const ABC_LETTERS = [
-    { L: 'A', name: 'a',          word: 'árbol',    en: 'tree' },
-    { L: 'B', name: 'be',         word: 'burro',    en: 'donkey' },
-    { L: 'C', name: 'ce',         word: 'casa',     en: 'house' },
-    { L: 'D', name: 'de',         word: 'dedo',     en: 'finger' },
-    { L: 'E', name: 'e',          word: 'elefante', en: 'elephant' },
-    { L: 'F', name: 'efe',        word: 'flor',     en: 'flower' },
-    { L: 'G', name: 'ge',         word: 'gato',     en: 'cat' },
-    { L: 'H', name: 'hache',      word: 'hola',     en: 'hello (silent h)' },
-    { L: 'I', name: 'i',          word: 'isla',     en: 'island' },
-    { L: 'J', name: 'jota',       word: 'jirafa',   en: 'giraffe' },
-    { L: 'K', name: 'ka',         word: 'koala',    en: 'koala' },
-    { L: 'L', name: 'ele',        word: 'luna',     en: 'moon' },
-    { L: 'M', name: 'eme',        word: 'mano',     en: 'hand' },
-    { L: 'N', name: 'ene',        word: 'nariz',    en: 'nose' },
-    { L: 'Ñ', name: 'eñe',        word: 'niño',     en: 'child' },
-    { L: 'O', name: 'o',          word: 'oso',      en: 'bear' },
-    { L: 'P', name: 'pe',         word: 'perro',    en: 'dog' },
-    { L: 'Q', name: 'cu',         word: 'queso',    en: 'cheese' },
-    { L: 'R', name: 'erre',       word: 'ratón',    en: 'mouse' },
-    { L: 'S', name: 'ese',        word: 'sol',      en: 'sun' },
-    { L: 'T', name: 'te',         word: 'tortuga',  en: 'turtle' },
-    { L: 'U', name: 'u',          word: 'uvas',     en: 'grapes' },
-    { L: 'V', name: 'uve',        word: 'vaca',     en: 'cow' },
-    { L: 'W', name: 'uve doble',  word: 'wifi',     en: 'wifi' },
-    { L: 'X', name: 'equis',      word: 'xilófono', en: 'xylophone' },
-    { L: 'Y', name: 'ye',         word: 'yate',     en: 'yacht' },
-    { L: 'Z', name: 'zeta',       word: 'zapato',   en: 'shoe' }
+    { L: 'A', name: 'a',          word: 'árbol',    en: 'tree',     cat: 'vowel',     manner: 'Vowel · open',                          say: 'like “a” in father',          mouth: 'open wide, tongue low' },
+    { L: 'B', name: 'be',         word: 'burro',    en: 'donkey',   cat: 'plosive',   manner: 'Plosive · bilabial /b/',                say: 'like “b” in boy',             mouth: 'lips together, then pop open' },
+    { L: 'C', name: 'ce',         word: 'casa',     en: 'house',    cat: 'plosive',   manner: 'Plosive /k/ — fricative /s/ before e,i', say: '“k” (casa) or “s” (cena)',   mouth: 'back of tongue up; or tongue near teeth' },
+    { L: 'D', name: 'de',         word: 'dedo',     en: 'finger',   cat: 'plosive',   manner: 'Plosive · dental /d/',                  say: 'like “d”, softer',            mouth: 'tongue tip on the upper teeth' },
+    { L: 'E', name: 'e',          word: 'elefante', en: 'elephant', cat: 'vowel',     manner: 'Vowel · mid',                           say: 'like “e” in bed',             mouth: 'lips relaxed, slightly open' },
+    { L: 'F', name: 'efe',        word: 'flor',     en: 'flower',   cat: 'fricative', manner: 'Fricative · labiodental /f/',           say: 'like “f” in fun',             mouth: 'top teeth on bottom lip, blow' },
+    { L: 'G', name: 'ge',         word: 'gato',     en: 'cat',      cat: 'plosive',   manner: 'Plosive /g/ — guttural /x/ before e,i', say: '“g” in go (raspy “h” before e/i)', mouth: 'back of tongue to soft palate' },
+    { L: 'H', name: 'hache',      word: 'hola',     en: 'hello',    cat: 'silent',    manner: 'Silent (muda) — no sound',              say: 'no sound at all',             mouth: 'do nothing — skip the h' },
+    { L: 'I', name: 'i',          word: 'isla',     en: 'island',   cat: 'vowel',     manner: 'Vowel · close',                         say: 'like “ee” in see',            mouth: 'lips spread, like a smile' },
+    { L: 'J', name: 'jota',       word: 'jirafa',   en: 'giraffe',  cat: 'fricative', manner: 'Guttural fricative · velar /x/',        say: 'a raspy “h” (as in “loch”)',  mouth: 'back of tongue to throat, push air' },
+    { L: 'K', name: 'ka',         word: 'koala',    en: 'koala',    cat: 'plosive',   manner: 'Plosive · velar /k/',                   say: 'like “k” in kite',            mouth: 'back of tongue up, then release' },
+    { L: 'L', name: 'ele',        word: 'luna',     en: 'moon',     cat: 'liquid',    manner: 'Lateral · alveolar /l/',                say: 'like “l” in light',           mouth: 'tongue tip on ridge behind teeth' },
+    { L: 'M', name: 'eme',        word: 'mano',     en: 'hand',     cat: 'nasal',     manner: 'Nasal · bilabial /m/',                  say: 'like “m” in mom',             mouth: 'lips together, hum through nose' },
+    { L: 'N', name: 'ene',        word: 'nariz',    en: 'nose',     cat: 'nasal',     manner: 'Nasal · alveolar /n/',                  say: 'like “n” in no',              mouth: 'tongue on ridge, hum' },
+    { L: 'Ñ', name: 'eñe',        word: 'niño',     en: 'child',    cat: 'nasal',     manner: 'Nasal · palatal /ɲ/',                   say: 'like “ny” in canyon',         mouth: 'middle of tongue to roof' },
+    { L: 'O', name: 'o',          word: 'oso',      en: 'bear',     cat: 'vowel',     manner: 'Vowel · mid',                           say: 'like “o” in note',            mouth: 'lips rounded' },
+    { L: 'P', name: 'pe',         word: 'perro',    en: 'dog',      cat: 'plosive',   manner: 'Plosive · bilabial /p/',                say: 'like “p”, no puff of air',    mouth: 'lips together, soft release' },
+    { L: 'Q', name: 'cu',         word: 'queso',    en: 'cheese',   cat: 'plosive',   manner: 'Plosive · velar /k/ (qu)',              say: 'like “k” (always written “qu”)', mouth: 'back of tongue up, then release' },
+    { L: 'R', name: 'erre',       word: 'ratón',    en: 'mouse',    cat: 'liquid',    manner: 'Vibrant · tap /ɾ/ or rolled /r/',       say: 'tap like “tt” in butter; or rolled', mouth: 'tongue tip flicks/flutters the ridge' },
+    { L: 'S', name: 'ese',        word: 'sol',      en: 'sun',      cat: 'fricative', manner: 'Fricative · alveolar /s/',              say: 'like “s” in sun',             mouth: 'tongue near ridge, hiss' },
+    { L: 'T', name: 'te',         word: 'tortuga',  en: 'turtle',   cat: 'plosive',   manner: 'Plosive · dental /t/',                  say: 'like “t”, on the teeth',      mouth: 'tongue tip on upper teeth' },
+    { L: 'U', name: 'u',          word: 'uvas',     en: 'grapes',   cat: 'vowel',     manner: 'Vowel · close',                         say: 'like “oo” in food',           mouth: 'lips tight and rounded' },
+    { L: 'V', name: 'uve',        word: 'vaca',     en: 'cow',      cat: 'plosive',   manner: 'Plosive /b/ — sounds like B',           say: 'like “b” (V = B in Spanish!)', mouth: 'lips together, soft' },
+    { L: 'W', name: 'uve doble',  word: 'wifi',     en: 'wifi',     cat: 'glide',     manner: 'Glide · /w/ (foreign words)',           say: 'like “w” in week',            mouth: 'lips rounded, then glide' },
+    { L: 'X', name: 'equis',      word: 'taxi',     en: 'taxi',     cat: 'fricative', manner: 'Fricative /ks/ (guttural /x/ in “México”)', say: 'like “x” in taxi',        mouth: '“k” + “s” run together' },
+    { L: 'Y', name: 'ye',         word: 'yate',     en: 'yacht',    cat: 'glide',     manner: 'Palatal glide /ʝ/ — or vowel /i/',      say: 'like “y” in yes',             mouth: 'middle of tongue toward roof' },
+    { L: 'Z', name: 'zeta',       word: 'zapato',   en: 'shoe',     cat: 'fricative', manner: 'Fricative /s/ (or “th” in Spain)',      say: 'like “s” (or “th” in Spain)', mouth: 'tongue near ridge, hiss' }
   ];
+  // Sound-family → color + label for the tags and legend
+  const ABC_CATS = {
+    vowel:     { color: 'var(--rojo)',     label: 'Vowel' },
+    plosive:   { color: 'var(--ocre)',     label: 'Plosive (stop)' },
+    fricative: { color: 'var(--verde)',    label: 'Fricative' },
+    nasal:     { color: '#3e5a78',         label: 'Nasal' },
+    liquid:    { color: '#8a4a6b',         label: 'Liquid (l / r)' },
+    glide:     { color: '#b06a3a',         label: 'Glide' },
+    silent:    { color: 'var(--ink-soft)', label: 'Silent' }
+  };
 
   function renderAbecedario() {
     const container = document.getElementById('abecedarioContent');
@@ -27785,25 +27822,40 @@
         <span class="abc-letter">${v.L}${v.L.toLowerCase()}</span>
         <span class="abc-sound">${v.sound}</span>
         <span class="abc-word">${v.word}</span>
+        <span class="abc-say">🗣 ${v.say}</span>
+        <span class="abc-mouth">👄 ${v.mouth}</span>
       </div>`).join('');
 
-    const letterTiles = ABC_LETTERS.map((l, i) => `
+    const letterTiles = ABC_LETTERS.map((l, i) => {
+      const cat = ABC_CATS[l.cat] || { color: 'var(--ink-soft)', label: '' };
+      return `
       <div class="abc-tile" role="button" tabindex="0" onclick="speakAbc('letter', ${i})"
            onkeypress="if(event.key==='Enter'||event.key===' ')speakAbc('letter', ${i})">
         <span class="abc-speaker">🔊</span>
         <span class="abc-letter">${l.L}${l.L.toLowerCase()}</span>
         <span class="abc-name">${l.name}</span>
+        <span class="abc-chip" style="background:${cat.color};">${cat.label}</span>
+        <span class="abc-manner">${l.manner}</span>
+        <span class="abc-say">🗣 ${l.say}</span>
+        <span class="abc-mouth">👄 ${l.mouth}</span>
         <span class="abc-word">${l.word} · ${l.en}</span>
-      </div>`).join('');
+      </div>`;
+    }).join('');
+
+    const legend = Object.keys(ABC_CATS).map(k =>
+      `<span class="abc-legend-item"><span class="abc-legend-dot" style="background:${ABC_CATS[k].color};"></span>${ABC_CATS[k].label}</span>`
+    ).join('');
 
     container.innerHTML = `
       <div class="abc-section-label">The five vowels — your foundation</div>
       <div class="abc-vowels">${vowelTiles}</div>
-      <div class="abc-section-label">The full alphabet · 27 letters</div>
+      <div class="abc-section-label">The full alphabet · 27 letters · <span style="text-transform:none;letter-spacing:0;">tap to hear · color = type of sound</span></div>
+      <div class="abc-legend">${legend}</div>
       <div class="abc-grid">${letterTiles}</div>
       <p style="font-size:13px; color:var(--ink-soft); margin-top:24px; line-height:1.6;">
         Note: <em>ch</em>, <em>ll</em> and <em>rr</em> are digraphs (two-letter sounds), not separate letters in the modern alphabet.
         The letter <strong>h</strong> is always silent. <strong>R</strong> at the start of a word or <strong>rr</strong> between vowels is the rolled “double r.”
+        Sounds shown are the common Latin-American pronunciation; a few differ in Spain (noted on the tiles).
       </p>`;
   }
 
