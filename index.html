@@ -341,6 +341,48 @@
     gap: 12px;
     margin-top: 48px;
   }
+  /* HOME LINK TILES — icon-forward, compact (home page only) */
+  .home-links {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    gap: 12px;
+    margin-top: 40px;
+  }
+  .home-links .hl {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    background: var(--card-bg);
+    border: 1px solid var(--line);
+    border-radius: 14px;
+    padding: 20px 12px 16px;
+    text-decoration: none;
+    color: var(--ink);
+    transition: transform 0.15s ease, background 0.15s ease, border-color 0.15s ease, box-shadow 0.15s ease;
+  }
+  .home-links .hl:hover {
+    transform: translateY(-3px);
+    border-color: var(--rojo);
+    box-shadow: 0 8px 20px rgba(31, 26, 20, 0.1);
+  }
+  .home-links .hl-ico { font-size: 38px; line-height: 1; margin-bottom: 10px; }
+  .home-links .hl-name { font-family: 'DM Serif Display', serif; font-size: 18px; line-height: 1.1; }
+  .home-links .hl-sub {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 9.5px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+    margin-top: 4px;
+  }
+  [data-theme="cosmic"] .home-links .hl:hover .hl-name { color: var(--ocre); }
+  @media (max-width: 520px) {
+    .home-links { grid-template-columns: repeat(3, 1fr); gap: 8px; }
+    .home-links .hl { padding: 16px 6px 12px; border-radius: 12px; }
+    .home-links .hl-ico { font-size: 30px; }
+    .home-links .hl-name { font-size: 15px; }
+  }
   .hero-meta a {
     text-decoration: none;
     color: var(--ink);
@@ -5441,72 +5483,20 @@
     <div id="siteSearchResults" class="site-search-results" style="display:none;"></div>
   </div>
 
-  <div class="hero-meta">
-    <a href="#/abecedario">
-      <span class="num">🔤 Abecedario</span>
-      <span class="label-big">Alphabet & sounds</span>
-      <span class="desc">Tap any letter or vowel to hear it</span>
-    </a>
-    <a href="#/vocabulario">
-      <span class="num">🃏 Vocabulario</span>
-      <span class="label-big">Vocabulary</span>
-      <span class="desc">Flashcards · themed decks</span>
-    </a>
-    <a href="#/verbos">
-      <span class="num">🔄 Verbos</span>
-      <span class="label-big">Verb practice</span>
-      <span class="desc">All major tenses · commands · pronouns</span>
-    </a>
-    <a href="#/lectura">
-      <span class="num">📚 Lectura</span>
-      <span class="label-big">Guided reading</span>
-      <span class="desc">Passages with vocab & quiz</span>
-    </a>
-    <a href="#/escucha">
-      <span class="num">🎧 Escucha</span>
-      <span class="label-big">Listening</span>
-      <span class="desc">Audio at different levels</span>
-    </a>
-    <a href="#/escritura">
-      <span class="num">✍️ Escritura</span>
-      <span class="label-big">Writing topics</span>
-      <span class="desc">Respond in writing to teacher prompts</span>
-    </a>
-    <a href="#/voces">
-      <span class="num">🎙️ Voces</span>
-      <span class="label-big">Speaking topics</span>
-      <span class="desc">Record responses to teacher prompts</span>
-    </a>
-    <a href="#/mundo">
-      <span class="num">🌎 Mundo</span>
-      <span class="label-big">Cultura y geografía</span>
-      <span class="desc">Countries · flags · traditions</span>
-    </a>
-    <a href="#/historia" onclick="return window.__goHistoria ? window.__goHistoria() : true;">
-      <span class="num">📜 Historia</span>
-      <span class="label-big">Historia of Spanish-Speaking Nations</span>
-      <span class="desc">15 countries · coups, revolutions, dictatorships, conquests</span>
-    </a>
-    <a href="#/lecciones">
-      <span class="num">📘 Lessons</span>
-      <span class="label-big">Grammar lessons</span>
-      <span class="desc">Grammar across Spanish 1, 2 & 3</span>
-    </a>
-    <a href="#/juegos">
-      <span class="num">🎮 Games</span>
-      <span class="label-big">Practice games</span>
-      <span class="desc">Numbers · time · grammar & more</span>
-    </a>
-    <a href="#/lucas">
-      <span class="num">★ Lucas</span>
-      <span class="label-big">Rewards, achievements & shop</span>
-      <span class="desc">Your progress, your coins, and where to spend them</span>
-    </a>
-    <a href="#/recursos">
-      <span class="num">🔗 Resources</span>
-      <span class="label-big">Student resources</span>
-      <span class="desc">ProgressBook · IXL · Google Classroom · Spanish helpers</span>
-    </a>
+  <div class="home-links">
+    <a href="#/abecedario" class="hl"><span class="hl-ico">🔤</span><span class="hl-name">Abecedario</span><span class="hl-sub">Alphabet & sounds</span></a>
+    <a href="#/vocabulario" class="hl"><span class="hl-ico">🃏</span><span class="hl-name">Vocabulario</span><span class="hl-sub">Vocabulary</span></a>
+    <a href="#/repaso" class="hl"><span class="hl-ico">🧠</span><span class="hl-name">Repaso</span><span class="hl-sub">Spaced repetition</span></a>
+    <a href="#/verbos" class="hl"><span class="hl-ico">🔄</span><span class="hl-name">Verbos</span><span class="hl-sub">Verb practice</span></a>
+    <a href="#/lectura" class="hl"><span class="hl-ico">📚</span><span class="hl-name">Lectura</span><span class="hl-sub">Guided reading</span></a>
+    <a href="#/escucha" class="hl"><span class="hl-ico">🎧</span><span class="hl-name">Escucha</span><span class="hl-sub">Listening</span></a>
+    <a href="#/escritura" class="hl"><span class="hl-ico">✍️</span><span class="hl-name">Escritura</span><span class="hl-sub">Writing topics</span></a>
+    <a href="#/voces" class="hl"><span class="hl-ico">🎙️</span><span class="hl-name">Voces</span><span class="hl-sub">Speaking topics</span></a>
+    <a href="#/mundo" class="hl"><span class="hl-ico">🌎</span><span class="hl-name">Mundo</span><span class="hl-sub">Cultura y geografía</span></a>
+    <a href="#/lecciones" class="hl"><span class="hl-ico">📘</span><span class="hl-name">Lessons</span><span class="hl-sub">Grammar lessons</span></a>
+    <a href="#/juegos" class="hl"><span class="hl-ico">🎮</span><span class="hl-name">Games</span><span class="hl-sub">Practice games</span></a>
+    <a href="#/lucas" class="hl"><span class="hl-ico">★</span><span class="hl-name">Lucas</span><span class="hl-sub">Rewards & shop</span></a>
+    <a href="#/recursos" class="hl"><span class="hl-ico">🔗</span><span class="hl-name">Resources</span><span class="hl-sub">Student links</span></a>
   </div>
 
   <!-- WHY "LUCAS"? — explains where the reward-currency name comes from -->
