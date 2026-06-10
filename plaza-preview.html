@@ -1,0 +1,615 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>La Plaza Mayor · Preview · El Pueblo</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Fraunces:ital,opsz,wght@0,9..144,300..900;1,9..144,300..900&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --paper: #f4ede0;
+    --paper-deep: #ebe1cd;
+    --ink: #1f1a14;
+    --rojo: #c43d2a;
+    --ocre: #d4922c;
+    --verde: #4a6b3a;
+    --line: rgba(31, 26, 20, 0.18);
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    background: var(--paper);
+    color: var(--ink);
+    font-family: 'Fraunces', serif;
+    padding: 28px 20px 80px;
+  }
+  .wrap { max-width: 1150px; margin: 0 auto; }
+  .preview-banner {
+    background: var(--ocre);
+    color: var(--ink);
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    text-align: center;
+    padding: 10px 16px;
+    border-radius: 4px;
+    margin-bottom: 26px;
+  }
+  h1 {
+    font-family: 'DM Serif Display', serif;
+    font-weight: 400;
+    font-size: clamp(34px, 5vw, 56px);
+    letter-spacing: -0.02em;
+    line-height: 1.05;
+    margin-bottom: 10px;
+  }
+  h1 em { font-style: italic; color: var(--rojo); }
+  .sub { color: rgba(31,26,20,0.65); font-size: 16px; max-width: 640px; margin-bottom: 20px; line-height: 1.5; }
+  .controls { display: flex; gap: 10px; align-items: center; margin-bottom: 18px; flex-wrap: wrap; }
+  .toggle-btn {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px;
+    letter-spacing: 0.1em;
+    padding: 9px 18px;
+    border: 1px solid var(--ink);
+    background: transparent;
+    color: var(--ink);
+    border-radius: 999px;
+    cursor: pointer;
+    transition: all 0.15s ease;
+  }
+  .toggle-btn:hover { background: var(--ink); color: var(--paper); }
+  .hint {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: rgba(31,26,20,0.5);
+  }
+
+  /* ============ THE PLAZA SCENE ============ */
+  .plaza-stage {
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    overflow: hidden;
+    background: var(--paper);
+    box-shadow: 0 10px 40px rgba(31,26,20,0.12);
+  }
+  svg { display: block; width: 100%; height: auto; user-select: none; }
+  text { pointer-events: none; }
+
+  /* Day / night via CSS on the svg root group */
+  .sky        { fill: #efe3c8; transition: fill 0.6s ease; }
+  .sun        { fill: var(--ocre); transition: fill 0.6s ease, transform 0.6s ease; }
+  .ground     { fill: #e3d6bb; transition: fill 0.6s ease; }
+  .tile-line  { stroke: rgba(31,26,20,0.08); stroke-width: 1.5; transition: stroke 0.6s ease; }
+  .star       { fill: #f4ede0; opacity: 0; transition: opacity 0.6s ease; }
+  .win        { fill: #f4ede0; transition: fill 0.6s ease; }
+  .mountain   { fill: #d9c9a8; transition: fill 0.6s ease; }
+
+  .night .sky       { fill: #11142a; }
+  .night .sun       { fill: #e8eaf6; }
+  .night .ground    { fill: #1d2138; }
+  .night .tile-line { stroke: rgba(244,237,224,0.07); }
+  .night .star      { opacity: 0.9; }
+  .night .win       { fill: #ffd166; }
+  .night .mountain  { fill: #232847; }
+  .night .bld-label { fill: #e8eaf6; }
+  .night .scene-title { fill: #e8eaf6; }
+
+  /* Buildings: lift + glow on hover */
+  .building { cursor: pointer; }
+  .building .lift { transition: transform 0.18s ease; }
+  .building:hover .lift { transform: translateY(-6px); }
+  .building .halo {
+    opacity: 0;
+    transition: opacity 0.18s ease;
+  }
+  .building:hover .halo { opacity: 1; }
+  .bld-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12.5px;
+    letter-spacing: 0.06em;
+    fill: #1f1a14;
+    transition: fill 0.6s ease;
+  }
+  .bld-label-bg { fill: rgba(244,237,224,0.0); }
+  .scene-title {
+    font-family: 'DM Serif Display', serif;
+    font-style: italic;
+    fill: #1f1a14;
+    transition: fill 0.6s ease;
+  }
+
+  /* Click info bar */
+  .dest-bar {
+    margin-top: 14px;
+    padding: 16px 20px;
+    border: 1px dashed var(--line);
+    border-radius: 6px;
+    font-size: 15px;
+    display: flex;
+    gap: 12px;
+    align-items: center;
+    min-height: 58px;
+  }
+  .dest-bar .icon { font-size: 26px; }
+  .dest-bar strong { font-family: 'DM Serif Display', serif; font-weight: 400; font-size: 19px; }
+  .dest-bar .where { color: rgba(31,26,20,0.6); font-size: 13px; font-family: 'JetBrains Mono', monospace; }
+
+  /* Legend */
+  .legend { margin-top: 36px; }
+  .legend h2 { font-family: 'DM Serif Display', serif; font-weight: 400; font-size: 26px; margin-bottom: 14px; }
+  .legend h2 em { font-style: italic; color: var(--rojo); }
+  .legend-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+    gap: 10px;
+  }
+  .legend-item {
+    display: flex; gap: 10px; align-items: baseline;
+    padding: 10px 14px;
+    background: var(--paper-deep);
+    border: 1px solid var(--line);
+    border-radius: 4px;
+    font-size: 14px;
+  }
+  .legend-item .b { font-family: 'DM Serif Display', serif; font-size: 16px; white-space: nowrap; }
+  .legend-item .arrow { color: var(--rojo); }
+  .legend-item .s { color: rgba(31,26,20,0.65); }
+
+  .notes { margin-top: 36px; max-width: 720px; line-height: 1.6; font-size: 15px; }
+  .notes h2 { font-family: 'DM Serif Display', serif; font-weight: 400; font-size: 26px; margin-bottom: 12px; }
+  .notes li { margin: 8px 0 8px 18px; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="preview-banner">🏗 Design preview only — not connected to the real site yet. Nothing is integrated until you approve.</div>
+  <h1>La Plaza <em>Mayor</em></h1>
+  <p class="sub">The home page reimagined as the town square. Every building is a real section of the site — hover to see it light up, click it to see where it would take you. <strong>Try the night toggle</strong> — it matches the site's cosmic theme.</p>
+  <div class="controls">
+    <button class="toggle-btn" id="themeBtn" onclick="toggleNight()">🌙 Ver de noche</button>
+    <span class="hint">Hover the buildings · click to test</span>
+  </div>
+
+  <div class="plaza-stage">
+  <svg id="plazaSvg" viewBox="0 0 1200 700" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Illustrated plaza with buildings for each site section">
+    <!-- ============ SKY ============ -->
+    <rect class="sky" x="0" y="0" width="1200" height="368"/>
+    <!-- stars (visible at night) -->
+    <g>
+      <circle class="star" cx="90"  cy="50"  r="1.8"/>
+      <circle class="star" cx="220" cy="90"  r="1.3"/>
+      <circle class="star" cx="340" cy="40"  r="1.6"/>
+      <circle class="star" cx="470" cy="75"  r="1.2"/>
+      <circle class="star" cx="585" cy="38"  r="1.7"/>
+      <circle class="star" cx="700" cy="88"  r="1.3"/>
+      <circle class="star" cx="820" cy="42"  r="1.5"/>
+      <circle class="star" cx="930" cy="95"  r="1.2"/>
+      <circle class="star" cx="1140" cy="50" r="1.4"/>
+      <circle class="star" cx="160" cy="140" r="1.2"/>
+      <circle class="star" cx="640" cy="130" r="1.4"/>
+      <circle class="star" cx="1010" cy="140" r="1.6"/>
+    </g>
+    <!-- sun / moon -->
+    <circle class="sun" cx="1066" cy="84" r="36"/>
+    <!-- distant hills -->
+    <path class="mountain" d="M0,368 L120,300 L260,368 Z"/>
+    <path class="mountain" d="M180,368 L330,272 L500,368 Z" opacity="0.8"/>
+    <path class="mountain" d="M880,368 L1040,290 L1200,368 Z" opacity="0.75"/>
+
+    <!-- papel picado bunting across the sky -->
+    <g id="bunting">
+      <path d="M40,38 Q300,86 560,44" fill="none" stroke="rgba(31,26,20,0.35)" stroke-width="1.6"/>
+      <g fill="#c43d2a"><path d="M85,52 l22,2 -10,20 Z"/><path d="M205,68 l22,1 -10,19 Z"/><path d="M325,71 l22,0 -11,19 Z"/><path d="M450,58 l21,-2 -9,20 Z"/></g>
+      <g fill="#d4922c"><path d="M145,62 l22,2 -11,19 Z"/><path d="M265,71 l22,1 -11,19 Z"/><path d="M388,66 l22,-1 -10,19 Z"/><path d="M510,49 l21,-3 -9,20 Z"/></g>
+    </g>
+
+    <!-- ============ GROUND / PLAZA ============ -->
+    <rect class="ground" x="0" y="368" width="1200" height="332"/>
+    <!-- paving lines, fanned -->
+    <g class="paving">
+      <line class="tile-line" x1="0" y1="430" x2="1200" y2="430"/>
+      <line class="tile-line" x1="0" y1="505" x2="1200" y2="505"/>
+      <line class="tile-line" x1="0" y1="590" x2="1200" y2="590"/>
+      <line class="tile-line" x1="120" y1="700" x2="320" y2="368"/>
+      <line class="tile-line" x1="420" y1="700" x2="500" y2="368"/>
+      <line class="tile-line" x1="780" y1="700" x2="700" y2="368"/>
+      <line class="tile-line" x1="1080" y1="700" x2="880" y2="368"/>
+    </g>
+
+    <text class="scene-title" x="30" y="688" font-size="17">El Pueblo · la plaza mayor</text>
+
+    <!-- ================================================================
+         BACK ROW BUILDINGS (bases at y=368)
+         ================================================================ -->
+
+    <!-- LA BIBLIOTECA → Reading (60-235) -->
+    <g class="building" data-icon="📚" data-name="La Biblioteca" data-dest="Lectura — Reading library" tabindex="0">
+      <rect class="halo" x="55" y="180" width="186" height="195" rx="8" fill="none" stroke="#d4922c" stroke-width="3"/>
+      <g class="lift">
+        <rect x="62" y="218" width="172" height="150" fill="#a8552f"/>
+        <polygon points="52,218 148,186 244,218" fill="#1f1a14"/>
+        <rect x="80" y="240" width="10" height="98" fill="#f4ede0" opacity="0.9"/>
+        <rect x="106" y="240" width="10" height="98" fill="#f4ede0" opacity="0.9"/>
+        <rect x="180" y="240" width="10" height="98" fill="#f4ede0" opacity="0.9"/>
+        <rect x="206" y="240" width="10" height="98" fill="#f4ede0" opacity="0.9"/>
+        <rect x="130" y="282" width="36" height="86" fill="#1f1a14"/>
+        <rect x="134" y="286" width="28" height="78" fill="#6b3a22"/>
+        <rect class="win" x="130" y="240" width="36" height="30"/>
+        <text x="148" y="233" text-anchor="middle" font-family="'DM Serif Display',serif" font-size="13" fill="#f4ede0" font-style="italic">biblioteca</text>
+      </g>
+      <rect class="bld-label-bg" x="78" y="380" width="140" height="20"/>
+      <text class="bld-label" x="148" y="394" text-anchor="middle">📚 La Biblioteca</text>
+    </g>
+
+    <!-- EL CORREO → Writing (250-360) -->
+    <g class="building" data-icon="✉️" data-name="El Correo" data-dest="Escritura — Writing topics" tabindex="0">
+      <rect class="halo" x="246" y="225" width="122" height="150" rx="8" fill="none" stroke="#d4922c" stroke-width="3"/>
+      <g class="lift">
+        <rect x="252" y="252" width="110" height="116" fill="#d4922c"/>
+        <rect x="252" y="240" width="110" height="14" fill="#1f1a14"/>
+        <rect class="win" x="268" y="270" width="24" height="28"/>
+        <rect class="win" x="322" y="270" width="24" height="28"/>
+        <rect x="292" y="306" width="30" height="62" fill="#1f1a14"/>
+        <rect x="296" y="310" width="22" height="54" fill="#6b3a22"/>
+        <!-- envelope sign -->
+        <rect x="288" y="218" width="38" height="26" rx="3" fill="#f4ede0" stroke="#1f1a14" stroke-width="2"/>
+        <path d="M288,220 L307,236 L326,220" fill="none" stroke="#c43d2a" stroke-width="2.5"/>
+      </g>
+      <rect class="bld-label-bg" x="250" y="380" width="114" height="20"/>
+      <text class="bld-label" x="307" y="394" text-anchor="middle">✉️ El Correo</text>
+    </g>
+
+    <!-- EL AYUNTAMIENTO → Lessons (375-565), tall with clock tower -->
+    <g class="building" data-icon="🏛️" data-name="El Ayuntamiento" data-dest="Lecciones — Grammar lessons (town hall = where the rules live)" tabindex="0">
+      <rect class="halo" x="370" y="118" width="202" height="258" rx="8" fill="none" stroke="#d4922c" stroke-width="3"/>
+      <g class="lift">
+        <!-- tower -->
+        <rect x="432" y="142" width="76" height="110" fill="#c43d2a"/>
+        <polygon points="424,142 470,112 516,142" fill="#1f1a14"/>
+        <circle cx="470" cy="180" r="22" fill="#f4ede0" stroke="#1f1a14" stroke-width="2.5"/>
+        <line x1="470" y1="180" x2="470" y2="166" stroke="#1f1a14" stroke-width="2.5"/>
+        <line x1="470" y1="180" x2="480" y2="186" stroke="#1f1a14" stroke-width="2.5"/>
+        <!-- main hall -->
+        <rect x="380" y="252" width="180" height="116" fill="#c43d2a"/>
+        <rect x="380" y="244" width="180" height="10" fill="#1f1a14"/>
+        <!-- arcade arches -->
+        <g fill="#f4ede0">
+          <path d="M396,368 v-52 a14,14 0 0 1 28,0 v52 Z"/>
+          <path d="M438,368 v-52 a14,14 0 0 1 28,0 v52 Z" opacity="0.35"/>
+          <path d="M480,368 v-52 a14,14 0 0 1 28,0 v52 Z"/>
+        </g>
+        <path d="M438,368 v-52 a14,14 0 0 1 28,0 v52 Z" fill="#6b3a22"/>
+        <rect class="win" x="396" y="266" width="22" height="26"/>
+        <rect class="win" x="522" y="266" width="22" height="26"/>
+        <!-- flag -->
+        <line x1="470" y1="112" x2="470" y2="88" stroke="#1f1a14" stroke-width="2.5"/>
+        <path d="M470,88 l26,7 -26,7 Z" fill="#d4922c"/>
+      </g>
+      <rect class="bld-label-bg" x="394" y="380" width="152" height="20"/>
+      <text class="bld-label" x="470" y="394" text-anchor="middle">🏛️ El Ayuntamiento</text>
+    </g>
+
+    <!-- EL MUSEO → Mundo (580-730) -->
+    <g class="building" data-icon="🌎" data-name="El Museo" data-dest="Mundo — countries, culture, art, historia" tabindex="0">
+      <rect class="halo" x="574" y="196" width="166" height="180" rx="8" fill="none" stroke="#d4922c" stroke-width="3"/>
+      <g class="lift">
+        <rect x="582" y="240" width="150" height="128" fill="#4a6b3a"/>
+        <polygon points="572,240 657,206 742,240" fill="#1f1a14"/>
+        <rect x="598" y="258" width="12" height="110" fill="#f4ede0" opacity="0.9"/>
+        <rect x="704" y="258" width="12" height="110" fill="#f4ede0" opacity="0.9"/>
+        <rect class="win" x="626" y="262" width="26" height="30"/>
+        <rect class="win" x="662" y="262" width="26" height="30"/>
+        <rect x="636" y="306" width="42" height="62" fill="#1f1a14"/>
+        <rect x="641" y="311" width="32" height="57" fill="#6b3a22"/>
+        <!-- hanging globe banner -->
+        <rect x="622" y="222" width="70" height="14" rx="3" fill="#f4ede0" stroke="#1f1a14" stroke-width="1.5"/>
+        <text x="657" y="233" text-anchor="middle" font-family="'JetBrains Mono',monospace" font-size="10" fill="#1f1a14">MUNDO</text>
+      </g>
+      <rect class="bld-label-bg" x="600" y="380" width="114" height="20"/>
+      <text class="bld-label" x="657" y="394" text-anchor="middle">🌎 El Museo</text>
+    </g>
+
+    <!-- EL TEATRO → Voces / Speaking (745-895) -->
+    <g class="building" data-icon="🎙️" data-name="El Teatro" data-dest="Voces — Speaking topics & recordings" tabindex="0">
+      <rect class="halo" x="740" y="200" width="166" height="176" rx="8" fill="none" stroke="#d4922c" stroke-width="3"/>
+      <g class="lift">
+        <rect x="748" y="232" width="150" height="136" fill="#8a4a6b"/>
+        <rect x="748" y="222" width="150" height="12" fill="#1f1a14"/>
+        <!-- marquee arch -->
+        <path d="M778,368 v-70 a45,45 0 0 1 90,0 v70 Z" fill="#1f1a14"/>
+        <path d="M786,368 v-66 a37,37 0 0 1 74,0 v66 Z" fill="#c43d2a"/>
+        <path d="M796,368 v-60 a27,27 0 0 1 54,0 v60 Z" fill="#6b3a22"/>
+        <!-- marquee bulbs -->
+        <g class="win">
+          <circle cx="781" cy="296" r="3.4"/><circle cx="793" cy="276" r="3.4"/><circle cx="812" cy="262" r="3.4"/>
+          <circle cx="834" cy="258" r="3.4"/><circle cx="856" cy="262" r="3.4"/><circle cx="875" cy="276" r="3.4"/><circle cx="887" cy="296" r="3.4"/>
+        </g>
+        <rect class="win" x="756" y="240" width="18" height="22"/>
+        <rect class="win" x="874" y="240" width="18" height="22"/>
+        <text x="823" y="250" text-anchor="middle" font-family="'DM Serif Display',serif" font-style="italic" font-size="14" fill="#f4ede0">teatro</text>
+      </g>
+      <rect class="bld-label-bg" x="766" y="380" width="114" height="20"/>
+      <text class="bld-label" x="823" y="394" text-anchor="middle">🎙️ El Teatro</text>
+    </g>
+
+    <!-- EL BANCO → Lucas & achievements (910-1030) -->
+    <g class="building" data-icon="★" data-name="El Banco de Lucas" data-dest="Logros — Lucas, achievements & progress" tabindex="0">
+      <rect class="halo" x="904" y="218" width="134" height="158" rx="8" fill="none" stroke="#d4922c" stroke-width="3"/>
+      <g class="lift">
+        <rect x="912" y="258" width="118" height="110" fill="#3e5a78"/>
+        <polygon points="904,258 971,228 1038,258" fill="#1f1a14"/>
+        <rect x="924" y="272" width="9" height="96" fill="#f4ede0" opacity="0.9"/>
+        <rect x="1009" y="272" width="9" height="96" fill="#f4ede0" opacity="0.9"/>
+        <rect x="952" y="300" width="38" height="68" fill="#1f1a14"/>
+        <rect x="956" y="304" width="30" height="64" fill="#6b3a22"/>
+        <!-- coin sign -->
+        <circle cx="971" cy="282" r="13" fill="#d4922c" stroke="#1f1a14" stroke-width="2"/>
+        <text x="971" y="287" text-anchor="middle" font-family="'JetBrains Mono',monospace" font-size="12" font-weight="600" fill="#1f1a14">L</text>
+      </g>
+      <rect class="bld-label-bg" x="914" y="380" width="114" height="20"/>
+      <text class="bld-label" x="971" y="394" text-anchor="middle">★ El Banco</text>
+    </g>
+
+    <!-- LA PLAZUELA (alley around the corner) → Games (1045-1180) -->
+    <g class="building" data-icon="🎮" data-name="La Plazuela" data-dest="Juegos — all the games + La Racha, around the corner" tabindex="0">
+      <rect class="halo" x="1040" y="208" width="146" height="168" rx="8" fill="none" stroke="#d4922c" stroke-width="3"/>
+      <g class="lift">
+        <!-- archway wall -->
+        <rect x="1048" y="240" width="130" height="128" fill="#b06a3a"/>
+        <rect x="1048" y="230" width="130" height="12" fill="#1f1a14"/>
+        <!-- arch opening showing a glimpse of the side plaza -->
+        <path d="M1072,368 v-72 a41,41 0 0 1 82,0 v72 Z" fill="#1f1a14"/>
+        <path d="M1078,368 v-68 a35,35 0 0 1 70,0 v68 Z" fill="#efe3c8"/>
+        <!-- glimpse: bunting + tiny game kiosk through the arch -->
+        <path d="M1080,316 Q1113,330 1146,316" fill="none" stroke="rgba(31,26,20,0.45)" stroke-width="1.4"/>
+        <path d="M1092,320 l10,1 -5,9 Z" fill="#c43d2a"/>
+        <path d="M1116,322 l10,0 -5,9 Z" fill="#d4922c"/>
+        <rect x="1098" y="338" width="30" height="30" fill="#c43d2a"/>
+        <polygon points="1094,338 1113,326 1132,338" fill="#1f1a14"/>
+        <!-- hanging sign -->
+        <rect x="1075" y="248" width="76" height="18" rx="3" fill="#f4ede0" stroke="#1f1a14" stroke-width="1.5"/>
+        <text x="1113" y="261" text-anchor="middle" font-family="'JetBrains Mono',monospace" font-size="9.5" fill="#1f1a14">A LA VUELTA →</text>
+      </g>
+      <rect class="bld-label-bg" x="1056" y="380" width="114" height="20"/>
+      <text class="bld-label" x="1113" y="394" text-anchor="middle">🎮 La Plazuela</text>
+    </g>
+
+    <!-- ================================================================
+         FOREGROUND
+         ================================================================ -->
+
+    <!-- EL MERCADO (market stall) → Vocab (110-300, front-left) -->
+    <g class="building" data-icon="🃏" data-name="El Mercado" data-dest="Vocabulario — flashcards, 26 themed decks" tabindex="0">
+      <rect class="halo" x="100" y="436" width="216" height="160" rx="8" fill="none" stroke="#d4922c" stroke-width="3"/>
+      <g class="lift">
+        <!-- awning -->
+        <polygon points="108,486 308,486 296,452 120,452" fill="#1f1a14"/>
+        <g>
+          <polygon points="120,452 142,452 138,486 112,486" fill="#c43d2a"/>
+          <polygon points="164,452 186,452 186,486 160,486" fill="#f4ede0"/>
+          <polygon points="142,452 164,452 160,486 138,486" fill="#c43d2a" opacity="0.25"/>
+          <polygon points="186,452 208,452 210,486 186,486" fill="#c43d2a"/>
+          <polygon points="208,452 230,452 234,486 210,486" fill="#f4ede0"/>
+          <polygon points="230,452 252,452 258,486 234,486" fill="#c43d2a"/>
+          <polygon points="252,452 274,452 282,486 258,486" fill="#f4ede0"/>
+          <polygon points="274,452 296,452 306,486 282,486" fill="#c43d2a"/>
+        </g>
+        <!-- counter -->
+        <rect x="124" y="486" width="168" height="64" fill="#6b3a22"/>
+        <rect x="124" y="486" width="168" height="10" fill="#1f1a14"/>
+        <!-- produce / word crates -->
+        <rect x="136" y="506" width="38" height="26" fill="#d4922c"/>
+        <rect x="184" y="506" width="38" height="26" fill="#4a6b3a"/>
+        <rect x="232" y="506" width="38" height="26" fill="#c43d2a"/>
+        <text x="155" y="524" text-anchor="middle" font-family="'JetBrains Mono',monospace" font-size="11" fill="#1f1a14">SER</text>
+        <text x="203" y="524" text-anchor="middle" font-family="'JetBrains Mono',monospace" font-size="11" fill="#f4ede0">IR</text>
+        <text x="251" y="524" text-anchor="middle" font-family="'JetBrains Mono',monospace" font-size="11" fill="#f4ede0">VER</text>
+        <!-- legs -->
+        <rect x="128" y="550" width="9" height="34" fill="#1f1a14"/>
+        <rect x="279" y="550" width="9" height="34" fill="#1f1a14"/>
+      </g>
+      <rect class="bld-label-bg" x="146" y="596" width="124" height="20"/>
+      <text class="bld-label" x="208" y="610" text-anchor="middle">🃏 El Mercado</text>
+    </g>
+
+    <!-- EL KIOSCO (bandstand) → Avisos / teacher announcements (355-505, mid-left) -->
+    <g class="building" data-icon="📣" data-name="El Kiosco" data-dest="Avisos — announcements from your teacher" tabindex="0">
+      <rect class="halo" x="348" y="430" width="166" height="158" rx="8" fill="none" stroke="#d4922c" stroke-width="3"/>
+      <g class="lift">
+        <!-- dome roof -->
+        <path d="M356,486 q75,-64 150,0 Z" fill="#4a6b3a"/>
+        <circle cx="431" cy="452" r="6" fill="#d4922c"/>
+        <rect x="356" y="484" width="150" height="9" fill="#1f1a14"/>
+        <!-- pillars -->
+        <rect x="368" y="493" width="8" height="58" fill="#1f1a14"/>
+        <rect x="427" y="493" width="8" height="58" fill="#1f1a14"/>
+        <rect x="486" y="493" width="8" height="58" fill="#1f1a14"/>
+        <!-- notice board -->
+        <rect x="388" y="500" width="86" height="44" rx="3" fill="#f4ede0" stroke="#1f1a14" stroke-width="2"/>
+        <line x1="396" y1="512" x2="466" y2="512" stroke="#c43d2a" stroke-width="3"/>
+        <line x1="396" y1="522" x2="452" y2="522" stroke="rgba(31,26,20,0.4)" stroke-width="2.5"/>
+        <line x1="396" y1="531" x2="460" y2="531" stroke="rgba(31,26,20,0.4)" stroke-width="2.5"/>
+        <!-- base -->
+        <rect x="360" y="551" width="142" height="12" fill="#6b3a22"/>
+      </g>
+      <rect class="bld-label-bg" x="372" y="588" width="118" height="20"/>
+      <text class="bld-label" x="431" y="602" text-anchor="middle">📣 El Kiosco</text>
+    </g>
+
+    <!-- LA FUENTE (fountain) → La Racha, the daily ritual (center, 545-695) -->
+    <g class="building" data-icon="🔥" data-name="La Fuente" data-dest="La Racha — the daily challenge (come every day)" tabindex="0">
+      <rect class="halo" x="538" y="448" width="166" height="142" rx="80" fill="none" stroke="#d4922c" stroke-width="3"/>
+      <g class="lift">
+        <!-- water jet -->
+        <path d="M620,470 q-7,-22 0,-22 q7,0 0,22" fill="none" stroke="#3e5a78" stroke-width="4" stroke-linecap="round"/>
+        <circle cx="603" cy="458" r="3" fill="#3e5a78"/>
+        <circle cx="638" cy="460" r="2.6" fill="#3e5a78"/>
+        <!-- upper bowl -->
+        <ellipse cx="620" cy="486" rx="34" ry="9" fill="#3e5a78"/>
+        <rect x="586" y="486" width="68" height="8" fill="#8c9bb0"/>
+        <rect x="612" y="494" width="16" height="22" fill="#8c9bb0"/>
+        <!-- lower basin -->
+        <ellipse cx="620" cy="524" rx="72" ry="15" fill="#3e5a78"/>
+        <rect x="548" y="524" width="144" height="22" fill="#8c9bb0"/>
+        <ellipse cx="620" cy="546" rx="72" ry="15" fill="#6b7d96"/>
+        <!-- streak flame plaque -->
+        <circle cx="620" cy="516" r="11" fill="#f4ede0" stroke="#1f1a14" stroke-width="1.6"/>
+        <text x="620" y="521" text-anchor="middle" font-size="12">🔥</text>
+      </g>
+      <rect class="bld-label-bg" x="562" y="588" width="116" height="20"/>
+      <text class="bld-label" x="620" y="602" text-anchor="middle">🔥 La Fuente</text>
+    </g>
+
+    <!-- EL CAFÉ (terrace) → Listening (730-930, front-right) -->
+    <g class="building" data-icon="🎧" data-name="El Café" data-dest="Escucha — listening & dictation (sit and listen)" tabindex="0">
+      <rect class="halo" x="722" y="436" width="220" height="160" rx="8" fill="none" stroke="#d4922c" stroke-width="3"/>
+      <g class="lift">
+        <!-- umbrella -->
+        <polygon points="762,478 884,478 823,440" fill="#c43d2a"/>
+        <path d="M762,478 L884,478" stroke="#1f1a14" stroke-width="3"/>
+        <rect x="819" y="478" width="7" height="58" fill="#1f1a14"/>
+        <!-- table -->
+        <ellipse cx="823" cy="536" rx="44" ry="10" fill="#f4ede0" stroke="#1f1a14" stroke-width="2"/>
+        <rect x="818" y="544" width="9" height="26" fill="#1f1a14"/>
+        <!-- chairs -->
+        <rect x="744" y="524" width="30" height="7" fill="#1f1a14"/>
+        <rect x="744" y="531" width="7" height="34" fill="#1f1a14"/>
+        <rect x="767" y="531" width="7" height="34" fill="#1f1a14"/>
+        <rect x="744" y="506" width="7" height="20" fill="#1f1a14"/>
+        <rect x="874" y="524" width="30" height="7" fill="#1f1a14"/>
+        <rect x="874" y="531" width="7" height="34" fill="#1f1a14"/>
+        <rect x="897" y="531" width="7" height="34" fill="#1f1a14"/>
+        <rect x="897" y="506" width="7" height="20" fill="#1f1a14"/>
+        <!-- cups -->
+        <rect x="800" y="522" width="14" height="9" rx="2" fill="#d4922c"/>
+        <rect x="832" y="522" width="14" height="9" rx="2" fill="#4a6b3a"/>
+        <!-- music notes -->
+        <text x="868" y="470" font-size="16" fill="#1f1a14">♪</text>
+        <text x="888" y="455" font-size="13" fill="#1f1a14">♫</text>
+      </g>
+      <rect class="bld-label-bg" x="776" y="596" width="96" height="20"/>
+      <text class="bld-label" x="823" y="610" text-anchor="middle">🎧 El Café</text>
+    </g>
+
+    <!-- LA ESCUELITA DE LETRAS (small letter cart) → Abecedario (965-1130, front-right) -->
+    <g class="building" data-icon="🔤" data-name="El Carrito de Letras" data-dest="Abecedario — tap-to-hear alphabet & vowels" tabindex="0">
+      <rect class="halo" x="958" y="452" width="178" height="140" rx="8" fill="none" stroke="#d4922c" stroke-width="3"/>
+      <g class="lift">
+        <!-- cart body -->
+        <rect x="976" y="492" width="140" height="52" rx="4" fill="#d4922c"/>
+        <rect x="976" y="484" width="140" height="12" rx="4" fill="#1f1a14"/>
+        <!-- letter blocks on the cart -->
+        <rect x="988" y="500" width="28" height="28" fill="#f4ede0" stroke="#1f1a14" stroke-width="2"/>
+        <rect x="1024" y="500" width="28" height="28" fill="#f4ede0" stroke="#1f1a14" stroke-width="2"/>
+        <rect x="1060" y="500" width="28" height="28" fill="#f4ede0" stroke="#1f1a14" stroke-width="2"/>
+        <text x="1002" y="521" text-anchor="middle" font-family="'DM Serif Display',serif" font-size="19" fill="#c43d2a">A</text>
+        <text x="1038" y="521" text-anchor="middle" font-family="'DM Serif Display',serif" font-size="19" fill="#4a6b3a">B</text>
+        <text x="1074" y="521" text-anchor="middle" font-family="'DM Serif Display',serif" font-size="19" fill="#1f1a14">C</text>
+        <!-- wheels -->
+        <circle cx="1000" cy="556" r="13" fill="#1f1a14"/>
+        <circle cx="1000" cy="556" r="5" fill="#f4ede0"/>
+        <circle cx="1092" cy="556" r="13" fill="#1f1a14"/>
+        <circle cx="1092" cy="556" r="5" fill="#f4ede0"/>
+        <!-- little speaker flag -->
+        <line x1="1108" y1="484" x2="1108" y2="462" stroke="#1f1a14" stroke-width="2.5"/>
+        <path d="M1108,462 l22,6 -22,6 Z" fill="#c43d2a"/>
+      </g>
+      <rect class="bld-label-bg" x="980" y="596" width="132" height="20"/>
+      <text class="bld-label" x="1046" y="610" text-anchor="middle">🔤 Las Letras</text>
+    </g>
+
+    <!-- LA LIBRERÍA-TIENDA → Shop (355-505 is kiosco... put shop bottom center-left ~ (435-545)?)
+         Place small shop front-center between fountain & kiosco lower -->
+    <g class="building" data-icon="🛍" data-name="La Tienda" data-dest="Tienda — spend your Lucas" tabindex="0">
+      <rect class="halo" x="436" y="608" width="130" height="76" rx="8" fill="none" stroke="#d4922c" stroke-width="3"/>
+      <g class="lift">
+        <rect x="444" y="630" width="114" height="48" fill="#c43d2a"/>
+        <polygon points="444,630 458,616 544,616 558,630" fill="#1f1a14"/>
+        <rect class="win" x="456" y="640" width="28" height="26"/>
+        <rect x="498" y="640" width="24" height="38" fill="#1f1a14"/>
+        <rect x="501" y="643" width="18" height="35" fill="#6b3a22"/>
+        <circle cx="534" cy="650" r="9" fill="#d4922c" stroke="#1f1a14" stroke-width="1.6"/>
+        <text x="534" y="654" text-anchor="middle" font-family="'JetBrains Mono',monospace" font-size="9" font-weight="600" fill="#1f1a14">L</text>
+      </g>
+      <text class="bld-label" x="501" y="697" text-anchor="middle">🛍 La Tienda</text>
+    </g>
+
+    <!-- townsfolk: tiny figures for life -->
+    <g opacity="0.85">
+      <circle cx="700" cy="610" r="7" fill="#1f1a14"/>
+      <rect x="694" y="617" width="12" height="22" rx="4" fill="#c43d2a"/>
+      <circle cx="724" cy="614" r="6" fill="#1f1a14"/>
+      <rect x="719" y="620" width="10" height="19" rx="4" fill="#4a6b3a"/>
+      <circle cx="330" cy="640" r="7" fill="#1f1a14"/>
+      <rect x="324" y="647" width="12" height="22" rx="4" fill="#d4922c"/>
+      <!-- dog -->
+      <rect x="352" y="660" width="18" height="8" rx="4" fill="#6b3a22"/>
+      <circle cx="372" cy="660" r="4.5" fill="#6b3a22"/>
+    </g>
+  </svg>
+  </div>
+
+  <div class="dest-bar" id="destBar">
+    <span class="icon">👆</span>
+    <div>
+      <strong>Click any building</strong>
+      <div class="where">it will show where that building takes you on the real site</div>
+    </div>
+  </div>
+
+  <div class="legend">
+    <h2>Every building is a <em>section</em></h2>
+    <div class="legend-grid">
+      <div class="legend-item"><span class="b">📚 La Biblioteca</span><span class="arrow">→</span><span class="s">Reading library</span></div>
+      <div class="legend-item"><span class="b">✉️ El Correo</span><span class="arrow">→</span><span class="s">Writing topics</span></div>
+      <div class="legend-item"><span class="b">🏛️ El Ayuntamiento</span><span class="arrow">→</span><span class="s">Grammar lessons</span></div>
+      <div class="legend-item"><span class="b">🌎 El Museo</span><span class="arrow">→</span><span class="s">Mundo · culture & geography</span></div>
+      <div class="legend-item"><span class="b">🎙️ El Teatro</span><span class="arrow">→</span><span class="s">Voces · speaking</span></div>
+      <div class="legend-item"><span class="b">★ El Banco</span><span class="arrow">→</span><span class="s">Lucas & achievements</span></div>
+      <div class="legend-item"><span class="b">🎮 La Plazuela</span><span class="arrow">→</span><span class="s">Games · a la vuelta</span></div>
+      <div class="legend-item"><span class="b">🃏 El Mercado</span><span class="arrow">→</span><span class="s">Vocabulary decks</span></div>
+      <div class="legend-item"><span class="b">📣 El Kiosco</span><span class="arrow">→</span><span class="s">Teacher announcements</span></div>
+      <div class="legend-item"><span class="b">🔥 La Fuente</span><span class="arrow">→</span><span class="s">La Racha · daily challenge</span></div>
+      <div class="legend-item"><span class="b">🎧 El Café</span><span class="arrow">→</span><span class="s">Listening & dictation</span></div>
+      <div class="legend-item"><span class="b">🔤 Las Letras</span><span class="arrow">→</span><span class="s">Abecedario</span></div>
+      <div class="legend-item"><span class="b">🛍 La Tienda</span><span class="arrow">→</span><span class="s">Shop</span></div>
+    </div>
+  </div>
+
+  <div class="notes">
+    <h2>If you approve, integration would mean:</h2>
+    <ul>
+      <li>The plaza becomes the <strong>top of the home page</strong> — the current link tiles stay below it as a quick list (and as the fallback for screen readers / very small phones).</li>
+      <li>Buildings <strong>actually navigate</strong> to their sections, and the night version follows your existing 🌙 cosmic theme toggle automatically.</li>
+      <li>Verbs section needs a home — could be <strong>El Taller</strong> (the workshop) added next to the mercado, or live inside the Ayuntamiento. Your call.</li>
+      <li>Anything you want renamed, recolored, moved, added (una iglesia, más gente, un perro más gordo) — say it and I'll redraw it.</li>
+    </ul>
+  </div>
+</div>
+
+<script>
+  // Click → show destination
+  document.querySelectorAll('.building').forEach(b => {
+    b.addEventListener('click', () => {
+      const bar = document.getElementById('destBar');
+      bar.querySelector('.icon').textContent = b.dataset.icon;
+      bar.querySelector('strong').textContent = b.dataset.name;
+      bar.querySelector('.where').textContent = '→ would open: ' + b.dataset.dest;
+      bar.style.borderColor = '#c43d2a';
+      bar.style.borderStyle = 'solid';
+    });
+  });
+  // Day / night
+  function toggleNight() {
+    const svg = document.getElementById('plazaSvg');
+    const night = svg.classList.toggle('night');
+    document.getElementById('themeBtn').textContent = night ? '☀️ Ver de día' : '🌙 Ver de noche';
+  }
+</script>
+</body>
+</html>
