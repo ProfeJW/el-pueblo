@@ -5546,6 +5546,17 @@
       <!-- populated by JS from ANNOUNCEMENTS array -->
     </div>
   </div>
+
+  <!-- LA RACHA — daily streak (lives at the bottom; populated by updateRachaWidget) -->
+  <a href="#/racha" class="racha-widget" id="rachaWidget" aria-label="La Racha — today's daily challenge" style="margin-top:56px;">
+    <div class="racha-flame" id="rachaWidgetFlame">🔥</div>
+    <div class="racha-widget-body">
+      <div class="racha-widget-kicker">La Racha · daily challenge</div>
+      <div class="racha-widget-headline" id="rachaWidgetHeadline">Loading your streak…</div>
+      <div class="racha-widget-sub" id="rachaWidgetSub"></div>
+    </div>
+    <div class="racha-widget-cta" id="rachaWidgetCta">Play →</div>
+  </a>
 </header></div>
 
 <!-- LA RACHA — daily challenge page -->
@@ -5637,66 +5648,27 @@
         <span class="repaso-cta-badge" id="vocabRepasoBadge"></span>
       </a>
       <div class="deck-pick" style="flex-wrap: wrap;">
-        <button class="pill active" onclick="loadDeck('cotidiano', this)">Everyday</button>
-        <button class="pill" onclick="loadDeck('familia', this)">Family</button>
-        <button class="pill" onclick="loadDeck('comida', this)">Food</button>
-        <button class="pill" onclick="loadDeck('saludos', this)">Greetings</button>
-        <button class="pill" onclick="loadDeck('gente', this)">People</button>
-        <button class="pill" onclick="loadDeck('viajes', this)">Travel</button>
-        <button class="pill" onclick="loadDeck('deportes', this)">Sports</button>
-        <button class="pill" onclick="loadDeck('colores', this)">Colors</button>
-        <button class="pill" onclick="loadDeck('clases', this)">Classes</button>
-        <button class="pill" onclick="loadDeck('salon', this)">Classroom</button>
-        <button class="pill" onclick="loadDeck('escuela', this)">School Life</button>
-        <button class="pill" onclick="loadDeck('relaciones', this)">Relationships</button>
         <button class="pill" onclick="loadDeck('adjetivos', this)">Adjectives</button>
         <button class="pill" onclick="loadDeck('adverbios', this)">Adverbs</button>
+        <button class="pill" onclick="loadDeck('aeropuerto', this)">Air travel</button>
+        <button class="pill" onclick="loadDeck('animales', this)">Animals</button>
         <button class="pill" onclick="loadDeck('verbosAr', this)">-AR verbs</button>
         <button class="pill" onclick="loadDeck('argentina', this)">Argentina</button>
         <button class="pill" onclick="loadDeck('cuerpo', this)">Body parts</button>
+        <button class="pill" onclick="loadDeck('bolivia', this)">Bolivia</button>
+        <button class="pill" onclick="loadDeck('calendario', this)">Calendar</button>
+        <button class="pill" onclick="loadDeck('chile', this)">Chile</button>
         <button class="pill" onclick="loadDeck('clases', this)">Classes</button>
         <button class="pill" onclick="loadDeck('salon', this)">Classroom</button>
+        <button class="pill" onclick="loadDeck('mandatos', this)">Classroom commands</button>
+        <button class="pill" onclick="loadDeck('ropa', this)">Clothing</button>
         <button class="pill" onclick="loadDeck('colombia', this)">Colombia</button>
         <button class="pill" onclick="loadDeck('colores', this)">Colors</button>
+        <button class="pill" onclick="loadDeck('cuba', this)">Cuba</button>
+        <button class="pill" onclick="loadDeck('rutina', this)">Daily routine</button>
         <button class="pill" onclick="loadDeck('diadelosmuertos', this)">Día de los Muertos</button>
         <button class="pill" onclick="loadDeck('futbol', this)">El fútbol</button>
-        <button class="pill" onclick="loadDeck('cumpleanos', this)">¡Feliz cumpleaños!</button>
-        <button class="pill" onclick="loadDeck('argentina', this)">Argentina</button>
-        <button class="pill" onclick="loadDeck('mexico', this)">México</button>
-        <button class="pill" onclick="loadDeck('colombia', this)">Colombia</button>
-        <button class="pill" onclick="loadDeck('chile', this)">Chile</button>
-        <button class="pill" onclick="loadDeck('bolivia', this)">Bolivia</button>
-        <button class="pill" onclick="loadDeck('venezuela', this)">Venezuela</button>
-        <button class="pill" onclick="loadDeck('cuba', this)">Cuba</button>
-        <button class="pill" onclick="loadDeck('guatemala', this)">Guatemala</button>
         <button class="pill" onclick="loadDeck('elsalvador', this)">El Salvador</button>
-        <button class="pill" onclick="loadDeck('honduras', this)">Honduras</button>
-        <button class="pill" onclick="loadDeck('uruguay', this)">Uruguay</button>
-        <button class="pill" onclick="loadDeck('paraguay', this)">Paraguay</button>
-        <button class="pill" onclick="loadDeck('puertorico', this)">Puerto Rico</button>
-        <button class="pill" onclick="loadDeck('verbosAr', this)">-AR verbs</button>
-        <button class="pill" onclick="loadDeck('verbosEr', this)">-ER verbs</button>
-        <button class="pill" onclick="loadDeck('verbosIr', this)">-IR verbs</button>
-        <button class="pill" onclick="loadDeck('pronombres', this)">Pronouns</button>
-        <button class="pill" onclick="loadDeck('teneridioms', this)">Tener idioms</button>
-        <button class="pill" onclick="loadDeck('numeros', this)">Numbers</button>
-        <button class="pill" onclick="loadDeck('calendario', this)">Calendar</button>
-        <button class="pill" onclick="loadDeck('tiempo', this)">Weather &amp; seasons</button>
-        <button class="pill" onclick="loadDeck('aeropuerto', this)">Air travel</button>
-        <button class="pill" onclick="loadDeck('rutina', this)">Daily routine</button>
-        <button class="pill" onclick="loadDeck('restaurante', this)">Restaurant</button>
-        <button class="pill" onclick="loadDeck('fiestas', this)">Holidays</button>
-        <button class="pill" onclick="loadDeck('tecnologia', this)">Technology</button>
-        <button class="pill" onclick="loadDeck('preguntas', this)">Question words</button>
-        <button class="pill" onclick="loadDeck('gustar', this)">Gustar verbs</button>
-        <button class="pill" onclick="loadDeck('ropa', this)">Clothing</button>
-        <button class="pill" onclick="loadDeck('lugares', this)">Places in town</button>
-        <button class="pill" onclick="loadDeck('casa', this)">House &amp; furniture</button>
-        <button class="pill" onclick="loadDeck('preposiciones', this)">Prepositions</button>
-        <button class="pill" onclick="loadDeck('profesiones', this)">Professions</button>
-        <button class="pill" onclick="loadDeck('animales', this)">Animals</button>
-        <button class="pill" onclick="loadDeck('hora', this)">Telling time</button>
-        <button class="pill" onclick="loadDeck('mandatos', this)">Classroom commands</button>
         <button class="pill" onclick="loadDeck('emociones', this)">Emotions</button>
         <button class="pill" onclick="loadDeck('verbosEr', this)">-ER verbs</button>
         <button class="pill" onclick="loadDeck('espana', this)">España</button>
@@ -5705,14 +5677,35 @@
         <button class="pill" onclick="loadDeck('cumpleanos', this)">¡Feliz cumpleaños!</button>
         <button class="pill" onclick="loadDeck('comida', this)">Food</button>
         <button class="pill" onclick="loadDeck('saludos', this)">Greetings</button>
+        <button class="pill" onclick="loadDeck('guatemala', this)">Guatemala</button>
+        <button class="pill" onclick="loadDeck('gustar', this)">Gustar verbs</button>
+        <button class="pill" onclick="loadDeck('fiestas', this)">Holidays</button>
+        <button class="pill" onclick="loadDeck('honduras', this)">Honduras</button>
+        <button class="pill" onclick="loadDeck('casa', this)">House &amp; furniture</button>
         <button class="pill" onclick="loadDeck('verbosIr', this)">-IR verbs</button>
         <button class="pill" onclick="loadDeck('literatura', this)">Literature</button>
         <button class="pill" onclick="loadDeck('mexico', this)">México</button>
+        <button class="pill" onclick="loadDeck('numeros', this)">Numbers</button>
+        <button class="pill" onclick="loadDeck('paraguay', this)">Paraguay</button>
+        <button class="pill" onclick="loadDeck('gente', this)">People</button>
         <button class="pill" onclick="loadDeck('peru', this)">Perú</button>
+        <button class="pill" onclick="loadDeck('lugares', this)">Places in town</button>
+        <button class="pill" onclick="loadDeck('preposiciones', this)">Prepositions</button>
+        <button class="pill" onclick="loadDeck('profesiones', this)">Professions</button>
+        <button class="pill" onclick="loadDeck('pronombres', this)">Pronouns</button>
+        <button class="pill" onclick="loadDeck('puertorico', this)">Puerto Rico</button>
+        <button class="pill" onclick="loadDeck('preguntas', this)">Question words</button>
         <button class="pill" onclick="loadDeck('relaciones', this)">Relationships</button>
+        <button class="pill" onclick="loadDeck('restaurante', this)">Restaurant</button>
         <button class="pill" onclick="loadDeck('escuela', this)">School Life</button>
         <button class="pill" onclick="loadDeck('deportes', this)">Sports</button>
+        <button class="pill" onclick="loadDeck('tecnologia', this)">Technology</button>
+        <button class="pill" onclick="loadDeck('hora', this)">Telling time</button>
+        <button class="pill" onclick="loadDeck('teneridioms', this)">Tener idioms</button>
         <button class="pill" onclick="loadDeck('viajes', this)">Travel</button>
+        <button class="pill" onclick="loadDeck('uruguay', this)">Uruguay</button>
+        <button class="pill" onclick="loadDeck('venezuela', this)">Venezuela</button>
+        <button class="pill" onclick="loadDeck('tiempo', this)">Weather &amp; seasons</button>
       </div>
     </div>
   </div>
