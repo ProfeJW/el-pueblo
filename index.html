@@ -9575,7 +9575,7 @@
     { inf: 'saber', meaning: 'to know (facts) · irregular', group: 'irregular', conj: { presente:['sé','sabes','sabe','sabemos','sabéis','saben'], preterito:['supe','supiste','supo','supimos','supisteis','supieron'], imperfecto:['sabía','sabías','sabía','sabíamos','sabíais','sabían'], futuro:['sabré','sabrás','sabrá','sabremos','sabréis','sabrán'], subjuntivo:['sepa','sepas','sepa','sepamos','sepáis','sepan'], condicional:['sabría','sabrías','sabría','sabríamos','sabríais','sabrían'], participio:'sabido' }},
     { inf: 'dar', meaning: 'to give · irregular', group: 'irregular', conj: { presente:['doy','das','da','damos','dais','dan'], preterito:['di','diste','dio','dimos','disteis','dieron'], imperfecto:['daba','dabas','daba','dábamos','dabais','daban'], futuro:['daré','darás','dará','daremos','daréis','darán'], subjuntivo:['dé','des','dé','demos','deis','den'], condicional:['daría','darías','daría','daríamos','daríais','darían'], participio:'dado' }},
 
-    // ===== Added for preterite lessons 27-31 =====
+    // ===== Added for preterite lessons 35-39 =====
 
     // -car / -gar / -zar orthographic changers (preterite yo: -qué / -gué / -cé)
     { inf: 'buscar', meaning: 'to look for · -car (orthographic)', group: 'regular-ar', conj: { presente:['busco','buscas','busca','buscamos','buscáis','buscan'], preterito:['busqué','buscaste','buscó','buscamos','buscasteis','buscaron'], imperfecto:['buscaba','buscabas','buscaba','buscábamos','buscabais','buscaban'], futuro:['buscaré','buscarás','buscará','buscaremos','buscaréis','buscarán'], subjuntivo:['busque','busques','busque','busquemos','busquéis','busquen'], condicional:['buscaría','buscarías','buscaría','buscaríamos','buscaríais','buscarían'], participio:'buscado' }},
@@ -9614,10 +9614,18 @@
   let includeVosotros = false; // default off — Latin American Spanish convention for US classrooms
   let drillGroup = 'all'; // 'all' | 'regular' | 'regular-ar' | 'regular-er' | 'regular-ir' | 'stem-eie' | 'stem-oue' | 'stem-ei' | 'stem-uue' | 'stem-all' | 'irregular'
 
-  // Normalize accents for forgiving comparison (entry-level students may not type accents)
+  // Normalize for forgiving comparison \u2014 used by every typed-answer grader
+  // (games engine, La Racha, vocab type-it, verb drills). A student answer is
+  // never wrong for capitalization, accents, or punctuation: deck phrases like
+  // "Son las dos." or "\u00bfQu\u00e9 hora es?" carry punctuation the student shouldn't
+  // be expected to type. Internal symbols (the colon in "3:30") survive.
   function normalize(s) {
-    return s.toLowerCase().trim()
+    return String(s == null ? '' : s).toLowerCase().trim()
       .normalize('NFD').replace(/[\u0300-\u036f]/g, '')
+      .replace(/['\u2018\u2019"\u201c\u201d]/g, '')  // quotes/apostrophes: "it's" \u2248 "its"
+      .replace(/^[\u00a1\u00bf.,;:!?\s]+/, '')
+      .replace(/[\u00a1\u00bf.,;:!?\s]+$/, '')
+      .replace(/[,;]/g, '')
       .replace(/\s+/g, ' ');
   }
 
@@ -13563,42 +13571,42 @@
       { id: 'd-i-14', text: 'Los sábados vamos al mercado a comprar frutas y artesanías.', en: 'On Saturdays we go to the market to buy fruit and handicrafts.', country: 'mx' },
       { id: 'd-i-15', text: 'En Colombia el café crece en las montañas, donde el clima es perfecto.', en: 'In Colombia coffee grows in the mountains, where the climate is perfect.', country: 'co' },
       { id: 'd-i-16', text: 'Colombia es uno de los países con más biodiversidad del mundo.', en: 'Colombia is one of the countries with the most biodiversity in the world.', country: 'co' },
-      // Tú command-themed sentences (paired with Lesson 34.1)
+      // Tú command-themed sentences (paired with Lesson 43)
       { id: 'd-i-17-cmd', text: '¡Ven aquí y dime la verdad ahora mismo!', en: 'Come here and tell me the truth right now!', country: null },
       { id: 'd-i-18-cmd', text: 'Haz tu tarea primero, después puedes ver la tele.', en: 'Do your homework first, then you can watch TV.', country: null },
       { id: 'd-i-19-cmd', text: 'No salgas sin chaqueta porque hace mucho frío afuera.', en: 'Don\'t go out without a jacket because it\'s very cold outside.', country: null },
       { id: 'd-i-20-cmd', text: 'Levántate temprano y no te olvides de cepillarte los dientes.', en: 'Get up early and don\'t forget to brush your teeth.', country: null },
-      // Usted/Ustedes command-themed sentences (paired with Lesson 34.2)
+      // Usted/Ustedes command-themed sentences (paired with Lesson 44)
       { id: 'd-i-21-ud', text: 'Por favor, hable más despacio. No entiendo muy bien.', en: 'Please speak more slowly. I don\'t understand very well.', country: null },
       { id: 'd-i-22-ud', text: 'Tráigame la cuenta cuando pueda, por favor.', en: 'Bring me the check when you can, please.', country: null },
       { id: 'd-i-23-ud', text: 'Pasen ustedes adelante y tomen asiento, por favor.', en: 'You all go ahead and take a seat, please.', country: null },
       { id: 'd-i-24-ud', text: 'No se preocupe, señor. Vamos a resolver el problema.', en: 'Don\'t worry, sir. We\'re going to solve the problem.', country: null },
-      // Reflexive command-themed sentences (paired with Lesson 34.3)
+      // Reflexive command-themed sentences (paired with Lesson 45)
       { id: 'd-i-25-ref', text: 'Levántate y dúchate ahora mismo, vamos tarde.', en: 'Get up and shower right now, we\'re running late.', country: null },
       { id: 'd-i-26-ref', text: 'No te preocupes, todo va a salir bien.', en: 'Don\'t worry, everything is going to be fine.', country: null },
       { id: 'd-i-27-ref', text: 'Siéntense, por favor, y cállense durante la clase.', en: 'Sit down, please, and be quiet during class.', country: null },
       { id: 'd-i-28-ref', text: 'Cuídate mucho y no te olvides de escribirme.', en: 'Take good care and don\'t forget to write to me.', country: null },
-      // Object-pronoun command sentences (paired with Lesson 34.4)
+      // Object-pronoun command sentences (paired with Lesson 46)
       { id: 'd-i-29-obj', text: 'Cómpralo ahora, está en oferta este fin de semana.', en: 'Buy it now, it\'s on sale this weekend.', country: null },
       { id: 'd-i-30-obj', text: 'No me llames después de las nueve de la noche.', en: 'Don\'t call me after nine at night.', country: null },
       { id: 'd-i-31-obj', text: 'Háblales con calma, ellos están muy estresados.', en: 'Talk to them calmly, they\'re very stressed.', country: null },
       { id: 'd-i-32-obj', text: 'Tráigamela cuando pueda, no hay prisa, señor.', en: 'Bring it to me when you can, no hurry, sir.', country: null },
-      // Double-pronoun command sentences (paired with Lesson 34.5)
+      // Double-pronoun command sentences (paired with Lesson 47)
       { id: 'd-i-33-dbl', text: 'Dáselo a tu hermano antes de que se enoje contigo.', en: 'Give it to your brother before he gets mad at you.', country: null },
       { id: 'd-i-34-dbl', text: 'No se lo digas a nadie, es un secreto entre nosotros.', en: 'Don\'t tell it to anyone, it\'s a secret between us.', country: null },
       { id: 'd-i-35-dbl', text: 'Cómprasela el sábado, es el regalo perfecto para ella.', en: 'Buy it for her on Saturday, it\'s the perfect gift for her.', country: null },
       { id: 'd-i-36-dbl', text: 'Mándaselos por correo antes del viernes, por favor.', en: 'Send them to her by mail before Friday, please.', country: null },
-      // Saber/Conocer/Pedir/Preguntar sentences (paired with Lesson 34.7)
+      // Saber/Conocer/Pedir/Preguntar sentences (paired with Lesson 48)
       { id: 'd-i-37-scpp', text: 'Conocí a María en la fiesta y supe que era de Lima.', en: 'I met María at the party and found out that she was from Lima.', country: null },
       { id: 'd-i-38-scpp', text: '¿Sabes nadar o quieres que te enseñe?', en: 'Do you know how to swim or do you want me to teach you?', country: null },
       { id: 'd-i-39-scpp', text: 'Le pedí un café y le pregunté por su hermana.', en: 'I asked him for a coffee and asked about his sister.', country: null },
       { id: 'd-i-40-scpp', text: 'No conozco esa ciudad pero sé que está cerca del mar.', en: 'I don\'t know that city but I know it\'s near the sea.', country: null },
-      // Pronouns + progressive sentences (paired with Lesson 34.8)
+      // Pronouns + progressive sentences (paired with Lesson 49)
       { id: 'd-i-41-prog', text: 'Lo estoy escuchando, pero no entiendo nada de lo que dice.', en: 'I am listening to him, but I don\'t understand anything he says.', country: null },
       { id: 'd-i-42-prog', text: 'Está duchándose ahora mismo, no puede contestar el teléfono.', en: 'She is taking a shower right now, she can\'t answer the phone.', country: null },
       { id: 'd-i-43-prog', text: 'Te lo estoy explicando con paciencia, pero no me prestas atención.', en: 'I am explaining it to you with patience, but you\'re not paying attention.', country: null },
       { id: 'd-i-44-prog', text: 'Mi mamá está preparándonos una sorpresa para el cumpleaños.', en: 'My mom is preparing a surprise for us for the birthday.', country: null },
-      // Possessive pronoun sentences (paired with Lesson 34.9)
+      // Possessive pronoun sentences (paired with Lesson 50)
       { id: 'd-i-45-pos', text: 'Este libro no es mío, debe ser tuyo o de tu hermana.', en: 'This book isn\'t mine, it must be yours or your sister\'s.', country: null },
       { id: 'd-i-46-pos', text: 'Mi casa es vieja pero la suya es completamente nueva.', en: 'My house is old but his/hers is completely new.', country: null },
       { id: 'd-i-47-pos', text: 'Las llaves del coche son las mías, las tuyas están en la mesa.', en: 'The car keys are mine, yours are on the table.', country: null },
@@ -14443,7 +14451,7 @@
       level: 'sp2',
       category: 'grammar',
       body: 'A friend is going through a hard time (you decide what — school stress, friendship problems, family issues). Write them a letter giving advice. Use commands.',
-      tips: ['Use tú commands: estudia, habla, no te preocupes', 'Use no + command for "don\'t"', 'Use ojalá or espero que to express hopes', 'Paired with Lesson 34.1: Tú Commands'],
+      tips: ['Use tú commands: estudia, habla, no te preocupes', 'Use no + command for "don\'t"', 'Use ojalá or espero que to express hopes', 'Paired with Lesson 43: Tú Commands'],
       date: 'Nov 10'
     },
     {
@@ -14452,7 +14460,7 @@
       level: 'sp2',
       category: 'grammar',
       body: 'Write a formal letter (to a teacher, principal, business, government office — your choice) asking for something or giving instructions. Use usted commands throughout. Be polite — every command should have "por favor" or similar softening language.<br><br>Possible scenarios: requesting a recommendation letter from a teacher, asking a business to fix a problem with an order, writing to an embassy about a visa question, contacting a tour company about a trip detail.<br><br>Structure: Greeting (Estimado/a señor/a ___) → Reason for writing → Your specific requests (using usted commands) → Closing (Le agradezco su atención · Atentamente, ___).',
-      tips: ['Use at least 5 usted commands across the letter', 'Include at least 1 negative command ("No olvide…" / "Por favor, no envíe…")', 'Use the polite forms: "Le agradecería que…" "Si fuera tan amable…"', 'Aim for 150-200 words', 'Paired with Lesson 34.2: Usted &amp; Ustedes Commands'],
+      tips: ['Use at least 5 usted commands across the letter', 'Include at least 1 negative command ("No olvide…" / "Por favor, no envíe…")', 'Use the polite forms: "Le agradecería que…" "Si fuera tan amable…"', 'Aim for 150-200 words', 'Paired with Lesson 44: Usted &amp; Ustedes Commands'],
       date: 'Nov 18'
     },
     {
@@ -14461,7 +14469,7 @@
       level: 'sp2',
       category: 'grammar',
       body: 'A Spanish-speaking exchange student is coming to stay at your house for a week. Write them a friendly "house rules and tips" note explaining how things work — when to wake up, how to use the shower, where to put their things, what NOT to do. Use lots of reflexive tú commands (since you\'re writing to a peer).<br><br>Cover at least: morning routine (waking up, showering, getting dressed), meals (washing hands, sitting at the table), things to do/avoid (calm the dog, don\'t worry about the cat), evening routine (going to bed, not falling asleep with the TV on).',
-      tips: ['Use at least 6 reflexive tú commands', 'Mix affirmative and negative — both forms of commands', 'Notice the accents in affirmative (despiértate, dúchate, vístete)', 'Make it friendly, not bossy — you can soften with por favor', 'Aim for 100-150 words', 'Paired with Lesson 34.3: Reflexive Commands'],
+      tips: ['Use at least 6 reflexive tú commands', 'Mix affirmative and negative — both forms of commands', 'Notice the accents in affirmative (despiértate, dúchate, vístete)', 'Make it friendly, not bossy — you can soften with por favor', 'Aim for 100-150 words', 'Paired with Lesson 45: Reflexive Commands'],
       date: 'Nov 22'
     },
     {
@@ -14470,7 +14478,7 @@
       level: 'sp2',
       category: 'grammar',
       body: 'Pick a dish you know how to make — a sandwich, scrambled eggs, pasta, tacos, anything. Write the recipe in Spanish using <strong>tú commands with object pronouns</strong>. The trick: once you mention a noun (the eggs, the bread, the cheese), replace it with a pronoun (lo, la, los, las) in subsequent commands instead of repeating the noun.<br><br>Structure:<br>1. <em>Ingredientes:</em> list what you need<br>2. <em>Preparación:</em> step-by-step commands. First time you mention something, use the noun. Then use the pronoun.<br><br>Example for eggs: "Toma dos huevos. Rómpelos en un bowl. Bátelos bien con un tenedor. Calienta una sartén. Pon mantequilla. Cuando esté caliente, échala. Vierte los huevos en la sartén. Muévelos suavemente con una espátula. No los cocines demasiado."',
-      tips: ['Use at least 7 commands with object pronouns', 'After introducing an ingredient, replace it with lo/la/los/las', 'Include at least 1 negative command ("no lo dejes…" / "no la cocines…")', 'Notice accents on affirmative commands (rómpelos, échala)', 'Aim for 100-150 words', 'Paired with Lesson 34.4: Commands with Object Pronouns'],
+      tips: ['Use at least 7 commands with object pronouns', 'After introducing an ingredient, replace it with lo/la/los/las', 'Include at least 1 negative command ("no lo dejes…" / "no la cocines…")', 'Notice accents on affirmative commands (rómpelos, échala)', 'Aim for 100-150 words', 'Paired with Lesson 46: Commands with Object Pronouns'],
       date: 'Nov 26'
     },
     {
@@ -14479,7 +14487,7 @@
       level: 'sp2',
       category: 'grammar',
       body: 'You\'re organizing a big event — a quinceañera, a wedding, a graduation party, a school festival, anything that requires coordination. You have a team of helpers (an assistant, a relative, a friend) and you need to write them a list of instructions that delegates tasks involving multiple people and items.<br><br>The whole point: use <strong>double object pronouns</strong> consistently. "Send THEM the invitations" → "Mándaselas." "Buy IT for him" → "Cómpraselo." Apply the le→se rule whenever needed.<br><br>Structure: write 8-10 numbered instructions. Each one should use a double-pronoun command.<br><br>Example: "1. Las invitaciones están en mi escritorio — mándaselas a todos los invitados antes del viernes. 2. La torta es para la abuela — cómprasela en la panadería de la esquina. 3. Los regalos están envueltos — dáselos a los niños en la fiesta, no antes."',
-      tips: ['Use at least 8 double-pronoun commands', 'Apply the le→se rule at least 4 times', 'Include at least 2 negative commands', 'Number your instructions for clarity', 'Use vocabulary from cumpleaños, cotidiano decks', 'Aim for 120-180 words', 'Paired with Lesson 34.5: Double Object Pronouns'],
+      tips: ['Use at least 8 double-pronoun commands', 'Apply the le→se rule at least 4 times', 'Include at least 2 negative commands', 'Number your instructions for clarity', 'Use vocabulary from cumpleaños, cotidiano decks', 'Aim for 120-180 words', 'Paired with Lesson 47: Double Object Pronouns'],
       date: 'Dec 3'
     },
     {
@@ -14488,7 +14496,7 @@
       level: 'sp2',
       category: 'grammar',
       body: 'Write a short story (real or fictional) about a misunderstanding that happened because someone said the wrong thing. Maybe someone "asked for" something (pidió) when they meant to "ask about" something (preguntó por). Maybe someone said they "knew" a place (conocía) when really they only "knew of it" (sabía de). Maybe someone "met" (conoció) someone when they thought they already knew them.<br><br>The whole point: weave together saber, conocer, pedir, and preguntar naturally throughout the story. Use both present-tense and past-tense forms (preterite + imperfect — both work here).<br><br>Sample opening: <em>"El otro día mi amigo Carlos me pidió un favor. Yo sabía que él conocía a mi hermana desde la escuela, pero no sabía que la quería mucho. Cuando me preguntó si podía darle su número, supe inmediatamente lo que pasaba…"</em>',
-      tips: ['Use ALL FOUR target verbs at least once each: saber, conocer, pedir, preguntar', 'Try to use at least 1 preterite form of saber/conocer (supe, conocí) with the special "found out" or "met" meaning', 'Mix tenses naturally — present for current state, preterite for one-time events, imperfect for background', 'Make the misunderstanding genuinely funny or interesting', 'Aim for 150-200 words', 'Paired with Lesson 34.7'],
+      tips: ['Use ALL FOUR target verbs at least once each: saber, conocer, pedir, preguntar', 'Try to use at least 1 preterite form of saber/conocer (supe, conocí) with the special "found out" or "met" meaning', 'Mix tenses naturally — present for current state, preterite for one-time events, imperfect for background', 'Make the misunderstanding genuinely funny or interesting', 'Aim for 150-200 words', 'Paired with Lesson 48'],
       date: 'Dec 8'
     },
     {
@@ -14497,7 +14505,7 @@
       level: 'sp2',
       category: 'grammar',
       body: 'Pick a busy, interesting place — a family gathering, a school cafeteria, a public market, a beach, a coffee shop, a bus station, your favorite park. Write a paragraph describing what\'s happening RIGHT NOW in that scene. Use <strong>present progressive with object pronouns</strong> as much as you can.<br><br>The whole point: master the flow of "estar + gerund + pronoun" in both positions. Mix between <em>"Lo está haciendo"</em> and <em>"Está haciéndolo"</em> freely.<br><br>Aim for vivid, specific details — what specific people are doing, what they\'re saying to whom, what objects are being passed around. Make the scene come alive.<br><br>Example: <em>"En la cafetería de la escuela todos están comiendo. Mi amigo Daniel está haciendo cola y mirándome con cara de hambre. Le estoy guardando un asiento en la mesa. Las chicas de mi clase están riéndose de algo — están viendo un video y mostrándoselo a otras compañeras. La maestra está cruzando el comedor con una taza de café — la está bebiendo despacio porque está caliente."</em>',
-      tips: ['Use at least 8 progressive constructions with pronouns', 'Use BOTH pronoun positions at least 3 times each (before AND attached)', 'Include reflexive progressives ("se está vistiendo," "nos estamos riendo")', 'Include at least 1 double pronoun', 'Notice accents on attached forms', 'Aim for 120-180 words', 'Paired with Lesson 34.8'],
+      tips: ['Use at least 8 progressive constructions with pronouns', 'Use BOTH pronoun positions at least 3 times each (before AND attached)', 'Include reflexive progressives ("se está vistiendo," "nos estamos riendo")', 'Include at least 1 double pronoun', 'Notice accents on attached forms', 'Aim for 120-180 words', 'Paired with Lesson 49'],
       date: 'Dec 12'
     },
     {
@@ -14506,7 +14514,7 @@
       level: 'sp2',
       category: 'grammar',
       body: 'Compare your family with a friend\'s family using <strong>possessive pronouns</strong>. Don\'t just say "my mom is funny, your mom is serious" — replace the second mention with a pronoun: "Mi mamá es chistosa, la tuya es seria."<br><br>The whole point: practice the swap from possessive adjective (mi mamá) to possessive pronoun (la tuya) in continuous writing. This is how Spanish speakers AVOID being repetitive.<br><br>Cover at least: parents, siblings, pets, family traditions, where you live, family meals, family vacations. For each comparison, introduce the topic with a possessive adjective + noun, then switch to a possessive pronoun for the second half of the comparison.<br><br>Example: <em>"Mi familia es muy diferente a la tuya. Mis padres son tranquilos, los tuyos son aventureros. Mi hermana tiene 15 años, la tuya tiene 8. Nuestra casa es pequeña, la suya — la de tu abuela — es enorme. Nuestras tradiciones son americanas, las tuyas son mexicanas y americanas. Nuestro perro es viejo, el tuyo es un cachorro."</em>',
-      tips: ['Use at least 6 possessive pronoun constructions', 'Include all four "owner" types if you can: mine (mío), yours-tú (tuyo), ours (nuestro), his/hers/theirs (suyo)', 'Match gender + number of the THING owned, not the owner', 'Use nuestro\'s FOUR forms (nuestro/nuestra/nuestros/nuestras) at least once each', 'Aim for 120-180 words', 'Paired with Lesson 34.9'],
+      tips: ['Use at least 6 possessive pronoun constructions', 'Include all four "owner" types if you can: mine (mío), yours-tú (tuyo), ours (nuestro), his/hers/theirs (suyo)', 'Match gender + number of the THING owned, not the owner', 'Use nuestro\'s FOUR forms (nuestro/nuestra/nuestros/nuestras) at least once each', 'Aim for 120-180 words', 'Paired with Lesson 50'],
       date: 'Dec 16'
     },
     // ========== SPANISH 3 — ADVANCED / LITERATURE ==========
@@ -14871,7 +14879,7 @@
       title: 'Teach a friend <em>something you know</em> (scaffolded)',
       level: 'sp2', category: 'grammar',
       body: 'Pick something you know how to do — make a sandwich, get to school, play a video game, do a TikTok dance, anything. Teach a friend how to do it using a sequence of tú commands. Use the scaffold below to build your speech, then record it.<br><br><strong>Scaffold:</strong><br>1. <em>Primero, ___</em> (give a first command — what to do first)<br>2. <em>Después, ___</em> (give a second command — what comes next)<br>3. <em>Luego, ___</em> (third command — keep building)<br>4. <em>Pero, no ___</em> (ONE negative command — something they should NOT do)<br>5. <em>Finalmente, ___</em> (final command — how to finish)<br><br>Example: "Te voy a enseñar a hacer un sándwich de jamón. Primero, saca el pan. Después, pon mantequilla en el pan. Luego, añade jamón y queso. Pero, no pongas tomate si no te gusta. Finalmente, cierra el sándwich y cómelo."',
-      tips: ['Use at least 5 tú commands (4 affirmative + 1 negative)', 'Include at least one irregular command (ven, di, sal, haz, ten, ve, pon, sé)', 'Speak as if you\'re actually teaching someone', '45+ seconds', 'Paired with Lesson 34.1: Tú Commands'],
+      tips: ['Use at least 5 tú commands (4 affirmative + 1 negative)', 'Include at least one irregular command (ven, di, sal, haz, ten, ve, pon, sé)', 'Speak as if you\'re actually teaching someone', '45+ seconds', 'Paired with Lesson 43: Tú Commands'],
       date: 'Nov 12'
     },
     // ========== TIER 3: OPEN — Tú Commands ==========
@@ -14880,7 +14888,7 @@
       title: 'A day as a <em>bossy older sibling</em>',
       level: 'sp2', category: 'roleplay',
       body: 'You\'re the bossy older sibling for a day. Your job: tell your younger brother/sister what to do (and what NOT to do) from morning to night. Wake them up, give them breakfast instructions, send them to school, manage their afternoon, get them ready for bed. Use lots of tú commands. No script.<br><br>Imagine the scenes: "¡Despiértate! ¡Levántate ya! No te quedes en la cama. Vístete rápido. Come tu desayuno. No comas tan despacio…" Make it funny if you want — really play the bossy sibling.',
-      tips: ['Mix affirmative and negative commands freely', 'Use at least 3 reflexive commands (despiértate, levántate, vístete, lávate, etc.)', 'Try to include all 8 irregular tú commands (ven, di, sal, haz, ten, ve, pon, sé) if you can', '60+ seconds', 'Have fun with it — exaggerate the bossiness', 'Paired with Lesson 34.1: Tú Commands'],
+      tips: ['Mix affirmative and negative commands freely', 'Use at least 3 reflexive commands (despiértate, levántate, vístete, lávate, etc.)', 'Try to include all 8 irregular tú commands (ven, di, sal, haz, ten, ve, pon, sé) if you can', '60+ seconds', 'Have fun with it — exaggerate the bossiness', 'Paired with Lesson 43: Tú Commands'],
       date: 'Nov 14'
     },
 
@@ -14890,7 +14898,7 @@
       title: 'Take a taxi: <em>direct the driver</em> (scaffolded)',
       level: 'sp2', category: 'grammar',
       body: 'You\'re in a Spanish-speaking city and need to direct a taxi driver to your destination. Since the taxi driver is a stranger, you must use <strong>usted commands</strong>. Use the scaffold below to organize your speech, then record it.<br><br><strong>Scaffold:</strong><br>1. <em>Greet:</em> Buenos días / Buenas tardes, señor/señora.<br>2. <em>Tell the driver where to go:</em> Por favor, lléveme a ___ (formal command: take me to…).<br>3. <em>Give a direction:</em> Vaya por ___ (go via…) / Doble a la izquierda / derecha (turn left/right).<br>4. <em>Use ONE negative command:</em> No vaya por ___, hay mucho tráfico (don\'t go via X, there\'s a lot of traffic).<br>5. <em>Stop:</em> Pare aquí, por favor (stop here, please).<br>6. <em>Pay & thank:</em> ¿Cuánto le debo? Gracias.<br><br>Example: "Buenos días. Por favor, lléveme al aeropuerto. Vaya por la calle Bolívar. Doble a la derecha en la avenida. No vaya por el centro, hay mucho tráfico. Pare aquí, por favor. ¿Cuánto le debo? Gracias."',
-      tips: ['Use at least 4 usted commands', 'Include 1 negative command', 'Use polite forms — por favor, gracias, señor/señora', 'Pace yourself — taxi drivers in Latin America appreciate calm, clear directions', '45+ seconds', 'Paired with Lesson 34.2: Usted &amp; Ustedes Commands'],
+      tips: ['Use at least 4 usted commands', 'Include 1 negative command', 'Use polite forms — por favor, gracias, señor/señora', 'Pace yourself — taxi drivers in Latin America appreciate calm, clear directions', '45+ seconds', 'Paired with Lesson 44: Usted &amp; Ustedes Commands'],
       date: 'Nov 16'
     },
 
@@ -14900,7 +14908,7 @@
       title: 'A meal at a <em>formal restaurant</em>',
       level: 'sp2', category: 'roleplay',
       body: 'You\'re dining at a nice restaurant in a Spanish-speaking country. Play both roles — yourself as the customer AND the waiter responding. The customer uses <strong>usted commands</strong> politely throughout the meal. The waiter also uses usted in response. No script — improvise the conversation.<br><br>Cover at least: 1) Being seated, 2) Asking for recommendations, 3) Ordering food and drink, 4) Asking for something during the meal (more water, the salt, etc.), 5) Asking for the bill and leaving.<br><br>Sample phrases to weave in: <em>"Tráigame…"</em> (Bring me…), <em>"Recomiéndeme…"</em> (Recommend to me…), <em>"Páseme…"</em> (Pass me…), <em>"Déme la cuenta, por favor"</em> (Give me the bill, please).',
-      tips: ['Use at least 6 usted commands across the conversation', 'Always include "por favor" or "gracias"', 'Make the waiter ALSO use usted ("Siga", "Disfrute su comida")', 'Mix affirmative and negative — at least 1 of each', '60+ seconds', 'Paired with Lesson 34.2: Usted &amp; Ustedes Commands'],
+      tips: ['Use at least 6 usted commands across the conversation', 'Always include "por favor" or "gracias"', 'Make the waiter ALSO use usted ("Siga", "Disfrute su comida")', 'Mix affirmative and negative — at least 1 of each', '60+ seconds', 'Paired with Lesson 44: Usted &amp; Ustedes Commands'],
       date: 'Nov 18'
     },
 
@@ -14910,7 +14918,7 @@
       title: 'Lead a <em>tour group</em> (scaffolded)',
       level: 'sp2', category: 'grammar',
       body: 'You\'re a tour guide leading a group of Spanish-speaking tourists. Since you\'re addressing a GROUP, you must use <strong>ustedes commands</strong>. Use the scaffold to build your guided tour speech.<br><br><strong>Scaffold:</strong><br>1. <em>Welcome the group:</em> Buenas tardes a todos, bienvenidos a ___.<br>2. <em>Give a "follow me" command:</em> Síganme, por favor (follow me, please).<br>3. <em>Tell them to look at something:</em> Miren a la izquierda / derecha (look to the left/right).<br>4. <em>Give a safety instruction with negative:</em> Por favor, no toquen ___ / no se acerquen demasiado (please don\'t touch X / don\'t get too close).<br>5. <em>Tell them to take photos or ask questions:</em> Tomen fotos / Hagan preguntas (take photos / ask questions).<br>6. <em>Finish:</em> Gracias por venir hoy. Vuelvan pronto.<br><br>You can be touring any place: a museum, a historic site, a market, a national park, your school.',
-      tips: ['Use at least 5 ustedes commands', 'Include at least 1 negative command', 'Speak as if you really have a group in front of you — project your voice', 'Use enthusiasm — tour guides should sound engaged', '45+ seconds', 'Paired with Lesson 34.2: Usted &amp; Ustedes Commands'],
+      tips: ['Use at least 5 ustedes commands', 'Include at least 1 negative command', 'Speak as if you really have a group in front of you — project your voice', 'Use enthusiasm — tour guides should sound engaged', '45+ seconds', 'Paired with Lesson 44: Usted &amp; Ustedes Commands'],
       date: 'Nov 20'
     },
 
@@ -14920,7 +14928,7 @@
       title: 'Coach a friend through <em>their morning</em> (scaffolded)',
       level: 'sp2', category: 'grammar',
       body: 'Your friend can\'t seem to get out the door on time in the mornings. You\'re going to coach them through their entire morning routine using <strong>reflexive tú commands</strong>. Use the scaffold to build your speech.<br><br><strong>Scaffold (each blank is a reflexive command):</strong><br>1. <em>¡___! Ya son las siete.</em> (wake up)<br>2. <em>¡___ de la cama!</em> (get up)<br>3. <em>¡___ rápido!</em> (take a shower)<br>4. <em>¡___ los dientes!</em> (brush)<br>5. <em>¡___ rápido!</em> (get dressed)<br>6. <em>¡No ___ tu mochila!</em> (don\'t forget — uses negative)<br>7. <em>¡___! Llegamos tarde.</em> (hurry up)<br>8. <em>¡___ del autobús cuando llegues!</em> (be careful — uses "cuidarse")<br><br>Example: "¡Despiértate! Ya son las siete. ¡Levántate de la cama! ¡Dúchate rápido! ¡Cepíllate los dientes! ¡Vístete rápido! ¡No te olvides de tu mochila! ¡Apúrate! Llegamos tarde. ¡Cuídate del autobús cuando llegues!"',
-      tips: ['Use at least 6 reflexive tú commands', 'Include at least 1 negative reflexive command', 'Notice the accents on affirmative forms (despiértate, levántate)', '45+ seconds', 'Paired with Lesson 34.3: Reflexive Commands'],
+      tips: ['Use at least 6 reflexive tú commands', 'Include at least 1 negative reflexive command', 'Notice the accents on affirmative forms (despiértate, levántate)', '45+ seconds', 'Paired with Lesson 45: Reflexive Commands'],
       date: 'Nov 22'
     },
 
@@ -14930,7 +14938,7 @@
       title: '<em>Coach</em> at the gym',
       level: 'sp2', category: 'roleplay',
       body: 'You\'re a personal trainer at a gym. Your client is having a tough workout and needs your encouragement and instructions. Use a mix of reflexive commands (calm down, relax, focus) and regular commands (breathe, drink water, lift) to coach them through a workout.<br><br>Choose what kind of workout — running on a treadmill, lifting weights, doing yoga, a HIIT class. Mix tú commands throughout. Make it feel real: be encouraging, urgent, supportive.',
-      tips: ['Use at least 4 reflexive commands (¡cálmate!, ¡tranquilízate!, ¡concéntrate!, ¡muévete!, etc.)', 'Mix in non-reflexive commands too (¡respira!, ¡bebe agua!, ¡sigue!)', 'Include at least 1 negative reflexive (¡no te rindas! — don\'t give up)', 'Use enthusiastic tone', '60+ seconds', 'Paired with Lesson 34.3: Reflexive Commands'],
+      tips: ['Use at least 4 reflexive commands (¡cálmate!, ¡tranquilízate!, ¡concéntrate!, ¡muévete!, etc.)', 'Mix in non-reflexive commands too (¡respira!, ¡bebe agua!, ¡sigue!)', 'Include at least 1 negative reflexive (¡no te rindas! — don\'t give up)', 'Use enthusiastic tone', '60+ seconds', 'Paired with Lesson 45: Reflexive Commands'],
       date: 'Nov 24'
     },
 
@@ -14940,7 +14948,7 @@
       title: 'I lost something! <em>Help me find it</em> (scaffolded)',
       level: 'sp2', category: 'grammar',
       body: 'Your friend lost something important — their phone, their keys, their wallet, their backpack. You\'re going to help them search by giving commands with object pronouns. The whole point: use the pronoun (lo, la) instead of repeating the noun.<br><br><strong>Scaffold:</strong><br>1. <em>Ask what they lost:</em> ¿Qué perdiste? (What did you lose?)<br>2. <em>Tell them to look for it:</em> ¡Búscalo! / ¡Búscala! (Search for it!) — use lo for masc., la for fem.<br>3. <em>Tell them where to check:</em> ¡Míralo en el cajón! / ¡Míralo debajo de la cama! (Look at it in the drawer / under the bed)<br>4. <em>Tell them NOT to give up:</em> ¡No te rindas! (Don\'t give up!)<br>5. <em>When they find it:</em> ¡Encontrémoslo! ¡Tómalo y guárdalo bien! (Let\'s find it! Take it and put it away well!)<br><br>Example with "el teléfono": "¿Qué perdiste? ¿El teléfono? ¡Búscalo en la mesa! ¡Míralo en tu mochila! ¡No te rindas, vamos a encontrarlo! ¡Ah, lo veo! ¡Tómalo y no lo pierdas otra vez!"',
-      tips: ['Use at least 5 commands with object pronouns (lo, la, los, las)', 'Match the pronoun to the gender of the lost object', 'Include 1 negative command', 'Notice accents on 2+ syllable affirmatives (búscalo, míralo)', '45+ seconds', 'Paired with Lesson 34.4: Commands with Object Pronouns'],
+      tips: ['Use at least 5 commands with object pronouns (lo, la, los, las)', 'Match the pronoun to the gender of the lost object', 'Include 1 negative command', 'Notice accents on 2+ syllable affirmatives (búscalo, míralo)', '45+ seconds', 'Paired with Lesson 46: Commands with Object Pronouns'],
       date: 'Nov 26'
     },
 
@@ -14950,7 +14958,7 @@
       title: 'A parent <em>texts their kid</em> from work',
       level: 'sp2', category: 'roleplay',
       body: 'You\'re a parent at work, texting your teenager at home. You need to give them a series of instructions about: the dog, dinner, homework, chores, and what NOT to do. Use lots of commands with object pronouns — replace nouns with pronouns whenever you can.<br><br>Imagine the texts as voice messages. Make it feel real: <em>"Saca al perro y dale agua. No te olvides de hacer la tarea — hazla antes de cenar. La cena está en el refrigerador, caliéntala dos minutos. Y no me llames si no es urgente."</em><br><br>Cover at least 5 different "tasks" the kid needs to handle. Mix affirmative and negative.',
-      tips: ['Use at least 6 commands with object pronouns', 'Mix direct objects (lo, la, los, las) and indirect (me, te, le)', 'Include at least 2 negative commands', 'Speak with a parental tone — caring but firm', '60+ seconds', 'Paired with Lesson 34.4: Commands with Object Pronouns'],
+      tips: ['Use at least 6 commands with object pronouns', 'Mix direct objects (lo, la, los, las) and indirect (me, te, le)', 'Include at least 2 negative commands', 'Speak with a parental tone — caring but firm', '60+ seconds', 'Paired with Lesson 46: Commands with Object Pronouns'],
       date: 'Nov 28'
     },
 
@@ -14960,7 +14968,7 @@
       title: 'Delegate <em>errands</em> to a family member (scaffolded)',
       level: 'sp2', category: 'grammar',
       body: 'Your mom asks you to deliver several items to different people. You\'re busy, so you delegate to your younger sibling. The whole point: use double object pronouns to avoid repeating nouns.<br><br><strong>Scaffold:</strong> For each item, give a command with two pronouns. Use the le→se rule when needed.<br>1. <em>"Llévale el regalo a la abuela."</em> → <em>¡Llévaselo!</em> (Take it to her!)<br>2. <em>"Dale el dinero a papá."</em> → <em>¡Dáselo!</em> (Give it to him!)<br>3. <em>"Mándale las fotos a tu prima."</em> → <em>¡Mándaselas!</em> (Send them to her!)<br>4. <em>"Tráeme el libro."</em> → <em>¡Tráemelo!</em> (Bring it to me!)<br>5. <em>"No le digas la sorpresa al abuelo."</em> → <em>¡No se la digas!</em> (Don\'t tell it to him!)<br>6. <em>"Cómprale la leche a mamá en el supermercado."</em> → <em>¡Cómprasela!</em> (Buy it for her!)<br><br>Then record yourself saying ONLY the double-pronoun commands in sequence — like a real list of delegated tasks.',
-      tips: ['Use at least 5 double-pronoun commands', 'Include at least 2 with the le→se rule (dáselo, díselo, etc.)', 'Include at least 1 negative double-pronoun command', 'Notice the accents — affirmative double pronoun commands ALWAYS need them', '45+ seconds', 'Paired with Lesson 34.5: Double Object Pronouns'],
+      tips: ['Use at least 5 double-pronoun commands', 'Include at least 2 with the le→se rule (dáselo, díselo, etc.)', 'Include at least 1 negative double-pronoun command', 'Notice the accents — affirmative double pronoun commands ALWAYS need them', '45+ seconds', 'Paired with Lesson 47: Double Object Pronouns'],
       date: 'Dec 1'
     },
 
@@ -14970,7 +14978,7 @@
       title: '<em>Holiday gifts</em> — telling someone what to give whom',
       level: 'sp2', category: 'roleplay',
       body: 'It\'s gift-giving season (Christmas, Day of the Three Kings, Hanukkah, anyone\'s birthday). You\'re helping a friend or family member plan which gifts go to which people. Give them commands with double object pronouns: "Give it to her, but don\'t give it to him!" "Send them to your cousins, not to your sister!"<br><br>Cover at least 5 different gift-giving decisions. Imagine the gifts and recipients vividly — make it feel like a real planning conversation.<br><br>Sample structure: <em>"A ver, esta bufanda — dásela a la abuela, le gusta el rojo. Pero los chocolates no se los des, ella es diabética. El libro mándaselo a tu hermano. Y la camisa, cómprasela a papá, pero no se la des hasta el sábado."</em>',
-      tips: ['Use at least 6 double-pronoun commands', 'Apply the le→se rule consistently — most of your commands will use it since you\'re talking about "to him/her/them"', 'Mix affirmative and negative — "give it to her, but don\'t give it to him"', 'Use vocabulary from the cumpleaños and cotidiano decks', '60+ seconds', 'Paired with Lesson 34.5: Double Object Pronouns'],
+      tips: ['Use at least 6 double-pronoun commands', 'Apply the le→se rule consistently — most of your commands will use it since you\'re talking about "to him/her/them"', 'Mix affirmative and negative — "give it to her, but don\'t give it to him"', 'Use vocabulary from the cumpleaños and cotidiano decks', '60+ seconds', 'Paired with Lesson 47: Double Object Pronouns'],
       date: 'Dec 3'
     },
 
@@ -14980,7 +14988,7 @@
       title: '<em>Interview</em> someone you\'ve just met (scaffolded)',
       level: 'sp2', category: 'grammar',
       body: 'You\'re meeting someone new — at a party, a class, a coffee shop. You don\'t know anything about them yet. Practice asking questions naturally, switching between <strong>preguntar</strong> (asking questions) and using verb forms of <strong>saber</strong> and <strong>conocer</strong>.<br><br><strong>Scaffold:</strong> Build your speech using these 6 turns:<br>1. <em>Introduce yourself, then ask their name:</em> "Hola, me llamo ___. ¿Cómo te llamas?"<br>2. <em>Ask if they know certain people or places:</em> "¿Conoces a ___?" / "¿Conoces ___?"<br>3. <em>Ask what they know how to do (a skill):</em> "¿Sabes ___?" (toca un instrumento, hablar otro idioma, cocinar)<br>4. <em>Ask a fact-question:</em> "¿Sabes qué hora es?" o "¿Sabes dónde está ___?"<br>5. <em>Ask for a favor or item:</em> "¿Me puedes pedir un café también, por favor?" o "Pídeme un agua, por favor."<br>6. <em>Ask about a person\'s wellbeing:</em> "¿Cómo está tu familia? Pregunta por ellos cuando los veas."<br><br>Example flow: "Hola, me llamo Sofía. ¿Cómo te llamas? Mucho gusto. ¿Conoces a mi amiga Carla? ¿Conoces este café? Es nuevo. ¿Sabes tocar algún instrumento? Yo toco la guitarra. Ah, ¿sabes qué hora es? Tengo prisa. ¿Me puedes pedir un café cuando vayas a la barra? Gracias. Y dile a tu familia que pregunto por ellos."',
-      tips: ['Use at least 3 forms of saber/conocer', 'Use at least 2 forms of pedir/preguntar', 'Notice the difference between "preguntar a" (asking someone) and "preguntar por" (asking about someone)', 'Add the personal "a" before people (Conozco a María, not Conozco María)', '45+ seconds', 'Paired with Lesson 34.7'],
+      tips: ['Use at least 3 forms of saber/conocer', 'Use at least 2 forms of pedir/preguntar', 'Notice the difference between "preguntar a" (asking someone) and "preguntar por" (asking about someone)', 'Add the personal "a" before people (Conozco a María, not Conozco María)', '45+ seconds', 'Paired with Lesson 48'],
       date: 'Dec 6'
     },
 
@@ -14990,7 +14998,7 @@
       title: 'The story of how you <em>met someone important</em>',
       level: 'sp2', category: 'narrative',
       body: 'Tell the story of how you met someone important to you — a best friend, a relative, a teacher, a coach, anyone. The whole point: use the preterite of <strong>conocer</strong> (= "I met") to mark the moment of meeting, then use the imperfect of <strong>saber/conocer</strong> for the ongoing "knowing" relationship that followed.<br><br>Cover at least: 1) Where you met (Lo/La conocí en…), 2) What you didn\'t know about them at first (No sabía que…), 3) When you found out something interesting about them (Supe que…), 4) How well you know them now (Ahora lo/la conozco muy bien).<br><br>Sample structure: <em>"Conocí a mi mejor amigo Marcos en quinto grado. Cuando lo conocí, no sabía que era de Colombia. Después supe que sus padres habían venido aquí cuando él era pequeño. Ahora lo conozco mejor que a nadie — sé todos sus secretos y él sabe los míos."</em>',
-      tips: ['Use "conocí" (preterite) for the moment of meeting', 'Use "conocía" (imperfect) for "knew" before that moment', 'Use "supe" (preterite) for "I found out"', 'Use "sabía" (imperfect) for "I knew (a fact, ongoing)"', 'Use "conozco" (present) for current familiarity', '60+ seconds', 'This is the kind of nuanced past-tense storytelling that makes Spanish sound truly fluent', 'Paired with Lesson 34.7'],
+      tips: ['Use "conocí" (preterite) for the moment of meeting', 'Use "conocía" (imperfect) for "knew" before that moment', 'Use "supe" (preterite) for "I found out"', 'Use "sabía" (imperfect) for "I knew (a fact, ongoing)"', 'Use "conozco" (present) for current familiarity', '60+ seconds', 'This is the kind of nuanced past-tense storytelling that makes Spanish sound truly fluent', 'Paired with Lesson 48'],
       date: 'Dec 8'
     },
 
@@ -15000,7 +15008,7 @@
       title: '<em>What\'s happening</em> right now around you (scaffolded)',
       level: 'sp2', category: 'grammar',
       body: 'Look around your room, classroom, or wherever you are. Describe AT LEAST 6 things that are happening — using <strong>present progressive with object pronouns</strong> wherever possible. The point: use pronouns rather than repeating nouns to make your speech more natural.<br><br><strong>Scaffold:</strong><br>1. <em>Something you yourself are doing:</em> "Estoy ___" (use a reflexive or self-action — me estoy preparando, estoy estudiando)<br>2. <em>Something someone else is doing TO an object:</em> "Mi amigo lo está ___" / "Está ___lo" (lo = a book, a phone, etc.)<br>3. <em>Something happening that involves you:</em> "Me están ___" (someone is calling me, watching me, talking to me)<br>4. <em>Something a group is doing:</em> "Las están ___" (they\'re doing something to multiple feminine things)<br>5. <em>Something involving a recipient:</em> "Le está ___" (someone giving/saying/showing something to him/her)<br>6. <em>Something with reflexive:</em> "Se está ___" (they\'re getting ready, dressing, etc.)<br><br>For at least 2 of your sentences, use BOTH valid pronoun positions (lo estoy haciendo + estoy haciéndolo) to show you understand the flexibility.<br><br>Example: <em>"Estoy hablando con mi amigo. Me está escuchando. Mi compañera está leyendo un libro — lo está leyendo en voz alta. Le estoy explicando la tarea a mi hermano. Está vistiéndose para salir."</em>',
-      tips: ['Use at least 6 progressive + pronoun constructions', 'Use BOTH positions at least once each (before-auxiliary and attached-to-gerund)', 'Include at least 1 reflexive', 'Include at least 1 double pronoun', 'Notice accents on attached forms (haciéndolo, escuchándome)', '45+ seconds', 'Paired with Lesson 34.8'],
+      tips: ['Use at least 6 progressive + pronoun constructions', 'Use BOTH positions at least once each (before-auxiliary and attached-to-gerund)', 'Include at least 1 reflexive', 'Include at least 1 double pronoun', 'Notice accents on attached forms (haciéndolo, escuchándome)', '45+ seconds', 'Paired with Lesson 49'],
       date: 'Dec 10'
     },
 
@@ -15010,7 +15018,7 @@
       title: '<em>Live narration</em> of your day',
       level: 'sp2', category: 'narrative',
       body: 'Imagine you\'re a sports announcer or YouTuber narrating your day in real-time. Tell what\'s happening NOW — in progressive — and use object pronouns naturally to refer to things you\'ve mentioned.<br><br>Cover your morning, your school day, your activities, things people are doing around you. The whole point: this is the FLOW of progressive Spanish, which is how speakers actually talk about current events.<br><br>Sample structure: <em>"Estoy en mi salón ahora mismo. Mi profe está explicándonos la lección, y estamos tomando apuntes. Mi amiga me está mandando un mensaje — la estoy ignorando porque estoy concentrada. Después de clase, voy al gym — mis amigos ya me están esperando allí. Estamos preparándonos para un partido."</em><br><br>Mix freely between the two pronoun positions — use whichever sounds right in each sentence.',
-      tips: ['Use at least 8 progressive constructions with pronouns', 'Mix freely between before-auxiliary and attached-to-gerund positions', 'Include direct objects, indirect objects, reflexives, AND at least one double pronoun', 'Make it feel like real narration — energetic, present-tense, flowing', '60+ seconds', 'Paired with Lesson 34.8'],
+      tips: ['Use at least 8 progressive constructions with pronouns', 'Mix freely between before-auxiliary and attached-to-gerund positions', 'Include direct objects, indirect objects, reflexives, AND at least one double pronoun', 'Make it feel like real narration — energetic, present-tense, flowing', '60+ seconds', 'Paired with Lesson 49'],
       date: 'Dec 12'
     },
 
@@ -15020,7 +15028,7 @@
       title: 'Compare <em>your stuff</em> to a friend\'s (scaffolded)',
       level: 'sp2', category: 'grammar',
       body: 'Compare your things to a friend\'s using possessive pronouns. Don\'t repeat the noun — use el mío / la tuya / etc. The whole point: replace nouns with pronouns to make your speech sound more natural and less repetitive.<br><br><strong>Scaffold:</strong> Build at least 6 comparison sentences using the pattern "Mi/Tu ___ [adjective], ___ [pronoun] [adjective opuesto]."<br><br>1. <em>Your phones:</em> "Mi celular es viejo, ___ es nuevo." (el tuyo)<br>2. <em>Your houses:</em> "Tu casa es grande, ___ es pequeña." (la mía)<br>3. <em>Your families:</em> "Mi familia es pequeña, ___ es grande." (la tuya)<br>4. <em>Your friends:</em> "Tus amigos son divertidos, ___ son aburridos." (los míos)<br>5. <em>Your classes:</em> "Mis clases son difíciles, ___ son fáciles." (las tuyas)<br>6. <em>Your dreams:</em> "Mi sueño es viajar, ___ es estudiar medicina." (el tuyo)<br><br>For at least 2 sentences, use the "after ser" bare form (no article): "Este libro es mío" instead of "Es el mío."<br><br>Example speech: <em>"A ver, comparemos. Mi celular es viejo, el tuyo es nuevo. Tu casa es grande, la mía es pequeña pero acogedora. Mi familia es pequeña, la tuya es enorme. Tus amigos son muy sociales, los míos son más tranquilos. Y nuestras metas — bueno, tu meta es estudiar medicina, la mía es viajar por todo el mundo. Este libro es mío. Esa idea es tuya."</em>',
-      tips: ['Use at least 6 possessive pronoun comparisons', 'Mix both forms — with article (el tuyo) and without (es mío)', 'Make sure gender + number agreement matches the THING owned, not the owner', 'Pay attention to nuestro/a/os/as having FOUR forms', '45+ seconds', 'Paired with Lesson 34.9'],
+      tips: ['Use at least 6 possessive pronoun comparisons', 'Mix both forms — with article (el tuyo) and without (es mío)', 'Make sure gender + number agreement matches the THING owned, not the owner', 'Pay attention to nuestro/a/os/as having FOUR forms', '45+ seconds', 'Paired with Lesson 50'],
       date: 'Dec 14'
     },
 
@@ -15030,7 +15038,7 @@
       title: '"<em>Whose is this?</em>" — sorting lost items',
       level: 'sp2', category: 'roleplay',
       body: 'You\'re helping sort lost items after a class trip, a sleepover, a family reunion, or a school event. There\'s a pile of stuff — phones, jackets, water bottles, snacks — and you need to figure out whose is whose. Use lots of possessive pronouns naturally.<br><br>Imagine the back-and-forth: <em>"¿De quién es esta sudadera? ¿Es tuya? No, no es mía, creo que es de María. Sí, es suya. Y estos zapatos, ¿son tuyos? No, los míos están allá. ¿Y este cargador? Mmm, podría ser de cualquiera — ah, espera, es de Carlos, es suyo."</em><br><br>Cover at least 6 different items. Mix between the question forms (¿es tuyo?, ¿son suyas?) and the answer forms (es mío, es de ella, son los suyos). Use the "de + person" structure to clarify ambiguous cases.',
-      tips: ['Use at least 8 possessive pronoun constructions', 'Include questions AND answers', 'When "suyo" would be ambiguous, switch to "de él / de ella / de ellos" for clarity', 'Match gender + number of the THING, not the owner', 'Use both with-article and without-article forms', '60+ seconds', 'Paired with Lesson 34.9'],
+      tips: ['Use at least 8 possessive pronoun constructions', 'Include questions AND answers', 'When "suyo" would be ambiguous, switch to "de él / de ella / de ellos" for clarity', 'Match gender + number of the THING, not the owner', 'Use both with-article and without-article forms', '60+ seconds', 'Paired with Lesson 50'],
       date: 'Dec 16'
     }
 ,
@@ -19000,16 +19008,15 @@
   };
 
   const LESSONS = [
-    // Lesson numbering note: Spanish 3 lessons appear at L35, L36, L36.5, and L40-L42.
-    // The Sp2 lessons L37 (verb transitivity), L38 (participles as adjectives), and L39
-    // (comparatives) sit between them. This grouping is INTENTIONAL — the Sp3 lessons
-    // around L35-36 were built first (conditional, perfects), then Sp2 polish lessons
-    // were added, then Sp3 advanced tenses. The level-filter UI handles the scattered
-    // numbering cleanly. Don't renumber unless you're prepared to update LESSON_RESOURCES
-    // keys, STATE.completedLessons references, and any cross-references in readings.
+    // Lesson numbering: sequential positive integers (1..N) in array order, which
+    // is also the display order on the Lessons page. Sp2/Sp3 lessons interleave near
+    // the end (the level-filter UI handles that). Numbers are display-only — URLs,
+    // LESSON_RESOURCES, and STATE.completedLessons all key off the lesson id — but
+    // body text cross-references lessons by number, so renumbering means updating
+    // every "Lesson N" mention too. Keep new lessons numbered in array order.
     {
       id: 'pronunciation-alphabet',
-      num: '00',
+      num: '1',
       level: 'sp1',
       title: 'Pronunciation & the <em>alphabet</em>',
       tag: 'Start here · Foundations',
@@ -19104,7 +19111,7 @@
         },
         {
           heading: 'Stress and accents — <em>preview</em>',
-          body: 'Spanish has clean rules for which syllable to stress and when to write an accent mark. The short version: words ending in a vowel, "n," or "s" usually stress the second-to-last syllable; words ending in other consonants usually stress the last; any exception gets a written accent mark to show where the stress actually goes. <strong>The full rules — including why accents exist, how they change meaning, and how to read them — are covered in detail in Lesson 00.5 (Stress, syllables & accent marks).</strong>'
+          body: 'Spanish has clean rules for which syllable to stress and when to write an accent mark. The short version: words ending in a vowel, "n," or "s" usually stress the second-to-last syllable; words ending in other consonants usually stress the last; any exception gets a written accent mark to show where the stress actually goes. <strong>The full rules — including why accents exist, how they change meaning, and how to read them — are covered in detail in Lesson 2 (Stress, syllables & accent marks).</strong>'
         },
         {
           heading: 'Practical <em>tips</em>',
@@ -19155,7 +19162,7 @@
     },
     {
       id: 'stress-and-accents',
-      num: '00.5',
+      num: '2',
       level: 'sp1',
       title: 'Stress, syllables & <em>accent marks</em>',
       tag: 'Start here · Foundations',
@@ -19231,7 +19238,7 @@
         },
         {
           heading: 'Breaking a <em>diphthong</em>',
-          body: 'Remember from Lesson 00: when a strong vowel (a/e/o) meets a weak vowel (i/u), they blend into one syllable. But if you put an accent on the weak vowel, it forces them apart into TWO syllables. This is why <em>día</em> is two syllables (DEE-a) while <em>dia-rio</em> (which has the same letters at the start) is two syllables only because of the accent placement.',
+          body: 'Remember from Lesson 1: when a strong vowel (a/e/o) meets a weak vowel (i/u), they blend into one syllable. But if you put an accent on the weak vowel, it forces them apart into TWO syllables. This is why <em>día</em> is two syllables (DEE-a) while <em>dia-rio</em> (which has the same letters at the start) is two syllables only because of the accent placement.',
           examples: [
             { es: 'día (DEE-a)', en: 'two syllables — accent breaks the diphthong' },
             { es: 'país (pa-EES)', en: 'two syllables — accent breaks the diphthong' },
@@ -19286,7 +19293,7 @@
     },
     {
       id: 'cognates-false-friends',
-      num: '00.7',
+      num: '3',
       level: 'sp1',
       title: '<em>Cognates</em> & false friends',
       tag: 'Start here · Foundations',
@@ -19465,7 +19472,7 @@
     },
     {
       id: 'articles-gender',
-      num: '01',
+      num: '4',
       level: 'sp1',
       title: 'Articles & <em>gender</em>',
       tag: 'Foundations · Nouns',
@@ -19538,11 +19545,11 @@
     },
 
     // ============================================================================
-    // LESSON 01.5 — Pluralization basics (Spanish 1)
+    // LESSON 5 — Pluralization basics (Spanish 1)
     // ============================================================================
     {
       id: 'plural-basics',
-      num: '01.5',
+      num: '5',
       level: 'sp1',
       title: 'Singular ↔ <em>plural</em> nouns',
       tag: 'Foundations · Nouns',
@@ -19659,11 +19666,11 @@
     },
 
     // ============================================================================
-    // LESSON 01.7 — Pluralization edge cases (Spanish 1 / Sp2 reference)
+    // LESSON 6 — Pluralization edge cases (Spanish 1 / Sp2 reference)
     // ============================================================================
     {
       id: 'plural-edge-cases',
-      num: '01.7',
+      num: '6',
       level: 'sp1',
       title: 'Plural <em>edge cases</em>',
       tag: 'Foundations · Nouns · Reference',
@@ -19743,7 +19750,7 @@
         {
           type: 'tip',
           heading: 'Gender quirks that <em>affect plurals</em>',
-          body: 'A few patterns from earlier lessons resurface in pluralization:<br><br><strong>Greek-origin masculine nouns stay masculine in plural.</strong><br>Words like <em>problema, sistema, idioma, programa, tema, mapa</em> are masculine despite ending in -a. The plural keeps them masculine:<br>• <em>el problema → los problemas</em> (NOT "las problemas")<br>• <em>el sistema → los sistemas</em><br>• <em>el idioma → los idiomas</em><br><br>If you wrote "las problemas," you have two errors at once: wrong gender, propagating into wrong article. See Lesson 01 for the full Greek-origin list.<br><br><strong>Profession/role nouns share form across genders.</strong><br>Words like <em>estudiante, artista, pianista, dentista, periodista</em> use the same form for masculine and feminine — only the article changes:<br>• <em>el estudiante / la estudiante</em> (one male / one female student)<br>• <em>los estudiantes</em> (multiple — could be all male OR mixed group)<br>• <em>las estudiantes</em> (multiple — all female)<br><br>In the plural, you might genuinely not be able to tell the gender of the group from the noun alone. The article tells you, or it doesn\'t — and in some cases, you have to rely on context.'
+          body: 'A few patterns from earlier lessons resurface in pluralization:<br><br><strong>Greek-origin masculine nouns stay masculine in plural.</strong><br>Words like <em>problema, sistema, idioma, programa, tema, mapa</em> are masculine despite ending in -a. The plural keeps them masculine:<br>• <em>el problema → los problemas</em> (NOT "las problemas")<br>• <em>el sistema → los sistemas</em><br>• <em>el idioma → los idiomas</em><br><br>If you wrote "las problemas," you have two errors at once: wrong gender, propagating into wrong article. See Lesson 4 for the full Greek-origin list.<br><br><strong>Profession/role nouns share form across genders.</strong><br>Words like <em>estudiante, artista, pianista, dentista, periodista</em> use the same form for masculine and feminine — only the article changes:<br>• <em>el estudiante / la estudiante</em> (one male / one female student)<br>• <em>los estudiantes</em> (multiple — could be all male OR mixed group)<br>• <em>las estudiantes</em> (multiple — all female)<br><br>In the plural, you might genuinely not be able to tell the gender of the group from the noun alone. The article tells you, or it doesn\'t — and in some cases, you have to rely on context.'
         },
         {
           type: 'mistakes',
@@ -19783,11 +19790,11 @@
     },
 
     // ============================================================================
-    // LESSON 01.8 — Question Words (Spanish 1)
+    // LESSON 7 — Question Words (Spanish 1)
     // ============================================================================
     {
       id: 'question-words',
-      num: '01.8',
+      num: '7',
       level: 'sp1',
       title: 'Question <em>words</em>',
       tag: 'Foundations · Questions',
@@ -19889,11 +19896,11 @@
     },
 
     // ============================================================================
-    // LESSON 01.9 — Hay (and había, habrá) (Spanish 1)
+    // LESSON 8 — Hay (and había, habrá) (Spanish 1)
     // ============================================================================
     {
       id: 'hay-there-is',
-      num: '01.9',
+      num: '8',
       level: 'sp1',
       title: '<em>Hay</em> — "there is" / "there are"',
       tag: 'Foundations · Existence',
@@ -19998,13 +20005,13 @@
     },
 
     // ============================================================================
-    // LESSON 02.5 — Contractions: AL and DEL (Spanish 1)
+    // LESSON 9 — Contractions: AL and DEL (Spanish 1)
     // ============================================================================
     // Slotted slightly later than subject pronouns because students need to know
     // "el/la/los/las" and basic prepositions before contractions make sense.
     {
       id: 'contractions-al-del',
-      num: '02.5',
+      num: '9',
       level: 'sp1',
       title: 'Contractions: <em>al</em> and <em>del</em>',
       tag: 'Foundations · Articles',
@@ -20083,7 +20090,7 @@
 
     {
       id: 'subject-pronouns',
-      num: '02',
+      num: '10',
       level: 'sp1',
       title: 'Subject <em>pronouns</em>',
       tag: 'Foundations · Pronouns',
@@ -20183,7 +20190,7 @@
     },
     {
       id: 'ar-verbs',
-      num: '03',
+      num: '11',
       level: 'sp1',
       title: 'Regular <em>-AR</em> verbs',
       tag: 'Foundations · Verbs',
@@ -20253,7 +20260,7 @@
     },
     {
       id: 'er-ir-verbs',
-      num: '04',
+      num: '12',
       level: 'sp1',
       title: 'Regular <em>-ER</em> and <em>-IR</em> verbs',
       tag: 'Foundations · Verbs',
@@ -20327,7 +20334,7 @@
     },
     {
       id: 'ser-vs-estar',
-      num: '05',
+      num: '13',
       level: 'sp1',
       title: '<em>Ser</em> vs. <em>Estar</em>',
       tag: 'Common confusions · Verbs',
@@ -20439,7 +20446,7 @@
     },
     {
       id: 'adjective-agreement',
-      num: '06',
+      num: '14',
       level: 'sp1',
       title: 'Adjective <em>agreement</em>',
       tag: 'Foundations · Adjectives',
@@ -20537,7 +20544,7 @@
     },
     {
       id: 'weather',
-      num: '07',
+      num: '15',
       level: 'sp1',
       title: 'Talking about the <em>weather</em>',
       tag: 'Practical Spanish · Weather',
@@ -20651,7 +20658,7 @@
     },
     {
       id: 'gustar',
-      num: '08',
+      num: '16',
       level: 'sp1',
       title: '<em>Gustar</em> & "backward" verbs',
       tag: 'Tricky verbs · Likes & dislikes',
@@ -20742,7 +20749,7 @@
     },
     {
       id: 'indefinites',
-      num: '09',
+      num: '17',
       level: 'sp1',
       title: 'Indefinite & negative <em>words</em>',
       tag: 'Foundations · Vocabulary',
@@ -20832,7 +20839,7 @@
     },
     {
       id: 'stem-changers',
-      num: '10',
+      num: '18',
       level: 'sp1',
       title: 'Stem-<em>changing</em> verbs',
       tag: 'Verbs · Present tense',
@@ -20940,7 +20947,7 @@
     },
     {
       id: 'ir-dar-ver',
-      num: '11',
+      num: '19',
       level: 'sp1',
       title: '<em>Ir</em>, <em>dar</em>, and <em>ver</em>',
       tag: 'Irregular verbs · Present tense',
@@ -21033,7 +21040,7 @@
     },
     {
       id: 'ir-a-infinitive',
-      num: '12',
+      num: '20',
       level: 'sp1',
       title: '<em>Ir + a +</em> infinitive',
       tag: 'Verb structures · Future',
@@ -21104,7 +21111,7 @@
     },
     {
       id: 'tener-venir-idioms',
-      num: '13',
+      num: '21',
       level: 'sp1',
       title: '<em>Tener</em> & <em>venir</em> + idioms',
       tag: 'Irregular verbs · Common expressions',
@@ -21205,7 +21212,7 @@
     },
     {
       id: 'phrases-of-need-obligation',
-      num: '14',
+      num: '22',
       level: 'sp1',
       title: 'Phrases of <em>need</em> & <em>obligation</em>',
       tag: 'Verb structures · Infinitive phrases',
@@ -21343,7 +21350,7 @@
     },
     {
       id: 'possessive-adjectives',
-      num: '15',
+      num: '23',
       level: 'sp1',
       title: 'Possessive <em>adjectives</em>',
       tag: 'Foundations · Adjectives',
@@ -21432,7 +21439,7 @@
     },
     {
       id: 'tu-vs-usted',
-      num: '16',
+      num: '24',
       level: 'sp1',
       title: '<em>Tú</em>, <em>usted</em>, and <em>vos</em>',
       tag: 'Social Spanish · Formality',
@@ -21531,7 +21538,7 @@
     },
     {
       id: 'numbers-0-100',
-      num: '17',
+      num: '25',
       level: 'sp1',
       title: 'Numbers <em>0 to 100</em>',
       tag: 'Foundations · Numbers',
@@ -21654,7 +21661,7 @@
     },
     {
       id: 'mente-adverbs',
-      num: '18',
+      num: '26',
       level: 'sp1',
       title: 'Adverbs with <em>-mente</em>',
       tag: 'Foundations · Adverbs',
@@ -21755,7 +21762,7 @@
     },
     {
       id: 'yo-go-verbs',
-      num: '19',
+      num: '27',
       level: 'sp1',
       title: 'The "<em>yo-go</em>" verbs',
       tag: 'Irregular verbs · Present tense',
@@ -21866,7 +21873,7 @@
     },
     {
       id: 'time-and-dates',
-      num: '20',
+      num: '28',
       level: 'sp1',
       title: 'Telling time & giving the <em>date</em>',
       tag: 'Practical Spanish · Time',
@@ -21982,7 +21989,7 @@
     },
     {
       id: 'nationalities',
-      num: '21',
+      num: '29',
       level: 'sp1',
       title: '<em>Nationalities</em>',
       tag: 'Foundations · Adjectives',
@@ -22153,7 +22160,7 @@
     },
     {
       id: 'reflexive-verbs',
-      num: '22',
+      num: '30',
       level: 'sp1',
       title: '<em>Reflexive</em> verbs',
       tag: 'Verbs · Daily routine',
@@ -22303,7 +22310,7 @@
     },
     {
       id: 'direct-object-pronouns',
-      num: '23',
+      num: '31',
       level: 'sp1',
       title: '<em>Direct</em> object pronouns',
       tag: 'Pronouns · Object placement',
@@ -22403,7 +22410,7 @@
     },
     {
       id: 'indirect-object-pronouns',
-      num: '24',
+      num: '32',
       level: 'sp1',
       title: '<em>Indirect</em> object pronouns',
       tag: 'Pronouns · Object placement',
@@ -22447,7 +22454,7 @@
         },
         {
           heading: 'Verbs that <em>always</em> use indirect objects',
-          body: 'A whole family of verbs structures itself around the indirect object. Some you already know — they\'re the "gustar-style" verbs from Lesson 08.',
+          body: 'A whole family of verbs structures itself around the indirect object. Some you already know — they\'re the "gustar-style" verbs from Lesson 16.',
           conjugation: [
             ['gustar', 'to be pleasing to — <em>Me gusta el chocolate.</em>'],
             ['encantar', 'to delight — <em>A ella le encanta bailar.</em>'],
@@ -22511,7 +22518,7 @@
     },
     {
       id: 'double-object-pronouns',
-      num: '25',
+      num: '33',
       level: 'sp1',
       title: '<em>Double</em> object pronouns',
       tag: 'Pronouns · Object placement',
@@ -22623,13 +22630,13 @@
     },
 
     // ============================================================================
-    // PRETERITE LESSONS (26-31) — Spanish 2
+    // PRETERITE LESSONS (34-39) — Spanish 2
     // ============================================================================
 
-    // ---------- LESSON 26: Regular preterite ----------
+    // ---------- LESSON 34: Regular preterite ----------
     {
       id: 'preterite-regular',
-      number: '26',
+      number: '34',
       level: 'sp2',
       title: 'The <em>preterite</em>: regular forms',
       summary: 'The preterite is the most common past tense — it tells what happened, what someone did, what occurred at a specific moment.',
@@ -22710,10 +22717,10 @@
       ]
     },
 
-    // ---------- LESSON 27: Orthographic changers (-car/-gar/-zar) ----------
+    // ---------- LESSON 35: Orthographic changers (-car/-gar/-zar) ----------
     {
       id: 'preterite-cargarzar',
-      number: '27',
+      number: '35',
       level: 'sp2',
       title: 'Preterite: <em>-car / -gar / -zar</em> spelling changes',
       summary: 'Verbs ending in -car, -gar, and -zar change their spelling in the YO form of the preterite — to preserve their original sounds.',
@@ -22818,10 +22825,10 @@
       ]
     },
 
-    // ---------- LESSON 28: Leer-pattern verbs (i→y + accents) ----------
+    // ---------- LESSON 36: Leer-pattern verbs (i→y + accents) ----------
     {
       id: 'preterite-leer-pattern',
-      number: '28',
+      number: '36',
       level: 'sp2',
       title: 'Preterite: <em>leer</em>, <em>oír</em>, <em>huir</em> &amp; friends',
       summary: 'Some verbs change i → y in the 3rd person preterite. Most also need accent marks on the í. -uir verbs follow a related pattern with no accents.',
@@ -22892,10 +22899,10 @@
       ]
     },
 
-    // ---------- LESSON 29: Ir / dar / ser / ver ----------
+    // ---------- LESSON 37: Ir / dar / ser / ver ----------
     {
       id: 'preterite-ir-dar-ser-ver',
-      number: '29',
+      number: '37',
       level: 'sp2',
       title: 'Preterite: <em>ir</em>, <em>dar</em>, <em>ser</em>, <em>ver</em>',
       summary: 'Four common verbs with unusual preterite forms. Ir and ser are identical. Dar and ver share the same endings.',
@@ -22988,10 +22995,10 @@
       ]
     },
 
-    // ---------- LESSON 30: Stem-changing -IR verbs ----------
+    // ---------- LESSON 38: Stem-changing -IR verbs ----------
     {
       id: 'preterite-stem-ir',
-      number: '30',
+      number: '38',
       level: 'sp2',
       title: 'Preterite: stem-changing <em>-IR</em> verbs',
       summary: 'Only -IR verbs stem-change in the preterite. The change happens only in the 3rd-person forms (él, ellos): e→i or o→u.',
@@ -23094,10 +23101,10 @@
       ]
     },
 
-    // ---------- LESSON 31: Pattern irregulars (U/I/J stems) ----------
+    // ---------- LESSON 39: Pattern irregulars (U/I/J stems) ----------
     {
       id: 'preterite-pattern-irregulars',
-      number: '31',
+      number: '39',
       level: 'sp2',
       title: 'Preterite: <em>pattern irregulars</em> (U / I / J stems)',
       summary: 'A group of high-frequency verbs share special preterite forms with NO accent marks. Sorted by stem-vowel: U-stem, I-stem, and J-stem.',
@@ -23162,13 +23169,13 @@
     },
 
     // ============================================================================
-    // IMPERFECT LESSONS (32-33) — Spanish 2
+    // IMPERFECT LESSONS (40-41) — Spanish 2
     // ============================================================================
 
-    // ---------- LESSON 32: Regular imperfect ----------
+    // ---------- LESSON 40: Regular imperfect ----------
     {
       id: 'imperfect-regular',
-      number: '32',
+      number: '40',
       level: 'sp2',
       title: 'The <em>imperfect</em>: regular forms',
       summary: 'The imperfect tense paints the past — habits, ongoing states, descriptions, and "how things used to be." It is the most regular tense in Spanish.',
@@ -23262,10 +23269,10 @@
       ]
     },
 
-    // ---------- LESSON 33: The three irregular imperfect verbs ----------
+    // ---------- LESSON 41: The three irregular imperfect verbs ----------
     {
       id: 'imperfect-irregulars',
-      number: '33',
+      number: '41',
       level: 'sp2',
       title: 'Imperfect: the <em>only three</em> irregulars',
       summary: 'Across all of Spanish, only three verbs are irregular in the imperfect: ir, ser, and ver. Once you know these three, every other verb follows the regular patterns.',
@@ -23363,11 +23370,11 @@
     },
 
     // ============================================================================
-    // LESSON 34 — Preterite vs. Imperfect (the capstone contrast lesson)
+    // LESSON 42 — Preterite vs. Imperfect (the capstone contrast lesson)
     // ============================================================================
     {
       id: 'preterite-vs-imperfect',
-      number: '34',
+      number: '42',
       level: 'sp2',
       title: 'Preterite <em>vs.</em> Imperfect',
       summary: 'The hardest grammar choice in Spanish 2: when to use preterite and when to use imperfect. Trigger words, the "while-when" construction, and the common English-speaker traps.',
@@ -23407,7 +23414,7 @@
         {
           type: 'tip',
           heading: 'Special meaning shifts: <em>saber, conocer, querer, poder</em>',
-          body: 'A few verbs you already know have DIFFERENT MEANINGS in preterite vs. imperfect. This is one of the most striking and often-tested patterns in Spanish 2:<br><br><strong>SABER</strong><br>• imperfect (<em>sabía</em>) = "knew (a fact)" — ongoing<br>• preterite (<em>supe</em>) = "FOUND OUT" — the moment of learning<br>&nbsp;&nbsp;<em>Sabía que venía.</em> = I knew she was coming. (had the info already)<br>&nbsp;&nbsp;<em>Supe que venía ayer.</em> = I FOUND OUT she was coming yesterday. (the moment I learned it)<br><br><strong>CONOCER</strong><br>• imperfect (<em>conocía</em>) = "knew (a person/place)" — ongoing<br>• preterite (<em>conocí</em>) = "MET (for the first time)" — the moment of first meeting<br>&nbsp;&nbsp;<em>Conocía a María desde hace años.</em> = I had known María for years.<br>&nbsp;&nbsp;<em>Conocí a María en la fiesta.</em> = I MET María at the party.<br><br><strong>QUERER</strong><br>• imperfect (<em>quería</em>) = "wanted" — ongoing desire<br>• preterite affirmative (<em>quiso</em>) = "TRIED" — made the attempt<br>• preterite negative (<em>no quiso</em>) = "REFUSED" — actively rejected<br>&nbsp;&nbsp;<em>Quería ir al cine.</em> = I wanted to go to the movies.<br>&nbsp;&nbsp;<em>Quise ir al cine pero estaba cerrado.</em> = I tried to go to the movies but it was closed.<br>&nbsp;&nbsp;<em>No quiso ayudarme.</em> = She refused to help me.<br><br><strong>PODER</strong><br>• imperfect (<em>podía</em>) = "could / was able to" — general ability<br>• preterite affirmative (<em>pude</em>) = "MANAGED TO" — succeeded at something difficult<br>• preterite negative (<em>no pude</em>) = "FAILED TO" — couldn\'t accomplish it<br>&nbsp;&nbsp;<em>Podía nadar muy bien de joven.</em> = I could swim very well when I was young.<br>&nbsp;&nbsp;<em>Pude abrir la puerta.</em> = I managed to open the door (it was difficult).<br>&nbsp;&nbsp;<em>No pude encontrar las llaves.</em> = I couldn\'t / failed to find the keys.<br><br>These four verbs are worth memorizing carefully. They appear in real Spanish constantly, and using the wrong tense changes the meaning of your sentence. For a deeper dive on saber and conocer specifically, see Lesson 34.7 (Saber/Conocer + Pedir/Preguntar).'
+          body: 'A few verbs you already know have DIFFERENT MEANINGS in preterite vs. imperfect. This is one of the most striking and often-tested patterns in Spanish 2:<br><br><strong>SABER</strong><br>• imperfect (<em>sabía</em>) = "knew (a fact)" — ongoing<br>• preterite (<em>supe</em>) = "FOUND OUT" — the moment of learning<br>&nbsp;&nbsp;<em>Sabía que venía.</em> = I knew she was coming. (had the info already)<br>&nbsp;&nbsp;<em>Supe que venía ayer.</em> = I FOUND OUT she was coming yesterday. (the moment I learned it)<br><br><strong>CONOCER</strong><br>• imperfect (<em>conocía</em>) = "knew (a person/place)" — ongoing<br>• preterite (<em>conocí</em>) = "MET (for the first time)" — the moment of first meeting<br>&nbsp;&nbsp;<em>Conocía a María desde hace años.</em> = I had known María for years.<br>&nbsp;&nbsp;<em>Conocí a María en la fiesta.</em> = I MET María at the party.<br><br><strong>QUERER</strong><br>• imperfect (<em>quería</em>) = "wanted" — ongoing desire<br>• preterite affirmative (<em>quiso</em>) = "TRIED" — made the attempt<br>• preterite negative (<em>no quiso</em>) = "REFUSED" — actively rejected<br>&nbsp;&nbsp;<em>Quería ir al cine.</em> = I wanted to go to the movies.<br>&nbsp;&nbsp;<em>Quise ir al cine pero estaba cerrado.</em> = I tried to go to the movies but it was closed.<br>&nbsp;&nbsp;<em>No quiso ayudarme.</em> = She refused to help me.<br><br><strong>PODER</strong><br>• imperfect (<em>podía</em>) = "could / was able to" — general ability<br>• preterite affirmative (<em>pude</em>) = "MANAGED TO" — succeeded at something difficult<br>• preterite negative (<em>no pude</em>) = "FAILED TO" — couldn\'t accomplish it<br>&nbsp;&nbsp;<em>Podía nadar muy bien de joven.</em> = I could swim very well when I was young.<br>&nbsp;&nbsp;<em>Pude abrir la puerta.</em> = I managed to open the door (it was difficult).<br>&nbsp;&nbsp;<em>No pude encontrar las llaves.</em> = I couldn\'t / failed to find the keys.<br><br>These four verbs are worth memorizing carefully. They appear in real Spanish constantly, and using the wrong tense changes the meaning of your sentence. For a deeper dive on saber and conocer specifically, see Lesson 48 (Saber/Conocer + Pedir/Preguntar).'
         }
       ],
       quiz: [
@@ -23435,10 +23442,10 @@
     // object pronouns · L34.5 With double object pronouns · L34.6 Reflexive
     // ============================================================================
 
-    // ---------- LESSON 34.1: Tú Commands ----------
+    // ---------- LESSON 43: Tú Commands ----------
     {
       id: 'tu-commands',
-      num: '34.1',
+      num: '43',
       level: 'sp2',
       title: 'Tú <em>commands</em>',
       tag: 'Imperatives · Informal',
@@ -23583,10 +23590,10 @@
       ]
     },
 
-    // ---------- LESSON 34.2: Usted/Ustedes Commands ----------
+    // ---------- LESSON 44: Usted/Ustedes Commands ----------
     {
       id: 'usted-commands',
-      num: '34.2',
+      num: '44',
       level: 'sp2',
       title: 'Usted &amp; Ustedes <em>commands</em>',
       tag: 'Imperatives · Formal',
@@ -23720,10 +23727,10 @@
       ]
     },
 
-    // ---------- LESSON 34.3: Reflexive Commands ----------
+    // ---------- LESSON 45: Reflexive Commands ----------
     {
       id: 'reflexive-commands',
-      num: '34.3',
+      num: '45',
       level: 'sp2',
       title: 'Reflexive <em>commands</em>',
       tag: 'Imperatives · Reflexives',
@@ -23852,10 +23859,10 @@
       ]
     },
 
-    // ---------- LESSON 34.4: Commands with Single Object Pronouns ----------
+    // ---------- LESSON 46: Commands with Single Object Pronouns ----------
     {
       id: 'commands-single-pronouns',
-      num: '34.4',
+      num: '46',
       level: 'sp2',
       title: 'Commands with <em>object pronouns</em>',
       tag: 'Imperatives · Pronouns',
@@ -23977,10 +23984,10 @@
       ]
     },
 
-    // ---------- LESSON 34.5: Commands with Double Object Pronouns ----------
+    // ---------- LESSON 47: Commands with Double Object Pronouns ----------
     {
       id: 'commands-double-pronouns',
-      num: '34.5',
+      num: '47',
       level: 'sp2',
       title: 'Commands with <em>double object pronouns</em>',
       tag: 'Imperatives · Double Pronouns',
@@ -24096,10 +24103,10 @@
       ]
     },
 
-    // ---------- LESSON 34.7: Saber/Conocer + Pedir/Preguntar ----------
+    // ---------- LESSON 48: Saber/Conocer + Pedir/Preguntar ----------
     {
       id: 'saber-conocer-pedir-preguntar',
-      num: '34.7',
+      num: '48',
       level: 'sp2',
       title: '<em>Saber</em> &amp; <em>Conocer</em> · <em>Pedir</em> &amp; <em>Preguntar</em>',
       tag: 'Confusable Pairs',
@@ -24178,7 +24185,7 @@
         {
           type: 'tip',
           heading: '<em>Saber/Conocer in the preterite</em> — meanings change!',
-          body: 'This is one of the most striking things in Spanish 2 and worth knowing now. When you use these verbs in the PRETERITE tense (the "one-time event" past), they take on DIFFERENT meanings:<br><br>• <strong>CONOCÍ</strong> = "I MET (for the first time)" — NOT "I knew."<br>  <em>Conocí a María en la fiesta.</em> = I met María at the party.<br><br>• <strong>SUPE</strong> = "I FOUND OUT" — NOT "I knew."<br>  <em>Supe la verdad ayer.</em> = I found out the truth yesterday.<br><br>For the "knew" meaning in the past, use the IMPERFECT:<br><br>• <strong>CONOCÍA a María</strong> = "I knew María" (ongoing, before that moment)<br>• <strong>SABÍA la verdad</strong> = "I knew the truth" (already had the information)<br><br>So the contrast in past tense:<br>• <em>Cuando lo conocí…</em> = "When I MET him…" (preterite, the meeting event)<br>• <em>Cuando lo conocía bien…</em> = "When I knew him well…" (imperfect, ongoing relationship)<br><br>You\'ll see these distinctions again in Lesson 34: Preterite vs. Imperfect. This is the kind of pattern that students who master the contrast sound genuinely fluent in.'
+          body: 'This is one of the most striking things in Spanish 2 and worth knowing now. When you use these verbs in the PRETERITE tense (the "one-time event" past), they take on DIFFERENT meanings:<br><br>• <strong>CONOCÍ</strong> = "I MET (for the first time)" — NOT "I knew."<br>  <em>Conocí a María en la fiesta.</em> = I met María at the party.<br><br>• <strong>SUPE</strong> = "I FOUND OUT" — NOT "I knew."<br>  <em>Supe la verdad ayer.</em> = I found out the truth yesterday.<br><br>For the "knew" meaning in the past, use the IMPERFECT:<br><br>• <strong>CONOCÍA a María</strong> = "I knew María" (ongoing, before that moment)<br>• <strong>SABÍA la verdad</strong> = "I knew the truth" (already had the information)<br><br>So the contrast in past tense:<br>• <em>Cuando lo conocí…</em> = "When I MET him…" (preterite, the meeting event)<br>• <em>Cuando lo conocía bien…</em> = "When I knew him well…" (imperfect, ongoing relationship)<br><br>You\'ll see these distinctions again in Lesson 42: Preterite vs. Imperfect. This is the kind of pattern that students who master the contrast sound genuinely fluent in.'
         },
         {
           heading: 'Part 2: <em>Pedir vs. Preguntar</em>',
@@ -24292,10 +24299,10 @@
       ]
     },
 
-    // ---------- LESSON 34.8: Object Pronouns with Progressives ----------
+    // ---------- LESSON 49: Object Pronouns with Progressives ----------
     {
       id: 'pronouns-progressives',
-      num: '34.8',
+      num: '49',
       level: 'sp2',
       title: 'Object Pronouns with <em>Progressives</em>',
       tag: 'Pronouns · Progressives',
@@ -24415,10 +24422,10 @@
       ]
     },
 
-    // ---------- LESSON 34.9: Possessive Pronouns ----------
+    // ---------- LESSON 50: Possessive Pronouns ----------
     {
       id: 'possessive-pronouns',
-      num: '34.9',
+      num: '50',
       level: 'sp2',
       title: 'Possessive <em>Pronouns</em>',
       tag: 'Pronouns · Possessives',
@@ -24426,7 +24433,7 @@
       sections: [
         {
           heading: 'Quick review: <em>possessive adjectives</em>',
-          body: 'You learned these in Lesson 15. Possessive ADJECTIVES go BEFORE a noun and tell us who owns it:<br><br>• <strong>mi</strong> libro = my book<br>• <strong>tu</strong> casa = your house<br>• <strong>su</strong> coche = his/her/your(formal) car<br>• <strong>nuestra</strong> familia = our family<br>• <strong>vuestros</strong> amigos = your (plural, Spain) friends<br>• <strong>sus</strong> hermanos = their / your(formal) brothers<br><br>These adjectives agree only in number (singular vs. plural), and nuestro/vuestro also in gender. They\'re short and always sit IN FRONT of the noun.<br><br>This lesson is about something different: when you want to DROP the noun entirely and just say "mine" or "yours" — that\'s a possessive PRONOUN.'
+          body: 'You learned these in Lesson 23. Possessive ADJECTIVES go BEFORE a noun and tell us who owns it:<br><br>• <strong>mi</strong> libro = my book<br>• <strong>tu</strong> casa = your house<br>• <strong>su</strong> coche = his/her/your(formal) car<br>• <strong>nuestra</strong> familia = our family<br>• <strong>vuestros</strong> amigos = your (plural, Spain) friends<br>• <strong>sus</strong> hermanos = their / your(formal) brothers<br><br>These adjectives agree only in number (singular vs. plural), and nuestro/vuestro also in gender. They\'re short and always sit IN FRONT of the noun.<br><br>This lesson is about something different: when you want to DROP the noun entirely and just say "mine" or "yours" — that\'s a possessive PRONOUN.'
         },
         {
           heading: 'What possessive <em>pronouns</em> do',
@@ -24530,10 +24537,10 @@
     // SPANISH 3 / ADVANCED — Conditional + Present Perfect
     // ============================================================================
 
-    // ---------- LESSON 35: The Conditional ----------
+    // ---------- LESSON 51: The Conditional ----------
     {
       id: 'conditional',
-      number: '35',
+      number: '51',
       level: 'sp3',
       title: 'The <em>conditional</em> tense',
       summary: 'The "would" tense — what would happen, what someone would do, polite suggestions, and hypothetical situations. One of the most regular tenses in Spanish.',
@@ -24624,10 +24631,10 @@
       ]
     },
 
-    // ---------- LESSON 36: Present Perfect ----------
+    // ---------- LESSON 52: Present Perfect ----------
     {
       id: 'present-perfect',
-      number: '36',
+      number: '52',
       level: 'sp3',
       title: 'The <em>present perfect</em>',
       summary: 'The "have done" tense — actions completed at an unspecified past time, things that happened recently, life experiences. Uses haber + past participle.',
@@ -24727,11 +24734,11 @@
     },
 
     // ============================================================================
-    // LESSON 36.5 — Present Subjunctive (Spanish 3) — the mood, not a tense
+    // LESSON 53 — Present Subjunctive (Spanish 3) — the mood, not a tense
     // ============================================================================
     {
       id: 'present-subjunctive',
-      number: '36.5',
+      number: '53',
       level: 'sp3',
       title: 'The <em>present subjunctive</em>',
       summary: 'The subjunctive isn\'t a tense — it\'s a MOOD. Used after expressions of doubt, emotion, wish, hope, and command. The doorway to nuanced Spanish.',
@@ -24806,7 +24813,7 @@
         {
           type: 'tip',
           heading: 'The <em>"sequence of tenses"</em> connection',
-          body: 'You\'ve already met the past subjunctive (Lesson 42). Here\'s how it fits together:<br><br>• <strong>Present main verb → present subjunctive</strong><br><em>Quiero que vengas.</em> (I want you to come.)<br><br>• <strong>Past main verb → past subjunctive</strong><br><em>Quería que vinieras.</em> (I wanted you to come.)<br><br>The tense of the main verb determines whether the subordinate verb is present or past subjunctive. Spanish calls this <em>la concordancia de tiempos</em> (sequence of tenses).<br><br>For now, focus on the present subjunctive. Once it feels natural, the past subjunctive (which uses preterite-based forms) will slot in easily.'
+          body: 'You\'ve already met the past subjunctive (Lesson 59). Here\'s how it fits together:<br><br>• <strong>Present main verb → present subjunctive</strong><br><em>Quiero que vengas.</em> (I want you to come.)<br><br>• <strong>Past main verb → past subjunctive</strong><br><em>Quería que vinieras.</em> (I wanted you to come.)<br><br>The tense of the main verb determines whether the subordinate verb is present or past subjunctive. Spanish calls this <em>la concordancia de tiempos</em> (sequence of tenses).<br><br>For now, focus on the present subjunctive. Once it feels natural, the past subjunctive (which uses preterite-based forms) will slot in easily.'
         },
         {
           type: 'mistakes',
@@ -24852,11 +24859,11 @@
     },
 
     // ============================================================================
-    // LESSON 37 — Verb Transitivity Reference (Spanish 2 reference / lookup lesson)
+    // LESSON 54 — Verb Transitivity Reference (Spanish 2 reference / lookup lesson)
     // ============================================================================
     {
       id: 'verb-transitivity',
-      number: '37',
+      number: '54',
       level: 'sp2',
       title: 'Verb <em>transitivity</em> reference',
       summary: 'Which Spanish verbs take direct objects, indirect objects, both, or neither. Use this as a lookup when you\'re trying to figure out which pronoun a verb needs.',
@@ -25001,11 +25008,11 @@
     },
 
     // ============================================================================
-    // LESSON 38 — Past Participles as Adjectives (Spanish 2)
+    // LESSON 55 — Past Participles as Adjectives (Spanish 2)
     // ============================================================================
     {
       id: 'participles-as-adjectives',
-      number: '38',
+      number: '55',
       level: 'sp2',
       title: 'Past participles as <em>adjectives</em>',
       summary: 'Past participles aren\'t just for the perfect tenses. They double as adjectives — describing states, conditions, and results. When they work as adjectives, they agree with gender and number like any other adjective.',
@@ -25101,11 +25108,11 @@
     },
 
     // ============================================================================
-    // LESSON 39 — Comparatives and Superlatives (Spanish 2)
+    // LESSON 56 — Comparatives and Superlatives (Spanish 2)
     // ============================================================================
     {
       id: 'comparatives-superlatives',
-      number: '39',
+      number: '56',
       level: 'sp2',
       title: 'Comparatives and <em>superlatives</em>',
       summary: 'How to say "bigger than," "as smart as," "the best in the class," and "extremely tall." Plus the four key irregulars: mejor, peor, mayor, menor.',
@@ -25244,11 +25251,11 @@
     },
 
     // ============================================================================
-    // LESSON 40 — Past Perfect (Pluperfect) — Spanish 3
+    // LESSON 57 — Past Perfect (Pluperfect) — Spanish 3
     // ============================================================================
     {
       id: 'past-perfect',
-      number: '40',
+      number: '57',
       level: 'sp3',
       title: 'The <em>past perfect</em> (pluperfect)',
       summary: 'The "had done" tense — for actions that happened BEFORE another past action. Same structure as present perfect, but with haber in the imperfect.',
@@ -25341,11 +25348,11 @@
     },
 
     // ============================================================================
-    // LESSON 41 — Future Perfect — Spanish 3
+    // LESSON 58 — Future Perfect — Spanish 3
     // ============================================================================
     {
       id: 'future-perfect',
-      number: '41',
+      number: '58',
       level: 'sp3',
       title: 'The <em>future perfect</em>',
       summary: 'The "will have done" tense — for actions completed BEFORE some future point. Also used to speculate about the past ("I wonder if she has arrived...").',
@@ -25442,11 +25449,11 @@
     },
 
     // ============================================================================
-    // LESSON 42 — Past (Imperfect) Subjunctive — Spanish 3 / Advanced
+    // LESSON 59 — Past (Imperfect) Subjunctive — Spanish 3 / Advanced
     // ============================================================================
     {
       id: 'past-subjunctive',
-      number: '42',
+      number: '59',
       level: 'sp3',
       title: 'The <em>past subjunctive</em> (imperfect subjunctive)',
       summary: 'The most useful advanced tense in Spanish — it powers hypotheticals ("if I had money..."), polite requests ("I would like..."), and reported speech about emotions and doubts. The pairing with the conditional unlocks elegant Spanish.',
@@ -25590,7 +25597,7 @@
     }
 ,
     {
-      id: 'ling-what', num: 'L01', level: 'ling',
+      id: 'ling-what', num: '1', level: 'ling',
       title: 'What is <em>linguistics?</em>',
       tag: 'Lingüística · Start here',
       summary: 'Linguists study language as a system — and they describe how people really speak, not how they "should."',
@@ -25606,7 +25613,7 @@
       ]
     },
     {
-      id: 'ling-sounds', num: 'L02', level: 'ling',
+      id: 'ling-sounds', num: '2', level: 'ling',
       title: 'The sounds of <em>Spanish</em>',
       tag: 'Lingüística · Phonetics',
       summary: 'Five clean vowels, letters that change sound by position, and a steady machine-gun rhythm.',
@@ -25624,7 +25631,7 @@
       ]
     },
     {
-      id: 'ling-morphology', num: 'L03', level: 'ling',
+      id: 'ling-morphology', num: '3', level: 'ling',
       title: 'How words are <em>built</em>',
       tag: 'Lingüística · Morphology',
       summary: 'Spanish is inflectional — it packs meaning into endings where English needs extra words.',
@@ -25641,7 +25648,7 @@
       ]
     },
     {
-      id: 'ling-syntax', num: 'L04', level: 'ling',
+      id: 'ling-syntax', num: '4', level: 'ling',
       title: 'How sentences are <em>built</em>',
       tag: 'Lingüística · Syntax',
       summary: 'The structural features that make Spanish sentences work differently from English.',
@@ -25658,7 +25665,7 @@
       ]
     },
     {
-      id: 'ling-history', num: 'L05', level: 'ling',
+      id: 'ling-history', num: '5', level: 'ling',
       title: 'Where Spanish <em>comes from</em>',
       tag: 'Lingüística · History',
       summary: 'Spanish is Latin worn smooth by centuries of speech — and the changes are astonishingly regular.',
@@ -25675,7 +25682,7 @@
       ]
     },
     {
-      id: 'ling-loanwords', num: 'L06', level: 'ling',
+      id: 'ling-loanwords', num: '6', level: 'ling',
       title: 'Words Spanish <em>borrowed &amp; shares</em>',
       tag: 'Lingüística · Vocabulary',
       summary: 'Free vocabulary from shared Latin roots — plus the false friends that fool you.',
@@ -25691,7 +25698,7 @@
       ]
     },
     {
-      id: 'ling-acquisition', num: 'L07', level: 'ling',
+      id: 'ling-acquisition', num: '7', level: 'ling',
       title: 'How we <em>learn languages</em>',
       tag: 'Lingüística · ¿Sabías que…?',
       summary: 'The science of picking up a language — and what it means for your own Spanish.',
@@ -25709,7 +25716,7 @@
       ]
     },
     {
-      id: 'ling-dialects', num: 'L08', level: 'ling',
+      id: 'ling-dialects', num: '8', level: 'ling',
       title: 'One language, many <em>accents</em>',
       tag: 'Lingüística · Dialects',
       summary: 'Spanish spans 20+ countries. Here are the famous features linguists use to tell regions apart.',
