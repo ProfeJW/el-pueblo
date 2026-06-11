@@ -9614,10 +9614,18 @@
   let includeVosotros = false; // default off — Latin American Spanish convention for US classrooms
   let drillGroup = 'all'; // 'all' | 'regular' | 'regular-ar' | 'regular-er' | 'regular-ir' | 'stem-eie' | 'stem-oue' | 'stem-ei' | 'stem-uue' | 'stem-all' | 'irregular'
 
-  // Normalize accents for forgiving comparison (entry-level students may not type accents)
+  // Normalize for forgiving comparison \u2014 used by every typed-answer grader
+  // (games engine, La Racha, vocab type-it, verb drills). A student answer is
+  // never wrong for capitalization, accents, or punctuation: deck phrases like
+  // "Son las dos." or "\u00bfQu\u00e9 hora es?" carry punctuation the student shouldn't
+  // be expected to type. Internal symbols (the colon in "3:30") survive.
   function normalize(s) {
-    return s.toLowerCase().trim()
+    return String(s == null ? '' : s).toLowerCase().trim()
       .normalize('NFD').replace(/[\u0300-\u036f]/g, '')
+      .replace(/['\u2018\u2019"\u201c\u201d]/g, '')  // quotes/apostrophes: "it's" \u2248 "its"
+      .replace(/^[\u00a1\u00bf.,;:!?\s]+/, '')
+      .replace(/[\u00a1\u00bf.,;:!?\s]+$/, '')
+      .replace(/[,;]/g, '')
       .replace(/\s+/g, ' ');
   }
 
