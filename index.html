@@ -1569,6 +1569,41 @@
     border-radius: 4px;
   }
 
+
+  /* ===== Civilizaciones antiguas (map + timeline) ===== */
+  .civ-banner { display: flex; align-items: center; gap: 14px; background: var(--card-bg); border: 1px solid var(--line); padding: 16px 20px; margin: 22px 0 4px; text-decoration: none; color: var(--ink); transition: border-color .15s ease; }
+  .civ-banner:hover { border-color: var(--ocre); }
+  .civ-banner .cb-ico { font-size: 30px; }
+  .civ-banner .cb-name { font-family: 'DM Serif Display', serif; font-size: 19px; }
+  .civ-banner .cb-sub { font-size: 13px; color: var(--ink-soft); }
+  .civ-layout { display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); gap: 22px; align-items: start; margin-top: 18px; }
+  @media (max-width: 900px) { .civ-layout { grid-template-columns: 1fr; } }
+  .civ-map-box { background: var(--card-bg); border: 1px solid var(--line); padding: 12px; position: sticky; top: 76px; }
+  .civ-map-note { font-size: 11.5px; color: var(--ink-soft); font-style: italic; margin-top: 8px; line-height: 1.4; }
+  .civ-overlay-shape { cursor: pointer; transition: fill-opacity .15s ease, stroke-opacity .15s ease; }
+  .civ-tl { margin-bottom: 18px; }
+  .civ-axis { position: relative; height: 16px; margin-left: 152px; font-size: 10px; color: var(--ink-soft); }
+  .civ-axis span { position: absolute; transform: translateX(-50%); white-space: nowrap; }
+  .civ-tl-row { display: flex; align-items: center; gap: 8px; padding: 2px 0; cursor: pointer; border-radius: 3px; }
+  .civ-tl-row:hover { background: var(--card-bg); }
+  .civ-tl-row.dim { opacity: 0.35; }
+  .civ-tl-row.sel { background: var(--card-bg); }
+  .civ-tl-row.sel .civ-tl-name { font-weight: 700; }
+  .civ-tl-name { width: 144px; flex-shrink: 0; font-size: 12.5px; display: flex; align-items: center; gap: 6px; }
+  .civ-tl-dot { width: 9px; height: 9px; border-radius: 50%; flex-shrink: 0; }
+  .civ-tl-track { position: relative; flex: 1; height: 16px; border-left: 1px solid var(--line); border-right: 1px solid var(--line); }
+  .civ-tl-bar { position: absolute; top: 3px; height: 10px; border-radius: 5px; min-width: 6px; }
+  .civ-tl-years { font-size: 10.5px; color: var(--ink-soft); margin-left: 8px; white-space: nowrap; width: 142px; flex-shrink: 0; }
+  .civ-detail { background: var(--card-bg); border: 1px solid var(--line); border-top: 3px solid var(--ocre); padding: 22px 24px; }
+  .civ-detail h3 { font-family: 'DM Serif Display', serif; font-size: 24px; font-weight: 400; margin: 0 0 2px; }
+  .civ-detail .cd-meta { font-size: 13px; color: var(--ink-soft); margin-bottom: 14px; }
+  .civ-detail h5 { font-size: 12px; text-transform: uppercase; letter-spacing: 0.08em; color: var(--rojo); margin: 16px 0 5px; }
+  .civ-detail p { font-size: 14.5px; line-height: 1.65; color: var(--ink); margin: 0; }
+  .civ-howbuilt { background: var(--card-bg); border: 1px solid var(--line); padding: 20px 24px; margin-top: 22px; }
+  .civ-howbuilt h4 { font-family: 'DM Serif Display', serif; font-size: 20px; font-weight: 400; margin: 0 0 10px; }
+  .civ-howbuilt p { font-size: 14px; line-height: 1.65; color: var(--ink-soft); margin: 0 0 10px; }
+  .civ-howbuilt p:last-child { margin-bottom: 0; }
+
   /* Mini-game cards on Mundo hub */
   .mini-game-card {
     display: block;
@@ -7409,6 +7444,34 @@
 </section></div>
 
 <!-- HISTORIA HUB (top-level) -->
+
+<!-- CIVILIZACIONES ANTIGUAS -->
+<div class="page" data-page="civilizaciones"><section id="civilizaciones">
+  <div class="section-header">
+    <h2>Civilizaciones <em>antiguas</em></h2>
+  </div>
+  <p style="font-size: 15px; color: var(--ink-soft); line-height: 1.6; max-width: 780px; margin-bottom: 6px;">
+    Three thousand years before the Aztecs and Incas, cities were already rising in the Americas. The timeline below shows when each civilization thrived — <strong>click any of them</strong> (or a colored region on the map) to see who they were, how they actually built their famous ruins, what the sites were for, and how each one came to an end.
+  </p>
+  <div class="civ-tl" id="civTimeline"></div>
+  <div class="civ-layout">
+    <div class="civ-map-box">
+      <div id="civMapContainer"></div>
+      <div class="civ-map-note">Colored areas are <strong>approximate heartlands</strong> drawn on today's borders — ancient territories shifted over centuries and had no fixed lines. The Inca outline traces the empire at its greatest extent (~1525).</div>
+    </div>
+    <div>
+      <div class="civ-detail" id="civDetail"></div>
+      <div class="civ-howbuilt">
+        <h4>¿Quién construyó las ruinas — <em style="color: var(--rojo);">y cómo</em>?</h4>
+        <p><strong>Was it slave labor?</strong> Mostly no — and this is one of the most common myths in ancient history. These societies did hold enslaved people (war captives, debt slaves like the Aztec <em>tlacotin</em>), but the great monuments were overwhelmingly built through <strong>labor-tax systems</strong>: the Inca <em>mit'a</em> (every household owed the state rotating turns of work, paid in food, chicha, and cloth from state storehouses), Mesoamerican <em>tequitl</em>/corvée owed by commoner wards and tribute towns, and Andean communal reciprocity (<em>ayni</em>, <em>mink'a</em>) repaid in feasts. Alongside them worked full-time specialists: architects, stonemasons, sculptors.</p>
+        <p><strong>With what tools?</strong> No wheels for transport, no iron, and no large draft animals (llamas carry only ~30 kg). The toolbox was stone hammers, copper and bronze chisels in the Andes, obsidian blades in Mesoamerica, fiber ropes, log rollers, sledges, ramps, rafts and canoes — and superb organization of human muscle.</p>
+        <p><strong>How long did it take?</strong> It depends what you're building: a Nazca geoglyph took an organized crew <strong>days or weeks</strong>; a temple enlargement, <strong>years</strong>; a great pyramid like Teotihuacán's Pyramid of the Sun, <strong>decades</strong>; a city like Tikal or Chan Chan, <strong>centuries</strong> — usually built layer upon layer over earlier versions. Machu Picchu occupied crews numbering in the low thousands for a few decades and was never quite finished.</p>
+        <p><strong>What were the sites for?</strong> Almost never just one thing: temples doubled as calendars and political theater, plazas as markets and cosmic stages, “fortresses” like Sacsayhuamán were also sanctuaries, and Machu Picchu was a royal estate. Around every monument stood the real machinery of daily life — terraces, canals, reservoirs, storehouses, and neighborhoods of ordinary builders.</p>
+      </div>
+    </div>
+  </div>
+</section></div>
+
 <div class="page" data-page="historia"><section id="historia">
   <div class="section-header">
     <h2>Historia of <em>Spanish-Speaking Nations</em></h2>
@@ -7428,6 +7491,15 @@
 
   <!-- GRID VIEW (hidden by default) -->
   <div id="historiaHubGrid" class="historia-hub-grid" style="display: none;"></div>
+
+  <a href="#/civilizaciones" class="civ-banner">
+    <span class="cb-ico">🏛️</span>
+    <span style="flex:1;">
+      <span class="cb-name" style="display:block;">Civilizaciones antiguas</span>
+      <span class="cb-sub">Mayas, incas, aztecas — y los que vinieron antes · color-coded map + timeline · how the ruins were really built</span>
+    </span>
+    <span style="font-size:18px; color: var(--ink-soft);">→</span>
+  </a>
 
   <!-- INTRO + CONTENT WARNING (below the fold) -->
   <div style="margin-top: 56px; padding-top: 28px; border-top: 1px solid var(--line);">
@@ -7641,6 +7713,7 @@
   // Defaults to 'home' on load. Each "page" is a div.page with data-page attribute.
 
   const PAGE_TITLES = {
+    civilizaciones: 'Civilizaciones antiguas',
     home: 'Home',
     avisos: 'From your teacher',
     vocabulario: 'Vocabulary',
@@ -7791,6 +7864,7 @@
       setTimeout(() => { if (typeof populateHistoriaMap === 'function') populateHistoriaMap(); }, 0);
     }
     if (page === 'historia-country') loadHistoriaModule().then(() => { if (typeof renderHistoriaCountry === 'function') renderHistoriaCountry(param); }).catch(() => {});
+    if (page === 'civilizaciones' && typeof renderCivilizaciones === 'function') setTimeout(renderCivilizaciones, 0);
     if (page === 'mundo-quiz-flags' && typeof newFlagQuiz === 'function') newFlagQuiz();
     if (page === 'mundo-quiz-sites' && typeof newSiteQuiz === 'function') newSiteQuiz();
     if (page === 'mundo-quiz-people' && typeof newPersonQuiz === 'function') newPersonQuiz();
@@ -16923,6 +16997,389 @@
 
   // Capital dots — each dot has a unique id (e.g. "BO-LP" vs "BO-SC" for
   // Bolivia's two capitals). country = parent country code (for lookup).
+
+  // ============ CIVILIZACIONES ANTIGUAS ============
+  // Pre-Columbian civilizations: timeline + approximate heartlands drawn over
+  // the modern-borders map. Shapes are pedagogical approximations, anchored to
+  // the same 800x800 coordinate space as the capital dots.
+  const CIVS = [
+  {
+    "id": "caral",
+    "name": "Caral / Norte Chico",
+    "color": "#8d6e63",
+    "start": -3000,
+    "end": -1800,
+    "where": "Perú (costa norte de Lima)",
+    "shape": {
+      "type": "ellipse",
+      "cx": 299,
+      "cy": 421,
+      "rx": 9,
+      "ry": 6,
+      "rot": -25
+    },
+    "quienes": "The oldest urban civilization in the Americas — contemporary with Egypt's first pyramids. Caral and its sister cities of the Norte Chico rose around 3000 a.C. on Peru's coast, living on irrigation farming (cotton, beans, squash) and rich Pacific fishing. No pottery, no writing — but monumental pyramids, sunken circular plazas, and possibly the first quipus (knotted cords).",
+    "construccion": "Platform pyramids were raised with quarried stone and <em>shicra</em> — woven reed bags filled with rubble and stacked like sandbags, a clever earthquake-resistant design. The work happened in repeated communal building events over generations, organized through reciprocity and festival labor (paid in food and chicha), not slavery. Strikingly, Caral shows no evidence of warfare: no walls, no fortifications, no weapons.",
+    "sitios": "Ceremonial-civic centers: temple platforms with fire altars, plazas for public gatherings, and residences — the anchors of irrigation societies that traded cotton for fish.",
+    "final": "Declined around 1800 a.C., most likely from droughts and El Niño floods that broke the irrigation economy. Its ideas — platform temples, sunken plazas, the quipu — echo through every later Andean culture."
+  },
+  {
+    "id": "olmeca",
+    "name": "Olmecas",
+    "color": "#ab47bc",
+    "start": -1500,
+    "end": -400,
+    "where": "México (costa del Golfo: Veracruz y Tabasco)",
+    "shape": {
+      "type": "ellipse",
+      "cx": 193,
+      "cy": 236,
+      "rx": 15,
+      "ry": 8,
+      "rot": -15
+    },
+    "quienes": "Mesoamerica's “mother culture” — or at least its first great one. From the hot Gulf-coast lowlands the Olmecs gave the region its template: ceremonial centers, the ballgame, jade carving, and probably the first steps toward writing and the calendar that the Maya would later perfect. Their colossal stone heads — portraits of rulers, up to 3 meters tall and 40+ tons — are among the most famous objects of ancient America.",
+    "construccion": "The colossal heads were carved from basalt boulders quarried in the Tuxtla mountains and moved more than 60 km — dragged on sledges and floated on rafts — with no wheels, no metal tools, and no draft animals, then shaped with stone hammers. The great earthen pyramid-mounds of La Venta were piled up basketload by basketload by communal labor crews over generations.",
+    "sitios": "San Lorenzo and La Venta were ceremonial-political capitals: plazas, mounds, stone drainage systems, and buried offerings of jade and serpentine laid out as sacred geography.",
+    "final": "San Lorenzo declined around 900 a.C. and La Venta around 400 a.C. The causes are debated — shifting rivers, environmental change, political upheaval (some monuments were deliberately defaced and buried). The people didn't vanish; the culture transformed, and its ideas spread through everything that came after."
+  },
+  {
+    "id": "chavin",
+    "name": "Chavín",
+    "color": "#7e57c2",
+    "start": -900,
+    "end": -200,
+    "where": "Perú (sierra norte)",
+    "shape": {
+      "type": "ellipse",
+      "cx": 306,
+      "cy": 406,
+      "rx": 12,
+      "ry": 9,
+      "rot": -30
+    },
+    "quienes": "The first great unifying culture of the Andes — a religious phenomenon more than an empire. Chavín de Huántar, a temple complex 3,180 m up in the Peruvian Andes, drew pilgrims for centuries, and its fanged-deity art style spread across most of Peru without a single conquest we know of.",
+    "construccion": "Stone-faced platform temples honeycombed with interior galleries, air vents, and water channels engineered for theater: in the rainy season, water thundering through the ducts made the temple itself seem to roar. Built and enlarged over roughly five centuries by pilgrim and communal labor.",
+    "sitios": "An oracle and pilgrimage center. Initiates moved through dark labyrinths — the carved imagery shows the psychoactive san pedro cactus in use — to meet the Lanzón, a 4.5 m granite idol that still stands in its original gallery today.",
+    "final": "Its influence dissolved around 200 a.C. as regional cultures like Moche and Nazca went their own ways. No invasion required — the religion simply lost its hold."
+  },
+  {
+    "id": "zapoteca",
+    "name": "Zapotecas",
+    "color": "#26a69a",
+    "start": -500,
+    "end": 850,
+    "where": "México (valles de Oaxaca)",
+    "shape": {
+      "type": "ellipse",
+      "cx": 181,
+      "cy": 247,
+      "rx": 11,
+      "ry": 7,
+      "rot": 0
+    },
+    "quienes": "Builders of Monte Albán, one of the earliest true cities in the Americas — founded around 500 a.C. on a mountaintop above the Oaxaca valleys. The Zapotecs were among the first in Mesoamerica to carve writing and calendar dates in stone.",
+    "construccion": "They literally flattened a mountain ridge into a vast plaza and ringed it with stone-faced platforms — quarrying, hauling, and lime-plastering done by rotating labor levies owed by the valley towns, sustained over centuries.",
+    "sitios": "A political-religious capital ruling the valleys below: temples, a ballcourt, an astronomical building set at its own deliberate odd angle (Edificio J), and the carved “Danzantes” figures — most likely slain enemies of the city.",
+    "final": "Monte Albán's power faded around 800–900 d.C. and the great plaza emptied. But the Zapotec people never went anywhere — they resisted the Aztecs, then the Spanish, and hundreds of thousands of people speak Zapotec languages in Oaxaca today."
+  },
+  {
+    "id": "nazca",
+    "name": "Nazca",
+    "color": "#ec407a",
+    "start": -100,
+    "end": 600,
+    "where": "Perú (costa sur)",
+    "shape": {
+      "type": "ellipse",
+      "cx": 317,
+      "cy": 457,
+      "rx": 12,
+      "ry": 7,
+      "rot": -25
+    },
+    "quienes": "A desert culture of Peru's south coast, famous for the Nazca Lines, some of the finest pottery and textiles of ancient America, and for thriving in one of the driest places on Earth.",
+    "construccion": "The Lines were “drawn” by removing the dark, sun-varnished stones of the desert floor to expose the lighter ground beneath. An organized work crew could complete even a giant geoglyph in days or weeks — no mystery technology needed, and the method is visible to archaeologists. The Nazca also dug <em>puquios</em>: spiral-entry underground aqueducts, some of which still deliver water today.",
+    "sitios": "The lines were almost certainly processional and ritual paths — made to be walked, not viewed from the air — tied to water and fertility worship centered on the great adobe complex of Cahuachi. (And no: humans made them. The evidence is overwhelming.)",
+    "final": "The culture faded around 600 d.C. The evidence points to devastating El Niño flood cycles, made worse by the clearing of the huarango trees whose roots anchored the irrigated valleys."
+  },
+  {
+    "id": "teotihuacan",
+    "name": "Teotihuacán",
+    "color": "#ffa726",
+    "start": -100,
+    "end": 600,
+    "where": "México (Valle de México)",
+    "shape": {
+      "type": "ellipse",
+      "cx": 163,
+      "cy": 216,
+      "rx": 7,
+      "ry": 6,
+      "rot": 0
+    },
+    "quienes": "At its height around 450 d.C., the largest city in the Americas and one of the largest anywhere: 100,000+ people, a planned grid, multi-ethnic neighborhoods — and no clearly named king in any surviving image. Centuries later the Aztecs found the ruins and named it Teotihuacán, “where the gods were born.” We still don't know what its own people called it.",
+    "construccion": "The Pyramid of the Sun — among the largest structures by volume in the ancient world — is a mountain of earth, rubble, and adobe faced with stone and lime plaster, raised mostly in concentrated bursts between about 100 and 250 d.C. Thousands of laborers organized and fed by the state carried material basket by basket: no wheels, no draft animals, just ramps, ropes, and human muscle.",
+    "sitios": "The Avenue of the Dead laid the city out as sacred geography: pyramids as artificial mountains, the Temple of Quetzalcóatl with its warrior burials, palaces — and more than 2,000 apartment compounds where ordinary families lived better than most city-dwellers of the ancient world.",
+    "final": "Around 550–600 d.C. the monuments along the Avenue were burned and smashed — selectively, the ritual heart of the city rather than the homes — which points to an internal uprising against the elite more than a foreign invasion. The city shrank to a town, but its prestige haunted Mesoamerica for the next thousand years."
+  },
+  {
+    "id": "maya",
+    "name": "Mayas",
+    "color": "#66bb6a",
+    "start": -1000,
+    "end": 1697,
+    "where": "México (Yucatán y Chiapas), Guatemala, Belice, Honduras, El Salvador",
+    "shape": {
+      "type": "ellipse",
+      "cx": 224,
+      "cy": 228,
+      "rx": 22,
+      "ry": 30,
+      "rot": -8
+    },
+    "quienes": "Not one empire but dozens of rival city-states — Tikal, Calakmul, Palenque, Copán — sharing one brilliant culture: the only complete writing system of the pre-Columbian Americas, positional mathematics with zero, astronomical tables accurate enough to predict eclipses, and dynastic histories we can now read king by king. Classic golden age: roughly 250–900 d.C.",
+    "construccion": "Maya temple-pyramids are layered like onions: each ruler built over his predecessors' temple, so a “single” pyramid contains centuries of construction. Limestone was quarried with stone tools, burned to make lime plaster and mortar, and hauled by tumpline porters. Labor was corvée owed to the king — plus war captives for some projects. A major temple enlargement took years to a few decades, not whole lifetimes.",
+    "sitios": "Cities were political capitals and cosmic stages: temples were sacred mountains, plazas were the primordial sea, stelae froze the king's body in stone. Around them: ballcourts, markets, causeways, reservoirs (Tikal's water system carried 10,000+ people through dry seasons), and observatories like El Caracol at Chichén Itzá tracking Venus.",
+    "final": "The famous “collapse” (~800–950 d.C.) struck the southern lowlands: back-to-back megadroughts, escalating warfare, and kings whose rain-bringing legitimacy failed. Cities emptied one by one. But the north — Chichén Itzá, Uxmal, later Mayapán — flourished afterward, and the last independent Maya kingdom, Nojpetén, fell to the Spanish only in <strong>1697</strong>. Around seven million Maya live today; “the Maya disappeared” is a myth."
+  },
+  {
+    "id": "moche",
+    "name": "Moche",
+    "color": "#ef5350",
+    "start": 100,
+    "end": 800,
+    "where": "Perú (costa norte)",
+    "shape": {
+      "type": "ellipse",
+      "cx": 292,
+      "cy": 391,
+      "rx": 9,
+      "ry": 14,
+      "rot": -30
+    },
+    "quienes": "Master artisans of Peru's north coast: the most lifelike portrait pottery of the ancient Americas, sophisticated gold and copper metallurgy, and canal systems that turned desert into farmland. The untouched tomb of the Lord of Sipán, found in 1987, is rightly called the Tutankhamun of the Americas.",
+    "construccion": "The Moche built with adobe bricks — by the millions. The Huaca del Sol contains over 100 million; makers' marks pressed into the bricks show that different communities each owed batches as labor tax. The great huacas grew by additions over some six centuries.",
+    "sitios": "Huacas were temple-mountains for a dramatic state religion (the sacrifice of war captives looms large in their art), elite tombs, and administrative centers commanding the irrigation networks.",
+    "final": "Between about 600 and 750 d.C., super-El Niño cycles — catastrophic floods followed by drought — wrecked the canal economy. Settlements moved inland and the culture fragmented. Its engineering and goldsmithing flowed into the Chimú centuries later."
+  },
+  {
+    "id": "tiwanaku",
+    "name": "Tiwanaku",
+    "color": "#5c6bc0",
+    "start": 500,
+    "end": 1000,
+    "where": "Bolivia y Perú (lago Titicaca)",
+    "shape": {
+      "type": "ellipse",
+      "cx": 356,
+      "cy": 469,
+      "rx": 14,
+      "ry": 10,
+      "rot": -15
+    },
+    "quienes": "A ceremonial empire at 3,850 m on the shores of Lake Titicaca — one of the highest cities ever built — whose religious influence radiated across the south-central Andes for half a millennium.",
+    "construccion": "Megalithic precision long before the Inca: andesite blocks were ferried across the lake on reed boats, hauled overland, and locked together with bronze cramps poured molten into carved sockets. Raised-field agriculture (<em>suka kollus</em>) around the lake was so productive that modern experiments have revived it — that surplus fed the building labor.",
+    "sitios": "A pilgrimage capital: the Akapana platform-mountain, the Semi-subterranean Temple with its carved stone heads, and the Gateway of the Sun bearing the Staff God — an ancestor of later Andean religion.",
+    "final": "Collapsed around 1000–1100 d.C. when a decades-long drought shrank the lake and killed the raised fields. The Inca later claimed Titicaca as the place where the world was created — inheriting the prestige of a ruin."
+  },
+  {
+    "id": "wari",
+    "name": "Wari",
+    "color": "#29b6f6",
+    "start": 600,
+    "end": 1000,
+    "where": "Perú (sierra central)",
+    "shape": {
+      "type": "ellipse",
+      "cx": 312,
+      "cy": 436,
+      "rx": 17,
+      "ry": 11,
+      "rot": -35
+    },
+    "quienes": "The first true empire of the Andes — Tiwanaku's contemporary and rival to the north. From their capital near modern Ayacucho, the Wari governed much of highland Peru through roads, planned provincial centers, and quipu record-keeping — the toolkit the Inca would inherit.",
+    "construccion": "Standardized, planned compounds — Pikillacta looks like a barracks-city drawn on graph paper — built by labor levies from subject communities, plus mountainside terracing to farm steep country.",
+    "sitios": "Administrative cities and storehouses for moving food and cloth around an empire. Wari statecraft — roads, provincial hubs, labor tax — was copied almost wholesale by the Inca four centuries later.",
+    "final": "Came apart around 1000 d.C. in the same great drought that brought down Tiwanaku, fragmenting into the regional kingdoms the Inca would later absorb."
+  },
+  {
+    "id": "tolteca",
+    "name": "Toltecas",
+    "color": "#c0ca33",
+    "start": 900,
+    "end": 1150,
+    "where": "México (Tula, Hidalgo)",
+    "shape": {
+      "type": "ellipse",
+      "cx": 155,
+      "cy": 209,
+      "rx": 8,
+      "ry": 5,
+      "rot": 0
+    },
+    "quienes": "Heirs to Teotihuacán's prestige in central Mexico. To the Aztecs, “Toltec” simply meant civilized — <em>toltecayotl</em> was the word for artistry and refinement itself. Their capital Tula is famous for its 4.6 m basalt Atlantean warrior columns.",
+    "construccion": "Colonnaded halls and Pyramid B's warrior columns — carved basalt drums stacked, pinned, and aligned — raised with tribute labor from subject towns.",
+    "sitios": "Tula was a warrior-state capital. Its art — chacmools, skull racks, feathered serpents — appears as far away as Chichén Itzá, and whether that traveled by conquest, alliance, or sheer fashion is still argued.",
+    "final": "Tula burned around 1150–1200 d.C. amid drought and factional strife; its nobility scattered. Every later dynasty — above all the Aztecs — claimed Toltec descent to look legitimate."
+  },
+  {
+    "id": "chimu",
+    "name": "Chimú",
+    "color": "#ff7043",
+    "start": 900,
+    "end": 1470,
+    "where": "Perú (costa norte, Chan Chan)",
+    "shape": {
+      "type": "ellipse",
+      "cx": 288,
+      "cy": 396,
+      "rx": 8,
+      "ry": 18,
+      "rot": -32
+    },
+    "quienes": "The greatest coastal kingdom of the Andes before the Inca, ruling 1,000 km of desert shoreline from Chan Chan — the largest adobe city ever built, roughly 20 km² with tens of thousands of inhabitants.",
+    "construccion": "Chan Chan's ten royal compounds (<em>ciudadelas</em>) rose from adobe and sculpted mud friezes. Each king built a new walled palace-compound using labor levies from conquered valleys, while canals carried water dozens of kilometers across open desert.",
+    "sitios": "Each ciudadela was palace, treasury, administrative hub, and finally the king's tomb. The friezes — endless fish, waves, seabirds — tell you exactly what fed the kingdom.",
+    "final": "Conquered around 1470 by the Inca, who controlled the highland headwaters Chimú's canals depended on — conquest by plumbing. King Minchançaman was taken to Cusco, and the famous Chimú goldsmiths were deported to work for the empire."
+  },
+  {
+    "id": "mexica",
+    "name": "Mexicas (Aztecas)",
+    "color": "#c62828",
+    "start": 1325,
+    "end": 1521,
+    "where": "México (centro y sur)",
+    "shape": {
+      "type": "ellipse",
+      "cx": 167,
+      "cy": 230,
+      "rx": 30,
+      "ry": 17,
+      "rot": -12
+    },
+    "quienes": "Late arrivals who built the most feared empire in Mesoamerican history in barely two centuries. Tenochtitlán — founded 1325 on an island in Lake Texcoco — held some 200,000 people by 1519, larger than any city in Spain, with canals, causeways, aqueducts, schooling for every child, and the great market of Tlatelolco that stunned the conquistadors.",
+    "construccion": "The Templo Mayor was rebuilt bigger <strong>seven times</strong> between 1325 and 1487, each version entombing the last. Stone, fill, and lime plaster moved entirely by canoe and human porters. Labor came as <em>tequitl</em> — rotating work-service owed by every commoner ward and tribute town. The chinampas (“floating gardens” — actually anchored raised fields) were agricultural engineering that fed the metropolis. Enslaved people (<em>tlacotin</em>) existed in Aztec society, but the monuments were built by organized tribute labor, not slave gangs.",
+    "sitios": "The sacred precinct was the center of the cosmos: the double temple to Tláloc (rain) and Huitzilopochtli (sun and war), where human sacrifice — real, though inflated by both Aztec propaganda and Spanish justification — fed the sun. Around it: palaces, schools, a zoo, an aviary, and neighborhoods threaded with canals.",
+    "final": "Cortés landed in 1519 with about 500 men — and won because tens of thousands of Indigenous enemies of the empire, above all Tlaxcala, joined him, and because smallpox killed perhaps half of Tenochtitlán mid-war, including the emperor Cuitláhuac. The city fell on August 13, 1521, after a 93-day siege that left it in rubble. Mexico City stands on top of it; more than 1.5 million people still speak Nahuatl."
+  },
+  {
+    "id": "inca",
+    "name": "Incas (Tawantinsuyu)",
+    "color": "#fbc02d",
+    "start": 1438,
+    "end": 1533,
+    "where": "Perú, Bolivia, Ecuador, Chile, Argentina, Colombia",
+    "shape": {
+      "type": "path",
+      "d": "M303,332 L285,360 L281,395 L290,430 L300,470 L315,520 L330,575 L340,622 L356,634 L364,598 L374,558 L396,540 L399,505 L390,468 L371,440 L361,400 L331,362 L316,338 Z"
+    },
+    "quienes": "The largest empire of the pre-Columbian Americas: Tawantinsuyu, “the four parts together,” ran 4,000 km down the Andes from southern Colombia to central Chile — roughly 10–12 million people knit together by 40,000 km of roads (the Qhapaq Ñan), relay runners (<em>chasquis</em>), and quipu accounting. Nearly all of it was assembled in under a century after 1438, mostly under Pachacuti and his son Túpac Yupanqui.",
+    "construccion": "The famous mortarless walls — Machu Picchu, the 100+ ton blocks of Sacsayhuamán — were quarried with stone hammers, moved with ramps, log rollers, ropes, and massed muscle, then fitted by lowering each block again and again and pecking the contact points until it seated perfectly. The result is earthquake-proof. Labor was the <strong>mit'a</strong>: every household owed the state rotating turns of work, paid in food, chicha, and cloth from state storehouses (<em>qollqas</em>). It was a labor tax, not slavery — the same system built the roads, the terraces, and the irrigation. Machu Picchu, a royal estate of Pachacuti begun around 1450, occupied crews in the low thousands for a few decades — and was still unfinished when it was abandoned.",
+    "sitios": "Machu Picchu was a royal estate and sanctuary (never a “lost city of gold”); Sacsayhuamán a temple-fortress above Cusco; Ollantaytambo a royal town still lived in today. And everywhere: terraces, qollqas, and tambos (road inns). The empire's true genius was logistics — while the state stood, nobody starved.",
+    "final": "Smallpox raced ahead of the Spaniards in the 1520s, killing the emperor Huayna Cápac and igniting civil war between his sons Huáscar and Atahualpa. Pizarro's 168 men ambushed Atahualpa at Cajamarca in 1532 in the middle of that chaos, extracted history's largest ransom — a room filled with gold — and executed him anyway in 1533. Andean peoples who hated Inca rule made the conquest possible; a Neo-Inca state held out at Vilcabamba until 1572, when Túpac Amaru was executed in Cusco's plaza."
+  }
+];
+
+  const CIV_TL_MIN = -3200, CIV_TL_MAX = 1750;
+  let civSelected = null;
+
+  function civYear(y) { return y < 0 ? Math.abs(y) + ' a.C.' : y + ' d.C.'; }
+  function civPct(y) { return ((y - CIV_TL_MIN) / (CIV_TL_MAX - CIV_TL_MIN) * 100); }
+
+  function renderCivilizaciones() {
+    renderCivTimeline();
+    populateCivMap();
+    selectCiv(civSelected || 'maya', false);
+  }
+
+  function renderCivTimeline() {
+    const el = document.getElementById('civTimeline');
+    if (!el) return;
+    const ticks = [-3000, -2000, -1000, 0, 500, 1000, 1500];
+    const axis = '<div class="civ-axis">' + ticks.map(t =>
+      `<span style="left:${civPct(t)}%">${t < 0 ? Math.abs(t) + ' a.C.' : (t === 0 ? '0' : t + ' d.C.')}</span>`).join('') + '</div>';
+    const rows = CIVS.slice().sort((a, b) => a.start - b.start).map(c => {
+      const left = civPct(c.start), width = Math.max(civPct(c.end) - left, 0.8);
+      return `<div class="civ-tl-row" id="civrow-${c.id}" onclick="selectCiv('${c.id}', true)">
+        <div class="civ-tl-name"><span class="civ-tl-dot" style="background:${c.color}"></span>${c.name}</div>
+        <div class="civ-tl-track"><div class="civ-tl-bar" style="left:${left}%; width:${width}%; background:${c.color}"></div></div>
+        <div class="civ-tl-years">${civYear(c.start)} – ${civYear(c.end)}</div>
+      </div>`;
+    }).join('');
+    el.innerHTML = axis + rows;
+  }
+
+  function populateCivMap() {
+    const container = document.getElementById('civMapContainer');
+    if (!container || container.querySelector('svg')) return;
+    const source = document.querySelector('svg#hispanoMap');
+    if (!source) return;
+    const clone = source.cloneNode(true);
+    clone.removeAttribute('id');
+    clone.querySelectorAll('.capital-dot, .capital-label, .map-overlay').forEach(n => n.remove());
+    clone.querySelectorAll('.country-region, .neighbor-region').forEach(p => { p.style.pointerEvents = 'none'; p.style.cursor = 'default'; });
+    // Crop to the Americas (Spain/Africa not relevant here)
+    clone.setAttribute('viewBox', '20 100 470 700');
+    const NS = 'http://www.w3.org/2000/svg';
+    const g = document.createElementNS(NS, 'g');
+    CIVS.forEach(c => {
+      let shp;
+      if (c.shape.type === 'path') {
+        shp = document.createElementNS(NS, 'path');
+        shp.setAttribute('d', c.shape.d);
+      } else {
+        shp = document.createElementNS(NS, 'ellipse');
+        shp.setAttribute('cx', c.shape.cx); shp.setAttribute('cy', c.shape.cy);
+        shp.setAttribute('rx', c.shape.rx); shp.setAttribute('ry', c.shape.ry);
+        if (c.shape.rot) shp.setAttribute('transform', `rotate(${c.shape.rot} ${c.shape.cx} ${c.shape.cy})`);
+      }
+      shp.setAttribute('class', 'civ-overlay-shape');
+      shp.setAttribute('data-civ', c.id);
+      shp.setAttribute('fill', c.color);
+      shp.setAttribute('fill-opacity', '0.40');
+      shp.setAttribute('stroke', c.color);
+      shp.setAttribute('stroke-opacity', '0.85');
+      shp.setAttribute('stroke-width', '1.2');
+      shp.addEventListener('click', () => selectCiv(c.id, true));
+      const t = document.createElementNS(NS, 'title');
+      t.textContent = c.name;
+      shp.appendChild(t);
+      g.appendChild(shp);
+    });
+    clone.appendChild(g);
+    container.appendChild(clone);
+  }
+
+  function selectCiv(id, scroll) {
+    const civ = CIVS.find(c => c.id === id);
+    if (!civ) return;
+    civSelected = id;
+    document.querySelectorAll('.civ-tl-row').forEach(r => {
+      const mine = r.id === 'civrow-' + id;
+      r.classList.toggle('sel', mine);
+      r.classList.toggle('dim', !mine);
+    });
+    document.querySelectorAll('.civ-overlay-shape').forEach(s => {
+      const mine = s.getAttribute('data-civ') === id;
+      s.setAttribute('fill-opacity', mine ? '0.65' : '0.10');
+      s.setAttribute('stroke-opacity', mine ? '1' : '0.25');
+      s.setAttribute('stroke-width', mine ? '2' : '1');
+    });
+    const el = document.getElementById('civDetail');
+    if (el) {
+      el.style.borderTopColor = civ.color;
+      el.innerHTML = `
+        <h3>${civ.name}</h3>
+        <div class="cd-meta"><strong style="color:${civ.color}">●</strong> ${civYear(civ.start)} – ${civYear(civ.end)} · Hoy: ${civ.where}</div>
+        <h5>¿Quiénes eran?</h5><p>${civ.quienes}</p>
+        <h5>¿Cómo construyeron — y quién hizo el trabajo?</h5><p>${civ.construccion}</p>
+        <h5>¿Para qué eran los sitios?</h5><p>${civ.sitios}</p>
+        <h5>¿Cómo terminó?</h5><p>${civ.final}</p>`;
+      if (scroll && window.innerWidth < 900) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+  }
+
   const CAPITAL_DOTS = [
     { id: 'MX',    country: 'MX', name: 'Ciudad de México' },
     { id: 'GT',    country: 'GT', name: 'Ciudad de Guatemala' },
@@ -29144,6 +29601,7 @@
     { icon: '🎙️', label: 'Speaking topics',         hash: '#/voces',       kw: 'speaking voces record oral pronunciation' },
     { icon: '🌎', label: 'Mundo — culture & geography', hash: '#/mundo',   kw: 'mundo culture cultura geography geografia countries flags world capitals' },
     { icon: '📜', label: 'Historia',                hash: '#/historia',    kw: 'historia history countries events timeline' },
+    { icon: '🏛️', label: 'Civilizaciones antiguas', hash: '#/civilizaciones', kw: 'civilizations ancient maya inca aztec mexica olmec ruins pyramids empire map timeline civilizaciones' },
     { icon: '🔗', label: 'Student resources',       hash: '#/recursos',    kw: 'resources recursos links ixl classroom progressbook translator' },
     { icon: '★',  label: 'Rewards & shop (Lucas)',  hash: '#/lucas',       kw: 'lucas rewards shop coins store achievements badges' }
   ];
