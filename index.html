@@ -11349,6 +11349,63 @@
   //   quiz: array of { q, options: [{ text, correct }] }
 
   const READINGS = [
+    // ---------- HISTORY READING — La Inquisición ----------
+    {
+      id: 'la-inquisicion',
+      kind: 'story', level: 'intermediate',
+      title: 'La <em>Inquisición</em> española',
+      author: 'Original · El Pueblo',
+      year: '',
+      attribution: 'Historia · España y América',
+      preview: 'En 1478, los Reyes Católicos crearon un tribunal religioso que duró más de 350 años…',
+      text: [
+        'En 1478, los Reyes Católicos — Isabel y Fernando — crearon un tribunal religioso muy poderoso: la Inquisición española. Su misión oficial era proteger la fe católica. En realidad, era también un instrumento de control político y social.',
+        'La Inquisición perseguía sobre todo a los conversos: judíos que se habían convertido al catolicismo, muchas veces por la fuerza. Si un vecino los acusaba de practicar su antigua religión en secreto, el tribunal podía arrestarlos, interrogarlos y confiscar sus propiedades. Los procesos eran secretos: el acusado nunca sabía quién lo había denunciado.',
+        'Las sentencias se anunciaban en grandes ceremonias públicas llamadas autos de fe. Los condenados que no se arrepentían morían en la hoguera. Los historiadores calculan que la Inquisición ejecutó a varios miles de personas en España durante sus 356 años de historia. Pero su poder más grande era el miedo: la gente tenía mucho cuidado con lo que decía, leía y pensaba.',
+        'La Inquisición también cruzó el océano. Hubo tribunales en Lima (1570), en la Ciudad de México (1571) y en Cartagena de Indias (1610). Una excepción importante: los indígenas no estaban bajo la jurisdicción de estos tribunales. Las víctimas típicas en América eran comerciantes acusados de judaísmo secreto, marineros extranjeros protestantes y — especialmente en Cartagena — africanos esclavizados acusados de brujería.',
+        'La Inquisición española no desapareció definitivamente hasta 1834. Hoy, los palacios de la Inquisición en Lima, México y Cartagena son museos. Son lugares para recordar una lección importante: lo que pasa cuando un estado decide controlar la conciencia de las personas.'
+      ],
+      gloss: {
+        'el tribunal': 'court / tribunal',
+        'perseguía': 'persecuted',
+        'los conversos': 'converts (Jews forced to convert)',
+        'por la fuerza': 'by force',
+        'confiscar': 'to confiscate',
+        'el acusado': 'the accused',
+        'se arrepentían': 'repented',
+        'la hoguera': 'the stake (burning)',
+        'el miedo': 'fear',
+        'la brujería': 'witchcraft',
+        'la conciencia': 'conscience'
+      },
+      quiz: [
+        { q: '¿Cuál era la misión oficial de la Inquisición?', options: [
+          { text: 'Proteger la fe católica', correct: true },
+          { text: 'Conquistar América', correct: false },
+          { text: 'Educar a los conversos', correct: false }
+        ]},
+        { q: '¿A quiénes perseguía sobre todo en España?', options: [
+          { text: 'A los marineros ingleses', correct: false },
+          { text: 'A los conversos acusados de practicar el judaísmo en secreto', correct: true },
+          { text: 'A los reyes', correct: false }
+        ]},
+        { q: '¿Qué eran los autos de fe?', options: [
+          { text: 'Libros prohibidos', correct: false },
+          { text: 'Tribunales secretos', correct: false },
+          { text: 'Ceremonias públicas donde se anunciaban las sentencias', correct: true }
+        ]},
+        { q: '¿Quiénes NO estaban bajo la jurisdicción de los tribunales en América?', options: [
+          { text: 'Los indígenas', correct: true },
+          { text: 'Los comerciantes portugueses', correct: false },
+          { text: 'Los marineros extranjeros', correct: false }
+        ]},
+        { q: '¿Cuándo desapareció definitivamente la Inquisición española?', options: [
+          { text: 'En 1492', correct: false },
+          { text: 'En 1834', correct: true },
+          { text: 'En 1610', correct: false }
+        ]}
+      ]
+    },
     // ---------- BEGINNER STORIES (5 Lucas/correct, +5 bonus = max 20) ----------
     {
       id: 'mi-familia',
@@ -14196,6 +14253,15 @@
   // Each topic needs: id (unique short string), title, body, optional tips, optional due
 
   const WRITING_TOPICS = [
+    {
+      id: 'la-inquisicion',
+      title: 'La <em>Inquisición</em>: poder y conciencia',
+      level: 'sp2',
+      category: 'cultural',
+      body: 'After reading "La Inquisición española" in Lectura (or the Inquisition events in Historia), write about it: What was the Inquisition, and why did the Catholic Monarchs create it? Who were its main victims in Spain and in the Americas? Why do you think fear can control people even more than punishment can? End with your opinion: what should we learn from this history today?',
+      tips: ['Use the imperfect for description (era, perseguía, tenía) and the preterite for events (crearon, llegó, terminó)', 'Useful vocab: el tribunal, la herejía, el converso, el auto de fe, la censura, el miedo, la conciencia', 'Aim for 120+ words and at least one opinion with "creo que…" or "me parece que…"'],
+      date: ''
+    },
     // ========== SPANISH 1 — PERSONAL ==========
     {
       id: 'my-family',

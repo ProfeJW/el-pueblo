@@ -11,6 +11,13 @@ window.HISTORIA = [
       arc: 'Chile became a working democracy in the 19th century, lived through one of Latin America\'s most brutal Cold War dictatorships in the 20th, and has spent the 21st trying to figure out what kind of democracy to be next. The events below — especially the 1973 coup — shape Chilean identity, art, and politics to this day.',
       events: [
         {
+          year: '1570',
+          title: 'The Inquisition at a distance',
+          spanish: 'la Inquisición a la distancia',
+          body: 'Chile never had its own tribunal — from 1570 it fell under the <strong>Inquisition of Lima</strong>, with <em>comisarios</em> in Santiago and Concepción collecting denunciations. An accused Chilean faced a brutal journey north before trial even began, and partly for that reason prosecutions from Chile were relatively few: distance worked as a kind of shield.<br><br>The system\'s main daily presence was quieter: edicts of faith read from pulpits, neighbors invited to inform on neighbors, and the inspection of books arriving through Valparaíso against the <em>Index</em> of banned titles. The institution\'s authority dissolved here with independence in the 1810s.',
+          vocab: ['el comisario', 'la denuncia', 'el edicto de fe', 'los libros prohibidos']
+        },
+        {
           year: '1970',
           title: 'Allende elected — the first Marxist president in the Americas',
           spanish: 'la elección de Allende',
@@ -58,6 +65,13 @@ window.HISTORIA = [
       countryName: 'Argentina',
       arc: 'Argentina was built in the 19th century as a self-consciously "white European" nation in the Americas — a project that involved erasing its Black and Indigenous populations from the national story. In the 20th century, it became a haven for Nazi war criminals, the stage for one of the Cold War\'s bloodiest dictatorships, and the site of mass mobilization in defense of human rights. Today, it\'s a country shaped by all of those legacies — and by chronic economic crisis.',
       events: [
+        {
+          year: '1570',
+          title: 'Under the Inquisition of Lima',
+          spanish: 'bajo la Inquisición de Lima',
+          body: 'No inquisitorial tribunal ever sat in Buenos Aires: the Río de la Plata and Tucumán answered to <strong>Lima</strong>, through local <em>comisarios</em> who read edicts of faith and forwarded denunciations across the continent. The most famous victim from this soil was <strong>Francisco Maldonado da Silva</strong>, a surgeon from San Miguel de Tucumán arrested in 1627 for secretly practicing Judaism. He spent twelve years in Lima\'s cells refusing to recant — debating every theologian sent to him — and was burned in the great auto de fe of 1639.<br><br>There is a fitting coda: in 1813, the revolutionary <strong>Asamblea del Año XIII</strong> formally abolished the Inquisition in the Provincias Unidas — one of its first acts, alongside ending noble titles and instruments of torture. Cutting that institution loose was part of what independence <em>meant</em>.',
+          vocab: ['el comisario', 'el edicto de fe', 'la denuncia', 'la asamblea', 'abolir']
+        },
         {
           year: '1810–1900',
           title: 'Independence and the "European nation" project',
@@ -151,6 +165,13 @@ window.HISTORIA = [
           vocab: ['el cacique', 'el muisca', 'el oro', 'el conquistador', 'la conquista', 'el indígena']
         },
         {
+          year: '1610',
+          title: 'The Cartagena tribunal',
+          spanish: 'el Tribunal de Cartagena de Indias',
+          body: 'The third and last American tribunal of the Inquisition was established in 1610 in <strong>Cartagena de Indias</strong> — then one of the largest slave-trading ports in the Americas — with jurisdiction over New Granada, Venezuela, Panama, and the Spanish Caribbean. More than its sister courts in Lima and Mexico, Cartagena prosecuted accusations of <strong>brujería</strong> and <em>hechicería</em> — and its accused were disproportionately <strong>enslaved and free Africans</strong>, whose religious practices Spanish authorities read as witchcraft. Indigenous people, as elsewhere, were formally exempt.<br><br>The tribunal\'s elegant <strong>Palacio de la Inquisición</strong>, on a corner of the Plaza de Bolívar in Cartagena\'s walled city, is today a museum — its baroque doorway is one of the most photographed in Colombia, which makes the building\'s original purpose all the more chilling. The inquisitors were expelled definitively with independence in 1821.',
+          vocab: ['la brujería', 'la hechicería', 'el tribunal', 'la denuncia', 'la esclavitud', 'el palacio']
+        },
+        {
           year: '1810–1830',
           title: 'Independence and the rise (and fall) of Gran Colombia',
           spanish: 'la Gran Colombia',
@@ -222,6 +243,13 @@ window.HISTORIA = [
       countryName: 'Perú',
       arc: 'Peru contains 5,000 years of unbroken civilization — older than Egypt\'s pyramids — and the largest empire ever built in the Americas. It also contains one of the most violent and unresolved political histories in the modern Spanish-speaking world: the Shining Path conflict, the Fujimori era and its lasting wounds, and a chronic political instability that has produced six presidents in seven years. Underneath all of this is a deeper, ongoing tension: the country built around Spanish-speaking, coastal Lima, and the Quechua- and Aymara-speaking Andean and Amazonian Peru that has been politically marginalized for 500 years.',
       events: [
+        {
+          year: '1570',
+          title: 'The Lima tribunal — the Inquisition in South America',
+          spanish: 'el Tribunal de Lima',
+          body: 'In 1570, Felipe II installed the <strong>Tribunal del Santo Oficio de Lima</strong>, with jurisdiction over almost all of Spanish South America — from Panama down through Chile and across to the Río de la Plata. Distant cities had local <em>comisarios</em> who read edicts of faith and shipped the accused over the Andes to Lima\'s secret cells. As everywhere in Spanish America, <strong>Indigenous people were formally outside its jurisdiction</strong>.<br><br>Its darkest chapter was <strong>\'la complicidad grande\'</strong> (1635–1639): a sweeping crackdown on Portuguese <em>converso</em> merchants accused of secretly practicing Judaism, which gutted Lima\'s commercial elite. It climaxed in the great <strong>auto de fe of January 1639</strong> in the Plaza Mayor. Among those burned was <strong>Francisco Maldonado da Silva</strong>, a surgeon from Tucumán who spent twelve years in the cells debating the theologians sent to convert him — one of the most remarkable prisoners of conscience in the history of the Americas. The tribunal executed roughly thirty to forty people across its 250 years before being abolished in 1820.<br><br>You can stand in its actual cells today: the <strong>Museo de la Inquisición</strong>, beside the Congress in Lima, preserves the tribunal\'s original building.',
+          vocab: ['el Santo Oficio', 'el comisario', 'el converso', 'el auto de fe', 'la denuncia', 'la celda']
+        },
         {
           year: '~3000 BCE–1400 CE',
           title: 'Pre-Columbian Peru — older than the pyramids',
@@ -317,6 +345,13 @@ window.HISTORIA = [
           vocab: ['Al-Ándalus', 'la convivencia', 'el califato', 'la mezquita', 'el árabe', 'la Alhambra', 'el judío']
         },
         {
+          year: '1478',
+          title: 'The Spanish Inquisition is established',
+          spanish: 'la Inquisición española',
+          body: 'In 1478, Pope Sixtus IV authorized Fernando and Isabel to appoint their own inquisitors — making the <strong>Spanish Inquisition</strong> unusual from birth: a religious court controlled by the <em>Crown</em>, not by Rome. Its first target was the <strong>conversos</strong> — Jews who had converted to Catholicism, often under duress — suspected of secretly practicing their old faith. The first <em>auto de fe</em> was held in Sevilla in 1481, and <strong>Tomás de Torquemada</strong> became the first Inquisitor General in 1483. Over time its net widened: <em>moriscos</em>, suspected Protestants (<em>luteranos</em>), blasphemy, bigamy, and banned books.<br><br>How it worked: an <strong>edicto de fe</strong> was read in church, inviting neighbors to denounce one another. Arrests were secret, property was confiscated, and the accused was never told who had denounced them. Torture was used to extract confessions (as in secular courts of the era). Sentences were announced at <strong>autos de fe</strong> — elaborate public ceremonies — and the condemned who refused to repent were \'relaxed to the secular arm\' and burned at the <em>hoguera</em>. Modern historians estimate the executions in Spain in the low thousands across 350 years — far fewer than the legend claims, but the machinery of denunciation and fear reshaped daily life, and the <em>Index</em> of banned books censored what Spain could read for centuries.<br><br>The Inquisition outlived empires: it was not definitively abolished until <strong>1834</strong>. It also crossed the Atlantic — tribunals were established in Lima (1570), Ciudad de México (1571), and Cartagena de Indias (1610); you\'ll find that story on those countries\' pages. Even Goya was summoned before it to defend <em>La maja desnuda</em>. The debate over its memory — between the exaggerated \'Black Legend\' and attempts to minimize it — is itself part of Spanish history.',
+          vocab: ['la Inquisición', 'el converso', 'la herejía', 'el auto de fe', 'la hoguera', 'la censura', 'la denuncia']
+        },
+        {
           year: '1492',
           title: '1492 — the year that broke and made Spain',
           spanish: 'el año 1492',
@@ -404,6 +439,13 @@ window.HISTORIA = [
           vocab: ['la colonia', 'la caña de azúcar', 'el esclavo', 'el taíno', 'la santería', 'el orisha', 'el ingenio']
         },
         {
+          year: '1610',
+          title: 'Havana and the Holy Office',
+          spanish: 'la Inquisición en Cuba',
+          body: 'From 1610 Cuba answered to the new <strong>Tribunal of Cartagena de Indias</strong>, through a <em>comisaría</em> in Havana (in the earlier decades, bishops had wielded inquisitorial powers in the Caribbean). Havana\'s role as the rendezvous of the treasure fleets shaped its inquisitorial life: every arriving ship could be inspected for banned books, and the most common \'herejes\' were <strong>foreign Protestant sailors</strong> — English, French, and Dutch — who passed through one of the busiest ports in the Americas.<br><br>Locally, the system mostly meant the familiar machinery of denunciation: blasphemy, bigamy, and accusations of sorcery, with serious cases shipped to Cartagena for trial. It dissolved in the independence era of the early 19th century — though Cuba itself remained Spanish until 1898.',
+          vocab: ['el comisario', 'el hereje', 'los libros prohibidos', 'el puerto', 'la denuncia']
+        },
+        {
           year: '1868–1898',
           title: 'José Martí and the Wars of Independence',
           spanish: 'las guerras de independencia',
@@ -482,6 +524,13 @@ window.HISTORIA = [
           spanish: 'los pipiles',
           body: 'Before the Spanish arrived, the territory of modern El Salvador was inhabited primarily by the <strong>Pipil</strong> people — a Nahua-speaking group whose language and culture were closely related to the Aztecs far to the north in central Mexico. The Pipil had migrated south from central Mexico around 900 CE. They organized themselves into a kingdom called <strong>Cuzcatlán</strong> (the "Land of Precious Jewels"), with cities, agriculture, trade networks, and complex political structures. The name <em>Cuzcatlán</em> survives as a poetic name for El Salvador to this day.<br><br>The Spanish conquest began in <strong>1524</strong>, led by <strong>Pedro de Alvarado</strong> — the same conquistador who had been Cortés\'s second-in-command in the conquest of Mexico. Alvarado was notoriously cruel even by the standards of his fellow conquistadores. The Pipil resisted ferociously. Alvarado was personally wounded in battle and forced to retreat. It took the Spanish three campaigns over more than a decade to subdue the territory. The town of <strong>San Salvador</strong> was founded in 1525, abandoned, refounded in 1528. Cuzcatlán became part of the Spanish Captaincy General of Guatemala.<br><br>The colonial period was relatively quiet by Spanish American standards — no major silver mines, no massive Indigenous slave populations like Peru. The colonial economy revolved around <strong>indigo</strong> (the deep blue dye) and later <strong>cacao</strong>. Most of the Pipil population was decimated by disease and forced labor in the first century. Survivors gradually merged into the mestizo majority, and indigenous identity in El Salvador — unlike in neighboring Guatemala — became culturally invisible over the next four centuries. <strong>This invisibility would have catastrophic consequences in 1932.</strong>',
           vocab: ['el pipil', 'Cuzcatlán', 'el conquistador', 'el añil', 'el mestizo', 'la conquista']
+        },
+        {
+          year: '1571',
+          title: 'The Inquisition in a small province',
+          spanish: 'la Inquisición en El Salvador',
+          body: 'San Salvador, a modest province of the Kingdom of Guatemala, answered from 1571 to the <strong>Tribunal of Mexico City</strong> through the Guatemalan comisaría. Its inquisitorial history is correspondingly modest: scattered cases of blasphemy and bigamy, denunciations between neighbors, and the reading of the <em>edicto de fe</em> — the ritual that made every parishioner a potential informer.<br><br>As everywhere in Spanish America, the Indigenous and mestizo majority was formally exempt from the tribunal\'s jurisdiction. The institution\'s authority here ended with Central American independence in 1821.',
+          vocab: ['el comisario', 'la denuncia', 'la blasfemia', 'el edicto de fe']
         },
         {
           year: '1821–1900',
@@ -571,6 +620,13 @@ window.HISTORIA = [
           vocab: ['Nueva España', 'el virreinato', 'la plata', 'la mina', 'la Virgen de Guadalupe', 'el mestizo', 'el criollo', 'el peninsular', 'la casta']
         },
         {
+          year: '1571',
+          title: 'The Inquisition comes to New Spain',
+          spanish: 'el Tribunal del Santo Oficio',
+          body: 'In 1571, Felipe II established a tribunal of the <strong>Santo Oficio</strong> in Mexico City, with jurisdiction over New Spain, Central America, and even the Philippines. One crucial rule: <strong>Indigenous people were formally exempt</strong> — the Crown classed them as \'new in the faith,\' answerable to bishops\' courts instead. The tribunal\'s typical accused were settlers: <em>conversos</em> suspected of secretly practicing Judaism, foreign Protestant sailors and captured pirates, and cases of blasphemy, bigamy, and banned books.<br><br>Its most famous victim was <strong>Luis de Carvajal el Mozo</strong>, nephew of the governor of Nuevo León, burned with members of his family at the great auto de fe of 1596 for crypto-Judaism — his secret memoirs and letters survive as some of the most extraordinary personal documents of colonial America. The largest spectacle was the <strong>Gran Auto de Fe of 1649</strong>. Across two and a half centuries the tribunal executed several dozen people; its censorship, spies, and prisons reached far further than its stake did.<br><br>The Inquisition even touched independence: <strong>Hidalgo</strong> was condemned by it, and <strong>Morelos</strong> was tried before it in 1815 before being shot. The tribunal was abolished for good in 1820. Its palace still stands on the Plaza de Santo Domingo in Mexico City.',
+          vocab: ['el Santo Oficio', 'el tribunal', 'el converso', 'el auto de fe', 'la denuncia', 'la censura']
+        },
+        {
           year: '1810–1821',
           title: 'Independence — the Grito de Dolores',
           spanish: 'la Independencia',
@@ -653,6 +709,13 @@ window.HISTORIA = [
           vocab: ['la conquista', 'el conquistador', 'la batalla', 'la viruela', 'el tributo', 'la resistencia']
         },
         {
+          year: '1571',
+          title: 'Under the Mexican tribunal',
+          spanish: 'la Inquisición en el Reino de Guatemala',
+          body: 'From 1571 the Kingdom of Guatemala answered to the <strong>Tribunal of Mexico City</strong>, through a <em>comisario</em> seated in Santiago de Guatemala (today Antigua). With the overwhelmingly Maya population <strong>formally exempt</strong> from inquisitorial jurisdiction, the tribunal\'s reach here touched mainly the small Spanish and criollo world: blasphemy, bigamy, banned books, and the occasional foreign \'hereje\' unlucky enough to pass through.<br><br>The everyday face of the system was the <strong>edicto de fe</strong> — read in church, inviting denunciation — and the inspection of imported books. Cases serious enough for trial meant a long forced journey to Mexico City. The institution dissolved here with independence in 1821.',
+          vocab: ['el comisario', 'el edicto de fe', 'la denuncia', 'el hereje', 'los libros prohibidos']
+        },
+        {
           year: '1944–1954',
           title: 'The Ten Years of Spring — and the CIA coup',
           spanish: 'los Diez Años de Primavera y el golpe de 1954',
@@ -702,6 +765,13 @@ window.HISTORIA = [
           vocab: ['la resistencia', 'la traición', 'el cacique', 'la guerra', 'el símbolo']
         },
         {
+          year: '1571',
+          title: 'Comayagua, Trujillo, and the Holy Office',
+          spanish: 'la Inquisición en Honduras',
+          body: 'Honduras fell under the <strong>Tribunal of Mexico City</strong> from 1571, via the comisaría of the Kingdom of Guatemala, with church officials in Comayagua handling local denunciations. The docket was small — blasphemy, bigamy, suspect books — since the Indigenous majority was formally exempt.<br><br>The Caribbean coast gave the system its distinctive local flavor: with English and Dutch ships haunting the coast around <strong>Trujillo</strong>, the occasional captured Protestant corsair was the most exotic \'heretic\' Honduras ever supplied to the inquisitors.',
+          vocab: ['el comisario', 'la denuncia', 'la blasfemia', 'el corsario', 'el hereje']
+        },
+        {
           year: '1899–1954',
           title: 'The original "banana republic"',
           spanish: 'la república bananera',
@@ -742,6 +812,13 @@ window.HISTORIA = [
           spanish: 'la época colonial',
           body: 'Before Europeans arrived, the territory now called Uruguay was home to several indigenous peoples — most famously the <strong>Charrúa</strong>, semi-nomadic hunters of the pampas. They resisted European contact ferociously. When Spanish navigator <strong>Juan Díaz de Solís</strong> landed in 1516, the Charrúa killed and reportedly ate him — one of the most legendary early defeats of a European explorer in the Americas.<br><br>The territory was a frontier zone for centuries, contested between the Spanish Empire (based in Buenos Aires) and the Portuguese (expanding from Brazil). The Portuguese founded <strong>Colonia del Sacramento</strong> in 1680 — still one of Uruguay\'s most beautiful colonial towns. The Spanish founded <strong>Montevideo</strong> in 1724 partly to block Portuguese expansion. The two empires fought over the Banda Oriental ("Eastern Bank" of the Uruguay River) for the next century.<br><br>The Charrúa were never conquered in the conventional sense. In <strong>1831</strong> — after independence — Uruguay\'s own new government carried out the <strong>Massacre of Salsipuedes</strong>, killing or capturing the remaining Charrúa population. This dark founding episode is rarely taught directly but lives on in the term <em>"garra charrúa"</em> — the "Charrúa grit" Uruguayans claim as a national trait.',
           vocab: ['el charrúa', 'la colonia', 'la banda oriental', 'el imperio', 'el indígena', 'la resistencia']
+        },
+        {
+          year: '1724',
+          title: 'A late city, a distant tribunal',
+          spanish: 'la Inquisición en la Banda Oriental',
+          body: 'The Banda Oriental was settled so late — Montevideo was founded in 1724 — that the Inquisition\'s presence here was always thin: a <em>comisaría</em> tied to Buenos Aires, under the far-off <strong>Tribunal of Lima</strong>. Edicts of faith were read, arriving ships\' books were checked against the <em>Index</em>, and a small number of denunciations were forwarded north; almost none became full trials.<br><br>The institution effectively vanished from the Río de la Plata with the revolutions of the 1810s, when the region\'s assemblies dismantled the colonial machinery of throne and altar.',
+          vocab: ['el comisario', 'el edicto de fe', 'la denuncia', 'los libros prohibidos']
         },
         {
           year: '1811-1830',
@@ -791,6 +868,13 @@ window.HISTORIA = [
           spanish: 'las reducciones jesuíticas',
           body: 'Before Europeans arrived, the territory now called Paraguay was home to the <strong>Guaraní</strong> — a large, organized network of agricultural peoples speaking related languages, living in villages, growing manioc and maize, and trading across an enormous swath of South America.<br><br>The Spanish arrived in 1537 and founded <strong>Asunción</strong> as a base for further exploration. Crucially, the colonial encounter with the Guaraní took a different shape than elsewhere in the Americas. Disease still killed many. Forced labor (<em>encomienda</em>) still existed. But there was no gold or silver to attract massive Spanish settlement, and the Guaraní were too numerous and too well-organized to be entirely subjugated. What emerged was a deeply mestizo society — early Spanish settlers took Guaraní wives in large numbers, and Spanish-Guaraní bilingualism became normal within two generations.<br><br>The most famous chapter of colonial Paraguay was the <strong>Jesuit Reductions</strong> (<em>las reducciones</em>) — a system of 30+ mission communities established by the Jesuit order starting in 1609 across what is now Paraguay, Argentina, Brazil, and Uruguay. The Jesuits gathered tens of thousands of Guaraní into self-contained towns where they were taught crafts, music, agriculture, theology, and literacy in their own language. <strong>The Reductions kept Guaraní culture and language alive</strong> in a way nothing else in the Americas did. The towns produced books in Guaraní, performed operas, and had their own militias.<br><br>The Reductions were also controversial. Critics (then and now) saw them as paternalistic at best and prison camps at worst. The Portuguese-Brazilian slave hunters — the <em>bandeirantes</em> — raided them constantly to capture Guaraní as slaves; many Reductions were destroyed and refounded farther west.<br><br>In <strong>1767</strong>, the Spanish Crown — alarmed by the Jesuits\' wealth and independence — expelled the order from all Spanish territories. The Reductions collapsed within a generation. But the Guaraní language and culture persisted. <strong>Paraguay is the only country in the Americas where the majority of people still speak the indigenous language of the pre-colonial era.</strong> That continuity traces back through the Reductions.<br><br>The 1986 film <em>The Mission</em> (with Robert De Niro and Jeremy Irons) dramatizes the destruction of the Guaraní Reductions. It\'s a romanticized portrayal but pedagogically powerful.',
           vocab: ['los guaraníes', 'las reducciones', 'la lengua indígena', 'los jesuitas', 'la misión', 'el mestizaje']
+        },
+        {
+          year: '1570',
+          title: 'The Inquisition at the edge of empire',
+          spanish: 'la Inquisición en el fin del mundo',
+          body: 'Paraguay was about as far from an inquisitorial tribunal as a subject of the Spanish Crown could be: Asunción had a <em>comisario</em> answering to <strong>Lima</strong>, several months\' travel away. Cases from Paraguay were a handful across three centuries — mostly blasphemy and bigamy — and sending an accused person to Lima was so costly that it rarely happened.<br><br>The deeper religious drama of colonial Paraguay ran through other channels entirely — the Jesuit missions and their expulsion in 1767 — but the Inquisition\'s edicts of faith and book inspections still formally applied here until the institution dissolved with the independence era.',
+          vocab: ['el comisario', 'la blasfemia', 'el edicto de fe', 'la misión']
         },
         {
           year: '1811-1840',
@@ -849,6 +933,13 @@ window.HISTORIA = [
           vocab: ['la plata', 'la mina', 'el mitayo', 'el cerro', 'la colonia', 'el imperio español']
         },
         {
+          year: '1570',
+          title: 'Potosí under the eye of Lima',
+          spanish: 'la Inquisición en el Alto Perú',
+          body: 'Alto Perú — today\'s Bolivia — fell under the <strong>Tribunal of Lima</strong> from 1570, with <em>comisarios</em> in Potosí and La Plata (modern Sucre). <strong>Potosí</strong>, the richest silver city on earth, drew particular inquisitorial attention: its swarming markets were full of Portuguese <em>converso</em> merchants, and when Lima launched its great crackdown on crypto-Judaism in the 1630s (\'la complicidad grande\'), traders from the silver economy were caught in the net.<br><br>For the Indigenous majority laboring in the mines, the Inquisition was formally irrelevant — they were exempt from its jurisdiction — but for the commercial world built on their labor, the fear of denunciation was a constant tax on conscience.',
+          vocab: ['el comisario', 'el converso', 'la denuncia', 'la plata', 'el mercader']
+        },
+        {
           year: '1825-1879',
           title: 'Independence and the loss of the coast',
           spanish: 'la independencia y la pérdida del mar',
@@ -889,6 +980,13 @@ window.HISTORIA = [
           spanish: 'la colonia',
           body: 'Pre-Columbian Venezuela was home to dozens of indigenous peoples — the most numerous of whom were various <strong>Carib</strong> and <strong>Arawak</strong> groups along the coast and in the interior. They were largely nomadic or semi-sedentary, organized in smaller-scale societies than the Aztec or Inca to the west.<br><br>Christopher Columbus reached the Venezuelan coast on his third voyage in <strong>1498</strong> — making it one of the first parts of South America that Europeans saw. The name "Venezuela" — "Little Venice" — was given in 1499 by Spanish navigator Alonso de Ojeda, supposedly because the stilt houses of indigenous fishing villages on Lake Maracaibo reminded him of Venice.<br><br>The Spanish established settlements along the coast (Caracas was founded in 1567) but didn\'t find significant gold or silver. The colonial economy revolved around <strong>cacao</strong>, then <strong>coffee</strong> by the 18th century, both grown on plantations that depended heavily on enslaved African labor. The mix of indigenous, European, and African ancestry produced Venezuela\'s overwhelmingly mestizo and mulato population — one of the most racially mixed in Latin America.<br><br>Colonial Venezuela was politically secondary — administered from Bogotá or Santo Domingo, not its own colonial capital. This second-tier status produced a creole elite that resented colonial neglect — fertile ground for the independence movement that would erupt in 1810.',
           vocab: ['la colonia', 'el cacao', 'el café', 'los indígenas', 'los esclavos', 'el mestizo']
+        },
+        {
+          year: '1610',
+          title: 'Under the Cartagena tribunal',
+          spanish: 'la Inquisición en Venezuela',
+          body: 'From 1610 Venezuela answered to the <strong>Tribunal of Cartagena de Indias</strong>, with <em>comisarios</em> in Caracas and the port cities. A long, lightly guarded coastline made Venezuela a smuggler\'s paradise — and that shaped its inquisitorial docket: contraband cargoes came with contraband <strong>books</strong>, and the foreign (often Protestant) traders who worked the coast were perennial suspects, alongside the everyday cases of blasphemy and bigamy.<br><br>The tribunal\'s authority here collapsed with the wars of independence: the same generation that expelled Spanish rule expelled the inquisitors, and the institution was finished in this region by 1821.',
+          vocab: ['el comisario', 'el contrabando', 'los libros prohibidos', 'la denuncia']
         },
         {
           year: '1810-1830',
@@ -940,6 +1038,13 @@ window.HISTORIA = [
           vocab: ['los taínos', 'Borikén', 'la colonia', 'San Juan', 'la esclavitud', 'el Grito de Lares']
         },
         {
+          year: '1519',
+          title: 'San Juan — the first inquisitorial seat in the New World',
+          spanish: 'la primera sede inquisitorial de América',
+          body: 'Puerto Rico holds a dark first: in 1519, <strong>Alonso Manso</strong>, bishop of San Juan, was named inquisitor for the Indies — making San Juan the <strong>first seat of inquisitorial authority in the Americas</strong>, half a century before the formal tribunals of Lima and Mexico existed. This early episcopal inquisition prosecuted the hemisphere\'s first heresy cases from a tiny island capital.<br><br>After the formal tribunals were founded, Puerto Rico\'s cases were handled through local <em>comisarios</em> and, from <strong>1610</strong>, fell under the <strong>Tribunal of Cartagena de Indias</strong>. As a fortified port on the edge of the empire, its typical accused were foreign Protestant sailors and corsairs; the everyday system was edicts of faith, book inspections, and denunciations, until the institution dissolved in the early 19th century.',
+          vocab: ['el obispo', 'el inquisidor', 'el comisario', 'el hereje', 'la denuncia']
+        },
+        {
           year: '1898',
           title: 'The Spanish-American War and US annexation',
           spanish: '1898: el cambio de imperio',
@@ -987,6 +1092,13 @@ window.HISTORIA = [
           spanish: 'la colonia olvidada',
           body: 'Columbus landed on the Caribbean coast in <strong>1502</strong>, on his fourth and final voyage, and the region was eventually named <em>"Costa Rica"</em> — the "Rich Coast" — in the expectation of gold. The name turned out to be one of history\'s great ironies. Costa Rica had <strong>no major gold or silver deposits</strong> and a relatively small indigenous population, which meant the Spanish found neither treasure to plunder nor large numbers of people to force into labor.<br><br>As a result, Costa Rica became one of the <strong>poorest and most neglected corners of the Spanish Empire</strong> — a remote backwater of the Captaincy General of Guatemala. Most colonists were small farmers who worked their own land because they couldn\'t afford enslaved laborers or large indigenous workforces.<br><br>Out of this poverty grew one of Costa Rica\'s most powerful national myths: the idea of a <strong>"rural democracy"</strong> (<em>la democracia rural</em>) — a society of modest, equal, hardworking farmers, without the brutal plantation oligarchies of its neighbors. Historians note the myth oversimplifies (there was inequality, and indigenous and Afro-descendant people are often written out of it), but the relative absence of a colonial plantation aristocracy did shape Costa Rica\'s more egalitarian later development.',
           vocab: ['la colonia', 'el oro', 'Costa Rica', 'el campesino', 'la democracia rural', 'la pobreza']
+        },
+        {
+          year: '1571',
+          title: 'The Inquisition in name only',
+          spanish: 'la Inquisición en Costa Rica',
+          body: 'Costa Rica — the poorest and most remote province of the Kingdom of Guatemala — answered on paper to the <strong>Tribunal of Mexico City</strong> from 1571. In practice, the Inquisition here was nearly theoretical: a <em>comisario</em> in Cartago, the annual reading of the <em>edicto de fe</em>, and a docket of cases so thin it can be counted on fingers.<br><br>That emptiness is itself historically interesting: the colonial institutions that shaped life in the great viceregal capitals barely brushed this frontier of subsistence farmers — part of the long story Costa Ricans tell about why their country\'s path diverged from its neighbors\'.',
+          vocab: ['el comisario', 'el edicto de fe', 'la denuncia', 'la frontera']
         },
         {
           year: '1821–1900',
@@ -1042,6 +1154,13 @@ window.HISTORIA = [
           spanish: 'La Española',
           body: 'On his first voyage in <strong>1492</strong>, Christopher Columbus landed on the island the Taíno called <strong>Quisqueya</strong>. He named it <em>La Española</em> — Hispaniola. It became the site of the <strong>first permanent European settlement in the Americas</strong>, and <strong>Santo Domingo</strong> (founded 1496) is the oldest continuously inhabited European-built city in the hemisphere, with the oldest cathedral and university.<br><br>The island was the laboratory for everything that followed in Spanish America: the first encomiendas (forced-labor grants), the first large-scale gold mining, and the first catastrophic <strong>collapse of an indigenous population</strong>. The Taíno, who may have numbered hundreds of thousands, were nearly wiped out within a few decades by disease, violence, and forced labor.<br><br>To replace them, the Spanish brought <strong>enslaved Africans</strong> to work sugar plantations — Hispaniola saw some of the earliest African slavery in the Americas. But as Spain shifted its attention and wealth to Mexico and Peru, Santo Domingo became a neglected backwater. Spain eventually ceded the western third of the island to <strong>France</strong> (1697), which built it into the fabulously rich sugar colony of Saint-Domingue — the future Haiti.',
           vocab: ['La Española', 'Santo Domingo', 'los taínos', 'la encomienda', 'la esclavitud', 'Quisqueya']
+        },
+        {
+          year: '1520s',
+          title: 'The Inquisition reaches the Americas first here',
+          spanish: 'la Inquisición en La Española',
+          body: 'The earliest inquisitorial authority in the Americas was exercised in the Caribbean — decades before the formal tribunals existed — by bishops armed with delegated powers, beginning in the 1520s when Santo Domingo was the seat of Spanish power in the New World. The first heresy proceedings in the hemisphere happened in this early Caribbean world of conquistadors, friars, and foreign interlopers.<br><br>Once the formal tribunals were created, La Española answered first to the distant mainland courts and then, from <strong>1610</strong>, to the <strong>Tribunal of Cartagena de Indias</strong>, through local <em>comisarios</em>. The island\'s docket ran to blasphemy, bigamy, suspect books arriving by ship, and the occasional foreign Protestant — modest in scale, but the machinery of the <em>edicto de fe</em> and the denunciation was present here longer than almost anywhere in the Americas.',
+          vocab: ['el obispo', 'la herejía', 'el comisario', 'el edicto de fe', 'la denuncia']
         },
         {
           year: '1791–1844',
@@ -1104,6 +1223,13 @@ window.HISTORIA = [
           spanish: 'la Escuela Quiteña',
           body: 'Under Spanish rule, Quito became the seat of a <strong>Real Audiencia</strong> (royal court district), first within the Viceroyalty of Peru and later New Granada. The economy ran on highland textile workshops (<em>obrajes</em>), which exploited indigenous labor brutally, and on agriculture.<br><br>Colonial Quito\'s greatest legacy was artistic. The <strong>Quito School</strong> (<em>la Escuela Quiteña</em>) was one of the most remarkable artistic movements of colonial Latin America — a fusion of European Catholic styles with indigenous and mestizo craftsmanship. Quiteño artists produced extraordinarily detailed religious sculpture and painting, famous for hyper-realistic polychrome statues with glass eyes and real eyelashes. Quito\'s historic center, packed with these baroque churches, was named one of the first <strong>UNESCO World Heritage Sites</strong> in 1978.<br><br>On <strong>August 10, 1809</strong>, Quito\'s elite staged what Ecuadorians proudly call the <em>"Primer Grito de Independencia"</em> — the "First Cry of Independence" — one of the earliest independence uprisings anywhere in Spanish America. It was crushed and its leaders killed within a year, but the date is Ecuador\'s national day, and the city is nicknamed <em>"Luz de América"</em> — "Light of America."',
           vocab: ['la Real Audiencia', 'la Escuela Quiteña', 'el obraje', 'el Primer Grito', 'el patrimonio', 'Luz de América']
+        },
+        {
+          year: '1570',
+          title: 'Quito under the Inquisition of Lima',
+          spanish: 'bajo la Inquisición de Lima',
+          body: 'The Audiencia de Quito answered to the <strong>Tribunal of Lima</strong> from 1570 through a local <em>comisario</em>. Prosecutions from Quito were rare — the docket ran to blasphemy, bigamy, and the inspection of imported books against the <em>Index</em> — but the machinery of the <em>edicto de fe</em>, read aloud in church and inviting neighbors to denounce one another, was part of colonial life here as everywhere in the viceroyalty.<br><br>As across Spanish America, the Indigenous majority was formally exempt from inquisitorial jurisdiction, answering instead to the bishops\' courts. The institution faded from the region with independence in the early 1820s.',
+          vocab: ['el comisario', 'el edicto de fe', 'la denuncia', 'la blasfemia']
         },
         {
           year: '1820–1830',
@@ -1209,6 +1335,13 @@ window.HISTORIA = [
           vocab: ['la conquista', 'Granada', 'León', 'el córdoba', 'el lago', 'la Costa Miskita']
         },
         {
+          year: '1571',
+          title: 'León, Granada, and the Holy Office',
+          spanish: 'la Inquisición en Nicaragua',
+          body: 'Nicaragua fell under the <strong>Tribunal of Mexico City</strong> from 1571, with denunciations gathered through church authorities in León and forwarded via Guatemala. Ordinary cases ran to blasphemy and bigamy; the Indigenous majority was formally exempt.<br><br>Nicaragua\'s exposed position gave the system its livelier moments: corsair raids on Granada and the Pacific port of El Realejo occasionally left captured foreign Protestants in Spanish hands — prize \'herejes\' for a machinery that otherwise had little to do here.',
+          vocab: ['el comisario', 'la denuncia', 'el corsario', 'el hereje']
+        },
+        {
           year: '1821–1857',
           title: 'Independence, the León–Granada wars, and William Walker',
           spanish: 'el filibustero',
@@ -1262,6 +1395,13 @@ window.HISTORIA = [
           spanish: 'la ruta del tesoro',
           body: 'The Spanish reached the isthmus of Panama early — it was one of the first parts of the American mainland they colonized. In <strong>1513</strong>, <strong>Vasco Núñez de Balboa</strong> crossed the narrow strip of jungle and became the first European to see the <strong>Pacific Ocean</strong> from the Americas, claiming it (and "all its shores") for Spain. In 1519 the Spanish founded <strong>Panama City</strong> on the Pacific side.<br><br>Geography made Panama priceless. The isthmus is the <strong>narrowest point between the Atlantic and Pacific</strong> in the Americas. The Spanish used it as the great transit route for the silver of <strong>Peru</strong>: treasure was shipped up the Pacific coast to Panama, hauled overland by mule train across the isthmus (the <em>Camino Real</em>), and loaded onto treasure fleets bound for Spain. For two centuries, much of the wealth of the Spanish Empire crossed this tiny strip of land.<br><br>All that treasure attracted pirates. In <strong>1671</strong>, the Welsh buccaneer <strong>Henry Morgan</strong> crossed the isthmus and sacked and burned Panama City to the ground. The ruins, <strong>Panamá Viejo</strong>, still stand; survivors rebuilt the city a few miles away, where the colonial old town (Casco Viejo) remains today.',
           vocab: ['Balboa', 'el océano Pacífico', 'el istmo', 'la ruta del tesoro', 'el Camino Real', 'Panamá Viejo']
+        },
+        {
+          year: '1610',
+          title: 'Portobelo, the fairs, and the Holy Office',
+          spanish: 'la Inquisición en Panamá',
+          body: 'Panama — the empire\'s great crossroads — was watched first from <strong>Lima</strong> (1570) and then, from <strong>1610</strong>, from the new <strong>Tribunal of Cartagena de Indias</strong>. The famous <strong>Portobelo fairs</strong>, where the silver of Peru met the goods of Europe, gave the inquisitors their busiest work here: inspecting ships and cargo for banned books, and keeping an eye on the polyglot crowd of sailors, merchants, and foreigners that the trade route funneled across the isthmus.<br><br>Beyond the ports, the docket was the familiar colonial one — blasphemy, bigamy, denunciations — with serious cases shipped to Cartagena. The institution dissolved here with independence from Spain in 1821.',
+          vocab: ['la feria', 'el comisario', 'los libros prohibidos', 'el mercader', 'la denuncia']
         },
         {
           year: '1821–1903',
