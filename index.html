@@ -27598,13 +27598,24 @@
   function vocabAcceptedAnswers(entry, dir) {
     const variants = [];
     if (dir === 'es') {
-      // Answer in Spanish: each slash-variant, with and without its article
+      // Answer in Spanish: each slash-variant, with and without its article —
+      // and number-forgiving: "la aduana" also accepts "aduanas" / "las aduanas"
+      // (English glosses like "customs" read as plural, so students pluralize).
       String(entry.word).split('/').forEach(part => {
         const t = part.trim();
         if (!t) return;
         variants.push(t);
-        const noArt = t.replace(/^(el|la|los|las|un|una|unos|unas)\s+/i, '');
-        if (noArt !== t) variants.push(noArt);
+        const m = t.match(/^(el|la|un|una|los|las|unos|unas)\s+(.+)$/i);
+        const bare = m ? m[2] : t;
+        if (m) variants.push(bare);
+        if (!/\s/.test(bare) && !/s$/i.test(bare)) {
+          const plural = /[aeiouáéíóú]$/i.test(bare) ? bare + 's'
+                       : /z$/i.test(bare) ? bare.replace(/z$/i, 'ces')
+                       : bare + 'es';
+          variants.push(plural);
+          const plArt = m ? { el: 'los', la: 'las', un: 'unos', una: 'unas' }[m[1].toLowerCase()] : null;
+          if (plArt) variants.push(plArt + ' ' + plural);
+        }
       });
     } else {
       // Answer in English: full meaning, paren-stripped, each alternative,
