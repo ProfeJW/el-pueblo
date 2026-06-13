@@ -5369,6 +5369,7 @@
     <a href="#/historia" onclick="return window.__goHistoria ? window.__goHistoria() : true;">Historia</a>
     <a href="#/lecciones">Lessons</a>
     <a href="#/linguistica">Lingüística</a>
+    <a href="#/adquisicion">Adquisición</a>
     <a href="#/recursos">Resources</a>
   </div>
   <div style="display:flex;gap:10px;align-items:center;flex-shrink:0">
@@ -5607,6 +5608,7 @@
     <a href="#/historia" class="hl" onclick="return window.__goHistoria ? window.__goHistoria() : true;"><span class="hl-ico">📜</span><span class="hl-name">Historia</span><span class="hl-sub">History timelines</span></a>
     <a href="#/lecciones" class="hl"><span class="hl-ico">📘</span><span class="hl-name">Lessons</span><span class="hl-sub">Grammar lessons</span></a>
     <a href="#/linguistica" class="hl"><span class="hl-ico">🔬</span><span class="hl-name">Lingüística</span><span class="hl-sub">Language science</span></a>
+    <a href="#/adquisicion" class="hl"><span class="hl-ico">🧩</span><span class="hl-name">Adquisición</span><span class="hl-sub">HL + L2 activities</span></a>
     <a href="#/juegos" class="hl"><span class="hl-ico">🎮</span><span class="hl-name">Games</span><span class="hl-sub">Practice games</span></a>
     <a href="#/lucas" class="hl"><span class="hl-ico">★</span><span class="hl-name">Lucas</span><span class="hl-sub">Rewards & shop</span></a>
     <a href="#/recursos" class="hl"><span class="hl-ico">🔗</span><span class="hl-name">Resources</span><span class="hl-sub">Student links</span></a>
@@ -5943,6 +5945,11 @@
     Language isn't just words to memorize — it's a system you can take apart. A short, plain-language tour of how Spanish actually works: its sounds, how its words and sentences are built, where it came from, how it varies, and how we learn it. Each lesson is quick, with a 3-question check.
   </p>
   <div id="linguisticaGrid" class="ling-hub"><!-- populated by renderLinguistica --></div>
+</section></div>
+
+<!-- ACTIVIDADES DE ADQUISICIÓN (HL + L2) — interactive activities, rendered by adquisicion.js -->
+<div class="page" data-page="adquisicion"><section id="adquisicion">
+  <div id="adquisicionRoot"><!-- populated by renderAdquisicion (adquisicion.js) --></div>
 </section></div>
 
 <!-- STUDENT RESOURCES -->
@@ -7746,6 +7753,7 @@
     game: 'Game',
     lecciones: 'Grammar lessons',
     linguistica: 'Lingüística',
+    adquisicion: 'Adquisición',
     lesson: 'Lesson',
     recursos: 'Student Resources'
   };
@@ -7892,6 +7900,7 @@
     if (page === 'game' && typeof startGame === 'function') startGame(param);
     if (page === 'lecciones' && typeof renderLessonsList === 'function') renderLessonsList();
     if (page === 'linguistica' && typeof renderLinguistica === 'function') renderLinguistica();
+    if (page === 'adquisicion' && typeof renderAdquisicion === 'function') renderAdquisicion();
     if (page === 'lesson' && typeof renderLessonDetail === 'function') renderLessonDetail(param);
   }
 
@@ -28590,7 +28599,13 @@
     if (!userAnswer) return;
     rs.answered = true;
     const q = rs.questions[rs.round];
-    const isCorrect = (q.validAnswers || [q.answer]).some(a => normalize(a) === userAnswer);
+    // Accept multiple slash-separated guesses: if any one of the student's
+    // answers matches an accepted answer, count it correct. A learner who
+    // writes "how many / how much" for ¿cuántos? still gets credit for the
+    // correct "how many" instead of being marked wrong for the extra guess.
+    const accepted = (q.validAnswers || [q.answer]).map(normalize);
+    const guesses = input.value.split('/').map(normalize).filter(Boolean);
+    const isCorrect = guesses.some(g => accepted.indexOf(g) !== -1);
     const fb = document.getElementById('gameFeedback');
     if (isCorrect) {
       rs.score++;
@@ -29848,6 +29863,7 @@
 <script src="practice-games.js"></script>
 <script src="grammar-games.js"></script>
 <script src="actfl.js"></script>
+<script src="adquisicion.js"></script>
 <script>
   /* Keep the home-page "N games" tile honest: count the real games once all
      game scripts have registered. Unions the JS registry (inline games plus
