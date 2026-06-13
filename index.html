@@ -28599,7 +28599,13 @@
     if (!userAnswer) return;
     rs.answered = true;
     const q = rs.questions[rs.round];
-    const isCorrect = (q.validAnswers || [q.answer]).some(a => normalize(a) === userAnswer);
+    // Accept multiple slash-separated guesses: if any one of the student's
+    // answers matches an accepted answer, count it correct. A learner who
+    // writes "how many / how much" for ¿cuántos? still gets credit for the
+    // correct "how many" instead of being marked wrong for the extra guess.
+    const accepted = (q.validAnswers || [q.answer]).map(normalize);
+    const guesses = input.value.split('/').map(normalize).filter(Boolean);
+    const isCorrect = guesses.some(g => accepted.indexOf(g) !== -1);
     const fb = document.getElementById('gameFeedback');
     if (isCorrect) {
       rs.score++;
