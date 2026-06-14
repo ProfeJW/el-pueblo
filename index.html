@@ -295,6 +295,15 @@
   }
   .nav-links a:hover { color: var(--rojo); }
 
+  /* COSMIC: the nav bar's background is a hardcoded light paper tone, so in dark
+     mode the near-white logo and the muted-gray links wash out against it. Swap
+     in a dark backdrop so both read clearly. */
+  [data-theme="cosmic"] nav {
+    background: rgba(12, 14, 26, 0.92);
+    border-bottom-color: var(--line);
+  }
+  [data-theme="cosmic"] .nav-links a { color: var(--ink-soft); }
+
   /* HERO */
   header {
     padding: 48px 40px 56px;
@@ -4251,6 +4260,20 @@
   .game-prompt-card .game-prompt-display em {
     color: var(--ocre);
     font-style: italic;
+  }
+  /* COSMIC: this prompt card keeps a light (paper-on-ink) background even in dark
+     mode, so its ocre accents — the instruction label, the Racha category tag,
+     the emphasized prompt, and the score readout — turn into pale yellow on near
+     white and become hard to read. Darken them to a legible amber, and drop the
+     light progress text to a dark muted tone. */
+  [data-theme="cosmic"] .game-prompt-card .game-prompt-label,
+  [data-theme="cosmic"] .game-prompt-card .racha-tag,
+  [data-theme="cosmic"] .game-prompt-card .game-progress strong,
+  [data-theme="cosmic"] .game-prompt-card .game-prompt-display em {
+    color: #a05a00;
+  }
+  [data-theme="cosmic"] .game-prompt-card .game-progress {
+    color: rgba(12, 14, 26, 0.55);
   }
   .game-input-row {
     display: flex;

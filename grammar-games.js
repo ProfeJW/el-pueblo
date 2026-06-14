@@ -239,27 +239,20 @@
   }
 
   function injectHub() {
-    var anchor = document.getElementById('vocabGamesSection') || document.getElementById('gameGrid');
-    if (!anchor || document.getElementById('grammarGamesSection')) return;
+    var grid = document.getElementById('gameGrid');
+    if (!grid) return;
 
-    var section = document.createElement('div');
-    section.id = 'grammarGamesSection';
-    section.style.marginTop = '64px';
-    section.style.paddingTop = '32px';
-    section.style.borderTop = '1px solid var(--line)';
-    section.innerHTML =
-      '<div style="display:flex;align-items:baseline;justify-content:space-between;margin-bottom:6px;">' +
-        '<h3 style="font-family:\'DM Serif Display\',serif;font-size:24px;font-weight:400;margin:0;">' +
-          'Grammar &amp; number <em style="color:var(--rojo);font-style:italic;">games</em></h3>' +
-        '<div style="font-family:\'JetBrains Mono\',monospace;font-size:11px;letter-spacing:0.15em;color:var(--ink-soft);text-transform:uppercase;">' +
-          'Tricky pairs &amp; patterns</div>' +
-      '</div>' +
-      '<p style="font-size:14px;color:var(--ink-soft);line-height:1.5;max-width:720px;margin-bottom:24px;">' +
-        'The grammar points students mix up most — por/para, ser/estar, plurals, opposites — plus reading numbers. ' +
-        'Ten rounds each, score-based Lucas.</p>' +
-      '<div class="game-grid">' + CARDS.map(cardHTML).join('') + '</div>';
-
-    anchor.parentNode.insertBefore(section, anchor.nextSibling);
+    // Fold these grammar/number games straight into the single Practice games
+    // grid — no separate "Grammar & number games" heading. Skip any game that
+    // already has a card (e.g. plurals lives in the main grid) so nothing
+    // duplicates.
+    var tmp = document.createElement('div');
+    tmp.innerHTML = CARDS.map(cardHTML).join('');
+    Array.prototype.slice.call(tmp.children).forEach(function (card) {
+      var href = card.getAttribute('href');
+      if (grid.querySelector('a[href="' + href + '"]')) return;
+      grid.appendChild(card);
+    });
 
     if (typeof window.renderGamesHub === 'function' && /juegos/.test(location.hash)) {
       try { window.renderGamesHub(); } catch (e) { /* non-fatal */ }
