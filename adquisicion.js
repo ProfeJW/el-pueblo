@@ -106,7 +106,15 @@
           rubric: ['5+ expresiones con ejemplo', '5+ arreglos de gramática', 'Dices quién aportó cada uno'],
           rubricEn: ['5+ expressions with an example', '5+ grammar fixes', 'You say who contributed each one'],
           prompts: ['Expresiones nuevas (con ejemplo):', 'Arreglos de gramática que ayudaste a hacer:', '¿Quién te enseñó algo y qué fue?'],
-          promptsEn: ['New expressions (with example):', 'Grammar fixes you helped make:', 'Who taught you something, and what was it?'] }
+          promptsEn: ['New expressions (with example):', 'Grammar fixes you helped make:', 'Who taught you something, and what was it?'] },
+        third: { label: 'Noticiero', labelEn: 'News segment', quevas: 'Convierte el tema en un noticiero de 60 segundos: un presentador y un reportero en el lugar de los hechos.', quevasEn: 'Turn the topic into a 60-second news segment: an anchor and a reporter on the scene.',
+          pasos: ['Elige el tema de arriba y un ángulo (una noticia concreta).', 'Escriban el guion: titular, presentador y un reportero en vivo.', 'El HL pule la pronunciación y la entonación; el L2 revisa la gramática del guion.', 'Incluyan 2 expresiones del banco en el reporte en vivo.', 'Graben el noticiero (video o audio).'],
+          pasosEn: ['Pick the topic above and an angle (one concrete news story).', 'Write the script: headline, anchor, and a live field reporter.', "The HL polishes pronunciation and intonation; the L2 checks the script's grammar.", 'Include 2 expressions from the bank in the live report.', 'Record the news segment (video or audio).'],
+          entregas: 'El video o audio del noticiero y su guion.', entregasEn: 'Turn in: your news-segment video/audio + the script.',
+          rubric: ['El noticiero dura ~1 minuto y va al tema', 'Usaron 2+ expresiones del banco', 'Cada quien aportó su parte (entrega y guion)'],
+          rubricEn: ['The segment is ~1 minute and on topic', 'You used 2+ expressions from the bank', 'Each person contributed (delivery and script)'],
+          prompts: ['Titular de su noticia:', '¿Qué parte hiciste tú (presentador, reportero, guion)?', 'Dos expresiones del banco que usaron:'],
+          promptsEn: ['Your news headline:', 'Which part did you do (anchor, reporter, script)?', 'Two expressions from the bank you used:'] }
       },
       teacher: 'Bayona vio que, en el sketch, los aprendices de L2 empezaron a usar expresiones coloquiales (totalmente, bueno, me choca) mientras los HL recibían ayuda con ortografía y conjugación. Forma los grupos a propósito (mitad HL, mitad L2).',
       teacherEn: 'Bayona found that, in the skit, L2 learners began using colloquial expressions (totalmente, bueno, me choca) while heritage speakers got help with spelling and conjugation. Form the groups deliberately (half HL, half L2).'
@@ -131,7 +139,15 @@
           rubric: ['Las dos versiones dicen lo mismo', 'Se nota el cambio de registro', 'Explicas cuándo va cada una (sin decir que una es “mejor”)'],
           rubricEn: ['Both versions say the same thing', 'The change in register is clear', 'You explain when each one fits (without saying one is “better”)'],
           prompts: ['Versión de casa (relajada):', 'Versión formal:', '¿Cuándo usas cada una?'],
-          promptsEn: ['At-home version (relaxed):', 'Formal version:', 'When do you use each one?'] }
+          promptsEn: ['At-home version (relaxed):', 'Formal version:', 'When do you use each one?'] },
+        third: { label: 'Cambia el guion', labelEn: 'Change the script', quevas: 'Toma las palabras de un candidato y reescríbelas en otro registro. Predice cómo cambian las reacciones de los oyentes.', quevasEn: "Take one candidate's words and rewrite them in a different register. Predict how listeners' reactions change.",
+          pasos: ['Elige uno de los tres candidatos de arriba.', 'Reescribe lo que dice en un registro distinto (formal ↔ coloquial).', 'Predice: ¿a quién contratarían ahora? ¿Por qué?', 'Explica qué cambió: la persona o solo la forma de hablar.'],
+          pasosEn: ['Pick one of the three candidates above.', 'Rewrite what they say in a different register (formal ↔ colloquial).', 'Predict: who would they hire now? Why?', 'Explain what changed: the person, or just the way they speak.'],
+          entregas: 'El candidato, tu versión reescrita y tu predicción con su porqué.', entregasEn: 'Turn in: the candidate, your rewritten version, and your prediction with reasoning.',
+          rubric: ['Reescribes en un registro claramente distinto', 'El mensaje sigue siendo el mismo', 'Explicas que cambió la forma, no la capacidad'],
+          rubricEn: ['You rewrite in a clearly different register', 'The message stays the same', 'You explain that the form changed, not the ability'],
+          prompts: ['Candidato que elegiste:', 'Tu versión reescrita:', '¿Cambió tu decisión? ¿Por qué?'],
+          promptsEn: ['Candidate you chose:', 'Your rewritten version:', 'Did your decision change? Why?'] }
       },
       teacher: 'Una prueba de pares presenta el mismo mensaje en distintas variedades para que los oyentes revelen sus actitudes. Lo clave es la conversación posterior: nombrar el perfilamiento lingüístico. Puedes pedir muestras reales de la comunidad (con permiso).',
       teacherEn: 'A matched-guise test presents the same message in different varieties so listeners reveal their attitudes. The key is the conversation afterward: naming linguistic profiling. You can ask for real samples from the community (with permission).'
@@ -156,7 +172,15 @@
           rubric: ['Entrevistaste a 3 personas', 'Comparaste las palabras', 'Explicas el porqué con razones'],
           rubricEn: ['You interviewed 3 people', 'You compared the words', 'You explain the why with reasons'],
           prompts: ['Persona 1 (edad/lugar) y sus palabras:', 'Persona 2:', 'Persona 3:', '¿Por qué crees que cambian?'],
-          promptsEn: ['Person 1 (age/place) and their words:', 'Person 2:', 'Person 3:', 'Why do you think they differ?'] }
+          promptsEn: ['Person 1 (age/place) and their words:', 'Person 2:', 'Person 3:', 'Why do you think they differ?'] },
+        third: { label: 'Atlas de la clase', labelEn: 'Class atlas', quevas: 'Junten las palabras de toda la clase en un solo mapa: ¿qué palabra usa cada región o país?', quevasEn: "Pool the whole class's words into one map: which word does each region or country use?",
+          pasos: ['Elige 5 conceptos (autobús, palomitas, niño…).', 'Pregunta a 3 compañeros qué palabra usan y de dónde es su familia.', 'Marquen cada palabra en un mapa o tabla por país/región.', 'Comenten: ¿qué concepto tuvo más variación?'],
+          pasosEn: ['Pick 5 concepts (bus, popcorn, kid…).', 'Ask 3 classmates which word they use and where their family is from.', 'Plot each word on a map or table by country/region.', 'Discuss: which concept had the most variation?'],
+          entregas: 'Tu parte del atlas: 5 conceptos con sus palabras y regiones.', entregasEn: 'Turn in: your part of the atlas — 5 concepts with their words and regions.',
+          rubric: ['5 conceptos con varias palabras', 'Anotaste la región/país de cada una', 'Notas cuál varió más'],
+          rubricEn: ['5 concepts with several words', 'You noted the region/country of each', 'You note which varied most'],
+          prompts: ['Tus 5 conceptos y las palabras que reuniste:', '¿Cuál tuvo más variación?', '¿Qué región te sorprendió?'],
+          promptsEn: ['Your 5 concepts and the words you collected:', 'Which one varied most?', 'Which region surprised you?'] }
       },
       teacher: 'La tarea de variación léxica muestra que la variación es inherente al idioma. Conecta con la idea de Bernate de tratar las formas no estándar como sistemáticas, no como errores.',
       teacherEn: "The lexical variation task shows that variation is inherent to language. It connects with Bernate's idea of treating nonstandard forms as systematic, not as errors."
@@ -181,7 +205,15 @@
           rubric: ['Una pregunta de forma', 'Una pregunta de “por qué”', 'Tus respuestas son correctas y claras'],
           rubricEn: ['One form question', 'One “why” question', 'Your answers are correct and clear'],
           prompts: ['Forma que elegiste:', 'Pregunta 1 (de forma) + respuesta:', 'Pregunta 2 (de por qué) + respuesta:'],
-          promptsEn: ['Feature you chose:', 'Question 1 (form) + answer:', 'Question 2 (why) + answer:'] }
+          promptsEn: ['Feature you chose:', 'Question 1 (form) + answer:', 'Question 2 (why) + answer:'] },
+        third: { label: 'Caza en lo salvaje', labelEn: 'Wild grammar hunt', quevas: 'Encuentra una forma “no estándar” en la vida real (una canción, un TikTok, un letrero, un mensaje) y explica la regla que sigue.', quevasEn: 'Find a “nonstandard” form in real life (a song, a TikTok, a sign, a text) and explain the rule it follows.',
+          pasos: ['Busca un ejemplo real (canción, video, letrero, mensaje de texto).', 'Copia la frase exacta y di de dónde salió.', 'Identifica la forma (haiga, -stes, naide, la a personal…).', 'Explica la regla o el patrón que sigue —no es un error al azar.'],
+          pasosEn: ['Find a real example (song, video, sign, text message).', 'Copy the exact phrase and say where it came from.', 'Identify the feature (haiga, -stes, naide, the personal a…).', "Explain the rule or pattern it follows — it's not a random error."],
+          entregas: 'Tu ejemplo real, su fuente y la regla que explica la forma.', entregasEn: 'Turn in: your real example, its source, and the rule behind the form.',
+          rubric: ['Traes un ejemplo real con su fuente', 'Identificas bien la forma', 'Explicas el patrón, no lo llamas “error”'],
+          rubricEn: ['You bring a real example with its source', 'You identify the feature correctly', 'You explain the pattern, not call it an “error”'],
+          prompts: ['La frase exacta y de dónde salió:', '¿Qué forma es?', '¿Qué regla o patrón sigue?'],
+          promptsEn: ['The exact phrase and where it came from:', 'What feature is it?', 'What rule or pattern does it follow?'] }
       },
       teacher: 'El método variacionista también funciona para la a personal y el futuro. Evalúa los cuatro pasos, no solo la forma: pídeles que expliquen por qué una variedad se estigmatiza.',
       teacherEn: 'The variationist method also works for the personal a and the future tense. Assess all four steps, not just the form: ask them to explain why a variety gets stigmatized.'
@@ -206,7 +238,15 @@
           rubric: ['Encontraste la forma correcta', 'No confundiste otras formas', 'Explicas cómo la reconociste'],
           rubricEn: ['You found the correct form', "You didn't confuse it with other forms", 'You explain how you recognized it'],
           prompts: ['Forma que buscaste:', 'Ejemplos que encontraste:', '¿Cómo supiste que era esa forma?'],
-          promptsEn: ['Form you looked for:', 'Examples you found:', 'How did you know it was that form?'] }
+          promptsEn: ['Form you looked for:', 'Examples you found:', 'How did you know it was that form?'] },
+        third: { label: 'Crea la encuesta', labelEn: 'Build the survey', quevas: 'Diseña tu propia encuesta de entrada estructurada para un compañero, usando el subjuntivo en cada opción.', quevasEn: 'Design your own structured-input survey for a partner, using the subjunctive in each option.',
+          pasos: ['Elige un tema (un trabajo ideal, una escuela ideal…).', 'Escribe 5 frases con el verbo en subjuntivo (que tenga…, que sea…).', 'Dáselas a un compañero para que las califique de 1 a 4.', 'Comparen y comenten sus respuestas.'],
+          pasosEn: ['Pick a topic (an ideal job, an ideal school…).', 'Write 5 statements with the verb in the subjunctive (que tenga…, que sea…).', 'Give them to a partner to rate 1 to 4.', 'Compare and discuss your answers.'],
+          entregas: 'Tu encuesta de 5 frases en subjuntivo y las respuestas de tu compañero.', entregasEn: "Turn in: your 5-statement subjunctive survey + your partner's answers.",
+          rubric: ['5 frases con el subjuntivo correcto', 'Un compañero la respondió', 'Comentaron las respuestas'],
+          rubricEn: ['5 statements with the correct subjunctive', 'A partner answered it', 'You discussed the answers'],
+          prompts: ['Tu tema:', 'Tus 5 frases en subjuntivo:', '¿En qué coincidieron o no con tu compañero?'],
+          promptsEn: ['Your topic:', 'Your 5 subjunctive statements:', 'Where did you and your partner agree or not?'] }
       },
       teacher: 'La entrada estructurada redirige las estrategias de procesamiento y crea un punto de partida común antes de la tarea. Funciona igual con pretérito/imperfecto y con pronombres de objeto.',
       teacherEn: 'Structured input redirects processing strategies and creates a common starting point before the task. It works the same with preterite/imperfect and with object pronouns.'
@@ -231,7 +271,15 @@
           rubric: ['Cuentas tu historia con detalle', 'Incluyes un momento de orgullo y uno difícil', 'Se entiende y está completa'],
           rubricEn: ['You tell your story in detail', 'You include a proud moment and a hard one', "It's clear and complete"],
           prompts: ['Notas para tu historia (niñez):', 'Un momento de orgullo y uno difícil:', '¿Qué formato vas a usar?'],
-          promptsEn: ['Notes for your story (childhood):', 'A proud moment and a hard one:', 'What format will you use?'] }
+          promptsEn: ['Notes for your story (childhood):', 'A proud moment and a hard one:', 'What format will you use?'] },
+        third: { label: 'Carta a un futuro estudiante', labelEn: 'Letter to a future student', quevas: 'Escribe una carta a un estudiante del próximo año (HL o L2) con consejos para sentirse dueño de su español.', quevasEn: "Write a letter to next year's student (HL or L2) with advice on owning their Spanish.",
+          pasos: ['Piensa en algo que te hubiera gustado saber al empezar.', 'Escribe una carta corta (1 página) a un futuro estudiante.', 'Incluye un consejo para los HL y uno para los L2.', 'Termina con una frase de ánimo sobre su español.'],
+          pasosEn: ["Think of something you wish you'd known at the start.", 'Write a short letter (1 page) to a future student.', 'Include one tip for HL students and one for L2 students.', 'End with an encouraging line about their Spanish.'],
+          entregas: 'Tu carta a un futuro estudiante (1 página).', entregasEn: 'Turn in: your letter to a future student (1 page).',
+          rubric: ['Das consejos concretos', 'Incluyes algo para HL y algo para L2', 'El tono es respetuoso y alentador'],
+          rubricEn: ['You give concrete advice', 'You include something for HL and something for L2', 'The tone is respectful and encouraging'],
+          prompts: ['Algo que te hubiera gustado saber:', 'Un consejo para HL y uno para L2:', 'Tu frase final de ánimo:'],
+          promptsEn: ["Something you wish you'd known:", 'One tip for HL and one for L2:', 'Your closing line of encouragement:'] }
       },
       teacher: 'Establece primero un ambiente seguro: comparte tu propia historia. Vana recomienda la encuesta al inicio y al final para ver cómo cambian las actitudes.',
       teacherEn: 'First establish a safe environment: share your own story. Vana recommends the survey at the start and end to see how attitudes change.'
@@ -256,13 +304,34 @@
           rubric: ['Identificas un término cargado', 'Propones un reemplazo justo', 'Explicas tu razonamiento'],
           rubricEn: ['You identify a loaded term', 'You propose a fair replacement', 'You explain your reasoning'],
           prompts: ['Término negativo que encontraste:', 'Tu reemplazo:', '¿Por qué el tuyo es más justo?'],
-          promptsEn: ['Negative term you found:', 'Your replacement:', 'Why is yours fairer?'] }
+          promptsEn: ['Negative term you found:', 'Your replacement:', 'Why is yours fairer?'] },
+        third: { label: 'Campaña', labelEn: 'Campaign', quevas: 'Crea una mini campaña (cartel o lema) que afirme que todas las variedades del español son válidas.', quevasEn: 'Create a mini campaign (poster or slogan) affirming that every variety of Spanish is valid.',
+          pasos: ['Elige un mensaje central (p. ej. “Tu español es válido”).', 'Diseña un cartel o escribe un lema corto y memorable.', 'Apóyalo con una razón de lo que aprendiste en la unidad.', 'Compártelo con la clase.'],
+          pasosEn: ['Pick a core message (e.g. “Your Spanish is valid”).', 'Design a poster or write a short, memorable slogan.', 'Back it with one reason from what you learned this unit.', 'Share it with the class.'],
+          entregas: 'Tu cartel o lema y una frase que lo explique.', entregasEn: 'Turn in: your poster or slogan + one sentence explaining it.',
+          rubric: ['Tu mensaje afirma la variación lingüística', 'Es claro y memorable', 'Lo apoyas con una razón'],
+          rubricEn: ['Your message affirms language variation', "It's clear and memorable", 'You back it with a reason'],
+          prompts: ['Tu lema o mensaje central:', '¿Por qué lo elegiste?', '¿Qué idea de la unidad lo apoya?'],
+          promptsEn: ['Your slogan or core message:', 'Why did you choose it?', 'Which idea from the unit backs it up?'] }
       },
       teacher: 'Gámez y Reyna parten de una perspectiva raciolingüística: la estigmatización no se basa en criterios lingüísticos, sino en actitudes hacia los hablantes. La meta no es avergonzar, sino notar estas ideologías.',
       teacherEn: "Gámez and Reyna start from a raciolinguistic perspective: stigmatization isn't based on linguistic criteria, but on attitudes toward speakers. The goal isn't to shame, but to notice these ideologies."
     }
   };
   var ORDER = ['skit', 'guise', 'lexico', 'gramatica', 'input', 'caminos', 'mejor'];
+
+  // Lucas auto-awarded once per activity+version when a student exports their
+  // work, scaled by effort. Open-ended pieces are teacher-graded too, so the
+  // teacher can still issue a quality bonus via a Luca code.
+  var LUCAS = {
+    skit: { base: 12, alt: 15, third: 12 },
+    guise: { base: 8, alt: 8, third: 8 },
+    lexico: { base: 8, alt: 12, third: 10 },
+    gramatica: { base: 8, alt: 10, third: 8 },
+    input: { base: 8, alt: 8, third: 10 },
+    caminos: { base: 8, alt: 15, third: 8 },
+    mejor: { base: 8, alt: 8, third: 12 }
+  };
 
   /* ------------------------------- State -------------------------------- */
   var STATE = {
@@ -330,7 +399,7 @@
   function versionToggle(id) {
     var v = ACT[id].versions;
     var wrap = h('div', { class: 'ep-vtoggle', role: 'group', 'aria-label': ui().versionAria });
-    ['base', 'alt'].forEach(function (k) {
+    Object.keys(v).forEach(function (k) {
       wrap.appendChild(h('button', {
         class: 'ep-vbtn' + (STATE.version[id] === k ? ' ep-on' : ''),
         'aria-pressed': STATE.version[id] === k ? 'true' : 'false',
@@ -370,6 +439,13 @@
           h('h3', { class: 'ep-dh' }, ui().evalua), rubricList)));
   }
 
+  function lucasNote(id) {
+    var v = STATE.version[id], amt = (LUCAS[id] && LUCAS[id][v]) || 8;
+    var earned = adqAwardedSet().indexOf(id + ':' + v) !== -1;
+    return h('span', { class: 'ep-lucas-note' + (earned ? ' ep-lucas-earned' : '') },
+      earned ? pick('🪙 ¡' + amt + ' Lucas ganados!', '🪙 ' + amt + ' Lucas earned!')
+             : pick('🪙 +' + amt + ' Lucas al entregar', '🪙 +' + amt + ' Lucas on submit'));
+  }
   function studentWork(id) {
     var d = ACT[id].versions[STATE.version[id]];
     var prompts = pick(d.prompts, d.promptsEn);
@@ -390,6 +466,7 @@
     var toolbar = h('div', { class: 'ep-toolbar' },
       h('button', { class: 'ep-btn', onclick: function () { exportWork(id, 'download'); } }, '⬇ ' + ui().descargar),
       h('button', { class: 'ep-btn ep-btn-ghost', onclick: function () { exportWork(id, 'copy'); } }, STATE.copied ? '✓ ' + ui().copiado : '⧉ ' + ui().copiar),
+      lucasNote(id),
       h('span', { class: 'ep-submit-note' }, ui().subir));
     wrap.appendChild(toolbar);
     return wrap;
@@ -584,6 +661,29 @@
   }
 
   /* ------------------------------ Export -------------------------------- */
+  // Lucas awarded once per activity+version per student (tracked in localStorage,
+  // keyed by signed-in name so students sharing a device don't share credit).
+  function awardedKey() {
+    var n = (typeof window.getStudentName === 'function' && window.getStudentName()) || 'anon';
+    return 'ep_adq_awarded:' + n;
+  }
+  function adqAwardedSet() { try { return JSON.parse(localStorage.getItem(awardedKey()) || '[]'); } catch (e) { return []; } }
+  function adqMarkAwarded(k) {
+    var s = adqAwardedSet();
+    if (s.indexOf(k) === -1) { s.push(k); try { localStorage.setItem(awardedKey(), JSON.stringify(s)); } catch (e) {} }
+  }
+  function maybeAward(id) {
+    var v = STATE.version[id], key = id + ':' + v;
+    if (adqAwardedSet().indexOf(key) !== -1) return;
+    var amt = (LUCAS[id] && LUCAS[id][v]) || 8;
+    try {
+      if (typeof window.awardCoins === 'function') {
+        window.awardCoins(amt, (STATE.lang === 'en' ? 'Acquisition: ' : 'Adquisición: ') + pick(ACT[id].name, ACT[id].nameEn));
+      }
+    } catch (e) { /* counter elements may be absent outside the app shell */ }
+    adqMarkAwarded(key);
+  }
+
   function buildText(id) {
     var a = ACT[id], d = a.versions[STATE.version[id]];
     var date = new Date().toLocaleDateString(STATE.lang === 'en' ? 'en' : 'es', { year: 'numeric', month: 'long', day: 'numeric' });
@@ -610,7 +710,7 @@
           var t = document.createElement('textarea');
           t.value = text; document.body.appendChild(t); t.select(); document.execCommand('copy'); document.body.removeChild(t);
         }
-        STATE.copied = true; repaint();
+        STATE.copied = true; maybeAward(id); repaint();
         setTimeout(function () { STATE.copied = false; repaint(); }, 1800);
       } catch (e) { /* ignore */ }
       return;
@@ -623,6 +723,7 @@
       link.href = url; link.download = 'ElPueblo_' + id + '_' + safe + '.txt';
       document.body.appendChild(link); link.click(); document.body.removeChild(link);
       setTimeout(function () { URL.revokeObjectURL(url); }, 1000);
+      maybeAward(id); repaint();
     } catch (e) { exportWork(id, 'copy'); }
   }
 
@@ -727,6 +828,8 @@
       ".ep-input:focus,.ep-textarea:focus{outline:2px solid var(--azulejo);outline-offset:1px;border-color:var(--azulejo);}",
       ".ep-toolbar{display:flex;flex-wrap:wrap;align-items:center;gap:10px;margin-top:4px;}",
       ".ep-submit-note{font-size:.82rem;color:#7a766a;}",
+      ".ep-lucas-note{font-size:.82rem;font-weight:700;color:#9a6612;white-space:nowrap;}",
+      ".ep-lucas-earned{color:var(--azulejo);}",
       ".ep-btn{display:inline-flex;align-items:center;gap:7px;cursor:pointer;font-family:inherit;font-weight:600;font-size:.85rem;border:none;border-radius:9px;padding:9px 14px;background:var(--azulejo);color:#fff;transition:background .15s;}",
       ".ep-btn:hover{background:var(--azulejo-2);}",
       ".ep-btn-ghost{background:transparent;color:var(--azulejo);border:1px solid var(--azulejo);}",
