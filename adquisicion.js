@@ -31,7 +31,7 @@
       miTrabajo: 'Mi trabajo', tuNombre: 'Tu nombre', nombrePh: 'Escribe tu nombre aquí',
       respuestaPh: 'Escribe tu respuesta…', descargar: 'Descargar mi trabajo', copiar: 'Copiar',
       copiado: '¡Copiado!', subir: 'Luego súbelo a Google Classroom o Canvas.',
-      docente: 'Para el/la docente', claveDocente: 'Clave y señales', soloDocente: 'Solo docente', versionAria: 'Versión de la actividad', basadoEn: 'Basado en la investigación de',
+      docente: 'Para el/la docente', claveDocente: 'Clave y señales', soloDocente: 'Solo docente', imprimirClaves: 'Imprimir claves', versionAria: 'Versión de la actividad', basadoEn: 'Basado en la investigación de',
       sinResponder: '(sin responder)', nombreFallback: 'trabajo', labelVersion: 'versión',
       fecha: 'Fecha', nombre: 'Nombre', queEntrego: 'Qué entrego', langAria: 'Idioma / Language',
       kicker: 'El Pueblo · aula mixta',
@@ -44,7 +44,7 @@
       miTrabajo: 'My work', tuNombre: 'Your name', nombrePh: 'Write your name here',
       respuestaPh: 'Write your answer…', descargar: 'Download my work', copiar: 'Copy',
       copiado: 'Copied!', subir: 'Then upload it to Google Classroom or Canvas.',
-      docente: 'For the teacher', claveDocente: 'Answer key & look-fors', soloDocente: 'Teacher only', versionAria: 'Activity version', basadoEn: 'Based on the research of',
+      docente: 'For the teacher', claveDocente: 'Answer key & look-fors', soloDocente: 'Teacher only', imprimirClaves: 'Print all keys', versionAria: 'Activity version', basadoEn: 'Based on the research of',
       sinResponder: '(not answered)', nombreFallback: 'work', labelVersion: 'version',
       fecha: 'Date', nombre: 'Name', queEntrego: 'What I turn in', langAria: 'Idioma / Language',
       kicker: 'El Pueblo · mixed class',
@@ -760,6 +760,46 @@
     } catch (e) { exportWork(id, 'copy'); }
   }
 
+  /* --------------------- Teacher: print all keys ------------------------ */
+  function printKeys() {
+    var esc = function (s) { return String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;'); };
+    var sections = ORDER.map(function (id) {
+      var a = ACT[id], s = '<section class="act"><h2>' + esc(pick(a.name, a.nameEn)) + '</h2>';
+      s += '<p class="basis">' + esc(ui().basadoEn) + ' ' + esc(a.basis) + '</p>';
+      s += '<p class="note">' + esc(pick(a.teacher, a.teacherEn)) + '</p>';
+      if (a.key) {
+        s += '<div class="key"><h3>' + esc(ui().claveDocente) + '</h3><ul>';
+        pick(a.key, a.keyEn).forEach(function (k) { s += '<li>' + esc(k) + '</li>'; });
+        s += '</ul></div>';
+      }
+      s += '<table class="rub"><thead><tr><th>' + esc(ui().labelVersion) + '</th><th>' + esc(ui().evalua) + '</th></tr></thead><tbody>';
+      Object.keys(a.versions).forEach(function (vk) {
+        var v = a.versions[vk];
+        s += '<tr><td>' + esc(pick(v.label, v.labelEn)) + '</td><td>' +
+          pick(v.rubric, v.rubricEn).map(esc).join(' · ') + '</td></tr>';
+      });
+      return s + '</tbody></table></section>';
+    }).join('');
+    var css = "*{box-sizing:border-box}body{font-family:Georgia,'Times New Roman',serif;color:#1c1a16;max-width:760px;margin:24px auto;padding:0 18px;line-height:1.5}" +
+      "h1{font-family:Arial,Helvetica,sans-serif;font-size:20px;border-bottom:3px solid #c98a16;padding-bottom:8px}" +
+      ".act{margin:22px 0;page-break-inside:avoid}.act h2{font-family:Arial,Helvetica,sans-serif;font-size:16px;margin:0 0 2px}" +
+      ".basis{font-size:11px;color:#666;margin:0 0 8px;font-style:italic}" +
+      ".note{font-size:12.5px;background:#f6f1e6;border-left:3px solid #999;padding:8px 10px;margin:0 0 8px}" +
+      ".key{background:#fbf4e6;border:1px solid #e3d3a8;border-left:3px solid #c98a16;border-radius:6px;padding:8px 12px;margin:0 0 8px}" +
+      ".key h3{font-family:Arial,Helvetica,sans-serif;font-size:11px;text-transform:uppercase;letter-spacing:.04em;color:#8a5e08;margin:0 0 4px}" +
+      ".key ul{margin:0;padding-left:18px;font-size:12.5px}.key li{margin:3px 0}" +
+      "table.rub{width:100%;border-collapse:collapse;font-size:12px;margin-top:4px}" +
+      "table.rub th{text-align:left;background:#eee;padding:4px 8px;font-family:Arial,Helvetica,sans-serif;font-size:11px}" +
+      "table.rub td{border-top:1px solid #ddd;padding:4px 8px;vertical-align:top}table.rub td:first-child{width:26%;font-weight:bold}";
+    var head = esc(ui().imprimirClaves) + ' — ' + pick('Aula mixta · El Pueblo', 'Mixed class · El Pueblo');
+    var html = '<!DOCTYPE html><html lang="' + STATE.lang + '"><head><meta charset="utf-8"><title>' + head +
+      '</title><style>' + css + '</style></head><body><h1>' + head + '</h1>' + sections +
+      '<scr' + 'ipt>window.onload=function(){setTimeout(function(){window.print();},120);};</scr' + 'ipt></body></html>';
+    var w = window.open('', '_blank');
+    if (!w) { try { alert(pick('Permite las ventanas emergentes para imprimir.', 'Allow pop-ups to print.')); } catch (e) {} return; }
+    w.document.open(); w.document.write(html); w.document.close();
+  }
+
   /* ------------------------------ Render -------------------------------- */
   function render(root) {
     ROOT = root;
@@ -791,7 +831,9 @@
         h('div', null,
           h('div', { class: 'ep-kicker' }, '✦ ' + u.kicker),
           h('h1', { class: 'ep-title', html: u.title })),
-        langToggle()),
+        h('div', { class: 'ep-topright' },
+          isTeacherMode() ? h('button', { class: 'ep-printbtn', onclick: printKeys }, '🖨 ' + u.imprimirClaves) : null,
+          langToggle())),
       h('p', { class: 'ep-sub' }, u.sub),
       h('div', { class: 'ep-azulejo', 'aria-hidden': 'true', html: '<i></i><i></i><i></i><i></i><i></i>' }));
 
@@ -926,6 +968,9 @@
       ".ep-key-badge{margin-left:auto;font-size:.66rem;font-weight:700;text-transform:uppercase;letter-spacing:.04em;color:#8a5e08;background:#f0e2bd;border-radius:999px;padding:2px 8px;}",
       ".ep-key{margin:0;padding-left:18px;font-size:.85rem;color:#5a4a2a;line-height:1.5;}",
       ".ep-key li{margin:4px 0;}",
+      ".ep-topright{display:flex;align-items:center;gap:10px;flex-wrap:wrap;justify-content:flex-end;}",
+      ".ep-printbtn{display:inline-flex;align-items:center;gap:6px;cursor:pointer;font-family:inherit;font-weight:700;font-size:.8rem;color:#8a5e08;background:#fbf4e6;border:1px solid #e3d3a8;border-radius:999px;padding:6px 12px;}",
+      ".ep-printbtn:hover{background:#f5ebd2;}",
       "@media(prefers-reduced-motion:reduce){.ep-root *{transition:none!important;}}"
     ].join('\n');
     document.head.appendChild(style);
