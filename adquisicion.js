@@ -35,8 +35,8 @@
       sinResponder: '(sin responder)', nombreFallback: 'trabajo', labelVersion: 'versión',
       fecha: 'Fecha', nombre: 'Nombre', queEntrego: 'Qué entrego', langAria: 'Idioma / Language',
       kicker: 'El Pueblo · aula mixta',
-      title: 'Actividades de adquisición para hablantes de <em>herencia</em> y aprendices de <em>L2</em>',
-      sub: 'Siete actividades basadas en investigación. Cada una tiene dos versiones, pasos claros y un botón para descargar tu trabajo y entregarlo en clase.',
+      title: 'Actividades para grupos mixtos: <em>HL</em> + <em>L2</em>',
+      sub: 'Siete actividades basadas en investigación. Cada una tiene tres versiones, pasos claros y un botón para descargar tu trabajo y entregarlo en clase.',
       navAria: 'Actividades'
     },
     en: {
@@ -48,8 +48,8 @@
       sinResponder: '(not answered)', nombreFallback: 'work', labelVersion: 'version',
       fecha: 'Date', nombre: 'Name', queEntrego: 'What I turn in', langAria: 'Idioma / Language',
       kicker: 'El Pueblo · mixed class',
-      title: 'Acquisition activities for <em>heritage</em> speakers and <em>L2</em> learners',
-      sub: 'Seven research-based activities. Each one has two versions, clear steps, and a button to download your work and turn it in.',
+      title: 'Mixed Group Activities: <em>HLs</em> + <em>L2s</em>',
+      sub: 'Seven research-based activities. Each one has three versions, clear steps, and a button to download your work and turn it in.',
       navAria: 'Activities'
     }
   };
