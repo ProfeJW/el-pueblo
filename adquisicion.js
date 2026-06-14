@@ -90,6 +90,8 @@
       icon: '🎭', name: 'El sketch de actualidad', nameEn: 'Current-events skit', tag: 'Andamiaje bidireccional', tagEn: 'Two-way scaffolding', basis: 'Patricia Bayona (2023)',
       intro: 'En el aula mixta, el “experto” cambia según la tarea. Aquí los hablantes de herencia y los aprendices de L2 se ayudan mutuamente.',
       introEn: 'In a mixed class, the “expert” changes with the task. Here heritage speakers and L2 learners help each other.',
+      actfl: 'ACTFL: Comunicación interpersonal y de presentación · Comparaciones (registro y expresiones).',
+      actflEn: 'ACTFL: Interpersonal & Presentational Communication · Comparisons (register & expressions).',
       versions: {
         base: { label: 'Sketch', labelEn: 'Skit', quevas: 'Crea un sketch corto sobre un tema de actualidad. En grupo, cada quien aporta lo que mejor sabe.', quevasEn: 'Make a short skit about a current event. Each person adds what they do best.',
           pasos: ['Forma un grupo y elige el tema de arriba.', 'Busca 3 datos sobre el tema y compártelos.', 'Entre todos escriban un sketch de 1–2 minutos.', 'Incluyan al menos 2 expresiones del banco.', 'Graben el sketch (video o audio).'],
@@ -125,6 +127,8 @@
       icon: '🎤', name: '¿A quién contratamos?', nameEn: 'Who do we hire?', tag: 'Juego de roles · prueba de pares', tagEn: 'Role-play · matched-guise test', basis: 'Rosti Vana (2023)',
       intro: 'Tres personas dicen casi lo mismo, pero de formas distintas. La meta no es juzgar el contenido, sino notar cómo juzgamos a la gente por su forma de hablar.',
       introEn: "Three people say almost the same thing, but in different ways. The goal isn't to judge the content, but to notice how we judge people by the way they speak.",
+      actfl: 'ACTFL: Comunicación interpretativa · Culturas (perspectivas) y Comparaciones (variedades y prejuicio lingüístico).',
+      actflEn: 'ACTFL: Interpretive Communication · Cultures (perspectives) and Comparisons (varieties & linguistic bias).',
       versions: {
         base: { label: 'Prueba de pares', labelEn: 'Matched-guise test', quevas: 'Escucha (o lee en voz alta) a tres personas que quieren el mismo trabajo. Decide a quién contratarías y por qué.', quevasEn: "Hear three people applying for the same job. Decide who you'd hire and why.",
           pasos: ['Lee o escucha a los tres candidatos de arriba.', 'Anota qué pensaste de cada uno.', 'Elige a quién contratas y explica por qué.', 'Revela el análisis: ¿te fijaste en QUÉ decían o en CÓMO hablaban?'],
@@ -160,6 +164,8 @@
       icon: '🗺️', name: 'Mapa de variación léxica', nameEn: 'Lexical variation map', tag: 'Entrevista entre pares', tagEn: 'Peer interview', basis: 'Vana (2023) · Bernate (2023)',
       intro: 'Hay muchas palabras correctas para lo mismo. La variación es natural, no un error.',
       introEn: 'There are many correct words for the same thing. Variation is natural, not an error.',
+      actfl: 'ACTFL: Comunicación interpersonal · Comparaciones (variación léxica) y Comunidades.',
+      actflEn: 'ACTFL: Interpersonal Communication · Comparisons (lexical variation) and Communities.',
       versions: {
         base: { label: 'Dos compañeros', labelEn: 'Two classmates', quevas: 'Pregúntales una palabra a dos compañeros: uno que aprendió español en clase y otro que lo aprendió en casa. Compara.', quevasEn: 'Ask two classmates for a word — one who learned in class, one at home. Compare.',
           pasos: ['Elige un tema y haz una lista de 10 palabras en inglés.', 'Escribe la traducción que tú usas.', 'Pregúntale a un compañero de L2 y a uno de herencia.', 'Anota todo en la tabla de arriba.'],
@@ -195,6 +201,8 @@
       icon: '📖', name: 'Gramática en contexto', nameEn: 'Grammar in context', tag: 'Lección variacionista en 4 pasos', tagEn: '4-step variationist lesson', basis: 'Emily Bernate (2023)',
       intro: 'La misma lección sirve a los dos grupos si se enseña como variación, no como error.',
       introEn: "The same lesson works for both groups if it's taught as variation, not as error.",
+      actfl: 'ACTFL: Comunicación interpretativa y de presentación · Comparaciones (sistemas gramaticales).',
+      actflEn: 'ACTFL: Interpretive & Presentational Communication · Comparisons (grammar systems).',
       versions: {
         base: { label: 'El pretérito', labelEn: 'The preterite', quevas: 'Vas a ver que formas como fuistes o andó no son errores al azar: siguen reglas. Sigue los 4 pasos de arriba.', quevasEn: 'See that forms like fuistes or andó follow rules. Use the 4 steps above.',
           pasos: ['Mira ejemplos del pretérito en contexto (paso 1).', 'Aprende la raíz y la terminación (paso 2).', 'Clasifica las formas en el juego de arriba.', 'Explica por qué existe la forma no estándar (pasos 3 y 4).'],
@@ -230,6 +238,8 @@
       icon: '🧭', name: 'Entrada estructurada', nameEn: 'Structured input', tag: 'De la entrada a la tarea', tagEn: 'From input to task', basis: 'White & Mandell (2023)',
       intro: 'La entrada estructurada te hace procesar la forma para entender el significado, y prepara a todos para una tarea comunicativa.',
       introEn: 'Structured input makes you process the form to get the meaning, and prepares everyone for a communicative task.',
+      actfl: 'ACTFL: Comunicación interpretativa e interpersonal · Comparaciones (forma y significado).',
+      actflEn: 'ACTFL: Interpretive & Interpersonal Communication · Comparisons (form & meaning).',
       versions: {
         base: { label: 'Encuesta de viaje', labelEn: 'Travel survey', quevas: 'Da tu opinión usando el subjuntivo y luego ponte de acuerdo con tu grupo sobre un destino.', quevasEn: 'Give your opinion with the subjunctive, then agree on a destination.',
           pasos: ['Llena la encuesta de arriba (1 a 4).', 'Compara tus respuestas con tu grupo.', 'Elijan juntos las 3 cosas más importantes.', 'Busquen una ciudad real y preséntenla a la clase.'],
@@ -265,6 +275,8 @@
       icon: '🛤️', name: 'Nuestros caminos', nameEn: 'Our paths', tag: 'Trayectorias lingüísticas', tagEn: 'Language journeys', basis: 'Vana (2023)',
       intro: 'Los HL y los L2 llegan al español por caminos muy distintos. Compartirlos construye respeto mutuo.',
       introEn: 'Heritage and L2 learners come to Spanish by very different paths. Sharing them builds mutual respect.',
+      actfl: 'ACTFL: Comunicación interpersonal y de presentación · Culturas y Comunidades (identidad).',
+      actflEn: 'ACTFL: Interpersonal & Presentational Communication · Cultures and Communities (identity).',
       versions: {
         base: { label: 'Encuesta y pareja', labelEn: 'Survey and partner', quevas: 'Comparte cómo aprendiste español y escucha el camino de un compañero. Cada camino es distinto y válido.', quevasEn: "Share how you learned Spanish and hear a classmate's path. Each path is valid.",
           pasos: ['Responde la encuesta de arriba (al inicio del curso).', 'En pareja, cuenta cómo aprendiste español.', 'Escucha el camino de tu compañero.', 'Anota algo que tienen en común y algo distinto.'],
@@ -300,6 +312,8 @@
       icon: '💬', name: '¿El “mejor” español?', nameEn: 'The “best” Spanish?', tag: 'Conciencia crítica', tagEn: 'Critical awareness', basis: 'Gámez & Reyna (2023)',
       intro: 'Vamos a cuestionar la idea de que existe un español “mejor”. Ningún idioma es “puro”.',
       introEn: "We'll question the idea that there's a “best” Spanish. No language is “pure”.",
+      actfl: 'ACTFL: Comunicación interpretativa y de presentación · Culturas (perspectivas sobre el prestigio).',
+      actflEn: 'ACTFL: Interpretive & Presentational Communication · Cultures (perspectives on prestige).',
       versions: {
         base: { label: 'Nube de palabras', labelEn: 'Word cloud', quevas: 'Junta las palabras que la gente usa para decir cuál es el “mejor” español, y luego cuestiónalas.', quevasEn: 'Collect the words people use for the “best” Spanish, then question them.',
           pasos: ['Busca en internet “¿dónde se habla el mejor español?”.', 'Anota las palabras que más se repiten (arriba).', 'Pregúntate: ¿quién decide qué es “mejor”?', 'Responde las preguntas de reflexión.'],
@@ -428,6 +442,12 @@
       }, pick(v[k].label, v[k].labelEn)));
     });
     return wrap;
+  }
+
+  function actflLine(id) {
+    return h('div', { class: 'ep-actfl' },
+      h('span', { class: 'ep-actfl-tag' }, 'ACTFL'),
+      h('span', null, pick(ACT[id].actfl, ACT[id].actflEn).replace(/^ACTFL:\s*/, '')));
   }
 
   function basis(id) {
@@ -685,6 +705,7 @@
     var stack = h('div', { class: 'ep-stack' },
       basis(id),
       h('p', { class: 'ep-lead' }, pick(ACT[id].intro, ACT[id].introEn)),
+      actflLine(id),
       versionToggle(id));
     if (STATE.version[id] === 'base') stack.appendChild(WIDGETS[id]());
     stack.appendChild(directions(id));
@@ -766,6 +787,7 @@
     var sections = ORDER.map(function (id) {
       var a = ACT[id], s = '<section class="act"><h2>' + esc(pick(a.name, a.nameEn)) + '</h2>';
       s += '<p class="basis">' + esc(ui().basadoEn) + ' ' + esc(a.basis) + '</p>';
+      if (a.actfl) s += '<p class="actfl">' + esc(pick(a.actfl, a.actflEn)) + '</p>';
       s += '<p class="note">' + esc(pick(a.teacher, a.teacherEn)) + '</p>';
       if (a.key) {
         s += '<div class="key"><h3>' + esc(ui().claveDocente) + '</h3><ul>';
@@ -783,7 +805,8 @@
     var css = "*{box-sizing:border-box}body{font-family:Georgia,'Times New Roman',serif;color:#1c1a16;max-width:760px;margin:24px auto;padding:0 18px;line-height:1.5}" +
       "h1{font-family:Arial,Helvetica,sans-serif;font-size:20px;border-bottom:3px solid #c98a16;padding-bottom:8px}" +
       ".act{margin:22px 0;page-break-inside:avoid}.act h2{font-family:Arial,Helvetica,sans-serif;font-size:16px;margin:0 0 2px}" +
-      ".basis{font-size:11px;color:#666;margin:0 0 8px;font-style:italic}" +
+      ".basis{font-size:11px;color:#666;margin:0 0 4px;font-style:italic}" +
+      ".actfl{font-size:11px;color:#2a6b80;margin:0 0 8px;font-weight:bold}" +
       ".note{font-size:12.5px;background:#f6f1e6;border-left:3px solid #999;padding:8px 10px;margin:0 0 8px}" +
       ".key{background:#fbf4e6;border:1px solid #e3d3a8;border-left:3px solid #c98a16;border-radius:6px;padding:8px 12px;margin:0 0 8px}" +
       ".key h3{font-family:Arial,Helvetica,sans-serif;font-size:11px;text-transform:uppercase;letter-spacing:.04em;color:#8a5e08;margin:0 0 4px}" +
@@ -971,6 +994,8 @@
       ".ep-topright{display:flex;align-items:center;gap:10px;flex-wrap:wrap;justify-content:flex-end;}",
       ".ep-printbtn{display:inline-flex;align-items:center;gap:6px;cursor:pointer;font-family:inherit;font-weight:700;font-size:.8rem;color:#8a5e08;background:#fbf4e6;border:1px solid #e3d3a8;border-radius:999px;padding:6px 12px;}",
       ".ep-printbtn:hover{background:#f5ebd2;}",
+      ".ep-actfl{display:flex;align-items:baseline;gap:8px;flex-wrap:wrap;margin:-2px 0 2px;font-size:.8rem;color:#6b6657;line-height:1.4;}",
+      ".ep-actfl-tag{flex:none;font-weight:800;font-size:.62rem;letter-spacing:.06em;color:var(--azulejo);background:rgba(42,107,128,.1);border-radius:4px;padding:2px 6px;}",
       "@media(prefers-reduced-motion:reduce){.ep-root *{transition:none!important;}}"
     ].join('\n');
     document.head.appendChild(style);
