@@ -31,7 +31,7 @@
       miTrabajo: 'Mi trabajo', tuNombre: 'Tu nombre', nombrePh: 'Escribe tu nombre aquí',
       respuestaPh: 'Escribe tu respuesta…', descargar: 'Descargar mi trabajo', copiar: 'Copiar',
       copiado: '¡Copiado!', subir: 'Luego súbelo a Google Classroom o Canvas.',
-      docente: 'Para el/la docente', versionAria: 'Versión de la actividad', basadoEn: 'Basado en la investigación de',
+      docente: 'Para el/la docente', claveDocente: 'Clave y señales', soloDocente: 'Solo docente', versionAria: 'Versión de la actividad', basadoEn: 'Basado en la investigación de',
       sinResponder: '(sin responder)', nombreFallback: 'trabajo', labelVersion: 'versión',
       fecha: 'Fecha', nombre: 'Nombre', queEntrego: 'Qué entrego', langAria: 'Idioma / Language',
       kicker: 'El Pueblo · aula mixta',
@@ -44,7 +44,7 @@
       miTrabajo: 'My work', tuNombre: 'Your name', nombrePh: 'Write your name here',
       respuestaPh: 'Write your answer…', descargar: 'Download my work', copiar: 'Copy',
       copiado: 'Copied!', subir: 'Then upload it to Google Classroom or Canvas.',
-      docente: 'For the teacher', versionAria: 'Activity version', basadoEn: 'Based on the research of',
+      docente: 'For the teacher', claveDocente: 'Answer key & look-fors', soloDocente: 'Teacher only', versionAria: 'Activity version', basadoEn: 'Based on the research of',
       sinResponder: '(not answered)', nombreFallback: 'work', labelVersion: 'version',
       fecha: 'Date', nombre: 'Name', queEntrego: 'What I turn in', langAria: 'Idioma / Language',
       kicker: 'El Pueblo · mixed class',
@@ -117,7 +117,9 @@
           promptsEn: ['Your news headline:', 'Which part did you do (anchor, reporter, script)?', 'Two expressions from the bank you used:'] }
       },
       teacher: 'Bayona vio que, en el sketch, los aprendices de L2 empezaron a usar expresiones coloquiales (totalmente, bueno, me choca) mientras los HL recibían ayuda con ortografía y conjugación. Forma los grupos a propósito (mitad HL, mitad L2).',
-      teacherEn: 'Bayona found that, in the skit, L2 learners began using colloquial expressions (totalmente, bueno, me choca) while heritage speakers got help with spelling and conjugation. Form the groups deliberately (half HL, half L2).'
+      teacherEn: 'Bayona found that, in the skit, L2 learners began using colloquial expressions (totalmente, bueno, me choca) while heritage speakers got help with spelling and conjugation. Form the groups deliberately (half HL, half L2).',
+      key: ['Modelo: un sketch de 30–60 s donde el L2 se arriesga con expresiones coloquiales (totalmente, bueno, me choca) y el HL suena natural y fluido.', 'Señales: los dos nombres corresponden a aportes reales; nadie carga con todo.', 'Reencauza si: se trata al HL como “el corrector” y al L2 como “el que escribe”. Los dos actúan y los dos arman el guion.'],
+      keyEn: ['Model: a 30–60 s skit where the L2 partner risks colloquial expressions (totalmente, bueno, me choca) and the HL partner sounds natural and fluent.', 'Look for: both names tied to real contributions — nobody carries it alone.', 'Redirect if: the HL is treated as “the corrector” and the L2 as “the writer.” Both perform and both shape the script.']
     },
     guise: {
       icon: '🎤', name: '¿A quién contratamos?', nameEn: 'Who do we hire?', tag: 'Juego de roles · prueba de pares', tagEn: 'Role-play · matched-guise test', basis: 'Rosti Vana (2023)',
@@ -150,7 +152,9 @@
           promptsEn: ['Candidate you chose:', 'Your rewritten version:', 'Did your decision change? Why?'] }
       },
       teacher: 'Una prueba de pares presenta el mismo mensaje en distintas variedades para que los oyentes revelen sus actitudes. Lo clave es la conversación posterior: nombrar el perfilamiento lingüístico. Puedes pedir muestras reales de la comunidad (con permiso).',
-      teacherEn: 'A matched-guise test presents the same message in different varieties so listeners reveal their attitudes. The key is the conversation afterward: naming linguistic profiling. You can ask for real samples from the community (with permission).'
+      teacherEn: 'A matched-guise test presents the same message in different varieties so listeners reveal their attitudes. The key is the conversation afterward: naming linguistic profiling. You can ask for real samples from the community (with permission).',
+      key: ['No hay contratación “correcta”: lo clave es si notan que juzgaron por el acento/registro y no por la capacidad.', 'Buena respuesta: nombra el perfilamiento lingüístico y admite la fuerza del prejuicio.', 'Reencauza si: alguien defiende que “el formal es mejor” sin notar que los tres dijeron lo mismo.'],
+      keyEn: ['No “correct” hire — the point is whether they notice they judged by accent/register, not ability.', 'Strong answer: names linguistic profiling explicitly and admits the pull of the bias.', 'Redirect if: a student defends “the professional one is just better” without noticing all three said the same thing.']
     },
     lexico: {
       icon: '🗺️', name: 'Mapa de variación léxica', nameEn: 'Lexical variation map', tag: 'Entrevista entre pares', tagEn: 'Peer interview', basis: 'Vana (2023) · Bernate (2023)',
@@ -183,7 +187,9 @@
           promptsEn: ['Your 5 concepts and the words you collected:', 'Which one varied most?', 'Which region surprised you?'] }
       },
       teacher: 'La tarea de variación léxica muestra que la variación es inherente al idioma. Conecta con la idea de Bernate de tratar las formas no estándar como sistemáticas, no como errores.',
-      teacherEn: "The lexical variation task shows that variation is inherent to language. It connects with Bernate's idea of treating nonstandard forms as systematic, not as errors."
+      teacherEn: "The lexical variation task shows that variation is inherent to language. It connects with Bernate's idea of treating nonstandard forms as systematic, not as errors.",
+      key: ['Respuestas de muestra (todas válidas): autobús = camión/guagua/colectivo; palomitas = cotufas/cabritas/pochoclo; niño = chamaco/chaval/pibe/güila.', 'Señales: cada palabra ligada a una región/familia y la conclusión de que no hay una “correcta”.', 'Reencauza si: alguien jerarquiza una palabra como “el español correcto”.'],
+      keyEn: ['Sample answers (all valid): bus = camión/guagua/colectivo; popcorn = palomitas/cotufas/pochoclo; kid = niño/chamaco/chaval/pibe.', 'Look for: each word tied to a region/family, and the takeaway that there is no single “correct” one.', 'Redirect if: a student ranks one word as “the right Spanish.”']
     },
     gramatica: {
       icon: '📖', name: 'Gramática en contexto', nameEn: 'Grammar in context', tag: 'Lección variacionista en 4 pasos', tagEn: '4-step variationist lesson', basis: 'Emily Bernate (2023)',
@@ -216,7 +222,9 @@
           promptsEn: ['The exact phrase and where it came from:', 'What feature is it?', 'What rule or pattern does it follow?'] }
       },
       teacher: 'El método variacionista también funciona para la a personal y el futuro. Evalúa los cuatro pasos, no solo la forma: pídeles que expliquen por qué una variedad se estigmatiza.',
-      teacherEn: 'The variationist method also works for the personal a and the future tense. Assess all four steps, not just the form: ask them to explain why a variety gets stigmatized.'
+      teacherEn: 'The variationist method also works for the personal a and the future tense. Assess all four steps, not just the form: ask them to explain why a variety gets stigmatized.',
+      key: ['Clave — son sistemáticos, no errores: fuistes/dijistes (añaden la -s de 2.ª persona que ya marca el “tú” en los demás tiempos); andó (regulariza anduvo al patrón -ar: andar→andó, como hablar→habló); haiga (analogía con traiga/caiga/haga); naide (variante antigua/dialectal de nadie, metátesis); la a personal “vi a María” (marca de animacidad).', 'Cada “porqué”: la forma sigue una regla o patrón real, solo que no es la norma de prestigio.', 'Nota completa = los cuatro pasos (notar, clasificar, regla, actitud), no solo etiquetar la forma.'],
+      keyEn: ['Key — these are systematic, not errors: fuistes/dijistes (add the 2nd-person -s that already marks “tú” in every other tense); andó (regularizes anduvo to the -ar pattern: andar→andó, like hablar→habló); haiga (analogy with traiga/caiga/haga); naide (older/dialectal variant of nadie, metathesis); the personal a “vi a María” (animacy marking).', 'Each “why”: the form follows a real rule or pattern — just not the prestige standard.', 'Full credit = all four steps (notice, sort, rule, attitude), not just labeling the form.']
     },
     input: {
       icon: '🧭', name: 'Entrada estructurada', nameEn: 'Structured input', tag: 'De la entrada a la tarea', tagEn: 'From input to task', basis: 'White & Mandell (2023)',
@@ -249,7 +257,9 @@
           promptsEn: ['Your topic:', 'Your 5 subjunctive statements:', 'Where did you and your partner agree or not?'] }
       },
       teacher: 'La entrada estructurada redirige las estrategias de procesamiento y crea un punto de partida común antes de la tarea. Funciona igual con pretérito/imperfecto y con pronombres de objeto.',
-      teacherEn: 'Structured input redirects processing strategies and creates a common starting point before the task. It works the same with preterite/imperfect and with object pronouns.'
+      teacherEn: 'Structured input redirects processing strategies and creates a common starting point before the task. It works the same with preterite/imperfect and with object pronouns.',
+      key: ['Modelo: 5 frases en subjuntivo (que tenga…, que sea…) bien formadas; un compañero las calificó 1–4; las compararon.', 'Revisa la forma: presente de subjuntivo tras “que”; corrige los desvíos al indicativo (que tiene → que tenga).', 'Señales: comentan en qué coincidieron o difirieron, no solo las calificaciones.'],
+      keyEn: ['Model: 5 subjunctive statements (que tenga…, que sea…) correctly formed; a partner rated them 1–4; they compared.', 'Check the form: present subjunctive after “que”; catch slips into the indicative (que tiene → que tenga).', 'Look for: they discuss where they agreed or differed, not just the ratings.']
     },
     caminos: {
       icon: '🛤️', name: 'Nuestros caminos', nameEn: 'Our paths', tag: 'Trayectorias lingüísticas', tagEn: 'Language journeys', basis: 'Vana (2023)',
@@ -282,7 +292,9 @@
           promptsEn: ["Something you wish you'd known:", 'One tip for HL and one for L2:', 'Your closing line of encouragement:'] }
       },
       teacher: 'Establece primero un ambiente seguro: comparte tu propia historia. Vana recomienda la encuesta al inicio y al final para ver cómo cambian las actitudes.',
-      teacherEn: 'First establish a safe environment: share your own story. Vana recommends the survey at the start and end to see how attitudes change.'
+      teacherEn: 'First establish a safe environment: share your own story. Vana recommends the survey at the start and end to see how attitudes change.',
+      key: ['No hay respuesta correcta: es trabajo de identidad. Modelo: un camino específico y honesto, con respeto a las trayectorias HL y L2.', 'Señales: un momento concreto (orgullo o dificultad), no lugares comunes.', 'Seguridad: empieza tú con tu historia; nunca exijas una confesión para la que el estudiante no está listo.'],
+      keyEn: ['No right answer — it’s identity work. Model: a specific, honest path, with respect for both HL and L2 journeys.', 'Look for: a concrete moment (proud or hard), not platitudes.', 'Safety: you go first with your own story; never require disclosure a student isn’t ready for.']
     },
     mejor: {
       icon: '💬', name: '¿El “mejor” español?', nameEn: 'The “best” Spanish?', tag: 'Conciencia crítica', tagEn: 'Critical awareness', basis: 'Gámez & Reyna (2023)',
@@ -315,7 +327,9 @@
           promptsEn: ['Your slogan or core message:', 'Why did you choose it?', 'Which idea from the unit backs it up?'] }
       },
       teacher: 'Gámez y Reyna parten de una perspectiva raciolingüística: la estigmatización no se basa en criterios lingüísticos, sino en actitudes hacia los hablantes. La meta no es avergonzar, sino notar estas ideologías.',
-      teacherEn: "Gámez and Reyna start from a raciolinguistic perspective: stigmatization isn't based on linguistic criteria, but on attitudes toward speakers. The goal isn't to shame, but to notice these ideologies."
+      teacherEn: "Gámez and Reyna start from a raciolinguistic perspective: stigmatization isn't based on linguistic criteria, but on attitudes toward speakers. The goal isn't to shame, but to notice these ideologies.",
+      key: ['Idea meta: no hay un “mejor” español; las variedades se estigmatizan por actitudes hacia los hablantes, no por hechos lingüísticos.', 'Buena respuesta: cambia un término de déficit (“español roto/malo”) por uno neutral y lo apoya con una razón de la unidad.', 'Reencauza si: alguien sigue tratando la norma como superior en sí, en vez de socialmente prestigiosa.'],
+      keyEn: ['Target idea: there is no single “best” Spanish; varieties are stigmatized by attitudes toward speakers, not linguistic fact.', 'Strong answer: replaces a deficit term (“broken/bad Spanish”) with a neutral one and backs it with a reason from the unit.', 'Redirect if: a student still treats the standard as inherently superior rather than socially prestigious.']
     }
   };
   var ORDER = ['skit', 'guise', 'lexico', 'gramatica', 'input', 'caminos', 'mejor'];
@@ -356,6 +370,13 @@
   var ROOT = null;
   function pick(es, en) { return STATE.lang === 'en' ? en : es; }
   function ui() { return UI[STATE.lang]; }
+  // Teacher mode mirrors the host app: ?teacher in the URL (or body.teacher-mode).
+  function isTeacherMode() {
+    try {
+      if (typeof location !== 'undefined' && location.search && location.search.indexOf('teacher') !== -1) return true;
+      return !!(document.body && document.body.classList.contains('teacher-mode'));
+    } catch (e) { return false; }
+  }
   function repaint() { if (ROOT) render(ROOT); }
 
   /* ---------------------------- DOM helpers ----------------------------- */
@@ -479,7 +500,19 @@
         class: 'ep-teacher-btn', 'aria-expanded': open ? 'true' : 'false',
         onclick: function () { STATE.teacherOpen[id] = !open; repaint(); }
       }, '🎓 ' + ui().docente, h('span', { class: 'ep-chev' + (open ? ' ep-rot' : '') }, '›')));
-    if (open) wrap.appendChild(h('div', { class: 'ep-teacher-body' }, pick(ACT[id].teacher, ACT[id].teacherEn)));
+    if (open) {
+      wrap.appendChild(h('div', { class: 'ep-teacher-body' }, pick(ACT[id].teacher, ACT[id].teacherEn)));
+      if (isTeacherMode() && ACT[id].key) {
+        var keyList = h('ul', { class: 'ep-key' });
+        pick(ACT[id].key, ACT[id].keyEn).forEach(function (k) { keyList.appendChild(h('li', null, k)); });
+        wrap.appendChild(h('div', { class: 'ep-key-block' },
+          h('div', { class: 'ep-key-head' },
+            h('span', { 'aria-hidden': 'true' }, '🔑'),
+            h('span', null, ui().claveDocente),
+            h('span', { class: 'ep-key-badge' }, ui().soloDocente)),
+          keyList));
+      }
+    }
     return wrap;
   }
 
@@ -888,6 +921,11 @@
       ".ep-chev{display:inline-block;transition:transform .15s;}",
       ".ep-rot{transform:rotate(90deg);}",
       ".ep-teacher-body{margin-top:10px;font-size:.86rem;color:#5a5648;background:var(--canvas);border:1px solid var(--line);border-radius:10px;padding:13px 15px;max-width:66ch;}",
+      ".ep-key-block{margin-top:10px;background:#fbf4e6;border:1px solid #e3d3a8;border-left:3px solid var(--ocre,#c98a16);border-radius:10px;padding:12px 15px;max-width:66ch;}",
+      ".ep-key-head{display:flex;align-items:center;gap:8px;font-weight:700;font-size:.82rem;color:#8a5e08;margin-bottom:8px;}",
+      ".ep-key-badge{margin-left:auto;font-size:.66rem;font-weight:700;text-transform:uppercase;letter-spacing:.04em;color:#8a5e08;background:#f0e2bd;border-radius:999px;padding:2px 8px;}",
+      ".ep-key{margin:0;padding-left:18px;font-size:.85rem;color:#5a4a2a;line-height:1.5;}",
+      ".ep-key li{margin:4px 0;}",
       "@media(prefers-reduced-motion:reduce){.ep-root *{transition:none!important;}}"
     ].join('\n');
     document.head.appendChild(style);
