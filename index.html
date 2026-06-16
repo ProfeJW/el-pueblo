@@ -295,6 +295,75 @@
   }
   .nav-links a:hover { color: var(--rojo); }
 
+  /* COSMIC: the nav bar's background is a hardcoded light paper tone, so in dark
+     mode the near-white logo and the muted-gray links wash out against it. Swap
+     in a dark backdrop so both read clearly. */
+  [data-theme="cosmic"] nav {
+    background: rgba(12, 14, 26, 0.92);
+    border-bottom-color: var(--line);
+  }
+  [data-theme="cosmic"] .nav-links a { color: var(--ink-soft); }
+
+  /* COLLAPSED NAV — the long link row now lives in a dropdown that opens when you
+     hover (desktop) or tap (touch) the logo / menu button, keeping the header narrow. */
+  .nav-menu { position: relative; display: flex; align-items: center; gap: 12px; }
+  .nav-menu-toggle {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10.5px;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--ink-soft);
+    background: none;
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    padding: 6px 13px;
+    cursor: pointer;
+    white-space: nowrap;
+    transition: color 0.15s ease, border-color 0.15s ease;
+  }
+  .nav-menu-toggle:hover { color: var(--rojo); border-color: var(--rojo); }
+  .nav-dropdown {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    display: none;
+    grid-template-columns: repeat(2, minmax(150px, 1fr));
+    gap: 2px;
+    margin-top: 10px;
+    background: var(--card-bg);
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    padding: 10px;
+    box-shadow: 0 14px 36px rgba(0, 0, 0, 0.18);
+    z-index: 200;
+  }
+  /* Invisible bridge so moving the cursor from the logo into the panel doesn't
+     cross a dead gap and close the hover menu. */
+  .nav-dropdown::before {
+    content: '';
+    position: absolute;
+    top: -12px; left: 0; right: 0; height: 12px;
+  }
+  .nav-menu:hover .nav-dropdown,
+  .nav-dropdown.open { display: grid; }
+  .nav-dropdown a {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11.5px;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--ink-soft);
+    text-decoration: none;
+    padding: 9px 12px;
+    border-radius: 6px;
+    white-space: nowrap;
+    transition: background 0.12s ease, color 0.12s ease;
+  }
+  .nav-dropdown a:hover { background: var(--paper-deep); color: var(--rojo); }
+  .nav-dropdown a.active { color: var(--rojo); background: var(--paper-deep); }
+  @media (max-width: 720px) {
+    .nav-dropdown { grid-template-columns: 1fr; max-height: 70vh; overflow-y: auto; }
+  }
+
   /* HERO */
   header {
     padding: 48px 40px 56px;
@@ -1597,6 +1666,16 @@
   .civ-detail { background: var(--card-bg); border: 1px solid var(--line); border-top: 3px solid var(--ocre); padding: 22px 24px; }
   .civ-detail h3 { font-family: 'DM Serif Display', serif; font-size: 24px; font-weight: 400; margin: 0 0 2px; }
   .civ-detail .cd-meta { font-size: 13px; color: var(--ink-soft); margin-bottom: 14px; }
+  /* "Known for" photo. The figure hides itself until the jpg exists (see onerror). */
+  .civ-detail .cd-figure { margin: 0 0 16px; }
+  .civ-detail .cd-figure img {
+    width: 100%; max-height: 320px; object-fit: cover;
+    border-radius: 8px; border: 1px solid var(--line); display: block;
+  }
+  .civ-detail .cd-figure figcaption {
+    font-size: 12px; color: var(--ink-soft); margin-top: 6px; line-height: 1.4;
+  }
+  .civ-detail .cd-figure figcaption .cd-credit { opacity: 0.7; }
   .civ-detail h5 { font-size: 12px; text-transform: uppercase; letter-spacing: 0.08em; color: var(--rojo); margin: 16px 0 5px; }
   .civ-detail p { font-size: 14.5px; line-height: 1.65; color: var(--ink); margin: 0; }
   .civ-howbuilt { background: var(--card-bg); border: 1px solid var(--line); padding: 20px 24px; margin-top: 22px; }
@@ -4252,6 +4331,20 @@
     color: var(--ocre);
     font-style: italic;
   }
+  /* COSMIC: this prompt card keeps a light (paper-on-ink) background even in dark
+     mode, so its ocre accents — the instruction label, the Racha category tag,
+     the emphasized prompt, and the score readout — turn into pale yellow on near
+     white and become hard to read. Darken them to a legible amber, and drop the
+     light progress text to a dark muted tone. */
+  [data-theme="cosmic"] .game-prompt-card .game-prompt-label,
+  [data-theme="cosmic"] .game-prompt-card .racha-tag,
+  [data-theme="cosmic"] .game-prompt-card .game-progress strong,
+  [data-theme="cosmic"] .game-prompt-card .game-prompt-display em {
+    color: #a05a00;
+  }
+  [data-theme="cosmic"] .game-prompt-card .game-progress {
+    color: rgba(12, 14, 26, 0.55);
+  }
   .game-input-row {
     display: flex;
     gap: 8px;
@@ -5337,40 +5430,45 @@
 
 <div class="teacher-banner">👨‍🏫 Teacher mode · Add <code style="font-family:'JetBrains Mono',monospace">?teacher</code> to URL · <a href="?" style="color:var(--paper);text-decoration:underline">exit</a></div>
 <nav>
-  <a href="#/" class="logo" style="text-decoration:none;color:inherit">
-    <span class="logo-mark"><svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg">
-      <!-- sun -->
-      <circle cx="22" cy="9" r="3.5" fill="#d4922c"/>
-      <!-- left house -->
-      <polygon points="3,17 9,11 15,17" fill="#c43d2a"/>
-      <rect x="4.5" y="17" width="9" height="9" fill="#c43d2a"/>
-      <rect x="7.5" y="20" width="3" height="6" fill="#f4ede0"/>
-      <!-- right house -->
-      <polygon points="15,19 21,13 27,19" fill="#1f1a14"/>
-      <rect x="16.5" y="19" width="9" height="9" fill="#1f1a14"/>
-      <rect x="19.5" y="22" width="3" height="6" fill="#f4ede0"/>
-      <!-- ground line -->
-      <line x1="2" y1="27.5" x2="29" y2="27.5" stroke="#1f1a14" stroke-width="0.8"/>
-    </svg></span>
-    <span>El Pueblo</span>
-  </a>
-  <div class="nav-links">
-    <a href="#/">Home</a>
-    <a href="#/racha">Racha</a>
-    <a href="#/abecedario">Abecedario</a>
-    <a href="#/vocabulario">Vocab</a>
-    <a href="#/repaso">Repaso</a>
-    <a href="#/verbos">Verbs</a>
-    <a href="#/lectura">Reading</a>
-    <a href="#/escucha">Listening</a>
-    <a href="#/escritura">Writing</a>
-    <a href="#/voces">Voices</a>
-    <a href="#/mundo">Mundo</a>
-    <a href="#/historia" onclick="return window.__goHistoria ? window.__goHistoria() : true;">Historia</a>
-    <a href="#/lecciones">Lessons</a>
-    <a href="#/linguistica">Lingüística</a>
-    <a href="#/adquisicion">Adquisición</a>
-    <a href="#/recursos">Resources</a>
+  <div class="nav-menu" id="navMenu">
+    <a href="#/" class="logo" style="text-decoration:none;color:inherit" onclick="closeNavMenu()">
+      <span class="logo-mark"><svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg">
+        <!-- sun -->
+        <circle cx="22" cy="9" r="3.5" fill="#d4922c"/>
+        <!-- left house -->
+        <polygon points="3,17 9,11 15,17" fill="#c43d2a"/>
+        <rect x="4.5" y="17" width="9" height="9" fill="#c43d2a"/>
+        <rect x="7.5" y="20" width="3" height="6" fill="#f4ede0"/>
+        <!-- right house -->
+        <polygon points="15,19 21,13 27,19" fill="#1f1a14"/>
+        <rect x="16.5" y="19" width="9" height="9" fill="#1f1a14"/>
+        <rect x="19.5" y="22" width="3" height="6" fill="#f4ede0"/>
+        <!-- ground line -->
+        <line x1="2" y1="27.5" x2="29" y2="27.5" stroke="#1f1a14" stroke-width="0.8"/>
+      </svg></span>
+      <span>El Pueblo</span>
+    </a>
+    <button class="nav-menu-toggle" id="navMenuToggle" type="button" aria-haspopup="true" aria-expanded="false" onclick="toggleNavMenu(event)">Secciones ▾</button>
+    <div class="nav-dropdown" id="navDropdown" role="menu">
+      <a href="#/" role="menuitem" onclick="closeNavMenu()">Home</a>
+      <a href="#/racha" role="menuitem" onclick="closeNavMenu()">Racha</a>
+      <a href="#/abecedario" role="menuitem" onclick="closeNavMenu()">Abecedario</a>
+      <a href="#/vocabulario" role="menuitem" onclick="closeNavMenu()">Vocab</a>
+      <a href="#/repaso" role="menuitem" onclick="closeNavMenu()">Repaso</a>
+      <a href="#/verbos" role="menuitem" onclick="closeNavMenu()">Verbs</a>
+      <a href="#/lectura" role="menuitem" onclick="closeNavMenu()">Reading</a>
+      <a href="#/escucha" role="menuitem" onclick="closeNavMenu()">Listening</a>
+      <a href="#/escritura" role="menuitem" onclick="closeNavMenu()">Writing</a>
+      <a href="#/voces" role="menuitem" onclick="closeNavMenu()">Voices</a>
+      <a href="#/mundo" role="menuitem" onclick="closeNavMenu()">Mundo</a>
+      <a href="#/historia" role="menuitem" onclick="closeNavMenu(); return window.__goHistoria ? window.__goHistoria() : true;">Historia</a>
+      <a href="#/civilizaciones" role="menuitem" onclick="closeNavMenu()">Pre-Columbian Life</a>
+      <a href="#/lecciones" role="menuitem" onclick="closeNavMenu()">Lessons</a>
+      <a href="#/linguistica" role="menuitem" onclick="closeNavMenu()">Lingüística</a>
+      <a href="#/adquisicion" role="menuitem" onclick="closeNavMenu()">Adquisición</a>
+      <a href="#/juegos" role="menuitem" onclick="closeNavMenu()">Games</a>
+      <a href="#/recursos" role="menuitem" onclick="closeNavMenu()">Resources</a>
+    </div>
   </div>
   <div style="display:flex;gap:10px;align-items:center;flex-shrink:0">
     <button id="signInBtn" class="signin-btn" onclick="openSignInModal()" title="Sign in to track progress and earn Lucas">Sign in</button>
@@ -5392,6 +5490,28 @@
     </div>
   </div>
 </nav>
+<script>
+  // Header dropdown menu: opens on hover (desktop, via CSS) or tap/click (touch).
+  function toggleNavMenu(e) {
+    if (e) e.stopPropagation();
+    var dd = document.getElementById('navDropdown');
+    var tg = document.getElementById('navMenuToggle');
+    if (!dd) return;
+    var open = dd.classList.toggle('open');
+    if (tg) tg.setAttribute('aria-expanded', open ? 'true' : 'false');
+  }
+  function closeNavMenu() {
+    var dd = document.getElementById('navDropdown');
+    var tg = document.getElementById('navMenuToggle');
+    if (dd) dd.classList.remove('open');
+    if (tg) tg.setAttribute('aria-expanded', 'false');
+  }
+  // Tap/click anywhere outside the menu closes it.
+  document.addEventListener('click', function (ev) {
+    var menu = document.getElementById('navMenu');
+    if (menu && !menu.contains(ev.target)) closeNavMenu();
+  });
+</script>
 <div class="toast-container" id="toastContainer"></div>
 
 <!-- Sign-in modal — only opens when student taps "Sign in" -->
@@ -5606,6 +5726,7 @@
     <a href="#/voces" class="hl"><span class="hl-ico">🎙️</span><span class="hl-name">Voces</span><span class="hl-sub">Speaking topics</span></a>
     <a href="#/mundo" class="hl"><span class="hl-ico">🌎</span><span class="hl-name">Mundo</span><span class="hl-sub">Cultura y geografía</span></a>
     <a href="#/historia" class="hl" onclick="return window.__goHistoria ? window.__goHistoria() : true;"><span class="hl-ico">📜</span><span class="hl-name">Historia</span><span class="hl-sub">History timelines</span></a>
+    <a href="#/civilizaciones" class="hl"><span class="hl-ico">🏛️</span><span class="hl-name">Pre-Columbian Life</span><span class="hl-sub">Civilizaciones antiguas</span></a>
     <a href="#/lecciones" class="hl"><span class="hl-ico">📘</span><span class="hl-name">Lessons</span><span class="hl-sub">Grammar lessons</span></a>
     <a href="#/linguistica" class="hl"><span class="hl-ico">🔬</span><span class="hl-name">Lingüística</span><span class="hl-sub">Language science</span></a>
     <a href="#/adquisicion" class="hl"><span class="hl-ico">🧩</span><span class="hl-name">Adquisición</span><span class="hl-sub">HL + L2 activities</span></a>
@@ -7847,7 +7968,7 @@
       target.querySelectorAll('section').forEach(s => s.classList.add('visible'));
     }
     // Update nav highlight
-    document.querySelectorAll('.nav-links a').forEach(a => {
+    document.querySelectorAll('.nav-dropdown a').forEach(a => {
       const href = a.getAttribute('href') || '';
       const linkPage = href.replace(/^#\/?/, '').split('/')[0] || 'home';
       a.classList.toggle('active', linkPage === page);
@@ -17296,6 +17417,36 @@
   function civYear(y) { return y < 0 ? Math.abs(y) + ' a.C.' : y + ' d.C.'; }
   function civPct(y) { return ((y - CIV_TL_MIN) / (CIV_TL_MAX - CIV_TL_MIN) * 100); }
 
+  // "Known for" photos. Each loads images/civ/<id>.jpg; until that file is
+  // uploaded the <figure> hides itself (img onerror), so empty slots are silent.
+  // Drop a jpg named after the civ id into images/civ/ and it appears automatically.
+  const CIV_IMG = {
+    caral:       { cap: 'La Pirámide Mayor de Caral — la ciudad más antigua de América.' },
+    olmeca:      { cap: 'Cabeza colosal olmeca — retrato de un gobernante tallado en basalto.' },
+    chavin:      { cap: 'Las cabezas clavas y el Lanzón de Chavín de Huántar.' },
+    zapoteca:    { cap: 'Monte Albán — la gran plaza zapoteca sobre el valle de Oaxaca.' },
+    nazca:       { cap: 'Las Líneas de Nazca — geoglifos como el colibrí y el mono.' },
+    teotihuacan: { cap: 'La Pirámide del Sol y la Calzada de los Muertos, Teotihuacán.' },
+    maya:        { cap: 'El Castillo de Chichén Itzá — pirámide-calendario maya.' },
+    moche:       { cap: 'El oro y las máscaras del Señor de Sipán (cultura moche).' },
+    tiwanaku:    { cap: 'La Puerta del Sol de Tiwanaku, junto al lago Titicaca.' },
+    wari:        { cap: 'La ciudad amurallada wari (p. ej. Pikillacta).' },
+    tolteca:     { cap: 'Los Atlantes de Tula — guerreros de piedra toltecas.' },
+    chimu:       { cap: 'Chan Chan — la gran ciudad de adobe del reino chimú.' },
+    mexica:      { cap: 'La Piedra del Sol mexica (el mal llamado "calendario azteca").' },
+    inca:        { cap: 'Machu Picchu — la ciudadela inca en los Andes.' }
+  };
+  function civImgHTML(id) {
+    const info = CIV_IMG[id];
+    if (!info) return '';
+    const credit = info.credit ? ` <span class="cd-credit">· ${info.credit}</span>` : '';
+    return `<figure class="cd-figure">
+        <img src="images/civ/${id}.jpg" alt="${info.cap}" loading="lazy"
+             onerror="this.closest('.cd-figure').style.display='none'">
+        <figcaption>${info.cap}${credit}</figcaption>
+      </figure>`;
+  }
+
   function renderCivilizaciones() {
     renderCivTimeline();
     populateCivMap();
@@ -17381,6 +17532,7 @@
       el.innerHTML = `
         <h3>${civ.name}</h3>
         <div class="cd-meta"><strong style="color:${civ.color}">●</strong> ${civYear(civ.start)} – ${civYear(civ.end)} · Hoy: ${civ.where}</div>
+        ${civImgHTML(civ.id)}
         <h5>¿Quiénes eran?</h5><p>${civ.quienes}</p>
         <h5>¿Cómo construyeron — y quién hizo el trabajo?</h5><p>${civ.construccion}</p>
         <h5>¿Para qué eran los sitios?</h5><p>${civ.sitios}</p>

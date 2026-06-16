@@ -210,27 +210,18 @@
 
   function injectHub() {
     var grid = document.getElementById('gameGrid');
-    if (!grid || document.getElementById('vocabGamesSection')) return;
+    if (!grid) return;
 
-    var section = document.createElement('div');
-    section.id = 'vocabGamesSection';
-    section.style.marginTop = '64px';
-    section.style.paddingTop = '32px';
-    section.style.borderTop = '1px solid var(--line)';
-    section.innerHTML =
-      '<div style="display:flex;align-items:baseline;justify-content:space-between;margin-bottom:6px;">' +
-        '<h3 style="font-family:\'DM Serif Display\',serif;font-size:24px;font-weight:400;margin:0;">' +
-          'Vocabulary <em style="color:var(--rojo);font-style:italic;">games</em></h3>' +
-        '<div style="font-family:\'JetBrains Mono\',monospace;font-size:11px;letter-spacing:0.15em;color:var(--ink-soft);text-transform:uppercase;">' +
-          'Powered by every deck</div>' +
-      '</div>' +
-      '<p style="font-size:14px;color:var(--ink-soft);line-height:1.5;max-width:720px;margin-bottom:24px;">' +
-        'These pull from all your flashcard decks at random, so they grow automatically as the vocabulary grows. ' +
-        'Ten rounds each, score-based Lucas.</p>' +
-      '<div class="game-grid">' + CARDS.map(cardHTML).join('') + '</div>';
-
-    // Place it right after the basic-games grid (before the verb sprints).
-    grid.parentNode.insertBefore(section, grid.nextSibling);
+    // Fold these deck-powered games straight into the single Practice games
+    // grid — no separate "Vocabulary games" heading. Skip any game already
+    // shown so we never duplicate a card.
+    var tmp = document.createElement('div');
+    tmp.innerHTML = CARDS.map(cardHTML).join('');
+    Array.prototype.slice.call(tmp.children).forEach(function (card) {
+      var href = card.getAttribute('href');
+      if (grid.querySelector('a[href="' + href + '"]')) return;
+      grid.appendChild(card);
+    });
 
     // If we're already sitting on the games page, refresh the best-scores panel
     // so the new games show up immediately.
