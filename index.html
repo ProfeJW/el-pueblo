@@ -5928,6 +5928,7 @@
         <button class="pill" onclick="loadDeck('cuba', this)">Cuba</button>
         <button class="pill" onclick="loadDeck('rutina', this)">Daily routine</button>
         <button class="pill" onclick="loadDeck('diadelosmuertos', this)">Día de los Muertos</button>
+        <button class="pill" onclick="loadDeck('quijote', this)">Don Quijote</button>
         <button class="pill" onclick="loadDeck('futbol', this)">El fútbol</button>
         <button class="pill" onclick="loadDeck('elsalvador', this)">El Salvador</button>
         <button class="pill" onclick="loadDeck('emociones', this)">Emotions</button>
@@ -5944,6 +5945,7 @@
         <button class="pill" onclick="loadDeck('honduras', this)">Honduras</button>
         <button class="pill" onclick="loadDeck('casa', this)">House &amp; furniture</button>
         <button class="pill" onclick="loadDeck('verbosIr', this)">-IR verbs</button>
+        <button class="pill" onclick="loadDeck('lazarillo', this)">Lazarillo de Tormes</button>
         <button class="pill" onclick="loadDeck('literatura', this)">Literature</button>
         <button class="pill" onclick="loadDeck('mexico', this)">México</button>
         <button class="pill" onclick="loadDeck('numeros', this)">Numbers</button>
@@ -11662,6 +11664,123 @@
         ]}
       ]
     },
+    // ---------- CLASSIC LITERATURE — Lazarillo de Tormes ----------
+    {
+      id: 'lazarillo-ciego',
+      kind: 'story', level: 'advanced',
+      title: 'Lázaro y el <em>ciego</em>',
+      author: 'Adaptación · El Pueblo',
+      year: '1554',
+      attribution: 'Clásico · Lazarillo de Tormes (anónimo)',
+      preview: 'La madre de Lázaro lo entrega a un ciego cruel y astuto. Para no morir de hambre, el niño tendrá que ser aún más listo que su amo…',
+      text: [
+        'Lázaro de Tormes nació cerca de un río, en una familia muy pobre. Cuando todavía era un niño, su madre, que no podía cuidarlo, lo entregó a un ciego para que le sirviera de guía por los caminos. Así empezó la vida de Lázaro como criado, yendo de amo en amo por toda España.',
+        'El ciego era astuto y muy avaro. Aunque pedía limosna y casi siempre tenía comida, nunca compartía nada con el niño. Lázaro pasaba mucha hambre. Pronto comprendió que, para sobrevivir, tendría que ser todavía más listo que su amo.',
+        'El ciego guardaba el vino en un jarro y lo vigilaba con cuidado. Lázaro, muerto de sed, hizo un pequeño agujero en el fondo del jarro y lo tapó con cera. Cuando el ciego se sentaba a comer, la cera se derretía con el calor y el niño bebía el vino a escondidas, gota a gota.',
+        'Un día el ciego descubrió el truco. Sin decir nada, esperó a que Lázaro acercara la cara al jarro y entonces lo levantó y lo dejó caer con fuerza sobre la boca del niño. El golpe le rompió los dientes. Desde ese momento, Lázaro odió a su amo y empezó a planear su venganza.',
+        'La ocasión llegó un día de lluvia. Para cruzar un arroyo, Lázaro colocó al ciego justo frente a un poste de piedra y le dijo que saltara con todas sus fuerzas. El ciego saltó y se golpeó la cabeza contra la piedra. Lázaro huyó corriendo. Con este primer amo aprendió la lección más importante de su vida: en un mundo cruel, solo la astucia permite sobrevivir.'
+      ],
+      gloss: {
+        'el ciego': 'blind man',
+        'el amo': 'master / employer',
+        'el criado': 'servant',
+        'la limosna': 'alms / charity',
+        'avaro': 'stingy / miserly',
+        'el jarro': 'jug / pitcher',
+        'el agujero': 'hole',
+        'la cera': 'wax',
+        'derretirse': 'to melt',
+        'a escondidas': 'secretly',
+        'el poste': 'post',
+        'la venganza': 'revenge',
+        'la astucia': 'cunning'
+      },
+      quiz: [
+        { q: '¿Por qué la madre entregó a Lázaro a un ciego?', options: [
+          { text: 'Para que le sirviera de guía', correct: true },
+          { text: 'Para que estudiara en la ciudad', correct: false },
+          { text: 'Para que fuera sacerdote', correct: false }
+        ]},
+        { q: '¿Cómo era el ciego?', options: [
+          { text: 'Generoso y rico', correct: false },
+          { text: 'Astuto y avaro', correct: true },
+          { text: 'Joven y alegre', correct: false }
+        ]},
+        { q: '¿Cómo bebía Lázaro el vino sin que el ciego lo notara?', options: [
+          { text: 'Pedía permiso cada vez', correct: false },
+          { text: 'Compraba su propio vino', correct: false },
+          { text: 'Hizo un agujero en el jarro y lo tapó con cera', correct: true }
+        ]},
+        { q: '¿Qué pasó cuando el ciego descubrió el truco?', options: [
+          { text: 'Le rompió los dientes con el jarro', correct: true },
+          { text: 'Lo perdonó y le dio más vino', correct: false },
+          { text: 'Lo abandonó en el camino', correct: false }
+        ]},
+        { q: '¿Cuál fue la venganza de Lázaro?', options: [
+          { text: 'Le robó todo el dinero', correct: false },
+          { text: 'Hizo que el ciego saltara contra un poste de piedra', correct: true },
+          { text: 'Lo dejó dormido en la iglesia', correct: false }
+        ]}
+      ]
+    },
+    // ---------- CLASSIC LITERATURE — Don Quijote de la Mancha ----------
+    {
+      id: 'quijote-molinos',
+      kind: 'story', level: 'advanced',
+      title: 'Don Quijote y los <em>molinos de viento</em>',
+      author: 'Adaptación · El Pueblo',
+      year: '1605',
+      attribution: 'Clásico · Don Quijote de la Mancha · Cervantes',
+      preview: 'Un hidalgo lee tantos libros de caballerías que pierde la razón y confunde unos molinos de viento con gigantes terribles…',
+      text: [
+        'En un lugar de la Mancha vivía un hidalgo pobre llamado Alonso Quijano. Era un hombre tranquilo, pero tenía una gran pasión: leía libros de caballerías día y noche. Leyó tantas historias de caballeros, gigantes y batallas que, poco a poco, perdió la razón y empezó a creer que todo era verdad.',
+        'Un día decidió convertirse él mismo en caballero andante. Buscó una vieja armadura oxidada, montó en su flaco caballo, al que llamó Rocinante, y se dio a sí mismo el nombre de don Quijote de la Mancha. Eligió como dama de sus sueños a una campesina del pueblo, a quien llamó Dulcinea del Toboso, y convenció a un labrador sencillo, Sancho Panza, de ser su escudero.',
+        'Una mañana, cruzando el campo, don Quijote vio a lo lejos treinta o cuarenta molinos de viento. Lleno de emoción, le dijo a Sancho: «¡Mira, amigo! Allí hay gigantes terribles. Voy a luchar contra ellos.» Sancho respondió: «Señor, esos no son gigantes, son molinos de viento. Lo que parecen brazos son las aspas que mueve el viento.»',
+        'Pero don Quijote no lo escuchó. Convencido de que eran gigantes, bajó la lanza, espoleó a Rocinante y embistió contra el primer molino con todas sus fuerzas. En ese momento el viento movió las aspas, que rompieron la lanza en pedazos y arrojaron al caballero y a su caballo por el suelo.',
+        'Sancho corrió a ayudarlo. «¿No le dije que eran molinos?», exclamó. Don Quijote, dolorido pero seguro de sí mismo, respondió que un mago enemigo, el sabio Frestón, había convertido a los gigantes en molinos para quitarle la gloria de la victoria. Y así, sin perder nunca su fe en los sueños, continuó su camino en busca de nuevas aventuras.'
+      ],
+      gloss: {
+        'el hidalgo': 'minor nobleman',
+        'los libros de caballerías': 'chivalry novels',
+        'la razón': 'reason / sanity',
+        'el caballero andante': 'knight-errant',
+        'la armadura': 'armor',
+        'oxidada': 'rusty',
+        'el escudero': 'squire',
+        'el molino de viento': 'windmill',
+        'las aspas': 'sails / blades',
+        'la lanza': 'lance',
+        'embestir': 'to charge / attack',
+        'el sabio': 'wise man / wizard'
+      },
+      quiz: [
+        { q: '¿Cuál era la gran pasión de Alonso Quijano?', options: [
+          { text: 'Leer libros de caballerías', correct: true },
+          { text: 'Cazar gigantes', correct: false },
+          { text: 'Viajar por el mar', correct: false }
+        ]},
+        { q: '¿Cómo se llamaba su caballo?', options: [
+          { text: 'Frestón', correct: false },
+          { text: 'Rocinante', correct: true },
+          { text: 'Sancho', correct: false }
+        ]},
+        { q: '¿Qué vio don Quijote en el campo?', options: [
+          { text: 'Un castillo encantado', correct: false },
+          { text: 'Un ejército real', correct: false },
+          { text: 'Molinos de viento que creyó gigantes', correct: true }
+        ]},
+        { q: '¿Qué pasó cuando embistió contra el molino?', options: [
+          { text: 'Ganó la batalla fácilmente', correct: false },
+          { text: 'El viento movió las aspas y lo arrojó al suelo', correct: true },
+          { text: 'El gigante huyó asustado', correct: false }
+        ]},
+        { q: 'Después de la caída, ¿cómo explicó don Quijote su derrota?', options: [
+          { text: 'Admitió que estaba loco', correct: false },
+          { text: 'Culpó a Sancho por no ayudarlo', correct: false },
+          { text: 'Dijo que un mago había convertido a los gigantes en molinos', correct: true }
+        ]}
+      ]
+    },
     // ---------- BEGINNER STORIES (5 Lucas/correct, +5 bonus = max 20) ----------
     {
       id: 'mi-familia',
@@ -14516,6 +14635,25 @@
       category: 'cultural',
       body: 'After reading "La Inquisición española" in Lectura (or the Inquisition events in Historia), write about it: What was the Inquisition, and why did the Catholic Monarchs create it? Who were its main victims in Spain and in the Americas? Why do you think fear can control people even more than punishment can? End with your opinion: what should we learn from this history today?',
       tips: ['Use the imperfect for description (era, perseguía, tenía) and the preterite for events (crearon, llegó, terminó)', 'Useful vocab: el tribunal, la herejía, el converso, el auto de fe, la censura, el miedo, la conciencia', 'Aim for 120+ words and at least one opinion with "creo que…" or "me parece que…"'],
+      date: ''
+    },
+    // ========== CLASSIC LITERATURE ==========
+    {
+      id: 'lazarillo-amos',
+      title: 'El <em>Lazarillo</em>: hambre y astucia',
+      level: 'sp3',
+      category: 'literature',
+      body: 'After reading "Lázaro y el ciego" in Lectura, write about it. Who is Lázaro, and why does his mother give him to the blind man? Describe two tricks that the blind man and Lázaro play on each other. What does Lázaro learn about surviving in a cruel world? Lazarillo de Tormes invented the "picaresque" — a poor rogue who survives by his wits and exposes the hypocrisy of the powerful. Do you think cleverness (la astucia) can be a kind of justice for someone who has nothing? End with your opinion.',
+      tips: ['Use the preterite for the events of the story (entregó, hizo, rompió, huyó) and the imperfect for description and background (era, tenía, pasaba)', 'Useful vocab from the Lazarillo deck: el pícaro, el amo, el ciego, la astucia, el hambre, engañar, la venganza, la hipocresía', 'Give your opinion with "creo que…", "me parece que…", or "en mi opinión…"', 'Aim for 150+ words'],
+      date: ''
+    },
+    {
+      id: 'quijote-suenos',
+      title: 'Don Quijote: ¿locura o <em>idealismo</em>?',
+      level: 'sp3',
+      category: 'literature',
+      body: 'After reading "Don Quijote y los molinos de viento" in Lectura, write about it. Why does Alonso Quijano lose his sanity, and what does he decide to become? Retell the windmill episode in your own words. Don Quijote sees giants where there are only windmills — he chooses his dream over reality, while his squire Sancho Panza always sees things as they really are. Which character do you identify with more, the idealist (don Quijote) or the realist (Sancho)? Is it better to chase impossible dreams or to accept reality? Defend your opinion with examples.',
+      tips: ['Use the preterite to narrate the action (vio, embistió, rompió, cayó) and the imperfect for description (era, leía, creía)', 'Useful vocab from the Don Quijote deck: el hidalgo, el caballero andante, el escudero, la locura, el molino de viento, el gigante, embestir, idealista', 'Contrast the two characters with connectors: en cambio, sin embargo, mientras que, por otro lado', 'State and defend an opinion; aim for 150+ words'],
       date: ''
     },
     // ========== SPANISH 1 — PERSONAL ==========
