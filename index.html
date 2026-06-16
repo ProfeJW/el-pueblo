@@ -357,11 +357,46 @@
     border-radius: 6px;
     white-space: nowrap;
     transition: background 0.12s ease, color 0.12s ease;
+    display: flex;
+    align-items: center;
+    gap: 9px;
   }
+  .nav-dropdown a .nav-ico { font-size: 15px; line-height: 1; width: 18px; text-align: center; flex-shrink: 0; }
   .nav-dropdown a:hover { background: var(--paper-deep); color: var(--rojo); }
   .nav-dropdown a.active { color: var(--rojo); background: var(--paper-deep); }
   @media (max-width: 720px) {
     .nav-dropdown { grid-template-columns: 1fr; max-height: 70vh; overflow-y: auto; }
+  }
+
+  /* Native (no-JS) games dropdown — used on the Mundo page */
+  .games-dd { position: relative; }
+  .games-dd > summary {
+    list-style: none; cursor: pointer; user-select: none;
+    font-family: 'JetBrains Mono', monospace; font-size: 11px;
+    letter-spacing: 0.15em; text-transform: uppercase; color: var(--ink-soft);
+    border: 1px solid var(--line); border-radius: 8px; padding: 8px 14px;
+    display: inline-flex; align-items: center; gap: 8px; background: var(--card-bg);
+    transition: border-color 0.15s ease, color 0.15s ease;
+  }
+  .games-dd > summary::-webkit-details-marker { display: none; }
+  .games-dd > summary:hover { border-color: var(--ocre); color: var(--ink); }
+  .games-dd[open] > summary { border-color: var(--ocre); color: var(--ink); }
+  .games-dd .games-dd-panel {
+    position: absolute; right: 0; top: calc(100% + 8px); z-index: 150;
+    display: grid; grid-template-columns: repeat(2, minmax(180px, 1fr)); gap: 2px;
+    background: var(--card-bg); border: 1px solid var(--line); border-radius: 10px;
+    padding: 8px; box-shadow: 0 14px 36px rgba(0, 0, 0, 0.18);
+  }
+  .games-dd .games-dd-panel a {
+    display: flex; align-items: center; gap: 9px; padding: 9px 12px;
+    border-radius: 6px; text-decoration: none; white-space: nowrap;
+    font-family: 'JetBrains Mono', monospace; font-size: 12px; color: var(--ink-soft);
+    transition: background 0.12s ease, color 0.12s ease;
+  }
+  .games-dd .games-dd-panel a:hover { background: var(--paper-deep); color: var(--rojo); }
+  .games-dd .games-dd-panel a .gdd-ico { font-size: 15px; width: 18px; text-align: center; flex-shrink: 0; }
+  @media (max-width: 720px) {
+    .games-dd .games-dd-panel { grid-template-columns: 1fr; left: 0; right: auto; max-height: 60vh; overflow-y: auto; }
   }
 
   /* HERO */
@@ -5450,24 +5485,24 @@
     </a>
     <button class="nav-menu-toggle" id="navMenuToggle" type="button" aria-haspopup="true" aria-expanded="false" onclick="toggleNavMenu(event)">Secciones ▾</button>
     <div class="nav-dropdown" id="navDropdown" role="menu">
-      <a href="#/" role="menuitem" onclick="closeNavMenu()">Home</a>
-      <a href="#/racha" role="menuitem" onclick="closeNavMenu()">Racha</a>
-      <a href="#/abecedario" role="menuitem" onclick="closeNavMenu()">Abecedario</a>
-      <a href="#/vocabulario" role="menuitem" onclick="closeNavMenu()">Vocab</a>
-      <a href="#/repaso" role="menuitem" onclick="closeNavMenu()">Repaso</a>
-      <a href="#/verbos" role="menuitem" onclick="closeNavMenu()">Verbs</a>
-      <a href="#/lectura" role="menuitem" onclick="closeNavMenu()">Reading</a>
-      <a href="#/escucha" role="menuitem" onclick="closeNavMenu()">Listening</a>
-      <a href="#/escritura" role="menuitem" onclick="closeNavMenu()">Writing</a>
-      <a href="#/voces" role="menuitem" onclick="closeNavMenu()">Voices</a>
-      <a href="#/mundo" role="menuitem" onclick="closeNavMenu()">Mundo</a>
-      <a href="#/historia" role="menuitem" onclick="closeNavMenu(); return window.__goHistoria ? window.__goHistoria() : true;">Historia</a>
-      <a href="#/civilizaciones" role="menuitem" onclick="closeNavMenu()">Pre-Columbian Life</a>
-      <a href="#/lecciones" role="menuitem" onclick="closeNavMenu()">Lessons</a>
-      <a href="#/linguistica" role="menuitem" onclick="closeNavMenu()">Lingüística</a>
-      <a href="#/adquisicion" role="menuitem" onclick="closeNavMenu()">Adquisición</a>
-      <a href="#/juegos" role="menuitem" onclick="closeNavMenu()">Games</a>
-      <a href="#/recursos" role="menuitem" onclick="closeNavMenu()">Resources</a>
+      <a href="#/" role="menuitem" onclick="closeNavMenu()"><span class="nav-ico" aria-hidden="true">🏠</span>Home</a>
+      <a href="#/racha" role="menuitem" onclick="closeNavMenu()"><span class="nav-ico" aria-hidden="true">🔥</span>Racha</a>
+      <a href="#/abecedario" role="menuitem" onclick="closeNavMenu()"><span class="nav-ico" aria-hidden="true">🔤</span>Abecedario</a>
+      <a href="#/vocabulario" role="menuitem" onclick="closeNavMenu()"><span class="nav-ico" aria-hidden="true">🃏</span>Vocab</a>
+      <a href="#/repaso" role="menuitem" onclick="closeNavMenu()"><span class="nav-ico" aria-hidden="true">🧠</span>Repaso</a>
+      <a href="#/verbos" role="menuitem" onclick="closeNavMenu()"><span class="nav-ico" aria-hidden="true">🔄</span>Verbs</a>
+      <a href="#/lectura" role="menuitem" onclick="closeNavMenu()"><span class="nav-ico" aria-hidden="true">📚</span>Reading</a>
+      <a href="#/escucha" role="menuitem" onclick="closeNavMenu()"><span class="nav-ico" aria-hidden="true">🎧</span>Listening</a>
+      <a href="#/escritura" role="menuitem" onclick="closeNavMenu()"><span class="nav-ico" aria-hidden="true">✍️</span>Writing</a>
+      <a href="#/voces" role="menuitem" onclick="closeNavMenu()"><span class="nav-ico" aria-hidden="true">🎙️</span>Voices</a>
+      <a href="#/mundo" role="menuitem" onclick="closeNavMenu()"><span class="nav-ico" aria-hidden="true">🌎</span>Mundo</a>
+      <a href="#/historia" role="menuitem" onclick="closeNavMenu(); return window.__goHistoria ? window.__goHistoria() : true;"><span class="nav-ico" aria-hidden="true">📜</span>Historia</a>
+      <a href="#/civilizaciones" role="menuitem" onclick="closeNavMenu()"><span class="nav-ico" aria-hidden="true">🏛️</span>Pre-Columbian Life</a>
+      <a href="#/lecciones" role="menuitem" onclick="closeNavMenu()"><span class="nav-ico" aria-hidden="true">📘</span>Lessons</a>
+      <a href="#/linguistica" role="menuitem" onclick="closeNavMenu()"><span class="nav-ico" aria-hidden="true">🔬</span>Lingüística</a>
+      <a href="#/adquisicion" role="menuitem" onclick="closeNavMenu()"><span class="nav-ico" aria-hidden="true">🧩</span>Adquisición</a>
+      <a href="#/juegos" role="menuitem" onclick="closeNavMenu()"><span class="nav-ico" aria-hidden="true">🎮</span>Games</a>
+      <a href="#/recursos" role="menuitem" onclick="closeNavMenu()"><span class="nav-ico" aria-hidden="true">🔗</span>Resources</a>
     </div>
   </div>
   <div style="display:flex;gap:10px;align-items:center;flex-shrink:0">
@@ -6870,9 +6905,26 @@
 
   <!-- MINI-GAMES (bottom of page) -->
   <div style="margin-top: 56px; padding-top: 32px; border-top: 1px solid var(--line);">
-    <div style="display: flex; align-items: baseline; justify-content: space-between; margin-bottom: 18px;">
+    <div style="display: flex; align-items: center; justify-content: space-between; gap: 14px; margin-bottom: 18px; flex-wrap: wrap;">
       <h3 style="font-family: 'DM Serif Display', serif; font-size: 24px; font-weight: 400; margin: 0;">Mini-<em style="color: var(--rojo); font-style: italic;">games</em></h3>
-      <div style="font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.15em; color: var(--ink-soft); text-transform: uppercase;">Earn Lucas while you learn</div>
+      <div style="display: flex; align-items: center; gap: 14px; flex-wrap: wrap;">
+        <span style="font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.15em; color: var(--ink-soft); text-transform: uppercase;">Earn Lucas while you learn</span>
+        <details class="games-dd">
+          <summary>Jump to a game ▾</summary>
+          <div class="games-dd-panel" role="menu">
+            <a href="#/mundo/quiz/flags"><span class="gdd-ico" aria-hidden="true">🚩</span>Flag Quiz</a>
+            <a href="#/mundo/quiz/sites"><span class="gdd-ico" aria-hidden="true">🏛️</span>Place Quiz</a>
+            <a href="#/mundo/quiz/people"><span class="gdd-ico" aria-hidden="true">🎭</span>Person Quiz</a>
+            <a href="#/mundo/quiz/historia"><span class="gdd-ico" aria-hidden="true">📜</span>Historia Trivia</a>
+            <a href="#/mundo/quiz/dishes"><span class="gdd-ico" aria-hidden="true">🌮</span>Dish Quiz</a>
+            <a href="#/mundo/quiz/years"><span class="gdd-ico" aria-hidden="true">⏳</span>Which came first?</a>
+            <a href="#/mundo/quiz/arte"><span class="gdd-ico" aria-hidden="true">🎨</span>Art Quiz</a>
+            <a href="#/mundo/quiz/map"><span class="gdd-ico" aria-hidden="true">🗺</span>Map Quiz</a>
+            <a href="#/mundo/quiz/capitales"><span class="gdd-ico" aria-hidden="true">🏛️</span>Capitals Quiz</a>
+            <a href="#/mundo/quiz/origin"><span class="gdd-ico" aria-hidden="true">📍</span>Where are they from?</a>
+          </div>
+        </details>
+      </div>
     </div>
     <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 14px;">
       <a href="#/mundo/quiz/flags" class="mini-game-card">
