@@ -5713,16 +5713,23 @@
 
 <div class="page active" data-page="home"><header>
   <div class="eyebrow">Spanish Class · Curso 2026–2027</div>
-  <h1>
-    Bienvenido<br>
-    al <span class="italic">Pueblo</span>
-  </h1>
+  <div class="hero-head">
+    <img class="hero-logo" src="hero-logo.svg" alt="El Pueblo — totem logo" width="190" height="342">
+    <h1>
+      Bienvenido<br>
+      al <span class="italic">Pueblo</span>
+    </h1>
+  </div>
   <p class="lead">
     A space to <em>practice</em>, <em>listen</em>, and <em>share</em>. Built by students, for students — where every word tells a story and every mistake is a beginning. <em style="color:var(--rojo)">El pueblo</em> means "the village" — a place where everyone knows your name and learns together.
   </p>
 
   <!-- SITE SEARCH — find words, decks, games, sections, and countries -->
   <style>
+    .hero-head { display: flex; align-items: center; gap: 30px; flex-wrap: wrap; margin: 4px 0 8px; }
+    .hero-head h1 { margin: 0; }
+    .hero-logo { width: clamp(120px, 17vw, 188px); height: auto; flex-shrink: 0; filter: drop-shadow(0 10px 30px rgba(0,0,0,0.18)); }
+    @media (max-width: 560px) { .hero-head { gap: 18px; } .hero-logo { width: 104px; } }
     .site-search-results {
       position:absolute; left:0; right:0; top:calc(100% + 6px); z-index:50;
       background:var(--card-bg); border:1px solid var(--line); border-radius:10px;
@@ -6789,6 +6796,7 @@
     <span class="dt-tlabel">Coloring page:</span>
     <button class="dt-act" data-tpl="blank" type="button">Blank</button>
     <button class="dt-act" data-tpl="totem" type="button">🗿 Totem azteca</button>
+    <button class="dt-act" data-tpl="olmec" type="button">🪨 Cabeza olmeca</button>
     <button class="dt-act" data-tpl="sol" type="button">☀️ Sol</button>
     <button class="dt-act" data-tpl="greca" type="button">🔷 Greca</button>
   </div>
