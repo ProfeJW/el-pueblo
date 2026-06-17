@@ -5502,6 +5502,7 @@
       <a href="#/racha" role="menuitem" onclick="closeNavMenu()"><span class="nav-ico" aria-hidden="true">🔥</span>Racha</a>
       <a href="#/abecedario" role="menuitem" onclick="closeNavMenu()"><span class="nav-ico" aria-hidden="true">🔤</span>Abecedario</a>
       <a href="#/vocabulario" role="menuitem" onclick="closeNavMenu()"><span class="nav-ico" aria-hidden="true">🃏</span>Vocab</a>
+      <a href="#/dibujar" role="menuitem" onclick="closeNavMenu()"><span class="nav-ico" aria-hidden="true">🖌️</span>Draw it</a>
       <a href="#/repaso" role="menuitem" onclick="closeNavMenu()"><span class="nav-ico" aria-hidden="true">🧠</span>Repaso</a>
       <a href="#/verbos" role="menuitem" onclick="closeNavMenu()"><span class="nav-ico" aria-hidden="true">🔄</span>Verbs</a>
       <a href="#/lectura" role="menuitem" onclick="closeNavMenu()"><span class="nav-ico" aria-hidden="true">📚</span>Reading</a>
@@ -5766,6 +5767,7 @@
   <div class="home-links">
     <a href="#/abecedario" class="hl"><span class="hl-ico">🔤</span><span class="hl-name">Abecedario</span><span class="hl-sub">Alphabet & sounds</span></a>
     <a href="#/vocabulario" class="hl"><span class="hl-ico">🃏</span><span class="hl-name">Vocabulario</span><span class="hl-sub">Vocabulary</span></a>
+    <a href="#/dibujar" class="hl"><span class="hl-ico">🖌️</span><span class="hl-name">Dibújalo</span><span class="hl-sub">Draw the word</span></a>
     <a href="#/repaso" class="hl"><span class="hl-ico">🧠</span><span class="hl-name">Repaso</span><span class="hl-sub">Spaced repetition</span></a>
     <a href="#/verbos" class="hl"><span class="hl-ico">🔄</span><span class="hl-name">Verbos</span><span class="hl-sub">Verb practice</span></a>
     <a href="#/lectura" class="hl"><span class="hl-ico">📚</span><span class="hl-name">Lectura</span><span class="hl-sub">Guided reading</span></a>
@@ -6684,6 +6686,105 @@
   <a href="#/juegos" class="aviso-link" style="display: inline-block; margin-bottom: 16px;">← Back to games</a>
   <div id="game-detail-content">
     <!-- populated by JS -->
+  </div>
+</section></div>
+
+<!-- DIBUJA LA PALABRA (draw-the-meaning vocab activity) -->
+<style>
+  #dibujar .draw-intro { font-size: 16px; color: var(--ink-soft); line-height: 1.5; max-width: 660px; margin-bottom: 24px; }
+  .draw-word-card { display: flex; justify-content: space-between; gap: 20px; flex-wrap: wrap; align-items: center; background: var(--card-bg); border: 1px solid var(--line); border-left: 3px solid var(--ocre); border-radius: 10px; padding: 18px 22px; margin-bottom: 16px; }
+  .dw-label { font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--ink-soft); margin-bottom: 4px; }
+  .dw-word { font-family: 'DM Serif Display', serif; font-size: 30px; line-height: 1.1; }
+  .dw-cat { font-size: 12px; color: var(--ink-soft); margin-top: 3px; }
+  .dw-meaning { font-size: 15px; color: var(--rojo); margin-top: 8px; min-height: 20px; }
+  .dw-meaning.hidden { visibility: hidden; }
+  .dw-controls { display: flex; flex-direction: column; gap: 10px; align-items: flex-end; }
+  .dw-deck-label { font-family: 'JetBrains Mono', monospace; font-size: 11px; text-transform: uppercase; letter-spacing: 0.06em; color: var(--ink-soft); display: flex; gap: 8px; align-items: center; }
+  .dw-deck-label select { font-family: 'JetBrains Mono', monospace; font-size: 12px; padding: 6px 8px; border: 1px solid var(--line); border-radius: 6px; background: var(--paper); color: var(--ink); }
+  .dw-btn-row { display: flex; gap: 8px; }
+  .draw-btn { font-family: 'JetBrains Mono', monospace; font-size: 11px; text-transform: uppercase; letter-spacing: 0.06em; padding: 8px 14px; border: 1px solid var(--line); border-radius: 6px; background: var(--paper); color: var(--ink-soft); cursor: pointer; transition: border-color .12s, color .12s; }
+  .draw-btn.primary { background: var(--ink); color: var(--paper); border-color: var(--ink); }
+  .draw-btn:hover { border-color: var(--ocre); color: var(--ink); }
+  .draw-toolbar { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; background: var(--card-bg); border: 1px solid var(--line); border-radius: 10px; padding: 10px 12px; margin-bottom: 14px; }
+  .dt-group { display: flex; gap: 4px; align-items: center; }
+  .dt-group + .dt-group { border-left: 1px solid var(--line); padding-left: 10px; }
+  .dt-tool, .dt-act { font-family: 'JetBrains Mono', monospace; font-size: 14px; min-width: 34px; height: 34px; padding: 0 9px; border: 1px solid var(--line); border-radius: 7px; background: var(--paper); color: var(--ink); cursor: pointer; display: inline-flex; align-items: center; justify-content: center; line-height: 1; transition: border-color .12s, background .12s; }
+  .dt-act { font-size: 11px; text-transform: uppercase; letter-spacing: 0.05em; }
+  .dt-tool.active { background: var(--ocre); border-color: var(--ocre); color: #1f1a14; }
+  .dt-tool:hover, .dt-act:hover { border-color: var(--ocre); }
+  .dt-act.done { background: #2e7d52; color: #fff; border-color: transparent; }
+  .dt-act.done:hover { background: #276945; }
+  .dt-colors { gap: 5px; }
+  .dt-swatch { width: 22px; height: 22px; border-radius: 50%; border: 2px solid var(--line); cursor: pointer; padding: 0; }
+  .dt-swatch.active { box-shadow: 0 0 0 2px var(--ocre); }
+  .dt-color-pick { position: relative; width: 30px; height: 30px; border: 1px dashed var(--ink-soft); border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; cursor: pointer; overflow: hidden; flex-shrink: 0; }
+  .dt-color-pick input { position: absolute; inset: 0; opacity: 0; cursor: pointer; }
+  .dt-color-pick span { font-size: 15px; color: var(--ink-soft); }
+  .dt-size { font-family: 'JetBrains Mono', monospace; font-size: 10px; text-transform: uppercase; letter-spacing: 0.08em; color: var(--ink-soft); display: flex; gap: 6px; align-items: center; }
+  .dt-size input { width: 90px; }
+  .draw-canvas-wrap { position: relative; border: 1px solid var(--line); border-radius: 10px; overflow: hidden; background: #fff; box-shadow: 0 8px 30px rgba(0,0,0,.08); }
+  #drawCanvas { display: block; width: 100%; height: auto; touch-action: none; cursor: crosshair; background: #fff; }
+  .draw-text-input { position: absolute; z-index: 5; border: 1px dashed var(--ocre); background: rgba(255,255,255,.9); font-family: 'DM Serif Display', serif; color: #1f1a14; padding: 1px 4px; outline: none; min-width: 40px; }
+  .draw-flash { position: absolute; top: 12px; left: 50%; transform: translateX(-50%); background: rgba(31,26,20,.88); color: #f4ede0; font-family: 'JetBrains Mono', monospace; font-size: 12px; padding: 7px 14px; border-radius: 999px; z-index: 8; opacity: 0; transition: opacity .2s; pointer-events: none; }
+  .draw-flash.show { opacity: 1; }
+  @media (max-width: 620px) { .dw-controls { align-items: flex-start; width: 100%; } .dw-word { font-size: 26px; } }
+</style>
+<div class="page" data-page="dibujar"><section id="dibujar">
+  <div class="section-header">
+    <h2>Dibuja la <em>palabra</em></h2>
+    <div class="section-num">Vocabulario visual</div>
+  </div>
+  <p class="draw-intro">Get a vocab word and <strong>draw what it means</strong> — no translating, just thinking in pictures. Pick your tools, colors, and shapes and go. You can <strong>copy</strong> your drawing to paste into a doc, or <strong>paste</strong> an image in to start from. Mark it <em>Done</em> to earn a couple of Lucas.</p>
+
+  <div class="draw-word-card">
+    <div class="dw-left">
+      <div class="dw-label">Draw this word</div>
+      <div class="dw-word" id="drawWord">—</div>
+      <div class="dw-cat" id="drawCat"></div>
+      <div class="dw-meaning" id="drawMeaning"></div>
+    </div>
+    <div class="dw-controls">
+      <label class="dw-deck-label">Deck
+        <select id="drawDeckSelect"></select>
+      </label>
+      <div class="dw-btn-row">
+        <button class="draw-btn" id="drawRevealBtn" type="button">Hide meaning</button>
+        <button class="draw-btn primary" id="drawNewWordBtn" type="button">New word →</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="draw-toolbar" id="drawToolbar">
+    <div class="dt-group" role="group" aria-label="Tools">
+      <button class="dt-tool active" data-tool="pen" title="Pen" type="button">✏️</button>
+      <button class="dt-tool" data-tool="marker" title="Highlighter" type="button">🖍️</button>
+      <button class="dt-tool" data-tool="line" title="Line" type="button">╱</button>
+      <button class="dt-tool" data-tool="rect" title="Rectangle" type="button">▭</button>
+      <button class="dt-tool" data-tool="ellipse" title="Ellipse" type="button">◯</button>
+      <button class="dt-tool" data-tool="text" title="Text" type="button">T</button>
+      <button class="dt-tool" data-tool="eraser" title="Eraser" type="button">🧽</button>
+    </div>
+    <div class="dt-group dt-colors" id="drawColors" role="group" aria-label="Colors"></div>
+    <label class="dt-color-pick" title="Custom color"><input type="color" id="drawColorInput" value="#1f1a14"><span>＋</span></label>
+    <label class="dt-size">Size <input type="range" id="drawSize" min="1" max="48" value="6"></label>
+    <div class="dt-group">
+      <button class="dt-act" id="drawUndo" title="Undo" type="button">↶ Undo</button>
+      <button class="dt-act" id="drawRedo" title="Redo" type="button">↷ Redo</button>
+      <button class="dt-act" id="drawClear" title="Clear all" type="button">Clear</button>
+    </div>
+    <div class="dt-group">
+      <button class="dt-act" id="drawCopy" title="Copy image to clipboard" type="button">Copy</button>
+      <button class="dt-act" id="drawPaste" title="Paste image from clipboard" type="button">Paste</button>
+      <button class="dt-act" id="drawDownload" title="Download PNG" type="button">Download</button>
+    </div>
+    <div class="dt-group">
+      <button class="dt-act done" id="drawDone" title="Mark done & earn Lucas" type="button">Done ✓</button>
+    </div>
+  </div>
+
+  <div class="draw-canvas-wrap" id="drawCanvasWrap">
+    <canvas id="drawCanvas" width="1000" height="640"></canvas>
+    <div class="draw-flash" id="drawFlash"></div>
   </div>
 </section></div>
 
@@ -7912,6 +8013,7 @@
     home: 'Home',
     avisos: 'From your teacher',
     vocabulario: 'Vocabulary',
+    dibujar: 'Draw the word',
     verbos: 'Verb drill',
     lectura: 'Reading library',
     reading: 'Reading',
@@ -8082,6 +8184,7 @@
     if (page === 'reading' && typeof renderReadingDetail === 'function') renderReadingDetail(param);
     if (page === 'juegos' && typeof renderGamesHub === 'function') renderGamesHub();
     if (page === 'vocabulario' && typeof updateRepasoBadges === 'function') updateRepasoBadges();
+    if (page === 'dibujar' && typeof window.initDrawActivity === 'function') window.initDrawActivity();
     if (page === 'racha' && typeof renderRacha === 'function') renderRacha();
     if (page === 'repaso' && typeof renderRepaso === 'function') renderRepaso();
     if (page === 'abecedario' && typeof renderAbecedario === 'function') renderAbecedario();
@@ -30253,6 +30356,349 @@
       updateGameCount();
     }
   })();
+</script>
+
+<!-- DIBUJA LA PALABRA — drawing engine -->
+<script>
+(function () {
+  var canvas, ctx, wrap, flash, inited = false;
+  var W = 1000, H = 640;
+  var tool = 'pen', color = '#1f1a14', size = 6;
+  var drawing = false, startX = 0, startY = 0, snapshot = null, markerPts = null;
+  var undoStack = [], redoStack = [];
+  var deck = 'cotidiano', revealed = true, awarded = {};
+
+  var PALETTE = ['#1f1a14', '#e23d4b', '#f2a33d', '#f4c20d', '#2e9e5b', '#2f7fd6', '#7e57c2', '#ffffff'];
+
+  function $(id) { return document.getElementById(id); }
+
+  window.initDrawActivity = function () {
+    canvas = $('drawCanvas');
+    if (!canvas) return;
+    if (inited) return;
+    inited = true;
+    ctx = canvas.getContext('2d');
+    wrap = $('drawCanvasWrap');
+    flash = $('drawFlash');
+
+    // White background to start
+    ctx.fillStyle = '#ffffff';
+    ctx.fillRect(0, 0, W, H);
+    pushUndo();
+
+    buildColors();
+    buildDeckSelect();
+    newWord();
+    bindToolbar();
+    bindCanvas();
+
+    document.addEventListener('paste', function (e) {
+      if (!isActive()) return;
+      var items = (e.clipboardData && e.clipboardData.items) || [];
+      for (var i = 0; i < items.length; i++) {
+        if (items[i].type && items[i].type.indexOf('image') === 0) {
+          var blob = items[i].getAsFile();
+          if (blob) { e.preventDefault(); drawImageBlob(blob); return; }
+        }
+      }
+    });
+  };
+
+  function isActive() {
+    var p = document.querySelector('.page[data-page="dibujar"]');
+    return p && p.classList.contains('active');
+  }
+
+  /* ---------- word card ---------- */
+  function buildDeckSelect() {
+    var sel = $('drawDeckSelect');
+    if (!sel) return;
+    var pills = document.querySelectorAll('#vocabulario .pill');
+    var seen = {};
+    var opts = [];
+    pills.forEach(function (b) {
+      var oc = b.getAttribute('onclick') || '';
+      var m = oc.match(/loadDeck\(\s*'([^']+)'/);
+      if (m && !seen[m[1]] && window.ELP_DECKS && window.ELP_DECKS[m[1]]) {
+        seen[m[1]] = 1;
+        opts.push({ key: m[1], label: b.textContent.trim() });
+      }
+    });
+    if (!opts.length && window.ELP_DECKS) {
+      Object.keys(window.ELP_DECKS).forEach(function (k) { opts.push({ key: k, label: k }); });
+    }
+    opts.sort(function (a, b) { return a.label.localeCompare(b.label); });
+    sel.innerHTML = opts.map(function (o) {
+      return '<option value="' + o.key + '"' + (o.key === deck ? ' selected' : '') + '>' + o.label + '</option>';
+    }).join('');
+    if (!seen[deck] && opts.length) deck = opts[0].key;
+    sel.value = deck;
+    sel.addEventListener('change', function () { deck = sel.value; newWord(); });
+  }
+
+  function newWord() {
+    var arr = window.ELP_DECKS && window.ELP_DECKS[deck];
+    if (!arr || !arr.length) return;
+    var w = arr[Math.floor(Math.random() * arr.length)];
+    $('drawWord').textContent = w.word;
+    $('drawCat').textContent = w.cat || '';
+    $('drawMeaning').textContent = w.back || '';
+    applyReveal();
+  }
+
+  function applyReveal() {
+    var m = $('drawMeaning'), btn = $('drawRevealBtn');
+    if (revealed) { m.classList.remove('hidden'); btn.textContent = 'Hide meaning'; }
+    else { m.classList.add('hidden'); btn.textContent = 'Show meaning'; }
+  }
+
+  /* ---------- toolbar ---------- */
+  function buildColors() {
+    var box = $('drawColors');
+    box.innerHTML = '';
+    PALETTE.forEach(function (c, i) {
+      var b = document.createElement('button');
+      b.type = 'button';
+      b.className = 'dt-swatch' + (i === 0 ? ' active' : '');
+      b.style.background = c;
+      b.setAttribute('data-color', c);
+      b.title = c;
+      b.addEventListener('click', function () { setColor(c, b); });
+      box.appendChild(b);
+    });
+  }
+
+  function setColor(c, swatchEl) {
+    color = c;
+    document.querySelectorAll('#drawColors .dt-swatch').forEach(function (s) { s.classList.remove('active'); });
+    if (swatchEl) swatchEl.classList.add('active');
+    var ci = $('drawColorInput'); if (ci) ci.value = c.length === 7 ? c : ci.value;
+  }
+
+  function setTool(t, el) {
+    tool = t;
+    document.querySelectorAll('#drawToolbar .dt-tool').forEach(function (b) { b.classList.remove('active'); });
+    if (el) el.classList.add('active');
+    canvas.style.cursor = (t === 'text') ? 'text' : 'crosshair';
+  }
+
+  function bindToolbar() {
+    document.querySelectorAll('#drawToolbar .dt-tool').forEach(function (b) {
+      b.addEventListener('click', function () { setTool(b.getAttribute('data-tool'), b); });
+    });
+    $('drawColorInput').addEventListener('input', function (e) {
+      setColor(e.target.value, null);
+      document.querySelectorAll('#drawColors .dt-swatch').forEach(function (s) { s.classList.remove('active'); });
+    });
+    $('drawSize').addEventListener('input', function (e) { size = parseInt(e.target.value, 10) || 1; });
+    $('drawUndo').addEventListener('click', undo);
+    $('drawRedo').addEventListener('click', redo);
+    $('drawClear').addEventListener('click', function () {
+      ctx.fillStyle = '#ffffff'; ctx.fillRect(0, 0, W, H); pushUndo(); flashMsg('Cleared');
+    });
+    $('drawCopy').addEventListener('click', copyToClipboard);
+    $('drawPaste').addEventListener('click', pasteFromClipboard);
+    $('drawDownload').addEventListener('click', download);
+    $('drawDone').addEventListener('click', markDone);
+    $('drawRevealBtn').addEventListener('click', function () { revealed = !revealed; applyReveal(); });
+    $('drawNewWordBtn').addEventListener('click', newWord);
+  }
+
+  /* ---------- canvas drawing ---------- */
+  function getPos(e) {
+    var r = canvas.getBoundingClientRect();
+    return { x: (e.clientX - r.left) * (W / r.width), y: (e.clientY - r.top) * (H / r.height) };
+  }
+
+  function bindCanvas() {
+    canvas.addEventListener('pointerdown', function (e) {
+      var p = getPos(e);
+      if (tool === 'text') { startText(p, e); return; }
+      drawing = true;
+      startX = p.x; startY = p.y;
+      snapshot = ctx.getImageData(0, 0, W, H);
+      markerPts = [p];
+      if (canvas.setPointerCapture) { try { canvas.setPointerCapture(e.pointerId); } catch (x) {} }
+      if (tool === 'pen' || tool === 'eraser') {
+        ctx.globalAlpha = 1;
+        ctx.lineCap = 'round'; ctx.lineJoin = 'round';
+        ctx.lineWidth = size;
+        ctx.strokeStyle = (tool === 'eraser') ? '#ffffff' : color;
+        ctx.beginPath();
+        ctx.moveTo(p.x, p.y);
+        ctx.lineTo(p.x + 0.01, p.y + 0.01);
+        ctx.stroke();
+      }
+    });
+    canvas.addEventListener('pointermove', function (e) {
+      if (!drawing) return;
+      var p = getPos(e);
+      if (tool === 'pen' || tool === 'eraser') {
+        ctx.lineTo(p.x, p.y); ctx.stroke();
+      } else if (tool === 'marker') {
+        markerPts.push(p);
+        ctx.putImageData(snapshot, 0, 0);
+        ctx.save();
+        ctx.globalAlpha = 0.32; ctx.lineCap = 'round'; ctx.lineJoin = 'round';
+        ctx.lineWidth = Math.max(size * 2.4, 10); ctx.strokeStyle = color;
+        ctx.beginPath(); ctx.moveTo(markerPts[0].x, markerPts[0].y);
+        for (var i = 1; i < markerPts.length; i++) ctx.lineTo(markerPts[i].x, markerPts[i].y);
+        ctx.stroke(); ctx.restore();
+      } else if (tool === 'line') {
+        ctx.putImageData(snapshot, 0, 0); shapeStyle();
+        ctx.beginPath(); ctx.moveTo(startX, startY); ctx.lineTo(p.x, p.y); ctx.stroke();
+      } else if (tool === 'rect') {
+        ctx.putImageData(snapshot, 0, 0); shapeStyle();
+        ctx.strokeRect(Math.min(startX, p.x), Math.min(startY, p.y), Math.abs(p.x - startX), Math.abs(p.y - startY));
+      } else if (tool === 'ellipse') {
+        ctx.putImageData(snapshot, 0, 0); shapeStyle();
+        ctx.beginPath();
+        ctx.ellipse((startX + p.x) / 2, (startY + p.y) / 2, Math.abs(p.x - startX) / 2, Math.abs(p.y - startY) / 2, 0, 0, Math.PI * 2);
+        ctx.stroke();
+      }
+    });
+    function endStroke() {
+      if (!drawing) return;
+      drawing = false; markerPts = null;
+      ctx.globalAlpha = 1;
+      pushUndo();
+    }
+    canvas.addEventListener('pointerup', endStroke);
+    canvas.addEventListener('pointercancel', endStroke);
+    window.addEventListener('pointerup', endStroke);
+  }
+
+  function shapeStyle() {
+    ctx.globalAlpha = 1; ctx.lineCap = 'round'; ctx.lineJoin = 'round';
+    ctx.lineWidth = size; ctx.strokeStyle = color;
+  }
+
+  /* ---------- text tool ---------- */
+  function startText(p, e) {
+    var existing = wrap.querySelector('.draw-text-input');
+    if (existing) existing.blur();
+    var r = wrap.getBoundingClientRect();
+    var dispFont = Math.max(14, size * 3);
+    var inp = document.createElement('input');
+    inp.type = 'text';
+    inp.className = 'draw-text-input';
+    inp.style.left = (e.clientX - r.left) + 'px';
+    inp.style.top = (e.clientY - r.top) + 'px';
+    inp.style.fontSize = dispFont + 'px';
+    inp.style.color = color;
+    wrap.appendChild(inp);
+    setTimeout(function () { inp.focus(); }, 0);
+    var done = false;
+    function commit() {
+      if (done) return; done = true;
+      var val = inp.value;
+      if (val) {
+        var scale = W / r.width;
+        ctx.globalAlpha = 1;
+        ctx.fillStyle = color;
+        ctx.textBaseline = 'top';
+        ctx.font = (dispFont * scale) + "px 'DM Serif Display', Georgia, serif";
+        ctx.fillText(val, p.x, p.y);
+        pushUndo();
+      }
+      if (inp.parentNode) inp.parentNode.removeChild(inp);
+    }
+    inp.addEventListener('keydown', function (ev) {
+      if (ev.key === 'Enter') { ev.preventDefault(); commit(); }
+      else if (ev.key === 'Escape') { done = true; if (inp.parentNode) inp.parentNode.removeChild(inp); }
+    });
+    inp.addEventListener('blur', commit);
+  }
+
+  /* ---------- undo / redo ---------- */
+  function pushUndo() {
+    try { undoStack.push(ctx.getImageData(0, 0, W, H)); } catch (e) { return; }
+    if (undoStack.length > 25) undoStack.shift();
+    redoStack = [];
+  }
+  function undo() {
+    if (undoStack.length <= 1) return;
+    redoStack.push(undoStack.pop());
+    ctx.putImageData(undoStack[undoStack.length - 1], 0, 0);
+  }
+  function redo() {
+    if (!redoStack.length) return;
+    var s = redoStack.pop();
+    undoStack.push(s);
+    ctx.putImageData(s, 0, 0);
+  }
+
+  /* ---------- clipboard / export ---------- */
+  function copyToClipboard() {
+    if (!navigator.clipboard || !window.ClipboardItem) { flashMsg('Copy not supported — use Download'); return; }
+    canvas.toBlob(function (blob) {
+      if (!blob) { flashMsg('Copy failed'); return; }
+      navigator.clipboard.write([new window.ClipboardItem({ 'image/png': blob })])
+        .then(function () { flashMsg('Copied to clipboard ✓'); })
+        .catch(function () { flashMsg('Copy blocked — use Download'); });
+    }, 'image/png');
+  }
+  function pasteFromClipboard() {
+    if (navigator.clipboard && navigator.clipboard.read) {
+      navigator.clipboard.read().then(function (items) {
+        for (var i = 0; i < items.length; i++) {
+          var types = items[i].types || [];
+          for (var j = 0; j < types.length; j++) {
+            if (types[j].indexOf('image') === 0) {
+              items[i].getType(types[j]).then(drawImageBlob);
+              return;
+            }
+          }
+        }
+        flashMsg('No image in clipboard — try Ctrl/Cmd+V');
+      }).catch(function () { flashMsg('Paste blocked — try Ctrl/Cmd+V on the canvas'); });
+    } else {
+      flashMsg('Use Ctrl/Cmd+V to paste an image');
+    }
+  }
+  function drawImageBlob(blob) {
+    var url = URL.createObjectURL(blob);
+    var img = new Image();
+    img.onload = function () {
+      var scale = Math.min(W / img.width, H / img.height, 1);
+      var dw = img.width * scale, dh = img.height * scale;
+      ctx.globalAlpha = 1;
+      ctx.drawImage(img, (W - dw) / 2, (H - dh) / 2, dw, dh);
+      URL.revokeObjectURL(url);
+      pushUndo();
+      flashMsg('Image pasted ✓');
+    };
+    img.onerror = function () { URL.revokeObjectURL(url); flashMsg('Could not paste image'); };
+    img.src = url;
+  }
+  function download() {
+    var word = ($('drawWord').textContent || 'dibujo').replace(/[^a-z0-9áéíóúñ]+/gi, '-').toLowerCase();
+    var a = document.createElement('a');
+    a.download = 'dibujo-' + word + '.png';
+    a.href = canvas.toDataURL('image/png');
+    document.body.appendChild(a); a.click(); document.body.removeChild(a);
+  }
+
+  /* ---------- done / reward ---------- */
+  function markDone() {
+    if (undoStack.length <= 1) { flashMsg('Draw something first!'); return; }
+    var word = $('drawWord').textContent || '';
+    if (awarded[word]) { flashMsg('Already earned for "' + word + '" — try a new word'); return; }
+    awarded[word] = 1;
+    if (typeof awardCoins === 'function') awardCoins(2, 'Dibujaste: ' + word);
+    else flashMsg('Nice work! ✓');
+  }
+
+  /* ---------- flash toast ---------- */
+  var flashTimer = null;
+  function flashMsg(msg) {
+    if (!flash) return;
+    flash.textContent = msg;
+    flash.classList.add('show');
+    if (flashTimer) clearTimeout(flashTimer);
+    flashTimer = setTimeout(function () { flash.classList.remove('show'); }, 1500);
+  }
+})();
 </script>
 
 </body>
