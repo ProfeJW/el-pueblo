@@ -6727,6 +6727,9 @@
   .draw-text-input { position: absolute; z-index: 5; border: 1px dashed var(--ocre); background: rgba(255,255,255,.9); font-family: 'DM Serif Display', serif; color: #1f1a14; padding: 1px 4px; outline: none; min-width: 40px; }
   .draw-flash { position: absolute; top: 12px; left: 50%; transform: translateX(-50%); background: rgba(31,26,20,.88); color: #f4ede0; font-family: 'JetBrains Mono', monospace; font-size: 12px; padding: 7px 14px; border-radius: 999px; z-index: 8; opacity: 0; transition: opacity .2s; pointer-events: none; }
   .draw-flash.show { opacity: 1; }
+  .draw-templates { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; margin-bottom: 14px; }
+  .dt-tlabel { font-family: 'JetBrains Mono', monospace; font-size: 10px; text-transform: uppercase; letter-spacing: 0.1em; color: var(--ink-soft); margin-right: 2px; }
+  .draw-templates .dt-act { font-size: 12px; height: 32px; text-transform: none; letter-spacing: 0; }
   @media (max-width: 620px) { .dw-controls { align-items: flex-start; width: 100%; } .dw-word { font-size: 26px; } }
 </style>
 <div class="page" data-page="dibujar"><section id="dibujar">
@@ -6734,7 +6737,7 @@
     <h2>Dibuja la <em>palabra</em></h2>
     <div class="section-num">Vocabulario visual</div>
   </div>
-  <p class="draw-intro">Get a vocab word and <strong>draw what it means</strong> — no translating, just thinking in pictures. Pick your tools, colors, and shapes and go. You can <strong>copy</strong> your drawing to paste into a doc, or <strong>paste</strong> an image in to start from. Mark it <em>Done</em> to earn a couple of Lucas.</p>
+  <p class="draw-intro">Get a vocab word and <strong>draw what it means</strong> — no translating, just thinking in pictures. Pick your tools, colors, and shapes and go. Or load a <strong>coloring page</strong> and color it in. You can <strong>copy</strong> your drawing to paste into a doc, or <strong>paste</strong> an image in to start from. Mark it <em>Done</em> to earn a couple of Lucas.</p>
 
   <div class="draw-word-card">
     <div class="dw-left">
@@ -6780,6 +6783,14 @@
     <div class="dt-group">
       <button class="dt-act done" id="drawDone" title="Mark done & earn Lucas" type="button">Done ✓</button>
     </div>
+  </div>
+
+  <div class="draw-templates" id="drawTemplates">
+    <span class="dt-tlabel">Coloring page:</span>
+    <button class="dt-act" data-tpl="blank" type="button">Blank</button>
+    <button class="dt-act" data-tpl="totem" type="button">🗿 Totem azteca</button>
+    <button class="dt-act" data-tpl="sol" type="button">☀️ Sol</button>
+    <button class="dt-act" data-tpl="greca" type="button">🔷 Greca</button>
   </div>
 
   <div class="draw-canvas-wrap" id="drawCanvasWrap">
@@ -7964,6 +7975,7 @@
 </footer>
 
 <script src="vocab-decks.js"></script>
+<script src="draw-templates.js"></script>
 <script>
   /* ============== SAFE STORAGE ============== */
   // localStorage can THROW on access (private/incognito mode, "block site data"
@@ -30502,6 +30514,39 @@
     $('drawDone').addEventListener('click', markDone);
     $('drawRevealBtn').addEventListener('click', function () { revealed = !revealed; applyReveal(); });
     $('drawNewWordBtn').addEventListener('click', newWord);
+    var tpls = $('drawTemplates');
+    if (tpls) tpls.querySelectorAll('[data-tpl]').forEach(function (b) {
+      b.addEventListener('click', function () { loadTemplate(b.getAttribute('data-tpl')); });
+    });
+  }
+
+  /* ---------- coloring templates ---------- */
+  function loadTemplate(key) {
+    ctx.globalAlpha = 1;
+    ctx.fillStyle = '#ffffff';
+    ctx.fillRect(0, 0, W, H);
+    if (key === 'blank') { pushUndo(); flashMsg('Blank canvas'); return; }
+    var lib = window.ELP_DRAW_TEMPLATES || {};
+    var svg = lib[key];
+    if (!svg) { pushUndo(); flashMsg('Template unavailable'); return; }
+    var blob = new Blob([svg], { type: 'image/svg+xml' });
+    var url = URL.createObjectURL(blob);
+    var img = new Image();
+    img.onload = function () {
+      var pad = 26;
+      var iw = img.naturalWidth || img.width || 200;
+      var ih = img.naturalHeight || img.height || 360;
+      var ratio = iw / ih;
+      var dh = H - pad * 2, dw = dh * ratio;
+      if (dw > W - pad * 2) { dw = W - pad * 2; dh = dw / ratio; }
+      ctx.globalAlpha = 1;
+      ctx.drawImage(img, (W - dw) / 2, (H - dh) / 2, dw, dh);
+      URL.revokeObjectURL(url);
+      pushUndo();
+      flashMsg('Loaded — now color it in!');
+    };
+    img.onerror = function () { URL.revokeObjectURL(url); pushUndo(); flashMsg('Could not load template'); };
+    img.src = url;
   }
 
   /* ---------- canvas drawing ---------- */
