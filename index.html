@@ -3266,6 +3266,57 @@
     z-index: 10;
     border-radius: 3px;
   }
+  .reading-history-note {
+    margin-top: 28px;
+    padding: 20px 22px;
+    border: 1px solid rgba(212,146,44,0.4);
+    border-left: 4px solid var(--ocre);
+    border-radius: 10px;
+    background: rgba(212,146,44,0.08);
+  }
+  .reading-history-note .rhn-head {
+    font-family: 'DM Serif Display', serif;
+    font-size: 19px;
+    color: var(--ocre);
+    margin-bottom: 12px;
+  }
+  .reading-history-note .rhn-intro,
+  .reading-history-note .rhn-outro {
+    font-size: 15px;
+    line-height: 1.6;
+    margin: 0 0 14px;
+  }
+  .reading-history-note .rhn-outro { margin: 14px 0 0; }
+  .reading-history-note .rhn-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 15px;
+  }
+  .reading-history-note .rhn-table th,
+  .reading-history-note .rhn-table td {
+    text-align: left;
+    padding: 8px 10px;
+    border-bottom: 1px solid rgba(0,0,0,0.12);
+    vertical-align: top;
+  }
+  .reading-history-note .rhn-table th {
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    opacity: 0.7;
+    font-weight: 600;
+  }
+  .reading-history-note .rhn-table td:first-child em {
+    color: var(--ocre);
+    font-style: italic;
+    font-weight: 600;
+  }
+  @media (max-width: 640px) {
+    .reading-history-note { padding: 16px; }
+    .reading-history-note .rhn-table { font-size: 13px; }
+    .reading-history-note .rhn-table th,
+    .reading-history-note .rhn-table td { padding: 6px 5px; }
+  }
   .reading-quiz-card {
     background: var(--ink);
     color: var(--paper);
@@ -11798,6 +11849,18 @@
         'la venganza': 'revenge',
         'la astucia': 'cunning'
       },
+      historyNote: {
+        heading: 'El español del Siglo de Oro: el pronombre va detrás del verbo',
+        intro: 'This story is retold in modern Spanish, but the real <em>Lazarillo</em> was printed in <strong>1554</strong> and the language worked differently. The change you would notice most: direct- and indirect-object pronouns were normally attached to the <strong>end</strong> of a conjugated verb — this is called <em>enclisis</em> — above all when the verb opened the sentence. Today those same pronouns go <strong>before</strong> the verb.',
+        examples: [
+          { old: 'entrególe', modern: 'le entregó', en: 'she handed him over (IO)' },
+          { old: 'díjole', modern: 'le dijo', en: 'he said to him (IO)' },
+          { old: 'tomólo', modern: 'lo tomó', en: 'he took it (DO)' },
+          { old: 'rompióle los dientes', modern: 'le rompió los dientes', en: 'it broke his teeth (IO)' },
+          { old: 'dióselo', modern: 'se lo dio', en: 'he gave it to him (IO + DO)' }
+        ],
+        outro: 'Future- and conditional-tense verbs could even split in two, with the pronoun wedged inside: <em>dártelo he</em> = <em>te lo daré</em> (“I will give it to you”). You would also meet <em>vuestra merced</em> — the polite “you” that later shrank into today’s <strong>usted</strong> — plus older spellings like <em>agora</em> (ahora) and <em>ansí</em> (así).'
+      },
       quiz: [
         { q: '¿Por qué la madre entregó a Lázaro a un ciego?', options: [
           { text: 'Para que le sirviera de guía', correct: true },
@@ -11855,6 +11918,18 @@
         'la lanza': 'lance',
         'embestir': 'to charge / attack',
         'el sabio': 'wise man / wizard'
+      },
+      historyNote: {
+        heading: 'El español de Cervantes: el pronombre pegado al verbo',
+        intro: 'Our version is modernized, but Cervantes published <em>Don Quijote</em> in <strong>1605</strong> in early-modern Spanish. Its signature trait is the same one you would hear all across the Golden Age: object pronouns clinging to the <strong>back</strong> of a conjugated verb (<em>enclisis</em>), where modern Spanish puts them in front.',
+        examples: [
+          { old: 'respondióle', modern: 'le respondió', en: 'he answered him (IO)' },
+          { old: 'parecióle', modern: 'le pareció', en: 'it seemed to him (IO)' },
+          { old: 'levantóse', modern: 'se levantó', en: 'he got up (reflexive)' },
+          { old: 'diéronle de palos', modern: 'le dieron de palos', en: 'they gave him a beating (IO)' },
+          { old: 'prometióselo', modern: 'se lo prometió', en: 'he promised it to him (IO + DO)' }
+        ],
+        outro: 'Open the real novel and the enclitics jump out at once — <em>Frisaba la edad…</em>, <em>Respondióle don Quijote…</em>, <em>Diéronle…</em> You will also spot the old polite address <em>vuestra merced</em> (→ usted) and spellings like <em>agora</em> for ahora.'
       },
       quiz: [
         { q: '¿Cuál era la gran pasión de Alonso Quijano?', options: [
@@ -13889,6 +13964,20 @@
     const levelLabel = reading.level.charAt(0).toUpperCase() + reading.level.slice(1);
     const kindLabel = reading.kind === 'story' ? 'story' : reading.kind === 'poem' ? 'poem' : 'author spotlight';
 
+    const hn = reading.historyNote;
+    const historyHtml = hn ? `
+      <div class="reading-history-note">
+        <div class="rhn-head">📜 ${hn.heading}</div>
+        <p class="rhn-intro">${hn.intro}</p>
+        <table class="rhn-table">
+          <thead><tr><th>Entonces (Siglo de Oro)</th><th>Hoy</th><th>English</th></tr></thead>
+          <tbody>
+            ${hn.examples.map(e => `<tr><td><em>${e.old}</em></td><td>${e.modern}</td><td>${e.en}</td></tr>`).join('')}
+          </tbody>
+        </table>
+        ${hn.outro ? `<p class="rhn-outro">${hn.outro}</p>` : ''}
+      </div>` : '';
+
     const quizHtml = reading.quiz.map((q, i) => `
       <div class="quiz-q" data-qidx="${i}">
         <div class="quiz-q-label">Question ${String(i+1).padStart(2,'0')}</div>
@@ -13907,6 +13996,7 @@
         <div class="author-line">${reading.author}${reading.year ? ' · ' + reading.year : ''}</div>
         <div class="meta-line">${levelLabel} ${kindLabel}${reading.attribution ? ' · ' + reading.attribution : ''}${reading.kind !== 'spotlight' ? ' · Hover red words for translations' : ''}</div>
         <div class="text-body">${textHtml}</div>
+        ${historyHtml}
       </div>
       <div class="reading-quiz-card">
         <h4>${reading.kind === 'spotlight' ? 'Check your understanding' : 'Comprehension'}</h4>
