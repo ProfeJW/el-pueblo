@@ -6000,6 +6000,7 @@
         <button class="pill" onclick="setDrillTense('condicional', this)">Conditional</button>
         <button class="pill" onclick="setDrillTense('perfecto', this)">Pres. perfect</button>
         <button class="pill" onclick="setDrillTense('subjuntivo', this)">Pres. subj.</button>
+        <button class="pill" onclick="setDrillTense('pluperfectsubj', this)">Pluperfect subj.</button>
         <button class="pill" onclick="setDrillTense('mixed', this)">Mixed</button>
         <button class="pill" onclick="setDrillTense('serestar', this)">Ser / Estar</button>
         <button class="pill" onclick="setDrillTense('possessives', this)">Possessives</button>
@@ -9148,6 +9149,7 @@
         drillBest_condicional: STATE.drillBest_condicional,
         drillBest_perfecto: STATE.drillBest_perfecto,
         drillBest_subjuntivo: STATE.drillBest_subjuntivo,
+        drillBest_pluperfectsubj: STATE.drillBest_pluperfectsubj,
         drillBest_mixed: STATE.drillBest_mixed,
         savedAt: new Date().toISOString()
       };
@@ -9966,7 +9968,7 @@
     { inf: 'traducir', meaning: 'to translate · J-stem (tradujeron, not traducieron)', group: 'irregular', conj: { presente:['traduzco','traduces','traduce','traducimos','traducís','traducen'], preterito:['traduje','tradujiste','tradujo','tradujimos','tradujisteis','tradujeron'], imperfecto:['traducía','traducías','traducía','traducíamos','traducíais','traducían'], futuro:['traduciré','traducirás','traducirá','traduciremos','traduciréis','traducirán'], subjuntivo:['traduzca','traduzcas','traduzca','traduzcamos','traduzcáis','traduzcan'], condicional:['traduciría','traducirías','traduciría','traduciríamos','traduciríais','traducirían'], participio:'traducido' }}
   ];
   const pronouns = ['yo','tú','él/ella','nosotros','vosotros','ellos/ellas'];
-  const tenseLabels = { presente: 'present', preterito: 'preterite', imperfecto: 'imperfect', futuro: 'future', condicional: 'conditional', subjuntivo: 'pres. subjunctive', perfecto: 'present perfect' };
+  const tenseLabels = { presente: 'present', preterito: 'preterite', imperfecto: 'imperfect', futuro: 'future', condicional: 'conditional', subjuntivo: 'pres. subjunctive', perfecto: 'present perfect', pluperfectsubj: 'pluperfect subj.' };
   let drillTense = 'presente';
   let drillItems = []; // { verb, tense, pronounIdx, answer, userInput, isCorrect }
   let drillSubmitted = false;
@@ -10014,6 +10016,11 @@
 
     if (drillTense === 'perfecto') {
       buildPerfectoDrill();
+      return;
+    }
+
+    if (drillTense === 'pluperfectsubj') {
+      buildPluperfectSubjDrill();
       return;
     }
 
@@ -10411,6 +10418,44 @@
         userInput: '',
         isCorrect: null,
         isPerfecto: true
+      });
+    }
+  }
+
+  // PLUPERFECT SUBJUNCTIVE drill — student types "hubiera comido" / "hubieras visto" etc.
+  // Built from haber (past subjunctive) + each verb's past participle.
+  // Both -ra and -se forms are accepted by the grader via answerAlt.
+  function buildPluperfectSubjDrill() {
+    const HABER_RA = ['hubiera', 'hubieras', 'hubiera', 'hubiéramos', 'hubierais', 'hubieran'];
+    const HABER_SE = ['hubiese', 'hubieses', 'hubiese', 'hubiésemos', 'hubieseis', 'hubiesen'];
+    const REFL_PRONOUNS = ['me', 'te', 'se', 'nos', 'os', 'se'];
+    const allowedPronouns = includeVosotros ? [0, 1, 2, 3, 4, 5] : [0, 1, 2, 3, 5];
+
+    let pool;
+    if (drillGroup === 'all') pool = verbs.filter(v => v.conj && v.conj.participio);
+    else if (drillGroup === 'regular') pool = verbs.filter(v => v.conj && v.conj.participio && (v.group === 'regular-ar' || v.group === 'regular-er' || v.group === 'regular-ir'));
+    else if (drillGroup === 'stem-all') pool = verbs.filter(v => v.conj && v.conj.participio && v.group && v.group.startsWith('stem-'));
+    else if (drillGroup === 'irregular') pool = verbs.filter(v => v.conj && v.conj.participio && (v.group === 'irregular' || (!v.conj.participio.endsWith('ado') && !v.conj.participio.endsWith('ido') && !v.conj.participio.endsWith('ído'))));
+    else pool = verbs.filter(v => v.conj && v.conj.participio && v.group === drillGroup);
+    if (pool.length === 0) pool = verbs.filter(v => v.conj && v.conj.participio);
+
+    for (let i = 0; i < 20; i++) {
+      const verb = pool[Math.floor(Math.random() * pool.length)];
+      const pronounIdx = allowedPronouns[Math.floor(Math.random() * allowedPronouns.length)];
+      const participle = verb.conj.participio;
+      const isReflexive = verb.inf.endsWith('se');
+      const refPro = isReflexive ? REFL_PRONOUNS[pronounIdx] + ' ' : '';
+      const answer = refPro + HABER_RA[pronounIdx] + ' ' + participle;
+      const answerAlt = [refPro + HABER_SE[pronounIdx] + ' ' + participle];
+
+      drillItems.push({
+        verb, tense: 'pluperfectsubj', pronounIdx,
+        subjectDisplay: null,
+        answer,
+        answerAlt,
+        userInput: '',
+        isCorrect: null,
+        isPluperfectSubj: true
       });
     }
   }
@@ -11376,6 +11421,25 @@
           </div>
         `;
       }
+      if (item.isPluperfectSubj) {
+        const isReflexive = item.verb.inf.endsWith('se');
+        const refHint = isReflexive ? ' (reflexive: include me/te/se…)' : '';
+        return `
+          <div class="drill-row drill-row-wide">
+            <div class="drill-num">${String(idx + 1).padStart(2, '0')}</div>
+            <div class="drill-prompt-text" style="grid-column: 2 / span 2;">
+              <span class="pn">${pronouns[item.pronounIdx]}</span>
+              <span class="vb">${item.verb.inf} · pluperfect subj.${refHint}</span>
+            </div>
+            <div style="grid-column: 4;">
+              <input type="text" class="drill-input drill-input-wide" data-idx="${idx}" autocomplete="off" spellcheck="false"
+                     oninput="updateDrillInput(${idx}, this.value)"
+                     onkeydown="if(event.key==='Enter'){event.preventDefault();focusNextDrillInput(${idx});}"
+                     placeholder="hubiera comido / hubieras visto…">
+            </div>
+          </div>
+        `;
+      }
       return `
         <div class="drill-row">
           <div class="drill-num">${String(idx + 1).padStart(2, '0')}</div>
@@ -11731,6 +11795,55 @@
   //   quiz: array of { q, options: [{ text, correct }] }
 
   const READINGS = [
+    // ---------- GRAMMAR-IN-CONTEXT — Pluperfect subjunctive (Lesson 60) ----------
+    {
+      id: 'si-hubiera-sabido',
+      kind: 'story', level: 'advanced',
+      title: 'Lo que <em>habría sido</em>',
+      author: 'Original · El Pueblo',
+      year: '',
+      attribution: 'Gramática en contexto · El pluscuamperfecto de subjuntivo',
+      preview: 'Si hubiera tomado aquel tren, toda mi vida habría sido distinta…',
+      text: [
+        'Si hubiera tomado aquel tren de las seis, toda mi vida habría sido distinta. Pero llegué tarde a la estación, y el tren ya se había ido.',
+        'Mi abuela siempre decía que no valía la pena lamentarse por el pasado. «Ojalá hubieras escuchado a tu corazón», me dijo una vez, «pero lo hecho, hecho está.» En aquel momento no la entendí; actuaba yo como si nada hubiera pasado, como si las decisiones no tuvieran consecuencias.',
+        'Años después, comprendí lo que había querido decir. Si hubiera estudiado música, quizá habría sido feliz de otra manera. Si no me hubiera mudado a la ciudad, nunca habría conocido a las personas que hoy más quiero. Cada «si hubiera» abre la puerta a una vida que no viví.',
+        'Hoy ya no me pregunto qué habría pasado. Si me hubiera quedado atrapado en esos pensamientos, no habría aprendido la lección más importante: el pasado no se cambia, pero el presente todavía es mío.'
+      ],
+      gloss: {
+        'si hubiera tomado': 'if I had taken',
+        'se había ido': 'had (already) left',
+        'lamentarse': 'to lament / regret',
+        'ojalá hubieras escuchado': 'I wish you had listened',
+        'lo hecho, hecho está': 'what\'s done is done',
+        'como si nada hubiera pasado': 'as if nothing had happened',
+        'habría sido': 'would have been',
+        'si no me hubiera mudado': 'if I hadn\'t moved',
+        'atrapado': 'trapped'
+      },
+      quiz: [
+        { q: '«Si hubiera tomado aquel tren…» expresa una situación…', options: [
+          { text: 'contraria a los hechos, en el pasado', correct: true },
+          { text: 'real que sí ocurrió', correct: false },
+          { text: 'que pasará en el futuro', correct: false }
+        ]},
+        { q: '¿Qué estructura completa «si hubiera tomado…»?', options: [
+          { text: '…habría sido (condicional perfecto)', correct: true },
+          { text: '…sería (condicional simple)', correct: false },
+          { text: '…es (presente)', correct: false }
+        ]},
+        { q: '«como si nada hubiera pasado» significa…', options: [
+          { text: 'as if nothing had happened', correct: true },
+          { text: 'because nothing happened', correct: false },
+          { text: 'when nothing happens', correct: false }
+        ]},
+        { q: '¿Cuál es la lección final del narrador?', options: [
+          { text: 'El pasado no se cambia, pero el presente es suyo', correct: true },
+          { text: 'Siempre hay que lamentarse por el pasado', correct: false },
+          { text: 'El tren llegará mañana', correct: false }
+        ]}
+      ]
+    },
     // ---------- HISTORY READING — La Inquisición ----------
     {
       id: 'la-inquisicion',
@@ -14062,7 +14175,12 @@
       { id: 'd-a-07', text: 'El tango argentino nació en los barrios de Buenos Aires a fines del siglo diecinueve y hoy se baila en todo el mundo.', en: 'Argentine tango was born in the neighborhoods of Buenos Aires at the end of the 19th century and is danced all over the world today.', country: 'ar' },
       { id: 'd-a-08', text: 'Aprender otro idioma no solo abre puertas profesionales, sino que también nos permite entender otras culturas con más profundidad.', en: 'Learning another language not only opens professional doors, but also allows us to understand other cultures more deeply.', country: null },
       { id: 'd-a-09', text: 'La gastronomía peruana es reconocida mundialmente por su variedad y por la mezcla única de ingredientes indígenas, asiáticos y europeos.', en: 'Peruvian cuisine is recognized worldwide for its variety and for the unique blend of indigenous, Asian, and European ingredients.', country: 'pe' },
-      { id: 'd-a-10', text: 'Los gauchos de Argentina y Uruguay representan una tradición rural que ha sobrevivido desde la época colonial hasta nuestros días.', en: 'The gauchos of Argentina and Uruguay represent a rural tradition that has survived from colonial times to the present day.', country: 'ar' }
+      { id: 'd-a-10', text: 'Los gauchos de Argentina y Uruguay representan una tradición rural que ha sobrevivido desde la época colonial hasta nuestros días.', en: 'The gauchos of Argentina and Uruguay represent a rural tradition that has survived from colonial times to the present day.', country: 'ar' },
+      // Pluperfect subjunctive / past conditionals (paired with Lesson 60)
+      { id: 'd-a-11-plus', text: 'Si hubiera sabido que venías, habría preparado algo de comer.', en: 'If I had known you were coming, I would have made something to eat.', country: null },
+      { id: 'd-a-12-plus', text: 'Ojalá hubiéramos llegado más temprano para conseguir buenos asientos.', en: 'I wish we had arrived earlier to get good seats.', country: null },
+      { id: 'd-a-13-plus', text: 'Ella me miró como si nunca hubiera visto a nadie tan cansado.', en: 'She looked at me as if she had never seen anyone so tired.', country: null },
+      { id: 'd-a-14-plus', text: 'Si no hubieran construido la represa, el valle todavía existiría.', en: 'If they hadn\'t built the dam, the valley would still exist.', country: null }
     ]
   };
 
@@ -19865,6 +19983,18 @@
         { tense: 'subjuntivo', group: 'all', label: 'Drill: Present subjunctive (for sequence-of-tenses contrast)' }
       ],
       readings: ['peru-papa', 'argentina-gaucho', 'colombia-biodiversidad'],
+      pdfs: [],
+      links: []
+    },
+    'pluperfect-subjunctive': {
+      decks: ['verbosAr', 'verbosEr', 'verbosIr'],
+      drills: [
+        { tense: 'pluperfectsubj', group: 'all', label: 'Drill: Pluperfect subjunctive (hubiera + past participle)' },
+        { tense: 'pluperfectsubj', group: 'irregular', label: 'Drill: Pluperfect subjunctive · irregular participles' },
+        { tense: 'subjuntivo', group: 'all', label: 'Drill: Present subjunctive (for sequence-of-tenses contrast)' }
+      ],
+      readings: ['si-hubiera-sabido'],
+      listening: ['d-a-11-plus', 'd-a-12-plus', 'd-a-13-plus', 'd-a-14-plus'],
       pdfs: [],
       links: []
     }
@@ -28907,9 +29037,22 @@
       return { area: 'Days', label: 'Translate to English', display: DAYS_ES[i],
         answer: DAYS_EN[i].toLowerCase(), validAnswers: [DAYS_EN[i].toLowerCase()], hint: 'In English' };
     }
+    function qPluperfectSubj() {
+      const HABER_RA = ['hubiera', 'hubieras', 'hubiera', 'hubiéramos', 'hubierais', 'hubieran'];
+      const HABER_SE = ['hubiese', 'hubieses', 'hubiese', 'hubiésemos', 'hubieseis', 'hubiesen'];
+      const pool = verbs.filter(v => v.conj && v.conj.participio);
+      const v = pick(pool);
+      const idx = pick([0, 1, 2, 3, 5]);
+      const part = v.conj.participio;
+      const ans = HABER_RA[idx] + ' ' + part;
+      return { area: 'Verbs', label: 'Pluperfect subjunctive (hubiera + participle)', display: v.inf + ' — ' + PRON_ES[idx],
+        answer: ans, validAnswers: [ans, HABER_SE[idx] + ' ' + part], hint: 'hubiera/hubieras… + -ado/-ido' };
+    }
 
-    // Each round: 2 vocab + 1 verb + 1 capital + 1 rotating (number or day)
-    const questions = [qVocab(), qVerb(), qVocab(), qCapital(), rand() < 0.5 ? qNumber() : qDay()];
+    // Each round: 2 vocab + 1 verb + 1 capital + 1 rotating (number / day / pluperfect subj.)
+    const r = rand();
+    const lastSlot = r < 0.34 ? qPluperfectSubj() : (r < 0.67 ? qNumber() : qDay());
+    const questions = [qVocab(), qVerb(), qVocab(), qCapital(), lastSlot];
     // Shuffle so the order varies
     for (let i = questions.length - 1; i > 0; i--) {
       const j = Math.floor(rand() * (i + 1));
