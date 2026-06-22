@@ -357,7 +357,11 @@
     border-radius: 6px;
     white-space: nowrap;
     transition: background 0.12s ease, color 0.12s ease;
+    display: flex;
+    align-items: center;
+    gap: 9px;
   }
+  .nav-dropdown a .nav-ico { font-size: 15px; line-height: 1; width: 18px; text-align: center; flex-shrink: 0; }
   .nav-dropdown a:hover { background: var(--paper-deep); color: var(--rojo); }
   .nav-dropdown a.active { color: var(--rojo); background: var(--paper-deep); }
   @media (max-width: 720px) {
@@ -5450,24 +5454,24 @@
     </a>
     <button class="nav-menu-toggle" id="navMenuToggle" type="button" aria-haspopup="true" aria-expanded="false" onclick="toggleNavMenu(event)">Secciones ▾</button>
     <div class="nav-dropdown" id="navDropdown" role="menu">
-      <a href="#/" role="menuitem" onclick="closeNavMenu()">Home</a>
-      <a href="#/racha" role="menuitem" onclick="closeNavMenu()">Racha</a>
-      <a href="#/abecedario" role="menuitem" onclick="closeNavMenu()">Abecedario</a>
-      <a href="#/vocabulario" role="menuitem" onclick="closeNavMenu()">Vocab</a>
-      <a href="#/repaso" role="menuitem" onclick="closeNavMenu()">Repaso</a>
-      <a href="#/verbos" role="menuitem" onclick="closeNavMenu()">Verbs</a>
-      <a href="#/lectura" role="menuitem" onclick="closeNavMenu()">Reading</a>
-      <a href="#/escucha" role="menuitem" onclick="closeNavMenu()">Listening</a>
-      <a href="#/escritura" role="menuitem" onclick="closeNavMenu()">Writing</a>
-      <a href="#/voces" role="menuitem" onclick="closeNavMenu()">Voices</a>
-      <a href="#/mundo" role="menuitem" onclick="closeNavMenu()">Mundo</a>
-      <a href="#/historia" role="menuitem" onclick="closeNavMenu(); return window.__goHistoria ? window.__goHistoria() : true;">Historia</a>
-      <a href="#/civilizaciones" role="menuitem" onclick="closeNavMenu()">Pre-Columbian Life</a>
-      <a href="#/lecciones" role="menuitem" onclick="closeNavMenu()">Lessons</a>
-      <a href="#/linguistica" role="menuitem" onclick="closeNavMenu()">Lingüística</a>
-      <a href="#/adquisicion" role="menuitem" onclick="closeNavMenu()">Adquisición</a>
-      <a href="#/juegos" role="menuitem" onclick="closeNavMenu()">Games</a>
-      <a href="#/recursos" role="menuitem" onclick="closeNavMenu()">Resources</a>
+      <a href="#/" role="menuitem" onclick="closeNavMenu()"><span class="nav-ico" aria-hidden="true">🏠</span>Home</a>
+      <a href="#/racha" role="menuitem" onclick="closeNavMenu()"><span class="nav-ico" aria-hidden="true">🔥</span>Racha</a>
+      <a href="#/abecedario" role="menuitem" onclick="closeNavMenu()"><span class="nav-ico" aria-hidden="true">🔤</span>Abecedario</a>
+      <a href="#/vocabulario" role="menuitem" onclick="closeNavMenu()"><span class="nav-ico" aria-hidden="true">🃏</span>Vocab</a>
+      <a href="#/repaso" role="menuitem" onclick="closeNavMenu()"><span class="nav-ico" aria-hidden="true">🧠</span>Repaso</a>
+      <a href="#/verbos" role="menuitem" onclick="closeNavMenu()"><span class="nav-ico" aria-hidden="true">🔄</span>Verbs</a>
+      <a href="#/lectura" role="menuitem" onclick="closeNavMenu()"><span class="nav-ico" aria-hidden="true">📚</span>Reading</a>
+      <a href="#/escucha" role="menuitem" onclick="closeNavMenu()"><span class="nav-ico" aria-hidden="true">🎧</span>Listening</a>
+      <a href="#/escritura" role="menuitem" onclick="closeNavMenu()"><span class="nav-ico" aria-hidden="true">✍️</span>Writing</a>
+      <a href="#/voces" role="menuitem" onclick="closeNavMenu()"><span class="nav-ico" aria-hidden="true">🎙️</span>Voices</a>
+      <a href="#/mundo" role="menuitem" onclick="closeNavMenu()"><span class="nav-ico" aria-hidden="true">🌎</span>Mundo</a>
+      <a href="#/historia" role="menuitem" onclick="closeNavMenu(); return window.__goHistoria ? window.__goHistoria() : true;"><span class="nav-ico" aria-hidden="true">📜</span>Historia</a>
+      <a href="#/civilizaciones" role="menuitem" onclick="closeNavMenu()"><span class="nav-ico" aria-hidden="true">🏛️</span>Pre-Columbian Life</a>
+      <a href="#/lecciones" role="menuitem" onclick="closeNavMenu()"><span class="nav-ico" aria-hidden="true">📘</span>Lessons</a>
+      <a href="#/linguistica" role="menuitem" onclick="closeNavMenu()"><span class="nav-ico" aria-hidden="true">🔬</span>Lingüística</a>
+      <a href="#/adquisicion" role="menuitem" onclick="closeNavMenu()"><span class="nav-ico" aria-hidden="true">🧩</span>Adquisición</a>
+      <a href="#/juegos" role="menuitem" onclick="closeNavMenu()"><span class="nav-ico" aria-hidden="true">🎮</span>Games</a>
+      <a href="#/recursos" role="menuitem" onclick="closeNavMenu()"><span class="nav-ico" aria-hidden="true">🔗</span>Resources</a>
     </div>
   </div>
   <div style="display:flex;gap:10px;align-items:center;flex-shrink:0">
