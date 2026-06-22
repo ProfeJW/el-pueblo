@@ -2163,6 +2163,41 @@
 
 
   /* VERB DRILL */
+  .accent-bar {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 6px;
+    position: sticky;
+    top: 68px;
+    z-index: 50;
+    background: var(--card-bg);
+    border: 1px solid var(--line);
+    border-bottom: none;
+    padding: 10px 14px;
+  }
+  .accent-bar .accent-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--ink-soft);
+    margin-right: 4px;
+  }
+  .accent-key {
+    font-family: 'DM Serif Display', serif;
+    font-size: 16px;
+    color: var(--ink);
+    background: var(--paper);
+    border: 1px solid var(--line);
+    border-radius: 6px;
+    min-width: 34px;
+    padding: 5px 9px;
+    cursor: pointer;
+    transition: background 0.12s ease, color 0.12s ease, border-color 0.12s ease;
+  }
+  .accent-key:hover { background: var(--rojo); color: var(--paper); border-color: var(--rojo); }
+  .accent-key:active { transform: translateY(1px); }
   .drill-board {
     background: var(--card-bg);
     border: 1px solid var(--line);
@@ -6000,6 +6035,18 @@
     </div>
   </div>
 
+  <div class="accent-bar" id="drill-accent-bar">
+    <span class="accent-label">Insert:</span>
+    <button type="button" class="accent-key" onmousedown="event.preventDefault(); insertDrillChar('á')">á</button>
+    <button type="button" class="accent-key" onmousedown="event.preventDefault(); insertDrillChar('é')">é</button>
+    <button type="button" class="accent-key" onmousedown="event.preventDefault(); insertDrillChar('í')">í</button>
+    <button type="button" class="accent-key" onmousedown="event.preventDefault(); insertDrillChar('ó')">ó</button>
+    <button type="button" class="accent-key" onmousedown="event.preventDefault(); insertDrillChar('ú')">ú</button>
+    <button type="button" class="accent-key" onmousedown="event.preventDefault(); insertDrillChar('ñ')">ñ</button>
+    <button type="button" class="accent-key" onmousedown="event.preventDefault(); insertDrillChar('ü')">ü</button>
+    <button type="button" class="accent-key" onmousedown="event.preventDefault(); insertDrillChar('¿')">¿</button>
+    <button type="button" class="accent-key" onmousedown="event.preventDefault(); insertDrillChar('¡')">¡</button>
+  </div>
   <div class="drill-board" id="drill-board">
     <!-- populated by JS -->
   </div>
@@ -11257,6 +11304,30 @@
     drillItems[idx].userInput = value;
     const filled = drillItems.filter(it => it.userInput.trim()).length;
     document.getElementById('drill-filled').textContent = filled;
+  }
+
+  // Accent helper: remember the drill input the student is typing in, so the
+  // á/é/í/ó/ú/ñ/ü/¿/¡ buttons can insert at the cursor without losing focus.
+  let _lastDrillInput = null;
+  document.addEventListener('focusin', function (e) {
+    const t = e.target;
+    if (t && t.classList && t.classList.contains('drill-input')) _lastDrillInput = t;
+  });
+  function insertDrillChar(ch) {
+    let el = _lastDrillInput;
+    // Fall back to the first empty, enabled input if nothing is focused yet.
+    if (!el || el.disabled || !document.body.contains(el)) {
+      el = document.querySelector('.drill-input:not([disabled])');
+    }
+    if (!el || el.disabled) return;
+    const start = el.selectionStart != null ? el.selectionStart : el.value.length;
+    const end = el.selectionEnd != null ? el.selectionEnd : el.value.length;
+    el.value = el.value.slice(0, start) + ch + el.value.slice(end);
+    const pos = start + ch.length;
+    el.focus();
+    try { el.setSelectionRange(pos, pos); } catch (_) {}
+    _lastDrillInput = el;
+    el.dispatchEvent(new Event('input', { bubbles: true }));
   }
 
   function focusNextDrillInput(idx) {
