@@ -5938,6 +5938,7 @@
         <button class="pill" onclick="loadDeck('rutina', this)">Daily routine</button>
         <button class="pill" onclick="loadDeck('bailes', this)">Dances</button>
         <button class="pill" onclick="loadDeck('diadelosmuertos', this)">Día de los Muertos</button>
+        <button class="pill" onclick="loadDeck('educacion', this)">Education</button>
         <button class="pill" onclick="loadDeck('futbol', this)">El fútbol</button>
         <button class="pill" onclick="loadDeck('elsalvador', this)">El Salvador</button>
         <button class="pill" onclick="loadDeck('emociones', this)">Emotions</button>
@@ -5957,10 +5958,13 @@
         <button class="pill" onclick="loadDeck('casa', this)">House &amp; furniture</button>
         <button class="pill" onclick="loadDeck('caza', this)">Hunting</button>
         <button class="pill" onclick="loadDeck('verbosIr', this)">-IR verbs</button>
+        <button class="pill" onclick="loadDeck('derecho', this)">Law</button>
         <button class="pill" onclick="loadDeck('literatura', this)">Literature</button>
         <button class="pill" onclick="loadDeck('mercado', this)">Market &amp; shopping</button>
         <button class="pill" onclick="loadDeck('matematicas', this)">Math</button>
         <button class="pill" onclick="loadDeck('mexico', this)">México</button>
+        <button class="pill" onclick="loadDeck('militar', this)">Military</button>
+        <button class="pill" onclick="loadDeck('musica', this)">Music</button>
         <button class="pill" onclick="loadDeck('naturaleza', this)">Nature</button>
         <button class="pill" onclick="loadDeck('numeros', this)">Numbers</button>
         <button class="pill" onclick="loadDeck('paraguay', this)">Paraguay</button>
@@ -5988,6 +5992,7 @@
         <button class="pill" onclick="loadDeck('uruguay', this)">Uruguay</button>
         <button class="pill" onclick="loadDeck('vehiculos', this)">Vehicles</button>
         <button class="pill" onclick="loadDeck('venezuela', this)">Venezuela</button>
+        <button class="pill" onclick="loadDeck('armas', this)">Weapons</button>
         <button class="pill" onclick="loadDeck('tiempo', this)">Weather &amp; seasons</button>
       </div>
     </div>
@@ -11811,6 +11816,178 @@
   //   quiz: array of { q, options: [{ text, correct }] }
 
   const READINGS = [
+    // ---------- MUSIC READING ----------
+    {
+      id: 'musica-mundo',
+      kind: 'story', level: 'intermediate',
+      title: 'La <em>música</em> del mundo hispano',
+      author: 'Original · El Pueblo',
+      year: '',
+      attribution: 'Cultura · Música',
+      preview: 'De la guitarra flamenca al reguetón: la música hispana suena en todo el planeta.',
+      text: [
+        'La música es una parte enorme de la cultura hispana. Cada país tiene sus instrumentos, sus ritmos y sus canciones. En España, la guitarra acompaña el cante flamenco; en los Andes, las flautas crean melodías antiguas; en el Caribe, los tambores marcan el ritmo de la salsa.',
+        'Hoy, los cantantes hispanos llenan los conciertos más grandes del mundo. Géneros como el reguetón, el pop latino y la bachata se escuchan en la radio de muchos países, incluso de gente que no habla español. La letra y la melodía cruzan las fronteras.',
+        'Pero la música no es solo para escuchar: muchas personas aprenden a tocar un instrumento, a cantar en un coro o a componer sus propias canciones. Tocar música con otros, en una banda o en familia, es una forma de unir a la gente que existe en todas las culturas.'
+      ],
+      gloss: {
+        'la música': 'music', 'el instrumento': 'instrument', 'el ritmo': 'rhythm', 'la guitarra': 'guitar',
+        'el cante': 'flamenco singing', 'la flauta': 'flute', 'la melodía': 'melody', 'el tambor': 'drum',
+        'el cantante': 'singer', 'el concierto': 'concert', 'la letra': 'lyrics', 'tocar': 'to play',
+        'la banda': 'band', 'componer': 'to compose'
+      },
+      quiz: [
+        { q: '¿Qué instrumento acompaña el cante flamenco en España?', options: [
+          { text: 'la guitarra', correct: true }, { text: 'el tambor', correct: false }, { text: 'el violín', correct: false } ]},
+        { q: 'Según el texto, los géneros hispanos hoy…', options: [
+          { text: 'se escuchan en muchos países', correct: true }, { text: 'solo se escuchan en España', correct: false }, { text: 'ya no existen', correct: false } ]},
+        { q: '¿Qué dice el texto sobre tocar música con otros?', options: [
+          { text: 'es una forma de unir a la gente', correct: true }, { text: 'es aburrido', correct: false }, { text: 'es imposible', correct: false } ]}
+      ]
+    },
+    // ---------- EDUCATION READING ----------
+    {
+      id: 'educacion-futuro',
+      kind: 'story', level: 'intermediate',
+      title: 'La <em>educación</em>: la llave del futuro',
+      author: 'Original · El Pueblo',
+      year: '',
+      attribution: 'Cultura · Educación',
+      preview: 'Aprender no termina con la escuela: la educación abre puertas toda la vida.',
+      text: [
+        'Se dice que la educación es la llave del futuro, y es verdad. En la escuela aprendemos a leer, a escribir y a resolver problemas, pero también aprendemos a pensar y a convivir con los demás. Un buen maestro puede cambiar la vida de un estudiante.',
+        'No todos tienen las mismas oportunidades. En muchas partes del mundo hispano, una beca puede ser la única forma de que un joven llegue a la universidad y obtenga un título. Por eso, muchas familias hacen grandes sacrificios para que sus hijos estudien.',
+        'Pero la educación no termina con un diploma. Aprender es algo que hacemos toda la vida: con cada libro, cada viaje y cada conversación. El conocimiento es uno de los pocos tesoros que nadie nos puede quitar.'
+      ],
+      gloss: {
+        'la educación': 'education', 'aprender': 'to learn', 'la escuela': 'school', 'el maestro': 'teacher',
+        'el estudiante': 'student', 'la beca': 'scholarship', 'la universidad': 'university', 'el título': 'degree',
+        'estudiar': 'to study', 'el conocimiento': 'knowledge', 'el diploma': 'diploma'
+      },
+      quiz: [
+        { q: 'Según el texto, además de leer y escribir, en la escuela aprendemos a…', options: [
+          { text: 'pensar y convivir con los demás', correct: true }, { text: 'solo memorizar', correct: false }, { text: 'nada más', correct: false } ]},
+        { q: '¿Qué puede ser la única forma de llegar a la universidad para algunos jóvenes?', options: [
+          { text: 'una beca', correct: true }, { text: 'un coche', correct: false }, { text: 'una multa', correct: false } ]},
+        { q: 'Según el texto, la educación…', options: [
+          { text: 'no termina con un diploma', correct: true }, { text: 'termina en la escuela primaria', correct: false }, { text: 'no sirve para nada', correct: false } ]}
+      ]
+    },
+    // ---------- MILITARY READING ----------
+    {
+      id: 'militar-guerra-paz',
+      kind: 'story', level: 'intermediate',
+      title: 'La <em>guerra</em> y la paz',
+      author: 'Original · El Pueblo',
+      year: '',
+      attribution: 'Historia · Conflicto y paz',
+      preview: 'A lo largo de la historia, los ejércitos han marcado el destino de las naciones — pero la paz siempre fue la meta.',
+      text: [
+        'A lo largo de la historia, los ejércitos han jugado un papel enorme en el mundo hispano. Los soldados de muchos países lucharon en guerras de independencia para liberarse del control colonial. Líderes como Simón Bolívar y José de San Martín dirigieron sus tropas en batallas decisivas.',
+        'Una guerra no se gana solo con fuerza: también requiere estrategia. Los generales debían decidir cuándo atacar, cuándo defender y cómo proteger la frontera. Una victoria podía cambiar el destino de toda una nación; una derrota, también.',
+        'Pero la verdadera meta de cualquier conflicto siempre ha sido la paz. Después de años de guerra, las naciones firman tratados para poner fin a la violencia. Hoy, muchos recuerdan a los soldados del pasado, pero valoran sobre todo el difícil trabajo de mantener la paz.'
+      ],
+      gloss: {
+        'el ejército': 'army', 'el soldado': 'soldier', 'la guerra': 'war', 'la independencia': 'independence',
+        'la tropa': 'troop', 'la batalla': 'battle', 'la estrategia': 'strategy', 'el general': 'general',
+        'atacar': 'to attack', 'defender': 'to defend', 'la frontera': 'border', 'la victoria': 'victory',
+        'la derrota': 'defeat', 'la paz': 'peace', 'el tratado': 'treaty'
+      },
+      quiz: [
+        { q: '¿En qué tipo de guerras lucharon muchos países hispanos?', options: [
+          { text: 'guerras de independencia', correct: true }, { text: 'guerras espaciales', correct: false }, { text: 'ninguna', correct: false } ]},
+        { q: 'Según el texto, una guerra no se gana solo con fuerza, sino también con…', options: [
+          { text: 'estrategia', correct: true }, { text: 'dinero', correct: false }, { text: 'suerte', correct: false } ]},
+        { q: '¿Cuál ha sido siempre la verdadera meta de un conflicto?', options: [
+          { text: 'la paz', correct: true }, { text: 'más guerra', correct: false }, { text: 'la derrota', correct: false } ]}
+      ]
+    },
+    // ---------- WEAPONS READING ----------
+    {
+      id: 'armas-historia',
+      kind: 'story', level: 'intermediate',
+      title: 'Las <em>armas</em> a través de la historia',
+      author: 'Original · El Pueblo',
+      year: '',
+      attribution: 'Historia · Tecnología militar',
+      preview: 'De la espada y el escudo a la pólvora y el cañón: cómo las armas cambiaron la historia.',
+      text: [
+        'Las armas han cambiado mucho a lo largo de la historia. En la antigüedad, los guerreros luchaban cuerpo a cuerpo con espadas y lanzas, y se protegían con un escudo y una armadura de metal. La fuerza y la habilidad lo eran todo.',
+        'Todo cambió con la llegada de la pólvora. Los cañones y los primeros fusiles dieron una ventaja enorme a quienes los tenían. Durante la conquista de América, las armas de fuego de los españoles fueron una de las razones de su poder frente a ejércitos mucho más grandes.',
+        'Hoy, las armas son mucho más peligrosas, y por eso casi todos los países tienen leyes estrictas para controlarlas. Estudiar la historia de las armas no es celebrar la violencia: es entender cómo la tecnología ha cambiado la forma en que los seres humanos hacen — y evitan — la guerra.'
+      ],
+      gloss: {
+        'el arma': 'weapon', 'el guerrero': 'warrior', 'la espada': 'sword', 'la lanza': 'spear',
+        'el escudo': 'shield', 'la armadura': 'armor', 'la pólvora': 'gunpowder', 'el cañón': 'cannon',
+        'el fusil': 'rifle / gun', 'las armas de fuego': 'firearms', 'la conquista': 'the conquest',
+        'peligroso': 'dangerous', 'la ley': 'law'
+      },
+      quiz: [
+        { q: 'En la antigüedad, ¿con qué se protegían los guerreros?', options: [
+          { text: 'un escudo y una armadura', correct: true }, { text: 'un cañón', correct: false }, { text: 'un satélite', correct: false } ]},
+        { q: '¿Qué invento cambió la forma de luchar?', options: [
+          { text: 'la pólvora', correct: true }, { text: 'el telescopio', correct: false }, { text: 'la guitarra', correct: false } ]},
+        { q: 'Según el texto, estudiar la historia de las armas sirve para…', options: [
+          { text: 'entender cómo la tecnología cambió la guerra', correct: true }, { text: 'celebrar la violencia', correct: false }, { text: 'aprender a fabricarlas', correct: false } ]}
+      ]
+    },
+    // ---------- LAW READING ----------
+    {
+      id: 'derecho-justicia',
+      kind: 'story', level: 'intermediate',
+      title: 'La <em>justicia</em> y la ley',
+      author: 'Original · El Pueblo',
+      year: '',
+      attribution: 'Cultura · Derecho y sociedad',
+      preview: 'Jueces, abogados y jurados: cómo funciona la justicia cuando alguien rompe la ley.',
+      text: [
+        'En toda sociedad existen leyes que todos debemos respetar. Cuando alguien comete un delito —como robar o hacer daño a otra persona—, la policía investiga y puede arrestar al sospechoso. Pero nadie es culpable hasta que un tribunal lo decide.',
+        'En el juicio, un abogado defiende al acusado y otro presenta las pruebas en su contra. Los testigos cuentan lo que vieron, y al final el juez —o a veces un jurado— decide si la persona es inocente o culpable. Esa es la base de la justicia.',
+        'El sistema no es perfecto, pero su idea central es justa: toda persona tiene derecho a defenderse y a un juicio justo. Sin leyes y sin tribunales, los más fuertes harían lo que quisieran. Por eso decimos que la ley protege a todos, no solo a unos pocos.'
+      ],
+      gloss: {
+        'la ley': 'law', 'el delito': 'crime', 'robar': 'to steal', 'la policía': 'police',
+        'arrestar': 'to arrest', 'el sospechoso': 'suspect', 'culpable': 'guilty', 'el tribunal': 'court',
+        'el juicio': 'trial', 'el abogado': 'lawyer', 'el acusado': 'the accused', 'las pruebas': 'evidence',
+        'el testigo': 'witness', 'el juez': 'judge', 'el jurado': 'jury', 'inocente': 'innocent', 'la justicia': 'justice'
+      },
+      quiz: [
+        { q: 'Según el texto, ¿cuándo es alguien culpable?', options: [
+          { text: 'cuando un tribunal lo decide', correct: true }, { text: 'cuando la policía lo arresta', correct: false }, { text: 'nunca', correct: false } ]},
+        { q: '¿Quién cuenta lo que vio en un juicio?', options: [
+          { text: 'el testigo', correct: true }, { text: 'el cantante', correct: false }, { text: 'el albañil', correct: false } ]},
+        { q: 'La idea central de la justicia, según el texto, es que…', options: [
+          { text: 'toda persona tiene derecho a defenderse y a un juicio justo', correct: true }, { text: 'los fuertes deciden todo', correct: false }, { text: 'no hacen falta tribunales', correct: false } ]}
+      ]
+    },
+    // ---------- PROFESSIONS READING ----------
+    {
+      id: 'profesiones-elegir',
+      kind: 'story', level: 'intermediate',
+      title: 'Elegir una <em>profesión</em>',
+      author: 'Original · El Pueblo',
+      year: '',
+      attribution: 'Cultura · Trabajo y profesiones',
+      preview: '¿Médico, maestro, ingeniero, artista? Elegir una profesión es una de las grandes decisiones de la vida.',
+      text: [
+        'Una de las preguntas más comunes de la infancia es: "¿Qué quieres ser de grande?" Algunos niños sueñan con ser médicos o bomberos; otros quieren ser maestros, ingenieros, abogados o artistas. Elegir una profesión es una de las decisiones más importantes de la vida.',
+        'A la hora de decidir, hay muchas cosas que pensar. ¿Qué se te da bien? ¿Qué te apasiona? Algunas personas eligen un trabajo por el dinero; otras, porque quieren ayudar a los demás, como los enfermeros o los profesores. Lo ideal es encontrar algo que una las dos cosas.',
+        'Hoy el mundo del trabajo cambia muy rápido. Aparecen profesiones nuevas cada año, sobre todo en la tecnología, y muchas personas cambian de carrera más de una vez en su vida. Por eso, más que elegir "para siempre", lo importante es seguir aprendiendo y estar dispuesto a adaptarse.'
+      ],
+      gloss: {
+        'la profesión': 'profession', 'el médico': 'doctor', 'el bombero': 'firefighter', 'el maestro': 'teacher',
+        'el ingeniero': 'engineer', 'el abogado': 'lawyer', 'el artista': 'artist', 'apasionar': 'to be passionate about',
+        'el enfermero': 'nurse', 'la carrera': 'career', 'adaptarse': 'to adapt'
+      },
+      quiz: [
+        { q: 'Según el texto, elegir una profesión es…', options: [
+          { text: 'una de las decisiones más importantes de la vida', correct: true }, { text: 'algo sin importancia', correct: false }, { text: 'imposible', correct: false } ]},
+        { q: '¿Por qué algunas personas eligen su trabajo?', options: [
+          { text: 'para ayudar a los demás', correct: true }, { text: 'para no aprender nada', correct: false }, { text: 'para quedarse en casa', correct: false } ]},
+        { q: 'Según el texto, hoy el mundo del trabajo…', options: [
+          { text: 'cambia muy rápido y hay que adaptarse', correct: true }, { text: 'nunca cambia', correct: false }, { text: 'no necesita aprendizaje', correct: false } ]}
+      ]
+    },
     // ---------- SPACE READING ----------
     {
       id: 'espacio-explorar',
@@ -14827,7 +15004,37 @@
       { id: 'd-i-105-con', text: 'Los obreros levantan las paredes con ladrillos y cemento.', en: 'The workers build the walls with bricks and cement.', country: null },
       { id: 'd-i-106-con', text: 'El arquitecto revisó los planos antes de empezar la obra.', en: 'The architect checked the blueprints before starting the project.', country: null },
       { id: 'd-i-107-con', text: 'La grúa levantó las vigas de acero hasta el techo.', en: 'The crane lifted the steel beams up to the roof.', country: null },
-      { id: 'd-i-108-con', text: 'En la obra es obligatorio usar casco por seguridad.', en: 'On the construction site, wearing a hard hat is required for safety.', country: null }
+      { id: 'd-i-108-con', text: 'En la obra es obligatorio usar casco por seguridad.', en: 'On the construction site, wearing a hard hat is required for safety.', country: null },
+      // Music (paired with the Music vocab deck)
+      { id: 'd-i-109-mus', text: 'Toco la guitarra en una banda con mis amigos.', en: 'I play guitar in a band with my friends.', country: null },
+      { id: 'd-i-110-mus', text: 'El cantante salió al escenario y el público aplaudió.', en: 'The singer came out on stage and the audience applauded.', country: null },
+      { id: 'd-i-111-mus', text: 'Me sé la letra de esta canción de memoria.', en: 'I know the lyrics of this song by heart.', country: null },
+      { id: 'd-i-112-mus', text: 'El ritmo de la salsa viene de los tambores del Caribe.', en: 'The rhythm of salsa comes from the drums of the Caribbean.', country: null },
+      // Education (paired with the Education vocab deck)
+      { id: 'd-i-113-edu', text: 'La profesora explicó la lección y nos puso tarea.', en: 'The teacher explained the lesson and gave us homework.', country: null },
+      { id: 'd-i-114-edu', text: 'Estudié mucho y aprobé el examen con buena nota.', en: 'I studied a lot and passed the exam with a good grade.', country: null },
+      { id: 'd-i-115-edu', text: 'Ganó una beca para estudiar en la universidad.', en: 'She won a scholarship to study at the university.', country: null },
+      { id: 'd-i-116-edu', text: 'El conocimiento es algo que nadie te puede quitar.', en: 'Knowledge is something no one can take from you.', country: null },
+      // Military (paired with the Military vocab deck)
+      { id: 'd-i-117-mil', text: 'Los soldados defendieron la frontera durante la guerra.', en: 'The soldiers defended the border during the war.', country: null },
+      { id: 'd-i-118-mil', text: 'El general cambió de estrategia antes de la batalla.', en: 'The general changed strategy before the battle.', country: null },
+      { id: 'd-i-119-mil', text: 'Después de muchos años de guerra, por fin llegó la paz.', en: 'After many years of war, peace finally came.', country: null },
+      { id: 'd-i-120-mil', text: 'Las tropas regresaron a la base tras la misión.', en: 'The troops returned to the base after the mission.', country: null },
+      // Weapons (paired with the Weapons vocab deck)
+      { id: 'd-i-121-arm', text: 'El caballero llevaba una espada y un escudo.', en: 'The knight carried a sword and a shield.', country: null },
+      { id: 'd-i-122-arm', text: 'La pólvora cambió la forma de hacer la guerra.', en: 'Gunpowder changed the way war was waged.', country: null },
+      { id: 'd-i-123-arm', text: 'Las armas son peligrosas y hay leyes para controlarlas.', en: 'Weapons are dangerous and there are laws to control them.', country: null },
+      { id: 'd-i-124-arm', text: 'El cañón disparó hacia el barco enemigo.', en: 'The cannon fired toward the enemy ship.', country: null },
+      // Law (paired with the Law vocab deck)
+      { id: 'd-i-125-der', text: 'El abogado defendió al acusado ante el tribunal.', en: 'The lawyer defended the accused before the court.', country: null },
+      { id: 'd-i-126-der', text: 'El juez escuchó a los testigos antes de decidir.', en: 'The judge listened to the witnesses before deciding.', country: null },
+      { id: 'd-i-127-der', text: 'Nadie es culpable hasta que se demuestre con pruebas.', en: 'No one is guilty until it is proven with evidence.', country: null },
+      { id: 'd-i-128-der', text: 'La policía arrestó al sospechoso del robo.', en: 'The police arrested the robbery suspect.', country: null },
+      // Professions (paired with the Professions vocab deck)
+      { id: 'd-i-129-prof', text: 'De grande quiero ser ingeniera o médica.', en: 'When I grow up I want to be an engineer or a doctor.', country: null },
+      { id: 'd-i-130-prof', text: 'Eligió esa profesión porque le gusta ayudar a la gente.', en: 'She chose that profession because she likes helping people.', country: null },
+      { id: 'd-i-131-prof', text: 'Muchas personas cambian de carrera más de una vez.', en: 'Many people change careers more than once.', country: null },
+      { id: 'd-i-132-prof', text: 'El maestro y la enfermera trabajan mucho por los demás.', en: 'The teacher and the nurse work hard for others.', country: null }
     ],
     advanced: [
       { id: 'd-a-01', text: 'A pesar de las dificultades económicas, muchos jóvenes deciden estudiar idiomas extranjeros para mejorar sus oportunidades laborales.', en: 'Despite economic difficulties, many young people decide to study foreign languages to improve their job opportunities.', country: null },
@@ -15418,6 +15625,54 @@
 
   const WRITING_TOPICS = [
     {
+      id: 'musica-write',
+      title: 'La <em>música</em> en mi vida',
+      level: 'sp1', category: 'personal',
+      body: 'Using the Music vocab deck, write about music. What kind of music do you like, and why? Do you play an instrument or sing? Who is your favorite singer or band? Describe a concert you went to (or want to go to). How does music make you feel?',
+      tips: ['Useful vocab: la música, la canción, el cantante, tocar, el instrumento, la guitarra, el concierto, el ritmo', 'Use gustar and encantar (me encanta…, me gusta… porque…)', 'Aim for 100+ words'],
+      date: ''
+    },
+    {
+      id: 'educacion-write',
+      title: 'La importancia de la <em>educación</em>',
+      level: 'sp2', category: 'opinion',
+      body: 'Using the Education vocab deck, write about why education matters. What do we learn in school besides facts? Should education be free for everyone? What makes a good teacher? End with your opinion on the most important thing you have learned.',
+      tips: ['Useful vocab: la educación, aprender, enseñar, el maestro, la universidad, la beca, el conocimiento', 'Use opinion phrases (creo que, es importante que + subjunctive)', 'Aim for 120+ words'],
+      date: ''
+    },
+    {
+      id: 'militar-write',
+      title: 'La <em>guerra</em> y la paz',
+      level: 'sp3', category: 'opinion',
+      body: 'Using the Military vocab deck, write about war and peace. Why have countries gone to war throughout history? What role did armies play in the independence of Latin America? Is war ever justified? Argue your position and explain why peace is so valuable.',
+      tips: ['Useful vocab: el ejército, el soldado, la guerra, la batalla, la independencia, la victoria, la paz', 'Use the preterite/imperfect for history and the subjunctive for opinion', 'Address a counterargument; aim for 130+ words'],
+      date: ''
+    },
+    {
+      id: 'armas-write',
+      title: 'Las <em>armas</em> a través de la historia',
+      level: 'sp3', category: 'cultural',
+      body: 'Using the Weapons vocab deck, write about how weapons changed history. How did people fight in ancient times (swords, shields, armor)? How did gunpowder change warfare and the conquest of the Americas? Why do countries today have laws to control weapons?',
+      tips: ['Useful vocab: el arma, la espada, el escudo, la armadura, la pólvora, el cañón, las armas de fuego, peligroso', 'Use the preterite/imperfect to narrate history', 'Stay factual and analytical; aim for 120+ words'],
+      date: ''
+    },
+    {
+      id: 'derecho-write',
+      title: 'La <em>justicia</em> y la ley',
+      level: 'sp3', category: 'opinion',
+      body: 'Using the Law vocab deck, write about justice. How does a trial work — who are the judge, the lawyer, the witnesses, the jury? Why is someone "innocent until proven guilty" important? Should punishments be harsh or focus on rehabilitation? Defend your view.',
+      tips: ['Useful vocab: la ley, el juez, el abogado, el tribunal, el juicio, las pruebas, inocente, culpable, la justicia', 'Use opinion phrases and the subjunctive (es justo que…, no creo que…)', 'Address a counterargument; aim for 130+ words'],
+      date: ''
+    },
+    {
+      id: 'profesiones-write',
+      title: 'Mi <em>profesión</em> ideal',
+      level: 'sp1', category: 'personal',
+      body: 'Using the Professions vocab deck, write about your ideal career. What do you want to be, and why? What skills does it require? Who inspires you in that field? Would you choose it for money, passion, or to help others? Describe a typical day in that job.',
+      tips: ['Useful vocab: la profesión, el médico, el ingeniero, el maestro, el abogado, la carrera, el trabajo', 'Use querer + infinitive (quiero ser…) and the conditional (me gustaría…)', 'Aim for 100+ words'],
+      date: ''
+    },
+    {
       id: 'espacio-write',
       title: 'Un viaje al <em>espacio</em>',
       level: 'sp2', category: 'narrative',
@@ -15985,6 +16240,54 @@
 
   const SPEAKING_TOPICS = [
     // ========== CULTURE — paired with vocab decks ==========
+    {
+      id: 'musica-speak',
+      title: 'La <em>música</em> que te gusta',
+      level: 'sp1', category: 'personal',
+      body: 'Talk for at least 60 seconds about music. What do you listen to and why? Do you play an instrument or sing? Describe your favorite singer or a concert. Use the Music vocab.',
+      tips: ['Useful vocab: la música, la canción, el cantante, tocar, el instrumento, el concierto, el ritmo', 'Use me gusta / me encanta + porque', 'Give specific examples (artists, songs)'],
+      date: ''
+    },
+    {
+      id: 'educacion-speak',
+      title: 'La importancia de la <em>educación</em>',
+      level: 'sp2', category: 'opinion',
+      body: 'Talk for at least 75 seconds about education. Why does it matter? What makes a good teacher? Should it be free? Share the most important thing you have learned. Use the Education vocab.',
+      tips: ['Useful vocab: la educación, aprender, enseñar, el maestro, la universidad, el conocimiento', 'Signal opinion: creo que, me parece que, es importante que', 'Give at least two reasons'],
+      date: ''
+    },
+    {
+      id: 'militar-speak',
+      title: 'La <em>guerra</em> y la paz',
+      level: 'sp3', category: 'opinion',
+      body: 'Talk for at least 75 seconds about war and peace. Why do wars happen? Is war ever justified? Why is peace so valuable? Be thoughtful and respectful. Use the Military vocab.',
+      tips: ['Useful vocab: el ejército, el soldado, la guerra, la batalla, la paz, defender, la victoria', 'Use the subjunctive for opinion (no creo que la guerra sea…)', 'Organize: por un lado… por otro lado…'],
+      date: ''
+    },
+    {
+      id: 'armas-speak',
+      title: 'Las <em>armas</em> en la historia',
+      level: 'sp3', category: 'cultural',
+      body: 'Talk for at least 60 seconds about how weapons changed history — from swords and shields to gunpowder and cannons. Why do countries control weapons today? Stay factual. Use the Weapons vocab.',
+      tips: ['Useful vocab: el arma, la espada, el escudo, la armadura, la pólvora, el cañón, peligroso', 'Use the preterite/imperfect to narrate history', 'Keep it analytical, not graphic'],
+      date: ''
+    },
+    {
+      id: 'derecho-speak',
+      title: 'La <em>justicia</em> y la ley',
+      level: 'sp3', category: 'roleplay',
+      body: 'Role-play a short courtroom scene for at least 60 seconds, or explain how a trial works. Mention the judge, the lawyer, the witnesses, and how someone is found innocent or guilty. Use the Law vocab.',
+      tips: ['Useful vocab: la ley, el juez, el abogado, el tribunal, el testigo, inocente, culpable, las pruebas', 'You can switch voices (juez, abogado, testigo)', 'Use the present and connectors (entonces, por lo tanto)'],
+      date: ''
+    },
+    {
+      id: 'profesiones-speak',
+      title: 'Tu <em>profesión</em> ideal',
+      level: 'sp1', category: 'personal',
+      body: 'Talk for at least 60 seconds about your ideal career. What do you want to be and why? What skills does it need? Money, passion, or helping others — what matters most to you? Use the Professions vocab.',
+      tips: ['Useful vocab: la profesión, el médico, el ingeniero, el maestro, la carrera, el trabajo', 'Use quiero ser… and me gustaría… porque…', 'Describe a typical day in that job'],
+      date: ''
+    },
     {
       id: 'espacio-speak',
       title: 'Imagina un viaje al <em>espacio</em>',
