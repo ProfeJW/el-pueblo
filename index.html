@@ -6037,6 +6037,7 @@
         <button class="pill" onclick="loadDeck('verbosIr', this)">-IR verbs</button>
         <button class="pill" onclick="loadDeck('lazarillo', this)">Lazarillo de Tormes</button>
         <button class="pill" onclick="loadDeck('literatura', this)">Literature</button>
+        <button class="pill" onclick="loadDeck('mercado', this)">Market &amp; shopping</button>
         <button class="pill" onclick="loadDeck('mexico', this)">México</button>
         <button class="pill" onclick="loadDeck('numeros', this)">Numbers</button>
         <button class="pill" onclick="loadDeck('paraguay', this)">Paraguay</button>
@@ -11899,6 +11900,62 @@
   //   quiz: array of { q, options: [{ text, correct }] }
 
   const READINGS = [
+    // ---------- MARKET READING — A day at the market ----------
+    {
+      id: 'mercado-dia',
+      kind: 'story', level: 'intermediate',
+      title: 'Un día en el <em>mercado</em>',
+      author: 'Original · El Pueblo',
+      year: '',
+      attribution: 'Cultura · Mercado y compras',
+      preview: '"¿A cuánto el kilo?" — En el mercado al aire libre, regatear es parte del juego.',
+      text: [
+        'Los sábados por la mañana, mi madre y yo vamos al mercado al aire libre del centro. Es muy diferente del supermercado: aquí cada puesto tiene su propio vendedor, y los colores y olores de la fruta fresca llenan el aire.',
+        'Primero buscamos las frutas y verduras de temporada, porque son más baratas y de mejor calidad. Mi madre toca los tomates, huele los melones y escoge solo los más maduros. "Lo barato sale caro", dice siempre, "pero la buena calidad vale la pena."',
+        'En un puesto, ella pregunta: "¿A cuánto el kilo?" El vendedor responde, y entonces empieza el regateo. Mi madre ofrece un poco menos, el vendedor sonríe, y al final llegan a un precio justo. Regatear no es pelear: es casi una conversación amable entre clientes y vendedores que se conocen desde hace años.',
+        'Pagamos en efectivo, guardamos todo en nuestra canasta y, antes de irnos, el vendedor nos regala unas naranjas "para la casa". Salimos con las bolsas llenas y, sobre todo, con la sensación de haber comprado algo más que comida: un pedazo de la vida del barrio.'
+      ],
+      gloss: {
+        'el mercado al aire libre': 'open-air market',
+        'el supermercado': 'supermarket',
+        'el puesto': 'stall',
+        'el vendedor': 'vendor',
+        'de temporada': 'in season',
+        'barato': 'cheap',
+        'la calidad': 'quality',
+        'maduros': 'ripe',
+        'lo barato sale caro': 'cheap things end up costing you (saying)',
+        '¿a cuánto el kilo?': 'how much per kilo?',
+        'el regateo': 'haggling',
+        'regatear': 'to haggle',
+        'el precio': 'price',
+        'en efectivo': 'in cash',
+        'la canasta': 'basket',
+        'las bolsas': 'the bags'
+      },
+      quiz: [
+        { q: '¿En qué se diferencia el mercado del supermercado, según el texto?', options: [
+          { text: 'Cada puesto tiene su propio vendedor', correct: true },
+          { text: 'Todo es más caro', correct: false },
+          { text: 'No se puede comprar fruta', correct: false }
+        ]},
+        { q: '¿Por qué buscan productos de temporada?', options: [
+          { text: 'Son más baratos y de mejor calidad', correct: true },
+          { text: 'Son los únicos que hay', correct: false },
+          { text: 'No les gusta la fruta', correct: false }
+        ]},
+        { q: 'Según el texto, regatear es…', options: [
+          { text: 'casi una conversación amable, no una pelea', correct: true },
+          { text: 'una forma de discutir y enojarse', correct: false },
+          { text: 'algo prohibido en el mercado', correct: false }
+        ]},
+        { q: '¿Cómo pagan al final?', options: [
+          { text: 'En efectivo', correct: true },
+          { text: 'Con tarjeta de crédito', correct: false },
+          { text: 'No pagan nada', correct: false }
+        ]}
+      ]
+    },
     // ---------- COOKING READING — A family recipe ----------
     {
       id: 'cocina-receta-abuela',
@@ -14605,7 +14662,12 @@
       { id: 'd-i-53-cocina', text: 'Primero pica la cebolla y luego fríela en la sartén a fuego lento.', en: 'First chop the onion and then fry it in the pan over low heat.', country: null },
       { id: 'd-i-54-cocina', text: 'Mi abuela hierve el arroz mientras prepara la sopa de pollo.', en: 'My grandmother boils the rice while she makes the chicken soup.', country: null },
       { id: 'd-i-55-cocina', text: 'No olvides probar la salsa para ver si le falta sal.', en: 'Don\'t forget to taste the sauce to see if it needs salt.', country: null },
-      { id: 'd-i-56-cocina', text: 'Agrega dos cucharadas de aceite y mezcla bien los ingredientes.', en: 'Add two spoonfuls of oil and mix the ingredients well.', country: null }
+      { id: 'd-i-56-cocina', text: 'Agrega dos cucharadas de aceite y mezcla bien los ingredientes.', en: 'Add two spoonfuls of oil and mix the ingredients well.', country: null },
+      // Market & shopping (paired with the Market vocab deck)
+      { id: 'd-i-57-mercado', text: 'Los sábados vamos al mercado a comprar fruta y verdura fresca.', en: 'On Saturdays we go to the market to buy fresh fruit and vegetables.', country: null },
+      { id: 'd-i-58-mercado', text: '¿A cuánto está el kilo de tomates? Me parece un poco caro.', en: 'How much is a kilo of tomatoes? It seems a bit expensive to me.', country: null },
+      { id: 'd-i-59-mercado', text: 'El vendedor me hizo un descuento porque compré una docena.', en: 'The vendor gave me a discount because I bought a dozen.', country: null },
+      { id: 'd-i-60-mercado', text: 'Pagué en efectivo y guardé todo en mi propia bolsa.', en: 'I paid in cash and put everything in my own bag.', country: null }
     ],
     advanced: [
       { id: 'd-a-01', text: 'A pesar de las dificultades económicas, muchos jóvenes deciden estudiar idiomas extranjeros para mejorar sus oportunidades laborales.', en: 'Despite economic difficulties, many young people decide to study foreign languages to improve their job opportunities.', country: null },
@@ -15196,6 +15258,15 @@
 
   const WRITING_TOPICS = [
     {
+      id: 'mercado-compras',
+      title: 'De <em>compras</em> en el mercado',
+      level: 'sp1',
+      category: 'cultural',
+      body: 'Using the Market & shopping vocab deck, write about going shopping at a market. What do you buy, and from which stalls? How much do things cost — what\'s cheap, what\'s expensive? Do you haggle? How do you pay? Compare an open-air market to a supermarket: which do you prefer, and why?',
+      tips: ['Useful vocab: el mercado, el puesto, el vendedor, el precio, caro, barato, regatear, pagar, el efectivo, fresco', 'Ask and answer price questions: "¿Cuánto cuesta…?" / "Cuesta…"', 'Aim for 100+ words and give an opinion with "prefiero… porque…"'],
+      date: ''
+    },
+    {
       id: 'cocina-receta',
       title: 'Tu <em>receta</em> favorita',
       level: 'sp1',
@@ -15677,6 +15748,14 @@
 
   const SPEAKING_TOPICS = [
     // ========== CULTURE — paired with vocab decks ==========
+    {
+      id: 'mercado-speak',
+      title: 'En el <em>mercado</em>: regatear',
+      level: 'sp2', category: 'roleplay',
+      body: 'Role-play a market scene for at least 60 seconds. Play BOTH parts: the customer and the vendor. Ask the price ("¿A cuánto el kilo?"), say it\'s too expensive, haggle for a better price, agree, and pay. Use the Market & shopping vocab.',
+      tips: ['Useful vocab: ¿cuánto cuesta?, el precio, caro, barato, regatear, el descuento, pagar, el efectivo, el cambio', 'Be polite: "¿Me puede hacer un descuento?" / "Se lo dejo en…"', 'Switch voices clearly between the customer and the vendor'],
+      date: ''
+    },
     {
       id: 'cocina-receta-speak',
       title: 'Explica cómo <em>preparar un plato</em>',
