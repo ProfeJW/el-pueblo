@@ -15,7 +15,8 @@ window.HISTORIA = [
           title: 'The Inquisition at a distance',
           spanish: 'la Inquisición a la distancia',
           body: 'Chile never had its own tribunal — from 1570 it fell under the <strong>Inquisition of Lima</strong>, with <em>comisarios</em> in Santiago and Concepción collecting denunciations. An accused Chilean faced a brutal journey north before trial even began, and partly for that reason prosecutions from Chile were relatively few: distance worked as a kind of shield.<br><br>The system\'s main daily presence was quieter: edicts of faith read from pulpits, neighbors invited to inform on neighbors, and the inspection of books arriving through Valparaíso against the <em>Index</em> of banned titles. The institution\'s authority dissolved here with independence in the 1810s.',
-          vocab: ['el comisario', 'la denuncia', 'el edicto de fe', 'los libros prohibidos']
+          vocab: ['el comisario', 'la denuncia', 'el edicto de fe', 'los libros prohibidos'],
+          sources: ['https://en.wikipedia.org/wiki/Peruvian_Inquisition', 'https://en.wikipedia.org/wiki/Spanish_Inquisition']
         },
         {
           year: '1970',
@@ -70,7 +71,8 @@ window.HISTORIA = [
           title: 'Under the Inquisition of Lima',
           spanish: 'bajo la Inquisición de Lima',
           body: 'No inquisitorial tribunal ever sat in Buenos Aires: the Río de la Plata and Tucumán answered to <strong>Lima</strong>, through local <em>comisarios</em> who read edicts of faith and forwarded denunciations across the continent. The most famous victim from this soil was <strong>Francisco Maldonado da Silva</strong>, a surgeon from San Miguel de Tucumán arrested in 1627 for secretly practicing Judaism. He spent twelve years in Lima\'s cells refusing to recant — debating every theologian sent to him — and was burned in the great auto de fe of 1639.<br><br>There is a fitting coda: in 1813, the revolutionary <strong>Asamblea del Año XIII</strong> formally abolished the Inquisition in the Provincias Unidas — one of its first acts, alongside ending noble titles and instruments of torture. Cutting that institution loose was part of what independence <em>meant</em>.',
-          vocab: ['el comisario', 'el edicto de fe', 'la denuncia', 'la asamblea', 'abolir']
+          vocab: ['el comisario', 'el edicto de fe', 'la denuncia', 'la asamblea', 'abolir'],
+          sources: ['https://es.wikipedia.org/wiki/Asamblea_del_A%C3%B1o_XIII', 'https://en.wikipedia.org/wiki/Peruvian_Inquisition']
         },
         {
           year: '1810–1900',
@@ -168,8 +170,9 @@ window.HISTORIA = [
           year: '1610',
           title: 'The Cartagena tribunal',
           spanish: 'el Tribunal de Cartagena de Indias',
-          body: 'The third and last American tribunal of the Inquisition was established in 1610 in <strong>Cartagena de Indias</strong> — then one of the largest slave-trading ports in the Americas — with jurisdiction over New Granada, Venezuela, Panama, and the Spanish Caribbean. More than its sister courts in Lima and Mexico, Cartagena prosecuted accusations of <strong>brujería</strong> and <em>hechicería</em> — and its accused were disproportionately <strong>enslaved and free Africans</strong>, whose religious practices Spanish authorities read as witchcraft. Indigenous people, as elsewhere, were formally exempt.<br><br>The tribunal\'s elegant <strong>Palacio de la Inquisición</strong>, on a corner of the Plaza de Bolívar in Cartagena\'s walled city, is today a museum — its baroque doorway is one of the most photographed in Colombia, which makes the building\'s original purpose all the more chilling. The inquisitors were expelled definitively with independence in 1821.',
-          vocab: ['la brujería', 'la hechicería', 'el tribunal', 'la denuncia', 'la esclavitud', 'el palacio']
+          body: 'The third and last American tribunal of the Inquisition was established in 1610 in <strong>Cartagena de Indias</strong> — then one of the largest slave-trading ports in the Americas — with jurisdiction over New Granada, Venezuela, Panama, and the Spanish Caribbean. More than its sister courts in Lima and Mexico, Cartagena prosecuted accusations of <strong>brujería</strong> and <em>hechicería</em> — and the witchcraft cases in particular fell disproportionately on <strong>enslaved and free Africans</strong>, whose practices Spanish authorities read as devil-worship (Africans were also the majority of the city\'s population). Indigenous people, as elsewhere, were formally exempt.<br><br>The tribunal\'s elegant <strong>Palacio de la Inquisición</strong>, on a corner of the Plaza de Bolívar in Cartagena\'s walled city, is today a museum — its baroque doorway is one of the most photographed in Colombia, which makes the building\'s original purpose all the more chilling. The inquisitors were first expelled in 1811, when Cartagena declared independence; the tribunal was restored under Spanish reconquest in 1815 and abolished for good in 1821.',
+          vocab: ['la brujería', 'la hechicería', 'el tribunal', 'la denuncia', 'la esclavitud', 'el palacio'],
+          sources: ['https://www.muhca.gov.co/', 'https://en.wikipedia.org/wiki/Spanish_Inquisition', 'https://www.britannica.com/topic/Spanish-Inquisition']
         },
         {
           year: '1810–1830',
@@ -248,7 +251,8 @@ window.HISTORIA = [
           title: 'The Lima tribunal — the Inquisition in South America',
           spanish: 'el Tribunal de Lima',
           body: 'In 1570, Felipe II installed the <strong>Tribunal del Santo Oficio de Lima</strong>, with jurisdiction over almost all of Spanish South America — from Panama down through Chile and across to the Río de la Plata. Distant cities had local <em>comisarios</em> who read edicts of faith and shipped the accused over the Andes to Lima\'s secret cells. As everywhere in Spanish America, <strong>Indigenous people were formally outside its jurisdiction</strong>.<br><br>Its darkest chapter was <strong>\'la complicidad grande\'</strong> (1635–1639): a sweeping crackdown on Portuguese <em>converso</em> merchants accused of secretly practicing Judaism, which gutted Lima\'s commercial elite. It climaxed in the great <strong>auto de fe of January 1639</strong> in the Plaza Mayor. Among those burned was <strong>Francisco Maldonado da Silva</strong>, a surgeon from Tucumán who spent twelve years in the cells debating the theologians sent to convert him — one of the most remarkable prisoners of conscience in the history of the Americas. The tribunal executed roughly thirty to forty people across its 250 years before being abolished in 1820.<br><br>You can stand in its actual cells today: the <strong>Museo de la Inquisición</strong>, beside the Congress in Lima, preserves the tribunal\'s original building.',
-          vocab: ['el Santo Oficio', 'el comisario', 'el converso', 'el auto de fe', 'la denuncia', 'la celda']
+          vocab: ['el Santo Oficio', 'el comisario', 'el converso', 'el auto de fe', 'la denuncia', 'la celda'],
+          sources: ['https://en.wikipedia.org/wiki/Peruvian_Inquisition', 'https://www.congreso.gob.pe/eng/inquisition-museum/', 'https://en.wikipedia.org/wiki/Spanish_Inquisition']
         },
         {
           year: '~3000 BCE–1400 CE',
@@ -349,7 +353,8 @@ window.HISTORIA = [
           title: 'The Spanish Inquisition is established',
           spanish: 'la Inquisición española',
           body: 'In 1478, Pope Sixtus IV authorized Fernando and Isabel to appoint their own inquisitors — making the <strong>Spanish Inquisition</strong> unusual from birth: a religious court controlled by the <em>Crown</em>, not by Rome. Its first target was the <strong>conversos</strong> — Jews who had converted to Catholicism, often under duress — suspected of secretly practicing their old faith. The first <em>auto de fe</em> was held in Sevilla in 1481, and <strong>Tomás de Torquemada</strong> became the first Inquisitor General in 1483. Over time its net widened: <em>moriscos</em>, suspected Protestants (<em>luteranos</em>), blasphemy, bigamy, and banned books.<br><br>How it worked: an <strong>edicto de fe</strong> was read in church, inviting neighbors to denounce one another. Arrests were secret, property was confiscated, and the accused was never told who had denounced them. Torture was used to extract confessions (as in secular courts of the era). Sentences were announced at <strong>autos de fe</strong> — elaborate public ceremonies — and the condemned who refused to repent were \'relaxed to the secular arm\' and burned at the <em>hoguera</em>. Modern historians estimate the executions in Spain in the low thousands across 350 years — far fewer than the legend claims, but the machinery of denunciation and fear reshaped daily life, and the <em>Index</em> of banned books censored what Spain could read for centuries.<br><br>The Inquisition outlived empires: it was not definitively abolished until <strong>1834</strong>. It also crossed the Atlantic — tribunals were established in Lima (1570), Ciudad de México (1571), and Cartagena de Indias (1610); you\'ll find that story on those countries\' pages. Even Goya was summoned before it to defend <em>La maja desnuda</em>. The debate over its memory — between the exaggerated \'Black Legend\' and attempts to minimize it — is itself part of Spanish history.',
-          vocab: ['la Inquisición', 'el converso', 'la herejía', 'el auto de fe', 'la hoguera', 'la censura', 'la denuncia']
+          vocab: ['la Inquisición', 'el converso', 'la herejía', 'el auto de fe', 'la hoguera', 'la censura', 'la denuncia'],
+          sources: ['https://en.wikipedia.org/wiki/Spanish_Inquisition', 'https://www.britannica.com/topic/Spanish-Inquisition', 'https://www.museodelprado.es/en/the-collection/art-work/the-naked-maja/65953b93-323e-48fe-98cb-9d4b15852b18']
         },
         {
           year: '1492',
@@ -443,7 +448,8 @@ window.HISTORIA = [
           title: 'Havana and the Holy Office',
           spanish: 'la Inquisición en Cuba',
           body: 'From 1610 Cuba answered to the new <strong>Tribunal of Cartagena de Indias</strong>, through a <em>comisaría</em> in Havana (in the earlier decades, bishops had wielded inquisitorial powers in the Caribbean). Havana\'s role as the rendezvous of the treasure fleets shaped its inquisitorial life: every arriving ship could be inspected for banned books, and the most common \'herejes\' were <strong>foreign Protestant sailors</strong> — English, French, and Dutch — who passed through one of the busiest ports in the Americas.<br><br>Locally, the system mostly meant the familiar machinery of denunciation: blasphemy, bigamy, and accusations of sorcery, with serious cases shipped to Cartagena for trial. It dissolved in the independence era of the early 19th century — though Cuba itself remained Spanish until 1898.',
-          vocab: ['el comisario', 'el hereje', 'los libros prohibidos', 'el puerto', 'la denuncia']
+          vocab: ['el comisario', 'el hereje', 'los libros prohibidos', 'el puerto', 'la denuncia'],
+          sources: ['https://en.wikipedia.org/wiki/Spanish_Inquisition', 'https://www.britannica.com/topic/Spanish-Inquisition']
         },
         {
           year: '1868–1898',
@@ -530,7 +536,8 @@ window.HISTORIA = [
           title: 'The Inquisition in a small province',
           spanish: 'la Inquisición en El Salvador',
           body: 'San Salvador, a modest province of the Kingdom of Guatemala, answered from 1571 to the <strong>Tribunal of Mexico City</strong> through the Guatemalan comisaría. Its inquisitorial history is correspondingly modest: scattered cases of blasphemy and bigamy, denunciations between neighbors, and the reading of the <em>edicto de fe</em> — the ritual that made every parishioner a potential informer.<br><br>As everywhere in Spanish America, the Indigenous and mestizo majority was formally exempt from the tribunal\'s jurisdiction. The institution\'s authority here ended with Central American independence in 1821.',
-          vocab: ['el comisario', 'la denuncia', 'la blasfemia', 'el edicto de fe']
+          vocab: ['el comisario', 'la denuncia', 'la blasfemia', 'el edicto de fe'],
+          sources: ['https://en.wikipedia.org/wiki/Mexican_Inquisition', 'https://en.wikipedia.org/wiki/Spanish_Inquisition']
         },
         {
           year: '1821–1900',
@@ -624,7 +631,8 @@ window.HISTORIA = [
           title: 'The Inquisition comes to New Spain',
           spanish: 'el Tribunal del Santo Oficio',
           body: 'In 1571, Felipe II established a tribunal of the <strong>Santo Oficio</strong> in Mexico City, with jurisdiction over New Spain, Central America, and even the Philippines. One crucial rule: <strong>Indigenous people were formally exempt</strong> — the Crown classed them as \'new in the faith,\' answerable to bishops\' courts instead. The tribunal\'s typical accused were settlers: <em>conversos</em> suspected of secretly practicing Judaism, foreign Protestant sailors and captured pirates, and cases of blasphemy, bigamy, and banned books.<br><br>Its most famous victim was <strong>Luis de Carvajal el Mozo</strong>, nephew of the governor of Nuevo León, burned with members of his family at the great auto de fe of 1596 for crypto-Judaism — his secret memoirs and letters survive as some of the most extraordinary personal documents of colonial America. The largest spectacle was the <strong>Gran Auto de Fe of 1649</strong>. Across two and a half centuries the tribunal executed several dozen people; its censorship, spies, and prisons reached far further than its stake did.<br><br>The Inquisition even touched independence: <strong>Hidalgo</strong> was condemned by it, and <strong>Morelos</strong> was tried before it in 1815 before being shot. The tribunal was abolished for good in 1820. Its palace still stands on the Plaza de Santo Domingo in Mexico City.',
-          vocab: ['el Santo Oficio', 'el tribunal', 'el converso', 'el auto de fe', 'la denuncia', 'la censura']
+          vocab: ['el Santo Oficio', 'el tribunal', 'el converso', 'el auto de fe', 'la denuncia', 'la censura'],
+          sources: ['https://en.wikipedia.org/wiki/Mexican_Inquisition', 'https://en.wikipedia.org/wiki/Luis_de_Carvajal_the_Younger', 'https://en.wikipedia.org/wiki/Spanish_Inquisition']
         },
         {
           year: '1810–1821',
@@ -713,7 +721,8 @@ window.HISTORIA = [
           title: 'Under the Mexican tribunal',
           spanish: 'la Inquisición en el Reino de Guatemala',
           body: 'From 1571 the Kingdom of Guatemala answered to the <strong>Tribunal of Mexico City</strong>, through a <em>comisario</em> seated in Santiago de Guatemala (today Antigua). With the overwhelmingly Maya population <strong>formally exempt</strong> from inquisitorial jurisdiction, the tribunal\'s reach here touched mainly the small Spanish and criollo world: blasphemy, bigamy, banned books, and the occasional foreign \'hereje\' unlucky enough to pass through.<br><br>The everyday face of the system was the <strong>edicto de fe</strong> — read in church, inviting denunciation — and the inspection of imported books. Cases serious enough for trial meant a long forced journey to Mexico City. The institution dissolved here with independence in 1821.',
-          vocab: ['el comisario', 'el edicto de fe', 'la denuncia', 'el hereje', 'los libros prohibidos']
+          vocab: ['el comisario', 'el edicto de fe', 'la denuncia', 'el hereje', 'los libros prohibidos'],
+          sources: ['https://en.wikipedia.org/wiki/Mexican_Inquisition', 'https://en.wikipedia.org/wiki/Spanish_Inquisition']
         },
         {
           year: '1944–1954',
@@ -769,7 +778,8 @@ window.HISTORIA = [
           title: 'Comayagua, Trujillo, and the Holy Office',
           spanish: 'la Inquisición en Honduras',
           body: 'Honduras fell under the <strong>Tribunal of Mexico City</strong> from 1571, via the comisaría of the Kingdom of Guatemala, with church officials in Comayagua handling local denunciations. The docket was small — blasphemy, bigamy, suspect books — since the Indigenous majority was formally exempt.<br><br>The Caribbean coast gave the system its distinctive local flavor: with English and Dutch ships haunting the coast around <strong>Trujillo</strong>, the occasional captured Protestant corsair was the most exotic \'heretic\' Honduras ever supplied to the inquisitors.',
-          vocab: ['el comisario', 'la denuncia', 'la blasfemia', 'el corsario', 'el hereje']
+          vocab: ['el comisario', 'la denuncia', 'la blasfemia', 'el corsario', 'el hereje'],
+          sources: ['https://en.wikipedia.org/wiki/Mexican_Inquisition', 'https://en.wikipedia.org/wiki/Spanish_Inquisition']
         },
         {
           year: '1899–1954',
@@ -818,7 +828,8 @@ window.HISTORIA = [
           title: 'A late city, a distant tribunal',
           spanish: 'la Inquisición en la Banda Oriental',
           body: 'The Banda Oriental was settled so late — Montevideo was founded in 1724 — that the Inquisition\'s presence here was always thin: a <em>comisaría</em> tied to Buenos Aires, under the far-off <strong>Tribunal of Lima</strong>. Edicts of faith were read, arriving ships\' books were checked against the <em>Index</em>, and a small number of denunciations were forwarded north; almost none became full trials.<br><br>The institution effectively vanished from the Río de la Plata with the revolutions of the 1810s, when the region\'s assemblies dismantled the colonial machinery of throne and altar.',
-          vocab: ['el comisario', 'el edicto de fe', 'la denuncia', 'los libros prohibidos']
+          vocab: ['el comisario', 'el edicto de fe', 'la denuncia', 'los libros prohibidos'],
+          sources: ['https://en.wikipedia.org/wiki/Peruvian_Inquisition', 'https://en.wikipedia.org/wiki/Spanish_Inquisition']
         },
         {
           year: '1811-1830',
@@ -874,7 +885,8 @@ window.HISTORIA = [
           title: 'The Inquisition at the edge of empire',
           spanish: 'la Inquisición en el fin del mundo',
           body: 'Paraguay was about as far from an inquisitorial tribunal as a subject of the Spanish Crown could be: Asunción had a <em>comisario</em> answering to <strong>Lima</strong>, several months\' travel away. Cases from Paraguay were a handful across three centuries — mostly blasphemy and bigamy — and sending an accused person to Lima was so costly that it rarely happened.<br><br>The deeper religious drama of colonial Paraguay ran through other channels entirely — the Jesuit missions and their expulsion in 1767 — but the Inquisition\'s edicts of faith and book inspections still formally applied here until the institution dissolved with the independence era.',
-          vocab: ['el comisario', 'la blasfemia', 'el edicto de fe', 'la misión']
+          vocab: ['el comisario', 'la blasfemia', 'el edicto de fe', 'la misión'],
+          sources: ['https://en.wikipedia.org/wiki/Peruvian_Inquisition', 'https://en.wikipedia.org/wiki/Spanish_Inquisition']
         },
         {
           year: '1811-1840',
@@ -937,7 +949,8 @@ window.HISTORIA = [
           title: 'Potosí under the eye of Lima',
           spanish: 'la Inquisición en el Alto Perú',
           body: 'Alto Perú — today\'s Bolivia — fell under the <strong>Tribunal of Lima</strong> from 1570, with <em>comisarios</em> in Potosí and La Plata (modern Sucre). <strong>Potosí</strong>, the richest silver city on earth, drew particular inquisitorial attention: its swarming markets were full of Portuguese <em>converso</em> merchants, and when Lima launched its great crackdown on crypto-Judaism in the 1630s (\'la complicidad grande\'), traders from the silver economy were caught in the net.<br><br>For the Indigenous majority laboring in the mines, the Inquisition was formally irrelevant — they were exempt from its jurisdiction — but for the commercial world built on their labor, the fear of denunciation was a constant tax on conscience.',
-          vocab: ['el comisario', 'el converso', 'la denuncia', 'la plata', 'el mercader']
+          vocab: ['el comisario', 'el converso', 'la denuncia', 'la plata', 'el mercader'],
+          sources: ['https://en.wikipedia.org/wiki/Peruvian_Inquisition', 'https://en.wikipedia.org/wiki/Spanish_Inquisition']
         },
         {
           year: '1825-1879',
@@ -986,7 +999,8 @@ window.HISTORIA = [
           title: 'Under the Cartagena tribunal',
           spanish: 'la Inquisición en Venezuela',
           body: 'From 1610 Venezuela answered to the <strong>Tribunal of Cartagena de Indias</strong>, with <em>comisarios</em> in Caracas and the port cities. A long, lightly guarded coastline made Venezuela a smuggler\'s paradise — and that shaped its inquisitorial docket: contraband cargoes came with contraband <strong>books</strong>, and the foreign (often Protestant) traders who worked the coast were perennial suspects, alongside the everyday cases of blasphemy and bigamy.<br><br>The tribunal\'s authority here collapsed with the wars of independence: the same generation that expelled Spanish rule expelled the inquisitors, and the institution was finished in this region by 1821.',
-          vocab: ['el comisario', 'el contrabando', 'los libros prohibidos', 'la denuncia']
+          vocab: ['el comisario', 'el contrabando', 'los libros prohibidos', 'la denuncia'],
+          sources: ['https://www.muhca.gov.co/', 'https://en.wikipedia.org/wiki/Spanish_Inquisition']
         },
         {
           year: '1810-1830',
@@ -1039,10 +1053,11 @@ window.HISTORIA = [
         },
         {
           year: '1519',
-          title: 'San Juan — the first inquisitorial seat in the New World',
+          title: 'San Juan — an early inquisitorial seat in the New World',
           spanish: 'la primera sede inquisitorial de América',
-          body: 'Puerto Rico holds a dark first: in 1519, <strong>Alonso Manso</strong>, bishop of San Juan, was named inquisitor for the Indies — making San Juan the <strong>first seat of inquisitorial authority in the Americas</strong>, half a century before the formal tribunals of Lima and Mexico existed. This early episcopal inquisition prosecuted the hemisphere\'s first heresy cases from a tiny island capital.<br><br>After the formal tribunals were founded, Puerto Rico\'s cases were handled through local <em>comisarios</em> and, from <strong>1610</strong>, fell under the <strong>Tribunal of Cartagena de Indias</strong>. As a fortified port on the edge of the empire, its typical accused were foreign Protestant sailors and corsairs; the everyday system was edicts of faith, book inspections, and denunciations, until the institution dissolved in the early 19th century.',
-          vocab: ['el obispo', 'el inquisidor', 'el comisario', 'el hereje', 'la denuncia']
+          body: 'In 1519, <strong>Alonso Manso</strong>, the first bishop of San Juan, was named <strong>Inquisitor General of the Indies</strong> — the first person to hold that title for the New World — making San Juan an early seat of inquisitorial authority, decades before the formal tribunals of Lima and Mexico existed. (Bishops in Santo Domingo and Darién had already exercised scattered inquisitorial powers a few years earlier, so this was an early seat rather than the very first stirring.) This early episcopal inquisition prosecuted some of the hemisphere\'s earliest heresy cases from a tiny island capital.<br><br>After the formal tribunals were founded, Puerto Rico\'s cases were handled through local <em>comisarios</em> and, from <strong>1610</strong>, fell under the <strong>Tribunal of Cartagena de Indias</strong>. As a fortified port on the edge of the empire, its typical accused were foreign Protestant sailors and corsairs; the everyday system was edicts of faith, book inspections, and denunciations, until the institution dissolved in the early 19th century.',
+          vocab: ['el obispo', 'el inquisidor', 'el comisario', 'el hereje', 'la denuncia'],
+          sources: ['https://en.wikipedia.org/wiki/Alonso_Manso', 'https://dbe.rah.es/biografias/13378/alonso-manso', 'https://en.wikipedia.org/wiki/Spanish_Inquisition']
         },
         {
           year: '1898',
@@ -1098,7 +1113,8 @@ window.HISTORIA = [
           title: 'The Inquisition in name only',
           spanish: 'la Inquisición en Costa Rica',
           body: 'Costa Rica — the poorest and most remote province of the Kingdom of Guatemala — answered on paper to the <strong>Tribunal of Mexico City</strong> from 1571. In practice, the Inquisition here was nearly theoretical: a <em>comisario</em> in Cartago, the annual reading of the <em>edicto de fe</em>, and a docket of cases so thin it can be counted on fingers.<br><br>That emptiness is itself historically interesting: the colonial institutions that shaped life in the great viceregal capitals barely brushed this frontier of subsistence farmers — part of the long story Costa Ricans tell about why their country\'s path diverged from its neighbors\'.',
-          vocab: ['el comisario', 'el edicto de fe', 'la denuncia', 'la frontera']
+          vocab: ['el comisario', 'el edicto de fe', 'la denuncia', 'la frontera'],
+          sources: ['https://en.wikipedia.org/wiki/Mexican_Inquisition', 'https://en.wikipedia.org/wiki/Spanish_Inquisition']
         },
         {
           year: '1821–1900',
@@ -1157,10 +1173,11 @@ window.HISTORIA = [
         },
         {
           year: '1520s',
-          title: 'The Inquisition reaches the Americas first here',
+          title: 'The Inquisition\'s early Caribbean roots',
           spanish: 'la Inquisición en La Española',
-          body: 'The earliest inquisitorial authority in the Americas was exercised in the Caribbean — decades before the formal tribunals existed — by bishops armed with delegated powers, beginning in the 1520s when Santo Domingo was the seat of Spanish power in the New World. The first heresy proceedings in the hemisphere happened in this early Caribbean world of conquistadors, friars, and foreign interlopers.<br><br>Once the formal tribunals were created, La Española answered first to the distant mainland courts and then, from <strong>1610</strong>, to the <strong>Tribunal of Cartagena de Indias</strong>, through local <em>comisarios</em>. The island\'s docket ran to blasphemy, bigamy, suspect books arriving by ship, and the occasional foreign Protestant — modest in scale, but the machinery of the <em>edicto de fe</em> and the denunciation was present here longer than almost anywhere in the Americas.',
-          vocab: ['el obispo', 'la herejía', 'el comisario', 'el edicto de fe', 'la denuncia']
+          body: 'Some of the earliest inquisitorial authority in the Americas was exercised in the Caribbean — decades before the formal tribunals existed — by bishops armed with delegated powers, in the era when Santo Domingo was the seat of Spanish power in the New World. Some of the hemisphere\'s first heresy proceedings happened in this early Caribbean world of conquistadors, friars, and foreign interlopers.<br><br>Once the formal tribunals were created, La Española answered first to the distant mainland courts and then, from <strong>1610</strong>, to the <strong>Tribunal of Cartagena de Indias</strong>, through local <em>comisarios</em>. The island\'s docket ran to blasphemy, bigamy, suspect books arriving by ship, and the occasional foreign Protestant — modest in scale, but the machinery of the <em>edicto de fe</em> and the denunciation was present here longer than almost anywhere in the Americas.',
+          vocab: ['el obispo', 'la herejía', 'el comisario', 'el edicto de fe', 'la denuncia'],
+          sources: ['https://en.wikipedia.org/wiki/Spanish_Inquisition', 'https://en.wikipedia.org/wiki/Alonso_Manso']
         },
         {
           year: '1791–1844',
@@ -1229,7 +1246,8 @@ window.HISTORIA = [
           title: 'Quito under the Inquisition of Lima',
           spanish: 'bajo la Inquisición de Lima',
           body: 'The Audiencia de Quito answered to the <strong>Tribunal of Lima</strong> from 1570 through a local <em>comisario</em>. Prosecutions from Quito were rare — the docket ran to blasphemy, bigamy, and the inspection of imported books against the <em>Index</em> — but the machinery of the <em>edicto de fe</em>, read aloud in church and inviting neighbors to denounce one another, was part of colonial life here as everywhere in the viceroyalty.<br><br>As across Spanish America, the Indigenous majority was formally exempt from inquisitorial jurisdiction, answering instead to the bishops\' courts. The institution faded from the region with independence in the early 1820s.',
-          vocab: ['el comisario', 'el edicto de fe', 'la denuncia', 'la blasfemia']
+          vocab: ['el comisario', 'el edicto de fe', 'la denuncia', 'la blasfemia'],
+          sources: ['https://en.wikipedia.org/wiki/Peruvian_Inquisition', 'https://en.wikipedia.org/wiki/Spanish_Inquisition']
         },
         {
           year: '1820–1830',
@@ -1339,7 +1357,8 @@ window.HISTORIA = [
           title: 'León, Granada, and the Holy Office',
           spanish: 'la Inquisición en Nicaragua',
           body: 'Nicaragua fell under the <strong>Tribunal of Mexico City</strong> from 1571, with denunciations gathered through church authorities in León and forwarded via Guatemala. Ordinary cases ran to blasphemy and bigamy; the Indigenous majority was formally exempt.<br><br>Nicaragua\'s exposed position gave the system its livelier moments: corsair raids on Granada and the Pacific port of El Realejo occasionally left captured foreign Protestants in Spanish hands — prize \'herejes\' for a machinery that otherwise had little to do here.',
-          vocab: ['el comisario', 'la denuncia', 'el corsario', 'el hereje']
+          vocab: ['el comisario', 'la denuncia', 'el corsario', 'el hereje'],
+          sources: ['https://en.wikipedia.org/wiki/Mexican_Inquisition', 'https://en.wikipedia.org/wiki/Spanish_Inquisition']
         },
         {
           year: '1821–1857',
@@ -1401,7 +1420,8 @@ window.HISTORIA = [
           title: 'Portobelo, the fairs, and the Holy Office',
           spanish: 'la Inquisición en Panamá',
           body: 'Panama — the empire\'s great crossroads — was watched first from <strong>Lima</strong> (1570) and then, from <strong>1610</strong>, from the new <strong>Tribunal of Cartagena de Indias</strong>. The famous <strong>Portobelo fairs</strong>, where the silver of Peru met the goods of Europe, gave the inquisitors their busiest work here: inspecting ships and cargo for banned books, and keeping an eye on the polyglot crowd of sailors, merchants, and foreigners that the trade route funneled across the isthmus.<br><br>Beyond the ports, the docket was the familiar colonial one — blasphemy, bigamy, denunciations — with serious cases shipped to Cartagena. The institution dissolved here with independence from Spain in 1821.',
-          vocab: ['la feria', 'el comisario', 'los libros prohibidos', 'el mercader', 'la denuncia']
+          vocab: ['la feria', 'el comisario', 'los libros prohibidos', 'el mercader', 'la denuncia'],
+          sources: ['https://en.wikipedia.org/wiki/Peruvian_Inquisition', 'https://en.wikipedia.org/wiki/Spanish_Inquisition']
         },
         {
           year: '1821–1903',
