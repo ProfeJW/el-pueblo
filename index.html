@@ -446,7 +446,13 @@
     margin-top: 48px;
   }
   /* LINGÜÍSTICA HUB — color-accented lesson cards */
-  .ling-hub { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 14px; }
+  .ling-hub { display: block; }
+  .ling-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 14px; margin-bottom: 30px; }
+  .ling-group-label {
+    font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.16em;
+    text-transform: uppercase; color: var(--rojo); margin: 4px 0 14px;
+    padding-bottom: 8px; border-bottom: 1px solid var(--line);
+  }
   .ling-card {
     position: relative; display: block; background: var(--card-bg); border: 1px solid var(--line);
     border-radius: 10px; padding: 22px 20px 18px; text-decoration: none; color: inherit; overflow: hidden;
@@ -2194,6 +2200,41 @@
 
 
   /* VERB DRILL */
+  .accent-bar {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 6px;
+    position: sticky;
+    top: 68px;
+    z-index: 50;
+    background: var(--card-bg);
+    border: 1px solid var(--line);
+    border-bottom: none;
+    padding: 10px 14px;
+  }
+  .accent-bar .accent-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--ink-soft);
+    margin-right: 4px;
+  }
+  .accent-key {
+    font-family: 'DM Serif Display', serif;
+    font-size: 16px;
+    color: var(--ink);
+    background: var(--paper);
+    border: 1px solid var(--line);
+    border-radius: 6px;
+    min-width: 34px;
+    padding: 5px 9px;
+    cursor: pointer;
+    transition: background 0.12s ease, color 0.12s ease, border-color 0.12s ease;
+  }
+  .accent-key:hover { background: var(--rojo); color: var(--paper); border-color: var(--rojo); }
+  .accent-key:active { transform: translateY(1px); }
   .drill-board {
     background: var(--card-bg);
     border: 1px solid var(--line);
@@ -3265,6 +3306,57 @@
     margin-bottom: 8px;
     z-index: 10;
     border-radius: 3px;
+  }
+  .reading-history-note {
+    margin-top: 28px;
+    padding: 20px 22px;
+    border: 1px solid rgba(212,146,44,0.4);
+    border-left: 4px solid var(--ocre);
+    border-radius: 10px;
+    background: rgba(212,146,44,0.08);
+  }
+  .reading-history-note .rhn-head {
+    font-family: 'DM Serif Display', serif;
+    font-size: 19px;
+    color: var(--ocre);
+    margin-bottom: 12px;
+  }
+  .reading-history-note .rhn-intro,
+  .reading-history-note .rhn-outro {
+    font-size: 15px;
+    line-height: 1.6;
+    margin: 0 0 14px;
+  }
+  .reading-history-note .rhn-outro { margin: 14px 0 0; }
+  .reading-history-note .rhn-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 15px;
+  }
+  .reading-history-note .rhn-table th,
+  .reading-history-note .rhn-table td {
+    text-align: left;
+    padding: 8px 10px;
+    border-bottom: 1px solid rgba(0,0,0,0.12);
+    vertical-align: top;
+  }
+  .reading-history-note .rhn-table th {
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    opacity: 0.7;
+    font-weight: 600;
+  }
+  .reading-history-note .rhn-table td:first-child em {
+    color: var(--ocre);
+    font-style: italic;
+    font-weight: 600;
+  }
+  @media (max-width: 640px) {
+    .reading-history-note { padding: 16px; }
+    .reading-history-note .rhn-table { font-size: 13px; }
+    .reading-history-note .rhn-table th,
+    .reading-history-note .rhn-table td { padding: 6px 5px; }
   }
   .reading-quiz-card {
     background: var(--ink);
@@ -5940,6 +6032,7 @@
         <button class="pill" onclick="loadDeck('cuerpo', this)">Body parts</button>
         <button class="pill" onclick="loadDeck('bolivia', this)">Bolivia</button>
         <button class="pill" onclick="loadDeck('calendario', this)">Calendar</button>
+        <button class="pill" onclick="loadDeck('acampar', this)">Camping</button>
         <button class="pill" onclick="loadDeck('chile', this)">Chile</button>
         <button class="pill" onclick="loadDeck('clases', this)">Classes</button>
         <button class="pill" onclick="loadDeck('salon', this)">Classroom</button>
@@ -5947,10 +6040,14 @@
         <button class="pill" onclick="loadDeck('ropa', this)">Clothing</button>
         <button class="pill" onclick="loadDeck('colombia', this)">Colombia</button>
         <button class="pill" onclick="loadDeck('colores', this)">Colors</button>
+        <button class="pill" onclick="loadDeck('construccion', this)">Construction</button>
+        <button class="pill" onclick="loadDeck('cocina', this)">Cooking</button>
         <button class="pill" onclick="loadDeck('cuba', this)">Cuba</button>
         <button class="pill" onclick="loadDeck('rutina', this)">Daily routine</button>
+        <button class="pill" onclick="loadDeck('bailes', this)">Dances</button>
         <button class="pill" onclick="loadDeck('diadelosmuertos', this)">Día de los Muertos</button>
         <button class="pill" onclick="loadDeck('quijote', this)">Don Quijote</button>
+        <button class="pill" onclick="loadDeck('educacion', this)">Education</button>
         <button class="pill" onclick="loadDeck('futbol', this)">El fútbol</button>
         <button class="pill" onclick="loadDeck('elsalvador', this)">El Salvador</button>
         <button class="pill" onclick="loadDeck('emociones', this)">Emotions</button>
@@ -5959,37 +6056,54 @@
         <button class="pill active" onclick="loadDeck('cotidiano', this)">Everyday</button>
         <button class="pill" onclick="loadDeck('familia', this)">Family</button>
         <button class="pill" onclick="loadDeck('cumpleanos', this)">¡Feliz cumpleaños!</button>
+        <button class="pill" onclick="loadDeck('pesca', this)">Fishing</button>
         <button class="pill" onclick="loadDeck('comida', this)">Food</button>
+        <button class="pill" onclick="loadDeck('geografia', this)">Geography</button>
         <button class="pill" onclick="loadDeck('saludos', this)">Greetings</button>
         <button class="pill" onclick="loadDeck('guatemala', this)">Guatemala</button>
         <button class="pill" onclick="loadDeck('gustar', this)">Gustar verbs</button>
+        <button class="pill" onclick="loadDeck('salud', this)">Health &amp; medicine</button>
         <button class="pill" onclick="loadDeck('fiestas', this)">Holidays</button>
         <button class="pill" onclick="loadDeck('honduras', this)">Honduras</button>
         <button class="pill" onclick="loadDeck('casa', this)">House &amp; furniture</button>
+        <button class="pill" onclick="loadDeck('caza', this)">Hunting</button>
         <button class="pill" onclick="loadDeck('verbosIr', this)">-IR verbs</button>
+        <button class="pill" onclick="loadDeck('derecho', this)">Law</button>
         <button class="pill" onclick="loadDeck('lazarillo', this)">Lazarillo de Tormes</button>
         <button class="pill" onclick="loadDeck('literatura', this)">Literature</button>
+        <button class="pill" onclick="loadDeck('mercado', this)">Market &amp; shopping</button>
+        <button class="pill" onclick="loadDeck('matematicas', this)">Math</button>
         <button class="pill" onclick="loadDeck('mexico', this)">México</button>
+        <button class="pill" onclick="loadDeck('militar', this)">Military</button>
+        <button class="pill" onclick="loadDeck('musica', this)">Music</button>
+        <button class="pill" onclick="loadDeck('naturaleza', this)">Nature</button>
         <button class="pill" onclick="loadDeck('numeros', this)">Numbers</button>
         <button class="pill" onclick="loadDeck('paraguay', this)">Paraguay</button>
         <button class="pill" onclick="loadDeck('gente', this)">People</button>
         <button class="pill" onclick="loadDeck('peru', this)">Perú</button>
         <button class="pill" onclick="loadDeck('lugares', this)">Places in town</button>
+        <button class="pill" onclick="loadDeck('politica', this)">Politics</button>
         <button class="pill" onclick="loadDeck('preposiciones', this)">Prepositions</button>
         <button class="pill" onclick="loadDeck('profesiones', this)">Professions</button>
         <button class="pill" onclick="loadDeck('pronombres', this)">Pronouns</button>
         <button class="pill" onclick="loadDeck('puertorico', this)">Puerto Rico</button>
         <button class="pill" onclick="loadDeck('preguntas', this)">Question words</button>
         <button class="pill" onclick="loadDeck('relaciones', this)">Relationships</button>
+        <button class="pill" onclick="loadDeck('religiones', this)">Religions</button>
         <button class="pill" onclick="loadDeck('restaurante', this)">Restaurant</button>
         <button class="pill" onclick="loadDeck('escuela', this)">School Life</button>
+        <button class="pill" onclick="loadDeck('ciencia', this)">Science</button>
+        <button class="pill" onclick="loadDeck('espacio', this)">Space</button>
         <button class="pill" onclick="loadDeck('deportes', this)">Sports</button>
         <button class="pill" onclick="loadDeck('tecnologia', this)">Technology</button>
         <button class="pill" onclick="loadDeck('hora', this)">Telling time</button>
         <button class="pill" onclick="loadDeck('teneridioms', this)">Tener idioms</button>
+        <button class="pill" onclick="loadDeck('herramientas', this)">Tools</button>
         <button class="pill" onclick="loadDeck('viajes', this)">Travel</button>
         <button class="pill" onclick="loadDeck('uruguay', this)">Uruguay</button>
+        <button class="pill" onclick="loadDeck('vehiculos', this)">Vehicles</button>
         <button class="pill" onclick="loadDeck('venezuela', this)">Venezuela</button>
+        <button class="pill" onclick="loadDeck('armas', this)">Weapons</button>
         <button class="pill" onclick="loadDeck('tiempo', this)">Weather &amp; seasons</button>
       </div>
     </div>
@@ -6018,6 +6132,7 @@
         <button class="pill" onclick="setDrillTense('condicional', this)">Conditional</button>
         <button class="pill" onclick="setDrillTense('perfecto', this)">Pres. perfect</button>
         <button class="pill" onclick="setDrillTense('subjuntivo', this)">Pres. subj.</button>
+        <button class="pill" onclick="setDrillTense('pluperfectsubj', this)">Pluperfect subj.</button>
         <button class="pill" onclick="setDrillTense('mixed', this)">Mixed</button>
         <button class="pill" onclick="setDrillTense('serestar', this)">Ser / Estar</button>
         <button class="pill" onclick="setDrillTense('possessives', this)">Possessives</button>
@@ -6055,6 +6170,18 @@
     </div>
   </div>
 
+  <div class="accent-bar" id="drill-accent-bar">
+    <span class="accent-label">Insert:</span>
+    <button type="button" class="accent-key" onmousedown="event.preventDefault(); insertDrillChar('á')">á</button>
+    <button type="button" class="accent-key" onmousedown="event.preventDefault(); insertDrillChar('é')">é</button>
+    <button type="button" class="accent-key" onmousedown="event.preventDefault(); insertDrillChar('í')">í</button>
+    <button type="button" class="accent-key" onmousedown="event.preventDefault(); insertDrillChar('ó')">ó</button>
+    <button type="button" class="accent-key" onmousedown="event.preventDefault(); insertDrillChar('ú')">ú</button>
+    <button type="button" class="accent-key" onmousedown="event.preventDefault(); insertDrillChar('ñ')">ñ</button>
+    <button type="button" class="accent-key" onmousedown="event.preventDefault(); insertDrillChar('ü')">ü</button>
+    <button type="button" class="accent-key" onmousedown="event.preventDefault(); insertDrillChar('¿')">¿</button>
+    <button type="button" class="accent-key" onmousedown="event.preventDefault(); insertDrillChar('¡')">¡</button>
+  </div>
   <div class="drill-board" id="drill-board">
     <!-- populated by JS -->
   </div>
@@ -9184,6 +9311,7 @@
         drillBest_condicional: STATE.drillBest_condicional,
         drillBest_perfecto: STATE.drillBest_perfecto,
         drillBest_subjuntivo: STATE.drillBest_subjuntivo,
+        drillBest_pluperfectsubj: STATE.drillBest_pluperfectsubj,
         drillBest_mixed: STATE.drillBest_mixed,
         savedAt: new Date().toISOString()
       };
@@ -10002,7 +10130,7 @@
     { inf: 'traducir', meaning: 'to translate · J-stem (tradujeron, not traducieron)', group: 'irregular', conj: { presente:['traduzco','traduces','traduce','traducimos','traducís','traducen'], preterito:['traduje','tradujiste','tradujo','tradujimos','tradujisteis','tradujeron'], imperfecto:['traducía','traducías','traducía','traducíamos','traducíais','traducían'], futuro:['traduciré','traducirás','traducirá','traduciremos','traduciréis','traducirán'], subjuntivo:['traduzca','traduzcas','traduzca','traduzcamos','traduzcáis','traduzcan'], condicional:['traduciría','traducirías','traduciría','traduciríamos','traduciríais','traducirían'], participio:'traducido' }}
   ];
   const pronouns = ['yo','tú','él/ella','nosotros','vosotros','ellos/ellas'];
-  const tenseLabels = { presente: 'present', preterito: 'preterite', imperfecto: 'imperfect', futuro: 'future', condicional: 'conditional', subjuntivo: 'pres. subjunctive', perfecto: 'present perfect' };
+  const tenseLabels = { presente: 'present', preterito: 'preterite', imperfecto: 'imperfect', futuro: 'future', condicional: 'conditional', subjuntivo: 'pres. subjunctive', perfecto: 'present perfect', pluperfectsubj: 'pluperfect subj.' };
   let drillTense = 'presente';
   let drillItems = []; // { verb, tense, pronounIdx, answer, userInput, isCorrect }
   let drillSubmitted = false;
@@ -10050,6 +10178,11 @@
 
     if (drillTense === 'perfecto') {
       buildPerfectoDrill();
+      return;
+    }
+
+    if (drillTense === 'pluperfectsubj') {
+      buildPluperfectSubjDrill();
       return;
     }
 
@@ -10447,6 +10580,44 @@
         userInput: '',
         isCorrect: null,
         isPerfecto: true
+      });
+    }
+  }
+
+  // PLUPERFECT SUBJUNCTIVE drill — student types "hubiera comido" / "hubieras visto" etc.
+  // Built from haber (past subjunctive) + each verb's past participle.
+  // Both -ra and -se forms are accepted by the grader via answerAlt.
+  function buildPluperfectSubjDrill() {
+    const HABER_RA = ['hubiera', 'hubieras', 'hubiera', 'hubiéramos', 'hubierais', 'hubieran'];
+    const HABER_SE = ['hubiese', 'hubieses', 'hubiese', 'hubiésemos', 'hubieseis', 'hubiesen'];
+    const REFL_PRONOUNS = ['me', 'te', 'se', 'nos', 'os', 'se'];
+    const allowedPronouns = includeVosotros ? [0, 1, 2, 3, 4, 5] : [0, 1, 2, 3, 5];
+
+    let pool;
+    if (drillGroup === 'all') pool = verbs.filter(v => v.conj && v.conj.participio);
+    else if (drillGroup === 'regular') pool = verbs.filter(v => v.conj && v.conj.participio && (v.group === 'regular-ar' || v.group === 'regular-er' || v.group === 'regular-ir'));
+    else if (drillGroup === 'stem-all') pool = verbs.filter(v => v.conj && v.conj.participio && v.group && v.group.startsWith('stem-'));
+    else if (drillGroup === 'irregular') pool = verbs.filter(v => v.conj && v.conj.participio && (v.group === 'irregular' || (!v.conj.participio.endsWith('ado') && !v.conj.participio.endsWith('ido') && !v.conj.participio.endsWith('ído'))));
+    else pool = verbs.filter(v => v.conj && v.conj.participio && v.group === drillGroup);
+    if (pool.length === 0) pool = verbs.filter(v => v.conj && v.conj.participio);
+
+    for (let i = 0; i < 20; i++) {
+      const verb = pool[Math.floor(Math.random() * pool.length)];
+      const pronounIdx = allowedPronouns[Math.floor(Math.random() * allowedPronouns.length)];
+      const participle = verb.conj.participio;
+      const isReflexive = verb.inf.endsWith('se');
+      const refPro = isReflexive ? REFL_PRONOUNS[pronounIdx] + ' ' : '';
+      const answer = refPro + HABER_RA[pronounIdx] + ' ' + participle;
+      const answerAlt = [refPro + HABER_SE[pronounIdx] + ' ' + participle];
+
+      drillItems.push({
+        verb, tense: 'pluperfectsubj', pronounIdx,
+        subjectDisplay: null,
+        answer,
+        answerAlt,
+        userInput: '',
+        isCorrect: null,
+        isPluperfectSubj: true
       });
     }
   }
@@ -11412,6 +11583,25 @@
           </div>
         `;
       }
+      if (item.isPluperfectSubj) {
+        const isReflexive = item.verb.inf.endsWith('se');
+        const refHint = isReflexive ? ' (reflexive: include me/te/se…)' : '';
+        return `
+          <div class="drill-row drill-row-wide">
+            <div class="drill-num">${String(idx + 1).padStart(2, '0')}</div>
+            <div class="drill-prompt-text" style="grid-column: 2 / span 2;">
+              <span class="pn">${pronouns[item.pronounIdx]}</span>
+              <span class="vb">${item.verb.inf} · pluperfect subj.${refHint}</span>
+            </div>
+            <div style="grid-column: 4;">
+              <input type="text" class="drill-input drill-input-wide" data-idx="${idx}" autocomplete="off" spellcheck="false"
+                     oninput="updateDrillInput(${idx}, this.value)"
+                     onkeydown="if(event.key==='Enter'){event.preventDefault();focusNextDrillInput(${idx});}"
+                     placeholder="hubiera comido / hubieras visto…">
+            </div>
+          </div>
+        `;
+      }
       return `
         <div class="drill-row">
           <div class="drill-num">${String(idx + 1).padStart(2, '0')}</div>
@@ -11443,6 +11633,30 @@
     drillItems[idx].userInput = value;
     const filled = drillItems.filter(it => it.userInput.trim()).length;
     document.getElementById('drill-filled').textContent = filled;
+  }
+
+  // Accent helper: remember the drill input the student is typing in, so the
+  // á/é/í/ó/ú/ñ/ü/¿/¡ buttons can insert at the cursor without losing focus.
+  let _lastDrillInput = null;
+  document.addEventListener('focusin', function (e) {
+    const t = e.target;
+    if (t && t.classList && t.classList.contains('drill-input')) _lastDrillInput = t;
+  });
+  function insertDrillChar(ch) {
+    let el = _lastDrillInput;
+    // Fall back to the first empty, enabled input if nothing is focused yet.
+    if (!el || el.disabled || !document.body.contains(el)) {
+      el = document.querySelector('.drill-input:not([disabled])');
+    }
+    if (!el || el.disabled) return;
+    const start = el.selectionStart != null ? el.selectionStart : el.value.length;
+    const end = el.selectionEnd != null ? el.selectionEnd : el.value.length;
+    el.value = el.value.slice(0, start) + ch + el.value.slice(end);
+    const pos = start + ch.length;
+    el.focus();
+    try { el.setSelectionRange(pos, pos); } catch (_) {}
+    _lastDrillInput = el;
+    el.dispatchEvent(new Event('input', { bubbles: true }));
   }
 
   function focusNextDrillInput(idx) {
@@ -11743,6 +11957,829 @@
   //   quiz: array of { q, options: [{ text, correct }] }
 
   const READINGS = [
+    // ---------- HEALTH READING ----------
+    {
+      id: 'salud-medico',
+      kind: 'story', level: 'intermediate',
+      title: 'Una visita al <em>médico</em>',
+      author: 'Original · El Pueblo',
+      year: '',
+      attribution: 'Cultura · Salud y bienestar',
+      preview: '"¿Qué síntomas tiene?" — En el consultorio, describir lo que sentimos es el primer paso para curarnos.',
+      text: [
+        'El lunes me desperté con fiebre, tos y un fuerte dolor de cabeza. Mi madre me tomó la temperatura y decidió pedir una cita en la clínica. "Mejor que te vea un médico", dijo.',
+        'En el consultorio, la doctora me hizo muchas preguntas: "¿Qué síntomas tienes? ¿Desde cuándo te sientes mal? ¿Te duele la garganta?" Después me revisó y me explicó que solo era una gripe. No era grave, pero tenía que descansar y beber mucha agua.',
+        'Me dio una receta para unas pastillas y me dijo que las comprara en la farmacia. "Con descanso y esta medicina, en unos días estarás sano", me aseguró. Salí del consultorio más tranquilo: a veces, lo más importante para la salud es saber qué nos pasa y cómo cuidarnos.'
+      ],
+      gloss: {
+        'la fiebre': 'fever', 'la tos': 'cough', 'el dolor de cabeza': 'headache', 'la cita': 'appointment',
+        'la clínica': 'clinic', 'el médico': 'doctor', 'el consultorio': 'doctor\'s office', 'el síntoma': 'symptom',
+        'la garganta': 'throat', 'la gripe': 'flu', 'descansar': 'to rest', 'la receta': 'prescription',
+        'la pastilla': 'pill', 'la farmacia': 'pharmacy', 'la medicina': 'medicine', 'sano': 'healthy', 'la salud': 'health'
+      },
+      quiz: [
+        { q: '¿Qué síntomas tenía el narrador?', options: [
+          { text: 'fiebre, tos y dolor de cabeza', correct: true }, { text: 'una herida en la pierna', correct: false }, { text: 'ningún síntoma', correct: false } ]},
+        { q: '¿Qué le diagnosticó la doctora?', options: [
+          { text: 'una gripe', correct: true }, { text: 'una emergencia grave', correct: false }, { text: 'nada', correct: false } ]},
+        { q: '¿Qué le recomendó para curarse?', options: [
+          { text: 'descansar, beber agua y tomar la medicina', correct: true }, { text: 'correr una maratón', correct: false }, { text: 'no dormir', correct: false } ]}
+      ]
+    },
+    // ---------- MUSIC READING ----------
+    {
+      id: 'musica-mundo',
+      kind: 'story', level: 'intermediate',
+      title: 'La <em>música</em> del mundo hispano',
+      author: 'Original · El Pueblo',
+      year: '',
+      attribution: 'Cultura · Música',
+      preview: 'De la guitarra flamenca al reguetón: la música hispana suena en todo el planeta.',
+      text: [
+        'La música es una parte enorme de la cultura hispana. Cada país tiene sus instrumentos, sus ritmos y sus canciones. En España, la guitarra acompaña el cante flamenco; en los Andes, las flautas crean melodías antiguas; en el Caribe, los tambores marcan el ritmo de la salsa.',
+        'Hoy, los cantantes hispanos llenan los conciertos más grandes del mundo. Géneros como el reguetón, el pop latino y la bachata se escuchan en la radio de muchos países, incluso de gente que no habla español. La letra y la melodía cruzan las fronteras.',
+        'Pero la música no es solo para escuchar: muchas personas aprenden a tocar un instrumento, a cantar en un coro o a componer sus propias canciones. Tocar música con otros, en una banda o en familia, es una forma de unir a la gente que existe en todas las culturas.'
+      ],
+      gloss: {
+        'la música': 'music', 'el instrumento': 'instrument', 'el ritmo': 'rhythm', 'la guitarra': 'guitar',
+        'el cante': 'flamenco singing', 'la flauta': 'flute', 'la melodía': 'melody', 'el tambor': 'drum',
+        'el cantante': 'singer', 'el concierto': 'concert', 'la letra': 'lyrics', 'tocar': 'to play',
+        'la banda': 'band', 'componer': 'to compose'
+      },
+      quiz: [
+        { q: '¿Qué instrumento acompaña el cante flamenco en España?', options: [
+          { text: 'la guitarra', correct: true }, { text: 'el tambor', correct: false }, { text: 'el violín', correct: false } ]},
+        { q: 'Según el texto, los géneros hispanos hoy…', options: [
+          { text: 'se escuchan en muchos países', correct: true }, { text: 'solo se escuchan en España', correct: false }, { text: 'ya no existen', correct: false } ]},
+        { q: '¿Qué dice el texto sobre tocar música con otros?', options: [
+          { text: 'es una forma de unir a la gente', correct: true }, { text: 'es aburrido', correct: false }, { text: 'es imposible', correct: false } ]}
+      ]
+    },
+    // ---------- EDUCATION READING ----------
+    {
+      id: 'educacion-futuro',
+      kind: 'story', level: 'intermediate',
+      title: 'La <em>educación</em>: la llave del futuro',
+      author: 'Original · El Pueblo',
+      year: '',
+      attribution: 'Cultura · Educación',
+      preview: 'Aprender no termina con la escuela: la educación abre puertas toda la vida.',
+      text: [
+        'Se dice que la educación es la llave del futuro, y es verdad. En la escuela aprendemos a leer, a escribir y a resolver problemas, pero también aprendemos a pensar y a convivir con los demás. Un buen maestro puede cambiar la vida de un estudiante.',
+        'No todos tienen las mismas oportunidades. En muchas partes del mundo hispano, una beca puede ser la única forma de que un joven llegue a la universidad y obtenga un título. Por eso, muchas familias hacen grandes sacrificios para que sus hijos estudien.',
+        'Pero la educación no termina con un diploma. Aprender es algo que hacemos toda la vida: con cada libro, cada viaje y cada conversación. El conocimiento es uno de los pocos tesoros que nadie nos puede quitar.'
+      ],
+      gloss: {
+        'la educación': 'education', 'aprender': 'to learn', 'la escuela': 'school', 'el maestro': 'teacher',
+        'el estudiante': 'student', 'la beca': 'scholarship', 'la universidad': 'university', 'el título': 'degree',
+        'estudiar': 'to study', 'el conocimiento': 'knowledge', 'el diploma': 'diploma'
+      },
+      quiz: [
+        { q: 'Según el texto, además de leer y escribir, en la escuela aprendemos a…', options: [
+          { text: 'pensar y convivir con los demás', correct: true }, { text: 'solo memorizar', correct: false }, { text: 'nada más', correct: false } ]},
+        { q: '¿Qué puede ser la única forma de llegar a la universidad para algunos jóvenes?', options: [
+          { text: 'una beca', correct: true }, { text: 'un coche', correct: false }, { text: 'una multa', correct: false } ]},
+        { q: 'Según el texto, la educación…', options: [
+          { text: 'no termina con un diploma', correct: true }, { text: 'termina en la escuela primaria', correct: false }, { text: 'no sirve para nada', correct: false } ]}
+      ]
+    },
+    // ---------- MILITARY READING ----------
+    {
+      id: 'militar-guerra-paz',
+      kind: 'story', level: 'intermediate',
+      title: 'La <em>guerra</em> y la paz',
+      author: 'Original · El Pueblo',
+      year: '',
+      attribution: 'Historia · Conflicto y paz',
+      preview: 'A lo largo de la historia, los ejércitos han marcado el destino de las naciones — pero la paz siempre fue la meta.',
+      text: [
+        'A lo largo de la historia, los ejércitos han jugado un papel enorme en el mundo hispano. Los soldados de muchos países lucharon en guerras de independencia para liberarse del control colonial. Líderes como Simón Bolívar y José de San Martín dirigieron sus tropas en batallas decisivas.',
+        'Una guerra no se gana solo con fuerza: también requiere estrategia. Los generales debían decidir cuándo atacar, cuándo defender y cómo proteger la frontera. Una victoria podía cambiar el destino de toda una nación; una derrota, también.',
+        'Pero la verdadera meta de cualquier conflicto siempre ha sido la paz. Después de años de guerra, las naciones firman tratados para poner fin a la violencia. Hoy, muchos recuerdan a los soldados del pasado, pero valoran sobre todo el difícil trabajo de mantener la paz.'
+      ],
+      gloss: {
+        'el ejército': 'army', 'el soldado': 'soldier', 'la guerra': 'war', 'la independencia': 'independence',
+        'la tropa': 'troop', 'la batalla': 'battle', 'la estrategia': 'strategy', 'el general': 'general',
+        'atacar': 'to attack', 'defender': 'to defend', 'la frontera': 'border', 'la victoria': 'victory',
+        'la derrota': 'defeat', 'la paz': 'peace', 'el tratado': 'treaty'
+      },
+      quiz: [
+        { q: '¿En qué tipo de guerras lucharon muchos países hispanos?', options: [
+          { text: 'guerras de independencia', correct: true }, { text: 'guerras espaciales', correct: false }, { text: 'ninguna', correct: false } ]},
+        { q: 'Según el texto, una guerra no se gana solo con fuerza, sino también con…', options: [
+          { text: 'estrategia', correct: true }, { text: 'dinero', correct: false }, { text: 'suerte', correct: false } ]},
+        { q: '¿Cuál ha sido siempre la verdadera meta de un conflicto?', options: [
+          { text: 'la paz', correct: true }, { text: 'más guerra', correct: false }, { text: 'la derrota', correct: false } ]}
+      ]
+    },
+    // ---------- WEAPONS READING ----------
+    {
+      id: 'armas-historia',
+      kind: 'story', level: 'intermediate',
+      title: 'Las <em>armas</em> a través de la historia',
+      author: 'Original · El Pueblo',
+      year: '',
+      attribution: 'Historia · Tecnología militar',
+      preview: 'De la espada y el escudo a la pólvora y el cañón: cómo las armas cambiaron la historia.',
+      text: [
+        'Las armas han cambiado mucho a lo largo de la historia. En la antigüedad, los guerreros luchaban cuerpo a cuerpo con espadas y lanzas, y se protegían con un escudo y una armadura de metal. La fuerza y la habilidad lo eran todo.',
+        'Todo cambió con la llegada de la pólvora. Los cañones y los primeros fusiles dieron una ventaja enorme a quienes los tenían. Durante la conquista de América, las armas de fuego de los españoles fueron una de las razones de su poder frente a ejércitos mucho más grandes.',
+        'Hoy, las armas son mucho más peligrosas, y por eso casi todos los países tienen leyes estrictas para controlarlas. Estudiar la historia de las armas no es celebrar la violencia: es entender cómo la tecnología ha cambiado la forma en que los seres humanos hacen — y evitan — la guerra.'
+      ],
+      gloss: {
+        'el arma': 'weapon', 'el guerrero': 'warrior', 'la espada': 'sword', 'la lanza': 'spear',
+        'el escudo': 'shield', 'la armadura': 'armor', 'la pólvora': 'gunpowder', 'el cañón': 'cannon',
+        'el fusil': 'rifle / gun', 'las armas de fuego': 'firearms', 'la conquista': 'the conquest',
+        'peligroso': 'dangerous', 'la ley': 'law'
+      },
+      quiz: [
+        { q: 'En la antigüedad, ¿con qué se protegían los guerreros?', options: [
+          { text: 'un escudo y una armadura', correct: true }, { text: 'un cañón', correct: false }, { text: 'un satélite', correct: false } ]},
+        { q: '¿Qué invento cambió la forma de luchar?', options: [
+          { text: 'la pólvora', correct: true }, { text: 'el telescopio', correct: false }, { text: 'la guitarra', correct: false } ]},
+        { q: 'Según el texto, estudiar la historia de las armas sirve para…', options: [
+          { text: 'entender cómo la tecnología cambió la guerra', correct: true }, { text: 'celebrar la violencia', correct: false }, { text: 'aprender a fabricarlas', correct: false } ]}
+      ]
+    },
+    // ---------- LAW READING ----------
+    {
+      id: 'derecho-justicia',
+      kind: 'story', level: 'intermediate',
+      title: 'La <em>justicia</em> y la ley',
+      author: 'Original · El Pueblo',
+      year: '',
+      attribution: 'Cultura · Derecho y sociedad',
+      preview: 'Jueces, abogados y jurados: cómo funciona la justicia cuando alguien rompe la ley.',
+      text: [
+        'En toda sociedad existen leyes que todos debemos respetar. Cuando alguien comete un delito —como robar o hacer daño a otra persona—, la policía investiga y puede arrestar al sospechoso. Pero nadie es culpable hasta que un tribunal lo decide.',
+        'En el juicio, un abogado defiende al acusado y otro presenta las pruebas en su contra. Los testigos cuentan lo que vieron, y al final el juez —o a veces un jurado— decide si la persona es inocente o culpable. Esa es la base de la justicia.',
+        'El sistema no es perfecto, pero su idea central es justa: toda persona tiene derecho a defenderse y a un juicio justo. Sin leyes y sin tribunales, los más fuertes harían lo que quisieran. Por eso decimos que la ley protege a todos, no solo a unos pocos.'
+      ],
+      gloss: {
+        'la ley': 'law', 'el delito': 'crime', 'robar': 'to steal', 'la policía': 'police',
+        'arrestar': 'to arrest', 'el sospechoso': 'suspect', 'culpable': 'guilty', 'el tribunal': 'court',
+        'el juicio': 'trial', 'el abogado': 'lawyer', 'el acusado': 'the accused', 'las pruebas': 'evidence',
+        'el testigo': 'witness', 'el juez': 'judge', 'el jurado': 'jury', 'inocente': 'innocent', 'la justicia': 'justice'
+      },
+      quiz: [
+        { q: 'Según el texto, ¿cuándo es alguien culpable?', options: [
+          { text: 'cuando un tribunal lo decide', correct: true }, { text: 'cuando la policía lo arresta', correct: false }, { text: 'nunca', correct: false } ]},
+        { q: '¿Quién cuenta lo que vio en un juicio?', options: [
+          { text: 'el testigo', correct: true }, { text: 'el cantante', correct: false }, { text: 'el albañil', correct: false } ]},
+        { q: 'La idea central de la justicia, según el texto, es que…', options: [
+          { text: 'toda persona tiene derecho a defenderse y a un juicio justo', correct: true }, { text: 'los fuertes deciden todo', correct: false }, { text: 'no hacen falta tribunales', correct: false } ]}
+      ]
+    },
+    // ---------- PROFESSIONS READING ----------
+    {
+      id: 'profesiones-elegir',
+      kind: 'story', level: 'intermediate',
+      title: 'Elegir una <em>profesión</em>',
+      author: 'Original · El Pueblo',
+      year: '',
+      attribution: 'Cultura · Trabajo y profesiones',
+      preview: '¿Médico, maestro, ingeniero, artista? Elegir una profesión es una de las grandes decisiones de la vida.',
+      text: [
+        'Una de las preguntas más comunes de la infancia es: "¿Qué quieres ser de grande?" Algunos niños sueñan con ser médicos o bomberos; otros quieren ser maestros, ingenieros, abogados o artistas. Elegir una profesión es una de las decisiones más importantes de la vida.',
+        'A la hora de decidir, hay muchas cosas que pensar. ¿Qué se te da bien? ¿Qué te apasiona? Algunas personas eligen un trabajo por el dinero; otras, porque quieren ayudar a los demás, como los enfermeros o los profesores. Lo ideal es encontrar algo que una las dos cosas.',
+        'Hoy el mundo del trabajo cambia muy rápido. Aparecen profesiones nuevas cada año, sobre todo en la tecnología, y muchas personas cambian de carrera más de una vez en su vida. Por eso, más que elegir "para siempre", lo importante es seguir aprendiendo y estar dispuesto a adaptarse.'
+      ],
+      gloss: {
+        'la profesión': 'profession', 'el médico': 'doctor', 'el bombero': 'firefighter', 'el maestro': 'teacher',
+        'el ingeniero': 'engineer', 'el abogado': 'lawyer', 'el artista': 'artist', 'apasionar': 'to be passionate about',
+        'el enfermero': 'nurse', 'la carrera': 'career', 'adaptarse': 'to adapt'
+      },
+      quiz: [
+        { q: 'Según el texto, elegir una profesión es…', options: [
+          { text: 'una de las decisiones más importantes de la vida', correct: true }, { text: 'algo sin importancia', correct: false }, { text: 'imposible', correct: false } ]},
+        { q: '¿Por qué algunas personas eligen su trabajo?', options: [
+          { text: 'para ayudar a los demás', correct: true }, { text: 'para no aprender nada', correct: false }, { text: 'para quedarse en casa', correct: false } ]},
+        { q: 'Según el texto, hoy el mundo del trabajo…', options: [
+          { text: 'cambia muy rápido y hay que adaptarse', correct: true }, { text: 'nunca cambia', correct: false }, { text: 'no necesita aprendizaje', correct: false } ]}
+      ]
+    },
+    // ---------- SPACE READING ----------
+    {
+      id: 'espacio-explorar',
+      kind: 'story', level: 'intermediate',
+      title: 'Explorar el <em>espacio</em>',
+      author: 'Original · El Pueblo',
+      year: '',
+      attribution: 'Académico · Astronomía',
+      preview: 'Cohetes, planetas y estrellas: la curiosidad humana siempre mira hacia arriba.',
+      text: [
+        'Desde hace miles de años, los seres humanos miran el cielo y se hacen preguntas. ¿Cuántas estrellas hay? ¿Qué hay en la Luna? Esa curiosidad nos llevó a explorar el espacio con telescopios, satélites y, por fin, naves espaciales.',
+        'Nuestro planeta, la Tierra, gira alrededor del Sol junto con otros siete planetas que forman el sistema solar. Y el Sol es solo una estrella más entre miles de millones en nuestra galaxia, la Vía Láctea. El universo es tan grande que cuesta imaginarlo.',
+        'En 1969, un cohete llevó a los primeros astronautas a la Luna. Hoy, los científicos sueñan con explorar Marte y otros planetas. Cada nave espacial que despega nos enseña algo nuevo sobre el universo y sobre nuestro propio lugar en él.'
+      ],
+      gloss: {
+        'el espacio': 'space', 'la estrella': 'star', 'la Luna': 'the Moon', 'el telescopio': 'telescope',
+        'el satélite': 'satellite', 'la nave espacial': 'spaceship', 'la Tierra': 'Earth', 'el Sol': 'the Sun',
+        'el planeta': 'planet', 'el sistema solar': 'solar system', 'la galaxia': 'galaxy',
+        'el universo': 'universe', 'el cohete': 'rocket', 'el astronauta': 'astronaut', 'despega': 'takes off'
+      },
+      quiz: [
+        { q: '¿Cuántos planetas forman el sistema solar?', options: [
+          { text: 'ocho', correct: true }, { text: 'tres', correct: false }, { text: 'cien', correct: false } ]},
+        { q: 'El Sol es…', options: [
+          { text: 'una estrella', correct: true }, { text: 'un planeta', correct: false }, { text: 'un satélite', correct: false } ]},
+        { q: '¿Qué pasó en 1969?', options: [
+          { text: 'los primeros astronautas llegaron a la Luna', correct: true }, { text: 'se descubrió el Sol', correct: false }, { text: 'explotó la Vía Láctea', correct: false } ]}
+      ]
+    },
+    // ---------- VEHICLES READING ----------
+    {
+      id: 'vehiculos-ciudad',
+      kind: 'story', level: 'intermediate',
+      title: 'Cómo nos <em>movemos</em> por la ciudad',
+      author: 'Original · El Pueblo',
+      year: '',
+      attribution: 'Cultura · Transporte',
+      preview: 'Metro, autobús, bicicleta o coche: cada ciudad tiene su forma de moverse.',
+      text: [
+        'En las grandes ciudades del mundo hispano, como Madrid, Ciudad de México o Buenos Aires, la gente usa muchos tipos de vehículos para moverse. El metro es rápido y barato, y por eso millones de personas lo toman cada día.',
+        'No todos tienen coche. En las horas de más tráfico, el autobús y el metro suelen ser más prácticos que conducir, porque las calles se llenan y es difícil estacionar. Muchos jóvenes prefieren la bicicleta o la motocicleta para llegar más rápido.',
+        'Fuera de la ciudad, el tren y el avión conectan regiones lejanas, y los camiones transportan la comida y los productos. Cada forma de transporte tiene sus ventajas: lo importante es elegir la más cómoda, barata y buena para el medio ambiente.'
+      ],
+      gloss: {
+        'el vehículo': 'vehicle', 'el metro': 'subway', 'el coche': 'car', 'el tráfico': 'traffic',
+        'el autobús': 'bus', 'conducir': 'to drive', 'estacionar': 'to park', 'la bicicleta': 'bicycle',
+        'la motocicleta': 'motorcycle', 'el tren': 'train', 'el avión': 'airplane', 'el camión': 'truck'
+      },
+      quiz: [
+        { q: 'Según el texto, ¿por qué tanta gente toma el metro?', options: [
+          { text: 'es rápido y barato', correct: true }, { text: 'es el más caro', correct: false }, { text: 'es el más lento', correct: false } ]},
+        { q: 'En las horas de más tráfico, ¿qué suele ser más práctico que conducir?', options: [
+          { text: 'el autobús y el metro', correct: true }, { text: 'el avión', correct: false }, { text: 'el camión', correct: false } ]},
+        { q: '¿Qué conecta las regiones lejanas?', options: [
+          { text: 'el tren y el avión', correct: true }, { text: 'la bicicleta', correct: false }, { text: 'el metro', correct: false } ]}
+      ]
+    },
+    // ---------- TOOLS READING ----------
+    {
+      id: 'herramientas-taller',
+      kind: 'story', level: 'intermediate',
+      title: 'El <em>taller</em> del abuelo',
+      author: 'Original · El Pueblo',
+      year: '',
+      attribution: 'Cultura · Oficios y herramientas',
+      preview: 'Martillo, destornillador, sierra: en su taller, mi abuelo podía arreglar cualquier cosa.',
+      text: [
+        'Mi abuelo tenía un pequeño taller en el garaje. En la pared colgaban todas sus herramientas, ordenadas con cuidado: el martillo, la sierra, varios destornilladores y una caja llena de clavos y tornillos.',
+        '"Antes de comprar algo nuevo", decía, "hay que intentar arreglar lo viejo." Cuando se rompía una silla, no la tiraba: la reparaba con un poco de madera, unos clavos y mucha paciencia. Yo le pasaba las herramientas y aprendía mirando.',
+        'Me enseñó a usar el taladro, a medir con la cinta métrica y a apretar bien los tornillos. Pero, sobre todo, me enseñó algo más importante: que con las herramientas correctas y ganas de aprender, casi cualquier cosa se puede arreglar.'
+      ],
+      gloss: {
+        'el taller': 'workshop', 'la herramienta': 'tool', 'el martillo': 'hammer', 'la sierra': 'saw',
+        'el destornillador': 'screwdriver', 'el clavo': 'nail', 'el tornillo': 'screw', 'arreglar': 'to fix',
+        'reparar': 'to repair', 'la madera': 'wood', 'el taladro': 'drill', 'la cinta métrica': 'tape measure', 'apretar': 'to tighten'
+      },
+      quiz: [
+        { q: '¿Dónde tenía el abuelo su taller?', options: [
+          { text: 'en el garaje', correct: true }, { text: 'en la cocina', correct: false }, { text: 'en el jardín', correct: false } ]},
+        { q: '¿Qué hacía el abuelo cuando se rompía una silla?', options: [
+          { text: 'la reparaba en vez de tirarla', correct: true }, { text: 'compraba una nueva', correct: false }, { text: 'la quemaba', correct: false } ]},
+        { q: 'La lección más importante del abuelo fue que…', options: [
+          { text: 'casi todo se puede arreglar con las herramientas correctas', correct: true }, { text: 'es mejor comprar todo nuevo', correct: false }, { text: 'las herramientas son peligrosas', correct: false } ]}
+      ]
+    },
+    // ---------- CONSTRUCTION READING ----------
+    {
+      id: 'construccion-casa',
+      kind: 'story', level: 'intermediate',
+      title: 'Cómo se <em>construye</em> una casa',
+      author: 'Original · El Pueblo',
+      year: '',
+      attribution: 'Académico · Construcción',
+      preview: 'De los planos a los cimientos, del ladrillo al techo: construir una casa es trabajo de equipo.',
+      text: [
+        'Construir una casa empieza mucho antes de poner el primer ladrillo. Primero, un arquitecto dibuja los planos y un ingeniero revisa que todo sea seguro. Solo entonces los obreros pueden empezar a trabajar en la obra.',
+        'El primer paso es hacer los cimientos, la base fuerte sobre la que se apoya todo el edificio. Luego, los albañiles levantan las paredes con ladrillos y cemento, y una grúa enorme sube los materiales pesados, como las vigas de acero.',
+        'Por seguridad, todos en la obra llevan casco. Poco a poco, lo que era un terreno vacío se convierte en paredes, ventanas y, finalmente, un techo. Construir una casa es un trabajo lento que requiere muchas manos, muchas herramientas y mucha planificación.'
+      ],
+      gloss: {
+        'construir': 'to build', 'el ladrillo': 'brick', 'el arquitecto': 'architect', 'los planos': 'blueprints',
+        'el ingeniero': 'engineer', 'el obrero': 'worker', 'la obra': 'construction site', 'los cimientos': 'foundation',
+        'el edificio': 'building', 'el albañil': 'bricklayer', 'la pared': 'wall', 'el cemento': 'cement',
+        'la grúa': 'crane', 'la viga': 'beam', 'el acero': 'steel', 'el casco': 'hard hat', 'el techo': 'roof'
+      },
+      quiz: [
+        { q: '¿Quién dibuja los planos de la casa?', options: [
+          { text: 'el arquitecto', correct: true }, { text: 'el albañil', correct: false }, { text: 'el conductor', correct: false } ]},
+        { q: '¿Cuál es el primer paso de la construcción?', options: [
+          { text: 'hacer los cimientos', correct: true }, { text: 'poner el techo', correct: false }, { text: 'pintar las paredes', correct: false } ]},
+        { q: '¿Por qué todos llevan casco en la obra?', options: [
+          { text: 'por seguridad', correct: true }, { text: 'por moda', correct: false }, { text: 'por el frío', correct: false } ]}
+      ]
+    },
+    // ---------- HUNTING READING ----------
+    {
+      id: 'caza-tradicion',
+      kind: 'story', level: 'intermediate',
+      title: 'La <em>caza</em> y la naturaleza',
+      author: 'Original · El Pueblo',
+      year: '',
+      attribution: 'Cultura · Vida al aire libre',
+      preview: 'Para los cazadores responsables, la caza no es solo un deporte: es respeto por la naturaleza.',
+      text: [
+        'En muchas regiones del mundo hispano, la caza es una tradición antigua. Antes de los rifles y las escopetas, la gente cazaba con arco y flecha para alimentar a su familia. Hoy, para muchos, sigue siendo una forma de conectar con la naturaleza.',
+        'Un buen cazador conoce el bosque: sigue las huellas y el rastro de los animales, espera en silencio y solo dispara cuando está seguro. La paciencia es más importante que el arma. Cazar un venado o un jabalí requiere horas de observación.',
+        'Pero la caza también tiene reglas. Cada región tiene una temporada de caza y exige un permiso, para que las especies no desaparezcan. Los cazadores responsables respetan estos límites, porque entienden que cuidar la naturaleza es parte de la tradición.'
+      ],
+      gloss: {
+        'la caza': 'hunting', 'cazar': 'to hunt', 'el cazador': 'hunter', 'el rifle': 'rifle',
+        'la escopeta': 'shotgun', 'el arco': 'bow', 'la flecha': 'arrow', 'las huellas': 'tracks',
+        'el rastro': 'trail', 'disparar': 'to shoot', 'el venado': 'deer', 'el jabalí': 'wild boar',
+        'la temporada de caza': 'hunting season', 'el permiso': 'permit'
+      },
+      quiz: [
+        { q: 'Antes de los rifles, ¿con qué cazaba la gente?', options: [
+          { text: 'con arco y flecha', correct: true }, { text: 'con escopetas', correct: false }, { text: 'con trampas eléctricas', correct: false } ]},
+        { q: 'Según el texto, ¿qué es lo más importante para un buen cazador?', options: [
+          { text: 'la paciencia', correct: true }, { text: 'el arma más cara', correct: false }, { text: 'la velocidad', correct: false } ]},
+        { q: '¿Por qué existen la temporada de caza y los permisos?', options: [
+          { text: 'para que las especies no desaparezcan', correct: true }, { text: 'para vender más armas', correct: false }, { text: 'para prohibir la naturaleza', correct: false } ]}
+      ]
+    },
+    // ---------- FISHING READING ----------
+    {
+      id: 'pesca-dia',
+      kind: 'story', level: 'intermediate',
+      title: 'Un día de <em>pesca</em>',
+      author: 'Original · El Pueblo',
+      year: '',
+      attribution: 'Cultura · Vida al aire libre',
+      preview: 'Caña, anzuelo y mucha paciencia: así pasamos la mañana en el lago.',
+      text: [
+        'Mi abuelo me enseñó a pescar cuando era niño. Salíamos de madrugada hacia el lago, con las cañas de pescar, una caja de anzuelos y un cubo para los peces. "La pesca", decía, "es noventa por ciento paciencia."',
+        'Primero poníamos la carnada en el anzuelo y lanzábamos el sedal al agua. Luego esperábamos en silencio, mirando el agua tranquila. A veces pasaba una hora sin que picara ningún pez. Pero cuando por fin uno picaba, el carrete giraba rápido y el corazón se aceleraba.',
+        'Algunos días atrapábamos varias truchas; otros días, nada. Pero mi abuelo siempre soltaba los peces más pequeños al agua otra vez. "Para que crezcan", decía. Lo importante no era cuántos peces atrapábamos, sino las horas que pasábamos juntos junto al lago.'
+      ],
+      gloss: {
+        'pescar': 'to fish', 'el lago': 'lake', 'la caña de pescar': 'fishing rod', 'el anzuelo': 'hook',
+        'el cubo': 'bucket', 'la paciencia': 'patience', 'la carnada': 'bait', 'el sedal': 'fishing line',
+        'picar': 'to bite (fish)', 'el carrete': 'reel', 'la trucha': 'trout', 'soltar': 'to release'
+      },
+      quiz: [
+        { q: 'Según el abuelo, la pesca es sobre todo…', options: [
+          { text: 'paciencia', correct: true }, { text: 'velocidad', correct: false }, { text: 'fuerza', correct: false } ]},
+        { q: '¿Qué hacían con los peces más pequeños?', options: [
+          { text: 'los soltaban al agua otra vez', correct: true }, { text: 'los vendían en el mercado', correct: false }, { text: 'los usaban de carnada', correct: false } ]},
+        { q: 'Para el narrador, lo más importante de la pesca era…', options: [
+          { text: 'el tiempo que pasaba con su abuelo', correct: true }, { text: 'atrapar muchos peces', correct: false }, { text: 'ganar dinero', correct: false } ]}
+      ]
+    },
+    // ---------- CAMPING READING ----------
+    {
+      id: 'acampar-estrellas',
+      kind: 'story', level: 'intermediate',
+      title: 'Acampar bajo las <em>estrellas</em>',
+      author: 'Original · El Pueblo',
+      year: '',
+      attribution: 'Cultura · Vida al aire libre',
+      preview: 'Una tienda, una fogata y un cielo lleno de estrellas: nuestra primera noche acampando.',
+      text: [
+        'El verano pasado, mis amigos y yo fuimos a acampar a las montañas por primera vez. Llevábamos las mochilas llenas: la tienda de campaña, los sacos de dormir, una linterna, fósforos y, por supuesto, mucho repelente de mosquitos.',
+        'Cuando llegamos, montamos la tienda junto a un sendero, cerca de un río. No fue fácil —se nos cayó dos veces— pero al final lo logramos. Por la tarde hicimos una caminata por el bosque y volvimos justo antes de que oscureciera.',
+        'Por la noche encendimos una fogata, cocinamos algo sencillo y contamos historias. Lo mejor llegó después: nos acostamos al aire libre y miramos el cielo. Sin las luces de la ciudad, se veían miles de estrellas. Nunca había visto algo tan hermoso.'
+      ],
+      gloss: {
+        'acampar': 'to camp', 'la mochila': 'backpack', 'la tienda de campaña': 'tent',
+        'el saco de dormir': 'sleeping bag', 'la linterna': 'flashlight', 'los fósforos': 'matches',
+        'el repelente': 'bug repellent', 'montar la tienda': 'to set up the tent', 'el sendero': 'trail',
+        'la caminata': 'hike', 'la fogata': 'campfire', 'al aire libre': 'outdoors', 'las estrellas': 'the stars'
+      },
+      quiz: [
+        { q: '¿Qué llevaban en las mochilas?', options: [
+          { text: 'la tienda, los sacos de dormir y una linterna', correct: true }, { text: 'una televisión', correct: false }, { text: 'cañas de pescar', correct: false } ]},
+        { q: '¿Qué hicieron por la tarde?', options: [
+          { text: 'una caminata por el bosque', correct: true }, { text: 'fueron de compras', correct: false }, { text: 'durmieron todo el día', correct: false } ]},
+        { q: '¿Por qué se veían tantas estrellas?', options: [
+          { text: 'porque no había luces de la ciudad', correct: true }, { text: 'porque usaron un telescopio', correct: false }, { text: 'porque era de día', correct: false } ]}
+      ]
+    },
+    // ---------- NATURE READING ----------
+    {
+      id: 'naturaleza-cuidar',
+      kind: 'story', level: 'intermediate',
+      title: 'Cuidar la <em>naturaleza</em>',
+      author: 'Original · El Pueblo',
+      year: '',
+      attribution: 'Cultura · Medio ambiente',
+      preview: 'Árboles, ríos y animales: la naturaleza nos da todo, pero también necesita nuestra ayuda.',
+      text: [
+        'La naturaleza está llena de vida: árboles que nos dan oxígeno, flores que alimentan a las mariposas, ríos donde viven los peces y pájaros que cantan al amanecer. Cada planta y cada animal forma parte de un equilibrio delicado.',
+        'Pero ese equilibrio está en peligro. La contaminación de las fábricas y la basura ensucian el aire, el agua y la tierra. Muchas especies de animales salvajes están desapareciendo porque pierden su hogar en los bosques y las selvas.',
+        'Por suerte, hay cosas que todos podemos hacer para proteger el medio ambiente: reciclar, no tirar basura en la naturaleza, ahorrar agua y plantar árboles. Cuidar el paisaje no es solo responsabilidad de los gobiernos: empieza con cada uno de nosotros.'
+      ],
+      gloss: {
+        'la naturaleza': 'nature', 'el árbol': 'tree', 'la flor': 'flower', 'la mariposa': 'butterfly',
+        'el pájaro': 'bird', 'el equilibrio': 'balance', 'la contaminación': 'pollution',
+        'la basura': 'trash', 'salvaje': 'wild', 'el bosque': 'forest', 'proteger': 'to protect',
+        'el medio ambiente': 'the environment', 'el paisaje': 'landscape'
+      },
+      quiz: [
+        { q: 'Según el texto, ¿qué nos dan los árboles?', options: [
+          { text: 'oxígeno', correct: true }, { text: 'gasolina', correct: false }, { text: 'electricidad', correct: false } ]},
+        { q: '¿Por qué desaparecen muchas especies salvajes?', options: [
+          { text: 'pierden su hogar en los bosques y las selvas', correct: true }, { text: 'se van de vacaciones', correct: false }, { text: 'hay demasiados árboles', correct: false } ]},
+        { q: 'Según el texto, cuidar el medio ambiente…', options: [
+          { text: 'empieza con cada uno de nosotros', correct: true }, { text: 'es solo trabajo del gobierno', correct: false }, { text: 'es imposible', correct: false } ]}
+      ]
+    },
+    // ---------- MATH READING ----------
+    {
+      id: 'matematicas-vida',
+      kind: 'story', level: 'intermediate',
+      title: 'Las <em>matemáticas</em> de cada día',
+      author: 'Original · El Pueblo',
+      year: '',
+      attribution: 'Académico · Matemáticas',
+      preview: 'Sumar, restar, calcular porcentajes… usamos las matemáticas más de lo que pensamos.',
+      text: [
+        'Mucha gente dice que odia las matemáticas, pero la verdad es que las usamos todos los días sin darnos cuenta. Cuando vamos al mercado y calculamos cuánto cuesta todo, estamos sumando. Cuando el vendedor nos da el cambio, está restando.',
+        'Los porcentajes también aparecen por todas partes. Si una tienda ofrece un descuento del veinte por ciento, necesitamos calcular cuánto vamos a pagar de verdad. Y si queremos dividir la cuenta de un restaurante entre cuatro amigos, usamos la división.',
+        'Las matemáticas no son solo números y ecuaciones en la pizarra: son una herramienta para resolver problemas reales. Sumar, restar, multiplicar y dividir son las cuatro operaciones básicas, pero con ellas podemos calcular casi cualquier cosa, desde el precio de la comida hasta el tiempo de un viaje.'
+      ],
+      gloss: {
+        'las matemáticas': 'mathematics', 'sumar': 'to add', 'restar': 'to subtract',
+        'el cambio': 'change (money)', 'el porcentaje': 'percentage', 'el descuento': 'discount',
+        'calcular': 'to calculate', 'la división': 'division', 'la ecuación': 'equation',
+        'resolver': 'to solve', 'las operaciones': 'operations'
+      },
+      quiz: [
+        { q: 'Cuando calculas cuánto cuesta todo en el mercado, estás…', options: [
+          { text: 'sumando', correct: true }, { text: 'dividiendo', correct: false }, { text: 'midiendo', correct: false } ]},
+        { q: 'Para saber cuánto pagas con un descuento del 20%, usas…', options: [
+          { text: 'los porcentajes', correct: true }, { text: 'la geometría', correct: false }, { text: 'los ángulos', correct: false } ]},
+        { q: 'Según el texto, las cuatro operaciones básicas son…', options: [
+          { text: 'sumar, restar, multiplicar y dividir', correct: true }, { text: 'leer, escribir, contar y medir', correct: false }, { text: 'solo sumar y restar', correct: false } ]}
+      ]
+    },
+    // ---------- POLITICS READING ----------
+    {
+      id: 'politica-democracia',
+      kind: 'story', level: 'intermediate',
+      title: 'La <em>democracia</em> y el voto',
+      author: 'Original · El Pueblo',
+      year: '',
+      attribution: 'Cultura · Política y sociedad',
+      preview: 'En una democracia, cada voto cuenta — pero no siempre fue así.',
+      text: [
+        'En una democracia, el poder viene del pueblo. Los ciudadanos eligen a sus líderes a través de las elecciones: votan por el candidato o el partido que prefieren. Por eso se dice que cada voto cuenta.',
+        'Pero la democracia no siempre existió en el mundo hispano. Durante el siglo XX, varios países de América Latina y España vivieron bajo dictaduras, donde una sola persona o un grupo tenía todo el poder y la gente no podía votar ni protestar libremente.',
+        'Hoy, la mayoría de los países hispanohablantes son democracias. Los ciudadanos tienen derechos como la libertad de expresión, y pueden criticar al gobierno o participar en protestas. La democracia no es perfecta —la corrupción sigue siendo un problema en muchos lugares— pero permite que la gente tenga voz.'
+      ],
+      gloss: {
+        'la democracia': 'democracy', 'el poder': 'power', 'el pueblo': 'the people',
+        'el ciudadano': 'citizen', 'las elecciones': 'elections', 'votar': 'to vote',
+        'el voto': 'vote', 'el candidato': 'candidate', 'la dictadura': 'dictatorship',
+        'los derechos': 'rights', 'la libertad de expresión': 'freedom of speech', 'la corrupción': 'corruption'
+      },
+      quiz: [
+        { q: 'En una democracia, ¿de dónde viene el poder?', options: [
+          { text: 'Del pueblo', correct: true }, { text: 'De una sola persona', correct: false }, { text: 'Del ejército', correct: false } ]},
+        { q: 'Durante el siglo XX, varios países hispanos vivieron bajo…', options: [
+          { text: 'dictaduras', correct: true }, { text: 'democracias perfectas', correct: false }, { text: 'sin gobierno', correct: false } ]},
+        { q: 'Según el texto, ¿qué problema sigue afectando a muchas democracias?', options: [
+          { text: 'la corrupción', correct: true }, { text: 'la falta de mapas', correct: false }, { text: 'el exceso de elecciones', correct: false } ]}
+      ]
+    },
+    // ---------- SCIENCE READING ----------
+    {
+      id: 'ciencia-metodo',
+      kind: 'story', level: 'intermediate',
+      title: 'El <em>método científico</em>',
+      author: 'Original · El Pueblo',
+      year: '',
+      attribution: 'Académico · Ciencia',
+      preview: 'Observar, preguntar, experimentar: así trabaja la ciencia.',
+      text: [
+        'La ciencia no es una colección de datos aburridos: es una forma de hacer preguntas sobre el mundo y buscar respuestas. Los científicos siguen un proceso llamado el método científico para investigar y descubrir cómo funcionan las cosas.',
+        'Primero, un científico observa algo interesante y propone una hipótesis, es decir, una posible explicación. Luego diseña un experimento para probar esa hipótesis. En el laboratorio, mide los resultados con cuidado y los observa muchas veces.',
+        'Si los experimentos confirman la hipótesis una y otra vez, puede convertirse en una teoría. Así nacieron grandes descubrimientos de la física, la química y la biología. Lo importante es que la ciencia siempre está dispuesta a cambiar de opinión cuando aparecen nuevas pruebas.'
+      ],
+      gloss: {
+        'la ciencia': 'science', 'el científico': 'scientist', 'el método científico': 'scientific method',
+        'observar': 'to observe', 'la hipótesis': 'hypothesis', 'el experimento': 'experiment',
+        'el laboratorio': 'laboratory', 'medir': 'to measure', 'los resultados': 'the results',
+        'la teoría': 'theory', 'el descubrimiento': 'discovery', 'las pruebas': 'the evidence'
+      },
+      quiz: [
+        { q: '¿Qué propone un científico después de observar algo?', options: [
+          { text: 'una hipótesis', correct: true }, { text: 'una ley política', correct: false }, { text: 'un mapa', correct: false } ]},
+        { q: '¿Dónde mide los resultados con cuidado?', options: [
+          { text: 'en el laboratorio', correct: true }, { text: 'en el mercado', correct: false }, { text: 'en el congreso', correct: false } ]},
+        { q: 'Una hipótesis confirmada muchas veces puede convertirse en…', options: [
+          { text: 'una teoría', correct: true }, { text: 'una hipótesis nueva', correct: false }, { text: 'un experimento', correct: false } ]}
+      ]
+    },
+    // ---------- GEOGRAPHY READING ----------
+    {
+      id: 'geografia-latinoamerica',
+      kind: 'story', level: 'intermediate',
+      title: 'La <em>geografía</em> de América Latina',
+      author: 'Original · El Pueblo',
+      year: '',
+      attribution: 'Cultura · Geografía',
+      preview: 'Montañas, selvas, desiertos y costas: América Latina lo tiene todo.',
+      text: [
+        'América Latina es una región de geografía increíble y variada. A lo largo del continente se extienden los Andes, la cordillera de montañas más larga del mundo, que cruza países como Perú, Chile y Argentina.',
+        'En el norte está la enorme selva amazónica, con su río gigantesco y miles de especies de animales y plantas. Más al sur, en Chile, se encuentra el desierto de Atacama, uno de los lugares más secos del planeta. Y por todas partes hay costas, islas, lagos y volcanes.',
+        'Esta diversidad geográfica influye en el clima, la comida y la forma de vida de cada país. No es lo mismo vivir en la costa del Caribe que en lo alto de los Andes. Por eso, conocer la geografía nos ayuda a entender mejor la cultura de cada región.'
+      ],
+      gloss: {
+        'la geografía': 'geography', 'el continente': 'continent', 'la cordillera': 'mountain range',
+        'la montaña': 'mountain', 'la selva': 'rainforest', 'el río': 'river',
+        'la especie': 'species', 'el desierto': 'desert', 'la costa': 'coast',
+        'la isla': 'island', 'el lago': 'lake', 'el volcán': 'volcano', 'el clima': 'climate'
+      },
+      quiz: [
+        { q: '¿Cuál es la cordillera más larga del mundo, según el texto?', options: [
+          { text: 'los Andes', correct: true }, { text: 'los Pirineos', correct: false }, { text: 'los Alpes', correct: false } ]},
+        { q: 'El desierto de Atacama es famoso por ser…', options: [
+          { text: 'uno de los lugares más secos del planeta', correct: true }, { text: 'el más frío del mundo', correct: false }, { text: 'una selva tropical', correct: false } ]},
+        { q: 'Según el texto, la geografía influye en…', options: [
+          { text: 'el clima, la comida y la forma de vida', correct: true }, { text: 'solo el idioma', correct: false }, { text: 'nada importante', correct: false } ]}
+      ]
+    },
+    // ---------- MARKET READING — A day at the market ----------
+    {
+      id: 'mercado-dia',
+      kind: 'story', level: 'intermediate',
+      title: 'Un día en el <em>mercado</em>',
+      author: 'Original · El Pueblo',
+      year: '',
+      attribution: 'Cultura · Mercado y compras',
+      preview: '"¿A cuánto el kilo?" — En el mercado al aire libre, regatear es parte del juego.',
+      text: [
+        'Los sábados por la mañana, mi madre y yo vamos al mercado al aire libre del centro. Es muy diferente del supermercado: aquí cada puesto tiene su propio vendedor, y los colores y olores de la fruta fresca llenan el aire.',
+        'Primero buscamos las frutas y verduras de temporada, porque son más baratas y de mejor calidad. Mi madre toca los tomates, huele los melones y escoge solo los más maduros. "Lo barato sale caro", dice siempre, "pero la buena calidad vale la pena."',
+        'En un puesto, ella pregunta: "¿A cuánto el kilo?" El vendedor responde, y entonces empieza el regateo. Mi madre ofrece un poco menos, el vendedor sonríe, y al final llegan a un precio justo. Regatear no es pelear: es casi una conversación amable entre clientes y vendedores que se conocen desde hace años.',
+        'Pagamos en efectivo, guardamos todo en nuestra canasta y, antes de irnos, el vendedor nos regala unas naranjas "para la casa". Salimos con las bolsas llenas y, sobre todo, con la sensación de haber comprado algo más que comida: un pedazo de la vida del barrio.'
+      ],
+      gloss: {
+        'el mercado al aire libre': 'open-air market',
+        'el supermercado': 'supermarket',
+        'el puesto': 'stall',
+        'el vendedor': 'vendor',
+        'de temporada': 'in season',
+        'barato': 'cheap',
+        'la calidad': 'quality',
+        'maduros': 'ripe',
+        'lo barato sale caro': 'cheap things end up costing you (saying)',
+        '¿a cuánto el kilo?': 'how much per kilo?',
+        'el regateo': 'haggling',
+        'regatear': 'to haggle',
+        'el precio': 'price',
+        'en efectivo': 'in cash',
+        'la canasta': 'basket',
+        'las bolsas': 'the bags'
+      },
+      quiz: [
+        { q: '¿En qué se diferencia el mercado del supermercado, según el texto?', options: [
+          { text: 'Cada puesto tiene su propio vendedor', correct: true },
+          { text: 'Todo es más caro', correct: false },
+          { text: 'No se puede comprar fruta', correct: false }
+        ]},
+        { q: '¿Por qué buscan productos de temporada?', options: [
+          { text: 'Son más baratos y de mejor calidad', correct: true },
+          { text: 'Son los únicos que hay', correct: false },
+          { text: 'No les gusta la fruta', correct: false }
+        ]},
+        { q: 'Según el texto, regatear es…', options: [
+          { text: 'casi una conversación amable, no una pelea', correct: true },
+          { text: 'una forma de discutir y enojarse', correct: false },
+          { text: 'algo prohibido en el mercado', correct: false }
+        ]},
+        { q: '¿Cómo pagan al final?', options: [
+          { text: 'En efectivo', correct: true },
+          { text: 'Con tarjeta de crédito', correct: false },
+          { text: 'No pagan nada', correct: false }
+        ]}
+      ]
+    },
+    // ---------- COOKING READING — A family recipe ----------
+    {
+      id: 'cocina-receta-abuela',
+      kind: 'story', level: 'intermediate',
+      title: 'En la <em>cocina</em> con la abuela',
+      author: 'Original · El Pueblo',
+      year: '',
+      attribution: 'Cultura · Comida y cocina',
+      preview: 'Primero se pica la cebolla, luego se fríe el pollo… así cocinaba mi abuela.',
+      text: [
+        'Los domingos por la mañana, la cocina de mi abuela olía a ajo y a cebolla. Para ella, cocinar no era una tarea: era una forma de cuidar a la familia. Nunca usaba una receta escrita; todo estaba en su memoria y en sus manos.',
+        '"Primero", decía, "se pica la cebolla bien fina y se fríe en la sartén a fuego lento." Mientras tanto, hervía el arroz en una olla grande y pelaba las papas para la sopa. Yo solo podía mirar y, a veces, mezclar los ingredientes con una cuchara de madera.',
+        'Lo más importante, según ella, era probar la comida muchas veces. "Si no la pruebas, no sabes si le falta sal", repetía. Agregaba una cucharada de esto, una pizca de aquello, y todo salía perfecto sin medir nada.',
+        'Hoy, cuando cocino el mismo plato, sigo cada paso de memoria, igual que ella. La receta no está en ningún papel: está en el olor de la cebolla en la sartén y en las tardes que pasamos juntas en su cocina.'
+      ],
+      gloss: {
+        'la cocina': 'kitchen / cooking',
+        'cocinar': 'to cook',
+        'la receta': 'recipe',
+        'se pica': 'one chops / you chop',
+        'se fríe': 'one fries / you fry',
+        'a fuego lento': 'on low heat',
+        'la sartén': 'frying pan',
+        'hervía': 'boiled (imperfect)',
+        'la olla': 'pot',
+        'pelaba': 'peeled (imperfect)',
+        'mezclar': 'to mix',
+        'probar': 'to taste',
+        'le falta sal': 'it needs salt',
+        'agregaba': 'added (imperfect)',
+        'una cucharada': 'a spoonful',
+        'una pizca': 'a pinch'
+      },
+      quiz: [
+        { q: 'Para la abuela, cocinar era sobre todo…', options: [
+          { text: 'una forma de cuidar a la familia', correct: true },
+          { text: 'una tarea aburrida', correct: false },
+          { text: 'un trabajo pagado', correct: false }
+        ]},
+        { q: '¿Qué hace primero según la abuela?', options: [
+          { text: 'Picar la cebolla y freírla a fuego lento', correct: true },
+          { text: 'Hornear un pastel', correct: false },
+          { text: 'Batir los huevos', correct: false }
+        ]},
+        { q: '¿Por qué insistía en probar la comida muchas veces?', options: [
+          { text: 'Para saber si le faltaba sal', correct: true },
+          { text: 'Porque tenía mucha hambre', correct: false },
+          { text: 'Para enfriarla', correct: false }
+        ]},
+        { q: '¿Dónde está la receta, según el final del texto?', options: [
+          { text: 'En la memoria y en los recuerdos, no en un papel', correct: true },
+          { text: 'En un libro de cocina', correct: false },
+          { text: 'En internet', correct: false }
+        ]}
+      ]
+    },
+    // ---------- CULTURE READING — Dances of the Hispanic world ----------
+    {
+      id: 'bailes-mundo-hispano',
+      kind: 'story', level: 'intermediate',
+      title: 'Los <em>bailes</em> del mundo hispano',
+      author: 'Original · El Pueblo',
+      year: '',
+      attribution: 'Cultura · El mundo hispanohablante',
+      preview: 'Del tango argentino al flamenco andaluz, cada país baila su propia historia…',
+      text: [
+        'Si hay algo que une al mundo hispano, es el baile. En cada país, la gente celebra, cuenta su historia y expresa sus emociones a través del ritmo. Pero cada región tiene su propio estilo, y cada baile lleva dentro siglos de mezcla cultural.',
+        'En el Caribe nacieron algunos de los bailes más populares del planeta. La salsa, con su energía y sus parejas que giran sin parar, mezcla ritmos africanos y europeos. El merengue de la República Dominicana es rápido y alegre, mientras que la bachata, del mismo país, es más romántica y lenta. En Colombia, la cumbia combina tambores africanos, flautas indígenas y melodías españolas.',
+        'Más al sur, Argentina dio al mundo el tango. Nació en los barrios pobres de Buenos Aires a fines del siglo XIX y, al principio, era mal visto por la sociedad. Hoy es un símbolo nacional: una pareja, un abrazo y pasos elegantes y dramáticos sobre la pista de baile.',
+        'En España, el flamenco de Andalucía une el cante, la guitarra y el zapateo. El bailarín marca el compás con los pies y las manos, mientras el público aplaude al ritmo. Como muchos bailes hispanos, el flamenco no es solo un espectáculo en el escenario: es una forma de sentir y de recordar quiénes somos.'
+      ],
+      gloss: {
+        'el baile': 'dance',
+        'el ritmo': 'rhythm',
+        'la salsa': 'salsa',
+        'las parejas': 'partners / couples',
+        'giran': 'spin / turn',
+        'el merengue': 'merengue',
+        'la bachata': 'bachata',
+        'la cumbia': 'cumbia',
+        'los tambores': 'drums',
+        'el tango': 'tango',
+        'mal visto': 'frowned upon',
+        'la pista de baile': 'the dance floor',
+        'el flamenco': 'flamenco',
+        'el cante': 'flamenco singing',
+        'el zapateo': 'foot-stomping',
+        'el compás': 'the beat',
+        'aplaude': 'applauds',
+        'el escenario': 'the stage'
+      },
+      quiz: [
+        { q: '¿Qué tienen en común los bailes del mundo hispano, según el texto?', options: [
+          { text: 'Expresan emociones e historia a través del ritmo', correct: true },
+          { text: 'Todos vienen de Argentina', correct: false },
+          { text: 'Son todos lentos y románticos', correct: false }
+        ]},
+        { q: '¿De qué país son el merengue y la bachata?', options: [
+          { text: 'La República Dominicana', correct: true },
+          { text: 'España', correct: false },
+          { text: 'Argentina', correct: false }
+        ]},
+        { q: 'Al principio, el tango era…', options: [
+          { text: 'mal visto por la sociedad', correct: true },
+          { text: 'un símbolo oficial del gobierno', correct: false },
+          { text: 'un baile religioso', correct: false }
+        ]},
+        { q: 'El flamenco combina el cante, la guitarra y…', options: [
+          { text: 'el zapateo', correct: true },
+          { text: 'los tambores africanos', correct: false },
+          { text: 'las flautas indígenas', correct: false }
+        ]}
+      ]
+    },
+    // ---------- CULTURE READING — Religion in the Hispanic world ----------
+    {
+      id: 'religion-mundo-hispano',
+      kind: 'story', level: 'intermediate',
+      title: 'La <em>religión</em> en el mundo hispano',
+      author: 'Original · El Pueblo',
+      year: '',
+      attribution: 'Cultura · El mundo hispanohablante',
+      preview: 'El catolicismo llegó con los españoles, pero hoy el mundo hispano reza de muchas maneras…',
+      text: [
+        'Durante siglos, la religión más importante del mundo hispano ha sido el catolicismo. Llegó con los españoles en el siglo XV y, junto con la Inquisición, se convirtió en el centro de la vida social. Todavía hoy, en casi todos los pueblos hay una iglesia en la plaza mayor, y cada comunidad celebra a su santo patrón con fiestas, procesiones y misas.',
+        'Pero la fe del continente nunca fue solo europea. Cuando el cristianismo se encontró con las creencias indígenas y africanas, nació algo nuevo: el sincretismo. La Virgen de Guadalupe en México une la devoción católica con símbolos indígenas. El Día de los Muertos mezcla el cielo cristiano con tradiciones prehispánicas. En el Caribe, la santería combina santos católicos con dioses africanos.',
+        'La Semana Santa muestra esta fe de forma espectacular. En ciudades como Sevilla o Antigua, miles de creyentes llenan las calles para ver las procesiones, llevar la cruz y rezar juntos. Para muchos no es solo religión, sino también identidad y cultura.',
+        'Hoy el panorama es más diverso que nunca. Las iglesias evangélicas crecen rápidamente en Latinoamérica. España guarda la memoria de su pasado judío y musulmán en las sinagogas de Toledo y la gran mezquita de Córdoba. Y, al mismo tiempo, cada vez más personas se declaran ateas o simplemente espirituales, sin pertenecer a ninguna religión.',
+        'Así, preguntar "¿cuál es la religión del mundo hispano?" ya no tiene una sola respuesta. La fe sigue siendo muy importante para millones de personas, pero hoy el mundo hispano ora, cree y duda de muchas maneras distintas.'
+      ],
+      gloss: {
+        'el catolicismo': 'Catholicism',
+        'el santo patrón': 'patron saint',
+        'la procesión': 'procession',
+        'las creencias': 'beliefs',
+        'el sincretismo': 'syncretism (blending of beliefs)',
+        'la Virgen de Guadalupe': 'the Virgin of Guadalupe',
+        'el cielo': 'heaven',
+        'la santería': 'Santería (Afro-Caribbean religion)',
+        'la Semana Santa': 'Holy Week',
+        'los creyentes': 'believers',
+        'la cruz': 'cross',
+        'rezar': 'to pray',
+        'evangélicas': 'evangelical (Protestant)',
+        'la mezquita': 'mosque',
+        'ateas': 'atheist (fem. pl.)',
+        'espirituales': 'spiritual',
+        'ora': 'prays'
+      },
+      quiz: [
+        { q: '¿Qué religión ha sido históricamente la más importante del mundo hispano?', options: [
+          { text: 'El catolicismo', correct: true },
+          { text: 'El budismo', correct: false },
+          { text: 'El islam', correct: false }
+        ]},
+        { q: 'El "sincretismo" del texto se refiere a…', options: [
+          { text: 'la mezcla de creencias cristianas, indígenas y africanas', correct: true },
+          { text: 'la prohibición de todas las religiones', correct: false },
+          { text: 'una nueva iglesia evangélica', correct: false }
+        ]},
+        { q: '¿Qué ejemplo de sincretismo se menciona en México?', options: [
+          { text: 'La Virgen de Guadalupe', correct: true },
+          { text: 'La Semana Santa de Sevilla', correct: false },
+          { text: 'La mezquita de Córdoba', correct: false }
+        ]},
+        { q: 'Según el texto, el panorama religioso de hoy es…', options: [
+          { text: 'más diverso, con evangélicos, ateos y personas espirituales', correct: true },
+          { text: 'exactamente igual que en el siglo XV', correct: false },
+          { text: 'totalmente sin religión', correct: false }
+        ]}
+      ]
+    },
+    // ---------- GRAMMAR-IN-CONTEXT — Pluperfect subjunctive (Lesson 60) ----------
+    {
+      id: 'si-hubiera-sabido',
+      kind: 'story', level: 'advanced',
+      title: 'Lo que <em>habría sido</em>',
+      author: 'Original · El Pueblo',
+      year: '',
+      attribution: 'Gramática en contexto · El pluscuamperfecto de subjuntivo',
+      preview: 'Si hubiera tomado aquel tren, toda mi vida habría sido distinta…',
+      text: [
+        'Si hubiera tomado aquel tren de las seis, toda mi vida habría sido distinta. Pero llegué tarde a la estación, y el tren ya se había ido.',
+        'Mi abuela siempre decía que no valía la pena lamentarse por el pasado. «Ojalá hubieras escuchado a tu corazón», me dijo una vez, «pero lo hecho, hecho está.» En aquel momento no la entendí; actuaba yo como si nada hubiera pasado, como si las decisiones no tuvieran consecuencias.',
+        'Años después, comprendí lo que había querido decir. Si hubiera estudiado música, quizá habría sido feliz de otra manera. Si no me hubiera mudado a la ciudad, nunca habría conocido a las personas que hoy más quiero. Cada «si hubiera» abre la puerta a una vida que no viví.',
+        'Hoy ya no me pregunto qué habría pasado. Si me hubiera quedado atrapado en esos pensamientos, no habría aprendido la lección más importante: el pasado no se cambia, pero el presente todavía es mío.'
+      ],
+      gloss: {
+        'si hubiera tomado': 'if I had taken',
+        'se había ido': 'had (already) left',
+        'lamentarse': 'to lament / regret',
+        'ojalá hubieras escuchado': 'I wish you had listened',
+        'lo hecho, hecho está': 'what\'s done is done',
+        'como si nada hubiera pasado': 'as if nothing had happened',
+        'habría sido': 'would have been',
+        'si no me hubiera mudado': 'if I hadn\'t moved',
+        'atrapado': 'trapped'
+      },
+      quiz: [
+        { q: '«Si hubiera tomado aquel tren…» expresa una situación…', options: [
+          { text: 'contraria a los hechos, en el pasado', correct: true },
+          { text: 'real que sí ocurrió', correct: false },
+          { text: 'que pasará en el futuro', correct: false }
+        ]},
+        { q: '¿Qué estructura completa «si hubiera tomado…»?', options: [
+          { text: '…habría sido (condicional perfecto)', correct: true },
+          { text: '…sería (condicional simple)', correct: false },
+          { text: '…es (presente)', correct: false }
+        ]},
+        { q: '«como si nada hubiera pasado» significa…', options: [
+          { text: 'as if nothing had happened', correct: true },
+          { text: 'because nothing happened', correct: false },
+          { text: 'when nothing happens', correct: false }
+        ]},
+        { q: '¿Cuál es la lección final del narrador?', options: [
+          { text: 'El pasado no se cambia, pero el presente es suyo', correct: true },
+          { text: 'Siempre hay que lamentarse por el pasado', correct: false },
+          { text: 'El tren llegará mañana', correct: false }
+        ]}
+      ]
+    },
     // ---------- HISTORY READING — La Inquisición ----------
     {
       id: 'la-inquisicion',
@@ -11831,6 +12868,18 @@
         'la venganza': 'revenge',
         'la astucia': 'cunning'
       },
+      historyNote: {
+        heading: 'El español del Siglo de Oro: el pronombre va detrás del verbo',
+        intro: 'This story is retold in modern Spanish, but the real <em>Lazarillo</em> was printed in <strong>1554</strong> and the language worked differently. The change you would notice most: direct- and indirect-object pronouns were normally attached to the <strong>end</strong> of a conjugated verb — this is called <em>enclisis</em> — above all when the verb opened the sentence. Today those same pronouns go <strong>before</strong> the verb.',
+        examples: [
+          { old: 'entrególe', modern: 'le entregó', en: 'she handed him over (IO)' },
+          { old: 'díjole', modern: 'le dijo', en: 'he said to him (IO)' },
+          { old: 'tomólo', modern: 'lo tomó', en: 'he took it (DO)' },
+          { old: 'rompióle los dientes', modern: 'le rompió los dientes', en: 'it broke his teeth (IO)' },
+          { old: 'dióselo', modern: 'se lo dio', en: 'he gave it to him (IO + DO)' }
+        ],
+        outro: 'Future- and conditional-tense verbs could even split in two, with the pronoun wedged inside: <em>dártelo he</em> = <em>te lo daré</em> (“I will give it to you”). You would also meet <em>vuestra merced</em> — the polite “you” that later shrank into today’s <strong>usted</strong> — plus older spellings like <em>agora</em> (ahora) and <em>ansí</em> (así).'
+      },
       quiz: [
         { q: '¿Por qué la madre entregó a Lázaro a un ciego?', options: [
           { text: 'Para que le sirviera de guía', correct: true },
@@ -11888,6 +12937,18 @@
         'la lanza': 'lance',
         'embestir': 'to charge / attack',
         'el sabio': 'wise man / wizard'
+      },
+      historyNote: {
+        heading: 'El español de Cervantes: el pronombre pegado al verbo',
+        intro: 'Our version is modernized, but Cervantes published <em>Don Quijote</em> in <strong>1605</strong> in early-modern Spanish. Its signature trait is the same one you would hear all across the Golden Age: object pronouns clinging to the <strong>back</strong> of a conjugated verb (<em>enclisis</em>), where modern Spanish puts them in front.',
+        examples: [
+          { old: 'respondióle', modern: 'le respondió', en: 'he answered him (IO)' },
+          { old: 'parecióle', modern: 'le pareció', en: 'it seemed to him (IO)' },
+          { old: 'levantóse', modern: 'se levantó', en: 'he got up (reflexive)' },
+          { old: 'diéronle de palos', modern: 'le dieron de palos', en: 'they gave him a beating (IO)' },
+          { old: 'prometióselo', modern: 'se lo prometió', en: 'he promised it to him (IO + DO)' }
+        ],
+        outro: 'Open the real novel and the enclitics jump out at once — <em>Frisaba la edad…</em>, <em>Respondióle don Quijote…</em>, <em>Diéronle…</em> You will also spot the old polite address <em>vuestra merced</em> (→ usted) and spellings like <em>agora</em> for ahora.'
       },
       quiz: [
         { q: '¿Cuál era la gran pasión de Alonso Quijano?', options: [
@@ -13922,6 +14983,20 @@
     const levelLabel = reading.level.charAt(0).toUpperCase() + reading.level.slice(1);
     const kindLabel = reading.kind === 'story' ? 'story' : reading.kind === 'poem' ? 'poem' : 'author spotlight';
 
+    const hn = reading.historyNote;
+    const historyHtml = hn ? `
+      <div class="reading-history-note">
+        <div class="rhn-head">📜 ${hn.heading}</div>
+        <p class="rhn-intro">${hn.intro}</p>
+        <table class="rhn-table">
+          <thead><tr><th>Entonces (Siglo de Oro)</th><th>Hoy</th><th>English</th></tr></thead>
+          <tbody>
+            ${hn.examples.map(e => `<tr><td><em>${e.old}</em></td><td>${e.modern}</td><td>${e.en}</td></tr>`).join('')}
+          </tbody>
+        </table>
+        ${hn.outro ? `<p class="rhn-outro">${hn.outro}</p>` : ''}
+      </div>` : '';
+
     const quizHtml = reading.quiz.map((q, i) => `
       <div class="quiz-q" data-qidx="${i}">
         <div class="quiz-q-label">Question ${String(i+1).padStart(2,'0')}</div>
@@ -13940,6 +15015,7 @@
         <div class="author-line">${reading.author}${reading.year ? ' · ' + reading.year : ''}</div>
         <div class="meta-line">${levelLabel} ${kindLabel}${reading.attribution ? ' · ' + reading.attribution : ''}${reading.kind !== 'spotlight' ? ' · Hover red words for translations' : ''}</div>
         <div class="text-body">${textHtml}</div>
+        ${historyHtml}
       </div>
       <div class="reading-quiz-card">
         <h4>${reading.kind === 'spotlight' ? 'Check your understanding' : 'Comprehension'}</h4>
@@ -14179,7 +15255,117 @@
       { id: 'd-i-45-pos', text: 'Este libro no es mío, debe ser tuyo o de tu hermana.', en: 'This book isn\'t mine, it must be yours or your sister\'s.', country: null },
       { id: 'd-i-46-pos', text: 'Mi casa es vieja pero la suya es completamente nueva.', en: 'My house is old but his/hers is completely new.', country: null },
       { id: 'd-i-47-pos', text: 'Las llaves del coche son las mías, las tuyas están en la mesa.', en: 'The car keys are mine, yours are on the table.', country: null },
-      { id: 'd-i-48-pos', text: 'Lo nuestro fue especial, pero ya terminó hace tiempo.', en: 'What we had was special, but it ended a while ago.', country: null }
+      { id: 'd-i-48-pos', text: 'Lo nuestro fue especial, pero ya terminó hace tiempo.', en: 'What we had was special, but it ended a while ago.', country: null },
+      // Dances / dancing (paired with the Dances vocab deck)
+      { id: 'd-i-49-baile', text: 'Aprendí a bailar salsa en una fiesta el verano pasado.', en: 'I learned to dance salsa at a party last summer.', country: null },
+      { id: 'd-i-50-baile', text: 'El tango nació en los barrios de Buenos Aires hace más de cien años.', en: 'Tango was born in the neighborhoods of Buenos Aires more than a hundred years ago.', country: 'ar' },
+      { id: 'd-i-51-baile', text: 'En la fiesta, la pista de baile estaba llena y todos seguían el ritmo.', en: 'At the party, the dance floor was packed and everyone followed the beat.', country: null },
+      { id: 'd-i-52-baile', text: 'El flamenco combina la guitarra, el cante y el zapateo de los bailarines.', en: 'Flamenco combines the guitar, the singing, and the foot-stomping of the dancers.', country: 'es' },
+      // Cooking (paired with the Cooking vocab deck)
+      { id: 'd-i-53-cocina', text: 'Primero pica la cebolla y luego fríela en la sartén a fuego lento.', en: 'First chop the onion and then fry it in the pan over low heat.', country: null },
+      { id: 'd-i-54-cocina', text: 'Mi abuela hierve el arroz mientras prepara la sopa de pollo.', en: 'My grandmother boils the rice while she makes the chicken soup.', country: null },
+      { id: 'd-i-55-cocina', text: 'No olvides probar la salsa para ver si le falta sal.', en: 'Don\'t forget to taste the sauce to see if it needs salt.', country: null },
+      { id: 'd-i-56-cocina', text: 'Agrega dos cucharadas de aceite y mezcla bien los ingredientes.', en: 'Add two spoonfuls of oil and mix the ingredients well.', country: null },
+      // Market & shopping (paired with the Market vocab deck)
+      { id: 'd-i-57-mercado', text: 'Los sábados vamos al mercado a comprar fruta y verdura fresca.', en: 'On Saturdays we go to the market to buy fresh fruit and vegetables.', country: null },
+      { id: 'd-i-58-mercado', text: '¿A cuánto está el kilo de tomates? Me parece un poco caro.', en: 'How much is a kilo of tomatoes? It seems a bit expensive to me.', country: null },
+      { id: 'd-i-59-mercado', text: 'El vendedor me hizo un descuento porque compré una docena.', en: 'The vendor gave me a discount because I bought a dozen.', country: null },
+      { id: 'd-i-60-mercado', text: 'Pagué en efectivo y guardé todo en mi propia bolsa.', en: 'I paid in cash and put everything in my own bag.', country: null },
+      // Math (paired with the Math vocab deck)
+      { id: 'd-i-61-mate', text: 'Si sumas estos tres números, el resultado es cuarenta y dos.', en: 'If you add these three numbers, the result is forty-two.', country: null },
+      { id: 'd-i-62-mate', text: 'La tienda ofrece un descuento del veinte por ciento en todo.', en: 'The store offers a twenty percent discount on everything.', country: null },
+      { id: 'd-i-63-mate', text: 'Para resolver el problema, primero multiplica y luego resta.', en: 'To solve the problem, first multiply and then subtract.', country: null },
+      { id: 'd-i-64-mate', text: 'La mitad de la clase aprobó el examen de matemáticas.', en: 'Half the class passed the math exam.', country: null },
+      // Politics (paired with the Politics vocab deck)
+      { id: 'd-i-65-pol', text: 'Las elecciones son en noviembre y todos quieren votar.', en: 'The elections are in November and everyone wants to vote.', country: null },
+      { id: 'd-i-66-pol', text: 'El candidato dio un discurso sobre los derechos de los ciudadanos.', en: 'The candidate gave a speech about citizens\' rights.', country: null },
+      { id: 'd-i-67-pol', text: 'En una democracia, el gobierno debe respetar la libertad de todos.', en: 'In a democracy, the government must respect everyone\'s freedom.', country: null },
+      { id: 'd-i-68-pol', text: 'Hubo una gran protesta en la plaza contra la corrupción.', en: 'There was a big protest in the square against corruption.', country: null },
+      // Science (paired with the Science vocab deck)
+      { id: 'd-i-69-cien', text: 'La científica propuso una hipótesis y la probó en el laboratorio.', en: 'The scientist proposed a hypothesis and tested it in the lab.', country: null },
+      { id: 'd-i-70-cien', text: 'Con el microscopio podemos observar las células muy de cerca.', en: 'With the microscope we can observe the cells very closely.', country: null },
+      { id: 'd-i-71-cien', text: 'La gravedad atrae todos los objetos hacia la Tierra.', en: 'Gravity pulls all objects toward the Earth.', country: null },
+      { id: 'd-i-72-cien', text: 'El experimento confirmó la teoría después de muchas pruebas.', en: 'The experiment confirmed the theory after many tests.', country: null },
+      // Geography (paired with the Geography vocab deck)
+      { id: 'd-i-73-geo', text: 'Los Andes son la cordillera más larga del mundo.', en: 'The Andes are the longest mountain range in the world.', country: null },
+      { id: 'd-i-74-geo', text: 'El río Amazonas cruza la selva más grande del planeta.', en: 'The Amazon River crosses the largest rainforest on the planet.', country: 'pe' },
+      { id: 'd-i-75-geo', text: 'El desierto de Atacama, en Chile, es uno de los más secos.', en: 'The Atacama Desert, in Chile, is one of the driest.', country: 'cl' },
+      { id: 'd-i-76-geo', text: 'Cuba es una isla rodeada por el mar Caribe.', en: 'Cuba is an island surrounded by the Caribbean Sea.', country: 'cu' },
+      // Hunting (paired with the Hunting vocab deck)
+      { id: 'd-i-77-caza', text: 'El cazador siguió las huellas del venado por el bosque.', en: 'The hunter followed the deer\'s tracks through the forest.', country: null },
+      { id: 'd-i-78-caza', text: 'Necesitas un permiso para cazar durante la temporada.', en: 'You need a permit to hunt during the season.', country: null },
+      { id: 'd-i-79-caza', text: 'Esperó en silencio y apuntó con mucho cuidado.', en: 'He waited in silence and aimed very carefully.', country: null },
+      { id: 'd-i-80-caza', text: 'La paciencia es más importante que el arma en la caza.', en: 'Patience is more important than the weapon in hunting.', country: null },
+      // Fishing (paired with the Fishing vocab deck)
+      { id: 'd-i-81-pesca', text: 'Salimos de madrugada con las cañas y la carnada.', en: 'We left at dawn with the rods and the bait.', country: null },
+      { id: 'd-i-82-pesca', text: 'Atrapé una trucha grande, pero la solté al agua otra vez.', en: 'I caught a big trout, but I released it back into the water.', country: null },
+      { id: 'd-i-83-pesca', text: 'Los peces no pican cuando el agua está muy fría.', en: 'The fish don\'t bite when the water is very cold.', country: null },
+      { id: 'd-i-84-pesca', text: 'Pescamos desde el muelle toda la tarde.', en: 'We fished from the pier all afternoon.', country: null },
+      // Camping (paired with the Camping vocab deck)
+      { id: 'd-i-85-camp', text: 'Montamos la tienda de campaña junto al río.', en: 'We set up the tent next to the river.', country: null },
+      { id: 'd-i-86-camp', text: 'Por la noche encendimos una fogata y contamos historias.', en: 'At night we lit a campfire and told stories.', country: null },
+      { id: 'd-i-87-camp', text: 'No olvides la linterna, los fósforos y el repelente.', en: 'Don\'t forget the flashlight, the matches, and the repellent.', country: null },
+      { id: 'd-i-88-camp', text: 'Dormimos al aire libre y miramos las estrellas.', en: 'We slept outdoors and watched the stars.', country: null },
+      // Nature (paired with the Nature vocab deck)
+      { id: 'd-i-89-nat', text: 'Los árboles nos dan oxígeno y hogar a los pájaros.', en: 'Trees give us oxygen and a home to the birds.', country: null },
+      { id: 'd-i-90-nat', text: 'La contaminación de las fábricas daña el medio ambiente.', en: 'Pollution from factories harms the environment.', country: null },
+      { id: 'd-i-91-nat', text: 'Debemos proteger los bosques y no tirar basura.', en: 'We must protect the forests and not throw trash.', country: null },
+      { id: 'd-i-92-nat', text: 'Una mariposa azul voló entre las flores del jardín.', en: 'A blue butterfly flew among the flowers in the garden.', country: null },
+      // Space (paired with the Space vocab deck)
+      { id: 'd-i-93-esp', text: 'La Tierra gira alrededor del Sol una vez al año.', en: 'The Earth revolves around the Sun once a year.', country: null },
+      { id: 'd-i-94-esp', text: 'Los astronautas viajaron a la Luna en un cohete enorme.', en: 'The astronauts traveled to the Moon in an enormous rocket.', country: null },
+      { id: 'd-i-95-esp', text: 'Con el telescopio podemos ver los planetas del sistema solar.', en: 'With the telescope we can see the planets of the solar system.', country: null },
+      { id: 'd-i-96-esp', text: 'En el espacio no hay gravedad y todo flota.', en: 'In space there is no gravity and everything floats.', country: null },
+      // Vehicles (paired with the Vehicles vocab deck)
+      { id: 'd-i-97-veh', text: 'Tomo el metro al trabajo porque hay mucho tráfico.', en: 'I take the subway to work because there\'s a lot of traffic.', country: null },
+      { id: 'd-i-98-veh', text: 'Aprendí a conducir el coche de mi padre el verano pasado.', en: 'I learned to drive my dad\'s car last summer.', country: null },
+      { id: 'd-i-99-veh', text: 'El autobús llegó tarde y perdimos el tren.', en: 'The bus arrived late and we missed the train.', country: null },
+      { id: 'd-i-100-veh', text: 'No encuentro dónde estacionar el coche por aquí.', en: 'I can\'t find anywhere to park the car around here.', country: null },
+      // Tools (paired with the Tools vocab deck)
+      { id: 'd-i-101-herr', text: 'Necesito el martillo y unos clavos para colgar el cuadro.', en: 'I need the hammer and some nails to hang the picture.', country: null },
+      { id: 'd-i-102-herr', text: 'Aprieta el tornillo con el destornillador, por favor.', en: 'Tighten the screw with the screwdriver, please.', country: null },
+      { id: 'd-i-103-herr', text: 'Mi abuelo podía arreglar casi todo en su taller.', en: 'My grandfather could fix almost anything in his workshop.', country: null },
+      { id: 'd-i-104-herr', text: 'Guarda las herramientas en la caja cuando termines.', en: 'Put the tools in the box when you finish.', country: null },
+      // Construction (paired with the Construction vocab deck)
+      { id: 'd-i-105-con', text: 'Los obreros levantan las paredes con ladrillos y cemento.', en: 'The workers build the walls with bricks and cement.', country: null },
+      { id: 'd-i-106-con', text: 'El arquitecto revisó los planos antes de empezar la obra.', en: 'The architect checked the blueprints before starting the project.', country: null },
+      { id: 'd-i-107-con', text: 'La grúa levantó las vigas de acero hasta el techo.', en: 'The crane lifted the steel beams up to the roof.', country: null },
+      { id: 'd-i-108-con', text: 'En la obra es obligatorio usar casco por seguridad.', en: 'On the construction site, wearing a hard hat is required for safety.', country: null },
+      // Music (paired with the Music vocab deck)
+      { id: 'd-i-109-mus', text: 'Toco la guitarra en una banda con mis amigos.', en: 'I play guitar in a band with my friends.', country: null },
+      { id: 'd-i-110-mus', text: 'El cantante salió al escenario y el público aplaudió.', en: 'The singer came out on stage and the audience applauded.', country: null },
+      { id: 'd-i-111-mus', text: 'Me sé la letra de esta canción de memoria.', en: 'I know the lyrics of this song by heart.', country: null },
+      { id: 'd-i-112-mus', text: 'El ritmo de la salsa viene de los tambores del Caribe.', en: 'The rhythm of salsa comes from the drums of the Caribbean.', country: null },
+      // Education (paired with the Education vocab deck)
+      { id: 'd-i-113-edu', text: 'La profesora explicó la lección y nos puso tarea.', en: 'The teacher explained the lesson and gave us homework.', country: null },
+      { id: 'd-i-114-edu', text: 'Estudié mucho y aprobé el examen con buena nota.', en: 'I studied a lot and passed the exam with a good grade.', country: null },
+      { id: 'd-i-115-edu', text: 'Ganó una beca para estudiar en la universidad.', en: 'She won a scholarship to study at the university.', country: null },
+      { id: 'd-i-116-edu', text: 'El conocimiento es algo que nadie te puede quitar.', en: 'Knowledge is something no one can take from you.', country: null },
+      // Military (paired with the Military vocab deck)
+      { id: 'd-i-117-mil', text: 'Los soldados defendieron la frontera durante la guerra.', en: 'The soldiers defended the border during the war.', country: null },
+      { id: 'd-i-118-mil', text: 'El general cambió de estrategia antes de la batalla.', en: 'The general changed strategy before the battle.', country: null },
+      { id: 'd-i-119-mil', text: 'Después de muchos años de guerra, por fin llegó la paz.', en: 'After many years of war, peace finally came.', country: null },
+      { id: 'd-i-120-mil', text: 'Las tropas regresaron a la base tras la misión.', en: 'The troops returned to the base after the mission.', country: null },
+      // Weapons (paired with the Weapons vocab deck)
+      { id: 'd-i-121-arm', text: 'El caballero llevaba una espada y un escudo.', en: 'The knight carried a sword and a shield.', country: null },
+      { id: 'd-i-122-arm', text: 'La pólvora cambió la forma de hacer la guerra.', en: 'Gunpowder changed the way war was waged.', country: null },
+      { id: 'd-i-123-arm', text: 'Las armas son peligrosas y hay leyes para controlarlas.', en: 'Weapons are dangerous and there are laws to control them.', country: null },
+      { id: 'd-i-124-arm', text: 'El cañón disparó hacia el barco enemigo.', en: 'The cannon fired toward the enemy ship.', country: null },
+      // Law (paired with the Law vocab deck)
+      { id: 'd-i-125-der', text: 'El abogado defendió al acusado ante el tribunal.', en: 'The lawyer defended the accused before the court.', country: null },
+      { id: 'd-i-126-der', text: 'El juez escuchó a los testigos antes de decidir.', en: 'The judge listened to the witnesses before deciding.', country: null },
+      { id: 'd-i-127-der', text: 'Nadie es culpable hasta que se demuestre con pruebas.', en: 'No one is guilty until it is proven with evidence.', country: null },
+      { id: 'd-i-128-der', text: 'La policía arrestó al sospechoso del robo.', en: 'The police arrested the robbery suspect.', country: null },
+      // Professions (paired with the Professions vocab deck)
+      { id: 'd-i-129-prof', text: 'De grande quiero ser ingeniera o médica.', en: 'When I grow up I want to be an engineer or a doctor.', country: null },
+      { id: 'd-i-130-prof', text: 'Eligió esa profesión porque le gusta ayudar a la gente.', en: 'She chose that profession because she likes helping people.', country: null },
+      { id: 'd-i-131-prof', text: 'Muchas personas cambian de carrera más de una vez.', en: 'Many people change careers more than once.', country: null },
+      { id: 'd-i-132-prof', text: 'El maestro y la enfermera trabajan mucho por los demás.', en: 'The teacher and the nurse work hard for others.', country: null },
+      // Health & medicine (paired with the Health vocab deck)
+      { id: 'd-i-133-sal', text: 'Tengo fiebre y me duele mucho la cabeza desde ayer.', en: 'I have a fever and my head has hurt a lot since yesterday.', country: null },
+      { id: 'd-i-134-sal', text: 'La doctora me dio una receta para comprar en la farmacia.', en: 'The doctor gave me a prescription to fill at the pharmacy.', country: null },
+      { id: 'd-i-135-sal', text: 'Llamaron a una ambulancia porque era una emergencia.', en: 'They called an ambulance because it was an emergency.', country: null },
+      { id: 'd-i-136-sal', text: 'Toma la medicina dos veces al día y descansa mucho.', en: 'Take the medicine twice a day and rest a lot.', country: null }
     ],
     advanced: [
       { id: 'd-a-01', text: 'A pesar de las dificultades económicas, muchos jóvenes deciden estudiar idiomas extranjeros para mejorar sus oportunidades laborales.', en: 'Despite economic difficulties, many young people decide to study foreign languages to improve their job opportunities.', country: null },
@@ -14191,7 +15377,12 @@
       { id: 'd-a-07', text: 'El tango argentino nació en los barrios de Buenos Aires a fines del siglo diecinueve y hoy se baila en todo el mundo.', en: 'Argentine tango was born in the neighborhoods of Buenos Aires at the end of the 19th century and is danced all over the world today.', country: 'ar' },
       { id: 'd-a-08', text: 'Aprender otro idioma no solo abre puertas profesionales, sino que también nos permite entender otras culturas con más profundidad.', en: 'Learning another language not only opens professional doors, but also allows us to understand other cultures more deeply.', country: null },
       { id: 'd-a-09', text: 'La gastronomía peruana es reconocida mundialmente por su variedad y por la mezcla única de ingredientes indígenas, asiáticos y europeos.', en: 'Peruvian cuisine is recognized worldwide for its variety and for the unique blend of indigenous, Asian, and European ingredients.', country: 'pe' },
-      { id: 'd-a-10', text: 'Los gauchos de Argentina y Uruguay representan una tradición rural que ha sobrevivido desde la época colonial hasta nuestros días.', en: 'The gauchos of Argentina and Uruguay represent a rural tradition that has survived from colonial times to the present day.', country: 'ar' }
+      { id: 'd-a-10', text: 'Los gauchos de Argentina y Uruguay representan una tradición rural que ha sobrevivido desde la época colonial hasta nuestros días.', en: 'The gauchos of Argentina and Uruguay represent a rural tradition that has survived from colonial times to the present day.', country: 'ar' },
+      // Pluperfect subjunctive / past conditionals (paired with Lesson 60)
+      { id: 'd-a-11-plus', text: 'Si hubiera sabido que venías, habría preparado algo de comer.', en: 'If I had known you were coming, I would have made something to eat.', country: null },
+      { id: 'd-a-12-plus', text: 'Ojalá hubiéramos llegado más temprano para conseguir buenos asientos.', en: 'I wish we had arrived earlier to get good seats.', country: null },
+      { id: 'd-a-13-plus', text: 'Ella me miró como si nunca hubiera visto a nadie tan cansado.', en: 'She looked at me as if she had never seen anyone so tired.', country: null },
+      { id: 'd-a-14-plus', text: 'Si no hubieran construido la represa, el valle todavía existiría.', en: 'If they hadn\'t built the dam, the valley would still exist.', country: null }
     ]
   };
 
@@ -14765,6 +15956,194 @@
 
   const WRITING_TOPICS = [
     {
+      id: 'salud-write',
+      title: 'Una visita al <em>médico</em>',
+      level: 'sp1', category: 'narrative',
+      body: 'Using the Health & medicine vocab deck, write about a time you were sick or went to the doctor. What symptoms did you have? Did you go to the clinic or hospital? What did the doctor say, and what treatment did you get? How did you take care of yourself to get better?',
+      tips: ['Useful vocab: estar enfermo, el síntoma, la fiebre, la tos, el dolor, el médico, la receta, la medicina, la farmacia', 'Use doler like gustar (me duele la cabeza / me duelen los pies)', 'Use the preterite to narrate; aim for 100+ words'],
+      date: ''
+    },
+    {
+      id: 'musica-write',
+      title: 'La <em>música</em> en mi vida',
+      level: 'sp1', category: 'personal',
+      body: 'Using the Music vocab deck, write about music. What kind of music do you like, and why? Do you play an instrument or sing? Who is your favorite singer or band? Describe a concert you went to (or want to go to). How does music make you feel?',
+      tips: ['Useful vocab: la música, la canción, el cantante, tocar, el instrumento, la guitarra, el concierto, el ritmo', 'Use gustar and encantar (me encanta…, me gusta… porque…)', 'Aim for 100+ words'],
+      date: ''
+    },
+    {
+      id: 'educacion-write',
+      title: 'La importancia de la <em>educación</em>',
+      level: 'sp2', category: 'opinion',
+      body: 'Using the Education vocab deck, write about why education matters. What do we learn in school besides facts? Should education be free for everyone? What makes a good teacher? End with your opinion on the most important thing you have learned.',
+      tips: ['Useful vocab: la educación, aprender, enseñar, el maestro, la universidad, la beca, el conocimiento', 'Use opinion phrases (creo que, es importante que + subjunctive)', 'Aim for 120+ words'],
+      date: ''
+    },
+    {
+      id: 'militar-write',
+      title: 'La <em>guerra</em> y la paz',
+      level: 'sp3', category: 'opinion',
+      body: 'Using the Military vocab deck, write about war and peace. Why have countries gone to war throughout history? What role did armies play in the independence of Latin America? Is war ever justified? Argue your position and explain why peace is so valuable.',
+      tips: ['Useful vocab: el ejército, el soldado, la guerra, la batalla, la independencia, la victoria, la paz', 'Use the preterite/imperfect for history and the subjunctive for opinion', 'Address a counterargument; aim for 130+ words'],
+      date: ''
+    },
+    {
+      id: 'armas-write',
+      title: 'Las <em>armas</em> a través de la historia',
+      level: 'sp3', category: 'cultural',
+      body: 'Using the Weapons vocab deck, write about how weapons changed history. How did people fight in ancient times (swords, shields, armor)? How did gunpowder change warfare and the conquest of the Americas? Why do countries today have laws to control weapons?',
+      tips: ['Useful vocab: el arma, la espada, el escudo, la armadura, la pólvora, el cañón, las armas de fuego, peligroso', 'Use the preterite/imperfect to narrate history', 'Stay factual and analytical; aim for 120+ words'],
+      date: ''
+    },
+    {
+      id: 'derecho-write',
+      title: 'La <em>justicia</em> y la ley',
+      level: 'sp3', category: 'opinion',
+      body: 'Using the Law vocab deck, write about justice. How does a trial work — who are the judge, the lawyer, the witnesses, the jury? Why is someone "innocent until proven guilty" important? Should punishments be harsh or focus on rehabilitation? Defend your view.',
+      tips: ['Useful vocab: la ley, el juez, el abogado, el tribunal, el juicio, las pruebas, inocente, culpable, la justicia', 'Use opinion phrases and the subjunctive (es justo que…, no creo que…)', 'Address a counterargument; aim for 130+ words'],
+      date: ''
+    },
+    {
+      id: 'profesiones-write',
+      title: 'Mi <em>profesión</em> ideal',
+      level: 'sp1', category: 'personal',
+      body: 'Using the Professions vocab deck, write about your ideal career. What do you want to be, and why? What skills does it require? Who inspires you in that field? Would you choose it for money, passion, or to help others? Describe a typical day in that job.',
+      tips: ['Useful vocab: la profesión, el médico, el ingeniero, el maestro, el abogado, la carrera, el trabajo', 'Use querer + infinitive (quiero ser…) and the conditional (me gustaría…)', 'Aim for 100+ words'],
+      date: ''
+    },
+    {
+      id: 'espacio-write',
+      title: 'Un viaje al <em>espacio</em>',
+      level: 'sp2', category: 'narrative',
+      body: 'Using the Space vocab deck, imagine you are an astronaut. Describe your journey: the rocket launch, what you see (planets, stars, the Moon, the Earth from far away), and how it feels to float without gravity. Would you want to explore Mars? Why?',
+      tips: ['Useful vocab: el cohete, el astronauta, el planeta, la estrella, la gravedad, la nave espacial, explorar', 'Use the future or conditional to imagine (viajaría, vería, flotaría)', 'Aim for 100+ words'],
+      date: ''
+    },
+    {
+      id: 'vehiculos-write',
+      title: 'Cómo me <em>muevo</em> por la ciudad',
+      level: 'sp1', category: 'personal',
+      body: 'Using the Vehicles vocab deck, write about transportation. How do you get to school or around your town — car, bus, bike, walking? What are the advantages and disadvantages of each? Which is best for the environment? Which do you prefer and why?',
+      tips: ['Useful vocab: el coche, el autobús, la bicicleta, el metro, el tren, conducir, el tráfico', 'Use comparisons: más rápido que, más barato que', 'Give your preference with prefiero… porque…'],
+      date: ''
+    },
+    {
+      id: 'herramientas-write',
+      title: 'Arreglar algo con <em>herramientas</em>',
+      level: 'sp2', category: 'narrative',
+      body: 'Using the Tools vocab deck, narrate a time you fixed or built something. What was broken? What tools did you use? What steps did you follow? Did it work? Who taught you, or did you figure it out yourself?',
+      tips: ['Useful vocab: el martillo, el destornillador, el tornillo, la sierra, arreglar, reparar, apretar', 'Use the preterite for the steps and sequence words (primero, luego, después)', 'Aim for 100+ words'],
+      date: ''
+    },
+    {
+      id: 'construccion-write',
+      title: 'Cómo se <em>construye</em> algo',
+      level: 'sp2', category: 'cultural',
+      body: 'Using the Construction vocab deck, explain how something is built (a house, a bridge, a school). Who is involved — architect, engineer, workers? What are the steps, from the blueprints and foundation to the walls and roof? What materials are used?',
+      tips: ['Useful vocab: construir, los planos, los cimientos, el ladrillo, el cemento, la pared, el techo, el obrero', 'Use sequence words (primero, después, finalmente) and the passive se (se construye, se levanta)', 'Aim for 110+ words'],
+      date: ''
+    },
+    {
+      id: 'caza-write',
+      title: 'La <em>caza</em>: tradición y responsabilidad',
+      level: 'sp3', category: 'opinion',
+      body: 'Using the Hunting vocab deck, write about hunting. Is it a tradition, a sport, or a way to connect with nature? Why do hunting seasons and permits exist? Take a position: should hunting be allowed, and under what rules? Defend your view and respond to a counterargument.',
+      tips: ['Useful vocab: la caza, cazar, el cazador, el permiso, la temporada de caza, las huellas, proteger', 'Use opinion phrases: creo que, me parece que, es importante que + subjunctive', 'Address a counterargument (aunque algunos piensen que…)'],
+      date: ''
+    },
+    {
+      id: 'pesca-write',
+      title: 'Un día de <em>pesca</em>',
+      level: 'sp2', category: 'narrative',
+      body: 'Using the Fishing vocab deck, narrate a fishing trip (real or imagined). Where did you go? What did you bring? Did the fish bite? What did you catch — and did you keep it or release it? Who were you with, and how did it feel?',
+      tips: ['Useful vocab: pescar, la caña de pescar, el anzuelo, la carnada, picar, atrapar, soltar, la paciencia', 'Use the preterite for the events and the imperfect for description', 'Aim for 120+ words'],
+      date: ''
+    },
+    {
+      id: 'acampar-write',
+      title: 'Una noche de <em>campamento</em>',
+      level: 'sp2', category: 'narrative',
+      body: 'Using the Camping vocab deck, narrate a camping trip. What did you pack? Where did you set up the tent? What did you do during the day and at night? What was the best part? Describe the scenery and how you felt.',
+      tips: ['Useful vocab: acampar, la tienda de campaña, el saco de dormir, la fogata, el sendero, la caminata, al aire libre', 'Use the preterite for events, the imperfect for setting the scene', 'Use sequence words: primero, luego, después, finalmente'],
+      date: ''
+    },
+    {
+      id: 'naturaleza-write',
+      title: 'Cómo cuidar la <em>naturaleza</em>',
+      level: 'sp2', category: 'opinion',
+      body: 'Using the Nature vocab deck, write about protecting nature. What problems does the environment face (pollution, deforestation, endangered species)? What can people do to help? End with a call to action: what should we all do, and why?',
+      tips: ['Useful vocab: la naturaleza, el medio ambiente, la contaminación, contaminar, proteger, el bosque, salvaje', 'Use deber + infinitive (debemos…) and es importante que + subjunctive', 'Aim for 120+ words with a clear conclusion'],
+      date: ''
+    },
+    {
+      id: 'matematicas-write',
+      title: 'Las <em>matemáticas</em> en mi vida',
+      level: 'sp2', category: 'cultural',
+      body: 'Using the Math vocab deck, write about how you use math in everyday life. When do you add, subtract, multiply, or divide? Do you calculate prices, discounts, or percentages? Do you like math — why or why not? Describe a real situation where math helped you solve a problem.',
+      tips: ['Useful vocab: sumar, restar, multiplicar, dividir, el porcentaje, calcular, el resultado, el problema', 'Use the present tense for habits and the preterite for one specific example', 'Aim for 100+ words with one opinion (me gusta / no me gusta porque…)'],
+      date: ''
+    },
+    {
+      id: 'politica-write',
+      title: 'La <em>democracia</em> y el voto',
+      level: 'sp3', category: 'opinion',
+      body: 'Using the Politics vocab deck, write about democracy. Why is it important for citizens to vote? What rights do people have in a democracy that they don\'t have under a dictatorship? Take a position: should voting be a duty for everyone? Defend your opinion and respond to one counterargument.',
+      tips: ['Useful vocab: la democracia, votar, el voto, las elecciones, los derechos, la libertad, el gobierno, la dictadura', 'Use opinion phrases: creo que, me parece que, es importante que + subjunctive', 'Aim for 130+ words and address a counterargument (aunque algunos digan que…)'],
+      date: ''
+    },
+    {
+      id: 'ciencia-write',
+      title: 'Un <em>experimento</em> y el método científico',
+      level: 'sp2', category: 'cultural',
+      body: 'Using the Science vocab deck, describe an experiment (real or imagined) using the scientific method. What did you observe? What was your hypothesis? What experiment did you design, and what did you measure? What were the results, and did they confirm your hypothesis?',
+      tips: ['Useful vocab: la ciencia, la hipótesis, el experimento, observar, medir, el laboratorio, los resultados, la teoría', 'Use sequence words: primero, luego, después, finalmente', 'Use the preterite to narrate what you did (observé, medí, comprobé)'],
+      date: ''
+    },
+    {
+      id: 'geografia-write',
+      title: 'La <em>geografía</em> de un país hispano',
+      level: 'sp1', category: 'cultural',
+      body: 'Using the Geography vocab deck, describe the geography of a Spanish-speaking country (or your own). Where is it located? What mountains, rivers, deserts, coasts, or volcanoes does it have? What is the climate like? How does the geography affect daily life there?',
+      tips: ['Useful vocab: el país, la montaña, el río, la costa, el desierto, la selva, el clima, el norte/sur/este/oeste', 'Use hay (there is/are) and está (location)', 'Aim for 100+ words'],
+      date: ''
+    },
+    {
+      id: 'mercado-compras',
+      title: 'De <em>compras</em> en el mercado',
+      level: 'sp1',
+      category: 'cultural',
+      body: 'Using the Market & shopping vocab deck, write about going shopping at a market. What do you buy, and from which stalls? How much do things cost — what\'s cheap, what\'s expensive? Do you haggle? How do you pay? Compare an open-air market to a supermarket: which do you prefer, and why?',
+      tips: ['Useful vocab: el mercado, el puesto, el vendedor, el precio, caro, barato, regatear, pagar, el efectivo, fresco', 'Ask and answer price questions: "¿Cuánto cuesta…?" / "Cuesta…"', 'Aim for 100+ words and give an opinion with "prefiero… porque…"'],
+      date: ''
+    },
+    {
+      id: 'cocina-receta',
+      title: 'Tu <em>receta</em> favorita',
+      level: 'sp1',
+      category: 'cultural',
+      body: 'Using the Cooking vocab deck, write out a recipe for a dish you love. List the ingredients, then explain the steps in order: what do you chop, fry, boil, mix, or bake? How long does it take? Who taught you to make it, or where is it from? End by saying why this dish is special to you.',
+      tips: ['Useful vocab: cocinar, la receta, el ingrediente, picar, freír, hervir, hornear, mezclar, agregar, probar', 'Use sequence words: primero, luego, después, finalmente', 'Try commands for the steps (pica, fríe, mezcla) OR "se pica, se fríe…"'],
+      date: ''
+    },
+    {
+      id: 'bailes-hispanos',
+      title: 'Los <em>bailes</em> del mundo hispano',
+      level: 'sp2',
+      category: 'cultural',
+      body: 'After studying the Dances vocab deck (and the reading "Los bailes del mundo hispano" in Lectura), write about dance. Which Hispanic dance interests you most — salsa, tango, flamenco, cumbia, merengue, bachata — and why? Where is it from, and what makes it special? Do you like to dance? Describe a time you danced (or watched someone dance). End with your opinion: why do you think dance is so important in Hispanic cultures?',
+      tips: ['Useful vocab: el baile, bailar, el ritmo, la pareja, la pista de baile, el escenario, el bailarín / la bailarina', 'Use the preterite to narrate a specific time you danced (bailé, fui, vi)', 'Aim for 120+ words and at least one opinion with "creo que…" or "me parece que…"'],
+      date: ''
+    },
+    {
+      id: 'religion-mundo-hispano-write',
+      title: 'La <em>religión</em> en el mundo hispano',
+      level: 'sp3',
+      category: 'cultural',
+      body: 'After studying the Religions vocab deck (and the reading "La religión en el mundo hispano" in Lectura), write about religion and belief in the Hispanic world. Why has Catholicism been so important? What is "syncretism," and what are some examples (the Virgin of Guadalupe, Día de los Muertos, santería)? How is the religious landscape changing today? End with a respectful reflection: why do you think faith and tradition matter to so many people?',
+      tips: ['Useful vocab: la fe, la creencia, el catolicismo, la iglesia, rezar / orar, sagrado, el creyente, espiritual', 'Use the present for general facts and the imperfect/preterite for history', 'Be respectful and descriptive; aim for 130+ words with at least one opinion'],
+      date: ''
+    },
+    {
       id: 'la-inquisicion',
       title: 'La <em>Inquisición</em>: poder y conciencia',
       level: 'sp2',
@@ -15218,6 +16597,191 @@
   ];
 
   const SPEAKING_TOPICS = [
+    // ========== CULTURE — paired with vocab decks ==========
+    {
+      id: 'salud-speak',
+      title: 'En el <em>consultorio</em> del médico',
+      level: 'sp1', category: 'roleplay',
+      body: 'Role-play a visit to the doctor for at least 60 seconds. Play both the patient and the doctor: describe your symptoms, answer the doctor\'s questions, and have the doctor give a diagnosis and treatment. Use the Health & medicine vocab.',
+      tips: ['Useful vocab: el síntoma, la fiebre, la tos, el dolor, doler, la receta, la medicina, descansar', 'Patient lines: "Me duele…", "Tengo fiebre"; Doctor lines: "¿Desde cuándo…?", "Tome esta medicina"', 'Switch voices clearly between patient and doctor'],
+      date: ''
+    },
+    {
+      id: 'musica-speak',
+      title: 'La <em>música</em> que te gusta',
+      level: 'sp1', category: 'personal',
+      body: 'Talk for at least 60 seconds about music. What do you listen to and why? Do you play an instrument or sing? Describe your favorite singer or a concert. Use the Music vocab.',
+      tips: ['Useful vocab: la música, la canción, el cantante, tocar, el instrumento, el concierto, el ritmo', 'Use me gusta / me encanta + porque', 'Give specific examples (artists, songs)'],
+      date: ''
+    },
+    {
+      id: 'educacion-speak',
+      title: 'La importancia de la <em>educación</em>',
+      level: 'sp2', category: 'opinion',
+      body: 'Talk for at least 75 seconds about education. Why does it matter? What makes a good teacher? Should it be free? Share the most important thing you have learned. Use the Education vocab.',
+      tips: ['Useful vocab: la educación, aprender, enseñar, el maestro, la universidad, el conocimiento', 'Signal opinion: creo que, me parece que, es importante que', 'Give at least two reasons'],
+      date: ''
+    },
+    {
+      id: 'militar-speak',
+      title: 'La <em>guerra</em> y la paz',
+      level: 'sp3', category: 'opinion',
+      body: 'Talk for at least 75 seconds about war and peace. Why do wars happen? Is war ever justified? Why is peace so valuable? Be thoughtful and respectful. Use the Military vocab.',
+      tips: ['Useful vocab: el ejército, el soldado, la guerra, la batalla, la paz, defender, la victoria', 'Use the subjunctive for opinion (no creo que la guerra sea…)', 'Organize: por un lado… por otro lado…'],
+      date: ''
+    },
+    {
+      id: 'armas-speak',
+      title: 'Las <em>armas</em> en la historia',
+      level: 'sp3', category: 'cultural',
+      body: 'Talk for at least 60 seconds about how weapons changed history — from swords and shields to gunpowder and cannons. Why do countries control weapons today? Stay factual. Use the Weapons vocab.',
+      tips: ['Useful vocab: el arma, la espada, el escudo, la armadura, la pólvora, el cañón, peligroso', 'Use the preterite/imperfect to narrate history', 'Keep it analytical, not graphic'],
+      date: ''
+    },
+    {
+      id: 'derecho-speak',
+      title: 'La <em>justicia</em> y la ley',
+      level: 'sp3', category: 'roleplay',
+      body: 'Role-play a short courtroom scene for at least 60 seconds, or explain how a trial works. Mention the judge, the lawyer, the witnesses, and how someone is found innocent or guilty. Use the Law vocab.',
+      tips: ['Useful vocab: la ley, el juez, el abogado, el tribunal, el testigo, inocente, culpable, las pruebas', 'You can switch voices (juez, abogado, testigo)', 'Use the present and connectors (entonces, por lo tanto)'],
+      date: ''
+    },
+    {
+      id: 'profesiones-speak',
+      title: 'Tu <em>profesión</em> ideal',
+      level: 'sp1', category: 'personal',
+      body: 'Talk for at least 60 seconds about your ideal career. What do you want to be and why? What skills does it need? Money, passion, or helping others — what matters most to you? Use the Professions vocab.',
+      tips: ['Useful vocab: la profesión, el médico, el ingeniero, el maestro, la carrera, el trabajo', 'Use quiero ser… and me gustaría… porque…', 'Describe a typical day in that job'],
+      date: ''
+    },
+    {
+      id: 'espacio-speak',
+      title: 'Imagina un viaje al <em>espacio</em>',
+      level: 'sp2', category: 'describe',
+      body: 'Talk for at least 60 seconds imagining you travel to space. Describe the launch, what you see, and how it feels with no gravity. Would you explore Mars? Use the Space vocab.',
+      tips: ['Useful vocab: el cohete, el astronauta, el planeta, la estrella, la gravedad, explorar', 'Use the conditional to imagine (vería, sentiría, exploraría)', 'Describe with the senses'],
+      date: ''
+    },
+    {
+      id: 'vehiculos-speak',
+      title: 'Cómo te <em>mueves</em> por tu ciudad',
+      level: 'sp1', category: 'personal',
+      body: 'Talk for at least 60 seconds about how you get around. What transportation do you use? What are the pros and cons? Which do you prefer and why? Use the Vehicles vocab.',
+      tips: ['Useful vocab: el coche, el autobús, la bicicleta, el metro, conducir, el tráfico', 'Use comparisons (más rápido que, más barato que)', 'State a preference (prefiero… porque…)'],
+      date: ''
+    },
+    {
+      id: 'herramientas-speak',
+      title: 'Cuenta cómo <em>arreglaste</em> algo',
+      level: 'sp2', category: 'narrate',
+      body: 'Talk for at least 60 seconds about a time you fixed or built something. What broke, what tools did you use, and what steps did you follow? Use the Tools vocab.',
+      tips: ['Useful vocab: el martillo, el destornillador, la sierra, arreglar, reparar, apretar', 'Use the preterite (usé, arreglé, apreté)', 'Sequence words: primero, luego, al final'],
+      date: ''
+    },
+    {
+      id: 'construccion-speak',
+      title: 'Explica cómo se <em>construye</em> algo',
+      level: 'sp2', category: 'cultural',
+      body: 'Talk for at least 60 seconds explaining how something is built. Who is involved, what are the steps, and what materials are used? Use the Construction vocab.',
+      tips: ['Useful vocab: construir, los planos, los cimientos, el ladrillo, la pared, el techo, el obrero', 'Use sequence words and the passive se (se construye, se levanta)', 'Go in order: planos → cimientos → paredes → techo'],
+      date: ''
+    },
+    {
+      id: 'caza-speak',
+      title: 'Tu opinión sobre la <em>caza</em>',
+      level: 'sp3', category: 'opinion',
+      body: 'Talk for at least 75 seconds about hunting. Is it a tradition worth keeping? Should there be rules like seasons and permits? Give your opinion respectfully and explain your reasons. Use the Hunting vocab.',
+      tips: ['Useful vocab: la caza, cazar, el cazador, el permiso, la temporada de caza, proteger', 'Signal opinion: creo que, me parece que, por un lado… por otro lado', 'Give at least two reasons'],
+      date: ''
+    },
+    {
+      id: 'pesca-speak',
+      title: 'Cuenta un día de <em>pesca</em>',
+      level: 'sp2', category: 'narrate',
+      body: 'Talk for at least 60 seconds narrating a fishing trip. Where did you go, what did you bring, did the fish bite, and what did you catch? Use the Fishing vocab and past tenses.',
+      tips: ['Useful vocab: pescar, la caña de pescar, el anzuelo, la carnada, picar, atrapar, soltar', 'Use the preterite (fui, pesqué, atrapé) and imperfect for description', 'Sequence words: primero, luego, al final'],
+      date: ''
+    },
+    {
+      id: 'acampar-speak',
+      title: 'Describe un <em>campamento</em>',
+      level: 'sp2', category: 'narrate',
+      body: 'Talk for at least 60 seconds about a camping trip. What did you pack, where did you camp, and what did you do? Describe the night and the scenery. Use the Camping vocab.',
+      tips: ['Useful vocab: acampar, la tienda de campaña, el saco de dormir, la fogata, el sendero, al aire libre', 'Use the preterite for events and imperfect for the setting', 'Describe with the senses (se veían las estrellas, hacía frío…)'],
+      date: ''
+    },
+    {
+      id: 'naturaleza-speak',
+      title: 'Cómo proteger la <em>naturaleza</em>',
+      level: 'sp2', category: 'opinion',
+      body: 'Talk for at least 60 seconds about protecting nature. What environmental problems worry you? What can people do to help? Use the Nature vocab and make a call to action.',
+      tips: ['Useful vocab: la naturaleza, el medio ambiente, la contaminación, proteger, el bosque, reciclar', 'Use debemos + infinitive and es importante + infinitive', 'Give concrete examples of what people can do'],
+      date: ''
+    },
+    {
+      id: 'matematicas-speak',
+      title: 'Explica un <em>problema de matemáticas</em>',
+      level: 'sp2', category: 'cultural',
+      body: 'Talk for at least 60 seconds explaining how you solve a simple math problem out loud, as if teaching a classmate. Use the numbers and operations. For example, calculating a discount or splitting a restaurant bill. Use the Math vocab.',
+      tips: ['Useful vocab: sumar, restar, multiplicar, dividir, el porcentaje, el resultado, igual a', 'Narrate the steps: primero, luego, entonces', 'Say the operations out loud (dos más dos es igual a cuatro)'],
+      date: ''
+    },
+    {
+      id: 'politica-speak',
+      title: 'Tu opinión sobre la <em>política</em>',
+      level: 'sp3', category: 'opinion',
+      body: 'Talk for at least 75 seconds about a political topic you care about. Why is it important to vote? What rights matter most to you? Be respectful and explain your reasons. Use the Politics vocab.',
+      tips: ['Useful vocab: votar, las elecciones, los derechos, la libertad, el gobierno, la democracia', 'Signal opinion: creo que, me parece que, en mi opinión', 'Give at least two reasons (porque…, además…)'],
+      date: ''
+    },
+    {
+      id: 'ciencia-speak',
+      title: 'Describe un <em>experimento</em>',
+      level: 'sp2', category: 'cultural',
+      body: 'Talk for at least 60 seconds describing a science experiment, real or imagined. Explain your hypothesis, what you did, what you measured, and the result. Use the Science vocab.',
+      tips: ['Useful vocab: la hipótesis, el experimento, observar, medir, el laboratorio, los resultados', 'Use the preterite to narrate (observé, medí, descubrí)', 'Sequence words: primero, luego, finalmente'],
+      date: ''
+    },
+    {
+      id: 'geografia-speak',
+      title: 'Describe la <em>geografía</em> de un lugar',
+      level: 'sp1', category: 'describe',
+      body: 'Talk for at least 60 seconds describing the geography of a place you know or want to visit. Where is it? What mountains, rivers, coasts, or deserts does it have? What is the climate like? Use the Geography vocab.',
+      tips: ['Useful vocab: la montaña, el río, la costa, el desierto, la selva, el clima, el norte/sur', 'Use hay and está for what exists and where', 'Describe with adjectives (alto, seco, tropical, enorme)'],
+      date: ''
+    },
+    {
+      id: 'mercado-speak',
+      title: 'En el <em>mercado</em>: regatear',
+      level: 'sp2', category: 'roleplay',
+      body: 'Role-play a market scene for at least 60 seconds. Play BOTH parts: the customer and the vendor. Ask the price ("¿A cuánto el kilo?"), say it\'s too expensive, haggle for a better price, agree, and pay. Use the Market & shopping vocab.',
+      tips: ['Useful vocab: ¿cuánto cuesta?, el precio, caro, barato, regatear, el descuento, pagar, el efectivo, el cambio', 'Be polite: "¿Me puede hacer un descuento?" / "Se lo dejo en…"', 'Switch voices clearly between the customer and the vendor'],
+      date: ''
+    },
+    {
+      id: 'cocina-receta-speak',
+      title: 'Explica cómo <em>preparar un plato</em>',
+      level: 'sp1', category: 'cultural',
+      body: 'Talk for at least 60 seconds explaining how to make a dish you like, as if you were teaching someone. Name the ingredients and go through the steps in order — what do you chop, fry, boil, mix, or bake? Use the Cooking vocab.',
+      tips: ['Useful vocab: picar, freír, hervir, hornear, mezclar, agregar, probar, la sartén, la olla', 'Use sequence words: primero, luego, después, finalmente', 'Commands work great here: "Pica la cebolla, luego fríela…"'],
+      date: ''
+    },
+    {
+      id: 'bailes-hispanos-speak',
+      title: 'Habla de un <em>baile</em>',
+      level: 'sp2', category: 'cultural',
+      body: 'Talk for at least 60 seconds about a Hispanic dance. Pick one — salsa, tango, flamenco, cumbia, merengue, bachata — say where it\'s from, describe its rhythm and style, and explain why you like it. Do you know how to dance it? Would you like to learn? Use the Dances vocab.',
+      tips: ['Useful vocab: el baile, bailar, el ritmo, la pareja, la pista de baile, el bailarín / la bailarina', 'Use me gusta / me encanta + reasons (porque…)', 'Try the conditional: "Me gustaría aprender a bailar…"'],
+      date: ''
+    },
+    {
+      id: 'religion-mundo-hispano-speak',
+      title: 'Habla de la <em>religión y la cultura</em>',
+      level: 'sp3', category: 'cultural',
+      body: 'Talk for at least 75 seconds about religion and tradition in the Hispanic world. Describe the role of Catholicism, give an example of syncretism (the Virgin of Guadalupe, Día de los Muertos, santería), and mention how things are changing today. Be respectful and descriptive.',
+      tips: ['Useful vocab: la fe, la creencia, el catolicismo, rezar / orar, la procesión, sagrado, espiritual', 'Use the present for general facts; signal opinion with "me parece que…"', 'Aim for clear, organized ideas over speed'],
+      date: ''
+    },
     // ========== TIER 1: READ-ALOUD (scripted — Spanish 1) ==========
     {
       id: 'read-greeting',
@@ -20013,6 +21577,18 @@
         { tense: 'subjuntivo', group: 'all', label: 'Drill: Present subjunctive (for sequence-of-tenses contrast)' }
       ],
       readings: ['peru-papa', 'argentina-gaucho', 'colombia-biodiversidad'],
+      pdfs: [],
+      links: []
+    },
+    'pluperfect-subjunctive': {
+      decks: ['verbosAr', 'verbosEr', 'verbosIr'],
+      drills: [
+        { tense: 'pluperfectsubj', group: 'all', label: 'Drill: Pluperfect subjunctive (hubiera + past participle)' },
+        { tense: 'pluperfectsubj', group: 'irregular', label: 'Drill: Pluperfect subjunctive · irregular participles' },
+        { tense: 'subjuntivo', group: 'all', label: 'Drill: Present subjunctive (for sequence-of-tenses contrast)' }
+      ],
+      readings: ['si-hubiera-sabido'],
+      listening: ['d-a-11-plus', 'd-a-12-plus', 'd-a-13-plus', 'd-a-14-plus'],
       pdfs: [],
       links: []
     }
@@ -26605,6 +28181,141 @@
           { text: 'limpio', correct: false }
         ]}
       ]
+    },
+
+    // ============================================================================
+    // LESSON 60 — Pluperfect Subjunctive & Past Conditionals — Spanish 3 / Advanced
+    // ============================================================================
+    {
+      id: 'pluperfect-subjunctive',
+      number: '60',
+      level: 'sp3',
+      title: 'The <em>pluperfect subjunctive</em> &amp; past conditionals',
+      summary: 'The "had done" of the subjunctive — hubiera + past participle. It powers past contrary-to-fact regrets ("If I had known, I would have come") and pairs with the conditional perfect. The capstone of the subjunctive.',
+      sections: [
+        {
+          heading: 'What it <em>does</em>',
+          body: 'The pluperfect subjunctive (<em>el pluscuamperfecto de subjuntivo</em>) is the subjunctive\'s version of "had done." It is the tense of <strong>regret, hindsight, and roads not taken</strong> — the things that DIDN\'T happen, but that you imagine.<br><br>Its number-one job is the <strong>past contrary-to-fact "if" sentence</strong>:<br><br>• <em>Si <strong>hubiera</strong> estudiado, <strong>habría</strong> aprobado.</em><br>(If I had studied, I would have passed — but I didn\'t study, so I didn\'t pass.)<br><br>This is Spanish 4 / AP territory. It builds directly on three earlier lessons: the <strong>past subjunctive</strong> (Lesson 59), the <strong>past perfect</strong> (Lesson 57), and the <strong>perfect-tense structure</strong> in general. Make sure those feel solid before you dig in here.'
+        },
+        {
+          heading: 'The <em>structure</em>: hubiera + past participle',
+          body: 'Like all the perfect tenses, this is a <strong>compound tense</strong> — two verbs working together. The formula is haber in the <strong>past subjunctive</strong> plus the past participle.<br><br><strong>Pattern: hubiera (or hubiese) + past participle</strong><br><br>Compare the whole "had done" family so you can see exactly where this one sits:<br><br>• <em>había comido</em> = past perfect, <strong>indicative</strong> — a FACT ("I had eaten")<br>• <em>hubiera comido</em> = pluperfect <strong>subjunctive</strong> — HYPOTHETICAL / contrary-to-fact ("(if) I had eaten")<br><br>Same "had + participle" idea; the difference is mood. The indicative reports what really happened; the subjunctive imagines what didn\'t.'
+        },
+        {
+          heading: 'Step 1: <em>haber</em> in the past subjunctive',
+          body: 'Take the past subjunctive of <em>haber</em>. Remember the Lesson 59 recipe — it comes from the preterite <em>ellos</em> form (<em>hubieron</em> → drop <strong>-ron</strong> → <em>hubie-</em> → add the endings):',
+          conjugation: [
+            ['yo', '<strong>hubiera</strong>'],
+            ['tú', '<strong>hubieras</strong>'],
+            ['él / ella / usted', '<strong>hubiera</strong>'],
+            ['nosotros', '<strong>hubiéramos</strong> (accent!)'],
+            ['vosotros', '<strong>hubierais</strong>'],
+            ['ellos / ellas / ustedes', '<strong>hubieran</strong>']
+          ]
+        },
+        {
+          heading: 'Step 2: the past participle <em>(refresher)</em>',
+          body: 'Exactly the same participle you already know:<br><br>• -AR verbs → <strong>-ado</strong>: <em>hablar → hablado</em><br>• -ER / -IR verbs → <strong>-ido</strong>: <em>comer → comido, vivir → vivido</em><br><br>And the usual irregulars: <em>hecho, dicho, visto, escrito, abierto, puesto, vuelto, muerto, roto, resuelto, cubierto</em>.<br><br>As always with <em>haber</em>, the participle is <strong>frozen in -o</strong> — it never agrees with gender or number.'
+        },
+        {
+          heading: 'Put it <em>together</em>: comer (to eat)',
+          body: '',
+          conjugation: [
+            ['yo', 'hubiera <strong>comido</strong>'],
+            ['tú', 'hubieras <strong>comido</strong>'],
+            ['él / ella / usted', 'hubiera <strong>comido</strong>'],
+            ['nosotros', 'hubiéramos <strong>comido</strong>'],
+            ['vosotros', 'hubierais <strong>comido</strong>'],
+            ['ellos / ellas / ustedes', 'hubieran <strong>comido</strong>']
+          ]
+        },
+        {
+          heading: 'Use #1: past <em>"if"</em> sentences (the big one)',
+          body: 'This is the third and final "if" structure — you met the first two in Lesson 59. The pattern:<br><br><strong>Si + pluperfect subjunctive, + conditional perfect</strong><br><br>It describes something contrary to fact <strong>in the past</strong>: what WOULD HAVE happened if something HAD BEEN true — but it wasn\'t, and it\'s over now.',
+          examples: [
+            { es: 'Si hubiera sabido, habría venido.', en: 'If I had known, I would have come. (but I didn\'t know)' },
+            { es: 'Si hubieras estudiado, habrías aprobado el examen.', en: 'If you had studied, you would have passed the exam.' },
+            { es: 'Si no hubiera llovido, habríamos ido a la playa.', en: 'If it hadn\'t rained, we would have gone to the beach.' },
+            { es: 'Si me lo hubieras dicho, te habría ayudado.', en: 'If you had told me, I would have helped you.' },
+            { es: '¿Qué habrías hecho si hubieras ganado la lotería?', en: 'What would you have done if you had won the lottery?' }
+          ]
+        },
+        {
+          type: 'tip',
+          heading: 'The <em>three "if" structures</em>, completed',
+          body: 'Here are all three side by side. As you move down the list, you move <strong>further from reality</strong>:<br><br><strong>1. REAL</strong> (it might happen) — Si + present, + present/future<br><em>Si tengo tiempo, leo / leeré.</em> (If I have time, I read / will read.)<br><br><strong>2. PRESENT hypothetical</strong> (not true now) — Si + past subjunctive, + conditional<br><em>Si tuviera tiempo, leería.</em> (If I had time, I would read — but I don\'t.)<br><br><strong>3. PAST hypothetical</strong> (didn\'t happen, it\'s over) — Si + pluperfect subjunctive, + conditional perfect<br><em>Si hubiera tenido tiempo, habría leído.</em> (If I had had time, I would have read — but I didn\'t.)<br><br>#1 could still come true; #2 isn\'t true right now; #3 is permanently in the past. This lesson is all about #3.'
+        },
+        {
+          heading: 'The partner tense: the <em>conditional perfect</em>',
+          body: 'The "then" half of a past "if" sentence uses the <strong>conditional perfect</strong> — <em>habría</em> + past participle ("would have done"). It is simply <em>haber</em> in the conditional plus the participle:',
+          conjugation: [
+            ['yo', 'habría <strong>hablado</strong>'],
+            ['tú', 'habrías <strong>hablado</strong>'],
+            ['él / ella / usted', 'habría <strong>hablado</strong>'],
+            ['nosotros', 'habríamos <strong>hablado</strong>'],
+            ['vosotros', 'habríais <strong>hablado</strong>'],
+            ['ellos / ellas / ustedes', 'habrían <strong>hablado</strong>']
+          ]
+        },
+        {
+          type: 'tip',
+          heading: 'What native speakers <em>actually</em> say',
+          body: 'In real speech, many native speakers use <em>hubiera</em> in <strong>both</strong> clauses:<br><br>• <em>Si hubiera sabido, <strong>hubiera</strong> venido.</em> (instead of "habría venido")<br><br>This is extremely common and fully accepted in conversation. The textbook pairing — <em>hubiera</em> in the "si" clause and <em>habría</em> in the result — is what you should write on an exam, but don\'t be surprised when you hear <em>hubiera ... hubiera</em> everywhere.'
+        },
+        {
+          heading: 'Use #2: regrets with <em>ojalá</em>',
+          body: '<em>Ojalá</em> + pluperfect subjunctive expresses a <strong>wish or regret about the past</strong> — something you wish HAD (or hadn\'t) happened, but it\'s too late now.',
+          examples: [
+            { es: 'Ojalá hubiera estudiado más.', en: 'I wish I had studied more. (regret)' },
+            { es: 'Ojalá no se hubieran ido tan pronto.', en: 'I wish they hadn\'t left so soon.' },
+            { es: 'Ojalá lo hubiera sabido antes.', en: 'I wish I had known earlier.' }
+          ]
+        },
+        {
+          heading: 'Use #3: <em>como si</em> + pluperfect ("as if … had")',
+          body: '<em>Como si</em> ("as if") always triggers the subjunctive. When the imagined comparison is in the <strong>past</strong> — "as if X had happened" — it takes the pluperfect subjunctive.',
+          examples: [
+            { es: 'Me habló como si nada hubiera pasado.', en: 'He spoke to me as if nothing had happened.' },
+            { es: 'Actuaba como si hubiera visto un fantasma.', en: 'She was acting as if she had seen a ghost.' }
+          ]
+        },
+        {
+          type: 'tip',
+          heading: 'Two valid forms: <em>hubiera</em> and <em>hubiese</em>',
+          body: 'Just like the simple past subjunctive, <em>haber</em> has a second set of forms: <strong>hubiese, hubieses, hubiese, hubiésemos, hubieseis, hubiesen</strong>.<br><br>So <em>hubiera comido</em> can also be <em>hubiese comido</em> — both are 100% correct and identical in meaning. The <strong>-ra</strong> forms dominate everyday speech across Latin America and Spain; the <strong>-se</strong> forms show up more in writing and literature. Produce <strong>-ra</strong>; recognize <strong>-se</strong> when you read it.'
+        },
+        {
+          type: 'mistakes',
+          heading: 'Pluperfect subjunctive <em>traps</em>',
+          body: 'Where students slip with this final piece of the subjunctive:',
+          items: [
+            'Using the <strong>indicative</strong> <em>había</em> in the "if" clause — wrong. <em>"Si había sabido…"</em> states a fact; a contrary-to-fact hypothetical needs the subjunctive: <em>"Si hubiera sabido…"</em>',
+            'Using the <strong>simple conditional</strong> in the result of a fully past hypothetical — usually wrong. <em>"Si hubiera estudiado, aprobaría"</em> mixes a past cause with a present result. For a fully past idea, use the conditional perfect: <em>"…habría aprobado."</em>',
+            'Putting the <strong>conditional (habría) in the "si" clause</strong> — wrong, same rule as Lesson 59. <em>"Si habría sabido"</em> is incorrect. The "si" clause never takes <em>habría</em>; it takes <em>hubiera</em>.',
+            'Making the <strong>participle agree</strong> — wrong. With <em>haber</em> the participle stays in -o: <em>"Si hubiera comida"</em> should be <em>"hubiera comido"</em>, even with a feminine subject.',
+            'Forgetting the <strong>accent on hubiéramos / habríamos</strong> — both nosotros forms need their accent.',
+            'Splitting <strong>haber and the participle</strong> — wrong. <em>"Hubiera no sabido"</em> should be <em>"No hubiera sabido."</em> Negatives and pronouns go BEFORE haber.',
+            'Confusing <strong>había / habría / hubiera</strong> — three different jobs. <em>había sabido</em> = "I had known" (fact); <em>habría sabido</em> = "I would have known" (result); <em>hubiera sabido</em> = "(if) I had known" (hypothetical).'
+          ]
+        }
+      ],
+      quiz: [
+        { q: 'Si yo _____ (saber) la verdad, habría actuado de otra manera.', options: [
+          { text: 'había sabido', correct: false },
+          { text: 'hubiera sabido', correct: true },
+          { text: 'sabría', correct: false }
+        ]},
+        { q: '"If you had called me, I would have answered." → Si me hubieras llamado, _____', options: [
+          { text: 'te contestaría', correct: false },
+          { text: 'te había contestado', correct: false },
+          { text: 'te habría contestado', correct: true }
+        ]},
+        { q: 'Ojalá _____ (estudiar, yo) más para el examen. (a regret about the past)', options: [
+          { text: 'hubiera estudiado', correct: true },
+          { text: 'estudiara', correct: false },
+          { text: 'había estudiado', correct: false }
+        ]}
+      ]
     }
 ,
     {
@@ -26745,6 +28456,196 @@
         { q: '<em>vos tenés</em> (voseo) is mainly heard in…', options: [{ text: 'Argentina and parts of Latin America', correct: true }, { text: 'Spain only', correct: false }, { text: 'Nowhere today', correct: false }] },
       ]
     }
+,
+    {
+      id: 'ling-vowels', num: 'P01', level: 'ling',
+      title: 'The <em>vowels</em>',
+      tag: 'Lingüística · Phonology',
+      summary: 'Spanish has just five vowel sounds — but how they team up is the secret to the accent.',
+      sections: [
+        { heading: 'Five sounds, always the same', body: 'Spanish vowels are the easiest part of the language: there are only <strong>five</strong>, and each makes <strong>one sound, every time</strong> — no surprises. a = "ah", e = "eh", i = "ee", o = "oh", u = "oo". They stay short and crisp; a Spanish vowel never gets lazy or mumbled the way English ones do.', examples: [{ es: 'casa · mesa · piso', en: 'clear a, e, i' }, { es: 'English "the / a"', en: 'often mumbled to "uh"' }] },
+        { heading: 'Strong vowels vs. weak vowels', body: 'Linguists split the five into two teams:<br>• <strong>Strong</strong> (open): <strong>a, e, o</strong><br>• <strong>Weak</strong> (closed): <strong>i, u</strong><br>This teamwork decides whether two vowels share a syllable or split apart.' },
+        { heading: 'Diphthongs — two vowels, one beat', body: 'When a weak vowel (i or u) bumps into another vowel, they glide together into a <strong>single syllable</strong> — a <strong>diphthong</strong>. Say <em>bien, agua, cielo, cuatro</em>: each squeezes two vowels into one beat.', examples: [{ es: 'bien', en: '1 syllable (ie glides)' }, { es: 'a-gua', en: 'ua glides together' }] },
+        { heading: 'Hiatus — when they split', body: 'But two <strong>strong</strong> vowels each keep their own syllable — that split is called <strong>hiatus</strong>: <em>ma-es-tro, le-er, ca-os</em>. A written accent can also force the split: <em>dí-a, pa-ís</em>.' },
+        { type: 'tip', heading: 'Why this matters', body: 'Diphthong or hiatus tells you <strong>how many syllables</strong> a word has — and that controls <strong>stress and accent marks</strong> (coming up in this unit). These little vowel rules are the hidden engine behind a lot of Spanish spelling.' },
+      ],
+      quiz: [
+        { q: 'How many vowel sounds does Spanish have?', options: [{ text: 'Five', correct: true }, { text: 'Twelve', correct: false }, { text: 'Three', correct: false }] },
+        { q: 'A <em>diphthong</em> is…', options: [{ text: 'Two vowels gliding into one syllable', correct: true }, { text: 'A silent letter', correct: false }, { text: 'Two separate words', correct: false }] },
+        { q: 'The "weak" vowels are…', options: [{ text: 'i and u', correct: true }, { text: 'a and o', correct: false }, { text: 'all five', correct: false }] },
+      ]
+    },
+    {
+      id: 'ling-consonants', num: 'P02', level: 'ling',
+      title: 'Consonants &amp; <em>glides</em>',
+      tag: 'Lingüística · Phonology',
+      summary: 'Most Spanish consonants are close to English — plus a few stars and two half-vowel "glides."',
+      sections: [
+        { heading: 'Mostly familiar', body: 'Good news: most Spanish consonants sound close to their English cousins — m, n, l, p, t, k, f, s, ch. Spanish p, t, k are just <strong>softer</strong> (no puff of air). Only a handful of consonants are truly new.' },
+        { heading: 'The stars to know', body: '• <strong>ñ</strong> = "ny" (<em>niño</em>)<br>• <strong>rr</strong> = a rolled trill; a single <strong>r</strong> = a quick tap (<em>perro</em> vs <em>pero</em>)<br>• <strong>j</strong> and soft <strong>g</strong> = a throaty "h" (<em>jamón, gente</em>)<br>• <strong>h</strong> = always silent (<em>hola</em>)' },
+        { heading: 'Glides: the half-vowels', body: 'When <strong>i</strong> or <strong>u</strong> starts a diphthong, it stops acting like a vowel and behaves like a consonant — a <strong>glide</strong> (or semivowel). The i in <em>tierra</em> is a "y"-glide; the u in <em>fuego</em> is a "w"-glide. They slide into the next vowel.', examples: [{ es: 'tierra', en: 'i = "y" glide' }, { es: 'fuego', en: 'u = "w" glide' }] },
+        { type: 'tip', heading: 'b and v are the SAME sound', body: 'Spanish makes <strong>no difference</strong> between b and v — both are the same /b/ sound. <em>vaca</em> and <em>baca</em> are pronounced identically. (That is why even native speakers sometimes mix them up in spelling.)' },
+      ],
+      quiz: [
+        { q: 'The letter <em>ñ</em> sounds like…', options: [{ text: '"ny" as in canyon', correct: true }, { text: '"n" then a pause', correct: false }, { text: 'a silent letter', correct: false }] },
+        { q: 'In Spanish, b and v are…', options: [{ text: 'The same sound', correct: true }, { text: 'Totally different sounds', correct: false }, { text: 'Both silent', correct: false }] },
+        { q: 'A "glide" is…', options: [{ text: 'An i or u sliding into another vowel', correct: true }, { text: 'A rolled r', correct: false }, { text: 'A silent h', correct: false }] },
+      ]
+    },
+    {
+      id: 'ling-allophony', num: 'P03', level: 'ling',
+      title: 'One letter, <em>many sounds</em>',
+      tag: 'Lingüística · Phonology',
+      summary: 'The same letter can quietly change its sound depending on its neighbors — and words blend together.',
+      sections: [
+        { heading: 'Hard and soft b, d, g', body: '<strong>b, d, g</strong> are "hard" at the start of a word or after a pause (<em>burro, dedo, gato</em>), but they <strong>soften</strong> between vowels: the d in <em>nada</em> becomes the soft "th" of English <em>this</em>; the b in <em>la boca</em> turns breathy. These automatic variants of one sound are called <strong>allophones</strong>.' },
+        { heading: 'Words blend together', body: 'In real speech, the end of one word melts into the next — linguists call this <strong>sandhi</strong>. <em>los amigos</em> comes out "lo-sa-mi-gos"; <em>el hielo</em> runs together. Spanish loves to keep syllables flowing without gaps.', examples: [{ es: 'los amigos', en: '→ "lo-sa-mi-gos"' }, { es: 'mis hermanos', en: '→ "mi-ser-ma-nos"' }] },
+        { heading: 'Long double sounds', body: 'When the same consonant ends one word and starts the next, it can stretch into one long sound — a <strong>geminate</strong>: <em>las salas, el ladrón</em>. (Inside a single word, only <em>rr</em>, <em>cc</em>, and <em>nn</em> double up.)' },
+        { type: 'tip', heading: 'Why Spanish sounds so smooth', body: 'These blends are why fluent Spanish sounds like one flowing ribbon instead of separate, choppy words. Do not fight it — letting the sounds connect is what makes you sound natural.' },
+      ],
+      quiz: [
+        { q: 'Between vowels, b, d, and g…', options: [{ text: 'Soften to gentler sounds', correct: true }, { text: 'Get louder and harder', correct: false }, { text: 'Go silent', correct: false }] },
+        { q: '"Sandhi" describes…', options: [{ text: 'Words blending into each other in speech', correct: true }, { text: 'A spelling rule', correct: false }, { text: 'A verb tense', correct: false }] },
+        { q: 'Different automatic versions of one sound are called…', options: [{ text: 'Allophones', correct: true }, { text: 'Vowels', correct: false }, { text: 'Accents', correct: false }] },
+      ]
+    },
+    {
+      id: 'ling-spelling', num: 'P04', level: 'ling',
+      title: 'Spelling ↔ <em>sound</em>',
+      tag: 'Lingüística · Phonology',
+      summary: 'Spanish spelling is wonderfully regular — once you know a handful of rules.',
+      sections: [
+        { heading: 'One letter, one sound (mostly)', body: 'Unlike English, Spanish spelling almost always tells you the sound: learn the letter, read the word. There is no "though / through / tough." Only a few letters do double duty, and there are clear rules for them.' },
+        { heading: 'The c and g rule', body: 'c and g change depending on the next vowel:<br>• <em>ca, co, cu</em> = hard "k" — but <em>ce, ci</em> = "s" (or "th" in Spain)<br>• <em>ga, go, gu</em> = hard "g" — but <em>ge, gi</em> = throaty "h"<br>To keep the hard sound before e/i, Spanish spells <strong>que/qui</strong> and <strong>gue/gui</strong> (the u is silent).', examples: [{ es: 'queso · guitarra', en: 'silent u keeps the hard sound' }, { es: 'gente · cielo', en: 'soft before e/i' }] },
+        { heading: 'Almost no silent letters', body: '<strong>h</strong> is always silent (<em>hola, hora</em>). The <strong>u</strong> is silent in <em>que, qui, gue, gui</em> — unless it wears two dots (diéresis): <em>pingüino, vergüenza</em>, where you DO say it.' },
+        { type: 'tip', heading: 'Same sound, two spellings', body: 'A few sounds can be written more than one way — and that is what spelling tests check:<br>• "b" sound = <strong>b</strong> or <strong>v</strong><br>• throat "h" = <strong>j</strong> or <strong>g</strong>(e/i)<br>• "s" sound = <strong>s</strong>, <strong>c</strong>(e/i), or <strong>z</strong>' },
+      ],
+      quiz: [
+        { q: 'The letter <em>h</em> in Spanish is…', options: [{ text: 'Always silent', correct: true }, { text: 'Always a hard sound', correct: false }, { text: 'Pronounced like English h', correct: false }] },
+        { q: 'To write a hard "k" sound before e or i, Spanish uses…', options: [{ text: 'qu (que, qui)', correct: true }, { text: 'c (ce, ci)', correct: false }, { text: 'k always', correct: false }] },
+        { q: 'In <em>pingüino</em>, the two dots over the u mean…', options: [{ text: 'You DO pronounce the u', correct: true }, { text: 'The u is silent', correct: false }, { text: 'It is a typo', correct: false }] },
+      ]
+    },
+    {
+      id: 'ling-stress', num: 'P05', level: 'ling',
+      title: 'Syllables &amp; <em>stress</em>',
+      tag: 'Lingüística · Phonology',
+      summary: 'Where the beat falls — and the one rule that explains every accent mark.',
+      sections: [
+        { heading: 'Splitting syllables', body: 'Spanish likes each syllable to start with a consonant and end with a vowel: <em>ca-sa, pe-lo-ta, e-le-fan-te</em>. That open, even shape is what gives Spanish its steady, syllable-by-syllable rhythm.' },
+        { heading: 'The two default stress rules', body: 'With no accent mark, just two rules decide where the beat falls:<br>• Words ending in a <strong>vowel, -n, or -s</strong> → stress the <strong>second-to-last</strong> syllable (<em>CA-sa, HA-blan, ZA-pa-tos</em>)<br>• Words ending in <strong>any other consonant</strong> → stress the <strong>last</strong> syllable (<em>ha-BLAR, pa-PEL, ciu-DAD</em>)' },
+        { heading: 'When you need a tilde (´)', body: 'The written accent marks the <strong>exception</strong> to those two rules. <em>ca-FÉ</em> ends in a vowel but is stressed on the last syllable, so it needs the mark. Same with <em>LÁ-piz</em> and <em>RÁ-pi-do</em>. The tilde simply says "the beat goes <em>here</em>, not where you would expect."' },
+        { type: 'tip', heading: 'The accent is information', body: 'An accent mark is never decoration. It tells you exactly which syllable to hit — and sometimes which word you mean: <em>sí</em> (yes) vs <em>si</em> (if), <em>tú</em> (you) vs <em>tu</em> (your), <em>él</em> (he) vs <em>el</em> (the).' },
+      ],
+      quiz: [
+        { q: '<em>casa</em> (ends in a vowel) is stressed on the…', options: [{ text: 'Second-to-last syllable', correct: true }, { text: 'Last syllable', correct: false }, { text: 'First syllable always', correct: false }] },
+        { q: 'A word ending in -r, like <em>hablar</em>, is stressed on the…', options: [{ text: 'Last syllable', correct: true }, { text: 'Second-to-last syllable', correct: false }, { text: 'Middle', correct: false }] },
+        { q: 'A written accent mark (tilde) shows…', options: [{ text: 'The exception to the stress rules', correct: true }, { text: 'That a letter is silent', correct: false }, { text: 'A plural', correct: false }] },
+      ]
+    }
+,
+    {
+      id: 'ling-spain', num: 'D01', level: 'ling',
+      title: 'Spain: <em>north &amp; south</em>',
+      tag: 'Lingüística · Dialects',
+      summary: 'The same country, two very different accents — and islands that sound American.',
+      sections: [
+        { heading: 'The north: the "th" accent', body: 'In central and northern Spain (Castilian), people <strong>distinguish</strong> two sounds: <em>casa</em> (/s/) and <em>caza</em> (a "th", /θ/). They pronounce every <em>s</em> crisply and use <strong>vosotros</strong> for "you all." This is the Spanish most textbooks picture.' },
+        { heading: 'The south: relaxed Andalusian', body: 'In Andalusia (the south) speech is faster and softer: both sounds merge to /s/ (<strong>seseo</strong>) — or sometimes both become "th" (<strong>ceceo</strong>) — and the <em>s</em> at the end of a syllable fades to "h": <em>las casas</em> → "lah casah." Final consonants often drop.', examples: [{ es: '¿Cómo estás?', en: '→ "¿Cómo ehtá?"' }, { es: 'los niños', en: '→ "loh niño"' }] },
+        { heading: 'The Canary Islands 🇮🇨 — a bridge to the Americas', body: 'The Canaries sound surprisingly <strong>Latin American</strong>: seseo, s-aspiration, and <strong>ustedes</strong> instead of vosotros. Centuries of ships sailing to the New World tied the two together.' },
+        { type: 'tip', heading: 'No accent is "purer"', body: 'Madrid\'s "th" is not more correct than Seville\'s "s" — they are just different regions of one language. Spaniards understand each other fine.' },
+      ],
+      quiz: [
+        { q: 'In northern Spain, <em>casa</em> and <em>caza</em> are…', options: [{ text: 'Two different sounds (/s/ vs "th")', correct: true }, { text: 'Exactly the same', correct: false }, { text: 'Both silent', correct: false }] },
+        { q: 'A classic Andalusian feature is…', options: [{ text: 'The s at the end of a syllable fading to "h"', correct: true }, { text: 'Rolling every r twice', correct: false }, { text: 'Adding extra vowels', correct: false }] },
+        { q: 'The Canary Islands use…', options: [{ text: 'ustedes (like Latin America)', correct: true }, { text: 'vosotros only', correct: false }, { text: 'no "you all" word', correct: false }] },
+      ]
+    },
+    {
+      id: 'ling-mexcentam', num: 'D02', level: 'ling',
+      title: 'Mexico &amp; <em>Central America</em>',
+      tag: 'Lingüística · Dialects',
+      summary: 'Crisp highland Spanish, Aztec words, and the return of "vos."',
+      sections: [
+        { heading: 'Mexican Spanish 🇲🇽', body: 'Central Mexican Spanish keeps its <strong>s</strong> strong and clear, but often <strong>squeezes the unstressed vowels</strong>, especially next to s: <em>necesitas</em> can sound like "nec\'sitas." It is full of <strong>Nahuatl</strong> (Aztec) words: <em>cuate</em> (buddy), <em>elote</em> (corn on the cob), <em>chamaco</em> (kid).' },
+        { heading: 'Coast vs. highland', body: 'On Mexico\'s hot coasts the <em>s</em> softens (more Caribbean-sounding), while the central highlands keep it sharp. One country, several accents.' },
+        { heading: 'Central America & voseo 🇬🇹🇭🇳🇸🇻🇳🇮🇨🇷', body: 'From Guatemala to Costa Rica, most people use <strong>vos</strong> instead of <em>tú</em> (<em>vos tenés, vos sos</em>), and the <em>s</em> often weakens to "h" at the ends of syllables — a bridge between Mexican and Caribbean styles.' },
+        { type: 'tip', heading: 'Nahuatl is everywhere', body: 'Words like <em>chocolate, tomate, aguacate, chile</em> traveled from Nahuatl into Spanish — and then into English. You speak a little Aztec every day.' },
+      ],
+      quiz: [
+        { q: '<em>chocolate</em> and <em>tomate</em> came into Spanish from…', options: [{ text: 'Nahuatl (Aztec)', correct: true }, { text: 'Arabic', correct: false }, { text: 'Italian', correct: false }] },
+        { q: 'Across most of Central America, people say…', options: [{ text: 'vos instead of tú', correct: true }, { text: 'vosotros', correct: false }, { text: 'only usted', correct: false }] },
+        { q: 'Central Mexican Spanish tends to…', options: [{ text: 'Keep the s strong but squeeze vowels', correct: true }, { text: 'Drop every s', correct: false }, { text: 'Roll every r', correct: false }] },
+      ]
+    },
+    {
+      id: 'ling-caribbean', num: 'D03', level: 'ling',
+      title: 'The <em>Caribbean</em> &amp; the coasts',
+      tag: 'Lingüística · Dialects',
+      summary: 'Fast, musical Spanish where the s disappears and the rhythm takes over.',
+      sections: [
+        { heading: 'The disappearing s 🇨🇺🇩🇴🇵🇷', body: 'In Cuba, the Dominican Republic, Puerto Rico, and the Caribbean coasts, the syllable-final <em>s</em> almost always becomes "h" or vanishes: <em>¿cómo estás?</em> → "¿cómo ehtá?" It is the region\'s signature sound.' },
+        { heading: 'Other coastal sounds', body: 'The <em>n</em> at the end of a word is often pushed to the back of the mouth (like the "ng" in "sing"), and in Puerto Rico the <em>r</em> can turn into an "l": <em>Puerto Rico</em> → "Puelto Rico." African heritage shaped the region\'s rhythm and vocabulary.' },
+        { heading: 'The Pacific coast too 🇨🇴🇪🇨', body: 'The Pacific coasts of Colombia and Ecuador share these lowland features — a soft s, a flowing rhythm — along with a strong Afro-Hispanic culture.' },
+        { type: 'tip', heading: 'Fast is not careless', body: 'Dropping sounds follows strict, predictable rules. Caribbean Spanish is not "lazy" — it is a complete, consistent system, just a different one.' },
+      ],
+      quiz: [
+        { q: 'The most famous Caribbean feature is…', options: [{ text: 'The s fading to "h" or disappearing', correct: true }, { text: 'Rolling every r', correct: false }, { text: 'Adding the "th" sound', correct: false }] },
+        { q: 'In Puerto Rico, the <em>r</em> can sometimes become…', options: [{ text: 'an "l"', correct: true }, { text: 'a "th"', correct: false }, { text: 'silent vowels', correct: false }] },
+        { q: 'Caribbean Spanish dropping sounds is…', options: [{ text: 'A consistent, rule-based system', correct: true }, { text: 'Random and careless', correct: false }, { text: 'A spelling mistake', correct: false }] },
+      ]
+    },
+    {
+      id: 'ling-andes', num: 'D04', level: 'ling',
+      title: 'The <em>Andes</em> &amp; Paraguay',
+      tag: 'Lingüística · Dialects',
+      summary: 'Mountain Spanish that keeps its s — shaped by Quechua, Aymara, and Guaraní.',
+      sections: [
+        { heading: 'Highland Spanish 🇵🇪🇧🇴', body: 'High in the Andes (Peru, Bolivia, highland Ecuador), people keep the <strong>s</strong> strong and clear — the opposite of the Caribbean. The <em>rr</em> can become a buzzy, almost "zh" sound.' },
+        { heading: 'Living between two languages', body: 'Millions of Andeans grow up <strong>bilingual</strong> in Spanish and <strong>Quechua</strong> or <strong>Aymara</strong>. Those languages lend everyday words — <em>papa, cancha, poncho, choclo</em> — and shape the local Spanish.' },
+        { heading: 'Paraguay & Guaraní 🇵🇾', body: 'Paraguay is the most bilingual country in the Americas: nearly everyone speaks <strong>Guaraní</strong> alongside Spanish and blends them into a mix called <em>jopara</em>. Paraguay also uses <strong>voseo</strong>.' },
+        { type: 'tip', heading: 'Contact changes language', body: 'When two languages live side by side for centuries, they trade words and sounds. Andean and Paraguayan Spanish are perfect, living examples of language contact.' },
+      ],
+      quiz: [
+        { q: 'Compared to the Caribbean, Andean Spanish tends to…', options: [{ text: 'Keep the s strong and clear', correct: true }, { text: 'Drop the s even more', correct: false }, { text: 'Add a "th" sound', correct: false }] },
+        { q: 'In Paraguay, most people also speak…', options: [{ text: 'Guaraní', correct: true }, { text: 'Italian', correct: false }, { text: 'Arabic', correct: false }] },
+        { q: 'Words like <em>papa</em> and <em>poncho</em> come from…', options: [{ text: 'Andean languages (Quechua/Aymara)', correct: true }, { text: 'English', correct: false }, { text: 'Latin', correct: false }] },
+      ]
+    },
+    {
+      id: 'ling-southerncone', num: 'D05', level: 'ling',
+      title: 'The <em>Southern Cone</em>',
+      tag: 'Lingüística · Dialects',
+      summary: 'The "sh" sound, voseo, and an Italian sing-song — plus Chile\'s famous slang.',
+      sections: [
+        { heading: 'River Plate Spanish 🇦🇷🇺🇾', body: 'In Argentina and Uruguay, <em>ll</em> and <em>y</em> become a "sh": <em>calle</em> = "ca-SHE," <em>yo</em> = "SHO." They use <strong>vos</strong> (<em>vos sos, vos tenés</em>) and a melodic, almost <strong>Italian-sounding</strong> intonation — the legacy of huge Italian immigration.' },
+        { heading: 'Chilean Spanish 🇨🇱', body: 'Chile is famous for being hard to follow: the <em>s</em> aspirates, final sounds drop, and the slang is intense (<em>cachái</em> = "you get it?", <em>po</em>, <em>al tiro</em> = "right away"). Chileans also use special vos-style verb endings: <em>¿cómo estái?</em>' },
+        { heading: 'Why so different?', body: 'Italian immigration in Argentina, distance from Spain, and contact with neighbors all pushed Southern Cone Spanish in its own direction over time.' },
+        { type: 'tip', heading: '"Che" and "po"', body: 'Tiny filler words give the region away instantly: <em>che</em> in Argentina (it is even where "Che" Guevara got his nickname), <em>po</em> in Chile.' },
+      ],
+      quiz: [
+        { q: 'In Argentina and Uruguay, <em>calle</em> sounds like…', options: [{ text: '"ca-she"', correct: true }, { text: '"ca-ye" exactly as spelled', correct: false }, { text: '"ca-the"', correct: false }] },
+        { q: 'River Plate intonation is shaped by…', options: [{ text: 'Italian immigration', correct: true }, { text: 'Arabic', correct: false }, { text: 'Guaraní', correct: false }] },
+        { q: 'Chilean Spanish is known for…', options: [{ text: 'Heavy slang and dropped sounds', correct: true }, { text: 'Rolling every r twice', correct: false }, { text: 'Speaking very slowly', correct: false }] },
+      ]
+    },
+    {
+      id: 'ling-contact', num: 'D06', level: 'ling',
+      title: 'Creoles &amp; <em>Spanish in the USA</em>',
+      tag: 'Lingüística · Dialects',
+      summary: 'Where Spanish blended into brand-new languages — and where it now grows fastest.',
+      sections: [
+        { heading: 'Palenquero: freedom\'s language 🇨🇴', body: 'In San Basilio de Palenque, Colombia — the first <strong>free</strong> town founded by escaped enslaved Africans — people created <strong>Palenquero</strong>, a new language blending Spanish with Central African (Bantu) languages. It is its own tongue, not just an accent.' },
+        { heading: 'Chavacano: Spanish in Asia 🇵🇭', body: 'In the Philippines (mostly around Zamboanga), <strong>Chavacano</strong> is a Spanish-based <strong>creole</strong>: Spanish words with Filipino grammar. Spoken by hundreds of thousands, it is the only Spanish creole in Asia — a leftover of colonial history.' },
+        { heading: 'Spanish in the USA 🇺🇸', body: 'The United States is now one of the largest Spanish-speaking countries on Earth. Its Spanish blends every variety (Mexican, Caribbean, Central American) and mixes with English through <strong>code-switching</strong> — "Spanglish": <em>parquear</em> (to park), <em>el lonche</em> (lunch).' },
+        { type: 'tip', heading: 'Creole vs. dialect', body: 'A <strong>dialect</strong> is a variety of one language; a <strong>creole</strong> is a brand-new language born when two blend. Palenquero and Chavacano are creoles — not just accents.' },
+      ],
+      quiz: [
+        { q: 'Palenquero (Colombia) is best described as…', options: [{ text: 'A new creole language, not just an accent', correct: true }, { text: 'A Spanish accent', correct: false }, { text: 'A type of Italian', correct: false }] },
+        { q: 'Chavacano is spoken in…', options: [{ text: 'The Philippines', correct: true }, { text: 'Argentina', correct: false }, { text: 'Spain', correct: false }] },
+        { q: 'Mixing Spanish and English (parquear, el lonche) is called…', options: [{ text: 'Code-switching / Spanglish', correct: true }, { text: 'Seseo', correct: false }, { text: 'Voseo', correct: false }] },
+      ]
+    }
   ];
 
   function isLessonCompleted(lessonId) {
@@ -26791,13 +28692,26 @@
   // Lingüística hub — lists only the linguistics lessons as color-accented cards
   const LING_ICONS = {
     'ling-what': '🧠', 'ling-sounds': '🔊', 'ling-morphology': '🧱', 'ling-syntax': '🔗',
-    'ling-history': '📜', 'ling-loanwords': '🌍', 'ling-acquisition': '🧒', 'ling-dialects': '🗣️'
+    'ling-history': '📜', 'ling-loanwords': '🌍', 'ling-acquisition': '🧒', 'ling-dialects': '🗣️',
+    'ling-vowels': '🅰️', 'ling-consonants': '🔠', 'ling-allophony': '🔁', 'ling-spelling': '✍️', 'ling-stress': '📏',
+    'ling-spain': '🇪🇸', 'ling-mexcentam': '🌮', 'ling-caribbean': '🏝️', 'ling-andes': '⛰️', 'ling-southerncone': '🧉', 'ling-contact': '🔀'
   };
+  // Hub groups — keeps the section organized as it grows. Any ling lesson not
+  // listed here drops into a "More" group at the end.
+  const LING_GROUPS = [
+    { label: 'Foundations', ids: ['ling-what'] },
+    { label: 'Phonology — the sound system', ids: ['ling-sounds', 'ling-vowels', 'ling-consonants', 'ling-allophony', 'ling-spelling', 'ling-stress'] },
+    { label: 'Words & grammar', ids: ['ling-morphology', 'ling-syntax', 'ling-loanwords'] },
+    { label: 'Spanish through history', ids: ['ling-history'] },
+    { label: 'Spanish around the world', ids: ['ling-dialects', 'ling-spain', 'ling-mexcentam', 'ling-caribbean', 'ling-andes', 'ling-southerncone', 'ling-contact'] },
+    { label: 'Language & the mind', ids: ['ling-acquisition'] }
+  ];
   function renderLinguistica() {
     const grid = document.getElementById('linguisticaGrid');
     if (!grid) return;
-    const lessons = LESSONS.filter(l => l.level === 'ling');
-    grid.innerHTML = lessons.map(l => {
+    const byId = {};
+    LESSONS.filter(l => l.level === 'ling').forEach(l => { byId[l.id] = l; });
+    const card = l => {
       const done = isLessonCompleted(l.id);
       const ico = LING_ICONS[l.id] || '📐';
       const tag = (l.tag || '').split('·').pop().trim();
@@ -26809,7 +28723,20 @@
           <div class="lc-tag">${tag}</div>
           <p>${l.summary || ''}</p>
         </a>`;
-    }).join('');
+    };
+    const placed = {};
+    let html = '';
+    LING_GROUPS.forEach(g => {
+      const cards = g.ids.filter(id => byId[id]).map(id => { placed[id] = true; return card(byId[id]); });
+      if (!cards.length) return;
+      html += `<div class="ling-group-label">${g.label}</div><div class="ling-grid">${cards.join('')}</div>`;
+    });
+    // Anything not assigned to a group yet
+    const leftovers = LESSONS.filter(l => l.level === 'ling' && !placed[l.id]);
+    if (leftovers.length) {
+      html += `<div class="ling-group-label">More</div><div class="ling-grid">${leftovers.map(card).join('')}</div>`;
+    }
+    grid.innerHTML = html;
   }
 
   function renderLessonsList() {
@@ -28920,9 +30847,33 @@
       return { area: 'Days', label: 'Translate to English', display: DAYS_ES[i],
         answer: DAYS_EN[i].toLowerCase(), validAnswers: [DAYS_EN[i].toLowerCase()], hint: 'In English' };
     }
+    function qPluperfectSubj() {
+      const HABER_RA = ['hubiera', 'hubieras', 'hubiera', 'hubiéramos', 'hubierais', 'hubieran'];
+      const HABER_SE = ['hubiese', 'hubieses', 'hubiese', 'hubiésemos', 'hubieseis', 'hubiesen'];
+      const pool = verbs.filter(v => v.conj && v.conj.participio);
+      const v = pick(pool);
+      const idx = pick([0, 1, 2, 3, 5]);
+      const part = v.conj.participio;
+      const ans = HABER_RA[idx] + ' ' + part;
+      return { area: 'Verbs', label: 'Pluperfect subjunctive (hubiera + participle)', display: v.inf + ' — ' + PRON_ES[idx],
+        answer: ans, validAnswers: [ans, HABER_SE[idx] + ' ' + part], hint: 'hubiera/hubieras… + -ado/-ido' };
+    }
+    function qPerfecto() {
+      const HABER = ['he', 'has', 'ha', 'hemos', 'habéis', 'han'];
+      const pool = verbs.filter(v => v.conj && v.conj.participio);
+      const v = pick(pool);
+      const idx = pick([0, 1, 2, 3, 5]);
+      const ans = HABER[idx] + ' ' + v.conj.participio;
+      return { area: 'Verbs', label: 'Present perfect (haber + participle)', display: v.inf + ' — ' + PRON_ES[idx],
+        answer: ans, validAnswers: [ans], hint: 'he/has/ha… + -ado/-ido' };
+    }
 
-    // Each round: 2 vocab + 1 verb + 1 capital + 1 rotating (number or day)
-    const questions = [qVocab(), qVerb(), qVocab(), qCapital(), rand() < 0.5 ? qNumber() : qDay()];
+    // Fixed: 2 vocab (sampled from ALL decks, incl. Religions & Dances) + 1 present
+    // verb + 1 capital. The rotating 5th slot draws from a richer pool that now
+    // includes the newer grammar (present perfect & pluperfect subjunctive).
+    const rotators = [qNumber, qDay, qPerfecto, qPluperfectSubj];
+    const lastSlot = pick(rotators)();
+    const questions = [qVocab(), qVerb(), qVocab(), qCapital(), lastSlot];
     // Shuffle so the order varies
     for (let i = questions.length - 1; i > 0; i--) {
       const j = Math.floor(rand() * (i + 1));
