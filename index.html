@@ -5932,6 +5932,7 @@
         <button class="pill" onclick="loadDeck('ropa', this)">Clothing</button>
         <button class="pill" onclick="loadDeck('colombia', this)">Colombia</button>
         <button class="pill" onclick="loadDeck('colores', this)">Colors</button>
+        <button class="pill" onclick="loadDeck('construccion', this)">Construction</button>
         <button class="pill" onclick="loadDeck('cocina', this)">Cooking</button>
         <button class="pill" onclick="loadDeck('cuba', this)">Cuba</button>
         <button class="pill" onclick="loadDeck('rutina', this)">Daily routine</button>
@@ -5977,12 +5978,15 @@
         <button class="pill" onclick="loadDeck('restaurante', this)">Restaurant</button>
         <button class="pill" onclick="loadDeck('escuela', this)">School Life</button>
         <button class="pill" onclick="loadDeck('ciencia', this)">Science</button>
+        <button class="pill" onclick="loadDeck('espacio', this)">Space</button>
         <button class="pill" onclick="loadDeck('deportes', this)">Sports</button>
         <button class="pill" onclick="loadDeck('tecnologia', this)">Technology</button>
         <button class="pill" onclick="loadDeck('hora', this)">Telling time</button>
         <button class="pill" onclick="loadDeck('teneridioms', this)">Tener idioms</button>
+        <button class="pill" onclick="loadDeck('herramientas', this)">Tools</button>
         <button class="pill" onclick="loadDeck('viajes', this)">Travel</button>
         <button class="pill" onclick="loadDeck('uruguay', this)">Uruguay</button>
+        <button class="pill" onclick="loadDeck('vehiculos', this)">Vehicles</button>
         <button class="pill" onclick="loadDeck('venezuela', this)">Venezuela</button>
         <button class="pill" onclick="loadDeck('tiempo', this)">Weather &amp; seasons</button>
       </div>
@@ -11807,6 +11811,120 @@
   //   quiz: array of { q, options: [{ text, correct }] }
 
   const READINGS = [
+    // ---------- SPACE READING ----------
+    {
+      id: 'espacio-explorar',
+      kind: 'story', level: 'intermediate',
+      title: 'Explorar el <em>espacio</em>',
+      author: 'Original · El Pueblo',
+      year: '',
+      attribution: 'Académico · Astronomía',
+      preview: 'Cohetes, planetas y estrellas: la curiosidad humana siempre mira hacia arriba.',
+      text: [
+        'Desde hace miles de años, los seres humanos miran el cielo y se hacen preguntas. ¿Cuántas estrellas hay? ¿Qué hay en la Luna? Esa curiosidad nos llevó a explorar el espacio con telescopios, satélites y, por fin, naves espaciales.',
+        'Nuestro planeta, la Tierra, gira alrededor del Sol junto con otros siete planetas que forman el sistema solar. Y el Sol es solo una estrella más entre miles de millones en nuestra galaxia, la Vía Láctea. El universo es tan grande que cuesta imaginarlo.',
+        'En 1969, un cohete llevó a los primeros astronautas a la Luna. Hoy, los científicos sueñan con explorar Marte y otros planetas. Cada nave espacial que despega nos enseña algo nuevo sobre el universo y sobre nuestro propio lugar en él.'
+      ],
+      gloss: {
+        'el espacio': 'space', 'la estrella': 'star', 'la Luna': 'the Moon', 'el telescopio': 'telescope',
+        'el satélite': 'satellite', 'la nave espacial': 'spaceship', 'la Tierra': 'Earth', 'el Sol': 'the Sun',
+        'el planeta': 'planet', 'el sistema solar': 'solar system', 'la galaxia': 'galaxy',
+        'el universo': 'universe', 'el cohete': 'rocket', 'el astronauta': 'astronaut', 'despega': 'takes off'
+      },
+      quiz: [
+        { q: '¿Cuántos planetas forman el sistema solar?', options: [
+          { text: 'ocho', correct: true }, { text: 'tres', correct: false }, { text: 'cien', correct: false } ]},
+        { q: 'El Sol es…', options: [
+          { text: 'una estrella', correct: true }, { text: 'un planeta', correct: false }, { text: 'un satélite', correct: false } ]},
+        { q: '¿Qué pasó en 1969?', options: [
+          { text: 'los primeros astronautas llegaron a la Luna', correct: true }, { text: 'se descubrió el Sol', correct: false }, { text: 'explotó la Vía Láctea', correct: false } ]}
+      ]
+    },
+    // ---------- VEHICLES READING ----------
+    {
+      id: 'vehiculos-ciudad',
+      kind: 'story', level: 'intermediate',
+      title: 'Cómo nos <em>movemos</em> por la ciudad',
+      author: 'Original · El Pueblo',
+      year: '',
+      attribution: 'Cultura · Transporte',
+      preview: 'Metro, autobús, bicicleta o coche: cada ciudad tiene su forma de moverse.',
+      text: [
+        'En las grandes ciudades del mundo hispano, como Madrid, Ciudad de México o Buenos Aires, la gente usa muchos tipos de vehículos para moverse. El metro es rápido y barato, y por eso millones de personas lo toman cada día.',
+        'No todos tienen coche. En las horas de más tráfico, el autobús y el metro suelen ser más prácticos que conducir, porque las calles se llenan y es difícil estacionar. Muchos jóvenes prefieren la bicicleta o la motocicleta para llegar más rápido.',
+        'Fuera de la ciudad, el tren y el avión conectan regiones lejanas, y los camiones transportan la comida y los productos. Cada forma de transporte tiene sus ventajas: lo importante es elegir la más cómoda, barata y buena para el medio ambiente.'
+      ],
+      gloss: {
+        'el vehículo': 'vehicle', 'el metro': 'subway', 'el coche': 'car', 'el tráfico': 'traffic',
+        'el autobús': 'bus', 'conducir': 'to drive', 'estacionar': 'to park', 'la bicicleta': 'bicycle',
+        'la motocicleta': 'motorcycle', 'el tren': 'train', 'el avión': 'airplane', 'el camión': 'truck'
+      },
+      quiz: [
+        { q: 'Según el texto, ¿por qué tanta gente toma el metro?', options: [
+          { text: 'es rápido y barato', correct: true }, { text: 'es el más caro', correct: false }, { text: 'es el más lento', correct: false } ]},
+        { q: 'En las horas de más tráfico, ¿qué suele ser más práctico que conducir?', options: [
+          { text: 'el autobús y el metro', correct: true }, { text: 'el avión', correct: false }, { text: 'el camión', correct: false } ]},
+        { q: '¿Qué conecta las regiones lejanas?', options: [
+          { text: 'el tren y el avión', correct: true }, { text: 'la bicicleta', correct: false }, { text: 'el metro', correct: false } ]}
+      ]
+    },
+    // ---------- TOOLS READING ----------
+    {
+      id: 'herramientas-taller',
+      kind: 'story', level: 'intermediate',
+      title: 'El <em>taller</em> del abuelo',
+      author: 'Original · El Pueblo',
+      year: '',
+      attribution: 'Cultura · Oficios y herramientas',
+      preview: 'Martillo, destornillador, sierra: en su taller, mi abuelo podía arreglar cualquier cosa.',
+      text: [
+        'Mi abuelo tenía un pequeño taller en el garaje. En la pared colgaban todas sus herramientas, ordenadas con cuidado: el martillo, la sierra, varios destornilladores y una caja llena de clavos y tornillos.',
+        '"Antes de comprar algo nuevo", decía, "hay que intentar arreglar lo viejo." Cuando se rompía una silla, no la tiraba: la reparaba con un poco de madera, unos clavos y mucha paciencia. Yo le pasaba las herramientas y aprendía mirando.',
+        'Me enseñó a usar el taladro, a medir con la cinta métrica y a apretar bien los tornillos. Pero, sobre todo, me enseñó algo más importante: que con las herramientas correctas y ganas de aprender, casi cualquier cosa se puede arreglar.'
+      ],
+      gloss: {
+        'el taller': 'workshop', 'la herramienta': 'tool', 'el martillo': 'hammer', 'la sierra': 'saw',
+        'el destornillador': 'screwdriver', 'el clavo': 'nail', 'el tornillo': 'screw', 'arreglar': 'to fix',
+        'reparar': 'to repair', 'la madera': 'wood', 'el taladro': 'drill', 'la cinta métrica': 'tape measure', 'apretar': 'to tighten'
+      },
+      quiz: [
+        { q: '¿Dónde tenía el abuelo su taller?', options: [
+          { text: 'en el garaje', correct: true }, { text: 'en la cocina', correct: false }, { text: 'en el jardín', correct: false } ]},
+        { q: '¿Qué hacía el abuelo cuando se rompía una silla?', options: [
+          { text: 'la reparaba en vez de tirarla', correct: true }, { text: 'compraba una nueva', correct: false }, { text: 'la quemaba', correct: false } ]},
+        { q: 'La lección más importante del abuelo fue que…', options: [
+          { text: 'casi todo se puede arreglar con las herramientas correctas', correct: true }, { text: 'es mejor comprar todo nuevo', correct: false }, { text: 'las herramientas son peligrosas', correct: false } ]}
+      ]
+    },
+    // ---------- CONSTRUCTION READING ----------
+    {
+      id: 'construccion-casa',
+      kind: 'story', level: 'intermediate',
+      title: 'Cómo se <em>construye</em> una casa',
+      author: 'Original · El Pueblo',
+      year: '',
+      attribution: 'Académico · Construcción',
+      preview: 'De los planos a los cimientos, del ladrillo al techo: construir una casa es trabajo de equipo.',
+      text: [
+        'Construir una casa empieza mucho antes de poner el primer ladrillo. Primero, un arquitecto dibuja los planos y un ingeniero revisa que todo sea seguro. Solo entonces los obreros pueden empezar a trabajar en la obra.',
+        'El primer paso es hacer los cimientos, la base fuerte sobre la que se apoya todo el edificio. Luego, los albañiles levantan las paredes con ladrillos y cemento, y una grúa enorme sube los materiales pesados, como las vigas de acero.',
+        'Por seguridad, todos en la obra llevan casco. Poco a poco, lo que era un terreno vacío se convierte en paredes, ventanas y, finalmente, un techo. Construir una casa es un trabajo lento que requiere muchas manos, muchas herramientas y mucha planificación.'
+      ],
+      gloss: {
+        'construir': 'to build', 'el ladrillo': 'brick', 'el arquitecto': 'architect', 'los planos': 'blueprints',
+        'el ingeniero': 'engineer', 'el obrero': 'worker', 'la obra': 'construction site', 'los cimientos': 'foundation',
+        'el edificio': 'building', 'el albañil': 'bricklayer', 'la pared': 'wall', 'el cemento': 'cement',
+        'la grúa': 'crane', 'la viga': 'beam', 'el acero': 'steel', 'el casco': 'hard hat', 'el techo': 'roof'
+      },
+      quiz: [
+        { q: '¿Quién dibuja los planos de la casa?', options: [
+          { text: 'el arquitecto', correct: true }, { text: 'el albañil', correct: false }, { text: 'el conductor', correct: false } ]},
+        { q: '¿Cuál es el primer paso de la construcción?', options: [
+          { text: 'hacer los cimientos', correct: true }, { text: 'poner el techo', correct: false }, { text: 'pintar las paredes', correct: false } ]},
+        { q: '¿Por qué todos llevan casco en la obra?', options: [
+          { text: 'por seguridad', correct: true }, { text: 'por moda', correct: false }, { text: 'por el frío', correct: false } ]}
+      ]
+    },
     // ---------- HUNTING READING ----------
     {
       id: 'caza-tradicion',
@@ -14689,7 +14807,27 @@
       { id: 'd-i-89-nat', text: 'Los árboles nos dan oxígeno y hogar a los pájaros.', en: 'Trees give us oxygen and a home to the birds.', country: null },
       { id: 'd-i-90-nat', text: 'La contaminación de las fábricas daña el medio ambiente.', en: 'Pollution from factories harms the environment.', country: null },
       { id: 'd-i-91-nat', text: 'Debemos proteger los bosques y no tirar basura.', en: 'We must protect the forests and not throw trash.', country: null },
-      { id: 'd-i-92-nat', text: 'Una mariposa azul voló entre las flores del jardín.', en: 'A blue butterfly flew among the flowers in the garden.', country: null }
+      { id: 'd-i-92-nat', text: 'Una mariposa azul voló entre las flores del jardín.', en: 'A blue butterfly flew among the flowers in the garden.', country: null },
+      // Space (paired with the Space vocab deck)
+      { id: 'd-i-93-esp', text: 'La Tierra gira alrededor del Sol una vez al año.', en: 'The Earth revolves around the Sun once a year.', country: null },
+      { id: 'd-i-94-esp', text: 'Los astronautas viajaron a la Luna en un cohete enorme.', en: 'The astronauts traveled to the Moon in an enormous rocket.', country: null },
+      { id: 'd-i-95-esp', text: 'Con el telescopio podemos ver los planetas del sistema solar.', en: 'With the telescope we can see the planets of the solar system.', country: null },
+      { id: 'd-i-96-esp', text: 'En el espacio no hay gravedad y todo flota.', en: 'In space there is no gravity and everything floats.', country: null },
+      // Vehicles (paired with the Vehicles vocab deck)
+      { id: 'd-i-97-veh', text: 'Tomo el metro al trabajo porque hay mucho tráfico.', en: 'I take the subway to work because there\'s a lot of traffic.', country: null },
+      { id: 'd-i-98-veh', text: 'Aprendí a conducir el coche de mi padre el verano pasado.', en: 'I learned to drive my dad\'s car last summer.', country: null },
+      { id: 'd-i-99-veh', text: 'El autobús llegó tarde y perdimos el tren.', en: 'The bus arrived late and we missed the train.', country: null },
+      { id: 'd-i-100-veh', text: 'No encuentro dónde estacionar el coche por aquí.', en: 'I can\'t find anywhere to park the car around here.', country: null },
+      // Tools (paired with the Tools vocab deck)
+      { id: 'd-i-101-herr', text: 'Necesito el martillo y unos clavos para colgar el cuadro.', en: 'I need the hammer and some nails to hang the picture.', country: null },
+      { id: 'd-i-102-herr', text: 'Aprieta el tornillo con el destornillador, por favor.', en: 'Tighten the screw with the screwdriver, please.', country: null },
+      { id: 'd-i-103-herr', text: 'Mi abuelo podía arreglar casi todo en su taller.', en: 'My grandfather could fix almost anything in his workshop.', country: null },
+      { id: 'd-i-104-herr', text: 'Guarda las herramientas en la caja cuando termines.', en: 'Put the tools in the box when you finish.', country: null },
+      // Construction (paired with the Construction vocab deck)
+      { id: 'd-i-105-con', text: 'Los obreros levantan las paredes con ladrillos y cemento.', en: 'The workers build the walls with bricks and cement.', country: null },
+      { id: 'd-i-106-con', text: 'El arquitecto revisó los planos antes de empezar la obra.', en: 'The architect checked the blueprints before starting the project.', country: null },
+      { id: 'd-i-107-con', text: 'La grúa levantó las vigas de acero hasta el techo.', en: 'The crane lifted the steel beams up to the roof.', country: null },
+      { id: 'd-i-108-con', text: 'En la obra es obligatorio usar casco por seguridad.', en: 'On the construction site, wearing a hard hat is required for safety.', country: null }
     ],
     advanced: [
       { id: 'd-a-01', text: 'A pesar de las dificultades económicas, muchos jóvenes deciden estudiar idiomas extranjeros para mejorar sus oportunidades laborales.', en: 'Despite economic difficulties, many young people decide to study foreign languages to improve their job opportunities.', country: null },
@@ -15280,6 +15418,38 @@
 
   const WRITING_TOPICS = [
     {
+      id: 'espacio-write',
+      title: 'Un viaje al <em>espacio</em>',
+      level: 'sp2', category: 'narrative',
+      body: 'Using the Space vocab deck, imagine you are an astronaut. Describe your journey: the rocket launch, what you see (planets, stars, the Moon, the Earth from far away), and how it feels to float without gravity. Would you want to explore Mars? Why?',
+      tips: ['Useful vocab: el cohete, el astronauta, el planeta, la estrella, la gravedad, la nave espacial, explorar', 'Use the future or conditional to imagine (viajaría, vería, flotaría)', 'Aim for 100+ words'],
+      date: ''
+    },
+    {
+      id: 'vehiculos-write',
+      title: 'Cómo me <em>muevo</em> por la ciudad',
+      level: 'sp1', category: 'personal',
+      body: 'Using the Vehicles vocab deck, write about transportation. How do you get to school or around your town — car, bus, bike, walking? What are the advantages and disadvantages of each? Which is best for the environment? Which do you prefer and why?',
+      tips: ['Useful vocab: el coche, el autobús, la bicicleta, el metro, el tren, conducir, el tráfico', 'Use comparisons: más rápido que, más barato que', 'Give your preference with prefiero… porque…'],
+      date: ''
+    },
+    {
+      id: 'herramientas-write',
+      title: 'Arreglar algo con <em>herramientas</em>',
+      level: 'sp2', category: 'narrative',
+      body: 'Using the Tools vocab deck, narrate a time you fixed or built something. What was broken? What tools did you use? What steps did you follow? Did it work? Who taught you, or did you figure it out yourself?',
+      tips: ['Useful vocab: el martillo, el destornillador, el tornillo, la sierra, arreglar, reparar, apretar', 'Use the preterite for the steps and sequence words (primero, luego, después)', 'Aim for 100+ words'],
+      date: ''
+    },
+    {
+      id: 'construccion-write',
+      title: 'Cómo se <em>construye</em> algo',
+      level: 'sp2', category: 'cultural',
+      body: 'Using the Construction vocab deck, explain how something is built (a house, a bridge, a school). Who is involved — architect, engineer, workers? What are the steps, from the blueprints and foundation to the walls and roof? What materials are used?',
+      tips: ['Useful vocab: construir, los planos, los cimientos, el ladrillo, el cemento, la pared, el techo, el obrero', 'Use sequence words (primero, después, finalmente) and the passive se (se construye, se levanta)', 'Aim for 110+ words'],
+      date: ''
+    },
+    {
       id: 'caza-write',
       title: 'La <em>caza</em>: tradición y responsabilidad',
       level: 'sp3', category: 'opinion',
@@ -15815,6 +15985,38 @@
 
   const SPEAKING_TOPICS = [
     // ========== CULTURE — paired with vocab decks ==========
+    {
+      id: 'espacio-speak',
+      title: 'Imagina un viaje al <em>espacio</em>',
+      level: 'sp2', category: 'describe',
+      body: 'Talk for at least 60 seconds imagining you travel to space. Describe the launch, what you see, and how it feels with no gravity. Would you explore Mars? Use the Space vocab.',
+      tips: ['Useful vocab: el cohete, el astronauta, el planeta, la estrella, la gravedad, explorar', 'Use the conditional to imagine (vería, sentiría, exploraría)', 'Describe with the senses'],
+      date: ''
+    },
+    {
+      id: 'vehiculos-speak',
+      title: 'Cómo te <em>mueves</em> por tu ciudad',
+      level: 'sp1', category: 'personal',
+      body: 'Talk for at least 60 seconds about how you get around. What transportation do you use? What are the pros and cons? Which do you prefer and why? Use the Vehicles vocab.',
+      tips: ['Useful vocab: el coche, el autobús, la bicicleta, el metro, conducir, el tráfico', 'Use comparisons (más rápido que, más barato que)', 'State a preference (prefiero… porque…)'],
+      date: ''
+    },
+    {
+      id: 'herramientas-speak',
+      title: 'Cuenta cómo <em>arreglaste</em> algo',
+      level: 'sp2', category: 'narrate',
+      body: 'Talk for at least 60 seconds about a time you fixed or built something. What broke, what tools did you use, and what steps did you follow? Use the Tools vocab.',
+      tips: ['Useful vocab: el martillo, el destornillador, la sierra, arreglar, reparar, apretar', 'Use the preterite (usé, arreglé, apreté)', 'Sequence words: primero, luego, al final'],
+      date: ''
+    },
+    {
+      id: 'construccion-speak',
+      title: 'Explica cómo se <em>construye</em> algo',
+      level: 'sp2', category: 'cultural',
+      body: 'Talk for at least 60 seconds explaining how something is built. Who is involved, what are the steps, and what materials are used? Use the Construction vocab.',
+      tips: ['Useful vocab: construir, los planos, los cimientos, el ladrillo, la pared, el techo, el obrero', 'Use sequence words and the passive se (se construye, se levanta)', 'Go in order: planos → cimientos → paredes → techo'],
+      date: ''
+    },
     {
       id: 'caza-speak',
       title: 'Tu opinión sobre la <em>caza</em>',
