@@ -17375,7 +17375,8 @@
         <h5>¿Quiénes eran?</h5><p>${civ.quienes}</p>
         <h5>¿Cómo construyeron — y quién hizo el trabajo?</h5><p>${civ.construccion}</p>
         <h5>¿Para qué eran los sitios?</h5><p>${civ.sitios}</p>
-        <h5>¿Cómo terminó?</h5><p>${civ.final}</p>`;
+        <h5>¿Cómo terminó?</h5><p>${civ.final}</p>
+        ${civ.sources && civ.sources.length ? `<div style="margin-top:18px; padding-top:12px; border-top:1px dashed var(--line); font-family:'JetBrains Mono',monospace; font-size:10px; letter-spacing:0.05em; color:var(--ink-soft); opacity:0.8;">Fuentes: ${civ.sources.map((s,i)=>`<a href="${s}" target="_blank" rel="noopener" style="color:var(--ink-soft);">[${i+1}]</a>`).join(' ')}</div>` : ''}`;
       if (scroll && window.innerWidth < 900) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
     }
   }
@@ -18340,6 +18341,7 @@
               ${(e.vocab || []).map(v => '<span style="background: var(--ocre); color: var(--ink); padding: 3px 10px; border-radius: 3px; font-size: 13px; font-family: \'Fraunces\', serif;">' + v + '</span>').join('')}
             </div>
           </div>
+          ${e.sources && e.sources.length ? `<div style="margin-top: 14px; padding-top: 12px; border-top: 1px dashed var(--line); font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: 0.05em; color: var(--ink-soft); opacity: 0.8;">Fuentes: ${e.sources.map((s, i) => `<a href="${s}" target="_blank" rel="noopener" style="color: var(--ink-soft);">[${i + 1}]</a>`).join(' ')}</div>` : ''}
         </div>
       </details>
     `).join('');
