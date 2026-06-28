@@ -2,6 +2,38 @@
    single file under GitHub's size limit). Loaded before the main script;
    index.html reads this via window.ELP_DECKS. */
 window.ELP_DECKS = {
+    salud: [
+      { word: 'la salud', cat: 'Noun · Feminine', back: 'health', ex: '"La salud es lo más importante."', exEn: 'Health is the most important thing.' },
+      { word: 'el médico', cat: 'Noun · Masculine', back: 'doctor', ex: '"El médico me revisó la garganta."', exEn: 'The doctor checked my throat.' },
+      { word: 'la doctora', cat: 'Noun · Feminine', back: 'doctor (female)', ex: '"La doctora es muy amable."', exEn: 'The doctor is very kind.' },
+      { word: 'el hospital', cat: 'Noun · Masculine', back: 'hospital', ex: '"Lo llevaron al hospital."', exEn: 'They took him to the hospital.' },
+      { word: 'la clínica', cat: 'Noun · Feminine', back: 'clinic', ex: '"Hay una clínica cerca de casa."', exEn: 'There\'s a clinic near my house.' },
+      { word: 'el enfermero', cat: 'Noun · Masculine', back: 'nurse (male)', ex: '"El enfermero me puso la inyección."', exEn: 'The nurse gave me the shot.' },
+      { word: 'la enfermera', cat: 'Noun · Feminine', back: 'nurse (female)', ex: '"La enfermera cuida a los pacientes."', exEn: 'The nurse cares for the patients.' },
+      { word: 'el paciente', cat: 'Noun · Masc./Fem.', back: 'patient', ex: '"El paciente espera al médico."', exEn: 'The patient waits for the doctor.' },
+      { word: 'la cita', cat: 'Noun · Feminine', back: 'appointment', ex: '"Tengo una cita con el dentista."', exEn: 'I have an appointment with the dentist.' },
+      { word: 'la enfermedad', cat: 'Noun · Feminine', back: 'illness / disease', ex: '"Es una enfermedad común."', exEn: 'It\'s a common illness.' },
+      { word: 'el síntoma', cat: 'Noun · Masculine', back: 'symptom', ex: '"¿Qué síntomas tienes?"', exEn: 'What symptoms do you have?' },
+      { word: 'el dolor', cat: 'Noun · Masculine', back: 'pain / ache', ex: '"Tengo un dolor de cabeza."', exEn: 'I have a headache.' },
+      { word: 'doler', cat: 'Verb', back: 'to hurt / ache', ex: '"Me duele el estómago."', exEn: 'My stomach hurts.' },
+      { word: 'la fiebre', cat: 'Noun · Feminine', back: 'fever', ex: '"El niño tiene fiebre."', exEn: 'The child has a fever.' },
+      { word: 'la tos', cat: 'Noun · Feminine', back: 'cough', ex: '"Tengo tos y me duele la garganta."', exEn: 'I have a cough and my throat hurts.' },
+      { word: 'la gripe', cat: 'Noun · Feminine', back: 'flu', ex: '"Está en casa con gripe."', exEn: 'She\'s home with the flu.' },
+      { word: 'el resfriado', cat: 'Noun · Masculine', back: 'cold (illness)', ex: '"Pesqué un resfriado."', exEn: 'I caught a cold.' },
+      { word: 'estar enfermo', cat: 'Phrase', back: 'to be sick', ex: '"Hoy estoy enfermo y no voy a clase."', exEn: 'I\'m sick today and I\'m not going to class.' },
+      { word: 'la receta', cat: 'Noun · Feminine', back: 'prescription', ex: '"El médico me dio una receta."', exEn: 'The doctor gave me a prescription.' },
+      { word: 'la medicina', cat: 'Noun · Feminine', back: 'medicine', ex: '"Toma la medicina dos veces al día."', exEn: 'Take the medicine twice a day.' },
+      { word: 'la pastilla', cat: 'Noun · Feminine', back: 'pill / tablet', ex: '"Tómate una pastilla para el dolor."', exEn: 'Take a pill for the pain.' },
+      { word: 'la inyección', cat: 'Noun · Feminine', back: 'shot / injection', ex: '"No me gustan las inyecciones."', exEn: 'I don\'t like shots.' },
+      { word: 'la vacuna', cat: 'Noun · Feminine', back: 'vaccine', ex: '"Ya me puse la vacuna."', exEn: 'I already got the vaccine.' },
+      { word: 'la farmacia', cat: 'Noun · Feminine', back: 'pharmacy', ex: '"Compré las pastillas en la farmacia."', exEn: 'I bought the pills at the pharmacy.' },
+      { word: 'el tratamiento', cat: 'Noun · Masculine', back: 'treatment', ex: '"El tratamiento dura una semana."', exEn: 'The treatment lasts a week.' },
+      { word: 'la herida', cat: 'Noun · Feminine', back: 'wound / injury', ex: '"Le limpiaron la herida."', exEn: 'They cleaned his wound.' },
+      { word: 'la ambulancia', cat: 'Noun · Feminine', back: 'ambulance', ex: '"Llamen a una ambulancia."', exEn: 'Call an ambulance.' },
+      { word: 'la emergencia', cat: 'Noun · Feminine', back: 'emergency', ex: '"Es una emergencia médica."', exEn: 'It\'s a medical emergency.' },
+      { word: 'curar', cat: 'Verb', back: 'to cure / heal', ex: '"El descanso ayuda a curar."', exEn: 'Rest helps you heal.' },
+      { word: 'sano', cat: 'Adjective', back: 'healthy', ex: '"Come bien para estar sano."', exEn: 'Eat well to stay healthy.' }
+    ],
     musica: [
       { word: 'la música', cat: 'Noun · Feminine', back: 'music', ex: '"Escucho música todos los días."', exEn: 'I listen to music every day.' },
       { word: 'la canción', cat: 'Noun · Feminine', back: 'song', ex: '"Esta canción es mi favorita."', exEn: 'This song is my favorite.' },
