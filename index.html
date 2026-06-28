@@ -29206,10 +29206,21 @@
       return { area: 'Verbs', label: 'Pluperfect subjunctive (hubiera + participle)', display: v.inf + ' — ' + PRON_ES[idx],
         answer: ans, validAnswers: [ans, HABER_SE[idx] + ' ' + part], hint: 'hubiera/hubieras… + -ado/-ido' };
     }
+    function qPerfecto() {
+      const HABER = ['he', 'has', 'ha', 'hemos', 'habéis', 'han'];
+      const pool = verbs.filter(v => v.conj && v.conj.participio);
+      const v = pick(pool);
+      const idx = pick([0, 1, 2, 3, 5]);
+      const ans = HABER[idx] + ' ' + v.conj.participio;
+      return { area: 'Verbs', label: 'Present perfect (haber + participle)', display: v.inf + ' — ' + PRON_ES[idx],
+        answer: ans, validAnswers: [ans], hint: 'he/has/ha… + -ado/-ido' };
+    }
 
-    // Each round: 2 vocab + 1 verb + 1 capital + 1 rotating (number / day / pluperfect subj.)
-    const r = rand();
-    const lastSlot = r < 0.34 ? qPluperfectSubj() : (r < 0.67 ? qNumber() : qDay());
+    // Fixed: 2 vocab (sampled from ALL decks, incl. Religions & Dances) + 1 present
+    // verb + 1 capital. The rotating 5th slot draws from a richer pool that now
+    // includes the newer grammar (present perfect & pluperfect subjunctive).
+    const rotators = [qNumber, qDay, qPerfecto, qPluperfectSubj];
+    const lastSlot = pick(rotators)();
     const questions = [qVocab(), qVerb(), qVocab(), qCapital(), lastSlot];
     // Shuffle so the order varies
     for (let i = questions.length - 1; i > 0; i--) {
