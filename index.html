@@ -5933,6 +5933,7 @@
         <button class="pill" onclick="loadDeck('colores', this)">Colors</button>
         <button class="pill" onclick="loadDeck('cuba', this)">Cuba</button>
         <button class="pill" onclick="loadDeck('rutina', this)">Daily routine</button>
+        <button class="pill" onclick="loadDeck('bailes', this)">Dances</button>
         <button class="pill" onclick="loadDeck('diadelosmuertos', this)">Día de los Muertos</button>
         <button class="pill" onclick="loadDeck('futbol', this)">El fútbol</button>
         <button class="pill" onclick="loadDeck('elsalvador', this)">El Salvador</button>
@@ -11796,6 +11797,64 @@
   //   quiz: array of { q, options: [{ text, correct }] }
 
   const READINGS = [
+    // ---------- CULTURE READING — Dances of the Hispanic world ----------
+    {
+      id: 'bailes-mundo-hispano',
+      kind: 'story', level: 'intermediate',
+      title: 'Los <em>bailes</em> del mundo hispano',
+      author: 'Original · El Pueblo',
+      year: '',
+      attribution: 'Cultura · El mundo hispanohablante',
+      preview: 'Del tango argentino al flamenco andaluz, cada país baila su propia historia…',
+      text: [
+        'Si hay algo que une al mundo hispano, es el baile. En cada país, la gente celebra, cuenta su historia y expresa sus emociones a través del ritmo. Pero cada región tiene su propio estilo, y cada baile lleva dentro siglos de mezcla cultural.',
+        'En el Caribe nacieron algunos de los bailes más populares del planeta. La salsa, con su energía y sus parejas que giran sin parar, mezcla ritmos africanos y europeos. El merengue de la República Dominicana es rápido y alegre, mientras que la bachata, del mismo país, es más romántica y lenta. En Colombia, la cumbia combina tambores africanos, flautas indígenas y melodías españolas.',
+        'Más al sur, Argentina dio al mundo el tango. Nació en los barrios pobres de Buenos Aires a fines del siglo XIX y, al principio, era mal visto por la sociedad. Hoy es un símbolo nacional: una pareja, un abrazo y pasos elegantes y dramáticos sobre la pista de baile.',
+        'En España, el flamenco de Andalucía une el cante, la guitarra y el zapateo. El bailarín marca el compás con los pies y las manos, mientras el público aplaude al ritmo. Como muchos bailes hispanos, el flamenco no es solo un espectáculo en el escenario: es una forma de sentir y de recordar quiénes somos.'
+      ],
+      gloss: {
+        'el baile': 'dance',
+        'el ritmo': 'rhythm',
+        'la salsa': 'salsa',
+        'las parejas': 'partners / couples',
+        'giran': 'spin / turn',
+        'el merengue': 'merengue',
+        'la bachata': 'bachata',
+        'la cumbia': 'cumbia',
+        'los tambores': 'drums',
+        'el tango': 'tango',
+        'mal visto': 'frowned upon',
+        'la pista de baile': 'the dance floor',
+        'el flamenco': 'flamenco',
+        'el cante': 'flamenco singing',
+        'el zapateo': 'foot-stomping',
+        'el compás': 'the beat',
+        'aplaude': 'applauds',
+        'el escenario': 'the stage'
+      },
+      quiz: [
+        { q: '¿Qué tienen en común los bailes del mundo hispano, según el texto?', options: [
+          { text: 'Expresan emociones e historia a través del ritmo', correct: true },
+          { text: 'Todos vienen de Argentina', correct: false },
+          { text: 'Son todos lentos y románticos', correct: false }
+        ]},
+        { q: '¿De qué país son el merengue y la bachata?', options: [
+          { text: 'La República Dominicana', correct: true },
+          { text: 'España', correct: false },
+          { text: 'Argentina', correct: false }
+        ]},
+        { q: 'Al principio, el tango era…', options: [
+          { text: 'mal visto por la sociedad', correct: true },
+          { text: 'un símbolo oficial del gobierno', correct: false },
+          { text: 'un baile religioso', correct: false }
+        ]},
+        { q: 'El flamenco combina el cante, la guitarra y…', options: [
+          { text: 'el zapateo', correct: true },
+          { text: 'los tambores africanos', correct: false },
+          { text: 'las flautas indígenas', correct: false }
+        ]}
+      ]
+    },
     // ---------- CULTURE READING — Religion in the Hispanic world ----------
     {
       id: 'religion-mundo-hispano',
@@ -14222,7 +14281,12 @@
       { id: 'd-i-45-pos', text: 'Este libro no es mío, debe ser tuyo o de tu hermana.', en: 'This book isn\'t mine, it must be yours or your sister\'s.', country: null },
       { id: 'd-i-46-pos', text: 'Mi casa es vieja pero la suya es completamente nueva.', en: 'My house is old but his/hers is completely new.', country: null },
       { id: 'd-i-47-pos', text: 'Las llaves del coche son las mías, las tuyas están en la mesa.', en: 'The car keys are mine, yours are on the table.', country: null },
-      { id: 'd-i-48-pos', text: 'Lo nuestro fue especial, pero ya terminó hace tiempo.', en: 'What we had was special, but it ended a while ago.', country: null }
+      { id: 'd-i-48-pos', text: 'Lo nuestro fue especial, pero ya terminó hace tiempo.', en: 'What we had was special, but it ended a while ago.', country: null },
+      // Dances / dancing (paired with the Dances vocab deck)
+      { id: 'd-i-49-baile', text: 'Aprendí a bailar salsa en una fiesta el verano pasado.', en: 'I learned to dance salsa at a party last summer.', country: null },
+      { id: 'd-i-50-baile', text: 'El tango nació en los barrios de Buenos Aires hace más de cien años.', en: 'Tango was born in the neighborhoods of Buenos Aires more than a hundred years ago.', country: 'ar' },
+      { id: 'd-i-51-baile', text: 'En la fiesta, la pista de baile estaba llena y todos seguían el ritmo.', en: 'At the party, the dance floor was packed and everyone followed the beat.', country: null },
+      { id: 'd-i-52-baile', text: 'El flamenco combina la guitarra, el cante y el zapateo de los bailarines.', en: 'Flamenco combines the guitar, the singing, and the foot-stomping of the dancers.', country: 'es' }
     ],
     advanced: [
       { id: 'd-a-01', text: 'A pesar de las dificultades económicas, muchos jóvenes deciden estudiar idiomas extranjeros para mejorar sus oportunidades laborales.', en: 'Despite economic difficulties, many young people decide to study foreign languages to improve their job opportunities.', country: null },
@@ -14813,6 +14877,24 @@
 
   const WRITING_TOPICS = [
     {
+      id: 'bailes-hispanos',
+      title: 'Los <em>bailes</em> del mundo hispano',
+      level: 'sp2',
+      category: 'cultural',
+      body: 'After studying the Dances vocab deck (and the reading "Los bailes del mundo hispano" in Lectura), write about dance. Which Hispanic dance interests you most — salsa, tango, flamenco, cumbia, merengue, bachata — and why? Where is it from, and what makes it special? Do you like to dance? Describe a time you danced (or watched someone dance). End with your opinion: why do you think dance is so important in Hispanic cultures?',
+      tips: ['Useful vocab: el baile, bailar, el ritmo, la pareja, la pista de baile, el escenario, el bailarín / la bailarina', 'Use the preterite to narrate a specific time you danced (bailé, fui, vi)', 'Aim for 120+ words and at least one opinion with "creo que…" or "me parece que…"'],
+      date: ''
+    },
+    {
+      id: 'religion-mundo-hispano-write',
+      title: 'La <em>religión</em> en el mundo hispano',
+      level: 'sp3',
+      category: 'cultural',
+      body: 'After studying the Religions vocab deck (and the reading "La religión en el mundo hispano" in Lectura), write about religion and belief in the Hispanic world. Why has Catholicism been so important? What is "syncretism," and what are some examples (the Virgin of Guadalupe, Día de los Muertos, santería)? How is the religious landscape changing today? End with a respectful reflection: why do you think faith and tradition matter to so many people?',
+      tips: ['Useful vocab: la fe, la creencia, el catolicismo, la iglesia, rezar / orar, sagrado, el creyente, espiritual', 'Use the present for general facts and the imperfect/preterite for history', 'Be respectful and descriptive; aim for 130+ words with at least one opinion'],
+      date: ''
+    },
+    {
       id: 'la-inquisicion',
       title: 'La <em>Inquisición</em>: poder y conciencia',
       level: 'sp2',
@@ -15247,6 +15329,23 @@
   ];
 
   const SPEAKING_TOPICS = [
+    // ========== CULTURE — paired with vocab decks ==========
+    {
+      id: 'bailes-hispanos-speak',
+      title: 'Habla de un <em>baile</em>',
+      level: 'sp2', category: 'cultural',
+      body: 'Talk for at least 60 seconds about a Hispanic dance. Pick one — salsa, tango, flamenco, cumbia, merengue, bachata — say where it\'s from, describe its rhythm and style, and explain why you like it. Do you know how to dance it? Would you like to learn? Use the Dances vocab.',
+      tips: ['Useful vocab: el baile, bailar, el ritmo, la pareja, la pista de baile, el bailarín / la bailarina', 'Use me gusta / me encanta + reasons (porque…)', 'Try the conditional: "Me gustaría aprender a bailar…"'],
+      date: ''
+    },
+    {
+      id: 'religion-mundo-hispano-speak',
+      title: 'Habla de la <em>religión y la cultura</em>',
+      level: 'sp3', category: 'cultural',
+      body: 'Talk for at least 75 seconds about religion and tradition in the Hispanic world. Describe the role of Catholicism, give an example of syncretism (the Virgin of Guadalupe, Día de los Muertos, santería), and mention how things are changing today. Be respectful and descriptive.',
+      tips: ['Useful vocab: la fe, la creencia, el catolicismo, rezar / orar, la procesión, sagrado, espiritual', 'Use the present for general facts; signal opinion with "me parece que…"', 'Aim for clear, organized ideas over speed'],
+      date: ''
+    },
     // ========== TIER 1: READ-ALOUD (scripted — Spanish 1) ==========
     {
       id: 'read-greeting',

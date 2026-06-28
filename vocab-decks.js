@@ -2,6 +2,28 @@
    single file under GitHub's size limit). Loaded before the main script;
    index.html reads this via window.ELP_DECKS. */
 window.ELP_DECKS = {
+    bailes: [
+      { word: 'el baile', cat: 'Noun · Masculine', back: 'dance / a dance', ex: '"El baile empezó a medianoche."', exEn: 'The dance began at midnight.' },
+      { word: 'bailar', cat: 'Verb', back: 'to dance', ex: '"Me encanta bailar salsa."', exEn: 'I love to dance salsa.' },
+      { word: 'el bailarín', cat: 'Noun · Masculine', back: 'dancer (male)', ex: '"El bailarín giró sobre el escenario."', exEn: 'The dancer spun on the stage.' },
+      { word: 'la bailarina', cat: 'Noun · Feminine', back: 'dancer (female)', ex: '"La bailarina llevaba un vestido rojo."', exEn: 'The dancer wore a red dress.' },
+      { word: 'la salsa', cat: 'Noun · Feminine', back: 'salsa (dance/music)', ex: '"La salsa nació en el Caribe."', exEn: 'Salsa was born in the Caribbean.' },
+      { word: 'el tango', cat: 'Noun · Masculine', back: 'tango', ex: '"El tango es típico de Argentina."', exEn: 'Tango is typical of Argentina.' },
+      { word: 'la cumbia', cat: 'Noun · Feminine', back: 'cumbia', ex: '"La cumbia es popular en Colombia."', exEn: 'Cumbia is popular in Colombia.' },
+      { word: 'el flamenco', cat: 'Noun · Masculine', back: 'flamenco', ex: '"El flamenco viene de Andalucía."', exEn: 'Flamenco comes from Andalusia.' },
+      { word: 'el merengue', cat: 'Noun · Masculine', back: 'merengue', ex: '"Bailamos merengue toda la noche."', exEn: 'We danced merengue all night.' },
+      { word: 'la bachata', cat: 'Noun · Feminine', back: 'bachata', ex: '"La bachata es de la República Dominicana."', exEn: 'Bachata is from the Dominican Republic.' },
+      { word: 'el ritmo', cat: 'Noun · Masculine', back: 'rhythm / beat', ex: '"Tiene muy buen ritmo."', exEn: 'He has a great sense of rhythm.' },
+      { word: 'el paso', cat: 'Noun · Masculine', back: 'step (dance move)', ex: '"Aprendí un paso nuevo."', exEn: 'I learned a new step.' },
+      { word: 'la pareja', cat: 'Noun · Feminine', back: 'partner (dance)', ex: '"Busca una pareja de baile."', exEn: 'He\'s looking for a dance partner.' },
+      { word: 'la pista de baile', cat: 'Noun · Feminine', back: 'dance floor', ex: '"La pista de baile estaba llena."', exEn: 'The dance floor was packed.' },
+      { word: 'el escenario', cat: 'Noun · Masculine', back: 'stage', ex: '"Subieron al escenario a bailar."', exEn: 'They went up on stage to dance.' },
+      { word: 'mover', cat: 'Verb', back: 'to move', ex: '"Mueve las caderas al ritmo."', exEn: 'Move your hips to the beat.' },
+      { word: 'el zapateo', cat: 'Noun · Masculine', back: 'foot-stomping (flamenco/folk)', ex: '"El zapateo marca el compás."', exEn: 'The foot-stomping marks the beat.' },
+      { word: 'el folclore', cat: 'Noun · Masculine', back: 'folklore / folk tradition', ex: '"El baile es parte del folclore."', exEn: 'Dance is part of the folklore.' },
+      { word: 'el conjunto', cat: 'Noun · Masculine', back: 'band / group', ex: '"Tocó un conjunto en vivo."', exEn: 'A live band played.' },
+      { word: 'aplaudir', cat: 'Verb', back: 'to applaud / clap', ex: '"El público aplaudió de pie."', exEn: 'The audience gave a standing ovation.' }
+    ],
     religiones: [
       { word: 'la religión', cat: 'Noun · Feminine', back: 'religion', ex: '"La libertad de religión es un derecho."', exEn: 'Freedom of religion is a right.' },
       { word: 'la fe', cat: 'Noun · Feminine', back: 'faith', ex: '"Su fe la mantiene fuerte."', exEn: 'Her faith keeps her strong.' },
