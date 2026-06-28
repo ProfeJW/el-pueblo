@@ -368,6 +368,37 @@
     .nav-dropdown { grid-template-columns: 1fr; max-height: 70vh; overflow-y: auto; }
   }
 
+  /* Native (no-JS) games dropdown — used on the Mundo page */
+  .games-dd { position: relative; }
+  .games-dd > summary {
+    list-style: none; cursor: pointer; user-select: none;
+    font-family: 'JetBrains Mono', monospace; font-size: 11px;
+    letter-spacing: 0.15em; text-transform: uppercase; color: var(--ink-soft);
+    border: 1px solid var(--line); border-radius: 8px; padding: 8px 14px;
+    display: inline-flex; align-items: center; gap: 8px; background: var(--card-bg);
+    transition: border-color 0.15s ease, color 0.15s ease;
+  }
+  .games-dd > summary::-webkit-details-marker { display: none; }
+  .games-dd > summary:hover { border-color: var(--ocre); color: var(--ink); }
+  .games-dd[open] > summary { border-color: var(--ocre); color: var(--ink); }
+  .games-dd .games-dd-panel {
+    position: absolute; right: 0; top: calc(100% + 8px); z-index: 150;
+    display: grid; grid-template-columns: repeat(2, minmax(180px, 1fr)); gap: 2px;
+    background: var(--card-bg); border: 1px solid var(--line); border-radius: 10px;
+    padding: 8px; box-shadow: 0 14px 36px rgba(0, 0, 0, 0.18);
+  }
+  .games-dd .games-dd-panel a {
+    display: flex; align-items: center; gap: 9px; padding: 9px 12px;
+    border-radius: 6px; text-decoration: none; white-space: nowrap;
+    font-family: 'JetBrains Mono', monospace; font-size: 12px; color: var(--ink-soft);
+    transition: background 0.12s ease, color 0.12s ease;
+  }
+  .games-dd .games-dd-panel a:hover { background: var(--paper-deep); color: var(--rojo); }
+  .games-dd .games-dd-panel a .gdd-ico { font-size: 15px; width: 18px; text-align: center; flex-shrink: 0; }
+  @media (max-width: 720px) {
+    .games-dd .games-dd-panel { grid-template-columns: 1fr; left: 0; right: auto; max-height: 60vh; overflow-y: auto; }
+  }
+
   /* HERO */
   header {
     padding: 48px 40px 56px;
@@ -3270,6 +3301,57 @@
     z-index: 10;
     border-radius: 3px;
   }
+  .reading-history-note {
+    margin-top: 28px;
+    padding: 20px 22px;
+    border: 1px solid rgba(212,146,44,0.4);
+    border-left: 4px solid var(--ocre);
+    border-radius: 10px;
+    background: rgba(212,146,44,0.08);
+  }
+  .reading-history-note .rhn-head {
+    font-family: 'DM Serif Display', serif;
+    font-size: 19px;
+    color: var(--ocre);
+    margin-bottom: 12px;
+  }
+  .reading-history-note .rhn-intro,
+  .reading-history-note .rhn-outro {
+    font-size: 15px;
+    line-height: 1.6;
+    margin: 0 0 14px;
+  }
+  .reading-history-note .rhn-outro { margin: 14px 0 0; }
+  .reading-history-note .rhn-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 15px;
+  }
+  .reading-history-note .rhn-table th,
+  .reading-history-note .rhn-table td {
+    text-align: left;
+    padding: 8px 10px;
+    border-bottom: 1px solid rgba(0,0,0,0.12);
+    vertical-align: top;
+  }
+  .reading-history-note .rhn-table th {
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    opacity: 0.7;
+    font-weight: 600;
+  }
+  .reading-history-note .rhn-table td:first-child em {
+    color: var(--ocre);
+    font-style: italic;
+    font-weight: 600;
+  }
+  @media (max-width: 640px) {
+    .reading-history-note { padding: 16px; }
+    .reading-history-note .rhn-table { font-size: 13px; }
+    .reading-history-note .rhn-table th,
+    .reading-history-note .rhn-table td { padding: 6px 5px; }
+  }
   .reading-quiz-card {
     background: var(--ink);
     color: var(--paper);
@@ -5938,6 +6020,7 @@
         <button class="pill" onclick="loadDeck('rutina', this)">Daily routine</button>
         <button class="pill" onclick="loadDeck('bailes', this)">Dances</button>
         <button class="pill" onclick="loadDeck('diadelosmuertos', this)">Día de los Muertos</button>
+        <button class="pill" onclick="loadDeck('quijote', this)">Don Quijote</button>
         <button class="pill" onclick="loadDeck('educacion', this)">Education</button>
         <button class="pill" onclick="loadDeck('futbol', this)">El fútbol</button>
         <button class="pill" onclick="loadDeck('elsalvador', this)">El Salvador</button>
@@ -5959,6 +6042,7 @@
         <button class="pill" onclick="loadDeck('caza', this)">Hunting</button>
         <button class="pill" onclick="loadDeck('verbosIr', this)">-IR verbs</button>
         <button class="pill" onclick="loadDeck('derecho', this)">Law</button>
+        <button class="pill" onclick="loadDeck('lazarillo', this)">Lazarillo de Tormes</button>
         <button class="pill" onclick="loadDeck('literatura', this)">Literature</button>
         <button class="pill" onclick="loadDeck('mercado', this)">Market &amp; shopping</button>
         <button class="pill" onclick="loadDeck('matematicas', this)">Math</button>
@@ -7044,9 +7128,26 @@
 
   <!-- MINI-GAMES (bottom of page) -->
   <div style="margin-top: 56px; padding-top: 32px; border-top: 1px solid var(--line);">
-    <div style="display: flex; align-items: baseline; justify-content: space-between; margin-bottom: 18px;">
+    <div style="display: flex; align-items: center; justify-content: space-between; gap: 14px; margin-bottom: 18px; flex-wrap: wrap;">
       <h3 style="font-family: 'DM Serif Display', serif; font-size: 24px; font-weight: 400; margin: 0;">Mini-<em style="color: var(--rojo); font-style: italic;">games</em></h3>
-      <div style="font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.15em; color: var(--ink-soft); text-transform: uppercase;">Earn Lucas while you learn</div>
+      <div style="display: flex; align-items: center; gap: 14px; flex-wrap: wrap;">
+        <span style="font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.15em; color: var(--ink-soft); text-transform: uppercase;">Earn Lucas while you learn</span>
+        <details class="games-dd">
+          <summary>Jump to a game ▾</summary>
+          <div class="games-dd-panel" role="menu">
+            <a href="#/mundo/quiz/flags"><span class="gdd-ico" aria-hidden="true">🚩</span>Flag Quiz</a>
+            <a href="#/mundo/quiz/sites"><span class="gdd-ico" aria-hidden="true">🏛️</span>Place Quiz</a>
+            <a href="#/mundo/quiz/people"><span class="gdd-ico" aria-hidden="true">🎭</span>Person Quiz</a>
+            <a href="#/mundo/quiz/historia"><span class="gdd-ico" aria-hidden="true">📜</span>Historia Trivia</a>
+            <a href="#/mundo/quiz/dishes"><span class="gdd-ico" aria-hidden="true">🌮</span>Dish Quiz</a>
+            <a href="#/mundo/quiz/years"><span class="gdd-ico" aria-hidden="true">⏳</span>Which came first?</a>
+            <a href="#/mundo/quiz/arte"><span class="gdd-ico" aria-hidden="true">🎨</span>Art Quiz</a>
+            <a href="#/mundo/quiz/map"><span class="gdd-ico" aria-hidden="true">🗺</span>Map Quiz</a>
+            <a href="#/mundo/quiz/capitales"><span class="gdd-ico" aria-hidden="true">🏛️</span>Capitals Quiz</a>
+            <a href="#/mundo/quiz/origin"><span class="gdd-ico" aria-hidden="true">📍</span>Where are they from?</a>
+          </div>
+        </details>
+      </div>
     </div>
     <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 14px;">
       <a href="#/mundo/quiz/flags" class="mini-game-card">
@@ -12667,6 +12768,147 @@
         ]}
       ]
     },
+    // ---------- CLASSIC LITERATURE — Lazarillo de Tormes ----------
+    {
+      id: 'lazarillo-ciego',
+      kind: 'story', level: 'advanced',
+      title: 'Lázaro y el <em>ciego</em>',
+      author: 'Adaptación · El Pueblo',
+      year: '1554',
+      attribution: 'Clásico · Lazarillo de Tormes (anónimo)',
+      preview: 'La madre de Lázaro lo entrega a un ciego cruel y astuto. Para no morir de hambre, el niño tendrá que ser aún más listo que su amo…',
+      text: [
+        'Lázaro de Tormes nació cerca de un río, en una familia muy pobre. Cuando todavía era un niño, su madre, que no podía cuidarlo, lo entregó a un ciego para que le sirviera de guía por los caminos. Así empezó la vida de Lázaro como criado, yendo de amo en amo por toda España.',
+        'El ciego era astuto y muy avaro. Aunque pedía limosna y casi siempre tenía comida, nunca compartía nada con el niño. Lázaro pasaba mucha hambre. Pronto comprendió que, para sobrevivir, tendría que ser todavía más listo que su amo.',
+        'El ciego guardaba el vino en un jarro y lo vigilaba con cuidado. Lázaro, muerto de sed, hizo un pequeño agujero en el fondo del jarro y lo tapó con cera. Cuando el ciego se sentaba a comer, la cera se derretía con el calor y el niño bebía el vino a escondidas, gota a gota.',
+        'Un día el ciego descubrió el truco. Sin decir nada, esperó a que Lázaro acercara la cara al jarro y entonces lo levantó y lo dejó caer con fuerza sobre la boca del niño. El golpe le rompió los dientes. Desde ese momento, Lázaro odió a su amo y empezó a planear su venganza.',
+        'La ocasión llegó un día de lluvia. Para cruzar un arroyo, Lázaro colocó al ciego justo frente a un poste de piedra y le dijo que saltara con todas sus fuerzas. El ciego saltó y se golpeó la cabeza contra la piedra. Lázaro huyó corriendo. Con este primer amo aprendió la lección más importante de su vida: en un mundo cruel, solo la astucia permite sobrevivir.'
+      ],
+      gloss: {
+        'el ciego': 'blind man',
+        'el amo': 'master / employer',
+        'el criado': 'servant',
+        'la limosna': 'alms / charity',
+        'avaro': 'stingy / miserly',
+        'el jarro': 'jug / pitcher',
+        'el agujero': 'hole',
+        'la cera': 'wax',
+        'derretirse': 'to melt',
+        'a escondidas': 'secretly',
+        'el poste': 'post',
+        'la venganza': 'revenge',
+        'la astucia': 'cunning'
+      },
+      historyNote: {
+        heading: 'El español del Siglo de Oro: el pronombre va detrás del verbo',
+        intro: 'This story is retold in modern Spanish, but the real <em>Lazarillo</em> was printed in <strong>1554</strong> and the language worked differently. The change you would notice most: direct- and indirect-object pronouns were normally attached to the <strong>end</strong> of a conjugated verb — this is called <em>enclisis</em> — above all when the verb opened the sentence. Today those same pronouns go <strong>before</strong> the verb.',
+        examples: [
+          { old: 'entrególe', modern: 'le entregó', en: 'she handed him over (IO)' },
+          { old: 'díjole', modern: 'le dijo', en: 'he said to him (IO)' },
+          { old: 'tomólo', modern: 'lo tomó', en: 'he took it (DO)' },
+          { old: 'rompióle los dientes', modern: 'le rompió los dientes', en: 'it broke his teeth (IO)' },
+          { old: 'dióselo', modern: 'se lo dio', en: 'he gave it to him (IO + DO)' }
+        ],
+        outro: 'Future- and conditional-tense verbs could even split in two, with the pronoun wedged inside: <em>dártelo he</em> = <em>te lo daré</em> (“I will give it to you”). You would also meet <em>vuestra merced</em> — the polite “you” that later shrank into today’s <strong>usted</strong> — plus older spellings like <em>agora</em> (ahora) and <em>ansí</em> (así).'
+      },
+      quiz: [
+        { q: '¿Por qué la madre entregó a Lázaro a un ciego?', options: [
+          { text: 'Para que le sirviera de guía', correct: true },
+          { text: 'Para que estudiara en la ciudad', correct: false },
+          { text: 'Para que fuera sacerdote', correct: false }
+        ]},
+        { q: '¿Cómo era el ciego?', options: [
+          { text: 'Generoso y rico', correct: false },
+          { text: 'Astuto y avaro', correct: true },
+          { text: 'Joven y alegre', correct: false }
+        ]},
+        { q: '¿Cómo bebía Lázaro el vino sin que el ciego lo notara?', options: [
+          { text: 'Pedía permiso cada vez', correct: false },
+          { text: 'Compraba su propio vino', correct: false },
+          { text: 'Hizo un agujero en el jarro y lo tapó con cera', correct: true }
+        ]},
+        { q: '¿Qué pasó cuando el ciego descubrió el truco?', options: [
+          { text: 'Le rompió los dientes con el jarro', correct: true },
+          { text: 'Lo perdonó y le dio más vino', correct: false },
+          { text: 'Lo abandonó en el camino', correct: false }
+        ]},
+        { q: '¿Cuál fue la venganza de Lázaro?', options: [
+          { text: 'Le robó todo el dinero', correct: false },
+          { text: 'Hizo que el ciego saltara contra un poste de piedra', correct: true },
+          { text: 'Lo dejó dormido en la iglesia', correct: false }
+        ]}
+      ]
+    },
+    // ---------- CLASSIC LITERATURE — Don Quijote de la Mancha ----------
+    {
+      id: 'quijote-molinos',
+      kind: 'story', level: 'advanced',
+      title: 'Don Quijote y los <em>molinos de viento</em>',
+      author: 'Adaptación · El Pueblo',
+      year: '1605',
+      attribution: 'Clásico · Don Quijote de la Mancha · Cervantes',
+      preview: 'Un hidalgo lee tantos libros de caballerías que pierde la razón y confunde unos molinos de viento con gigantes terribles…',
+      text: [
+        'En un lugar de la Mancha vivía un hidalgo pobre llamado Alonso Quijano. Era un hombre tranquilo, pero tenía una gran pasión: leía libros de caballerías día y noche. Leyó tantas historias de caballeros, gigantes y batallas que, poco a poco, perdió la razón y empezó a creer que todo era verdad.',
+        'Un día decidió convertirse él mismo en caballero andante. Buscó una vieja armadura oxidada, montó en su flaco caballo, al que llamó Rocinante, y se dio a sí mismo el nombre de don Quijote de la Mancha. Eligió como dama de sus sueños a una campesina del pueblo, a quien llamó Dulcinea del Toboso, y convenció a un labrador sencillo, Sancho Panza, de ser su escudero.',
+        'Una mañana, cruzando el campo, don Quijote vio a lo lejos treinta o cuarenta molinos de viento. Lleno de emoción, le dijo a Sancho: «¡Mira, amigo! Allí hay gigantes terribles. Voy a luchar contra ellos.» Sancho respondió: «Señor, esos no son gigantes, son molinos de viento. Lo que parecen brazos son las aspas que mueve el viento.»',
+        'Pero don Quijote no lo escuchó. Convencido de que eran gigantes, bajó la lanza, espoleó a Rocinante y embistió contra el primer molino con todas sus fuerzas. En ese momento el viento movió las aspas, que rompieron la lanza en pedazos y arrojaron al caballero y a su caballo por el suelo.',
+        'Sancho corrió a ayudarlo. «¿No le dije que eran molinos?», exclamó. Don Quijote, dolorido pero seguro de sí mismo, respondió que un mago enemigo, el sabio Frestón, había convertido a los gigantes en molinos para quitarle la gloria de la victoria. Y así, sin perder nunca su fe en los sueños, continuó su camino en busca de nuevas aventuras.'
+      ],
+      gloss: {
+        'el hidalgo': 'minor nobleman',
+        'los libros de caballerías': 'chivalry novels',
+        'la razón': 'reason / sanity',
+        'el caballero andante': 'knight-errant',
+        'la armadura': 'armor',
+        'oxidada': 'rusty',
+        'el escudero': 'squire',
+        'el molino de viento': 'windmill',
+        'las aspas': 'sails / blades',
+        'la lanza': 'lance',
+        'embestir': 'to charge / attack',
+        'el sabio': 'wise man / wizard'
+      },
+      historyNote: {
+        heading: 'El español de Cervantes: el pronombre pegado al verbo',
+        intro: 'Our version is modernized, but Cervantes published <em>Don Quijote</em> in <strong>1605</strong> in early-modern Spanish. Its signature trait is the same one you would hear all across the Golden Age: object pronouns clinging to the <strong>back</strong> of a conjugated verb (<em>enclisis</em>), where modern Spanish puts them in front.',
+        examples: [
+          { old: 'respondióle', modern: 'le respondió', en: 'he answered him (IO)' },
+          { old: 'parecióle', modern: 'le pareció', en: 'it seemed to him (IO)' },
+          { old: 'levantóse', modern: 'se levantó', en: 'he got up (reflexive)' },
+          { old: 'diéronle de palos', modern: 'le dieron de palos', en: 'they gave him a beating (IO)' },
+          { old: 'prometióselo', modern: 'se lo prometió', en: 'he promised it to him (IO + DO)' }
+        ],
+        outro: 'Open the real novel and the enclitics jump out at once — <em>Frisaba la edad…</em>, <em>Respondióle don Quijote…</em>, <em>Diéronle…</em> You will also spot the old polite address <em>vuestra merced</em> (→ usted) and spellings like <em>agora</em> for ahora.'
+      },
+      quiz: [
+        { q: '¿Cuál era la gran pasión de Alonso Quijano?', options: [
+          { text: 'Leer libros de caballerías', correct: true },
+          { text: 'Cazar gigantes', correct: false },
+          { text: 'Viajar por el mar', correct: false }
+        ]},
+        { q: '¿Cómo se llamaba su caballo?', options: [
+          { text: 'Frestón', correct: false },
+          { text: 'Rocinante', correct: true },
+          { text: 'Sancho', correct: false }
+        ]},
+        { q: '¿Qué vio don Quijote en el campo?', options: [
+          { text: 'Un castillo encantado', correct: false },
+          { text: 'Un ejército real', correct: false },
+          { text: 'Molinos de viento que creyó gigantes', correct: true }
+        ]},
+        { q: '¿Qué pasó cuando embistió contra el molino?', options: [
+          { text: 'Ganó la batalla fácilmente', correct: false },
+          { text: 'El viento movió las aspas y lo arrojó al suelo', correct: true },
+          { text: 'El gigante huyó asustado', correct: false }
+        ]},
+        { q: 'Después de la caída, ¿cómo explicó don Quijote su derrota?', options: [
+          { text: 'Admitió que estaba loco', correct: false },
+          { text: 'Culpó a Sancho por no ayudarlo', correct: false },
+          { text: 'Dijo que un mago había convertido a los gigantes en molinos', correct: true }
+        ]}
+      ]
+    },
     // ---------- BEGINNER STORIES (5 Lucas/correct, +5 bonus = max 20) ----------
     {
       id: 'mi-familia',
@@ -14672,6 +14914,20 @@
     const levelLabel = reading.level.charAt(0).toUpperCase() + reading.level.slice(1);
     const kindLabel = reading.kind === 'story' ? 'story' : reading.kind === 'poem' ? 'poem' : 'author spotlight';
 
+    const hn = reading.historyNote;
+    const historyHtml = hn ? `
+      <div class="reading-history-note">
+        <div class="rhn-head">📜 ${hn.heading}</div>
+        <p class="rhn-intro">${hn.intro}</p>
+        <table class="rhn-table">
+          <thead><tr><th>Entonces (Siglo de Oro)</th><th>Hoy</th><th>English</th></tr></thead>
+          <tbody>
+            ${hn.examples.map(e => `<tr><td><em>${e.old}</em></td><td>${e.modern}</td><td>${e.en}</td></tr>`).join('')}
+          </tbody>
+        </table>
+        ${hn.outro ? `<p class="rhn-outro">${hn.outro}</p>` : ''}
+      </div>` : '';
+
     const quizHtml = reading.quiz.map((q, i) => `
       <div class="quiz-q" data-qidx="${i}">
         <div class="quiz-q-label">Question ${String(i+1).padStart(2,'0')}</div>
@@ -14690,6 +14946,7 @@
         <div class="author-line">${reading.author}${reading.year ? ' · ' + reading.year : ''}</div>
         <div class="meta-line">${levelLabel} ${kindLabel}${reading.attribution ? ' · ' + reading.attribution : ''}${reading.kind !== 'spotlight' ? ' · Hover red words for translations' : ''}</div>
         <div class="text-body">${textHtml}</div>
+        ${historyHtml}
       </div>
       <div class="reading-quiz-card">
         <h4>${reading.kind === 'spotlight' ? 'Check your understanding' : 'Comprehension'}</h4>
@@ -15811,6 +16068,25 @@
       category: 'cultural',
       body: 'After reading "La Inquisición española" in Lectura (or the Inquisition events in Historia), write about it: What was the Inquisition, and why did the Catholic Monarchs create it? Who were its main victims in Spain and in the Americas? Why do you think fear can control people even more than punishment can? End with your opinion: what should we learn from this history today?',
       tips: ['Use the imperfect for description (era, perseguía, tenía) and the preterite for events (crearon, llegó, terminó)', 'Useful vocab: el tribunal, la herejía, el converso, el auto de fe, la censura, el miedo, la conciencia', 'Aim for 120+ words and at least one opinion with "creo que…" or "me parece que…"'],
+      date: ''
+    },
+    // ========== CLASSIC LITERATURE ==========
+    {
+      id: 'lazarillo-amos',
+      title: 'El <em>Lazarillo</em>: hambre y astucia',
+      level: 'sp3',
+      category: 'literature',
+      body: 'After reading "Lázaro y el ciego" in Lectura, write about it. Who is Lázaro, and why does his mother give him to the blind man? Describe two tricks that the blind man and Lázaro play on each other. What does Lázaro learn about surviving in a cruel world? Lazarillo de Tormes invented the "picaresque" — a poor rogue who survives by his wits and exposes the hypocrisy of the powerful. Do you think cleverness (la astucia) can be a kind of justice for someone who has nothing? End with your opinion.',
+      tips: ['Use the preterite for the events of the story (entregó, hizo, rompió, huyó) and the imperfect for description and background (era, tenía, pasaba)', 'Useful vocab from the Lazarillo deck: el pícaro, el amo, el ciego, la astucia, el hambre, engañar, la venganza, la hipocresía', 'Give your opinion with "creo que…", "me parece que…", or "en mi opinión…"', 'Aim for 150+ words'],
+      date: ''
+    },
+    {
+      id: 'quijote-suenos',
+      title: 'Don Quijote: ¿locura o <em>idealismo</em>?',
+      level: 'sp3',
+      category: 'literature',
+      body: 'After reading "Don Quijote y los molinos de viento" in Lectura, write about it. Why does Alonso Quijano lose his sanity, and what does he decide to become? Retell the windmill episode in your own words. Don Quijote sees giants where there are only windmills — he chooses his dream over reality, while his squire Sancho Panza always sees things as they really are. Which character do you identify with more, the idealist (don Quijote) or the realist (Sancho)? Is it better to chase impossible dreams or to accept reality? Defend your opinion with examples.',
+      tips: ['Use the preterite to narrate the action (vio, embistió, rompió, cayó) and the imperfect for description (era, leía, creía)', 'Useful vocab from the Don Quijote deck: el hidalgo, el caballero andante, el escudero, la locura, el molino de viento, el gigante, embestir, idealista', 'Contrast the two characters with connectors: en cambio, sin embargo, mientras que, por otro lado', 'State and defend an opinion; aim for 150+ words'],
       date: ''
     },
     // ========== SPANISH 1 — PERSONAL ==========
