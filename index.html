@@ -5924,6 +5924,7 @@
         <button class="pill" onclick="loadDeck('cuerpo', this)">Body parts</button>
         <button class="pill" onclick="loadDeck('bolivia', this)">Bolivia</button>
         <button class="pill" onclick="loadDeck('calendario', this)">Calendar</button>
+        <button class="pill" onclick="loadDeck('acampar', this)">Camping</button>
         <button class="pill" onclick="loadDeck('chile', this)">Chile</button>
         <button class="pill" onclick="loadDeck('clases', this)">Classes</button>
         <button class="pill" onclick="loadDeck('salon', this)">Classroom</button>
@@ -5944,6 +5945,7 @@
         <button class="pill active" onclick="loadDeck('cotidiano', this)">Everyday</button>
         <button class="pill" onclick="loadDeck('familia', this)">Family</button>
         <button class="pill" onclick="loadDeck('cumpleanos', this)">¡Feliz cumpleaños!</button>
+        <button class="pill" onclick="loadDeck('pesca', this)">Fishing</button>
         <button class="pill" onclick="loadDeck('comida', this)">Food</button>
         <button class="pill" onclick="loadDeck('geografia', this)">Geography</button>
         <button class="pill" onclick="loadDeck('saludos', this)">Greetings</button>
@@ -5952,11 +5954,13 @@
         <button class="pill" onclick="loadDeck('fiestas', this)">Holidays</button>
         <button class="pill" onclick="loadDeck('honduras', this)">Honduras</button>
         <button class="pill" onclick="loadDeck('casa', this)">House &amp; furniture</button>
+        <button class="pill" onclick="loadDeck('caza', this)">Hunting</button>
         <button class="pill" onclick="loadDeck('verbosIr', this)">-IR verbs</button>
         <button class="pill" onclick="loadDeck('literatura', this)">Literature</button>
         <button class="pill" onclick="loadDeck('mercado', this)">Market &amp; shopping</button>
         <button class="pill" onclick="loadDeck('matematicas', this)">Math</button>
         <button class="pill" onclick="loadDeck('mexico', this)">México</button>
+        <button class="pill" onclick="loadDeck('naturaleza', this)">Nature</button>
         <button class="pill" onclick="loadDeck('numeros', this)">Numbers</button>
         <button class="pill" onclick="loadDeck('paraguay', this)">Paraguay</button>
         <button class="pill" onclick="loadDeck('gente', this)">People</button>
@@ -11803,6 +11807,121 @@
   //   quiz: array of { q, options: [{ text, correct }] }
 
   const READINGS = [
+    // ---------- HUNTING READING ----------
+    {
+      id: 'caza-tradicion',
+      kind: 'story', level: 'intermediate',
+      title: 'La <em>caza</em> y la naturaleza',
+      author: 'Original · El Pueblo',
+      year: '',
+      attribution: 'Cultura · Vida al aire libre',
+      preview: 'Para los cazadores responsables, la caza no es solo un deporte: es respeto por la naturaleza.',
+      text: [
+        'En muchas regiones del mundo hispano, la caza es una tradición antigua. Antes de los rifles y las escopetas, la gente cazaba con arco y flecha para alimentar a su familia. Hoy, para muchos, sigue siendo una forma de conectar con la naturaleza.',
+        'Un buen cazador conoce el bosque: sigue las huellas y el rastro de los animales, espera en silencio y solo dispara cuando está seguro. La paciencia es más importante que el arma. Cazar un venado o un jabalí requiere horas de observación.',
+        'Pero la caza también tiene reglas. Cada región tiene una temporada de caza y exige un permiso, para que las especies no desaparezcan. Los cazadores responsables respetan estos límites, porque entienden que cuidar la naturaleza es parte de la tradición.'
+      ],
+      gloss: {
+        'la caza': 'hunting', 'cazar': 'to hunt', 'el cazador': 'hunter', 'el rifle': 'rifle',
+        'la escopeta': 'shotgun', 'el arco': 'bow', 'la flecha': 'arrow', 'las huellas': 'tracks',
+        'el rastro': 'trail', 'disparar': 'to shoot', 'el venado': 'deer', 'el jabalí': 'wild boar',
+        'la temporada de caza': 'hunting season', 'el permiso': 'permit'
+      },
+      quiz: [
+        { q: 'Antes de los rifles, ¿con qué cazaba la gente?', options: [
+          { text: 'con arco y flecha', correct: true }, { text: 'con escopetas', correct: false }, { text: 'con trampas eléctricas', correct: false } ]},
+        { q: 'Según el texto, ¿qué es lo más importante para un buen cazador?', options: [
+          { text: 'la paciencia', correct: true }, { text: 'el arma más cara', correct: false }, { text: 'la velocidad', correct: false } ]},
+        { q: '¿Por qué existen la temporada de caza y los permisos?', options: [
+          { text: 'para que las especies no desaparezcan', correct: true }, { text: 'para vender más armas', correct: false }, { text: 'para prohibir la naturaleza', correct: false } ]}
+      ]
+    },
+    // ---------- FISHING READING ----------
+    {
+      id: 'pesca-dia',
+      kind: 'story', level: 'intermediate',
+      title: 'Un día de <em>pesca</em>',
+      author: 'Original · El Pueblo',
+      year: '',
+      attribution: 'Cultura · Vida al aire libre',
+      preview: 'Caña, anzuelo y mucha paciencia: así pasamos la mañana en el lago.',
+      text: [
+        'Mi abuelo me enseñó a pescar cuando era niño. Salíamos de madrugada hacia el lago, con las cañas de pescar, una caja de anzuelos y un cubo para los peces. "La pesca", decía, "es noventa por ciento paciencia."',
+        'Primero poníamos la carnada en el anzuelo y lanzábamos el sedal al agua. Luego esperábamos en silencio, mirando el agua tranquila. A veces pasaba una hora sin que picara ningún pez. Pero cuando por fin uno picaba, el carrete giraba rápido y el corazón se aceleraba.',
+        'Algunos días atrapábamos varias truchas; otros días, nada. Pero mi abuelo siempre soltaba los peces más pequeños al agua otra vez. "Para que crezcan", decía. Lo importante no era cuántos peces atrapábamos, sino las horas que pasábamos juntos junto al lago.'
+      ],
+      gloss: {
+        'pescar': 'to fish', 'el lago': 'lake', 'la caña de pescar': 'fishing rod', 'el anzuelo': 'hook',
+        'el cubo': 'bucket', 'la paciencia': 'patience', 'la carnada': 'bait', 'el sedal': 'fishing line',
+        'picar': 'to bite (fish)', 'el carrete': 'reel', 'la trucha': 'trout', 'soltar': 'to release'
+      },
+      quiz: [
+        { q: 'Según el abuelo, la pesca es sobre todo…', options: [
+          { text: 'paciencia', correct: true }, { text: 'velocidad', correct: false }, { text: 'fuerza', correct: false } ]},
+        { q: '¿Qué hacían con los peces más pequeños?', options: [
+          { text: 'los soltaban al agua otra vez', correct: true }, { text: 'los vendían en el mercado', correct: false }, { text: 'los usaban de carnada', correct: false } ]},
+        { q: 'Para el narrador, lo más importante de la pesca era…', options: [
+          { text: 'el tiempo que pasaba con su abuelo', correct: true }, { text: 'atrapar muchos peces', correct: false }, { text: 'ganar dinero', correct: false } ]}
+      ]
+    },
+    // ---------- CAMPING READING ----------
+    {
+      id: 'acampar-estrellas',
+      kind: 'story', level: 'intermediate',
+      title: 'Acampar bajo las <em>estrellas</em>',
+      author: 'Original · El Pueblo',
+      year: '',
+      attribution: 'Cultura · Vida al aire libre',
+      preview: 'Una tienda, una fogata y un cielo lleno de estrellas: nuestra primera noche acampando.',
+      text: [
+        'El verano pasado, mis amigos y yo fuimos a acampar a las montañas por primera vez. Llevábamos las mochilas llenas: la tienda de campaña, los sacos de dormir, una linterna, fósforos y, por supuesto, mucho repelente de mosquitos.',
+        'Cuando llegamos, montamos la tienda junto a un sendero, cerca de un río. No fue fácil —se nos cayó dos veces— pero al final lo logramos. Por la tarde hicimos una caminata por el bosque y volvimos justo antes de que oscureciera.',
+        'Por la noche encendimos una fogata, cocinamos algo sencillo y contamos historias. Lo mejor llegó después: nos acostamos al aire libre y miramos el cielo. Sin las luces de la ciudad, se veían miles de estrellas. Nunca había visto algo tan hermoso.'
+      ],
+      gloss: {
+        'acampar': 'to camp', 'la mochila': 'backpack', 'la tienda de campaña': 'tent',
+        'el saco de dormir': 'sleeping bag', 'la linterna': 'flashlight', 'los fósforos': 'matches',
+        'el repelente': 'bug repellent', 'montar la tienda': 'to set up the tent', 'el sendero': 'trail',
+        'la caminata': 'hike', 'la fogata': 'campfire', 'al aire libre': 'outdoors', 'las estrellas': 'the stars'
+      },
+      quiz: [
+        { q: '¿Qué llevaban en las mochilas?', options: [
+          { text: 'la tienda, los sacos de dormir y una linterna', correct: true }, { text: 'una televisión', correct: false }, { text: 'cañas de pescar', correct: false } ]},
+        { q: '¿Qué hicieron por la tarde?', options: [
+          { text: 'una caminata por el bosque', correct: true }, { text: 'fueron de compras', correct: false }, { text: 'durmieron todo el día', correct: false } ]},
+        { q: '¿Por qué se veían tantas estrellas?', options: [
+          { text: 'porque no había luces de la ciudad', correct: true }, { text: 'porque usaron un telescopio', correct: false }, { text: 'porque era de día', correct: false } ]}
+      ]
+    },
+    // ---------- NATURE READING ----------
+    {
+      id: 'naturaleza-cuidar',
+      kind: 'story', level: 'intermediate',
+      title: 'Cuidar la <em>naturaleza</em>',
+      author: 'Original · El Pueblo',
+      year: '',
+      attribution: 'Cultura · Medio ambiente',
+      preview: 'Árboles, ríos y animales: la naturaleza nos da todo, pero también necesita nuestra ayuda.',
+      text: [
+        'La naturaleza está llena de vida: árboles que nos dan oxígeno, flores que alimentan a las mariposas, ríos donde viven los peces y pájaros que cantan al amanecer. Cada planta y cada animal forma parte de un equilibrio delicado.',
+        'Pero ese equilibrio está en peligro. La contaminación de las fábricas y la basura ensucian el aire, el agua y la tierra. Muchas especies de animales salvajes están desapareciendo porque pierden su hogar en los bosques y las selvas.',
+        'Por suerte, hay cosas que todos podemos hacer para proteger el medio ambiente: reciclar, no tirar basura en la naturaleza, ahorrar agua y plantar árboles. Cuidar el paisaje no es solo responsabilidad de los gobiernos: empieza con cada uno de nosotros.'
+      ],
+      gloss: {
+        'la naturaleza': 'nature', 'el árbol': 'tree', 'la flor': 'flower', 'la mariposa': 'butterfly',
+        'el pájaro': 'bird', 'el equilibrio': 'balance', 'la contaminación': 'pollution',
+        'la basura': 'trash', 'salvaje': 'wild', 'el bosque': 'forest', 'proteger': 'to protect',
+        'el medio ambiente': 'the environment', 'el paisaje': 'landscape'
+      },
+      quiz: [
+        { q: 'Según el texto, ¿qué nos dan los árboles?', options: [
+          { text: 'oxígeno', correct: true }, { text: 'gasolina', correct: false }, { text: 'electricidad', correct: false } ]},
+        { q: '¿Por qué desaparecen muchas especies salvajes?', options: [
+          { text: 'pierden su hogar en los bosques y las selvas', correct: true }, { text: 'se van de vacaciones', correct: false }, { text: 'hay demasiados árboles', correct: false } ]},
+        { q: 'Según el texto, cuidar el medio ambiente…', options: [
+          { text: 'empieza con cada uno de nosotros', correct: true }, { text: 'es solo trabajo del gobierno', correct: false }, { text: 'es imposible', correct: false } ]}
+      ]
+    },
     // ---------- MATH READING ----------
     {
       id: 'matematicas-vida',
@@ -14550,7 +14669,27 @@
       { id: 'd-i-73-geo', text: 'Los Andes son la cordillera más larga del mundo.', en: 'The Andes are the longest mountain range in the world.', country: null },
       { id: 'd-i-74-geo', text: 'El río Amazonas cruza la selva más grande del planeta.', en: 'The Amazon River crosses the largest rainforest on the planet.', country: 'pe' },
       { id: 'd-i-75-geo', text: 'El desierto de Atacama, en Chile, es uno de los más secos.', en: 'The Atacama Desert, in Chile, is one of the driest.', country: 'cl' },
-      { id: 'd-i-76-geo', text: 'Cuba es una isla rodeada por el mar Caribe.', en: 'Cuba is an island surrounded by the Caribbean Sea.', country: 'cu' }
+      { id: 'd-i-76-geo', text: 'Cuba es una isla rodeada por el mar Caribe.', en: 'Cuba is an island surrounded by the Caribbean Sea.', country: 'cu' },
+      // Hunting (paired with the Hunting vocab deck)
+      { id: 'd-i-77-caza', text: 'El cazador siguió las huellas del venado por el bosque.', en: 'The hunter followed the deer\'s tracks through the forest.', country: null },
+      { id: 'd-i-78-caza', text: 'Necesitas un permiso para cazar durante la temporada.', en: 'You need a permit to hunt during the season.', country: null },
+      { id: 'd-i-79-caza', text: 'Esperó en silencio y apuntó con mucho cuidado.', en: 'He waited in silence and aimed very carefully.', country: null },
+      { id: 'd-i-80-caza', text: 'La paciencia es más importante que el arma en la caza.', en: 'Patience is more important than the weapon in hunting.', country: null },
+      // Fishing (paired with the Fishing vocab deck)
+      { id: 'd-i-81-pesca', text: 'Salimos de madrugada con las cañas y la carnada.', en: 'We left at dawn with the rods and the bait.', country: null },
+      { id: 'd-i-82-pesca', text: 'Atrapé una trucha grande, pero la solté al agua otra vez.', en: 'I caught a big trout, but I released it back into the water.', country: null },
+      { id: 'd-i-83-pesca', text: 'Los peces no pican cuando el agua está muy fría.', en: 'The fish don\'t bite when the water is very cold.', country: null },
+      { id: 'd-i-84-pesca', text: 'Pescamos desde el muelle toda la tarde.', en: 'We fished from the pier all afternoon.', country: null },
+      // Camping (paired with the Camping vocab deck)
+      { id: 'd-i-85-camp', text: 'Montamos la tienda de campaña junto al río.', en: 'We set up the tent next to the river.', country: null },
+      { id: 'd-i-86-camp', text: 'Por la noche encendimos una fogata y contamos historias.', en: 'At night we lit a campfire and told stories.', country: null },
+      { id: 'd-i-87-camp', text: 'No olvides la linterna, los fósforos y el repelente.', en: 'Don\'t forget the flashlight, the matches, and the repellent.', country: null },
+      { id: 'd-i-88-camp', text: 'Dormimos al aire libre y miramos las estrellas.', en: 'We slept outdoors and watched the stars.', country: null },
+      // Nature (paired with the Nature vocab deck)
+      { id: 'd-i-89-nat', text: 'Los árboles nos dan oxígeno y hogar a los pájaros.', en: 'Trees give us oxygen and a home to the birds.', country: null },
+      { id: 'd-i-90-nat', text: 'La contaminación de las fábricas daña el medio ambiente.', en: 'Pollution from factories harms the environment.', country: null },
+      { id: 'd-i-91-nat', text: 'Debemos proteger los bosques y no tirar basura.', en: 'We must protect the forests and not throw trash.', country: null },
+      { id: 'd-i-92-nat', text: 'Una mariposa azul voló entre las flores del jardín.', en: 'A blue butterfly flew among the flowers in the garden.', country: null }
     ],
     advanced: [
       { id: 'd-a-01', text: 'A pesar de las dificultades económicas, muchos jóvenes deciden estudiar idiomas extranjeros para mejorar sus oportunidades laborales.', en: 'Despite economic difficulties, many young people decide to study foreign languages to improve their job opportunities.', country: null },
@@ -15141,6 +15280,38 @@
 
   const WRITING_TOPICS = [
     {
+      id: 'caza-write',
+      title: 'La <em>caza</em>: tradición y responsabilidad',
+      level: 'sp3', category: 'opinion',
+      body: 'Using the Hunting vocab deck, write about hunting. Is it a tradition, a sport, or a way to connect with nature? Why do hunting seasons and permits exist? Take a position: should hunting be allowed, and under what rules? Defend your view and respond to a counterargument.',
+      tips: ['Useful vocab: la caza, cazar, el cazador, el permiso, la temporada de caza, las huellas, proteger', 'Use opinion phrases: creo que, me parece que, es importante que + subjunctive', 'Address a counterargument (aunque algunos piensen que…)'],
+      date: ''
+    },
+    {
+      id: 'pesca-write',
+      title: 'Un día de <em>pesca</em>',
+      level: 'sp2', category: 'narrative',
+      body: 'Using the Fishing vocab deck, narrate a fishing trip (real or imagined). Where did you go? What did you bring? Did the fish bite? What did you catch — and did you keep it or release it? Who were you with, and how did it feel?',
+      tips: ['Useful vocab: pescar, la caña de pescar, el anzuelo, la carnada, picar, atrapar, soltar, la paciencia', 'Use the preterite for the events and the imperfect for description', 'Aim for 120+ words'],
+      date: ''
+    },
+    {
+      id: 'acampar-write',
+      title: 'Una noche de <em>campamento</em>',
+      level: 'sp2', category: 'narrative',
+      body: 'Using the Camping vocab deck, narrate a camping trip. What did you pack? Where did you set up the tent? What did you do during the day and at night? What was the best part? Describe the scenery and how you felt.',
+      tips: ['Useful vocab: acampar, la tienda de campaña, el saco de dormir, la fogata, el sendero, la caminata, al aire libre', 'Use the preterite for events, the imperfect for setting the scene', 'Use sequence words: primero, luego, después, finalmente'],
+      date: ''
+    },
+    {
+      id: 'naturaleza-write',
+      title: 'Cómo cuidar la <em>naturaleza</em>',
+      level: 'sp2', category: 'opinion',
+      body: 'Using the Nature vocab deck, write about protecting nature. What problems does the environment face (pollution, deforestation, endangered species)? What can people do to help? End with a call to action: what should we all do, and why?',
+      tips: ['Useful vocab: la naturaleza, el medio ambiente, la contaminación, contaminar, proteger, el bosque, salvaje', 'Use deber + infinitive (debemos…) and es importante que + subjunctive', 'Aim for 120+ words with a clear conclusion'],
+      date: ''
+    },
+    {
       id: 'matematicas-write',
       title: 'Las <em>matemáticas</em> en mi vida',
       level: 'sp2', category: 'cultural',
@@ -15644,6 +15815,38 @@
 
   const SPEAKING_TOPICS = [
     // ========== CULTURE — paired with vocab decks ==========
+    {
+      id: 'caza-speak',
+      title: 'Tu opinión sobre la <em>caza</em>',
+      level: 'sp3', category: 'opinion',
+      body: 'Talk for at least 75 seconds about hunting. Is it a tradition worth keeping? Should there be rules like seasons and permits? Give your opinion respectfully and explain your reasons. Use the Hunting vocab.',
+      tips: ['Useful vocab: la caza, cazar, el cazador, el permiso, la temporada de caza, proteger', 'Signal opinion: creo que, me parece que, por un lado… por otro lado', 'Give at least two reasons'],
+      date: ''
+    },
+    {
+      id: 'pesca-speak',
+      title: 'Cuenta un día de <em>pesca</em>',
+      level: 'sp2', category: 'narrate',
+      body: 'Talk for at least 60 seconds narrating a fishing trip. Where did you go, what did you bring, did the fish bite, and what did you catch? Use the Fishing vocab and past tenses.',
+      tips: ['Useful vocab: pescar, la caña de pescar, el anzuelo, la carnada, picar, atrapar, soltar', 'Use the preterite (fui, pesqué, atrapé) and imperfect for description', 'Sequence words: primero, luego, al final'],
+      date: ''
+    },
+    {
+      id: 'acampar-speak',
+      title: 'Describe un <em>campamento</em>',
+      level: 'sp2', category: 'narrate',
+      body: 'Talk for at least 60 seconds about a camping trip. What did you pack, where did you camp, and what did you do? Describe the night and the scenery. Use the Camping vocab.',
+      tips: ['Useful vocab: acampar, la tienda de campaña, el saco de dormir, la fogata, el sendero, al aire libre', 'Use the preterite for events and imperfect for the setting', 'Describe with the senses (se veían las estrellas, hacía frío…)'],
+      date: ''
+    },
+    {
+      id: 'naturaleza-speak',
+      title: 'Cómo proteger la <em>naturaleza</em>',
+      level: 'sp2', category: 'opinion',
+      body: 'Talk for at least 60 seconds about protecting nature. What environmental problems worry you? What can people do to help? Use the Nature vocab and make a call to action.',
+      tips: ['Useful vocab: la naturaleza, el medio ambiente, la contaminación, proteger, el bosque, reciclar', 'Use debemos + infinitive and es importante + infinitive', 'Give concrete examples of what people can do'],
+      date: ''
+    },
     {
       id: 'matematicas-speak',
       title: 'Explica un <em>problema de matemáticas</em>',
