@@ -2,6 +2,28 @@
    single file under GitHub's size limit). Loaded before the main script;
    index.html reads this via window.ELP_DECKS. */
 window.ELP_DECKS = {
+    cocina: [
+      { word: 'cocinar', cat: 'Verb', back: 'to cook', ex: '"Me gusta cocinar los domingos."', exEn: 'I like to cook on Sundays.' },
+      { word: 'la receta', cat: 'Noun · Feminine', back: 'recipe', ex: '"Sigo la receta de mi abuela."', exEn: 'I follow my grandmother\'s recipe.' },
+      { word: 'el ingrediente', cat: 'Noun · Masculine', back: 'ingredient', ex: '"Faltan dos ingredientes."', exEn: 'Two ingredients are missing.' },
+      { word: 'la cocina', cat: 'Noun · Feminine', back: 'kitchen / cuisine', ex: '"La cocina peruana es famosa."', exEn: 'Peruvian cuisine is famous.' },
+      { word: 'freír', cat: 'Verb', back: 'to fry', ex: '"Voy a freír las papas."', exEn: 'I\'m going to fry the potatoes.' },
+      { word: 'hervir', cat: 'Verb', back: 'to boil', ex: '"Hierve el agua primero."', exEn: 'Boil the water first.' },
+      { word: 'hornear', cat: 'Verb', back: 'to bake', ex: '"Horneé un pastel de chocolate."', exEn: 'I baked a chocolate cake.' },
+      { word: 'asar', cat: 'Verb', back: 'to roast / grill', ex: '"Asamos carne el domingo."', exEn: 'We grill meat on Sunday.' },
+      { word: 'picar', cat: 'Verb', back: 'to chop / dice', ex: '"Pica la cebolla finamente."', exEn: 'Chop the onion finely.' },
+      { word: 'mezclar', cat: 'Verb', back: 'to mix', ex: '"Mezcla los huevos con la harina."', exEn: 'Mix the eggs with the flour.' },
+      { word: 'batir', cat: 'Verb', back: 'to beat / whisk', ex: '"Bate los huevos en un tazón."', exEn: 'Whisk the eggs in a bowl.' },
+      { word: 'pelar', cat: 'Verb', back: 'to peel', ex: '"Pela las papas antes de cocer."', exEn: 'Peel the potatoes before cooking.' },
+      { word: 'probar', cat: 'Verb', back: 'to taste / try', ex: '"Prueba la salsa, ¿le falta sal?"', exEn: 'Taste the sauce, does it need salt?' },
+      { word: 'agregar', cat: 'Verb', back: 'to add', ex: '"Agrega una cucharada de aceite."', exEn: 'Add a spoonful of oil.' },
+      { word: 'la sartén', cat: 'Noun · Feminine', back: 'frying pan', ex: '"Calienta la sartén a fuego medio."', exEn: 'Heat the pan over medium heat.' },
+      { word: 'la olla', cat: 'Noun · Feminine', back: 'pot', ex: '"La sopa hierve en la olla."', exEn: 'The soup boils in the pot.' },
+      { word: 'el horno', cat: 'Noun · Masculine', back: 'oven', ex: '"Precalienta el horno a 180 grados."', exEn: 'Preheat the oven to 180 degrees.' },
+      { word: 'el cuchillo', cat: 'Noun · Masculine', back: 'knife', ex: '"Necesito un cuchillo afilado."', exEn: 'I need a sharp knife.' },
+      { word: 'a fuego lento', cat: 'Phrase', back: 'on low heat / simmer', ex: '"Cocina a fuego lento media hora."', exEn: 'Cook on low heat for half an hour.' },
+      { word: 'la cucharada', cat: 'Noun · Feminine', back: 'spoonful / tablespoon', ex: '"Añade dos cucharadas de azúcar."', exEn: 'Add two spoonfuls of sugar.' }
+    ],
     bailes: [
       { word: 'el baile', cat: 'Noun · Masculine', back: 'dance / a dance', ex: '"El baile empezó a medianoche."', exEn: 'The dance began at midnight.' },
       { word: 'bailar', cat: 'Verb', back: 'to dance', ex: '"Me encanta bailar salsa."', exEn: 'I love to dance salsa.' },

@@ -6013,6 +6013,7 @@
         <button class="pill" onclick="loadDeck('ropa', this)">Clothing</button>
         <button class="pill" onclick="loadDeck('colombia', this)">Colombia</button>
         <button class="pill" onclick="loadDeck('colores', this)">Colors</button>
+        <button class="pill" onclick="loadDeck('cocina', this)">Cooking</button>
         <button class="pill" onclick="loadDeck('cuba', this)">Cuba</button>
         <button class="pill" onclick="loadDeck('rutina', this)">Daily routine</button>
         <button class="pill" onclick="loadDeck('bailes', this)">Dances</button>
@@ -11898,6 +11899,62 @@
   //   quiz: array of { q, options: [{ text, correct }] }
 
   const READINGS = [
+    // ---------- COOKING READING — A family recipe ----------
+    {
+      id: 'cocina-receta-abuela',
+      kind: 'story', level: 'intermediate',
+      title: 'En la <em>cocina</em> con la abuela',
+      author: 'Original · El Pueblo',
+      year: '',
+      attribution: 'Cultura · Comida y cocina',
+      preview: 'Primero se pica la cebolla, luego se fríe el pollo… así cocinaba mi abuela.',
+      text: [
+        'Los domingos por la mañana, la cocina de mi abuela olía a ajo y a cebolla. Para ella, cocinar no era una tarea: era una forma de cuidar a la familia. Nunca usaba una receta escrita; todo estaba en su memoria y en sus manos.',
+        '"Primero", decía, "se pica la cebolla bien fina y se fríe en la sartén a fuego lento." Mientras tanto, hervía el arroz en una olla grande y pelaba las papas para la sopa. Yo solo podía mirar y, a veces, mezclar los ingredientes con una cuchara de madera.',
+        'Lo más importante, según ella, era probar la comida muchas veces. "Si no la pruebas, no sabes si le falta sal", repetía. Agregaba una cucharada de esto, una pizca de aquello, y todo salía perfecto sin medir nada.',
+        'Hoy, cuando cocino el mismo plato, sigo cada paso de memoria, igual que ella. La receta no está en ningún papel: está en el olor de la cebolla en la sartén y en las tardes que pasamos juntas en su cocina.'
+      ],
+      gloss: {
+        'la cocina': 'kitchen / cooking',
+        'cocinar': 'to cook',
+        'la receta': 'recipe',
+        'se pica': 'one chops / you chop',
+        'se fríe': 'one fries / you fry',
+        'a fuego lento': 'on low heat',
+        'la sartén': 'frying pan',
+        'hervía': 'boiled (imperfect)',
+        'la olla': 'pot',
+        'pelaba': 'peeled (imperfect)',
+        'mezclar': 'to mix',
+        'probar': 'to taste',
+        'le falta sal': 'it needs salt',
+        'agregaba': 'added (imperfect)',
+        'una cucharada': 'a spoonful',
+        'una pizca': 'a pinch'
+      },
+      quiz: [
+        { q: 'Para la abuela, cocinar era sobre todo…', options: [
+          { text: 'una forma de cuidar a la familia', correct: true },
+          { text: 'una tarea aburrida', correct: false },
+          { text: 'un trabajo pagado', correct: false }
+        ]},
+        { q: '¿Qué hace primero según la abuela?', options: [
+          { text: 'Picar la cebolla y freírla a fuego lento', correct: true },
+          { text: 'Hornear un pastel', correct: false },
+          { text: 'Batir los huevos', correct: false }
+        ]},
+        { q: '¿Por qué insistía en probar la comida muchas veces?', options: [
+          { text: 'Para saber si le faltaba sal', correct: true },
+          { text: 'Porque tenía mucha hambre', correct: false },
+          { text: 'Para enfriarla', correct: false }
+        ]},
+        { q: '¿Dónde está la receta, según el final del texto?', options: [
+          { text: 'En la memoria y en los recuerdos, no en un papel', correct: true },
+          { text: 'En un libro de cocina', correct: false },
+          { text: 'En internet', correct: false }
+        ]}
+      ]
+    },
     // ---------- CULTURE READING — Dances of the Hispanic world ----------
     {
       id: 'bailes-mundo-hispano',
@@ -14543,7 +14600,12 @@
       { id: 'd-i-49-baile', text: 'Aprendí a bailar salsa en una fiesta el verano pasado.', en: 'I learned to dance salsa at a party last summer.', country: null },
       { id: 'd-i-50-baile', text: 'El tango nació en los barrios de Buenos Aires hace más de cien años.', en: 'Tango was born in the neighborhoods of Buenos Aires more than a hundred years ago.', country: 'ar' },
       { id: 'd-i-51-baile', text: 'En la fiesta, la pista de baile estaba llena y todos seguían el ritmo.', en: 'At the party, the dance floor was packed and everyone followed the beat.', country: null },
-      { id: 'd-i-52-baile', text: 'El flamenco combina la guitarra, el cante y el zapateo de los bailarines.', en: 'Flamenco combines the guitar, the singing, and the foot-stomping of the dancers.', country: 'es' }
+      { id: 'd-i-52-baile', text: 'El flamenco combina la guitarra, el cante y el zapateo de los bailarines.', en: 'Flamenco combines the guitar, the singing, and the foot-stomping of the dancers.', country: 'es' },
+      // Cooking (paired with the Cooking vocab deck)
+      { id: 'd-i-53-cocina', text: 'Primero pica la cebolla y luego fríela en la sartén a fuego lento.', en: 'First chop the onion and then fry it in the pan over low heat.', country: null },
+      { id: 'd-i-54-cocina', text: 'Mi abuela hierve el arroz mientras prepara la sopa de pollo.', en: 'My grandmother boils the rice while she makes the chicken soup.', country: null },
+      { id: 'd-i-55-cocina', text: 'No olvides probar la salsa para ver si le falta sal.', en: 'Don\'t forget to taste the sauce to see if it needs salt.', country: null },
+      { id: 'd-i-56-cocina', text: 'Agrega dos cucharadas de aceite y mezcla bien los ingredientes.', en: 'Add two spoonfuls of oil and mix the ingredients well.', country: null }
     ],
     advanced: [
       { id: 'd-a-01', text: 'A pesar de las dificultades económicas, muchos jóvenes deciden estudiar idiomas extranjeros para mejorar sus oportunidades laborales.', en: 'Despite economic difficulties, many young people decide to study foreign languages to improve their job opportunities.', country: null },
@@ -15134,6 +15196,15 @@
 
   const WRITING_TOPICS = [
     {
+      id: 'cocina-receta',
+      title: 'Tu <em>receta</em> favorita',
+      level: 'sp1',
+      category: 'cultural',
+      body: 'Using the Cooking vocab deck, write out a recipe for a dish you love. List the ingredients, then explain the steps in order: what do you chop, fry, boil, mix, or bake? How long does it take? Who taught you to make it, or where is it from? End by saying why this dish is special to you.',
+      tips: ['Useful vocab: cocinar, la receta, el ingrediente, picar, freír, hervir, hornear, mezclar, agregar, probar', 'Use sequence words: primero, luego, después, finalmente', 'Try commands for the steps (pica, fríe, mezcla) OR "se pica, se fríe…"'],
+      date: ''
+    },
+    {
       id: 'bailes-hispanos',
       title: 'Los <em>bailes</em> del mundo hispano',
       level: 'sp2',
@@ -15606,6 +15677,14 @@
 
   const SPEAKING_TOPICS = [
     // ========== CULTURE — paired with vocab decks ==========
+    {
+      id: 'cocina-receta-speak',
+      title: 'Explica cómo <em>preparar un plato</em>',
+      level: 'sp1', category: 'cultural',
+      body: 'Talk for at least 60 seconds explaining how to make a dish you like, as if you were teaching someone. Name the ingredients and go through the steps in order — what do you chop, fry, boil, mix, or bake? Use the Cooking vocab.',
+      tips: ['Useful vocab: picar, freír, hervir, hornear, mezclar, agregar, probar, la sartén, la olla', 'Use sequence words: primero, luego, después, finalmente', 'Commands work great here: "Pica la cebolla, luego fríela…"'],
+      date: ''
+    },
     {
       id: 'bailes-hispanos-speak',
       title: 'Habla de un <em>baile</em>',
