@@ -446,7 +446,13 @@
     margin-top: 48px;
   }
   /* LINGÜÍSTICA HUB — color-accented lesson cards */
-  .ling-hub { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 14px; }
+  .ling-hub { display: block; }
+  .ling-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 14px; margin-bottom: 30px; }
+  .ling-group-label {
+    font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.16em;
+    text-transform: uppercase; color: var(--rojo); margin: 4px 0 14px;
+    padding-bottom: 8px; border-bottom: 1px solid var(--line);
+  }
   .ling-card {
     position: relative; display: block; background: var(--card-bg); border: 1px solid var(--line);
     border-radius: 10px; padding: 22px 20px 18px; text-decoration: none; color: inherit; overflow: hidden;
@@ -28417,6 +28423,196 @@
         { q: '<em>vos tenés</em> (voseo) is mainly heard in…', options: [{ text: 'Argentina and parts of Latin America', correct: true }, { text: 'Spain only', correct: false }, { text: 'Nowhere today', correct: false }] },
       ]
     }
+,
+    {
+      id: 'ling-vowels', num: 'P01', level: 'ling',
+      title: 'The <em>vowels</em>',
+      tag: 'Lingüística · Phonology',
+      summary: 'Spanish has just five vowel sounds — but how they team up is the secret to the accent.',
+      sections: [
+        { heading: 'Five sounds, always the same', body: 'Spanish vowels are the easiest part of the language: there are only <strong>five</strong>, and each makes <strong>one sound, every time</strong> — no surprises. a = "ah", e = "eh", i = "ee", o = "oh", u = "oo". They stay short and crisp; a Spanish vowel never gets lazy or mumbled the way English ones do.', examples: [{ es: 'casa · mesa · piso', en: 'clear a, e, i' }, { es: 'English "the / a"', en: 'often mumbled to "uh"' }] },
+        { heading: 'Strong vowels vs. weak vowels', body: 'Linguists split the five into two teams:<br>• <strong>Strong</strong> (open): <strong>a, e, o</strong><br>• <strong>Weak</strong> (closed): <strong>i, u</strong><br>This teamwork decides whether two vowels share a syllable or split apart.' },
+        { heading: 'Diphthongs — two vowels, one beat', body: 'When a weak vowel (i or u) bumps into another vowel, they glide together into a <strong>single syllable</strong> — a <strong>diphthong</strong>. Say <em>bien, agua, cielo, cuatro</em>: each squeezes two vowels into one beat.', examples: [{ es: 'bien', en: '1 syllable (ie glides)' }, { es: 'a-gua', en: 'ua glides together' }] },
+        { heading: 'Hiatus — when they split', body: 'But two <strong>strong</strong> vowels each keep their own syllable — that split is called <strong>hiatus</strong>: <em>ma-es-tro, le-er, ca-os</em>. A written accent can also force the split: <em>dí-a, pa-ís</em>.' },
+        { type: 'tip', heading: 'Why this matters', body: 'Diphthong or hiatus tells you <strong>how many syllables</strong> a word has — and that controls <strong>stress and accent marks</strong> (coming up in this unit). These little vowel rules are the hidden engine behind a lot of Spanish spelling.' },
+      ],
+      quiz: [
+        { q: 'How many vowel sounds does Spanish have?', options: [{ text: 'Five', correct: true }, { text: 'Twelve', correct: false }, { text: 'Three', correct: false }] },
+        { q: 'A <em>diphthong</em> is…', options: [{ text: 'Two vowels gliding into one syllable', correct: true }, { text: 'A silent letter', correct: false }, { text: 'Two separate words', correct: false }] },
+        { q: 'The "weak" vowels are…', options: [{ text: 'i and u', correct: true }, { text: 'a and o', correct: false }, { text: 'all five', correct: false }] },
+      ]
+    },
+    {
+      id: 'ling-consonants', num: 'P02', level: 'ling',
+      title: 'Consonants &amp; <em>glides</em>',
+      tag: 'Lingüística · Phonology',
+      summary: 'Most Spanish consonants are close to English — plus a few stars and two half-vowel "glides."',
+      sections: [
+        { heading: 'Mostly familiar', body: 'Good news: most Spanish consonants sound close to their English cousins — m, n, l, p, t, k, f, s, ch. Spanish p, t, k are just <strong>softer</strong> (no puff of air). Only a handful of consonants are truly new.' },
+        { heading: 'The stars to know', body: '• <strong>ñ</strong> = "ny" (<em>niño</em>)<br>• <strong>rr</strong> = a rolled trill; a single <strong>r</strong> = a quick tap (<em>perro</em> vs <em>pero</em>)<br>• <strong>j</strong> and soft <strong>g</strong> = a throaty "h" (<em>jamón, gente</em>)<br>• <strong>h</strong> = always silent (<em>hola</em>)' },
+        { heading: 'Glides: the half-vowels', body: 'When <strong>i</strong> or <strong>u</strong> starts a diphthong, it stops acting like a vowel and behaves like a consonant — a <strong>glide</strong> (or semivowel). The i in <em>tierra</em> is a "y"-glide; the u in <em>fuego</em> is a "w"-glide. They slide into the next vowel.', examples: [{ es: 'tierra', en: 'i = "y" glide' }, { es: 'fuego', en: 'u = "w" glide' }] },
+        { type: 'tip', heading: 'b and v are the SAME sound', body: 'Spanish makes <strong>no difference</strong> between b and v — both are the same /b/ sound. <em>vaca</em> and <em>baca</em> are pronounced identically. (That is why even native speakers sometimes mix them up in spelling.)' },
+      ],
+      quiz: [
+        { q: 'The letter <em>ñ</em> sounds like…', options: [{ text: '"ny" as in canyon', correct: true }, { text: '"n" then a pause', correct: false }, { text: 'a silent letter', correct: false }] },
+        { q: 'In Spanish, b and v are…', options: [{ text: 'The same sound', correct: true }, { text: 'Totally different sounds', correct: false }, { text: 'Both silent', correct: false }] },
+        { q: 'A "glide" is…', options: [{ text: 'An i or u sliding into another vowel', correct: true }, { text: 'A rolled r', correct: false }, { text: 'A silent h', correct: false }] },
+      ]
+    },
+    {
+      id: 'ling-allophony', num: 'P03', level: 'ling',
+      title: 'One letter, <em>many sounds</em>',
+      tag: 'Lingüística · Phonology',
+      summary: 'The same letter can quietly change its sound depending on its neighbors — and words blend together.',
+      sections: [
+        { heading: 'Hard and soft b, d, g', body: '<strong>b, d, g</strong> are "hard" at the start of a word or after a pause (<em>burro, dedo, gato</em>), but they <strong>soften</strong> between vowels: the d in <em>nada</em> becomes the soft "th" of English <em>this</em>; the b in <em>la boca</em> turns breathy. These automatic variants of one sound are called <strong>allophones</strong>.' },
+        { heading: 'Words blend together', body: 'In real speech, the end of one word melts into the next — linguists call this <strong>sandhi</strong>. <em>los amigos</em> comes out "lo-sa-mi-gos"; <em>el hielo</em> runs together. Spanish loves to keep syllables flowing without gaps.', examples: [{ es: 'los amigos', en: '→ "lo-sa-mi-gos"' }, { es: 'mis hermanos', en: '→ "mi-ser-ma-nos"' }] },
+        { heading: 'Long double sounds', body: 'When the same consonant ends one word and starts the next, it can stretch into one long sound — a <strong>geminate</strong>: <em>las salas, el ladrón</em>. (Inside a single word, only <em>rr</em>, <em>cc</em>, and <em>nn</em> double up.)' },
+        { type: 'tip', heading: 'Why Spanish sounds so smooth', body: 'These blends are why fluent Spanish sounds like one flowing ribbon instead of separate, choppy words. Do not fight it — letting the sounds connect is what makes you sound natural.' },
+      ],
+      quiz: [
+        { q: 'Between vowels, b, d, and g…', options: [{ text: 'Soften to gentler sounds', correct: true }, { text: 'Get louder and harder', correct: false }, { text: 'Go silent', correct: false }] },
+        { q: '"Sandhi" describes…', options: [{ text: 'Words blending into each other in speech', correct: true }, { text: 'A spelling rule', correct: false }, { text: 'A verb tense', correct: false }] },
+        { q: 'Different automatic versions of one sound are called…', options: [{ text: 'Allophones', correct: true }, { text: 'Vowels', correct: false }, { text: 'Accents', correct: false }] },
+      ]
+    },
+    {
+      id: 'ling-spelling', num: 'P04', level: 'ling',
+      title: 'Spelling ↔ <em>sound</em>',
+      tag: 'Lingüística · Phonology',
+      summary: 'Spanish spelling is wonderfully regular — once you know a handful of rules.',
+      sections: [
+        { heading: 'One letter, one sound (mostly)', body: 'Unlike English, Spanish spelling almost always tells you the sound: learn the letter, read the word. There is no "though / through / tough." Only a few letters do double duty, and there are clear rules for them.' },
+        { heading: 'The c and g rule', body: 'c and g change depending on the next vowel:<br>• <em>ca, co, cu</em> = hard "k" — but <em>ce, ci</em> = "s" (or "th" in Spain)<br>• <em>ga, go, gu</em> = hard "g" — but <em>ge, gi</em> = throaty "h"<br>To keep the hard sound before e/i, Spanish spells <strong>que/qui</strong> and <strong>gue/gui</strong> (the u is silent).', examples: [{ es: 'queso · guitarra', en: 'silent u keeps the hard sound' }, { es: 'gente · cielo', en: 'soft before e/i' }] },
+        { heading: 'Almost no silent letters', body: '<strong>h</strong> is always silent (<em>hola, hora</em>). The <strong>u</strong> is silent in <em>que, qui, gue, gui</em> — unless it wears two dots (diéresis): <em>pingüino, vergüenza</em>, where you DO say it.' },
+        { type: 'tip', heading: 'Same sound, two spellings', body: 'A few sounds can be written more than one way — and that is what spelling tests check:<br>• "b" sound = <strong>b</strong> or <strong>v</strong><br>• throat "h" = <strong>j</strong> or <strong>g</strong>(e/i)<br>• "s" sound = <strong>s</strong>, <strong>c</strong>(e/i), or <strong>z</strong>' },
+      ],
+      quiz: [
+        { q: 'The letter <em>h</em> in Spanish is…', options: [{ text: 'Always silent', correct: true }, { text: 'Always a hard sound', correct: false }, { text: 'Pronounced like English h', correct: false }] },
+        { q: 'To write a hard "k" sound before e or i, Spanish uses…', options: [{ text: 'qu (que, qui)', correct: true }, { text: 'c (ce, ci)', correct: false }, { text: 'k always', correct: false }] },
+        { q: 'In <em>pingüino</em>, the two dots over the u mean…', options: [{ text: 'You DO pronounce the u', correct: true }, { text: 'The u is silent', correct: false }, { text: 'It is a typo', correct: false }] },
+      ]
+    },
+    {
+      id: 'ling-stress', num: 'P05', level: 'ling',
+      title: 'Syllables &amp; <em>stress</em>',
+      tag: 'Lingüística · Phonology',
+      summary: 'Where the beat falls — and the one rule that explains every accent mark.',
+      sections: [
+        { heading: 'Splitting syllables', body: 'Spanish likes each syllable to start with a consonant and end with a vowel: <em>ca-sa, pe-lo-ta, e-le-fan-te</em>. That open, even shape is what gives Spanish its steady, syllable-by-syllable rhythm.' },
+        { heading: 'The two default stress rules', body: 'With no accent mark, just two rules decide where the beat falls:<br>• Words ending in a <strong>vowel, -n, or -s</strong> → stress the <strong>second-to-last</strong> syllable (<em>CA-sa, HA-blan, ZA-pa-tos</em>)<br>• Words ending in <strong>any other consonant</strong> → stress the <strong>last</strong> syllable (<em>ha-BLAR, pa-PEL, ciu-DAD</em>)' },
+        { heading: 'When you need a tilde (´)', body: 'The written accent marks the <strong>exception</strong> to those two rules. <em>ca-FÉ</em> ends in a vowel but is stressed on the last syllable, so it needs the mark. Same with <em>LÁ-piz</em> and <em>RÁ-pi-do</em>. The tilde simply says "the beat goes <em>here</em>, not where you would expect."' },
+        { type: 'tip', heading: 'The accent is information', body: 'An accent mark is never decoration. It tells you exactly which syllable to hit — and sometimes which word you mean: <em>sí</em> (yes) vs <em>si</em> (if), <em>tú</em> (you) vs <em>tu</em> (your), <em>él</em> (he) vs <em>el</em> (the).' },
+      ],
+      quiz: [
+        { q: '<em>casa</em> (ends in a vowel) is stressed on the…', options: [{ text: 'Second-to-last syllable', correct: true }, { text: 'Last syllable', correct: false }, { text: 'First syllable always', correct: false }] },
+        { q: 'A word ending in -r, like <em>hablar</em>, is stressed on the…', options: [{ text: 'Last syllable', correct: true }, { text: 'Second-to-last syllable', correct: false }, { text: 'Middle', correct: false }] },
+        { q: 'A written accent mark (tilde) shows…', options: [{ text: 'The exception to the stress rules', correct: true }, { text: 'That a letter is silent', correct: false }, { text: 'A plural', correct: false }] },
+      ]
+    }
+,
+    {
+      id: 'ling-spain', num: 'D01', level: 'ling',
+      title: 'Spain: <em>north &amp; south</em>',
+      tag: 'Lingüística · Dialects',
+      summary: 'The same country, two very different accents — and islands that sound American.',
+      sections: [
+        { heading: 'The north: the "th" accent', body: 'In central and northern Spain (Castilian), people <strong>distinguish</strong> two sounds: <em>casa</em> (/s/) and <em>caza</em> (a "th", /θ/). They pronounce every <em>s</em> crisply and use <strong>vosotros</strong> for "you all." This is the Spanish most textbooks picture.' },
+        { heading: 'The south: relaxed Andalusian', body: 'In Andalusia (the south) speech is faster and softer: both sounds merge to /s/ (<strong>seseo</strong>) — or sometimes both become "th" (<strong>ceceo</strong>) — and the <em>s</em> at the end of a syllable fades to "h": <em>las casas</em> → "lah casah." Final consonants often drop.', examples: [{ es: '¿Cómo estás?', en: '→ "¿Cómo ehtá?"' }, { es: 'los niños', en: '→ "loh niño"' }] },
+        { heading: 'The Canary Islands 🇮🇨 — a bridge to the Americas', body: 'The Canaries sound surprisingly <strong>Latin American</strong>: seseo, s-aspiration, and <strong>ustedes</strong> instead of vosotros. Centuries of ships sailing to the New World tied the two together.' },
+        { type: 'tip', heading: 'No accent is "purer"', body: 'Madrid\'s "th" is not more correct than Seville\'s "s" — they are just different regions of one language. Spaniards understand each other fine.' },
+      ],
+      quiz: [
+        { q: 'In northern Spain, <em>casa</em> and <em>caza</em> are…', options: [{ text: 'Two different sounds (/s/ vs "th")', correct: true }, { text: 'Exactly the same', correct: false }, { text: 'Both silent', correct: false }] },
+        { q: 'A classic Andalusian feature is…', options: [{ text: 'The s at the end of a syllable fading to "h"', correct: true }, { text: 'Rolling every r twice', correct: false }, { text: 'Adding extra vowels', correct: false }] },
+        { q: 'The Canary Islands use…', options: [{ text: 'ustedes (like Latin America)', correct: true }, { text: 'vosotros only', correct: false }, { text: 'no "you all" word', correct: false }] },
+      ]
+    },
+    {
+      id: 'ling-mexcentam', num: 'D02', level: 'ling',
+      title: 'Mexico &amp; <em>Central America</em>',
+      tag: 'Lingüística · Dialects',
+      summary: 'Crisp highland Spanish, Aztec words, and the return of "vos."',
+      sections: [
+        { heading: 'Mexican Spanish 🇲🇽', body: 'Central Mexican Spanish keeps its <strong>s</strong> strong and clear, but often <strong>squeezes the unstressed vowels</strong>, especially next to s: <em>necesitas</em> can sound like "nec\'sitas." It is full of <strong>Nahuatl</strong> (Aztec) words: <em>cuate</em> (buddy), <em>elote</em> (corn on the cob), <em>chamaco</em> (kid).' },
+        { heading: 'Coast vs. highland', body: 'On Mexico\'s hot coasts the <em>s</em> softens (more Caribbean-sounding), while the central highlands keep it sharp. One country, several accents.' },
+        { heading: 'Central America & voseo 🇬🇹🇭🇳🇸🇻🇳🇮🇨🇷', body: 'From Guatemala to Costa Rica, most people use <strong>vos</strong> instead of <em>tú</em> (<em>vos tenés, vos sos</em>), and the <em>s</em> often weakens to "h" at the ends of syllables — a bridge between Mexican and Caribbean styles.' },
+        { type: 'tip', heading: 'Nahuatl is everywhere', body: 'Words like <em>chocolate, tomate, aguacate, chile</em> traveled from Nahuatl into Spanish — and then into English. You speak a little Aztec every day.' },
+      ],
+      quiz: [
+        { q: '<em>chocolate</em> and <em>tomate</em> came into Spanish from…', options: [{ text: 'Nahuatl (Aztec)', correct: true }, { text: 'Arabic', correct: false }, { text: 'Italian', correct: false }] },
+        { q: 'Across most of Central America, people say…', options: [{ text: 'vos instead of tú', correct: true }, { text: 'vosotros', correct: false }, { text: 'only usted', correct: false }] },
+        { q: 'Central Mexican Spanish tends to…', options: [{ text: 'Keep the s strong but squeeze vowels', correct: true }, { text: 'Drop every s', correct: false }, { text: 'Roll every r', correct: false }] },
+      ]
+    },
+    {
+      id: 'ling-caribbean', num: 'D03', level: 'ling',
+      title: 'The <em>Caribbean</em> &amp; the coasts',
+      tag: 'Lingüística · Dialects',
+      summary: 'Fast, musical Spanish where the s disappears and the rhythm takes over.',
+      sections: [
+        { heading: 'The disappearing s 🇨🇺🇩🇴🇵🇷', body: 'In Cuba, the Dominican Republic, Puerto Rico, and the Caribbean coasts, the syllable-final <em>s</em> almost always becomes "h" or vanishes: <em>¿cómo estás?</em> → "¿cómo ehtá?" It is the region\'s signature sound.' },
+        { heading: 'Other coastal sounds', body: 'The <em>n</em> at the end of a word is often pushed to the back of the mouth (like the "ng" in "sing"), and in Puerto Rico the <em>r</em> can turn into an "l": <em>Puerto Rico</em> → "Puelto Rico." African heritage shaped the region\'s rhythm and vocabulary.' },
+        { heading: 'The Pacific coast too 🇨🇴🇪🇨', body: 'The Pacific coasts of Colombia and Ecuador share these lowland features — a soft s, a flowing rhythm — along with a strong Afro-Hispanic culture.' },
+        { type: 'tip', heading: 'Fast is not careless', body: 'Dropping sounds follows strict, predictable rules. Caribbean Spanish is not "lazy" — it is a complete, consistent system, just a different one.' },
+      ],
+      quiz: [
+        { q: 'The most famous Caribbean feature is…', options: [{ text: 'The s fading to "h" or disappearing', correct: true }, { text: 'Rolling every r', correct: false }, { text: 'Adding the "th" sound', correct: false }] },
+        { q: 'In Puerto Rico, the <em>r</em> can sometimes become…', options: [{ text: 'an "l"', correct: true }, { text: 'a "th"', correct: false }, { text: 'silent vowels', correct: false }] },
+        { q: 'Caribbean Spanish dropping sounds is…', options: [{ text: 'A consistent, rule-based system', correct: true }, { text: 'Random and careless', correct: false }, { text: 'A spelling mistake', correct: false }] },
+      ]
+    },
+    {
+      id: 'ling-andes', num: 'D04', level: 'ling',
+      title: 'The <em>Andes</em> &amp; Paraguay',
+      tag: 'Lingüística · Dialects',
+      summary: 'Mountain Spanish that keeps its s — shaped by Quechua, Aymara, and Guaraní.',
+      sections: [
+        { heading: 'Highland Spanish 🇵🇪🇧🇴', body: 'High in the Andes (Peru, Bolivia, highland Ecuador), people keep the <strong>s</strong> strong and clear — the opposite of the Caribbean. The <em>rr</em> can become a buzzy, almost "zh" sound.' },
+        { heading: 'Living between two languages', body: 'Millions of Andeans grow up <strong>bilingual</strong> in Spanish and <strong>Quechua</strong> or <strong>Aymara</strong>. Those languages lend everyday words — <em>papa, cancha, poncho, choclo</em> — and shape the local Spanish.' },
+        { heading: 'Paraguay & Guaraní 🇵🇾', body: 'Paraguay is the most bilingual country in the Americas: nearly everyone speaks <strong>Guaraní</strong> alongside Spanish and blends them into a mix called <em>jopara</em>. Paraguay also uses <strong>voseo</strong>.' },
+        { type: 'tip', heading: 'Contact changes language', body: 'When two languages live side by side for centuries, they trade words and sounds. Andean and Paraguayan Spanish are perfect, living examples of language contact.' },
+      ],
+      quiz: [
+        { q: 'Compared to the Caribbean, Andean Spanish tends to…', options: [{ text: 'Keep the s strong and clear', correct: true }, { text: 'Drop the s even more', correct: false }, { text: 'Add a "th" sound', correct: false }] },
+        { q: 'In Paraguay, most people also speak…', options: [{ text: 'Guaraní', correct: true }, { text: 'Italian', correct: false }, { text: 'Arabic', correct: false }] },
+        { q: 'Words like <em>papa</em> and <em>poncho</em> come from…', options: [{ text: 'Andean languages (Quechua/Aymara)', correct: true }, { text: 'English', correct: false }, { text: 'Latin', correct: false }] },
+      ]
+    },
+    {
+      id: 'ling-southerncone', num: 'D05', level: 'ling',
+      title: 'The <em>Southern Cone</em>',
+      tag: 'Lingüística · Dialects',
+      summary: 'The "sh" sound, voseo, and an Italian sing-song — plus Chile\'s famous slang.',
+      sections: [
+        { heading: 'River Plate Spanish 🇦🇷🇺🇾', body: 'In Argentina and Uruguay, <em>ll</em> and <em>y</em> become a "sh": <em>calle</em> = "ca-SHE," <em>yo</em> = "SHO." They use <strong>vos</strong> (<em>vos sos, vos tenés</em>) and a melodic, almost <strong>Italian-sounding</strong> intonation — the legacy of huge Italian immigration.' },
+        { heading: 'Chilean Spanish 🇨🇱', body: 'Chile is famous for being hard to follow: the <em>s</em> aspirates, final sounds drop, and the slang is intense (<em>cachái</em> = "you get it?", <em>po</em>, <em>al tiro</em> = "right away"). Chileans also use special vos-style verb endings: <em>¿cómo estái?</em>' },
+        { heading: 'Why so different?', body: 'Italian immigration in Argentina, distance from Spain, and contact with neighbors all pushed Southern Cone Spanish in its own direction over time.' },
+        { type: 'tip', heading: '"Che" and "po"', body: 'Tiny filler words give the region away instantly: <em>che</em> in Argentina (it is even where "Che" Guevara got his nickname), <em>po</em> in Chile.' },
+      ],
+      quiz: [
+        { q: 'In Argentina and Uruguay, <em>calle</em> sounds like…', options: [{ text: '"ca-she"', correct: true }, { text: '"ca-ye" exactly as spelled', correct: false }, { text: '"ca-the"', correct: false }] },
+        { q: 'River Plate intonation is shaped by…', options: [{ text: 'Italian immigration', correct: true }, { text: 'Arabic', correct: false }, { text: 'Guaraní', correct: false }] },
+        { q: 'Chilean Spanish is known for…', options: [{ text: 'Heavy slang and dropped sounds', correct: true }, { text: 'Rolling every r twice', correct: false }, { text: 'Speaking very slowly', correct: false }] },
+      ]
+    },
+    {
+      id: 'ling-contact', num: 'D06', level: 'ling',
+      title: 'Creoles &amp; <em>Spanish in the USA</em>',
+      tag: 'Lingüística · Dialects',
+      summary: 'Where Spanish blended into brand-new languages — and where it now grows fastest.',
+      sections: [
+        { heading: 'Palenquero: freedom\'s language 🇨🇴', body: 'In San Basilio de Palenque, Colombia — the first <strong>free</strong> town founded by escaped enslaved Africans — people created <strong>Palenquero</strong>, a new language blending Spanish with Central African (Bantu) languages. It is its own tongue, not just an accent.' },
+        { heading: 'Chavacano: Spanish in Asia 🇵🇭', body: 'In the Philippines (mostly around Zamboanga), <strong>Chavacano</strong> is a Spanish-based <strong>creole</strong>: Spanish words with Filipino grammar. Spoken by hundreds of thousands, it is the only Spanish creole in Asia — a leftover of colonial history.' },
+        { heading: 'Spanish in the USA 🇺🇸', body: 'The United States is now one of the largest Spanish-speaking countries on Earth. Its Spanish blends every variety (Mexican, Caribbean, Central American) and mixes with English through <strong>code-switching</strong> — "Spanglish": <em>parquear</em> (to park), <em>el lonche</em> (lunch).' },
+        { type: 'tip', heading: 'Creole vs. dialect', body: 'A <strong>dialect</strong> is a variety of one language; a <strong>creole</strong> is a brand-new language born when two blend. Palenquero and Chavacano are creoles — not just accents.' },
+      ],
+      quiz: [
+        { q: 'Palenquero (Colombia) is best described as…', options: [{ text: 'A new creole language, not just an accent', correct: true }, { text: 'A Spanish accent', correct: false }, { text: 'A type of Italian', correct: false }] },
+        { q: 'Chavacano is spoken in…', options: [{ text: 'The Philippines', correct: true }, { text: 'Argentina', correct: false }, { text: 'Spain', correct: false }] },
+        { q: 'Mixing Spanish and English (parquear, el lonche) is called…', options: [{ text: 'Code-switching / Spanglish', correct: true }, { text: 'Seseo', correct: false }, { text: 'Voseo', correct: false }] },
+      ]
+    }
   ];
 
   function isLessonCompleted(lessonId) {
@@ -28463,13 +28659,26 @@
   // Lingüística hub — lists only the linguistics lessons as color-accented cards
   const LING_ICONS = {
     'ling-what': '🧠', 'ling-sounds': '🔊', 'ling-morphology': '🧱', 'ling-syntax': '🔗',
-    'ling-history': '📜', 'ling-loanwords': '🌍', 'ling-acquisition': '🧒', 'ling-dialects': '🗣️'
+    'ling-history': '📜', 'ling-loanwords': '🌍', 'ling-acquisition': '🧒', 'ling-dialects': '🗣️',
+    'ling-vowels': '🅰️', 'ling-consonants': '🔠', 'ling-allophony': '🔁', 'ling-spelling': '✍️', 'ling-stress': '📏',
+    'ling-spain': '🇪🇸', 'ling-mexcentam': '🌮', 'ling-caribbean': '🏝️', 'ling-andes': '⛰️', 'ling-southerncone': '🧉', 'ling-contact': '🔀'
   };
+  // Hub groups — keeps the section organized as it grows. Any ling lesson not
+  // listed here drops into a "More" group at the end.
+  const LING_GROUPS = [
+    { label: 'Foundations', ids: ['ling-what'] },
+    { label: 'Phonology — the sound system', ids: ['ling-sounds', 'ling-vowels', 'ling-consonants', 'ling-allophony', 'ling-spelling', 'ling-stress'] },
+    { label: 'Words & grammar', ids: ['ling-morphology', 'ling-syntax', 'ling-loanwords'] },
+    { label: 'Spanish through history', ids: ['ling-history'] },
+    { label: 'Spanish around the world', ids: ['ling-dialects', 'ling-spain', 'ling-mexcentam', 'ling-caribbean', 'ling-andes', 'ling-southerncone', 'ling-contact'] },
+    { label: 'Language & the mind', ids: ['ling-acquisition'] }
+  ];
   function renderLinguistica() {
     const grid = document.getElementById('linguisticaGrid');
     if (!grid) return;
-    const lessons = LESSONS.filter(l => l.level === 'ling');
-    grid.innerHTML = lessons.map(l => {
+    const byId = {};
+    LESSONS.filter(l => l.level === 'ling').forEach(l => { byId[l.id] = l; });
+    const card = l => {
       const done = isLessonCompleted(l.id);
       const ico = LING_ICONS[l.id] || '📐';
       const tag = (l.tag || '').split('·').pop().trim();
@@ -28481,7 +28690,20 @@
           <div class="lc-tag">${tag}</div>
           <p>${l.summary || ''}</p>
         </a>`;
-    }).join('');
+    };
+    const placed = {};
+    let html = '';
+    LING_GROUPS.forEach(g => {
+      const cards = g.ids.filter(id => byId[id]).map(id => { placed[id] = true; return card(byId[id]); });
+      if (!cards.length) return;
+      html += `<div class="ling-group-label">${g.label}</div><div class="ling-grid">${cards.join('')}</div>`;
+    });
+    // Anything not assigned to a group yet
+    const leftovers = LESSONS.filter(l => l.level === 'ling' && !placed[l.id]);
+    if (leftovers.length) {
+      html += `<div class="ling-group-label">More</div><div class="ling-grid">${leftovers.map(card).join('')}</div>`;
+    }
+    grid.innerHTML = html;
   }
 
   function renderLessonsList() {
