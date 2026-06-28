@@ -6036,6 +6036,7 @@
         <button class="pill" onclick="loadDeck('saludos', this)">Greetings</button>
         <button class="pill" onclick="loadDeck('guatemala', this)">Guatemala</button>
         <button class="pill" onclick="loadDeck('gustar', this)">Gustar verbs</button>
+        <button class="pill" onclick="loadDeck('salud', this)">Health &amp; medicine</button>
         <button class="pill" onclick="loadDeck('fiestas', this)">Holidays</button>
         <button class="pill" onclick="loadDeck('honduras', this)">Honduras</button>
         <button class="pill" onclick="loadDeck('casa', this)">House &amp; furniture</button>
@@ -11917,6 +11918,35 @@
   //   quiz: array of { q, options: [{ text, correct }] }
 
   const READINGS = [
+    // ---------- HEALTH READING ----------
+    {
+      id: 'salud-medico',
+      kind: 'story', level: 'intermediate',
+      title: 'Una visita al <em>médico</em>',
+      author: 'Original · El Pueblo',
+      year: '',
+      attribution: 'Cultura · Salud y bienestar',
+      preview: '"¿Qué síntomas tiene?" — En el consultorio, describir lo que sentimos es el primer paso para curarnos.',
+      text: [
+        'El lunes me desperté con fiebre, tos y un fuerte dolor de cabeza. Mi madre me tomó la temperatura y decidió pedir una cita en la clínica. "Mejor que te vea un médico", dijo.',
+        'En el consultorio, la doctora me hizo muchas preguntas: "¿Qué síntomas tienes? ¿Desde cuándo te sientes mal? ¿Te duele la garganta?" Después me revisó y me explicó que solo era una gripe. No era grave, pero tenía que descansar y beber mucha agua.',
+        'Me dio una receta para unas pastillas y me dijo que las comprara en la farmacia. "Con descanso y esta medicina, en unos días estarás sano", me aseguró. Salí del consultorio más tranquilo: a veces, lo más importante para la salud es saber qué nos pasa y cómo cuidarnos.'
+      ],
+      gloss: {
+        'la fiebre': 'fever', 'la tos': 'cough', 'el dolor de cabeza': 'headache', 'la cita': 'appointment',
+        'la clínica': 'clinic', 'el médico': 'doctor', 'el consultorio': 'doctor\'s office', 'el síntoma': 'symptom',
+        'la garganta': 'throat', 'la gripe': 'flu', 'descansar': 'to rest', 'la receta': 'prescription',
+        'la pastilla': 'pill', 'la farmacia': 'pharmacy', 'la medicina': 'medicine', 'sano': 'healthy', 'la salud': 'health'
+      },
+      quiz: [
+        { q: '¿Qué síntomas tenía el narrador?', options: [
+          { text: 'fiebre, tos y dolor de cabeza', correct: true }, { text: 'una herida en la pierna', correct: false }, { text: 'ningún síntoma', correct: false } ]},
+        { q: '¿Qué le diagnosticó la doctora?', options: [
+          { text: 'una gripe', correct: true }, { text: 'una emergencia grave', correct: false }, { text: 'nada', correct: false } ]},
+        { q: '¿Qué le recomendó para curarse?', options: [
+          { text: 'descansar, beber agua y tomar la medicina', correct: true }, { text: 'correr una maratón', correct: false }, { text: 'no dormir', correct: false } ]}
+      ]
+    },
     // ---------- MUSIC READING ----------
     {
       id: 'musica-mundo',
@@ -15291,7 +15321,12 @@
       { id: 'd-i-129-prof', text: 'De grande quiero ser ingeniera o médica.', en: 'When I grow up I want to be an engineer or a doctor.', country: null },
       { id: 'd-i-130-prof', text: 'Eligió esa profesión porque le gusta ayudar a la gente.', en: 'She chose that profession because she likes helping people.', country: null },
       { id: 'd-i-131-prof', text: 'Muchas personas cambian de carrera más de una vez.', en: 'Many people change careers more than once.', country: null },
-      { id: 'd-i-132-prof', text: 'El maestro y la enfermera trabajan mucho por los demás.', en: 'The teacher and the nurse work hard for others.', country: null }
+      { id: 'd-i-132-prof', text: 'El maestro y la enfermera trabajan mucho por los demás.', en: 'The teacher and the nurse work hard for others.', country: null },
+      // Health & medicine (paired with the Health vocab deck)
+      { id: 'd-i-133-sal', text: 'Tengo fiebre y me duele mucho la cabeza desde ayer.', en: 'I have a fever and my head has hurt a lot since yesterday.', country: null },
+      { id: 'd-i-134-sal', text: 'La doctora me dio una receta para comprar en la farmacia.', en: 'The doctor gave me a prescription to fill at the pharmacy.', country: null },
+      { id: 'd-i-135-sal', text: 'Llamaron a una ambulancia porque era una emergencia.', en: 'They called an ambulance because it was an emergency.', country: null },
+      { id: 'd-i-136-sal', text: 'Toma la medicina dos veces al día y descansa mucho.', en: 'Take the medicine twice a day and rest a lot.', country: null }
     ],
     advanced: [
       { id: 'd-a-01', text: 'A pesar de las dificultades económicas, muchos jóvenes deciden estudiar idiomas extranjeros para mejorar sus oportunidades laborales.', en: 'Despite economic difficulties, many young people decide to study foreign languages to improve their job opportunities.', country: null },
@@ -15881,6 +15916,14 @@
   // Each topic needs: id (unique short string), title, body, optional tips, optional due
 
   const WRITING_TOPICS = [
+    {
+      id: 'salud-write',
+      title: 'Una visita al <em>médico</em>',
+      level: 'sp1', category: 'narrative',
+      body: 'Using the Health & medicine vocab deck, write about a time you were sick or went to the doctor. What symptoms did you have? Did you go to the clinic or hospital? What did the doctor say, and what treatment did you get? How did you take care of yourself to get better?',
+      tips: ['Useful vocab: estar enfermo, el síntoma, la fiebre, la tos, el dolor, el médico, la receta, la medicina, la farmacia', 'Use doler like gustar (me duele la cabeza / me duelen los pies)', 'Use the preterite to narrate; aim for 100+ words'],
+      date: ''
+    },
     {
       id: 'musica-write',
       title: 'La <em>música</em> en mi vida',
@@ -16516,6 +16559,14 @@
 
   const SPEAKING_TOPICS = [
     // ========== CULTURE — paired with vocab decks ==========
+    {
+      id: 'salud-speak',
+      title: 'En el <em>consultorio</em> del médico',
+      level: 'sp1', category: 'roleplay',
+      body: 'Role-play a visit to the doctor for at least 60 seconds. Play both the patient and the doctor: describe your symptoms, answer the doctor\'s questions, and have the doctor give a diagnosis and treatment. Use the Health & medicine vocab.',
+      tips: ['Useful vocab: el síntoma, la fiebre, la tos, el dolor, doler, la receta, la medicina, descansar', 'Patient lines: "Me duele…", "Tengo fiebre"; Doctor lines: "¿Desde cuándo…?", "Tome esta medicina"', 'Switch voices clearly between patient and doctor'],
+      date: ''
+    },
     {
       id: 'musica-speak',
       title: 'La <em>música</em> que te gusta',
