@@ -6006,6 +6006,7 @@
         <button class="pill" onclick="loadDeck('cuerpo', this)">Body parts</button>
         <button class="pill" onclick="loadDeck('bolivia', this)">Bolivia</button>
         <button class="pill" onclick="loadDeck('calendario', this)">Calendar</button>
+        <button class="pill" onclick="loadDeck('acampar', this)">Camping</button>
         <button class="pill" onclick="loadDeck('chile', this)">Chile</button>
         <button class="pill" onclick="loadDeck('clases', this)">Classes</button>
         <button class="pill" onclick="loadDeck('salon', this)">Classroom</button>
@@ -6013,12 +6014,14 @@
         <button class="pill" onclick="loadDeck('ropa', this)">Clothing</button>
         <button class="pill" onclick="loadDeck('colombia', this)">Colombia</button>
         <button class="pill" onclick="loadDeck('colores', this)">Colors</button>
+        <button class="pill" onclick="loadDeck('construccion', this)">Construction</button>
         <button class="pill" onclick="loadDeck('cocina', this)">Cooking</button>
         <button class="pill" onclick="loadDeck('cuba', this)">Cuba</button>
         <button class="pill" onclick="loadDeck('rutina', this)">Daily routine</button>
         <button class="pill" onclick="loadDeck('bailes', this)">Dances</button>
         <button class="pill" onclick="loadDeck('diadelosmuertos', this)">Día de los Muertos</button>
         <button class="pill" onclick="loadDeck('quijote', this)">Don Quijote</button>
+        <button class="pill" onclick="loadDeck('educacion', this)">Education</button>
         <button class="pill" onclick="loadDeck('futbol', this)">El fútbol</button>
         <button class="pill" onclick="loadDeck('elsalvador', this)">El Salvador</button>
         <button class="pill" onclick="loadDeck('emociones', this)">Emotions</button>
@@ -6027,23 +6030,32 @@
         <button class="pill active" onclick="loadDeck('cotidiano', this)">Everyday</button>
         <button class="pill" onclick="loadDeck('familia', this)">Family</button>
         <button class="pill" onclick="loadDeck('cumpleanos', this)">¡Feliz cumpleaños!</button>
+        <button class="pill" onclick="loadDeck('pesca', this)">Fishing</button>
         <button class="pill" onclick="loadDeck('comida', this)">Food</button>
+        <button class="pill" onclick="loadDeck('geografia', this)">Geography</button>
         <button class="pill" onclick="loadDeck('saludos', this)">Greetings</button>
         <button class="pill" onclick="loadDeck('guatemala', this)">Guatemala</button>
         <button class="pill" onclick="loadDeck('gustar', this)">Gustar verbs</button>
         <button class="pill" onclick="loadDeck('fiestas', this)">Holidays</button>
         <button class="pill" onclick="loadDeck('honduras', this)">Honduras</button>
         <button class="pill" onclick="loadDeck('casa', this)">House &amp; furniture</button>
+        <button class="pill" onclick="loadDeck('caza', this)">Hunting</button>
         <button class="pill" onclick="loadDeck('verbosIr', this)">-IR verbs</button>
+        <button class="pill" onclick="loadDeck('derecho', this)">Law</button>
         <button class="pill" onclick="loadDeck('lazarillo', this)">Lazarillo de Tormes</button>
         <button class="pill" onclick="loadDeck('literatura', this)">Literature</button>
         <button class="pill" onclick="loadDeck('mercado', this)">Market &amp; shopping</button>
+        <button class="pill" onclick="loadDeck('matematicas', this)">Math</button>
         <button class="pill" onclick="loadDeck('mexico', this)">México</button>
+        <button class="pill" onclick="loadDeck('militar', this)">Military</button>
+        <button class="pill" onclick="loadDeck('musica', this)">Music</button>
+        <button class="pill" onclick="loadDeck('naturaleza', this)">Nature</button>
         <button class="pill" onclick="loadDeck('numeros', this)">Numbers</button>
         <button class="pill" onclick="loadDeck('paraguay', this)">Paraguay</button>
         <button class="pill" onclick="loadDeck('gente', this)">People</button>
         <button class="pill" onclick="loadDeck('peru', this)">Perú</button>
         <button class="pill" onclick="loadDeck('lugares', this)">Places in town</button>
+        <button class="pill" onclick="loadDeck('politica', this)">Politics</button>
         <button class="pill" onclick="loadDeck('preposiciones', this)">Prepositions</button>
         <button class="pill" onclick="loadDeck('profesiones', this)">Professions</button>
         <button class="pill" onclick="loadDeck('pronombres', this)">Pronouns</button>
@@ -6053,13 +6065,18 @@
         <button class="pill" onclick="loadDeck('religiones', this)">Religions</button>
         <button class="pill" onclick="loadDeck('restaurante', this)">Restaurant</button>
         <button class="pill" onclick="loadDeck('escuela', this)">School Life</button>
+        <button class="pill" onclick="loadDeck('ciencia', this)">Science</button>
+        <button class="pill" onclick="loadDeck('espacio', this)">Space</button>
         <button class="pill" onclick="loadDeck('deportes', this)">Sports</button>
         <button class="pill" onclick="loadDeck('tecnologia', this)">Technology</button>
         <button class="pill" onclick="loadDeck('hora', this)">Telling time</button>
         <button class="pill" onclick="loadDeck('teneridioms', this)">Tener idioms</button>
+        <button class="pill" onclick="loadDeck('herramientas', this)">Tools</button>
         <button class="pill" onclick="loadDeck('viajes', this)">Travel</button>
         <button class="pill" onclick="loadDeck('uruguay', this)">Uruguay</button>
+        <button class="pill" onclick="loadDeck('vehiculos', this)">Vehicles</button>
         <button class="pill" onclick="loadDeck('venezuela', this)">Venezuela</button>
+        <button class="pill" onclick="loadDeck('armas', this)">Weapons</button>
         <button class="pill" onclick="loadDeck('tiempo', this)">Weather &amp; seasons</button>
       </div>
     </div>
@@ -11900,6 +11917,523 @@
   //   quiz: array of { q, options: [{ text, correct }] }
 
   const READINGS = [
+    // ---------- MUSIC READING ----------
+    {
+      id: 'musica-mundo',
+      kind: 'story', level: 'intermediate',
+      title: 'La <em>música</em> del mundo hispano',
+      author: 'Original · El Pueblo',
+      year: '',
+      attribution: 'Cultura · Música',
+      preview: 'De la guitarra flamenca al reguetón: la música hispana suena en todo el planeta.',
+      text: [
+        'La música es una parte enorme de la cultura hispana. Cada país tiene sus instrumentos, sus ritmos y sus canciones. En España, la guitarra acompaña el cante flamenco; en los Andes, las flautas crean melodías antiguas; en el Caribe, los tambores marcan el ritmo de la salsa.',
+        'Hoy, los cantantes hispanos llenan los conciertos más grandes del mundo. Géneros como el reguetón, el pop latino y la bachata se escuchan en la radio de muchos países, incluso de gente que no habla español. La letra y la melodía cruzan las fronteras.',
+        'Pero la música no es solo para escuchar: muchas personas aprenden a tocar un instrumento, a cantar en un coro o a componer sus propias canciones. Tocar música con otros, en una banda o en familia, es una forma de unir a la gente que existe en todas las culturas.'
+      ],
+      gloss: {
+        'la música': 'music', 'el instrumento': 'instrument', 'el ritmo': 'rhythm', 'la guitarra': 'guitar',
+        'el cante': 'flamenco singing', 'la flauta': 'flute', 'la melodía': 'melody', 'el tambor': 'drum',
+        'el cantante': 'singer', 'el concierto': 'concert', 'la letra': 'lyrics', 'tocar': 'to play',
+        'la banda': 'band', 'componer': 'to compose'
+      },
+      quiz: [
+        { q: '¿Qué instrumento acompaña el cante flamenco en España?', options: [
+          { text: 'la guitarra', correct: true }, { text: 'el tambor', correct: false }, { text: 'el violín', correct: false } ]},
+        { q: 'Según el texto, los géneros hispanos hoy…', options: [
+          { text: 'se escuchan en muchos países', correct: true }, { text: 'solo se escuchan en España', correct: false }, { text: 'ya no existen', correct: false } ]},
+        { q: '¿Qué dice el texto sobre tocar música con otros?', options: [
+          { text: 'es una forma de unir a la gente', correct: true }, { text: 'es aburrido', correct: false }, { text: 'es imposible', correct: false } ]}
+      ]
+    },
+    // ---------- EDUCATION READING ----------
+    {
+      id: 'educacion-futuro',
+      kind: 'story', level: 'intermediate',
+      title: 'La <em>educación</em>: la llave del futuro',
+      author: 'Original · El Pueblo',
+      year: '',
+      attribution: 'Cultura · Educación',
+      preview: 'Aprender no termina con la escuela: la educación abre puertas toda la vida.',
+      text: [
+        'Se dice que la educación es la llave del futuro, y es verdad. En la escuela aprendemos a leer, a escribir y a resolver problemas, pero también aprendemos a pensar y a convivir con los demás. Un buen maestro puede cambiar la vida de un estudiante.',
+        'No todos tienen las mismas oportunidades. En muchas partes del mundo hispano, una beca puede ser la única forma de que un joven llegue a la universidad y obtenga un título. Por eso, muchas familias hacen grandes sacrificios para que sus hijos estudien.',
+        'Pero la educación no termina con un diploma. Aprender es algo que hacemos toda la vida: con cada libro, cada viaje y cada conversación. El conocimiento es uno de los pocos tesoros que nadie nos puede quitar.'
+      ],
+      gloss: {
+        'la educación': 'education', 'aprender': 'to learn', 'la escuela': 'school', 'el maestro': 'teacher',
+        'el estudiante': 'student', 'la beca': 'scholarship', 'la universidad': 'university', 'el título': 'degree',
+        'estudiar': 'to study', 'el conocimiento': 'knowledge', 'el diploma': 'diploma'
+      },
+      quiz: [
+        { q: 'Según el texto, además de leer y escribir, en la escuela aprendemos a…', options: [
+          { text: 'pensar y convivir con los demás', correct: true }, { text: 'solo memorizar', correct: false }, { text: 'nada más', correct: false } ]},
+        { q: '¿Qué puede ser la única forma de llegar a la universidad para algunos jóvenes?', options: [
+          { text: 'una beca', correct: true }, { text: 'un coche', correct: false }, { text: 'una multa', correct: false } ]},
+        { q: 'Según el texto, la educación…', options: [
+          { text: 'no termina con un diploma', correct: true }, { text: 'termina en la escuela primaria', correct: false }, { text: 'no sirve para nada', correct: false } ]}
+      ]
+    },
+    // ---------- MILITARY READING ----------
+    {
+      id: 'militar-guerra-paz',
+      kind: 'story', level: 'intermediate',
+      title: 'La <em>guerra</em> y la paz',
+      author: 'Original · El Pueblo',
+      year: '',
+      attribution: 'Historia · Conflicto y paz',
+      preview: 'A lo largo de la historia, los ejércitos han marcado el destino de las naciones — pero la paz siempre fue la meta.',
+      text: [
+        'A lo largo de la historia, los ejércitos han jugado un papel enorme en el mundo hispano. Los soldados de muchos países lucharon en guerras de independencia para liberarse del control colonial. Líderes como Simón Bolívar y José de San Martín dirigieron sus tropas en batallas decisivas.',
+        'Una guerra no se gana solo con fuerza: también requiere estrategia. Los generales debían decidir cuándo atacar, cuándo defender y cómo proteger la frontera. Una victoria podía cambiar el destino de toda una nación; una derrota, también.',
+        'Pero la verdadera meta de cualquier conflicto siempre ha sido la paz. Después de años de guerra, las naciones firman tratados para poner fin a la violencia. Hoy, muchos recuerdan a los soldados del pasado, pero valoran sobre todo el difícil trabajo de mantener la paz.'
+      ],
+      gloss: {
+        'el ejército': 'army', 'el soldado': 'soldier', 'la guerra': 'war', 'la independencia': 'independence',
+        'la tropa': 'troop', 'la batalla': 'battle', 'la estrategia': 'strategy', 'el general': 'general',
+        'atacar': 'to attack', 'defender': 'to defend', 'la frontera': 'border', 'la victoria': 'victory',
+        'la derrota': 'defeat', 'la paz': 'peace', 'el tratado': 'treaty'
+      },
+      quiz: [
+        { q: '¿En qué tipo de guerras lucharon muchos países hispanos?', options: [
+          { text: 'guerras de independencia', correct: true }, { text: 'guerras espaciales', correct: false }, { text: 'ninguna', correct: false } ]},
+        { q: 'Según el texto, una guerra no se gana solo con fuerza, sino también con…', options: [
+          { text: 'estrategia', correct: true }, { text: 'dinero', correct: false }, { text: 'suerte', correct: false } ]},
+        { q: '¿Cuál ha sido siempre la verdadera meta de un conflicto?', options: [
+          { text: 'la paz', correct: true }, { text: 'más guerra', correct: false }, { text: 'la derrota', correct: false } ]}
+      ]
+    },
+    // ---------- WEAPONS READING ----------
+    {
+      id: 'armas-historia',
+      kind: 'story', level: 'intermediate',
+      title: 'Las <em>armas</em> a través de la historia',
+      author: 'Original · El Pueblo',
+      year: '',
+      attribution: 'Historia · Tecnología militar',
+      preview: 'De la espada y el escudo a la pólvora y el cañón: cómo las armas cambiaron la historia.',
+      text: [
+        'Las armas han cambiado mucho a lo largo de la historia. En la antigüedad, los guerreros luchaban cuerpo a cuerpo con espadas y lanzas, y se protegían con un escudo y una armadura de metal. La fuerza y la habilidad lo eran todo.',
+        'Todo cambió con la llegada de la pólvora. Los cañones y los primeros fusiles dieron una ventaja enorme a quienes los tenían. Durante la conquista de América, las armas de fuego de los españoles fueron una de las razones de su poder frente a ejércitos mucho más grandes.',
+        'Hoy, las armas son mucho más peligrosas, y por eso casi todos los países tienen leyes estrictas para controlarlas. Estudiar la historia de las armas no es celebrar la violencia: es entender cómo la tecnología ha cambiado la forma en que los seres humanos hacen — y evitan — la guerra.'
+      ],
+      gloss: {
+        'el arma': 'weapon', 'el guerrero': 'warrior', 'la espada': 'sword', 'la lanza': 'spear',
+        'el escudo': 'shield', 'la armadura': 'armor', 'la pólvora': 'gunpowder', 'el cañón': 'cannon',
+        'el fusil': 'rifle / gun', 'las armas de fuego': 'firearms', 'la conquista': 'the conquest',
+        'peligroso': 'dangerous', 'la ley': 'law'
+      },
+      quiz: [
+        { q: 'En la antigüedad, ¿con qué se protegían los guerreros?', options: [
+          { text: 'un escudo y una armadura', correct: true }, { text: 'un cañón', correct: false }, { text: 'un satélite', correct: false } ]},
+        { q: '¿Qué invento cambió la forma de luchar?', options: [
+          { text: 'la pólvora', correct: true }, { text: 'el telescopio', correct: false }, { text: 'la guitarra', correct: false } ]},
+        { q: 'Según el texto, estudiar la historia de las armas sirve para…', options: [
+          { text: 'entender cómo la tecnología cambió la guerra', correct: true }, { text: 'celebrar la violencia', correct: false }, { text: 'aprender a fabricarlas', correct: false } ]}
+      ]
+    },
+    // ---------- LAW READING ----------
+    {
+      id: 'derecho-justicia',
+      kind: 'story', level: 'intermediate',
+      title: 'La <em>justicia</em> y la ley',
+      author: 'Original · El Pueblo',
+      year: '',
+      attribution: 'Cultura · Derecho y sociedad',
+      preview: 'Jueces, abogados y jurados: cómo funciona la justicia cuando alguien rompe la ley.',
+      text: [
+        'En toda sociedad existen leyes que todos debemos respetar. Cuando alguien comete un delito —como robar o hacer daño a otra persona—, la policía investiga y puede arrestar al sospechoso. Pero nadie es culpable hasta que un tribunal lo decide.',
+        'En el juicio, un abogado defiende al acusado y otro presenta las pruebas en su contra. Los testigos cuentan lo que vieron, y al final el juez —o a veces un jurado— decide si la persona es inocente o culpable. Esa es la base de la justicia.',
+        'El sistema no es perfecto, pero su idea central es justa: toda persona tiene derecho a defenderse y a un juicio justo. Sin leyes y sin tribunales, los más fuertes harían lo que quisieran. Por eso decimos que la ley protege a todos, no solo a unos pocos.'
+      ],
+      gloss: {
+        'la ley': 'law', 'el delito': 'crime', 'robar': 'to steal', 'la policía': 'police',
+        'arrestar': 'to arrest', 'el sospechoso': 'suspect', 'culpable': 'guilty', 'el tribunal': 'court',
+        'el juicio': 'trial', 'el abogado': 'lawyer', 'el acusado': 'the accused', 'las pruebas': 'evidence',
+        'el testigo': 'witness', 'el juez': 'judge', 'el jurado': 'jury', 'inocente': 'innocent', 'la justicia': 'justice'
+      },
+      quiz: [
+        { q: 'Según el texto, ¿cuándo es alguien culpable?', options: [
+          { text: 'cuando un tribunal lo decide', correct: true }, { text: 'cuando la policía lo arresta', correct: false }, { text: 'nunca', correct: false } ]},
+        { q: '¿Quién cuenta lo que vio en un juicio?', options: [
+          { text: 'el testigo', correct: true }, { text: 'el cantante', correct: false }, { text: 'el albañil', correct: false } ]},
+        { q: 'La idea central de la justicia, según el texto, es que…', options: [
+          { text: 'toda persona tiene derecho a defenderse y a un juicio justo', correct: true }, { text: 'los fuertes deciden todo', correct: false }, { text: 'no hacen falta tribunales', correct: false } ]}
+      ]
+    },
+    // ---------- PROFESSIONS READING ----------
+    {
+      id: 'profesiones-elegir',
+      kind: 'story', level: 'intermediate',
+      title: 'Elegir una <em>profesión</em>',
+      author: 'Original · El Pueblo',
+      year: '',
+      attribution: 'Cultura · Trabajo y profesiones',
+      preview: '¿Médico, maestro, ingeniero, artista? Elegir una profesión es una de las grandes decisiones de la vida.',
+      text: [
+        'Una de las preguntas más comunes de la infancia es: "¿Qué quieres ser de grande?" Algunos niños sueñan con ser médicos o bomberos; otros quieren ser maestros, ingenieros, abogados o artistas. Elegir una profesión es una de las decisiones más importantes de la vida.',
+        'A la hora de decidir, hay muchas cosas que pensar. ¿Qué se te da bien? ¿Qué te apasiona? Algunas personas eligen un trabajo por el dinero; otras, porque quieren ayudar a los demás, como los enfermeros o los profesores. Lo ideal es encontrar algo que una las dos cosas.',
+        'Hoy el mundo del trabajo cambia muy rápido. Aparecen profesiones nuevas cada año, sobre todo en la tecnología, y muchas personas cambian de carrera más de una vez en su vida. Por eso, más que elegir "para siempre", lo importante es seguir aprendiendo y estar dispuesto a adaptarse.'
+      ],
+      gloss: {
+        'la profesión': 'profession', 'el médico': 'doctor', 'el bombero': 'firefighter', 'el maestro': 'teacher',
+        'el ingeniero': 'engineer', 'el abogado': 'lawyer', 'el artista': 'artist', 'apasionar': 'to be passionate about',
+        'el enfermero': 'nurse', 'la carrera': 'career', 'adaptarse': 'to adapt'
+      },
+      quiz: [
+        { q: 'Según el texto, elegir una profesión es…', options: [
+          { text: 'una de las decisiones más importantes de la vida', correct: true }, { text: 'algo sin importancia', correct: false }, { text: 'imposible', correct: false } ]},
+        { q: '¿Por qué algunas personas eligen su trabajo?', options: [
+          { text: 'para ayudar a los demás', correct: true }, { text: 'para no aprender nada', correct: false }, { text: 'para quedarse en casa', correct: false } ]},
+        { q: 'Según el texto, hoy el mundo del trabajo…', options: [
+          { text: 'cambia muy rápido y hay que adaptarse', correct: true }, { text: 'nunca cambia', correct: false }, { text: 'no necesita aprendizaje', correct: false } ]}
+      ]
+    },
+    // ---------- SPACE READING ----------
+    {
+      id: 'espacio-explorar',
+      kind: 'story', level: 'intermediate',
+      title: 'Explorar el <em>espacio</em>',
+      author: 'Original · El Pueblo',
+      year: '',
+      attribution: 'Académico · Astronomía',
+      preview: 'Cohetes, planetas y estrellas: la curiosidad humana siempre mira hacia arriba.',
+      text: [
+        'Desde hace miles de años, los seres humanos miran el cielo y se hacen preguntas. ¿Cuántas estrellas hay? ¿Qué hay en la Luna? Esa curiosidad nos llevó a explorar el espacio con telescopios, satélites y, por fin, naves espaciales.',
+        'Nuestro planeta, la Tierra, gira alrededor del Sol junto con otros siete planetas que forman el sistema solar. Y el Sol es solo una estrella más entre miles de millones en nuestra galaxia, la Vía Láctea. El universo es tan grande que cuesta imaginarlo.',
+        'En 1969, un cohete llevó a los primeros astronautas a la Luna. Hoy, los científicos sueñan con explorar Marte y otros planetas. Cada nave espacial que despega nos enseña algo nuevo sobre el universo y sobre nuestro propio lugar en él.'
+      ],
+      gloss: {
+        'el espacio': 'space', 'la estrella': 'star', 'la Luna': 'the Moon', 'el telescopio': 'telescope',
+        'el satélite': 'satellite', 'la nave espacial': 'spaceship', 'la Tierra': 'Earth', 'el Sol': 'the Sun',
+        'el planeta': 'planet', 'el sistema solar': 'solar system', 'la galaxia': 'galaxy',
+        'el universo': 'universe', 'el cohete': 'rocket', 'el astronauta': 'astronaut', 'despega': 'takes off'
+      },
+      quiz: [
+        { q: '¿Cuántos planetas forman el sistema solar?', options: [
+          { text: 'ocho', correct: true }, { text: 'tres', correct: false }, { text: 'cien', correct: false } ]},
+        { q: 'El Sol es…', options: [
+          { text: 'una estrella', correct: true }, { text: 'un planeta', correct: false }, { text: 'un satélite', correct: false } ]},
+        { q: '¿Qué pasó en 1969?', options: [
+          { text: 'los primeros astronautas llegaron a la Luna', correct: true }, { text: 'se descubrió el Sol', correct: false }, { text: 'explotó la Vía Láctea', correct: false } ]}
+      ]
+    },
+    // ---------- VEHICLES READING ----------
+    {
+      id: 'vehiculos-ciudad',
+      kind: 'story', level: 'intermediate',
+      title: 'Cómo nos <em>movemos</em> por la ciudad',
+      author: 'Original · El Pueblo',
+      year: '',
+      attribution: 'Cultura · Transporte',
+      preview: 'Metro, autobús, bicicleta o coche: cada ciudad tiene su forma de moverse.',
+      text: [
+        'En las grandes ciudades del mundo hispano, como Madrid, Ciudad de México o Buenos Aires, la gente usa muchos tipos de vehículos para moverse. El metro es rápido y barato, y por eso millones de personas lo toman cada día.',
+        'No todos tienen coche. En las horas de más tráfico, el autobús y el metro suelen ser más prácticos que conducir, porque las calles se llenan y es difícil estacionar. Muchos jóvenes prefieren la bicicleta o la motocicleta para llegar más rápido.',
+        'Fuera de la ciudad, el tren y el avión conectan regiones lejanas, y los camiones transportan la comida y los productos. Cada forma de transporte tiene sus ventajas: lo importante es elegir la más cómoda, barata y buena para el medio ambiente.'
+      ],
+      gloss: {
+        'el vehículo': 'vehicle', 'el metro': 'subway', 'el coche': 'car', 'el tráfico': 'traffic',
+        'el autobús': 'bus', 'conducir': 'to drive', 'estacionar': 'to park', 'la bicicleta': 'bicycle',
+        'la motocicleta': 'motorcycle', 'el tren': 'train', 'el avión': 'airplane', 'el camión': 'truck'
+      },
+      quiz: [
+        { q: 'Según el texto, ¿por qué tanta gente toma el metro?', options: [
+          { text: 'es rápido y barato', correct: true }, { text: 'es el más caro', correct: false }, { text: 'es el más lento', correct: false } ]},
+        { q: 'En las horas de más tráfico, ¿qué suele ser más práctico que conducir?', options: [
+          { text: 'el autobús y el metro', correct: true }, { text: 'el avión', correct: false }, { text: 'el camión', correct: false } ]},
+        { q: '¿Qué conecta las regiones lejanas?', options: [
+          { text: 'el tren y el avión', correct: true }, { text: 'la bicicleta', correct: false }, { text: 'el metro', correct: false } ]}
+      ]
+    },
+    // ---------- TOOLS READING ----------
+    {
+      id: 'herramientas-taller',
+      kind: 'story', level: 'intermediate',
+      title: 'El <em>taller</em> del abuelo',
+      author: 'Original · El Pueblo',
+      year: '',
+      attribution: 'Cultura · Oficios y herramientas',
+      preview: 'Martillo, destornillador, sierra: en su taller, mi abuelo podía arreglar cualquier cosa.',
+      text: [
+        'Mi abuelo tenía un pequeño taller en el garaje. En la pared colgaban todas sus herramientas, ordenadas con cuidado: el martillo, la sierra, varios destornilladores y una caja llena de clavos y tornillos.',
+        '"Antes de comprar algo nuevo", decía, "hay que intentar arreglar lo viejo." Cuando se rompía una silla, no la tiraba: la reparaba con un poco de madera, unos clavos y mucha paciencia. Yo le pasaba las herramientas y aprendía mirando.',
+        'Me enseñó a usar el taladro, a medir con la cinta métrica y a apretar bien los tornillos. Pero, sobre todo, me enseñó algo más importante: que con las herramientas correctas y ganas de aprender, casi cualquier cosa se puede arreglar.'
+      ],
+      gloss: {
+        'el taller': 'workshop', 'la herramienta': 'tool', 'el martillo': 'hammer', 'la sierra': 'saw',
+        'el destornillador': 'screwdriver', 'el clavo': 'nail', 'el tornillo': 'screw', 'arreglar': 'to fix',
+        'reparar': 'to repair', 'la madera': 'wood', 'el taladro': 'drill', 'la cinta métrica': 'tape measure', 'apretar': 'to tighten'
+      },
+      quiz: [
+        { q: '¿Dónde tenía el abuelo su taller?', options: [
+          { text: 'en el garaje', correct: true }, { text: 'en la cocina', correct: false }, { text: 'en el jardín', correct: false } ]},
+        { q: '¿Qué hacía el abuelo cuando se rompía una silla?', options: [
+          { text: 'la reparaba en vez de tirarla', correct: true }, { text: 'compraba una nueva', correct: false }, { text: 'la quemaba', correct: false } ]},
+        { q: 'La lección más importante del abuelo fue que…', options: [
+          { text: 'casi todo se puede arreglar con las herramientas correctas', correct: true }, { text: 'es mejor comprar todo nuevo', correct: false }, { text: 'las herramientas son peligrosas', correct: false } ]}
+      ]
+    },
+    // ---------- CONSTRUCTION READING ----------
+    {
+      id: 'construccion-casa',
+      kind: 'story', level: 'intermediate',
+      title: 'Cómo se <em>construye</em> una casa',
+      author: 'Original · El Pueblo',
+      year: '',
+      attribution: 'Académico · Construcción',
+      preview: 'De los planos a los cimientos, del ladrillo al techo: construir una casa es trabajo de equipo.',
+      text: [
+        'Construir una casa empieza mucho antes de poner el primer ladrillo. Primero, un arquitecto dibuja los planos y un ingeniero revisa que todo sea seguro. Solo entonces los obreros pueden empezar a trabajar en la obra.',
+        'El primer paso es hacer los cimientos, la base fuerte sobre la que se apoya todo el edificio. Luego, los albañiles levantan las paredes con ladrillos y cemento, y una grúa enorme sube los materiales pesados, como las vigas de acero.',
+        'Por seguridad, todos en la obra llevan casco. Poco a poco, lo que era un terreno vacío se convierte en paredes, ventanas y, finalmente, un techo. Construir una casa es un trabajo lento que requiere muchas manos, muchas herramientas y mucha planificación.'
+      ],
+      gloss: {
+        'construir': 'to build', 'el ladrillo': 'brick', 'el arquitecto': 'architect', 'los planos': 'blueprints',
+        'el ingeniero': 'engineer', 'el obrero': 'worker', 'la obra': 'construction site', 'los cimientos': 'foundation',
+        'el edificio': 'building', 'el albañil': 'bricklayer', 'la pared': 'wall', 'el cemento': 'cement',
+        'la grúa': 'crane', 'la viga': 'beam', 'el acero': 'steel', 'el casco': 'hard hat', 'el techo': 'roof'
+      },
+      quiz: [
+        { q: '¿Quién dibuja los planos de la casa?', options: [
+          { text: 'el arquitecto', correct: true }, { text: 'el albañil', correct: false }, { text: 'el conductor', correct: false } ]},
+        { q: '¿Cuál es el primer paso de la construcción?', options: [
+          { text: 'hacer los cimientos', correct: true }, { text: 'poner el techo', correct: false }, { text: 'pintar las paredes', correct: false } ]},
+        { q: '¿Por qué todos llevan casco en la obra?', options: [
+          { text: 'por seguridad', correct: true }, { text: 'por moda', correct: false }, { text: 'por el frío', correct: false } ]}
+      ]
+    },
+    // ---------- HUNTING READING ----------
+    {
+      id: 'caza-tradicion',
+      kind: 'story', level: 'intermediate',
+      title: 'La <em>caza</em> y la naturaleza',
+      author: 'Original · El Pueblo',
+      year: '',
+      attribution: 'Cultura · Vida al aire libre',
+      preview: 'Para los cazadores responsables, la caza no es solo un deporte: es respeto por la naturaleza.',
+      text: [
+        'En muchas regiones del mundo hispano, la caza es una tradición antigua. Antes de los rifles y las escopetas, la gente cazaba con arco y flecha para alimentar a su familia. Hoy, para muchos, sigue siendo una forma de conectar con la naturaleza.',
+        'Un buen cazador conoce el bosque: sigue las huellas y el rastro de los animales, espera en silencio y solo dispara cuando está seguro. La paciencia es más importante que el arma. Cazar un venado o un jabalí requiere horas de observación.',
+        'Pero la caza también tiene reglas. Cada región tiene una temporada de caza y exige un permiso, para que las especies no desaparezcan. Los cazadores responsables respetan estos límites, porque entienden que cuidar la naturaleza es parte de la tradición.'
+      ],
+      gloss: {
+        'la caza': 'hunting', 'cazar': 'to hunt', 'el cazador': 'hunter', 'el rifle': 'rifle',
+        'la escopeta': 'shotgun', 'el arco': 'bow', 'la flecha': 'arrow', 'las huellas': 'tracks',
+        'el rastro': 'trail', 'disparar': 'to shoot', 'el venado': 'deer', 'el jabalí': 'wild boar',
+        'la temporada de caza': 'hunting season', 'el permiso': 'permit'
+      },
+      quiz: [
+        { q: 'Antes de los rifles, ¿con qué cazaba la gente?', options: [
+          { text: 'con arco y flecha', correct: true }, { text: 'con escopetas', correct: false }, { text: 'con trampas eléctricas', correct: false } ]},
+        { q: 'Según el texto, ¿qué es lo más importante para un buen cazador?', options: [
+          { text: 'la paciencia', correct: true }, { text: 'el arma más cara', correct: false }, { text: 'la velocidad', correct: false } ]},
+        { q: '¿Por qué existen la temporada de caza y los permisos?', options: [
+          { text: 'para que las especies no desaparezcan', correct: true }, { text: 'para vender más armas', correct: false }, { text: 'para prohibir la naturaleza', correct: false } ]}
+      ]
+    },
+    // ---------- FISHING READING ----------
+    {
+      id: 'pesca-dia',
+      kind: 'story', level: 'intermediate',
+      title: 'Un día de <em>pesca</em>',
+      author: 'Original · El Pueblo',
+      year: '',
+      attribution: 'Cultura · Vida al aire libre',
+      preview: 'Caña, anzuelo y mucha paciencia: así pasamos la mañana en el lago.',
+      text: [
+        'Mi abuelo me enseñó a pescar cuando era niño. Salíamos de madrugada hacia el lago, con las cañas de pescar, una caja de anzuelos y un cubo para los peces. "La pesca", decía, "es noventa por ciento paciencia."',
+        'Primero poníamos la carnada en el anzuelo y lanzábamos el sedal al agua. Luego esperábamos en silencio, mirando el agua tranquila. A veces pasaba una hora sin que picara ningún pez. Pero cuando por fin uno picaba, el carrete giraba rápido y el corazón se aceleraba.',
+        'Algunos días atrapábamos varias truchas; otros días, nada. Pero mi abuelo siempre soltaba los peces más pequeños al agua otra vez. "Para que crezcan", decía. Lo importante no era cuántos peces atrapábamos, sino las horas que pasábamos juntos junto al lago.'
+      ],
+      gloss: {
+        'pescar': 'to fish', 'el lago': 'lake', 'la caña de pescar': 'fishing rod', 'el anzuelo': 'hook',
+        'el cubo': 'bucket', 'la paciencia': 'patience', 'la carnada': 'bait', 'el sedal': 'fishing line',
+        'picar': 'to bite (fish)', 'el carrete': 'reel', 'la trucha': 'trout', 'soltar': 'to release'
+      },
+      quiz: [
+        { q: 'Según el abuelo, la pesca es sobre todo…', options: [
+          { text: 'paciencia', correct: true }, { text: 'velocidad', correct: false }, { text: 'fuerza', correct: false } ]},
+        { q: '¿Qué hacían con los peces más pequeños?', options: [
+          { text: 'los soltaban al agua otra vez', correct: true }, { text: 'los vendían en el mercado', correct: false }, { text: 'los usaban de carnada', correct: false } ]},
+        { q: 'Para el narrador, lo más importante de la pesca era…', options: [
+          { text: 'el tiempo que pasaba con su abuelo', correct: true }, { text: 'atrapar muchos peces', correct: false }, { text: 'ganar dinero', correct: false } ]}
+      ]
+    },
+    // ---------- CAMPING READING ----------
+    {
+      id: 'acampar-estrellas',
+      kind: 'story', level: 'intermediate',
+      title: 'Acampar bajo las <em>estrellas</em>',
+      author: 'Original · El Pueblo',
+      year: '',
+      attribution: 'Cultura · Vida al aire libre',
+      preview: 'Una tienda, una fogata y un cielo lleno de estrellas: nuestra primera noche acampando.',
+      text: [
+        'El verano pasado, mis amigos y yo fuimos a acampar a las montañas por primera vez. Llevábamos las mochilas llenas: la tienda de campaña, los sacos de dormir, una linterna, fósforos y, por supuesto, mucho repelente de mosquitos.',
+        'Cuando llegamos, montamos la tienda junto a un sendero, cerca de un río. No fue fácil —se nos cayó dos veces— pero al final lo logramos. Por la tarde hicimos una caminata por el bosque y volvimos justo antes de que oscureciera.',
+        'Por la noche encendimos una fogata, cocinamos algo sencillo y contamos historias. Lo mejor llegó después: nos acostamos al aire libre y miramos el cielo. Sin las luces de la ciudad, se veían miles de estrellas. Nunca había visto algo tan hermoso.'
+      ],
+      gloss: {
+        'acampar': 'to camp', 'la mochila': 'backpack', 'la tienda de campaña': 'tent',
+        'el saco de dormir': 'sleeping bag', 'la linterna': 'flashlight', 'los fósforos': 'matches',
+        'el repelente': 'bug repellent', 'montar la tienda': 'to set up the tent', 'el sendero': 'trail',
+        'la caminata': 'hike', 'la fogata': 'campfire', 'al aire libre': 'outdoors', 'las estrellas': 'the stars'
+      },
+      quiz: [
+        { q: '¿Qué llevaban en las mochilas?', options: [
+          { text: 'la tienda, los sacos de dormir y una linterna', correct: true }, { text: 'una televisión', correct: false }, { text: 'cañas de pescar', correct: false } ]},
+        { q: '¿Qué hicieron por la tarde?', options: [
+          { text: 'una caminata por el bosque', correct: true }, { text: 'fueron de compras', correct: false }, { text: 'durmieron todo el día', correct: false } ]},
+        { q: '¿Por qué se veían tantas estrellas?', options: [
+          { text: 'porque no había luces de la ciudad', correct: true }, { text: 'porque usaron un telescopio', correct: false }, { text: 'porque era de día', correct: false } ]}
+      ]
+    },
+    // ---------- NATURE READING ----------
+    {
+      id: 'naturaleza-cuidar',
+      kind: 'story', level: 'intermediate',
+      title: 'Cuidar la <em>naturaleza</em>',
+      author: 'Original · El Pueblo',
+      year: '',
+      attribution: 'Cultura · Medio ambiente',
+      preview: 'Árboles, ríos y animales: la naturaleza nos da todo, pero también necesita nuestra ayuda.',
+      text: [
+        'La naturaleza está llena de vida: árboles que nos dan oxígeno, flores que alimentan a las mariposas, ríos donde viven los peces y pájaros que cantan al amanecer. Cada planta y cada animal forma parte de un equilibrio delicado.',
+        'Pero ese equilibrio está en peligro. La contaminación de las fábricas y la basura ensucian el aire, el agua y la tierra. Muchas especies de animales salvajes están desapareciendo porque pierden su hogar en los bosques y las selvas.',
+        'Por suerte, hay cosas que todos podemos hacer para proteger el medio ambiente: reciclar, no tirar basura en la naturaleza, ahorrar agua y plantar árboles. Cuidar el paisaje no es solo responsabilidad de los gobiernos: empieza con cada uno de nosotros.'
+      ],
+      gloss: {
+        'la naturaleza': 'nature', 'el árbol': 'tree', 'la flor': 'flower', 'la mariposa': 'butterfly',
+        'el pájaro': 'bird', 'el equilibrio': 'balance', 'la contaminación': 'pollution',
+        'la basura': 'trash', 'salvaje': 'wild', 'el bosque': 'forest', 'proteger': 'to protect',
+        'el medio ambiente': 'the environment', 'el paisaje': 'landscape'
+      },
+      quiz: [
+        { q: 'Según el texto, ¿qué nos dan los árboles?', options: [
+          { text: 'oxígeno', correct: true }, { text: 'gasolina', correct: false }, { text: 'electricidad', correct: false } ]},
+        { q: '¿Por qué desaparecen muchas especies salvajes?', options: [
+          { text: 'pierden su hogar en los bosques y las selvas', correct: true }, { text: 'se van de vacaciones', correct: false }, { text: 'hay demasiados árboles', correct: false } ]},
+        { q: 'Según el texto, cuidar el medio ambiente…', options: [
+          { text: 'empieza con cada uno de nosotros', correct: true }, { text: 'es solo trabajo del gobierno', correct: false }, { text: 'es imposible', correct: false } ]}
+      ]
+    },
+    // ---------- MATH READING ----------
+    {
+      id: 'matematicas-vida',
+      kind: 'story', level: 'intermediate',
+      title: 'Las <em>matemáticas</em> de cada día',
+      author: 'Original · El Pueblo',
+      year: '',
+      attribution: 'Académico · Matemáticas',
+      preview: 'Sumar, restar, calcular porcentajes… usamos las matemáticas más de lo que pensamos.',
+      text: [
+        'Mucha gente dice que odia las matemáticas, pero la verdad es que las usamos todos los días sin darnos cuenta. Cuando vamos al mercado y calculamos cuánto cuesta todo, estamos sumando. Cuando el vendedor nos da el cambio, está restando.',
+        'Los porcentajes también aparecen por todas partes. Si una tienda ofrece un descuento del veinte por ciento, necesitamos calcular cuánto vamos a pagar de verdad. Y si queremos dividir la cuenta de un restaurante entre cuatro amigos, usamos la división.',
+        'Las matemáticas no son solo números y ecuaciones en la pizarra: son una herramienta para resolver problemas reales. Sumar, restar, multiplicar y dividir son las cuatro operaciones básicas, pero con ellas podemos calcular casi cualquier cosa, desde el precio de la comida hasta el tiempo de un viaje.'
+      ],
+      gloss: {
+        'las matemáticas': 'mathematics', 'sumar': 'to add', 'restar': 'to subtract',
+        'el cambio': 'change (money)', 'el porcentaje': 'percentage', 'el descuento': 'discount',
+        'calcular': 'to calculate', 'la división': 'division', 'la ecuación': 'equation',
+        'resolver': 'to solve', 'las operaciones': 'operations'
+      },
+      quiz: [
+        { q: 'Cuando calculas cuánto cuesta todo en el mercado, estás…', options: [
+          { text: 'sumando', correct: true }, { text: 'dividiendo', correct: false }, { text: 'midiendo', correct: false } ]},
+        { q: 'Para saber cuánto pagas con un descuento del 20%, usas…', options: [
+          { text: 'los porcentajes', correct: true }, { text: 'la geometría', correct: false }, { text: 'los ángulos', correct: false } ]},
+        { q: 'Según el texto, las cuatro operaciones básicas son…', options: [
+          { text: 'sumar, restar, multiplicar y dividir', correct: true }, { text: 'leer, escribir, contar y medir', correct: false }, { text: 'solo sumar y restar', correct: false } ]}
+      ]
+    },
+    // ---------- POLITICS READING ----------
+    {
+      id: 'politica-democracia',
+      kind: 'story', level: 'intermediate',
+      title: 'La <em>democracia</em> y el voto',
+      author: 'Original · El Pueblo',
+      year: '',
+      attribution: 'Cultura · Política y sociedad',
+      preview: 'En una democracia, cada voto cuenta — pero no siempre fue así.',
+      text: [
+        'En una democracia, el poder viene del pueblo. Los ciudadanos eligen a sus líderes a través de las elecciones: votan por el candidato o el partido que prefieren. Por eso se dice que cada voto cuenta.',
+        'Pero la democracia no siempre existió en el mundo hispano. Durante el siglo XX, varios países de América Latina y España vivieron bajo dictaduras, donde una sola persona o un grupo tenía todo el poder y la gente no podía votar ni protestar libremente.',
+        'Hoy, la mayoría de los países hispanohablantes son democracias. Los ciudadanos tienen derechos como la libertad de expresión, y pueden criticar al gobierno o participar en protestas. La democracia no es perfecta —la corrupción sigue siendo un problema en muchos lugares— pero permite que la gente tenga voz.'
+      ],
+      gloss: {
+        'la democracia': 'democracy', 'el poder': 'power', 'el pueblo': 'the people',
+        'el ciudadano': 'citizen', 'las elecciones': 'elections', 'votar': 'to vote',
+        'el voto': 'vote', 'el candidato': 'candidate', 'la dictadura': 'dictatorship',
+        'los derechos': 'rights', 'la libertad de expresión': 'freedom of speech', 'la corrupción': 'corruption'
+      },
+      quiz: [
+        { q: 'En una democracia, ¿de dónde viene el poder?', options: [
+          { text: 'Del pueblo', correct: true }, { text: 'De una sola persona', correct: false }, { text: 'Del ejército', correct: false } ]},
+        { q: 'Durante el siglo XX, varios países hispanos vivieron bajo…', options: [
+          { text: 'dictaduras', correct: true }, { text: 'democracias perfectas', correct: false }, { text: 'sin gobierno', correct: false } ]},
+        { q: 'Según el texto, ¿qué problema sigue afectando a muchas democracias?', options: [
+          { text: 'la corrupción', correct: true }, { text: 'la falta de mapas', correct: false }, { text: 'el exceso de elecciones', correct: false } ]}
+      ]
+    },
+    // ---------- SCIENCE READING ----------
+    {
+      id: 'ciencia-metodo',
+      kind: 'story', level: 'intermediate',
+      title: 'El <em>método científico</em>',
+      author: 'Original · El Pueblo',
+      year: '',
+      attribution: 'Académico · Ciencia',
+      preview: 'Observar, preguntar, experimentar: así trabaja la ciencia.',
+      text: [
+        'La ciencia no es una colección de datos aburridos: es una forma de hacer preguntas sobre el mundo y buscar respuestas. Los científicos siguen un proceso llamado el método científico para investigar y descubrir cómo funcionan las cosas.',
+        'Primero, un científico observa algo interesante y propone una hipótesis, es decir, una posible explicación. Luego diseña un experimento para probar esa hipótesis. En el laboratorio, mide los resultados con cuidado y los observa muchas veces.',
+        'Si los experimentos confirman la hipótesis una y otra vez, puede convertirse en una teoría. Así nacieron grandes descubrimientos de la física, la química y la biología. Lo importante es que la ciencia siempre está dispuesta a cambiar de opinión cuando aparecen nuevas pruebas.'
+      ],
+      gloss: {
+        'la ciencia': 'science', 'el científico': 'scientist', 'el método científico': 'scientific method',
+        'observar': 'to observe', 'la hipótesis': 'hypothesis', 'el experimento': 'experiment',
+        'el laboratorio': 'laboratory', 'medir': 'to measure', 'los resultados': 'the results',
+        'la teoría': 'theory', 'el descubrimiento': 'discovery', 'las pruebas': 'the evidence'
+      },
+      quiz: [
+        { q: '¿Qué propone un científico después de observar algo?', options: [
+          { text: 'una hipótesis', correct: true }, { text: 'una ley política', correct: false }, { text: 'un mapa', correct: false } ]},
+        { q: '¿Dónde mide los resultados con cuidado?', options: [
+          { text: 'en el laboratorio', correct: true }, { text: 'en el mercado', correct: false }, { text: 'en el congreso', correct: false } ]},
+        { q: 'Una hipótesis confirmada muchas veces puede convertirse en…', options: [
+          { text: 'una teoría', correct: true }, { text: 'una hipótesis nueva', correct: false }, { text: 'un experimento', correct: false } ]}
+      ]
+    },
+    // ---------- GEOGRAPHY READING ----------
+    {
+      id: 'geografia-latinoamerica',
+      kind: 'story', level: 'intermediate',
+      title: 'La <em>geografía</em> de América Latina',
+      author: 'Original · El Pueblo',
+      year: '',
+      attribution: 'Cultura · Geografía',
+      preview: 'Montañas, selvas, desiertos y costas: América Latina lo tiene todo.',
+      text: [
+        'América Latina es una región de geografía increíble y variada. A lo largo del continente se extienden los Andes, la cordillera de montañas más larga del mundo, que cruza países como Perú, Chile y Argentina.',
+        'En el norte está la enorme selva amazónica, con su río gigantesco y miles de especies de animales y plantas. Más al sur, en Chile, se encuentra el desierto de Atacama, uno de los lugares más secos del planeta. Y por todas partes hay costas, islas, lagos y volcanes.',
+        'Esta diversidad geográfica influye en el clima, la comida y la forma de vida de cada país. No es lo mismo vivir en la costa del Caribe que en lo alto de los Andes. Por eso, conocer la geografía nos ayuda a entender mejor la cultura de cada región.'
+      ],
+      gloss: {
+        'la geografía': 'geography', 'el continente': 'continent', 'la cordillera': 'mountain range',
+        'la montaña': 'mountain', 'la selva': 'rainforest', 'el río': 'river',
+        'la especie': 'species', 'el desierto': 'desert', 'la costa': 'coast',
+        'la isla': 'island', 'el lago': 'lake', 'el volcán': 'volcano', 'el clima': 'climate'
+      },
+      quiz: [
+        { q: '¿Cuál es la cordillera más larga del mundo, según el texto?', options: [
+          { text: 'los Andes', correct: true }, { text: 'los Pirineos', correct: false }, { text: 'los Alpes', correct: false } ]},
+        { q: 'El desierto de Atacama es famoso por ser…', options: [
+          { text: 'uno de los lugares más secos del planeta', correct: true }, { text: 'el más frío del mundo', correct: false }, { text: 'una selva tropical', correct: false } ]},
+        { q: 'Según el texto, la geografía influye en…', options: [
+          { text: 'el clima, la comida y la forma de vida', correct: true }, { text: 'solo el idioma', correct: false }, { text: 'nada importante', correct: false } ]}
+      ]
+    },
     // ---------- MARKET READING — A day at the market ----------
     {
       id: 'mercado-dia',
@@ -14667,7 +15201,97 @@
       { id: 'd-i-57-mercado', text: 'Los sábados vamos al mercado a comprar fruta y verdura fresca.', en: 'On Saturdays we go to the market to buy fresh fruit and vegetables.', country: null },
       { id: 'd-i-58-mercado', text: '¿A cuánto está el kilo de tomates? Me parece un poco caro.', en: 'How much is a kilo of tomatoes? It seems a bit expensive to me.', country: null },
       { id: 'd-i-59-mercado', text: 'El vendedor me hizo un descuento porque compré una docena.', en: 'The vendor gave me a discount because I bought a dozen.', country: null },
-      { id: 'd-i-60-mercado', text: 'Pagué en efectivo y guardé todo en mi propia bolsa.', en: 'I paid in cash and put everything in my own bag.', country: null }
+      { id: 'd-i-60-mercado', text: 'Pagué en efectivo y guardé todo en mi propia bolsa.', en: 'I paid in cash and put everything in my own bag.', country: null },
+      // Math (paired with the Math vocab deck)
+      { id: 'd-i-61-mate', text: 'Si sumas estos tres números, el resultado es cuarenta y dos.', en: 'If you add these three numbers, the result is forty-two.', country: null },
+      { id: 'd-i-62-mate', text: 'La tienda ofrece un descuento del veinte por ciento en todo.', en: 'The store offers a twenty percent discount on everything.', country: null },
+      { id: 'd-i-63-mate', text: 'Para resolver el problema, primero multiplica y luego resta.', en: 'To solve the problem, first multiply and then subtract.', country: null },
+      { id: 'd-i-64-mate', text: 'La mitad de la clase aprobó el examen de matemáticas.', en: 'Half the class passed the math exam.', country: null },
+      // Politics (paired with the Politics vocab deck)
+      { id: 'd-i-65-pol', text: 'Las elecciones son en noviembre y todos quieren votar.', en: 'The elections are in November and everyone wants to vote.', country: null },
+      { id: 'd-i-66-pol', text: 'El candidato dio un discurso sobre los derechos de los ciudadanos.', en: 'The candidate gave a speech about citizens\' rights.', country: null },
+      { id: 'd-i-67-pol', text: 'En una democracia, el gobierno debe respetar la libertad de todos.', en: 'In a democracy, the government must respect everyone\'s freedom.', country: null },
+      { id: 'd-i-68-pol', text: 'Hubo una gran protesta en la plaza contra la corrupción.', en: 'There was a big protest in the square against corruption.', country: null },
+      // Science (paired with the Science vocab deck)
+      { id: 'd-i-69-cien', text: 'La científica propuso una hipótesis y la probó en el laboratorio.', en: 'The scientist proposed a hypothesis and tested it in the lab.', country: null },
+      { id: 'd-i-70-cien', text: 'Con el microscopio podemos observar las células muy de cerca.', en: 'With the microscope we can observe the cells very closely.', country: null },
+      { id: 'd-i-71-cien', text: 'La gravedad atrae todos los objetos hacia la Tierra.', en: 'Gravity pulls all objects toward the Earth.', country: null },
+      { id: 'd-i-72-cien', text: 'El experimento confirmó la teoría después de muchas pruebas.', en: 'The experiment confirmed the theory after many tests.', country: null },
+      // Geography (paired with the Geography vocab deck)
+      { id: 'd-i-73-geo', text: 'Los Andes son la cordillera más larga del mundo.', en: 'The Andes are the longest mountain range in the world.', country: null },
+      { id: 'd-i-74-geo', text: 'El río Amazonas cruza la selva más grande del planeta.', en: 'The Amazon River crosses the largest rainforest on the planet.', country: 'pe' },
+      { id: 'd-i-75-geo', text: 'El desierto de Atacama, en Chile, es uno de los más secos.', en: 'The Atacama Desert, in Chile, is one of the driest.', country: 'cl' },
+      { id: 'd-i-76-geo', text: 'Cuba es una isla rodeada por el mar Caribe.', en: 'Cuba is an island surrounded by the Caribbean Sea.', country: 'cu' },
+      // Hunting (paired with the Hunting vocab deck)
+      { id: 'd-i-77-caza', text: 'El cazador siguió las huellas del venado por el bosque.', en: 'The hunter followed the deer\'s tracks through the forest.', country: null },
+      { id: 'd-i-78-caza', text: 'Necesitas un permiso para cazar durante la temporada.', en: 'You need a permit to hunt during the season.', country: null },
+      { id: 'd-i-79-caza', text: 'Esperó en silencio y apuntó con mucho cuidado.', en: 'He waited in silence and aimed very carefully.', country: null },
+      { id: 'd-i-80-caza', text: 'La paciencia es más importante que el arma en la caza.', en: 'Patience is more important than the weapon in hunting.', country: null },
+      // Fishing (paired with the Fishing vocab deck)
+      { id: 'd-i-81-pesca', text: 'Salimos de madrugada con las cañas y la carnada.', en: 'We left at dawn with the rods and the bait.', country: null },
+      { id: 'd-i-82-pesca', text: 'Atrapé una trucha grande, pero la solté al agua otra vez.', en: 'I caught a big trout, but I released it back into the water.', country: null },
+      { id: 'd-i-83-pesca', text: 'Los peces no pican cuando el agua está muy fría.', en: 'The fish don\'t bite when the water is very cold.', country: null },
+      { id: 'd-i-84-pesca', text: 'Pescamos desde el muelle toda la tarde.', en: 'We fished from the pier all afternoon.', country: null },
+      // Camping (paired with the Camping vocab deck)
+      { id: 'd-i-85-camp', text: 'Montamos la tienda de campaña junto al río.', en: 'We set up the tent next to the river.', country: null },
+      { id: 'd-i-86-camp', text: 'Por la noche encendimos una fogata y contamos historias.', en: 'At night we lit a campfire and told stories.', country: null },
+      { id: 'd-i-87-camp', text: 'No olvides la linterna, los fósforos y el repelente.', en: 'Don\'t forget the flashlight, the matches, and the repellent.', country: null },
+      { id: 'd-i-88-camp', text: 'Dormimos al aire libre y miramos las estrellas.', en: 'We slept outdoors and watched the stars.', country: null },
+      // Nature (paired with the Nature vocab deck)
+      { id: 'd-i-89-nat', text: 'Los árboles nos dan oxígeno y hogar a los pájaros.', en: 'Trees give us oxygen and a home to the birds.', country: null },
+      { id: 'd-i-90-nat', text: 'La contaminación de las fábricas daña el medio ambiente.', en: 'Pollution from factories harms the environment.', country: null },
+      { id: 'd-i-91-nat', text: 'Debemos proteger los bosques y no tirar basura.', en: 'We must protect the forests and not throw trash.', country: null },
+      { id: 'd-i-92-nat', text: 'Una mariposa azul voló entre las flores del jardín.', en: 'A blue butterfly flew among the flowers in the garden.', country: null },
+      // Space (paired with the Space vocab deck)
+      { id: 'd-i-93-esp', text: 'La Tierra gira alrededor del Sol una vez al año.', en: 'The Earth revolves around the Sun once a year.', country: null },
+      { id: 'd-i-94-esp', text: 'Los astronautas viajaron a la Luna en un cohete enorme.', en: 'The astronauts traveled to the Moon in an enormous rocket.', country: null },
+      { id: 'd-i-95-esp', text: 'Con el telescopio podemos ver los planetas del sistema solar.', en: 'With the telescope we can see the planets of the solar system.', country: null },
+      { id: 'd-i-96-esp', text: 'En el espacio no hay gravedad y todo flota.', en: 'In space there is no gravity and everything floats.', country: null },
+      // Vehicles (paired with the Vehicles vocab deck)
+      { id: 'd-i-97-veh', text: 'Tomo el metro al trabajo porque hay mucho tráfico.', en: 'I take the subway to work because there\'s a lot of traffic.', country: null },
+      { id: 'd-i-98-veh', text: 'Aprendí a conducir el coche de mi padre el verano pasado.', en: 'I learned to drive my dad\'s car last summer.', country: null },
+      { id: 'd-i-99-veh', text: 'El autobús llegó tarde y perdimos el tren.', en: 'The bus arrived late and we missed the train.', country: null },
+      { id: 'd-i-100-veh', text: 'No encuentro dónde estacionar el coche por aquí.', en: 'I can\'t find anywhere to park the car around here.', country: null },
+      // Tools (paired with the Tools vocab deck)
+      { id: 'd-i-101-herr', text: 'Necesito el martillo y unos clavos para colgar el cuadro.', en: 'I need the hammer and some nails to hang the picture.', country: null },
+      { id: 'd-i-102-herr', text: 'Aprieta el tornillo con el destornillador, por favor.', en: 'Tighten the screw with the screwdriver, please.', country: null },
+      { id: 'd-i-103-herr', text: 'Mi abuelo podía arreglar casi todo en su taller.', en: 'My grandfather could fix almost anything in his workshop.', country: null },
+      { id: 'd-i-104-herr', text: 'Guarda las herramientas en la caja cuando termines.', en: 'Put the tools in the box when you finish.', country: null },
+      // Construction (paired with the Construction vocab deck)
+      { id: 'd-i-105-con', text: 'Los obreros levantan las paredes con ladrillos y cemento.', en: 'The workers build the walls with bricks and cement.', country: null },
+      { id: 'd-i-106-con', text: 'El arquitecto revisó los planos antes de empezar la obra.', en: 'The architect checked the blueprints before starting the project.', country: null },
+      { id: 'd-i-107-con', text: 'La grúa levantó las vigas de acero hasta el techo.', en: 'The crane lifted the steel beams up to the roof.', country: null },
+      { id: 'd-i-108-con', text: 'En la obra es obligatorio usar casco por seguridad.', en: 'On the construction site, wearing a hard hat is required for safety.', country: null },
+      // Music (paired with the Music vocab deck)
+      { id: 'd-i-109-mus', text: 'Toco la guitarra en una banda con mis amigos.', en: 'I play guitar in a band with my friends.', country: null },
+      { id: 'd-i-110-mus', text: 'El cantante salió al escenario y el público aplaudió.', en: 'The singer came out on stage and the audience applauded.', country: null },
+      { id: 'd-i-111-mus', text: 'Me sé la letra de esta canción de memoria.', en: 'I know the lyrics of this song by heart.', country: null },
+      { id: 'd-i-112-mus', text: 'El ritmo de la salsa viene de los tambores del Caribe.', en: 'The rhythm of salsa comes from the drums of the Caribbean.', country: null },
+      // Education (paired with the Education vocab deck)
+      { id: 'd-i-113-edu', text: 'La profesora explicó la lección y nos puso tarea.', en: 'The teacher explained the lesson and gave us homework.', country: null },
+      { id: 'd-i-114-edu', text: 'Estudié mucho y aprobé el examen con buena nota.', en: 'I studied a lot and passed the exam with a good grade.', country: null },
+      { id: 'd-i-115-edu', text: 'Ganó una beca para estudiar en la universidad.', en: 'She won a scholarship to study at the university.', country: null },
+      { id: 'd-i-116-edu', text: 'El conocimiento es algo que nadie te puede quitar.', en: 'Knowledge is something no one can take from you.', country: null },
+      // Military (paired with the Military vocab deck)
+      { id: 'd-i-117-mil', text: 'Los soldados defendieron la frontera durante la guerra.', en: 'The soldiers defended the border during the war.', country: null },
+      { id: 'd-i-118-mil', text: 'El general cambió de estrategia antes de la batalla.', en: 'The general changed strategy before the battle.', country: null },
+      { id: 'd-i-119-mil', text: 'Después de muchos años de guerra, por fin llegó la paz.', en: 'After many years of war, peace finally came.', country: null },
+      { id: 'd-i-120-mil', text: 'Las tropas regresaron a la base tras la misión.', en: 'The troops returned to the base after the mission.', country: null },
+      // Weapons (paired with the Weapons vocab deck)
+      { id: 'd-i-121-arm', text: 'El caballero llevaba una espada y un escudo.', en: 'The knight carried a sword and a shield.', country: null },
+      { id: 'd-i-122-arm', text: 'La pólvora cambió la forma de hacer la guerra.', en: 'Gunpowder changed the way war was waged.', country: null },
+      { id: 'd-i-123-arm', text: 'Las armas son peligrosas y hay leyes para controlarlas.', en: 'Weapons are dangerous and there are laws to control them.', country: null },
+      { id: 'd-i-124-arm', text: 'El cañón disparó hacia el barco enemigo.', en: 'The cannon fired toward the enemy ship.', country: null },
+      // Law (paired with the Law vocab deck)
+      { id: 'd-i-125-der', text: 'El abogado defendió al acusado ante el tribunal.', en: 'The lawyer defended the accused before the court.', country: null },
+      { id: 'd-i-126-der', text: 'El juez escuchó a los testigos antes de decidir.', en: 'The judge listened to the witnesses before deciding.', country: null },
+      { id: 'd-i-127-der', text: 'Nadie es culpable hasta que se demuestre con pruebas.', en: 'No one is guilty until it is proven with evidence.', country: null },
+      { id: 'd-i-128-der', text: 'La policía arrestó al sospechoso del robo.', en: 'The police arrested the robbery suspect.', country: null },
+      // Professions (paired with the Professions vocab deck)
+      { id: 'd-i-129-prof', text: 'De grande quiero ser ingeniera o médica.', en: 'When I grow up I want to be an engineer or a doctor.', country: null },
+      { id: 'd-i-130-prof', text: 'Eligió esa profesión porque le gusta ayudar a la gente.', en: 'She chose that profession because she likes helping people.', country: null },
+      { id: 'd-i-131-prof', text: 'Muchas personas cambian de carrera más de una vez.', en: 'Many people change careers more than once.', country: null },
+      { id: 'd-i-132-prof', text: 'El maestro y la enfermera trabajan mucho por los demás.', en: 'The teacher and the nurse work hard for others.', country: null }
     ],
     advanced: [
       { id: 'd-a-01', text: 'A pesar de las dificultades económicas, muchos jóvenes deciden estudiar idiomas extranjeros para mejorar sus oportunidades laborales.', en: 'Despite economic difficulties, many young people decide to study foreign languages to improve their job opportunities.', country: null },
@@ -15258,6 +15882,150 @@
 
   const WRITING_TOPICS = [
     {
+      id: 'musica-write',
+      title: 'La <em>música</em> en mi vida',
+      level: 'sp1', category: 'personal',
+      body: 'Using the Music vocab deck, write about music. What kind of music do you like, and why? Do you play an instrument or sing? Who is your favorite singer or band? Describe a concert you went to (or want to go to). How does music make you feel?',
+      tips: ['Useful vocab: la música, la canción, el cantante, tocar, el instrumento, la guitarra, el concierto, el ritmo', 'Use gustar and encantar (me encanta…, me gusta… porque…)', 'Aim for 100+ words'],
+      date: ''
+    },
+    {
+      id: 'educacion-write',
+      title: 'La importancia de la <em>educación</em>',
+      level: 'sp2', category: 'opinion',
+      body: 'Using the Education vocab deck, write about why education matters. What do we learn in school besides facts? Should education be free for everyone? What makes a good teacher? End with your opinion on the most important thing you have learned.',
+      tips: ['Useful vocab: la educación, aprender, enseñar, el maestro, la universidad, la beca, el conocimiento', 'Use opinion phrases (creo que, es importante que + subjunctive)', 'Aim for 120+ words'],
+      date: ''
+    },
+    {
+      id: 'militar-write',
+      title: 'La <em>guerra</em> y la paz',
+      level: 'sp3', category: 'opinion',
+      body: 'Using the Military vocab deck, write about war and peace. Why have countries gone to war throughout history? What role did armies play in the independence of Latin America? Is war ever justified? Argue your position and explain why peace is so valuable.',
+      tips: ['Useful vocab: el ejército, el soldado, la guerra, la batalla, la independencia, la victoria, la paz', 'Use the preterite/imperfect for history and the subjunctive for opinion', 'Address a counterargument; aim for 130+ words'],
+      date: ''
+    },
+    {
+      id: 'armas-write',
+      title: 'Las <em>armas</em> a través de la historia',
+      level: 'sp3', category: 'cultural',
+      body: 'Using the Weapons vocab deck, write about how weapons changed history. How did people fight in ancient times (swords, shields, armor)? How did gunpowder change warfare and the conquest of the Americas? Why do countries today have laws to control weapons?',
+      tips: ['Useful vocab: el arma, la espada, el escudo, la armadura, la pólvora, el cañón, las armas de fuego, peligroso', 'Use the preterite/imperfect to narrate history', 'Stay factual and analytical; aim for 120+ words'],
+      date: ''
+    },
+    {
+      id: 'derecho-write',
+      title: 'La <em>justicia</em> y la ley',
+      level: 'sp3', category: 'opinion',
+      body: 'Using the Law vocab deck, write about justice. How does a trial work — who are the judge, the lawyer, the witnesses, the jury? Why is someone "innocent until proven guilty" important? Should punishments be harsh or focus on rehabilitation? Defend your view.',
+      tips: ['Useful vocab: la ley, el juez, el abogado, el tribunal, el juicio, las pruebas, inocente, culpable, la justicia', 'Use opinion phrases and the subjunctive (es justo que…, no creo que…)', 'Address a counterargument; aim for 130+ words'],
+      date: ''
+    },
+    {
+      id: 'profesiones-write',
+      title: 'Mi <em>profesión</em> ideal',
+      level: 'sp1', category: 'personal',
+      body: 'Using the Professions vocab deck, write about your ideal career. What do you want to be, and why? What skills does it require? Who inspires you in that field? Would you choose it for money, passion, or to help others? Describe a typical day in that job.',
+      tips: ['Useful vocab: la profesión, el médico, el ingeniero, el maestro, el abogado, la carrera, el trabajo', 'Use querer + infinitive (quiero ser…) and the conditional (me gustaría…)', 'Aim for 100+ words'],
+      date: ''
+    },
+    {
+      id: 'espacio-write',
+      title: 'Un viaje al <em>espacio</em>',
+      level: 'sp2', category: 'narrative',
+      body: 'Using the Space vocab deck, imagine you are an astronaut. Describe your journey: the rocket launch, what you see (planets, stars, the Moon, the Earth from far away), and how it feels to float without gravity. Would you want to explore Mars? Why?',
+      tips: ['Useful vocab: el cohete, el astronauta, el planeta, la estrella, la gravedad, la nave espacial, explorar', 'Use the future or conditional to imagine (viajaría, vería, flotaría)', 'Aim for 100+ words'],
+      date: ''
+    },
+    {
+      id: 'vehiculos-write',
+      title: 'Cómo me <em>muevo</em> por la ciudad',
+      level: 'sp1', category: 'personal',
+      body: 'Using the Vehicles vocab deck, write about transportation. How do you get to school or around your town — car, bus, bike, walking? What are the advantages and disadvantages of each? Which is best for the environment? Which do you prefer and why?',
+      tips: ['Useful vocab: el coche, el autobús, la bicicleta, el metro, el tren, conducir, el tráfico', 'Use comparisons: más rápido que, más barato que', 'Give your preference with prefiero… porque…'],
+      date: ''
+    },
+    {
+      id: 'herramientas-write',
+      title: 'Arreglar algo con <em>herramientas</em>',
+      level: 'sp2', category: 'narrative',
+      body: 'Using the Tools vocab deck, narrate a time you fixed or built something. What was broken? What tools did you use? What steps did you follow? Did it work? Who taught you, or did you figure it out yourself?',
+      tips: ['Useful vocab: el martillo, el destornillador, el tornillo, la sierra, arreglar, reparar, apretar', 'Use the preterite for the steps and sequence words (primero, luego, después)', 'Aim for 100+ words'],
+      date: ''
+    },
+    {
+      id: 'construccion-write',
+      title: 'Cómo se <em>construye</em> algo',
+      level: 'sp2', category: 'cultural',
+      body: 'Using the Construction vocab deck, explain how something is built (a house, a bridge, a school). Who is involved — architect, engineer, workers? What are the steps, from the blueprints and foundation to the walls and roof? What materials are used?',
+      tips: ['Useful vocab: construir, los planos, los cimientos, el ladrillo, el cemento, la pared, el techo, el obrero', 'Use sequence words (primero, después, finalmente) and the passive se (se construye, se levanta)', 'Aim for 110+ words'],
+      date: ''
+    },
+    {
+      id: 'caza-write',
+      title: 'La <em>caza</em>: tradición y responsabilidad',
+      level: 'sp3', category: 'opinion',
+      body: 'Using the Hunting vocab deck, write about hunting. Is it a tradition, a sport, or a way to connect with nature? Why do hunting seasons and permits exist? Take a position: should hunting be allowed, and under what rules? Defend your view and respond to a counterargument.',
+      tips: ['Useful vocab: la caza, cazar, el cazador, el permiso, la temporada de caza, las huellas, proteger', 'Use opinion phrases: creo que, me parece que, es importante que + subjunctive', 'Address a counterargument (aunque algunos piensen que…)'],
+      date: ''
+    },
+    {
+      id: 'pesca-write',
+      title: 'Un día de <em>pesca</em>',
+      level: 'sp2', category: 'narrative',
+      body: 'Using the Fishing vocab deck, narrate a fishing trip (real or imagined). Where did you go? What did you bring? Did the fish bite? What did you catch — and did you keep it or release it? Who were you with, and how did it feel?',
+      tips: ['Useful vocab: pescar, la caña de pescar, el anzuelo, la carnada, picar, atrapar, soltar, la paciencia', 'Use the preterite for the events and the imperfect for description', 'Aim for 120+ words'],
+      date: ''
+    },
+    {
+      id: 'acampar-write',
+      title: 'Una noche de <em>campamento</em>',
+      level: 'sp2', category: 'narrative',
+      body: 'Using the Camping vocab deck, narrate a camping trip. What did you pack? Where did you set up the tent? What did you do during the day and at night? What was the best part? Describe the scenery and how you felt.',
+      tips: ['Useful vocab: acampar, la tienda de campaña, el saco de dormir, la fogata, el sendero, la caminata, al aire libre', 'Use the preterite for events, the imperfect for setting the scene', 'Use sequence words: primero, luego, después, finalmente'],
+      date: ''
+    },
+    {
+      id: 'naturaleza-write',
+      title: 'Cómo cuidar la <em>naturaleza</em>',
+      level: 'sp2', category: 'opinion',
+      body: 'Using the Nature vocab deck, write about protecting nature. What problems does the environment face (pollution, deforestation, endangered species)? What can people do to help? End with a call to action: what should we all do, and why?',
+      tips: ['Useful vocab: la naturaleza, el medio ambiente, la contaminación, contaminar, proteger, el bosque, salvaje', 'Use deber + infinitive (debemos…) and es importante que + subjunctive', 'Aim for 120+ words with a clear conclusion'],
+      date: ''
+    },
+    {
+      id: 'matematicas-write',
+      title: 'Las <em>matemáticas</em> en mi vida',
+      level: 'sp2', category: 'cultural',
+      body: 'Using the Math vocab deck, write about how you use math in everyday life. When do you add, subtract, multiply, or divide? Do you calculate prices, discounts, or percentages? Do you like math — why or why not? Describe a real situation where math helped you solve a problem.',
+      tips: ['Useful vocab: sumar, restar, multiplicar, dividir, el porcentaje, calcular, el resultado, el problema', 'Use the present tense for habits and the preterite for one specific example', 'Aim for 100+ words with one opinion (me gusta / no me gusta porque…)'],
+      date: ''
+    },
+    {
+      id: 'politica-write',
+      title: 'La <em>democracia</em> y el voto',
+      level: 'sp3', category: 'opinion',
+      body: 'Using the Politics vocab deck, write about democracy. Why is it important for citizens to vote? What rights do people have in a democracy that they don\'t have under a dictatorship? Take a position: should voting be a duty for everyone? Defend your opinion and respond to one counterargument.',
+      tips: ['Useful vocab: la democracia, votar, el voto, las elecciones, los derechos, la libertad, el gobierno, la dictadura', 'Use opinion phrases: creo que, me parece que, es importante que + subjunctive', 'Aim for 130+ words and address a counterargument (aunque algunos digan que…)'],
+      date: ''
+    },
+    {
+      id: 'ciencia-write',
+      title: 'Un <em>experimento</em> y el método científico',
+      level: 'sp2', category: 'cultural',
+      body: 'Using the Science vocab deck, describe an experiment (real or imagined) using the scientific method. What did you observe? What was your hypothesis? What experiment did you design, and what did you measure? What were the results, and did they confirm your hypothesis?',
+      tips: ['Useful vocab: la ciencia, la hipótesis, el experimento, observar, medir, el laboratorio, los resultados, la teoría', 'Use sequence words: primero, luego, después, finalmente', 'Use the preterite to narrate what you did (observé, medí, comprobé)'],
+      date: ''
+    },
+    {
+      id: 'geografia-write',
+      title: 'La <em>geografía</em> de un país hispano',
+      level: 'sp1', category: 'cultural',
+      body: 'Using the Geography vocab deck, describe the geography of a Spanish-speaking country (or your own). Where is it located? What mountains, rivers, deserts, coasts, or volcanoes does it have? What is the climate like? How does the geography affect daily life there?',
+      tips: ['Useful vocab: el país, la montaña, el río, la costa, el desierto, la selva, el clima, el norte/sur/este/oeste', 'Use hay (there is/are) and está (location)', 'Aim for 100+ words'],
+      date: ''
+    },
+    {
       id: 'mercado-compras',
       title: 'De <em>compras</em> en el mercado',
       level: 'sp1',
@@ -15748,6 +16516,150 @@
 
   const SPEAKING_TOPICS = [
     // ========== CULTURE — paired with vocab decks ==========
+    {
+      id: 'musica-speak',
+      title: 'La <em>música</em> que te gusta',
+      level: 'sp1', category: 'personal',
+      body: 'Talk for at least 60 seconds about music. What do you listen to and why? Do you play an instrument or sing? Describe your favorite singer or a concert. Use the Music vocab.',
+      tips: ['Useful vocab: la música, la canción, el cantante, tocar, el instrumento, el concierto, el ritmo', 'Use me gusta / me encanta + porque', 'Give specific examples (artists, songs)'],
+      date: ''
+    },
+    {
+      id: 'educacion-speak',
+      title: 'La importancia de la <em>educación</em>',
+      level: 'sp2', category: 'opinion',
+      body: 'Talk for at least 75 seconds about education. Why does it matter? What makes a good teacher? Should it be free? Share the most important thing you have learned. Use the Education vocab.',
+      tips: ['Useful vocab: la educación, aprender, enseñar, el maestro, la universidad, el conocimiento', 'Signal opinion: creo que, me parece que, es importante que', 'Give at least two reasons'],
+      date: ''
+    },
+    {
+      id: 'militar-speak',
+      title: 'La <em>guerra</em> y la paz',
+      level: 'sp3', category: 'opinion',
+      body: 'Talk for at least 75 seconds about war and peace. Why do wars happen? Is war ever justified? Why is peace so valuable? Be thoughtful and respectful. Use the Military vocab.',
+      tips: ['Useful vocab: el ejército, el soldado, la guerra, la batalla, la paz, defender, la victoria', 'Use the subjunctive for opinion (no creo que la guerra sea…)', 'Organize: por un lado… por otro lado…'],
+      date: ''
+    },
+    {
+      id: 'armas-speak',
+      title: 'Las <em>armas</em> en la historia',
+      level: 'sp3', category: 'cultural',
+      body: 'Talk for at least 60 seconds about how weapons changed history — from swords and shields to gunpowder and cannons. Why do countries control weapons today? Stay factual. Use the Weapons vocab.',
+      tips: ['Useful vocab: el arma, la espada, el escudo, la armadura, la pólvora, el cañón, peligroso', 'Use the preterite/imperfect to narrate history', 'Keep it analytical, not graphic'],
+      date: ''
+    },
+    {
+      id: 'derecho-speak',
+      title: 'La <em>justicia</em> y la ley',
+      level: 'sp3', category: 'roleplay',
+      body: 'Role-play a short courtroom scene for at least 60 seconds, or explain how a trial works. Mention the judge, the lawyer, the witnesses, and how someone is found innocent or guilty. Use the Law vocab.',
+      tips: ['Useful vocab: la ley, el juez, el abogado, el tribunal, el testigo, inocente, culpable, las pruebas', 'You can switch voices (juez, abogado, testigo)', 'Use the present and connectors (entonces, por lo tanto)'],
+      date: ''
+    },
+    {
+      id: 'profesiones-speak',
+      title: 'Tu <em>profesión</em> ideal',
+      level: 'sp1', category: 'personal',
+      body: 'Talk for at least 60 seconds about your ideal career. What do you want to be and why? What skills does it need? Money, passion, or helping others — what matters most to you? Use the Professions vocab.',
+      tips: ['Useful vocab: la profesión, el médico, el ingeniero, el maestro, la carrera, el trabajo', 'Use quiero ser… and me gustaría… porque…', 'Describe a typical day in that job'],
+      date: ''
+    },
+    {
+      id: 'espacio-speak',
+      title: 'Imagina un viaje al <em>espacio</em>',
+      level: 'sp2', category: 'describe',
+      body: 'Talk for at least 60 seconds imagining you travel to space. Describe the launch, what you see, and how it feels with no gravity. Would you explore Mars? Use the Space vocab.',
+      tips: ['Useful vocab: el cohete, el astronauta, el planeta, la estrella, la gravedad, explorar', 'Use the conditional to imagine (vería, sentiría, exploraría)', 'Describe with the senses'],
+      date: ''
+    },
+    {
+      id: 'vehiculos-speak',
+      title: 'Cómo te <em>mueves</em> por tu ciudad',
+      level: 'sp1', category: 'personal',
+      body: 'Talk for at least 60 seconds about how you get around. What transportation do you use? What are the pros and cons? Which do you prefer and why? Use the Vehicles vocab.',
+      tips: ['Useful vocab: el coche, el autobús, la bicicleta, el metro, conducir, el tráfico', 'Use comparisons (más rápido que, más barato que)', 'State a preference (prefiero… porque…)'],
+      date: ''
+    },
+    {
+      id: 'herramientas-speak',
+      title: 'Cuenta cómo <em>arreglaste</em> algo',
+      level: 'sp2', category: 'narrate',
+      body: 'Talk for at least 60 seconds about a time you fixed or built something. What broke, what tools did you use, and what steps did you follow? Use the Tools vocab.',
+      tips: ['Useful vocab: el martillo, el destornillador, la sierra, arreglar, reparar, apretar', 'Use the preterite (usé, arreglé, apreté)', 'Sequence words: primero, luego, al final'],
+      date: ''
+    },
+    {
+      id: 'construccion-speak',
+      title: 'Explica cómo se <em>construye</em> algo',
+      level: 'sp2', category: 'cultural',
+      body: 'Talk for at least 60 seconds explaining how something is built. Who is involved, what are the steps, and what materials are used? Use the Construction vocab.',
+      tips: ['Useful vocab: construir, los planos, los cimientos, el ladrillo, la pared, el techo, el obrero', 'Use sequence words and the passive se (se construye, se levanta)', 'Go in order: planos → cimientos → paredes → techo'],
+      date: ''
+    },
+    {
+      id: 'caza-speak',
+      title: 'Tu opinión sobre la <em>caza</em>',
+      level: 'sp3', category: 'opinion',
+      body: 'Talk for at least 75 seconds about hunting. Is it a tradition worth keeping? Should there be rules like seasons and permits? Give your opinion respectfully and explain your reasons. Use the Hunting vocab.',
+      tips: ['Useful vocab: la caza, cazar, el cazador, el permiso, la temporada de caza, proteger', 'Signal opinion: creo que, me parece que, por un lado… por otro lado', 'Give at least two reasons'],
+      date: ''
+    },
+    {
+      id: 'pesca-speak',
+      title: 'Cuenta un día de <em>pesca</em>',
+      level: 'sp2', category: 'narrate',
+      body: 'Talk for at least 60 seconds narrating a fishing trip. Where did you go, what did you bring, did the fish bite, and what did you catch? Use the Fishing vocab and past tenses.',
+      tips: ['Useful vocab: pescar, la caña de pescar, el anzuelo, la carnada, picar, atrapar, soltar', 'Use the preterite (fui, pesqué, atrapé) and imperfect for description', 'Sequence words: primero, luego, al final'],
+      date: ''
+    },
+    {
+      id: 'acampar-speak',
+      title: 'Describe un <em>campamento</em>',
+      level: 'sp2', category: 'narrate',
+      body: 'Talk for at least 60 seconds about a camping trip. What did you pack, where did you camp, and what did you do? Describe the night and the scenery. Use the Camping vocab.',
+      tips: ['Useful vocab: acampar, la tienda de campaña, el saco de dormir, la fogata, el sendero, al aire libre', 'Use the preterite for events and imperfect for the setting', 'Describe with the senses (se veían las estrellas, hacía frío…)'],
+      date: ''
+    },
+    {
+      id: 'naturaleza-speak',
+      title: 'Cómo proteger la <em>naturaleza</em>',
+      level: 'sp2', category: 'opinion',
+      body: 'Talk for at least 60 seconds about protecting nature. What environmental problems worry you? What can people do to help? Use the Nature vocab and make a call to action.',
+      tips: ['Useful vocab: la naturaleza, el medio ambiente, la contaminación, proteger, el bosque, reciclar', 'Use debemos + infinitive and es importante + infinitive', 'Give concrete examples of what people can do'],
+      date: ''
+    },
+    {
+      id: 'matematicas-speak',
+      title: 'Explica un <em>problema de matemáticas</em>',
+      level: 'sp2', category: 'cultural',
+      body: 'Talk for at least 60 seconds explaining how you solve a simple math problem out loud, as if teaching a classmate. Use the numbers and operations. For example, calculating a discount or splitting a restaurant bill. Use the Math vocab.',
+      tips: ['Useful vocab: sumar, restar, multiplicar, dividir, el porcentaje, el resultado, igual a', 'Narrate the steps: primero, luego, entonces', 'Say the operations out loud (dos más dos es igual a cuatro)'],
+      date: ''
+    },
+    {
+      id: 'politica-speak',
+      title: 'Tu opinión sobre la <em>política</em>',
+      level: 'sp3', category: 'opinion',
+      body: 'Talk for at least 75 seconds about a political topic you care about. Why is it important to vote? What rights matter most to you? Be respectful and explain your reasons. Use the Politics vocab.',
+      tips: ['Useful vocab: votar, las elecciones, los derechos, la libertad, el gobierno, la democracia', 'Signal opinion: creo que, me parece que, en mi opinión', 'Give at least two reasons (porque…, además…)'],
+      date: ''
+    },
+    {
+      id: 'ciencia-speak',
+      title: 'Describe un <em>experimento</em>',
+      level: 'sp2', category: 'cultural',
+      body: 'Talk for at least 60 seconds describing a science experiment, real or imagined. Explain your hypothesis, what you did, what you measured, and the result. Use the Science vocab.',
+      tips: ['Useful vocab: la hipótesis, el experimento, observar, medir, el laboratorio, los resultados', 'Use the preterite to narrate (observé, medí, descubrí)', 'Sequence words: primero, luego, finalmente'],
+      date: ''
+    },
+    {
+      id: 'geografia-speak',
+      title: 'Describe la <em>geografía</em> de un lugar',
+      level: 'sp1', category: 'describe',
+      body: 'Talk for at least 60 seconds describing the geography of a place you know or want to visit. Where is it? What mountains, rivers, coasts, or deserts does it have? What is the climate like? Use the Geography vocab.',
+      tips: ['Useful vocab: la montaña, el río, la costa, el desierto, la selva, el clima, el norte/sur', 'Use hay and está for what exists and where', 'Describe with adjectives (alto, seco, tropical, enorme)'],
+      date: ''
+    },
     {
       id: 'mercado-speak',
       title: 'En el <em>mercado</em>: regatear',
