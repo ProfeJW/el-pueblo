@@ -22,7 +22,19 @@ window.ELP_DECKS = {
       { word: 'el zapateo', cat: 'Noun · Masculine', back: 'foot-stomping (flamenco/folk)', ex: '"El zapateo marca el compás."', exEn: 'The foot-stomping marks the beat.' },
       { word: 'el folclore', cat: 'Noun · Masculine', back: 'folklore / folk tradition', ex: '"El baile es parte del folclore."', exEn: 'Dance is part of the folklore.' },
       { word: 'el conjunto', cat: 'Noun · Masculine', back: 'band / group', ex: '"Tocó un conjunto en vivo."', exEn: 'A live band played.' },
-      { word: 'aplaudir', cat: 'Verb', back: 'to applaud / clap', ex: '"El público aplaudió de pie."', exEn: 'The audience gave a standing ovation.' }
+      { word: 'aplaudir', cat: 'Verb', back: 'to applaud / clap', ex: '"El público aplaudió de pie."', exEn: 'The audience gave a standing ovation.' },
+      { word: 'las caderas', cat: 'Noun · Fem. plural', back: 'hips', ex: '"Mueve las caderas al ritmo."', exEn: 'Move your hips to the beat.' },
+      { word: 'arriba', cat: 'Adverb', back: 'up / upward', ex: '"Levanta los brazos arriba."', exEn: 'Raise your arms up.' },
+      { word: 'abajo', cat: 'Adverb', back: 'down / downward', ex: '"Baja despacio hacia abajo."', exEn: 'Go slowly downward.' },
+      { word: 'adelante', cat: 'Adverb', back: 'forward', ex: '"Da un paso adelante."', exEn: 'Take a step forward.' },
+      { word: 'atrás', cat: 'Adverb', back: 'back / backward', ex: '"Ahora un paso atrás."', exEn: 'Now a step back.' },
+      { word: 'girar', cat: 'Verb', back: 'to turn / spin', ex: '"Gira a la derecha en el siguiente paso."', exEn: 'Turn to the right on the next step.' },
+      { word: 'la vuelta', cat: 'Noun · Feminine', back: 'turn / spin (twirl)', ex: '"Dio una vuelta y volvió a su pareja."', exEn: 'She did a twirl and returned to her partner.' },
+      { word: 'los hombros', cat: 'Noun · Masc. plural', back: 'shoulders', ex: '"Relaja los hombros al bailar."', exEn: 'Relax your shoulders when you dance.' },
+      { word: 'los pies', cat: 'Noun · Masc. plural', back: 'feet', ex: '"Mira tus pies, no el techo."', exEn: 'Look at your feet, not the ceiling.' },
+      { word: 'las palmas', cat: 'Noun · Fem. plural', back: 'clapping / hand-claps', ex: '"Las palmas marcan el compás del flamenco."', exEn: 'The hand-claps mark the beat of flamenco.' },
+      { word: 'el compás', cat: 'Noun · Masculine', back: 'beat / measure (timing)', ex: '"No pierdas el compás."', exEn: 'Don\'t lose the beat.' },
+      { word: 'la coreografía', cat: 'Noun · Feminine', back: 'choreography', ex: '"Practicamos la coreografía toda la semana."', exEn: 'We practiced the choreography all week.' }
     ],
     religiones: [
       { word: 'la religión', cat: 'Noun · Feminine', back: 'religion', ex: '"La libertad de religión es un derecho."', exEn: 'Freedom of religion is a right.' },
