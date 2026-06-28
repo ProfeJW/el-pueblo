@@ -2,6 +2,28 @@
    single file under GitHub's size limit). Loaded before the main script;
    index.html reads this via window.ELP_DECKS. */
 window.ELP_DECKS = {
+    religiones: [
+      { word: 'la religión', cat: 'Noun · Feminine', back: 'religion', ex: '"La libertad de religión es un derecho."', exEn: 'Freedom of religion is a right.' },
+      { word: 'la fe', cat: 'Noun · Feminine', back: 'faith', ex: '"Su fe la mantiene fuerte."', exEn: 'Her faith keeps her strong.' },
+      { word: 'la creencia', cat: 'Noun · Feminine', back: 'belief', ex: '"Respeto tus creencias."', exEn: 'I respect your beliefs.' },
+      { word: 'el catolicismo', cat: 'Noun · Masculine', back: 'Catholicism', ex: '"El catolicismo es común en América Latina."', exEn: 'Catholicism is common in Latin America.' },
+      { word: 'el cristianismo', cat: 'Noun · Masculine', back: 'Christianity', ex: '"El cristianismo llegó con los españoles."', exEn: 'Christianity arrived with the Spanish.' },
+      { word: 'el judaísmo', cat: 'Noun · Masculine', back: 'Judaism', ex: '"El judaísmo tiene una larga historia en España."', exEn: 'Judaism has a long history in Spain.' },
+      { word: 'el islam', cat: 'Noun · Masculine', back: 'Islam', ex: '"El islam influyó en la cultura andaluza."', exEn: 'Islam influenced Andalusian culture.' },
+      { word: 'el budismo', cat: 'Noun · Masculine', back: 'Buddhism', ex: '"El budismo enseña la paz interior."', exEn: 'Buddhism teaches inner peace.' },
+      { word: 'la iglesia', cat: 'Noun · Feminine', back: 'church', ex: '"La iglesia está en la plaza mayor."', exEn: 'The church is in the main square.' },
+      { word: 'la mezquita', cat: 'Noun · Feminine', back: 'mosque', ex: '"La mezquita de Córdoba es famosa."', exEn: 'The mosque of Córdoba is famous.' },
+      { word: 'la sinagoga', cat: 'Noun · Feminine', back: 'synagogue', ex: '"Visitamos una sinagoga antigua en Toledo."', exEn: 'We visited an old synagogue in Toledo.' },
+      { word: 'el templo', cat: 'Noun · Masculine', back: 'temple', ex: '"El templo estaba lleno de fieles."', exEn: 'The temple was full of worshippers.' },
+      { word: 'rezar', cat: 'Verb', back: 'to pray', ex: '"Reza todas las noches."', exEn: 'She prays every night.' },
+      { word: 'la oración', cat: 'Noun · Feminine', back: 'prayer', ex: '"Dijo una oración en silencio."', exEn: 'He said a prayer in silence.' },
+      { word: 'el sacerdote', cat: 'Noun · Masculine', back: 'priest', ex: '"El sacerdote dio la misa."', exEn: 'The priest gave Mass.' },
+      { word: 'la misa', cat: 'Noun · Feminine', back: 'Mass', ex: '"Vamos a misa los domingos."', exEn: 'We go to Mass on Sundays.' },
+      { word: 'sagrado', cat: 'Adjective', back: 'sacred / holy', ex: '"Es un lugar sagrado."', exEn: 'It is a sacred place.' },
+      { word: 'el alma', cat: 'Noun · Feminine', back: 'soul', ex: '"Rezaron por el alma del difunto."', exEn: 'They prayed for the soul of the deceased.' },
+      { word: 'ateo', cat: 'Adjective / Noun', back: 'atheist', ex: '"Se declara ateo."', exEn: 'He declares himself an atheist.' },
+      { word: 'el dios', cat: 'Noun · Masculine', back: 'god (deity)', ex: '"Los incas adoraban a varios dioses."', exEn: 'The Incas worshipped several gods.' }
+    ],
     cotidiano: [
       { word: 'la madrugada', cat: 'Noun · Feminine', back: 'dawn / early hours', ex: '"Volvió a casa de madrugada."', exEn: 'He came home in the early hours.' },
       { word: 'extrañar', cat: 'Verb', back: 'to miss (someone/something)', ex: '"Te extraño mucho."', exEn: 'I miss you a lot.' },
