@@ -5559,19 +5559,32 @@
 <nav>
   <div class="nav-menu" id="navMenu">
     <a href="#/" class="logo" style="text-decoration:none;color:inherit" onclick="closeNavMenu()">
-      <span class="logo-mark"><svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg">
-        <!-- sun -->
-        <circle cx="22" cy="9" r="3.5" fill="#d4922c"/>
-        <!-- left house -->
-        <polygon points="3,17 9,11 15,17" fill="#c43d2a"/>
-        <rect x="4.5" y="17" width="9" height="9" fill="#c43d2a"/>
-        <rect x="7.5" y="20" width="3" height="6" fill="#f4ede0"/>
-        <!-- right house -->
-        <polygon points="15,19 21,13 27,19" fill="#1f1a14"/>
-        <rect x="16.5" y="19" width="9" height="9" fill="#1f1a14"/>
-        <rect x="19.5" y="22" width="3" height="6" fill="#f4ede0"/>
-        <!-- ground line -->
-        <line x1="2" y1="27.5" x2="29" y2="27.5" stroke="#1f1a14" stroke-width="0.8"/>
+      <span class="logo-mark"><svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg" aria-label="El Pueblo">
+        <defs>
+          <linearGradient id="logoGm" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0" stop-color="#ffe08a"/><stop offset=".5" stop-color="#ff8a3d"/><stop offset="1" stop-color="#ff4d8d"/>
+          </linearGradient>
+          <filter id="logoGlow" x="-60%" y="-60%" width="220%" height="220%">
+            <feGaussianBlur stdDeviation="1.7" result="b"/>
+            <feMerge><feMergeNode in="b"/><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+          </filter>
+        </defs>
+        <rect width="64" height="64" rx="15" fill="#0a0c18"/>
+        <g filter="url(#logoGlow)" fill="url(#logoGm)">
+          <path d="M20 15 L22 7 L24 15 Z M25 15 L27 6 L29 15 Z M30 15 L32 5.5 L34 15 Z M35 15 L37 6 L39 15 Z M40 15 L42 7 L44 15 Z"/>
+          <rect x="18" y="14" width="28" height="11" rx="2"/>
+          <path d="M21 25 H43 V44 C43 50 38 53 32 53 C26 53 21 50 21 44 Z"/>
+          <circle cx="20" cy="35" r="3.6"/><circle cx="44" cy="35" r="3.6"/>
+        </g>
+        <g fill="#0a0c18">
+          <rect x="18" y="21" width="28" height="3"/>
+          <rect x="30" y="16.5" width="4" height="4" rx="1"/>
+          <rect x="24" y="32" width="6" height="3.2" rx="1.6"/><rect x="34" y="32" width="6" height="3.2" rx="1.6"/>
+          <rect x="30.5" y="33" width="3" height="10" rx="1.2"/>
+          <rect x="27" y="38" width="10" height="2.4" rx="1.2"/>
+          <rect x="26" y="46.5" width="12" height="3.4" rx="1.7"/>
+          <circle cx="20" cy="35" r="1.4"/><circle cx="44" cy="35" r="1.4"/>
+        </g>
       </svg></span>
       <span>El Pueblo</span>
     </a>
@@ -5792,16 +5805,23 @@
 
 <div class="page active" data-page="home"><header>
   <div class="eyebrow">Spanish Class · Curso 2026–2027</div>
-  <h1>
-    Bienvenido<br>
-    al <span class="italic">Pueblo</span>
-  </h1>
+  <div class="hero-head">
+    <h1>
+      Bienvenido<br>
+      al <span class="italic">Pueblo</span>
+    </h1>
+    <img class="hero-logo" src="hero-logo.svg" alt="El Pueblo — totem logo" width="190" height="342">
+  </div>
   <p class="lead">
     A space to <em>practice</em>, <em>listen</em>, and <em>share</em>. Built by students, for students — where every word tells a story and every mistake is a beginning. <em style="color:var(--rojo)">El pueblo</em> means "the village" — a place where everyone knows your name and learns together.
   </p>
 
   <!-- SITE SEARCH — find words, decks, games, sections, and countries -->
   <style>
+    .hero-head { display: flex; align-items: center; justify-content: center; gap: 40px; flex-wrap: wrap; margin: 10px 0 14px; text-align: left; }
+    .hero-head h1 { margin: 0; }
+    .hero-logo { width: clamp(120px, 17vw, 188px); height: auto; flex-shrink: 0; filter: drop-shadow(0 10px 30px rgba(0,0,0,0.18)); }
+    @media (max-width: 560px) { .hero-head { gap: 18px; } .hero-logo { width: 104px; } }
     .site-search-results {
       position:absolute; left:0; right:0; top:calc(100% + 6px); z-index:50;
       background:var(--card-bg); border:1px solid var(--line); border-radius:10px;
@@ -6841,6 +6861,9 @@
   .draw-text-input { position: absolute; z-index: 5; border: 1px dashed var(--ocre); background: rgba(255,255,255,.9); font-family: 'DM Serif Display', serif; color: #1f1a14; padding: 1px 4px; outline: none; min-width: 40px; }
   .draw-flash { position: absolute; top: 12px; left: 50%; transform: translateX(-50%); background: rgba(31,26,20,.88); color: #f4ede0; font-family: 'JetBrains Mono', monospace; font-size: 12px; padding: 7px 14px; border-radius: 999px; z-index: 8; opacity: 0; transition: opacity .2s; pointer-events: none; }
   .draw-flash.show { opacity: 1; }
+  .draw-templates { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; margin-bottom: 14px; }
+  .dt-tlabel { font-family: 'JetBrains Mono', monospace; font-size: 10px; text-transform: uppercase; letter-spacing: 0.1em; color: var(--ink-soft); margin-right: 2px; }
+  .draw-templates .dt-act { font-size: 12px; height: 32px; text-transform: none; letter-spacing: 0; }
   @media (max-width: 620px) { .dw-controls { align-items: flex-start; width: 100%; } .dw-word { font-size: 26px; } }
 </style>
 <div class="page" data-page="dibujar"><section id="dibujar">
@@ -6848,7 +6871,7 @@
     <h2>Dibuja la <em>palabra</em></h2>
     <div class="section-num">Vocabulario visual</div>
   </div>
-  <p class="draw-intro">Get a vocab word and <strong>draw what it means</strong> — no translating, just thinking in pictures. Pick your tools, colors, and shapes and go. You can <strong>copy</strong> your drawing to paste into a doc, or <strong>paste</strong> an image in to start from. Mark it <em>Done</em> to earn a couple of Lucas.</p>
+  <p class="draw-intro">Get a vocab word and <strong>draw what it means</strong> — no translating, just thinking in pictures. Pick your tools, colors, and shapes and go. Or load a <strong>coloring page</strong> and color it in. You can <strong>copy</strong> your drawing to paste into a doc, or <strong>paste</strong> an image in to start from. Mark it <em>Done</em> to earn a couple of Lucas.</p>
 
   <div class="draw-word-card">
     <div class="dw-left">
@@ -6894,6 +6917,15 @@
     <div class="dt-group">
       <button class="dt-act done" id="drawDone" title="Mark done & earn Lucas" type="button">Done ✓</button>
     </div>
+  </div>
+
+  <div class="draw-templates" id="drawTemplates">
+    <span class="dt-tlabel">Coloring page:</span>
+    <button class="dt-act" data-tpl="blank" type="button">Blank</button>
+    <button class="dt-act" data-tpl="totem" type="button">🗿 Totem azteca</button>
+    <button class="dt-act" data-tpl="olmec" type="button">🪨 Cabeza olmeca</button>
+    <button class="dt-act" data-tpl="sol" type="button">☀️ Sol</button>
+    <button class="dt-act" data-tpl="greca" type="button">🔷 Greca</button>
   </div>
 
   <div class="draw-canvas-wrap" id="drawCanvasWrap">
@@ -8078,6 +8110,7 @@
 </footer>
 
 <script src="vocab-decks.js"></script>
+<script src="draw-templates.js"></script>
 <script>
   /* ============== SAFE STORAGE ============== */
   // localStorage can THROW on access (private/incognito mode, "block site data"
@@ -32514,6 +32547,39 @@
     $('drawDone').addEventListener('click', markDone);
     $('drawRevealBtn').addEventListener('click', function () { revealed = !revealed; applyReveal(); });
     $('drawNewWordBtn').addEventListener('click', newWord);
+    var tpls = $('drawTemplates');
+    if (tpls) tpls.querySelectorAll('[data-tpl]').forEach(function (b) {
+      b.addEventListener('click', function () { loadTemplate(b.getAttribute('data-tpl')); });
+    });
+  }
+
+  /* ---------- coloring templates ---------- */
+  function loadTemplate(key) {
+    ctx.globalAlpha = 1;
+    ctx.fillStyle = '#ffffff';
+    ctx.fillRect(0, 0, W, H);
+    if (key === 'blank') { pushUndo(); flashMsg('Blank canvas'); return; }
+    var lib = window.ELP_DRAW_TEMPLATES || {};
+    var svg = lib[key];
+    if (!svg) { pushUndo(); flashMsg('Template unavailable'); return; }
+    var blob = new Blob([svg], { type: 'image/svg+xml' });
+    var url = URL.createObjectURL(blob);
+    var img = new Image();
+    img.onload = function () {
+      var pad = 26;
+      var iw = img.naturalWidth || img.width || 200;
+      var ih = img.naturalHeight || img.height || 360;
+      var ratio = iw / ih;
+      var dh = H - pad * 2, dw = dh * ratio;
+      if (dw > W - pad * 2) { dw = W - pad * 2; dh = dw / ratio; }
+      ctx.globalAlpha = 1;
+      ctx.drawImage(img, (W - dw) / 2, (H - dh) / 2, dw, dh);
+      URL.revokeObjectURL(url);
+      pushUndo();
+      flashMsg('Loaded — now color it in!');
+    };
+    img.onerror = function () { URL.revokeObjectURL(url); pushUndo(); flashMsg('Could not load template'); };
+    img.src = url;
   }
 
   /* ---------- canvas drawing ---------- */
