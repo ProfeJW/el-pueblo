@@ -1,0 +1,23 @@
+{
+  "name": "el-pueblo",
+  "version": "1.0.0",
+  "description": "Website geared to curriculum for learning Spanish for native English-speakers",
+  "type": "module",
+  "scripts": {
+    "build": "node build.mjs",
+    "build:raw": "node build.mjs --no-minify",
+    "split": "node scripts/split-source.mjs",
+    "serve": "python3 -m http.server 8000 --directory dist"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ProfeJW/el-pueblo.git"
+  },
+  "keywords": ["spanish", "education", "language-learning"],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "esbuild": "^0.28.1",
+    "html-minifier-terser": "^7.2.0"
+  }
+}

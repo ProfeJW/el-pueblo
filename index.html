@@ -3,7 +3,29 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>El Pueblo · Spanish Class</title>
+<title>El Pueblo · Spanish for English speakers</title>
+<meta name="description" content="A free, self-paced Spanish curriculum for English speakers: 82 vocabulary decks, 52 grammar lessons, a conjugation trainer, games, linguistics, and the history of all 21 Spanish-speaking countries.">
+<link rel="canonical" href="https://profejw.github.io/el-pueblo/">
+<meta name="theme-color" content="#f4ede0" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#0c0e1a" media="(prefers-color-scheme: dark)">
+<!-- Favicon (SVG, with the totem logo) -->
+<link rel="icon" href="hero-logo.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="og-image.png">
+<!-- Open Graph / social preview -->
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="El Pueblo">
+<meta property="og:locale" content="es_ES">
+<meta property="og:title" content="El Pueblo · Spanish for English speakers">
+<meta property="og:description" content="A free, self-paced Spanish curriculum: vocabulary, grammar, a conjugation trainer, games, and the Spanish-speaking world.">
+<meta property="og:url" content="https://profejw.github.io/el-pueblo/">
+<meta property="og:image" content="https://profejw.github.io/el-pueblo/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="El Pueblo — a Spanish curriculum for English speakers">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="El Pueblo · Spanish for English speakers">
+<meta name="twitter:description" content="A free, self-paced Spanish curriculum: vocabulary, grammar, a conjugation trainer, games, and the Spanish-speaking world.">
+<meta name="twitter:image" content="https://profejw.github.io/el-pueblo/og-image.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Fraunces:ital,opsz,wght@0,9..144,300..900;1,9..144,300..900&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
@@ -5539,6 +5561,27 @@
   }
   .historia-map-tip.visible { opacity: 1; }
 </style>
+<style>
+  /* ---- Accessibility helpers ---- */
+  .skip-link {
+    position: absolute; left: 8px; top: -64px; z-index: 2000;
+    background: var(--ink); color: var(--paper);
+    padding: 10px 18px; border-radius: 8px;
+    font: 600 14px/1 'Fraunces', Georgia, serif; text-decoration: none;
+    transition: top .15s ease;
+  }
+  .skip-link:focus { top: 8px; outline: 3px solid var(--rojo); outline-offset: 2px; }
+  .visually-hidden {
+    position: absolute !important; width: 1px; height: 1px;
+    padding: 0; margin: -1px; overflow: hidden;
+    clip: rect(0 0 0 0); white-space: nowrap; border: 0;
+  }
+  .flashcard:focus-visible,
+  .repaso-card:focus-visible,
+  .slang-card:focus-visible {
+    outline: 3px solid var(--rojo); outline-offset: 3px;
+  }
+</style>
 <link rel="prefetch" href="historia.js" as="script">
 <script>
   // Apply saved theme + accent IMMEDIATELY before body renders to avoid a flash.
@@ -5546,7 +5589,12 @@
   (function applyThemeEarly() {
     try {
       var saved = localStorage.getItem('elPueblo_theme');
-      if (saved === 'cosmic') document.documentElement.setAttribute('data-theme', 'cosmic');
+      var prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+      // An explicit saved choice always wins; with no saved choice, follow the
+      // operating system's colour-scheme preference.
+      if (saved === 'cosmic' || (!saved && prefersDark)) {
+        document.documentElement.setAttribute('data-theme', 'cosmic');
+      }
       var accent = localStorage.getItem('elPueblo_accent');
       if (accent && ['pink','green','orange','yellow'].indexOf(accent) !== -1) {
         document.documentElement.setAttribute('data-accent', accent);
@@ -5556,6 +5604,7 @@
 </script>
 </head>
 <body>
+<a href="#mainContent" class="skip-link">Skip to main content</a>
 
 <div class="teacher-banner">👨‍🏫 Teacher mode · Add <code style="font-family:'JetBrains Mono',monospace">?teacher</code> to URL · <a href="?" style="color:var(--paper);text-decoration:underline">exit</a></div>
 <nav>
@@ -5612,7 +5661,7 @@
       <span id="coinTotal">0</span>
     </div>
     <button id="signOutBtn" class="signin-btn signout-btn" onclick="signOut()" title="Sign out" style="display:none">Sign out</button>
-    <button id="themeToggle" class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle theme" title="Switch theme (sun / cosmic)">🌙</button>
+    <button id="themeToggle" class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle theme" aria-pressed="false" title="Switch theme (sun / cosmic)">🌙</button>
     <div class="accent-picker" id="accentPicker" role="group" aria-label="Cosmic accent color">
       <button class="accent-dot" data-color="pink"   onclick="setAccent('pink')"   aria-label="Pink accent"   title="Pink"></button>
       <button class="accent-dot" data-color="green"  onclick="setAccent('green')"  aria-label="Green accent"  title="Green"></button>
@@ -5793,7 +5842,7 @@
 </div>
 
 
-<div class="page active" data-page="home"><header>
+<div class="page active" data-page="home" id="mainContent" tabindex="-1"><header>
   <div class="eyebrow">Spanish Class · Curso 2026–2027</div>
   <div class="hero-head">
     <h1>
@@ -6024,7 +6073,7 @@
     <div class="section-num">Vocabulario</div>
   </div>
   <div class="flashcard-wrap">
-    <div class="flashcard" id="flashcard" onclick="this.classList.toggle('flipped')">
+    <div class="flashcard" id="flashcard" role="button" tabindex="0" aria-pressed="false" aria-label="Flashcard — activate to flip between Spanish and English" onclick="flipCard(this)" onkeydown="flipCardKey(event)">
       <div class="flashcard-inner">
         <div class="flashcard-face front">
           <div class="card-corner">
@@ -8389,6 +8438,16 @@
     if (page === 'linguistica' && typeof renderLinguistica === 'function') renderLinguistica();
     if (page === 'adquisicion' && typeof renderAdquisicion === 'function') renderAdquisicion();
     if (page === 'lesson' && typeof renderLessonDetail === 'function') renderLessonDetail(param);
+    // Move keyboard focus to the new section's heading on navigation so screen-reader
+    // and keyboard users land in the fresh content instead of being stranded at the
+    // top of this single-page document. Skipped on first load (no prior navigation).
+    if (target && window.__elpNavigated) {
+      const heading = target.querySelector('h1, h2');
+      const focusEl = heading || target;
+      focusEl.setAttribute('tabindex', '-1');
+      try { focusEl.focus({ preventScroll: true }); } catch (e) { focusEl.focus(); }
+    }
+    window.__elpNavigated = true;
   }
 
   window.addEventListener('hashchange', () => {
@@ -9483,6 +9542,7 @@
     if (btn) {
       const isCosmic = document.documentElement.getAttribute('data-theme') === 'cosmic';
       btn.textContent = isCosmic ? '☀️' : '🌙';
+      btn.setAttribute('aria-pressed', isCosmic ? 'true' : 'false');
       btn.setAttribute('title', isCosmic ? 'Switch to sun theme' : 'Switch to cosmic theme');
     }
     // Highlight the active accent dot
@@ -9816,7 +9876,9 @@
     document.getElementById('card-num').textContent = String(cardIdx + 1).padStart(2, '0') + ' / ' + String(deck.length).padStart(2, '0');
     document.getElementById('card-num-back').textContent = String(cardIdx + 1).padStart(2, '0') + ' / ' + String(deck.length).padStart(2, '0');
     document.getElementById('card-progress').textContent = cardIdx + 1;
-    document.getElementById('flashcard').classList.remove('flipped');
+    const fc = document.getElementById('flashcard');
+    fc.classList.remove('flipped');
+    fc.setAttribute('aria-pressed', 'false');
   }
   // Flashcards no longer award coins (engagement, not skill)
   // We still track unique cards viewed for the achievement system
@@ -9984,7 +10046,7 @@
       <div style="font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--ink-soft);text-align:center;margin-bottom:12px;">
         Card ${s.idx + 1} / ${s.total} · ${MATCH_DECK_LABELS[item.dk] || item.dk}
       </div>
-      <div class="repaso-card" id="repasoCard" onclick="flipRepaso()">
+      <div class="repaso-card" id="repasoCard" role="button" tabindex="0" aria-expanded="false" aria-label="Review card — activate to reveal the answer" onclick="flipRepaso()" onkeydown="flipCardKey(event)">
         <div class="rc-tag">${box === 0 ? 'New word' : 'Box ' + box}</div>
         <div class="rc-box">${boxDots}</div>
         <div class="rc-prompt${prompt.length > 16 ? ' small' : ''}">${prompt}</div>
@@ -10003,12 +10065,27 @@
       </div>`;
   }
 
+  // --- Accessible flip-card helpers ---------------------------------------
+  // Flip cards are exposed as keyboard-operable buttons. flipCard() toggles the
+  // visual flip and keeps aria-pressed in sync; flipCardKey() lets Enter/Space
+  // activate a focused card the same way a click would.
+  function flipCard(el) {
+    const flipped = el.classList.toggle('flipped');
+    el.setAttribute('aria-pressed', flipped ? 'true' : 'false');
+  }
+  function flipCardKey(e) {
+    if (e.key === 'Enter' || e.key === ' ' || e.key === 'Spacebar') {
+      e.preventDefault();
+      e.currentTarget.click();
+    }
+  }
+
   function flipRepaso() {
     const s = srsState;
     if (!s || s.flipped) return;
     s.flipped = true;
     const card = document.getElementById('repasoCard');
-    if (card) card.classList.add('flipped');
+    if (card) { card.classList.add('flipped'); card.setAttribute('aria-expanded', 'true'); }
     const hint = document.getElementById('repasoHint');
     if (hint) hint.textContent = 'How well did you know it?';
     const grade = document.getElementById('repasoGrade');
@@ -20682,7 +20759,7 @@
       const country = COUNTRIES.find(c => c.code === s.country);
       const flag = FLAGS[s.country] || '';
       return `
-        <div class="slang-card" onclick="this.classList.toggle('flipped')">
+        <div class="slang-card" role="button" tabindex="0" aria-pressed="false" aria-label="Slang phrase${country ? ' from ' + country.code : ''} — activate to see the meaning" onclick="flipCard(this)" onkeydown="flipCardKey(event)">
           <div class="slang-card-inner">
             <div class="slang-card-face slang-card-front">
               <div class="country-flag-mini">${flag}</div>
@@ -21712,6 +21789,21 @@
       ],
       readings: ['si-hubiera-sabido'],
       listening: ['d-a-11-plus', 'd-a-12-plus', 'd-a-13-plus', 'd-a-14-plus'],
+      pdfs: [],
+      links: []
+    },
+    'future-simple': {
+      decks: ['verbosAr', 'verbosEr', 'verbosIr'],
+      drills: [
+        { tense: 'futuro', group: 'all', label: 'Drill: Simple future · all verbs' },
+        { tense: 'futuro', group: 'irregular', label: 'Drill: Simple future · irregular stems' }
+      ],
+      pdfs: [],
+      links: []
+    },
+    'por-para': {
+      decks: ['preposiciones'],
+      games: ['por-para'],
       pdfs: [],
       links: []
     }
@@ -28442,6 +28534,208 @@
     }
 ,
     {
+      id: 'future-simple',
+      num: '51',
+      level: 'sp2',
+      title: 'The <em>future</em> tense',
+      tag: 'Verbs · Tenses',
+      summary: 'Two ways to say what "will" happen: the easy <em>ir a</em> + infinitive, and the one-word future tense. Plus the twelve irregular stems.',
+      sections: [
+        {
+          heading: 'Two ways to talk about the <em>future</em>',
+          body: 'Spanish has two everyday ways to express the future, and English does the exact same thing. You can say "I <em>am going to</em> study" (<em>voy a estudiar</em>) or "I <em>will</em> study" (<em>estudiaré</em>). The first is the <strong>informal future</strong> (<em>ir a</em> + infinitive) — the one you\'ll use most in speech. The second is the <strong>simple future</strong> — one word, slightly more formal, and very common in writing. Learn the easy one first, then add the second.'
+        },
+        {
+          heading: 'The easy future: <em>ir a</em> + infinitive',
+          body: 'Take the verb <strong>ir</strong> (to go), conjugate it in the present, add <strong>a</strong>, then the infinitive of whatever you\'re going to do. That\'s it — the second verb never changes. This is the fastest way to start talking about the future today.',
+          conjugation: [
+            ['yo', 'voy a hablar — I\'m going to talk'],
+            ['tú', 'vas a comer — you\'re going to eat'],
+            ['él/ella/usted', 'va a salir — he/she is going to leave'],
+            ['nosotros', 'vamos a estudiar — we\'re going to study'],
+            ['vosotros', 'vais a viajar — you all are going to travel'],
+            ['ellos/ustedes', 'van a volver — they\'re going to return']
+          ]
+        },
+        {
+          heading: 'The simple future: <em>one</em> set of endings',
+          body: 'Here\'s the good news that makes the future tense the easiest tense in Spanish: <strong>every verb uses the same endings</strong>, and you attach them to the <strong>whole infinitive</strong> — you don\'t chop anything off. No -ar/-er/-ir sorting. The endings are: <strong>-é, -ás, -á, -emos, -éis, -án</strong>. Notice all but the nosotros form carry a written accent.',
+          conjugation: [
+            ['yo', 'hablar<span class="ending">é</span> — I will speak'],
+            ['tú', 'hablar<span class="ending">ás</span> — you will speak'],
+            ['él/ella/usted', 'hablar<span class="ending">á</span> — he/she will speak'],
+            ['nosotros', 'hablar<span class="ending">emos</span> — we will speak'],
+            ['vosotros', 'hablar<span class="ending">éis</span> — you all will speak'],
+            ['ellos/ustedes', 'hablar<span class="ending">án</span> — they will speak']
+          ]
+        },
+        {
+          heading: 'Same endings for <em>-er</em> and <em>-ir</em> verbs',
+          body: 'Because the stem is the entire infinitive, -er and -ir verbs work identically — just glue the same six endings onto the full infinitive.',
+          conjugation: [
+            ['comer', 'comeré, comerás, comerá, comeremos, comeréis, comerán'],
+            ['vivir', 'viviré, vivirás, vivirá, viviremos, viviréis, vivirán'],
+            ['ser', 'seré, serás, será, seremos, seréis, serán'],
+            ['ir', 'iré, irás, irá, iremos, iréis, irán']
+          ]
+        },
+        {
+          heading: 'The twelve <em>irregular</em> stems',
+          body: 'Only twelve verbs are irregular in the future, and they\'re irregular in a friendly way: the <strong>endings stay exactly the same</strong> — only the stem changes. Learn these twelve stems and you\'ve mastered every irregular future form. They fall into three tidy groups.',
+          conjugation: [
+            ['Drop the vowel', 'haber → habr-, poder → podr-, querer → querr-, saber → sabr-, caber → cabr-'],
+            ['Vowel → d', 'poner → pondr-, salir → saldr-, tener → tendr-, valer → valdr-, venir → vendr-'],
+            ['Just weird (2)', 'decir → dir-, hacer → har-'],
+            ['Example (tener)', 'tendré, tendrás, tendrá, tendremos, tendréis, tendrán'],
+            ['Example (hacer)', 'haré, harás, hará, haremos, haréis, harán']
+          ]
+        },
+        {
+          heading: 'A bonus use: the future of <em>probability</em>',
+          body: 'Spanish uses the future tense for a second thing English doesn\'t: <strong>guessing about the present</strong>. When you wonder or speculate about what\'s happening right now, you can use the future. <em>¿Qué hora será?</em> means "I wonder what time it is." <em>Estará en casa</em> means "He\'s probably at home." Context tells you whether the future is about the future or about a present guess.',
+          examples: [
+            { es: '¿Dónde estará María?', en: 'I wonder where María is. / Where can María be? (guess about now)' },
+            { es: 'Serán las tres.', en: 'It\'s probably three o\'clock. (guess about now)' },
+            { es: 'Tendrá unos treinta años.', en: 'He must be around thirty. (guess about now)' }
+          ]
+        },
+        {
+          heading: 'When to use <em>which</em>',
+          body: 'Both futures are correct and often interchangeable, but there are tendencies worth knowing.',
+          examples: [
+            { es: 'Voy a llamarte esta noche.', en: 'Near-future plans and spoken intentions lean on ir a + infinitive.' },
+            { es: 'El mundo cambiará mucho en cien años.', en: 'Predictions, promises, and writing lean on the simple future.' },
+            { es: 'Te ayudaré, no te preocupes.', en: 'Promises and firm intentions sound natural in the simple future.' }
+          ]
+        },
+        {
+          type: 'mistakes',
+          heading: 'What English speakers <em>get wrong</em>',
+          body: 'The future trips people up in a few predictable places.',
+          items: [
+            'Chopping the infinitive. The stem is the <strong>whole infinitive</strong>: it\'s <em>comeré</em>, never "comé." Don\'t remove the -er/-ir.',
+            'Forgetting the accents. Five of the six forms carry a written accent (<em>hablaré, hablarás, hablará, hablaréis, hablarán</em>) — only <em>hablaremos</em> has none. Dropping them is a spelling error.',
+            'Using the irregular endings, not stems. The irregular verbs change only the <strong>stem</strong>; the endings never change. It\'s <em>tendré</em>, not "tendaré."',
+            'Adding "a" to the simple future. It\'s <em>ir a</em> + infinitive OR the one-word future — never both. Say <em>voy a hablar</em> or <em>hablaré</em>, not "voy a hablaré."',
+            'Translating "will you...?" as a future. In Spanish a polite request is usually the present or <em>poder</em>: <em>¿Me pasas la sal?</em> / <em>¿Puedes...?</em> — not the future tense.'
+          ]
+        }
+      ],
+      quiz: [
+        { q: 'What do you attach the future endings to?', options: [
+          { text: 'The whole infinitive (hablar-, comer-, vivir-)', correct: true },
+          { text: 'The stem after dropping -ar/-er/-ir', correct: false },
+          { text: 'The yo form of the present tense', correct: false }
+        ]},
+        { q: 'Which is the correct future form of "tener" for "yo"?', options: [
+          { text: 'teneré', correct: false },
+          { text: 'tendré', correct: true },
+          { text: 'tenaré', correct: false }
+        ]},
+        { q: 'What does "¿Dónde estará?" most likely mean?', options: [
+          { text: 'Where was he?', correct: false },
+          { text: 'I wonder where he is. (a guess about now)', correct: true },
+          { text: 'Where should he go?', correct: false }
+        ]}
+      ]
+    }
+,
+    {
+      id: 'por-para',
+      num: '52',
+      level: 'sp2',
+      title: 'Por vs. <em>para</em>',
+      tag: 'Prepositions · Usage',
+      summary: 'Both translate as "for," but they\'re not interchangeable. One clear framework: <em>para</em> points forward to a goal or destination; <em>por</em> points back to a cause, or through a means.',
+      sections: [
+        {
+          heading: 'Why this one feels <em>hard</em>',
+          body: 'English collapses a lot of ideas into one little word: "for." Spanish splits that job between <strong>por</strong> and <strong>para</strong>, and they are <em>not</em> interchangeable — picking the wrong one can change the meaning of your sentence. The good news: there\'s a simple mental picture that resolves most cases, and the rest are fixed phrases you\'ll memorize.'
+        },
+        {
+          heading: 'The big idea: <em>direction</em> vs. <em>cause</em>',
+          body: 'Picture an arrow. <strong>PARA</strong> is an arrow pointing <em>forward</em> — toward a destination, a recipient, a deadline, a goal, a purpose. <strong>POR</strong> looks <em>backward</em> or <em>around</em> — the cause behind something, the route you move through, the means you use, or an exchange. If you can ask "toward what goal/who?" it\'s usually <em>para</em>. If you can ask "because of what? through what? in exchange for what?" it\'s usually <em>por</em>.'
+        },
+        {
+          heading: 'Uses of <em>PARA</em> (goal / destination)',
+          body: 'Think "aimed at." Almost every use of <em>para</em> involves a target you\'re heading toward.',
+          conjugation: [
+            ['Purpose / goal', 'Estudio <strong>para</strong> aprender. — I study (in order) to learn. (para + infinitive = "in order to")'],
+            ['Recipient', 'Este regalo es <strong>para</strong> ti. — This gift is for you.'],
+            ['Destination', 'Salimos <strong>para</strong> Madrid. — We\'re leaving for Madrid.'],
+            ['Deadline', 'La tarea es <strong>para</strong> el lunes. — The homework is due for Monday.'],
+            ['Opinion', '<strong>Para</strong> mí, es la mejor. — For me / in my opinion, it\'s the best.'],
+            ['Comparison ("for a...")', '<strong>Para</strong> ser niño, cocina muy bien. — For a kid, he cooks very well.']
+          ]
+        },
+        {
+          heading: 'Uses of <em>POR</em> (cause / means / motion through)',
+          body: 'Think "because of," "through," or "in exchange." <em>Por</em> covers the reason, the route, the method, and the trade.',
+          conjugation: [
+            ['Cause / reason', 'Lo hago <strong>por</strong> amor. — I do it out of / because of love.'],
+            ['Gratitude', 'Gracias <strong>por</strong> tu ayuda. — Thanks for your help.'],
+            ['Duration', 'Estudié <strong>por</strong> dos horas. — I studied for two hours.'],
+            ['Motion through / along', 'Caminamos <strong>por</strong> el parque. — We walk through the park.'],
+            ['Means / transport', 'Te llamo <strong>por</strong> teléfono. — I\'ll call you by phone. · Viajo <strong>por</strong> tren.'],
+            ['Exchange / price', 'Pagué veinte dólares <strong>por</strong> el libro. — I paid $20 for the book.'],
+            ['"Per"', 'dos veces <strong>por</strong> semana — twice per week'],
+            ['Part of the day', '<strong>por</strong> la mañana / <strong>por</strong> la noche — in the morning / at night']
+          ]
+        },
+        {
+          heading: 'Minimal pairs that <em>flip</em> the meaning',
+          body: 'The clearest way to feel the difference is to see the same sentence with each preposition. The choice changes what you mean.',
+          examples: [
+            { es: 'Lo hice por ti. / Lo hice para ti.', en: 'I did it because of you (for your sake). / I did it for you (to give to you).' },
+            { es: 'Trabajo por la mañana. / Salgo para el trabajo.', en: 'I work in the morning. / I leave for work (destination).' },
+            { es: 'Estudio por la beca. / Estudio para la beca.', en: 'I study because of the scholarship. / I study (in order) to get the scholarship.' }
+          ]
+        },
+        {
+          heading: 'Fixed expressions with <em>por</em>',
+          body: 'Some of the most common phrases in Spanish just use <em>por</em> — memorize them as whole units and you\'ll never have to decide.',
+          examples: [
+            { es: 'por favor', en: 'please' },
+            { es: 'por eso', en: 'that\'s why / therefore' },
+            { es: 'por supuesto', en: 'of course' },
+            { es: 'por fin', en: 'finally / at last' },
+            { es: 'por ejemplo', en: 'for example' },
+            { es: 'por lo menos', en: 'at least' }
+          ]
+        },
+        {
+          type: 'mistakes',
+          heading: 'What English speakers <em>get wrong</em>',
+          body: 'Because both mean "for," the errors are predictable — and easy to fix once you know the framework.',
+          items: [
+            'Using <em>para</em> for duration. Time you spend doing something is <strong>por</strong>: <em>Estudié por dos horas</em>, not "para dos horas."',
+            'Using <em>por</em> for a deadline. A due date is a goal you\'re aiming at → <strong>para</strong>: <em>Es para el lunes</em>, not "por el lunes."',
+            'Using <em>para</em> to say thanks. Gratitude is a cause → <strong>por</strong>: <em>Gracias por todo</em>, never "gracias para."',
+            'Mixing up "in order to." <em>para</em> + infinitive means "in order to" (purpose): <em>Como para vivir</em> — I eat in order to live.',
+            'Overthinking fixed phrases. <em>por favor, por eso, por supuesto</em> are set expressions — don\'t try to reason them out, just memorize them.'
+          ]
+        }
+      ],
+      quiz: [
+        { q: 'Which sentence correctly expresses "Thanks for your help"?', options: [
+          { text: 'Gracias para tu ayuda.', correct: false },
+          { text: 'Gracias por tu ayuda.', correct: true },
+          { text: 'Gracias de tu ayuda.', correct: false }
+        ]},
+        { q: 'To say homework is due "for Monday," you use…', options: [
+          { text: 'para el lunes (a deadline / goal)', correct: true },
+          { text: 'por el lunes (a cause)', correct: false },
+          { text: 'either one, they\'re interchangeable', correct: false }
+        ]},
+        { q: '"Estudio ___ aprender" (I study in order to learn) needs…', options: [
+          { text: 'por', correct: false },
+          { text: 'para', correct: true },
+          { text: 'no preposition', correct: false }
+        ]}
+      ]
+    }
+,
+    {
       id: 'ling-what', num: '1', level: 'ling',
       title: 'What is <em>linguistics?</em>',
       tag: 'Lingüística · Start here',
@@ -30735,7 +31029,7 @@
                     onclick="pickVocabOption(this, ${o === entry})">${dir === 'es' ? o.word : vocabCleanEn(o.back)}</button>
           `).join('')}
         </div>
-        <div class="game-feedback" id="gameFeedback">&nbsp;</div>`;
+        <div class="game-feedback" id="gameFeedback" role="status" aria-live="polite">&nbsp;</div>`;
     } else {
       answerArea = `
         <div class="game-input-row">
@@ -30743,7 +31037,7 @@
                  placeholder="${dir === 'es' ? 'In Spanish…' : 'In English…'}"
                  onkeypress="if(event.key==='Enter') submitVocabAnswer()">
         </div>
-        <div class="game-feedback" id="gameFeedback">&nbsp;</div>
+        <div class="game-feedback" id="gameFeedback" role="status" aria-live="polite">&nbsp;</div>
         <div style="margin-top:24px;">
           <button class="btn primary" style="border-color:var(--paper);background:var(--paper);color:var(--ink);" onclick="submitVocabAnswer()">Submit ↵</button>
           <button class="btn" style="border-color:var(--paper);color:var(--paper);margin-left:8px;" onclick="skipVocabRound()">Skip</button>
@@ -31137,7 +31431,7 @@
                  placeholder="${q.hint || 'Type your answer…'}"
                  onkeypress="if(event.key==='Enter') submitRachaAnswer()">
         </div>
-        <div class="game-feedback" id="gameFeedback">&nbsp;</div>
+        <div class="game-feedback" id="gameFeedback" role="status" aria-live="polite">&nbsp;</div>
         <div style="margin-top:24px;">
           <button class="btn primary" style="border-color:var(--paper);background:var(--paper);color:var(--ink);" onclick="submitRachaAnswer()">Submit ↵</button>
           <button class="btn" style="border-color:var(--paper);color:var(--paper);margin-left:8px;" onclick="skipRachaRound()">Skip</button>
@@ -31402,7 +31696,7 @@
                 style="border:1px solid var(--paper);background:transparent;color:var(--paper);font-size:18px;padding:12px 22px;min-width:84px;border-radius:3px;cursor:pointer;font-family:'JetBrains Mono',monospace;"
                 onclick="submitChoice('${ch}')">${ch}</button>`).join('')}
          </div>
-         <div class="game-feedback" id="gameFeedback">&nbsp;</div>
+         <div class="game-feedback" id="gameFeedback" role="status" aria-live="polite">&nbsp;</div>
          <div style="margin-top: 24px;">
            <button class="btn" style="border-color: var(--paper); color: var(--paper);" onclick="skipGameRound()">Skip</button>
          </div>`
@@ -31411,7 +31705,7 @@
                   placeholder="${gameState.current.hint || 'Type your answer…'}"
                   onkeypress="if(event.key==='Enter') submitGameAnswer()">
          </div>
-         <div class="game-feedback" id="gameFeedback">&nbsp;</div>
+         <div class="game-feedback" id="gameFeedback" role="status" aria-live="polite">&nbsp;</div>
          <div style="margin-top: 24px;">
            <button class="btn primary" style="border-color: var(--paper); background: var(--paper); color: var(--ink);" onclick="submitGameAnswer()">Submit ↵</button>
            <button class="btn" style="border-color: var(--paper); color: var(--paper); margin-left: 8px;" onclick="skipGameRound()">Skip</button>
