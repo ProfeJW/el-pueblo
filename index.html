@@ -3,7 +3,29 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>El Pueblo · Spanish Class</title>
+<title>El Pueblo · Spanish for English speakers</title>
+<meta name="description" content="A free, self-paced Spanish curriculum for English speakers: 82 vocabulary decks, 52 grammar lessons, a conjugation trainer, games, linguistics, and the history of all 21 Spanish-speaking countries.">
+<link rel="canonical" href="https://profejw.github.io/el-pueblo/">
+<meta name="theme-color" content="#f4ede0" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#0c0e1a" media="(prefers-color-scheme: dark)">
+<!-- Favicon (SVG, with the totem logo) -->
+<link rel="icon" href="hero-logo.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="og-image.png">
+<!-- Open Graph / social preview -->
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="El Pueblo">
+<meta property="og:locale" content="es_ES">
+<meta property="og:title" content="El Pueblo · Spanish for English speakers">
+<meta property="og:description" content="A free, self-paced Spanish curriculum: vocabulary, grammar, a conjugation trainer, games, and the Spanish-speaking world.">
+<meta property="og:url" content="https://profejw.github.io/el-pueblo/">
+<meta property="og:image" content="https://profejw.github.io/el-pueblo/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="El Pueblo — a Spanish curriculum for English speakers">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="El Pueblo · Spanish for English speakers">
+<meta name="twitter:description" content="A free, self-paced Spanish curriculum: vocabulary, grammar, a conjugation trainer, games, and the Spanish-speaking world.">
+<meta name="twitter:image" content="https://profejw.github.io/el-pueblo/og-image.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Fraunces:ital,opsz,wght@0,9..144,300..900;1,9..144,300..900&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
@@ -5539,6 +5561,27 @@
   }
   .historia-map-tip.visible { opacity: 1; }
 </style>
+<style>
+  /* ---- Accessibility helpers ---- */
+  .skip-link {
+    position: absolute; left: 8px; top: -64px; z-index: 2000;
+    background: var(--ink); color: var(--paper);
+    padding: 10px 18px; border-radius: 8px;
+    font: 600 14px/1 'Fraunces', Georgia, serif; text-decoration: none;
+    transition: top .15s ease;
+  }
+  .skip-link:focus { top: 8px; outline: 3px solid var(--rojo); outline-offset: 2px; }
+  .visually-hidden {
+    position: absolute !important; width: 1px; height: 1px;
+    padding: 0; margin: -1px; overflow: hidden;
+    clip: rect(0 0 0 0); white-space: nowrap; border: 0;
+  }
+  .flashcard:focus-visible,
+  .repaso-card:focus-visible,
+  .slang-card:focus-visible {
+    outline: 3px solid var(--rojo); outline-offset: 3px;
+  }
+</style>
 <link rel="prefetch" href="historia.js" as="script">
 <script>
   // Apply saved theme + accent IMMEDIATELY before body renders to avoid a flash.
@@ -5546,7 +5589,12 @@
   (function applyThemeEarly() {
     try {
       var saved = localStorage.getItem('elPueblo_theme');
-      if (saved === 'cosmic') document.documentElement.setAttribute('data-theme', 'cosmic');
+      var prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+      // An explicit saved choice always wins; with no saved choice, follow the
+      // operating system's colour-scheme preference.
+      if (saved === 'cosmic' || (!saved && prefersDark)) {
+        document.documentElement.setAttribute('data-theme', 'cosmic');
+      }
       var accent = localStorage.getItem('elPueblo_accent');
       if (accent && ['pink','green','orange','yellow'].indexOf(accent) !== -1) {
         document.documentElement.setAttribute('data-accent', accent);
@@ -5556,6 +5604,7 @@
 </script>
 </head>
 <body>
+<a href="#mainContent" class="skip-link">Skip to main content</a>
 
 <div class="teacher-banner">👨‍🏫 Teacher mode · Add <code style="font-family:'JetBrains Mono',monospace">?teacher</code> to URL · <a href="?" style="color:var(--paper);text-decoration:underline">exit</a></div>
 <nav>
@@ -5612,7 +5661,7 @@
       <span id="coinTotal">0</span>
     </div>
     <button id="signOutBtn" class="signin-btn signout-btn" onclick="signOut()" title="Sign out" style="display:none">Sign out</button>
-    <button id="themeToggle" class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle theme" title="Switch theme (sun / cosmic)">🌙</button>
+    <button id="themeToggle" class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle theme" aria-pressed="false" title="Switch theme (sun / cosmic)">🌙</button>
     <div class="accent-picker" id="accentPicker" role="group" aria-label="Cosmic accent color">
       <button class="accent-dot" data-color="pink"   onclick="setAccent('pink')"   aria-label="Pink accent"   title="Pink"></button>
       <button class="accent-dot" data-color="green"  onclick="setAccent('green')"  aria-label="Green accent"  title="Green"></button>
@@ -5793,7 +5842,7 @@
 </div>
 
 
-<div class="page active" data-page="home"><header>
+<div class="page active" data-page="home" id="mainContent" tabindex="-1"><header>
   <div class="eyebrow">Spanish Class · Curso 2026–2027</div>
   <div class="hero-head">
     <h1>
@@ -6024,7 +6073,7 @@
     <div class="section-num">Vocabulario</div>
   </div>
   <div class="flashcard-wrap">
-    <div class="flashcard" id="flashcard" onclick="this.classList.toggle('flipped')">
+    <div class="flashcard" id="flashcard" role="button" tabindex="0" aria-pressed="false" aria-label="Flashcard — activate to flip between Spanish and English" onclick="flipCard(this)" onkeydown="flipCardKey(event)">
       <div class="flashcard-inner">
         <div class="flashcard-face front">
           <div class="card-corner">
@@ -8389,6 +8438,16 @@
     if (page === 'linguistica' && typeof renderLinguistica === 'function') renderLinguistica();
     if (page === 'adquisicion' && typeof renderAdquisicion === 'function') renderAdquisicion();
     if (page === 'lesson' && typeof renderLessonDetail === 'function') renderLessonDetail(param);
+    // Move keyboard focus to the new section's heading on navigation so screen-reader
+    // and keyboard users land in the fresh content instead of being stranded at the
+    // top of this single-page document. Skipped on first load (no prior navigation).
+    if (target && window.__elpNavigated) {
+      const heading = target.querySelector('h1, h2');
+      const focusEl = heading || target;
+      focusEl.setAttribute('tabindex', '-1');
+      try { focusEl.focus({ preventScroll: true }); } catch (e) { focusEl.focus(); }
+    }
+    window.__elpNavigated = true;
   }
 
   window.addEventListener('hashchange', () => {
@@ -9483,6 +9542,7 @@
     if (btn) {
       const isCosmic = document.documentElement.getAttribute('data-theme') === 'cosmic';
       btn.textContent = isCosmic ? '☀️' : '🌙';
+      btn.setAttribute('aria-pressed', isCosmic ? 'true' : 'false');
       btn.setAttribute('title', isCosmic ? 'Switch to sun theme' : 'Switch to cosmic theme');
     }
     // Highlight the active accent dot
@@ -9816,7 +9876,9 @@
     document.getElementById('card-num').textContent = String(cardIdx + 1).padStart(2, '0') + ' / ' + String(deck.length).padStart(2, '0');
     document.getElementById('card-num-back').textContent = String(cardIdx + 1).padStart(2, '0') + ' / ' + String(deck.length).padStart(2, '0');
     document.getElementById('card-progress').textContent = cardIdx + 1;
-    document.getElementById('flashcard').classList.remove('flipped');
+    const fc = document.getElementById('flashcard');
+    fc.classList.remove('flipped');
+    fc.setAttribute('aria-pressed', 'false');
   }
   // Flashcards no longer award coins (engagement, not skill)
   // We still track unique cards viewed for the achievement system
@@ -9984,7 +10046,7 @@
       <div style="font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--ink-soft);text-align:center;margin-bottom:12px;">
         Card ${s.idx + 1} / ${s.total} · ${MATCH_DECK_LABELS[item.dk] || item.dk}
       </div>
-      <div class="repaso-card" id="repasoCard" onclick="flipRepaso()">
+      <div class="repaso-card" id="repasoCard" role="button" tabindex="0" aria-expanded="false" aria-label="Review card — activate to reveal the answer" onclick="flipRepaso()" onkeydown="flipCardKey(event)">
         <div class="rc-tag">${box === 0 ? 'New word' : 'Box ' + box}</div>
         <div class="rc-box">${boxDots}</div>
         <div class="rc-prompt${prompt.length > 16 ? ' small' : ''}">${prompt}</div>
@@ -10003,12 +10065,27 @@
       </div>`;
   }
 
+  // --- Accessible flip-card helpers ---------------------------------------
+  // Flip cards are exposed as keyboard-operable buttons. flipCard() toggles the
+  // visual flip and keeps aria-pressed in sync; flipCardKey() lets Enter/Space
+  // activate a focused card the same way a click would.
+  function flipCard(el) {
+    const flipped = el.classList.toggle('flipped');
+    el.setAttribute('aria-pressed', flipped ? 'true' : 'false');
+  }
+  function flipCardKey(e) {
+    if (e.key === 'Enter' || e.key === ' ' || e.key === 'Spacebar') {
+      e.preventDefault();
+      e.currentTarget.click();
+    }
+  }
+
   function flipRepaso() {
     const s = srsState;
     if (!s || s.flipped) return;
     s.flipped = true;
     const card = document.getElementById('repasoCard');
-    if (card) card.classList.add('flipped');
+    if (card) { card.classList.add('flipped'); card.setAttribute('aria-expanded', 'true'); }
     const hint = document.getElementById('repasoHint');
     if (hint) hint.textContent = 'How well did you know it?';
     const grade = document.getElementById('repasoGrade');
@@ -20682,7 +20759,7 @@
       const country = COUNTRIES.find(c => c.code === s.country);
       const flag = FLAGS[s.country] || '';
       return `
-        <div class="slang-card" onclick="this.classList.toggle('flipped')">
+        <div class="slang-card" role="button" tabindex="0" aria-pressed="false" aria-label="Slang phrase${country ? ' from ' + country.code : ''} — activate to see the meaning" onclick="flipCard(this)" onkeydown="flipCardKey(event)">
           <div class="slang-card-inner">
             <div class="slang-card-face slang-card-front">
               <div class="country-flag-mini">${flag}</div>
@@ -30952,7 +31029,7 @@
                     onclick="pickVocabOption(this, ${o === entry})">${dir === 'es' ? o.word : vocabCleanEn(o.back)}</button>
           `).join('')}
         </div>
-        <div class="game-feedback" id="gameFeedback">&nbsp;</div>`;
+        <div class="game-feedback" id="gameFeedback" role="status" aria-live="polite">&nbsp;</div>`;
     } else {
       answerArea = `
         <div class="game-input-row">
@@ -30960,7 +31037,7 @@
                  placeholder="${dir === 'es' ? 'In Spanish…' : 'In English…'}"
                  onkeypress="if(event.key==='Enter') submitVocabAnswer()">
         </div>
-        <div class="game-feedback" id="gameFeedback">&nbsp;</div>
+        <div class="game-feedback" id="gameFeedback" role="status" aria-live="polite">&nbsp;</div>
         <div style="margin-top:24px;">
           <button class="btn primary" style="border-color:var(--paper);background:var(--paper);color:var(--ink);" onclick="submitVocabAnswer()">Submit ↵</button>
           <button class="btn" style="border-color:var(--paper);color:var(--paper);margin-left:8px;" onclick="skipVocabRound()">Skip</button>
@@ -31354,7 +31431,7 @@
                  placeholder="${q.hint || 'Type your answer…'}"
                  onkeypress="if(event.key==='Enter') submitRachaAnswer()">
         </div>
-        <div class="game-feedback" id="gameFeedback">&nbsp;</div>
+        <div class="game-feedback" id="gameFeedback" role="status" aria-live="polite">&nbsp;</div>
         <div style="margin-top:24px;">
           <button class="btn primary" style="border-color:var(--paper);background:var(--paper);color:var(--ink);" onclick="submitRachaAnswer()">Submit ↵</button>
           <button class="btn" style="border-color:var(--paper);color:var(--paper);margin-left:8px;" onclick="skipRachaRound()">Skip</button>
@@ -31619,7 +31696,7 @@
                 style="border:1px solid var(--paper);background:transparent;color:var(--paper);font-size:18px;padding:12px 22px;min-width:84px;border-radius:3px;cursor:pointer;font-family:'JetBrains Mono',monospace;"
                 onclick="submitChoice('${ch}')">${ch}</button>`).join('')}
          </div>
-         <div class="game-feedback" id="gameFeedback">&nbsp;</div>
+         <div class="game-feedback" id="gameFeedback" role="status" aria-live="polite">&nbsp;</div>
          <div style="margin-top: 24px;">
            <button class="btn" style="border-color: var(--paper); color: var(--paper);" onclick="skipGameRound()">Skip</button>
          </div>`
@@ -31628,7 +31705,7 @@
                   placeholder="${gameState.current.hint || 'Type your answer…'}"
                   onkeypress="if(event.key==='Enter') submitGameAnswer()">
          </div>
-         <div class="game-feedback" id="gameFeedback">&nbsp;</div>
+         <div class="game-feedback" id="gameFeedback" role="status" aria-live="polite">&nbsp;</div>
          <div style="margin-top: 24px;">
            <button class="btn primary" style="border-color: var(--paper); background: var(--paper); color: var(--ink);" onclick="submitGameAnswer()">Submit ↵</button>
            <button class="btn" style="border-color: var(--paper); color: var(--paper); margin-left: 8px;" onclick="skipGameRound()">Skip</button>
