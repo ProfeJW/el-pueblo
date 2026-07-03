@@ -151,10 +151,11 @@
         var entry = pick(clozePool());
         var c = entry.card;
         var bare = splitArticle(c.word).bare;
-        // Blank the same whole-word occurrence the pool matched — a plain
-        // string replace would blank the first substring hit (e.g. "sol"
-        // inside "solamente") and make the puzzle unsolvable.
-        var blankRe = new RegExp('(^|[^\\p{L}])(' + escapeReg(entry.token) + ')(?=[^\\p{L}]|$)', 'u');
+        // Blank every whole-word occurrence of the token. Word-boundary match
+        // (not a plain string replace) so "sol" isn't blanked inside
+        // "solamente"; global so a sentence that repeats the word doesn't leave
+        // a copy visible and give the answer away.
+        var blankRe = new RegExp('(^|[^\\p{L}])(' + escapeReg(entry.token) + ')(?=[^\\p{L}]|$)', 'gu');
         var blanked = c.ex.replace(blankRe, '$1______');
         return {
           promptLabel: 'Fill in the missing word',

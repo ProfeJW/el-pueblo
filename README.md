@@ -34,11 +34,7 @@ hero-logo.svg  og-image.png  robots.txt  sitemap.xml   Static assets
 images/  standards/                                     Static asset folders
 
 build.mjs               Reassembles src/ (+ assets) into dist/, minifying JS/CSS
-scripts/split-source.mjs  One-time tool that generated src/ from index.html
 ```
-
-`index.html` at the repo root is the **legacy single-file build** that the old
-GitHub Pages setup serves directly. See *Deploying* for how to retire it.
 
 ### The include markers
 
@@ -79,9 +75,6 @@ npm run serve      # serve dist/ at http://localhost:8000
 Other scripts:
 
 - `npm run build:raw` — assemble without minifying (useful for debugging).
-- `npm run split` — regenerate `src/` from the root `index.html` and verify the
-  reassembly is byte-for-byte identical. Only needed if you ever edit the legacy
-  monolith and want to re-derive the source tree.
 
 Minification never renames identifiers, because the app relies on global
 functions being reachable from inline `onclick="…"` handlers.
@@ -91,12 +84,6 @@ functions being reachable from inline `onclick="…"` handlers.
 ## Deploying
 
 A GitHub Actions workflow (`.github/workflows/deploy.yml`) builds `src/` and
-publishes `dist/` to GitHub Pages on every push to `main`.
-
-**One-time setup:** in the repo's **Settings → Pages**, set **Source** to
-**"GitHub Actions"**. Until you do this, Pages keeps serving the legacy root
-`index.html` and the workflow's deploy step has no effect.
-
-Once the Actions deploy is confirmed working, the root `index.html` is no longer
-used and can be deleted (the root content `*.js` data files stay — the build
-still copies them into `dist/`).
+publishes `dist/` to GitHub Pages on every push to `main`. The repo's Pages
+**Source** is set to **"GitHub Actions"**, so every push to `main` rebuilds and
+redeploys automatically — just edit `src/` (or the root data files) and push.
