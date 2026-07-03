@@ -3165,6 +3165,22 @@
   .reading-card.completed .level-pill.beginner { color: #8db775; }
   .reading-card.completed .level-pill.intermediate { color: var(--ocre); }
   .reading-card.completed .level-pill.advanced { color: #e8826f; }
+
+  /* Vocab deck level filter + per-deck level dot (shares the reading colors) */
+  .deck-level-filter { display: flex; gap: 8px; flex-wrap: wrap; margin: 2px 0 12px; }
+  .deck-pick .pill[data-level]::before,
+  .deck-level-filter .pill[data-level]::before {
+    content: ''; display: inline-block; width: 7px; height: 7px;
+    border-radius: 50%; margin-right: 7px; vertical-align: middle;
+    background: var(--ink-soft);
+  }
+  .deck-pick .pill[data-level="beginner"]::before,
+  .deck-level-filter .pill[data-level="beginner"]::before { background: var(--verde); }
+  .deck-pick .pill[data-level="intermediate"]::before,
+  .deck-level-filter .pill[data-level="intermediate"]::before { background: var(--ocre); }
+  .deck-pick .pill[data-level="advanced"]::before,
+  .deck-level-filter .pill[data-level="advanced"]::before { background: var(--rojo); }
+
   .reading-card h3 {
     font-family: 'DM Serif Display', serif;
     font-size: 22px;
