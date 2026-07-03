@@ -1,0 +1,71 @@
+
+      .country-region {
+        fill: var(--paper-deep);
+        stroke: var(--ink);
+        stroke-width: 0.8;
+        cursor: pointer;
+        transition: fill 0.15s ease;
+      }
+      [data-theme="cosmic"] .country-region { fill: #1f2540; stroke: var(--ocre); stroke-width: 0.6; }
+      .country-region:hover { fill: var(--ocre); }
+      [data-theme="cosmic"] .country-region:hover { fill: rgba(255, 209, 102, 0.4); }
+      .country-region.correct { fill: var(--verde) !important; }
+      .country-region.wrong { fill: var(--rojo) !important; }
+      .country-region.reveal { fill: var(--ocre) !important; stroke-width: 2.2; }
+      .neighbor-region {
+        fill: rgba(31, 26, 20, 0.06);
+        stroke: rgba(31, 26, 20, 0.28);
+        stroke-width: 0.6;
+        pointer-events: none;
+      }
+      [data-theme="cosmic"] .neighbor-region {
+        fill: rgba(255, 255, 255, 0.03);
+        stroke: rgba(255, 255, 255, 0.18);
+      }
+      .ocean-bg { fill: rgba(44, 82, 130, 0.04); }
+      [data-theme="cosmic"] .ocean-bg { fill: rgba(99, 102, 241, 0.04); }
+      .inset-box {
+        fill: none;
+        stroke: var(--ink-soft);
+        stroke-width: 0.5;
+        stroke-dasharray: 3,3;
+        opacity: 0.5;
+        pointer-events: none;
+      }
+      .inset-label {
+        font-family: 'JetBrains Mono', monospace;
+        font-size: 8px;
+        fill: var(--ink-soft);
+        text-anchor: end;
+        pointer-events: none;
+        opacity: 0.7;
+        letter-spacing: 0.1em;
+      }
+      .scale-note {
+        font-family: 'Fraunces', serif;
+        font-style: italic;
+        font-size: 7px;
+        fill: var(--ink-soft);
+        text-anchor: end;
+        pointer-events: none;
+        opacity: 0.55;
+      }
+      .capital-dot {
+        display: none;
+        fill: var(--rojo);
+        stroke: var(--paper);
+        stroke-width: 1.5;
+        cursor: pointer;
+        transition: r 0.15s ease, fill 0.15s ease;
+        pointer-events: all;
+      }
+      [data-theme="cosmic"] .capital-dot { stroke: #0c0e1a; }
+      .capitals-mode .capital-dot { display: inline; }
+      .capitals-mode .country-region { pointer-events: none; cursor: default; }
+      .capitals-mode .country-region:hover { fill: var(--paper-deep); }
+      [data-theme="cosmic"] .capitals-mode .country-region:hover { fill: #1f2540; }
+      .capital-dot:hover { r: 8; fill: var(--ocre); }
+      .capital-dot.correct { fill: var(--verde) !important; r: 9; }
+      .capital-dot.wrong { fill: var(--rojo) !important; r: 9; }
+      .capital-dot.reveal { fill: var(--ocre) !important; r: 10; }
+    

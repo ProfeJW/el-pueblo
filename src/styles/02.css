@@ -1,0 +1,38 @@
+
+    .hero-head { display: flex; align-items: center; justify-content: center; gap: 40px; flex-wrap: wrap; margin: 10px 0 14px; text-align: left; }
+    .hero-head h1 { margin: 0; }
+    .hero-logo { width: clamp(120px, 17vw, 190px); height: auto; flex-shrink: 0; color: #2a2018; filter: drop-shadow(0 6px 16px rgba(0,0,0,0.14)); }
+    /* Theme-aware: solid ink on the daytime theme, accent-colored neon glow on cosmic */
+    [data-theme="cosmic"] .hero-logo { color: var(--rojo); filter: drop-shadow(0 0 4px var(--rojo)) drop-shadow(0 0 11px var(--rojo)); }
+    @media (max-width: 560px) { .hero-head { gap: 18px; } .hero-logo { width: 104px; } }
+    .site-search-results {
+      position:absolute; left:0; right:0; top:calc(100% + 6px); z-index:50;
+      background:var(--card-bg); border:1px solid var(--line); border-radius:10px;
+      box-shadow:0 12px 36px rgba(0,0,0,0.18); max-height:62vh; overflow-y:auto; padding:6px;
+    }
+    .site-search-results .ss-group-label {
+      font-family:'JetBrains Mono',monospace; font-size:11px; letter-spacing:0.12em; text-transform:uppercase;
+      color:var(--ink-soft); padding:10px 12px 4px;
+    }
+    .site-search-results .ss-row {
+      display:flex; align-items:center; gap:12px; width:100%; text-align:left;
+      background:transparent; border:none; border-radius:7px; padding:9px 12px; cursor:pointer;
+      color:var(--ink); font-family:inherit; font-size:15px;
+    }
+    .site-search-results .ss-row:hover, .site-search-results .ss-row:focus {
+      background:var(--paper-deep); outline:none;
+    }
+    .site-search-results .ss-icon { font-size:18px; flex-shrink:0; width:22px; text-align:center; }
+    .site-search-results .ss-text { display:flex; flex-direction:column; line-height:1.25; min-width:0; }
+    .site-search-results .ss-label { font-weight:600; }
+    .site-search-results .ss-label span { font-weight:400; }
+    .site-search-results .ss-sub { font-size:12px; color:var(--ink-soft); }
+    .site-search-results .ss-word { padding:8px 12px 10px; }
+    .site-search-results .ss-word-head { display:flex; align-items:center; gap:12px; }
+    .site-search-results .ss-chips { display:flex; flex-wrap:wrap; gap:6px; margin:6px 0 0 34px; }
+    .site-search-results .ss-chip {
+      background:var(--paper-deep); border:1px solid var(--line); border-radius:999px;
+      padding:3px 11px; font-size:12px; color:var(--ink); cursor:pointer; font-family:inherit;
+    }
+    .site-search-results .ss-chip:hover, .site-search-results .ss-chip:focus { border-color:var(--rojo); outline:none; }
+  
