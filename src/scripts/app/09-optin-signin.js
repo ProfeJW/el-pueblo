@@ -420,10 +420,104 @@
   let currentDeck = 'cotidiano';
   let cardIdx = 0;
 
+  // Spanish -> English-reader "sounds-like" pronunciation, e.g. "la madrugada"
+  // -> "lah mah-droo-GAH-dah". Spanish spelling is phonetic, so this is
+  // rule-based: syllabify, find the stressed syllable, map each syllable to
+  // English phonemes with the stressed one in CAPS. Helpers stay private.
+  const spanishRespell = (function () {
+    const STRONG = 'aeoáéó', WEAK_ACC = 'íú', ACCENTED = 'áéíóú';
+    const VOWELS = STRONG + 'iuü' + WEAK_ACC;
+    const isV = c => !!c && VOWELS.includes(c);
+    const softE = c => c === 'e' || c === 'i' || c === 'é' || c === 'í';
+    const VMAP = { a: 'ah', á: 'ah', e: 'eh', é: 'eh', i: 'ee', í: 'ee', o: 'oh', ó: 'oh', u: 'oo', ú: 'oo', ü: 'oo' };
+    const FALL = { ai: 'eye', ay: 'eye', ei: 'ay', ey: 'ay', oi: 'oy', oy: 'oy', au: 'ow', eu: 'eh-oo' };
+    const INSEP = ['ch', 'll', 'rr'];
+    const CLUS = ['pr', 'br', 'tr', 'dr', 'cr', 'gr', 'fr', 'pl', 'bl', 'cl', 'gl', 'fl'];
+    function syllabify(w) {
+      const n = w.length, nuclei = []; let i = 0;
+      while (i < n) {
+        if (isV(w[i])) {
+          let j = i;
+          while (j + 1 < n && isV(w[j + 1])) {
+            const a = w[j], b = w[j + 1];
+            if ((STRONG.includes(a) && STRONG.includes(b)) || WEAK_ACC.includes(a) || WEAK_ACC.includes(b)) break;
+            j++;
+          }
+          nuclei.push({ start: i, end: j }); i = j + 1;
+        } else i++;
+      }
+      if (nuclei.length <= 1) return [w];
+      const cuts = [];
+      for (let k = 0; k < nuclei.length - 1; k++) {
+        const cStart = nuclei[k].end + 1, cEnd = nuclei[k + 1].start;
+        const cons = w.slice(cStart, cEnd).toLowerCase();
+        let b;
+        if (cons.length <= 1) b = cStart;
+        else if (cons.length === 2) b = (INSEP.includes(cons) || CLUS.includes(cons)) ? cStart : cStart + 1;
+        else { const lt = cons.slice(-2); b = (CLUS.includes(lt) || INSEP.includes(lt)) ? cEnd - 2 : cEnd - 1; }
+        cuts.push(b);
+      }
+      const parts = []; let prev = 0;
+      for (const c of cuts) { parts.push(w.slice(prev, c)); prev = c; }
+      parts.push(w.slice(prev));
+      return parts;
+    }
+    function stressIdx(sylls, word) {
+      for (let k = 0; k < sylls.length; k++) if ([...sylls[k]].some(c => ACCENTED.includes(c))) return k;
+      const last = word[word.length - 1];
+      if (isV(last) || last === 'n' || last === 's') return Math.max(0, sylls.length - 2);
+      return sylls.length - 1;
+    }
+    function respellSyl(s) {
+      const c = s.toLowerCase().split(''); let out = '';
+      for (let i = 0; i < c.length; i++) {
+        const ch = c[i], next = c[i + 1] || '', next2 = c[i + 2] || '', prev = c[i - 1] || '', nV = isV(next);
+        if (isV(ch)) {
+          if (FALL[ch + next] && !ACCENTED.includes(next)) { out += FALL[ch + next]; i++; continue; }
+          if ((ch === 'i' || ch === 'í') && nV) { out += 'y'; continue; }
+          if ((ch === 'u' || ch === 'ú' || ch === 'ü') && nV) { out += 'w'; continue; }
+          if (isV(prev) && ch === 'i') { out += 'ee'; continue; }
+          if (isV(prev) && ch === 'u') { out += 'oo'; continue; }
+          out += VMAP[ch] || ch; continue;
+        }
+        switch (ch) {
+          case 'h': break;
+          case 'c': out += softE(next) ? 's' : 'k'; break;
+          case 'z': out += 's'; break;
+          case 'j': out += 'h'; break;
+          case 'ñ': out += 'ny'; break;
+          case 'v': out += 'b'; break;
+          case 'x': out += (i === 0 ? 's' : 'ks'); break;
+          case 'y': out += nV ? 'y' : 'ee'; break;
+          case 'r': out += 'r'; break;
+          case 'w': out += 'w'; break;
+          case 'q': out += 'k'; if (next === 'u') i++; break;
+          case 'g': if (softE(next)) { out += 'h'; break; } out += 'g'; if (next === 'u' && softE(next2)) i++; break;
+          case 'l': if (next === 'l') { out += 'y'; i++; } else out += 'l'; break;
+          default: out += ch;
+        }
+      }
+      return out || s;
+    }
+    return function (phrase) {
+      return String(phrase).trim().split(/\s+/).map(word => {
+        const clean = word.toLowerCase().replace(/[^a-záéíóúüñ]/g, '');
+        if (!clean) return '';
+        const sylls = syllabify(clean);
+        const st = stressIdx(sylls, clean);
+        const r = sylls.map(respellSyl);
+        if (r.length > 1) r[st] = r[st].toUpperCase();
+        return r.join('-').replace(/hh+/gi, m => m[0]);
+      }).filter(Boolean).join(' ');
+    };
+  })();
+
   function renderCard() {
     const deck = decks[currentDeck];
     const c = deck[cardIdx];
     document.getElementById('card-front').textContent = c.word;
+    const pron = document.getElementById('card-pron');
+    if (pron) pron.textContent = spanishRespell(c.word);
     document.getElementById('card-back').textContent = c.back;
     document.getElementById('card-cat').textContent = c.cat;
     document.getElementById('card-example').textContent = c.ex;
