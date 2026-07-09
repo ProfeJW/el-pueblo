@@ -19,7 +19,7 @@
     const btn = document.getElementById('avatarBtn');
     if (!btn) return;
     if (a.type === 'image') {
-      btn.innerHTML = `<img src="${a.value}" alt="avatar">`;
+      btn.innerHTML = `<img src="${a.value}" alt="Your avatar">`;
       btn.style.background = 'transparent';
     } else {
       btn.innerHTML = a.value;
