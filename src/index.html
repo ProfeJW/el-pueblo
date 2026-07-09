@@ -493,89 +493,95 @@
         🧠 <span><strong>Smart Repaso</strong> — review with spaced repetition</span>
         <span class="repaso-cta-badge" id="vocabRepasoBadge"></span>
       </a>
+      <div class="deck-level-filter" id="deckLevelFilter" role="group" aria-label="Filter vocabulary decks by proficiency level">
+        <button class="pill active" onclick="filterDecks('all', this)">All levels</button>
+        <button class="pill" data-level="beginner" onclick="filterDecks('beginner', this)">Beginner</button>
+        <button class="pill" data-level="intermediate" onclick="filterDecks('intermediate', this)">Intermediate</button>
+        <button class="pill" data-level="advanced" onclick="filterDecks('advanced', this)">Advanced</button>
+      </div>
       <div class="deck-pick" style="flex-wrap: wrap;">
-        <button class="pill" onclick="loadDeck('adjetivos', this)">Adjectives</button>
-        <button class="pill" onclick="loadDeck('adverbios', this)">Adverbs</button>
-        <button class="pill" onclick="loadDeck('aeropuerto', this)">Air travel</button>
-        <button class="pill" onclick="loadDeck('animales', this)">Animals</button>
-        <button class="pill" onclick="loadDeck('verbosAr', this)">-AR verbs</button>
-        <button class="pill" onclick="loadDeck('argentina', this)">Argentina</button>
-        <button class="pill" onclick="loadDeck('cuerpo', this)">Body parts</button>
-        <button class="pill" onclick="loadDeck('bolivia', this)">Bolivia</button>
-        <button class="pill" onclick="loadDeck('calendario', this)">Calendar</button>
-        <button class="pill" onclick="loadDeck('acampar', this)">Camping</button>
-        <button class="pill" onclick="loadDeck('chile', this)">Chile</button>
-        <button class="pill" onclick="loadDeck('clases', this)">Classes</button>
-        <button class="pill" onclick="loadDeck('salon', this)">Classroom</button>
-        <button class="pill" onclick="loadDeck('mandatos', this)">Classroom commands</button>
-        <button class="pill" onclick="loadDeck('ropa', this)">Clothing</button>
-        <button class="pill" onclick="loadDeck('colombia', this)">Colombia</button>
-        <button class="pill" onclick="loadDeck('colores', this)">Colors</button>
-        <button class="pill" onclick="loadDeck('construccion', this)">Construction</button>
-        <button class="pill" onclick="loadDeck('cocina', this)">Cooking</button>
-        <button class="pill" onclick="loadDeck('cuba', this)">Cuba</button>
-        <button class="pill" onclick="loadDeck('rutina', this)">Daily routine</button>
-        <button class="pill" onclick="loadDeck('bailes', this)">Dances</button>
-        <button class="pill" onclick="loadDeck('diadelosmuertos', this)">Día de los Muertos</button>
-        <button class="pill" onclick="loadDeck('quijote', this)">Don Quijote</button>
-        <button class="pill" onclick="loadDeck('educacion', this)">Education</button>
-        <button class="pill" onclick="loadDeck('futbol', this)">El fútbol</button>
-        <button class="pill" onclick="loadDeck('elsalvador', this)">El Salvador</button>
-        <button class="pill" onclick="loadDeck('emociones', this)">Emotions</button>
-        <button class="pill" onclick="loadDeck('verbosEr', this)">-ER verbs</button>
-        <button class="pill" onclick="loadDeck('espana', this)">España</button>
-        <button class="pill active" onclick="loadDeck('cotidiano', this)">Everyday</button>
-        <button class="pill" onclick="loadDeck('familia', this)">Family</button>
-        <button class="pill" onclick="loadDeck('cumpleanos', this)">¡Feliz cumpleaños!</button>
-        <button class="pill" onclick="loadDeck('pesca', this)">Fishing</button>
-        <button class="pill" onclick="loadDeck('comida', this)">Food</button>
-        <button class="pill" onclick="loadDeck('geografia', this)">Geography</button>
-        <button class="pill" onclick="loadDeck('saludos', this)">Greetings</button>
-        <button class="pill" onclick="loadDeck('guatemala', this)">Guatemala</button>
-        <button class="pill" onclick="loadDeck('gustar', this)">Gustar verbs</button>
-        <button class="pill" onclick="loadDeck('salud', this)">Health &amp; medicine</button>
-        <button class="pill" onclick="loadDeck('fiestas', this)">Holidays</button>
-        <button class="pill" onclick="loadDeck('honduras', this)">Honduras</button>
-        <button class="pill" onclick="loadDeck('casa', this)">House &amp; furniture</button>
-        <button class="pill" onclick="loadDeck('caza', this)">Hunting</button>
-        <button class="pill" onclick="loadDeck('verbosIr', this)">-IR verbs</button>
-        <button class="pill" onclick="loadDeck('derecho', this)">Law</button>
-        <button class="pill" onclick="loadDeck('lazarillo', this)">Lazarillo de Tormes</button>
-        <button class="pill" onclick="loadDeck('literatura', this)">Literature</button>
-        <button class="pill" onclick="loadDeck('mercado', this)">Market &amp; shopping</button>
-        <button class="pill" onclick="loadDeck('matematicas', this)">Math</button>
-        <button class="pill" onclick="loadDeck('mexico', this)">México</button>
-        <button class="pill" onclick="loadDeck('militar', this)">Military</button>
-        <button class="pill" onclick="loadDeck('musica', this)">Music</button>
-        <button class="pill" onclick="loadDeck('naturaleza', this)">Nature</button>
-        <button class="pill" onclick="loadDeck('numeros', this)">Numbers</button>
-        <button class="pill" onclick="loadDeck('paraguay', this)">Paraguay</button>
-        <button class="pill" onclick="loadDeck('gente', this)">People</button>
-        <button class="pill" onclick="loadDeck('peru', this)">Perú</button>
-        <button class="pill" onclick="loadDeck('lugares', this)">Places in town</button>
-        <button class="pill" onclick="loadDeck('politica', this)">Politics</button>
-        <button class="pill" onclick="loadDeck('preposiciones', this)">Prepositions</button>
-        <button class="pill" onclick="loadDeck('profesiones', this)">Professions</button>
-        <button class="pill" onclick="loadDeck('pronombres', this)">Pronouns</button>
-        <button class="pill" onclick="loadDeck('puertorico', this)">Puerto Rico</button>
-        <button class="pill" onclick="loadDeck('preguntas', this)">Question words</button>
-        <button class="pill" onclick="loadDeck('relaciones', this)">Relationships</button>
-        <button class="pill" onclick="loadDeck('religiones', this)">Religions</button>
-        <button class="pill" onclick="loadDeck('restaurante', this)">Restaurant</button>
-        <button class="pill" onclick="loadDeck('escuela', this)">School Life</button>
-        <button class="pill" onclick="loadDeck('ciencia', this)">Science</button>
-        <button class="pill" onclick="loadDeck('espacio', this)">Space</button>
-        <button class="pill" onclick="loadDeck('deportes', this)">Sports</button>
-        <button class="pill" onclick="loadDeck('tecnologia', this)">Technology</button>
-        <button class="pill" onclick="loadDeck('hora', this)">Telling time</button>
-        <button class="pill" onclick="loadDeck('teneridioms', this)">Tener idioms</button>
-        <button class="pill" onclick="loadDeck('herramientas', this)">Tools</button>
-        <button class="pill" onclick="loadDeck('viajes', this)">Travel</button>
-        <button class="pill" onclick="loadDeck('uruguay', this)">Uruguay</button>
-        <button class="pill" onclick="loadDeck('vehiculos', this)">Vehicles</button>
-        <button class="pill" onclick="loadDeck('venezuela', this)">Venezuela</button>
-        <button class="pill" onclick="loadDeck('armas', this)">Weapons</button>
-        <button class="pill" onclick="loadDeck('tiempo', this)">Weather &amp; seasons</button>
+        <button class="pill" data-level="beginner" onclick="loadDeck('adjetivos', this)">Adjectives</button>
+        <button class="pill" data-level="intermediate" onclick="loadDeck('adverbios', this)">Adverbs</button>
+        <button class="pill" data-level="intermediate" onclick="loadDeck('aeropuerto', this)">Air travel</button>
+        <button class="pill" data-level="beginner" onclick="loadDeck('animales', this)">Animals</button>
+        <button class="pill" data-level="beginner" onclick="loadDeck('verbosAr', this)">-AR verbs</button>
+        <button class="pill" data-level="intermediate" onclick="loadDeck('argentina', this)">Argentina</button>
+        <button class="pill" data-level="beginner" onclick="loadDeck('cuerpo', this)">Body parts</button>
+        <button class="pill" data-level="intermediate" onclick="loadDeck('bolivia', this)">Bolivia</button>
+        <button class="pill" data-level="beginner" onclick="loadDeck('calendario', this)">Calendar</button>
+        <button class="pill" data-level="intermediate" onclick="loadDeck('acampar', this)">Camping</button>
+        <button class="pill" data-level="intermediate" onclick="loadDeck('chile', this)">Chile</button>
+        <button class="pill" data-level="beginner" onclick="loadDeck('clases', this)">Classes</button>
+        <button class="pill" data-level="beginner" onclick="loadDeck('salon', this)">Classroom</button>
+        <button class="pill" data-level="beginner" onclick="loadDeck('mandatos', this)">Classroom commands</button>
+        <button class="pill" data-level="beginner" onclick="loadDeck('ropa', this)">Clothing</button>
+        <button class="pill" data-level="intermediate" onclick="loadDeck('colombia', this)">Colombia</button>
+        <button class="pill" data-level="beginner" onclick="loadDeck('colores', this)">Colors</button>
+        <button class="pill" data-level="intermediate" onclick="loadDeck('construccion', this)">Construction</button>
+        <button class="pill" data-level="intermediate" onclick="loadDeck('cocina', this)">Cooking</button>
+        <button class="pill" data-level="intermediate" onclick="loadDeck('cuba', this)">Cuba</button>
+        <button class="pill" data-level="beginner" onclick="loadDeck('rutina', this)">Daily routine</button>
+        <button class="pill" data-level="intermediate" onclick="loadDeck('bailes', this)">Dances</button>
+        <button class="pill" data-level="intermediate" onclick="loadDeck('diadelosmuertos', this)">Día de los Muertos</button>
+        <button class="pill" data-level="advanced" onclick="loadDeck('quijote', this)">Don Quijote</button>
+        <button class="pill" data-level="intermediate" onclick="loadDeck('educacion', this)">Education</button>
+        <button class="pill" data-level="intermediate" onclick="loadDeck('futbol', this)">El fútbol</button>
+        <button class="pill" data-level="intermediate" onclick="loadDeck('elsalvador', this)">El Salvador</button>
+        <button class="pill" data-level="beginner" onclick="loadDeck('emociones', this)">Emotions</button>
+        <button class="pill" data-level="beginner" onclick="loadDeck('verbosEr', this)">-ER verbs</button>
+        <button class="pill" data-level="intermediate" onclick="loadDeck('espana', this)">España</button>
+        <button class="pill active" data-level="beginner" onclick="loadDeck('cotidiano', this)">Everyday</button>
+        <button class="pill" data-level="beginner" onclick="loadDeck('familia', this)">Family</button>
+        <button class="pill" data-level="beginner" onclick="loadDeck('cumpleanos', this)">¡Feliz cumpleaños!</button>
+        <button class="pill" data-level="intermediate" onclick="loadDeck('pesca', this)">Fishing</button>
+        <button class="pill" data-level="beginner" onclick="loadDeck('comida', this)">Food</button>
+        <button class="pill" data-level="intermediate" onclick="loadDeck('geografia', this)">Geography</button>
+        <button class="pill" data-level="beginner" onclick="loadDeck('saludos', this)">Greetings</button>
+        <button class="pill" data-level="intermediate" onclick="loadDeck('guatemala', this)">Guatemala</button>
+        <button class="pill" data-level="beginner" onclick="loadDeck('gustar', this)">Gustar verbs</button>
+        <button class="pill" data-level="intermediate" onclick="loadDeck('salud', this)">Health &amp; medicine</button>
+        <button class="pill" data-level="beginner" onclick="loadDeck('fiestas', this)">Holidays</button>
+        <button class="pill" data-level="intermediate" onclick="loadDeck('honduras', this)">Honduras</button>
+        <button class="pill" data-level="beginner" onclick="loadDeck('casa', this)">House &amp; furniture</button>
+        <button class="pill" data-level="intermediate" onclick="loadDeck('caza', this)">Hunting</button>
+        <button class="pill" data-level="beginner" onclick="loadDeck('verbosIr', this)">-IR verbs</button>
+        <button class="pill" data-level="advanced" onclick="loadDeck('derecho', this)">Law</button>
+        <button class="pill" data-level="advanced" onclick="loadDeck('lazarillo', this)">Lazarillo de Tormes</button>
+        <button class="pill" data-level="advanced" onclick="loadDeck('literatura', this)">Literature</button>
+        <button class="pill" data-level="intermediate" onclick="loadDeck('mercado', this)">Market &amp; shopping</button>
+        <button class="pill" data-level="advanced" onclick="loadDeck('matematicas', this)">Math</button>
+        <button class="pill" data-level="intermediate" onclick="loadDeck('mexico', this)">México</button>
+        <button class="pill" data-level="advanced" onclick="loadDeck('militar', this)">Military</button>
+        <button class="pill" data-level="intermediate" onclick="loadDeck('musica', this)">Music</button>
+        <button class="pill" data-level="intermediate" onclick="loadDeck('naturaleza', this)">Nature</button>
+        <button class="pill" data-level="beginner" onclick="loadDeck('numeros', this)">Numbers</button>
+        <button class="pill" data-level="intermediate" onclick="loadDeck('paraguay', this)">Paraguay</button>
+        <button class="pill" data-level="beginner" onclick="loadDeck('gente', this)">People</button>
+        <button class="pill" data-level="intermediate" onclick="loadDeck('peru', this)">Perú</button>
+        <button class="pill" data-level="beginner" onclick="loadDeck('lugares', this)">Places in town</button>
+        <button class="pill" data-level="advanced" onclick="loadDeck('politica', this)">Politics</button>
+        <button class="pill" data-level="beginner" onclick="loadDeck('preposiciones', this)">Prepositions</button>
+        <button class="pill" data-level="beginner" onclick="loadDeck('profesiones', this)">Professions</button>
+        <button class="pill" data-level="beginner" onclick="loadDeck('pronombres', this)">Pronouns</button>
+        <button class="pill" data-level="intermediate" onclick="loadDeck('puertorico', this)">Puerto Rico</button>
+        <button class="pill" data-level="beginner" onclick="loadDeck('preguntas', this)">Question words</button>
+        <button class="pill" data-level="intermediate" onclick="loadDeck('relaciones', this)">Relationships</button>
+        <button class="pill" data-level="advanced" onclick="loadDeck('religiones', this)">Religions</button>
+        <button class="pill" data-level="intermediate" onclick="loadDeck('restaurante', this)">Restaurant</button>
+        <button class="pill" data-level="beginner" onclick="loadDeck('escuela', this)">School Life</button>
+        <button class="pill" data-level="advanced" onclick="loadDeck('ciencia', this)">Science</button>
+        <button class="pill" data-level="advanced" onclick="loadDeck('espacio', this)">Space</button>
+        <button class="pill" data-level="beginner" onclick="loadDeck('deportes', this)">Sports</button>
+        <button class="pill" data-level="intermediate" onclick="loadDeck('tecnologia', this)">Technology</button>
+        <button class="pill" data-level="beginner" onclick="loadDeck('hora', this)">Telling time</button>
+        <button class="pill" data-level="beginner" onclick="loadDeck('teneridioms', this)">Tener idioms</button>
+        <button class="pill" data-level="intermediate" onclick="loadDeck('herramientas', this)">Tools</button>
+        <button class="pill" data-level="intermediate" onclick="loadDeck('viajes', this)">Travel</button>
+        <button class="pill" data-level="intermediate" onclick="loadDeck('uruguay', this)">Uruguay</button>
+        <button class="pill" data-level="intermediate" onclick="loadDeck('vehiculos', this)">Vehicles</button>
+        <button class="pill" data-level="intermediate" onclick="loadDeck('venezuela', this)">Venezuela</button>
+        <button class="pill" data-level="advanced" onclick="loadDeck('armas', this)">Weapons</button>
+        <button class="pill" data-level="beginner" onclick="loadDeck('tiempo', this)">Weather &amp; seasons</button>
       </div>
     </div>
   </div>

@@ -465,10 +465,22 @@
   function loadDeck(name, btn) {
     currentDeck = name;
     cardIdx = 0;
-    document.querySelectorAll('#vocabulario .pill').forEach(p => p.classList.remove('active'));
+    // Scope to the deck buttons only, so the level-filter pills keep their state.
+    document.querySelectorAll('#vocabulario .deck-pick .pill').forEach(p => p.classList.remove('active'));
     btn.classList.add('active');
     document.getElementById('deck-name').textContent = btn.textContent;
     renderCard();
+  }
+
+  // Show/hide vocab deck buttons by proficiency level (data-level on each pill).
+  function filterDecks(level, btn) {
+    const bar = document.getElementById('deckLevelFilter');
+    if (bar) bar.querySelectorAll('.pill').forEach(p => p.classList.remove('active'));
+    if (btn) btn.classList.add('active');
+    document.querySelectorAll('#vocabulario .deck-pick .pill').forEach(p => {
+      const lvl = p.getAttribute('data-level');
+      p.style.display = (level === 'all' || lvl === level) ? '' : 'none';
+    });
   }
 
   // ============================================================================
