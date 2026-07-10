@@ -195,31 +195,36 @@
       icon: '🔁',
       maxReward: 35,
       generate: () => {
-        // Pairs cover the core rules: vowel +s, consonant +es, -z → -ces,
-        // accents that appear (exámenes) and disappear (canciones),
-        // and no-change words (el paraguas → los paraguas).
-        const pairs = [
-          ['el libro', 'los libros'], ['la mesa', 'las mesas'], ['la casa', 'las casas'],
-          ['el estudiante', 'los estudiantes'], ['la clase', 'las clases'],
-          ['el papel', 'los papeles'], ['el profesor', 'los profesores'],
-          ['la ciudad', 'las ciudades'], ['el reloj', 'los relojes'],
-          ['el lápiz', 'los lápices'], ['la luz', 'las luces'],
-          ['la voz', 'las voces'], ['el pez', 'los peces'],
-          ['la canción', 'las canciones'], ['la región', 'las regiones'],
-          ['el autobús', 'los autobuses'], ['el examen', 'los exámenes'],
-          ['el joven', 'los jóvenes'], ['la imagen', 'las imágenes'],
-          ['la mano', 'las manos'], ['el problema', 'los problemas'],
-          ['el mapa', 'los mapas'], ['la flor', 'las flores'],
-          ['el paraguas', 'los paraguas'], ['el cumpleaños', 'los cumpleaños'],
-          // Indefinite articles (un/una → unos/unas)
-          ['un hombre', 'unos hombres'], ['una mujer', 'unas mujeres'],
-          ['un animal', 'unos animales'], ['una flor', 'unas flores'],
-          ['un lápiz', 'unos lápices'],
-          // Feminine noun that takes "el" in the singular but "las" in the plural
-          ['el agua', 'las aguas'], ['el águila', 'las águilas']
-        ];
+        // Pairs grouped by difficulty (the level picker sets gameState.level):
+        //  1 vowel +s · 2 consonant +es · 3 -z→-ces / accents / no-change ·
+        //  4 indefinite articles + the feminine "el agua → las aguas".
+        const LEVELS = {
+          1: [
+            ['el libro', 'los libros'], ['la mesa', 'las mesas'], ['la casa', 'las casas'],
+            ['el estudiante', 'los estudiantes'], ['la clase', 'las clases'],
+            ['la mano', 'las manos'], ['el mapa', 'los mapas'], ['el problema', 'los problemas']
+          ],
+          2: [
+            ['el papel', 'los papeles'], ['el profesor', 'los profesores'],
+            ['la ciudad', 'las ciudades'], ['el reloj', 'los relojes'], ['la flor', 'las flores']
+          ],
+          3: [
+            ['el lápiz', 'los lápices'], ['la luz', 'las luces'], ['la voz', 'las voces'],
+            ['el pez', 'los peces'], ['la canción', 'las canciones'], ['la región', 'las regiones'],
+            ['el autobús', 'los autobuses'], ['el examen', 'los exámenes'],
+            ['el joven', 'los jóvenes'], ['la imagen', 'las imágenes'],
+            ['el paraguas', 'los paraguas'], ['el cumpleaños', 'los cumpleaños']
+          ],
+          4: [
+            ['un hombre', 'unos hombres'], ['una mujer', 'unas mujeres'],
+            ['un animal', 'unos animales'], ['una flor', 'unas flores'], ['un lápiz', 'unos lápices'],
+            ['el agua', 'las aguas'], ['el águila', 'las águilas']
+          ]
+        };
+        const level = (gameState && gameState.level) || 1;
+        const pairs = LEVELS[level] || LEVELS[1];
         const pick = pairs[Math.floor(Math.random() * pairs.length)];
-        const stripArticle = s => s.replace(/^(el|la|los|las)\s+/, '');
+        const stripArticle = s => s.replace(/^(el|la|los|las|un|una|unos|unas)\s+/, '');
         // Half the time singular→plural, half plural→singular
         if (Math.random() < 0.5) {
           return {
@@ -227,7 +232,7 @@
             promptDisplay: pick[0],
             answer: pick[1],
             validAnswers: [pick[1], stripArticle(pick[1])],
-            hint: 'los/las + plural noun'
+            hint: 'los / las / unos / unas + plural noun'
           };
         }
         return {
@@ -235,7 +240,7 @@
           promptDisplay: pick[1],
           answer: pick[0],
           validAnswers: [pick[0], stripArticle(pick[0])],
-          hint: 'el/la + singular noun'
+          hint: 'el / la / un / una + singular noun'
         };
       }
     },
@@ -888,7 +893,7 @@
       startMatchGame();
       return;
     }
-    if (gameId === 'articles' || gameId === 'articles-translate' || gameId === 'articles-translate-en') {
+    if (gameId === 'articles' || gameId === 'articles-translate' || gameId === 'articles-translate-en' || gameId === 'plurals') {
       renderArticleLevelPicker(gameId);
       return;
     }

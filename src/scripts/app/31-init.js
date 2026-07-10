@@ -231,6 +231,13 @@
     { n: 4, sub: 'un · una · unos · unas', desc: '“a” and “some” — singular & plural.' }
   ];
 
+  const PLURAL_LEVELS = [
+    { n: 1, sub: 'regular + s',          desc: 'Vowel-ending nouns — just add -s.' },
+    { n: 2, sub: '+ es',                 desc: 'Consonant-ending nouns — add -es.' },
+    { n: 3, sub: '-z → -ces · accents',  desc: 'Spelling changes, accent shifts, no-change words.' },
+    { n: 4, sub: 'un · una · el agua',   desc: 'Indefinite articles and the “el agua → las aguas” case.' }
+  ];
+
   const ARTICLE_GAME_INFO = {
     'articles': {
       title: 'El · la · <em style="color:var(--rojo);font-style:italic;">los · las</em>',
@@ -243,13 +250,20 @@
     'articles-translate-en': {
       title: 'Articles <em style="color:var(--rojo);font-style:italic;">→ English</em>',
       blurb: 'Pick a level, then translate the Spanish into English — “una pelota” → “a ball”. 10 rounds.'
+    },
+    'plurals': {
+      title: 'Singular ↔ <em style="color:var(--rojo);font-style:italic;">plural</em>',
+      blurb: 'Pick a level, then turn each noun singular↔plural — article and ending. 10 rounds.'
     }
   };
 
+  // Shared level picker for the article games and the plurals game — each sets
+  // gameState.level, which their generate() reads.
   function renderArticleLevelPicker(gameId) {
     const container = document.getElementById('game-detail-content');
     if (!container) return;
     const info = ARTICLE_GAME_INFO[gameId] || ARTICLE_GAME_INFO['articles'];
+    const levels = gameId === 'plurals' ? PLURAL_LEVELS : ARTICLE_LEVELS;
     const title = info.title;
     const blurb = info.blurb;
     container.innerHTML =
@@ -258,7 +272,7 @@
       +   '<h2 style="font-family:\'DM Serif Display\',serif;font-size:32px;font-weight:400;margin-bottom:8px;">' + title + '</h2>'
       +   '<p style="color:var(--ink-soft);font-size:15px;margin-bottom:24px;">' + blurb + '</p>'
       +   '<div class="match-deck-grid">'
-      +     ARTICLE_LEVELS.map(function (lv) {
+      +     levels.map(function (lv) {
               return '<button class="match-deck-btn" onclick="beginArticleGame(\'' + gameId + '\',' + lv.n + ')">'
                 +      '<span class="mdb-label">Level ' + lv.n + ' · ' + lv.sub + '</span>'
                 +      '<span class="mdb-best" style="text-transform:none;letter-spacing:0;">' + lv.desc + '</span>'
