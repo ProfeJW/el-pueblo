@@ -128,38 +128,6 @@
     { w: 'el amor',   en: 'love',        a: ['el odio', 'odio'] }
   ];
 
-  // Noun phrases with articles, for translation both ways. Includes definite
-  // (el/la/los/las), indefinite (un/una/unos/unas), and gender "gotchas"
-  // (el problema, la mano, el día). `alt` = extra accepted Spanish answers.
-  function enVariants(en) {
-    var v = [en];
-    if (/^a /.test(en)) v.push(en.replace(/^a /, 'an '));
-    else if (/^an /.test(en)) v.push(en.replace(/^an /, 'a '));
-    return v;
-  }
-  var ARTICULOS = [
-    { es: 'una mujer',        en: 'a woman' },
-    { es: 'un hombre',        en: 'a man' },
-    { es: 'el libro',         en: 'the book' },
-    { es: 'la casa',          en: 'the house' },
-    { es: 'los libros',       en: 'the books' },
-    { es: 'las casas',        en: 'the houses' },
-    { es: 'unos hombres',     en: 'some men' },
-    { es: 'unas mujeres',     en: 'some women' },
-    { es: 'el agua',          en: 'the water' },
-    { es: 'una manzana',      en: 'an apple' },
-    { es: 'un perro',         en: 'a dog' },
-    { es: 'la escuela',       en: 'the school' },
-    { es: 'la leche',         en: 'the milk' },
-    { es: 'el problema',      en: 'the problem' },
-    { es: 'la mano',          en: 'the hand' },
-    { es: 'el día',           en: 'the day' },
-    { es: 'la ciudad',        en: 'the city' },
-    { es: 'un lápiz',         en: 'a pencil' },
-    { es: 'unas flores',      en: 'some flowers' },
-    { es: 'los estudiantes',  en: 'the students', alt: ['las estudiantes'] }
-  ];
-
   // ---- game definitions ----------------------------------------------------
   var NEW_GAMES = {
     'numbers-words': {
@@ -202,31 +170,6 @@
           answer: plural,
           validAnswers: [plural, c.bare + 's'],
           hint: '“' + c.back + '” — el→los, la→las, +s'
-        };
-      }
-    },
-    'articulos': {
-      title: 'Articles · <em>artículos</em>',
-      icon: '🔤',
-      maxReward: 35,
-      generate: function () {
-        var it = pick(ARTICULOS);
-        var toSpanish = Math.random() < 0.6; // favor producing the Spanish article
-        if (toSpanish) {
-          return {
-            promptLabel: 'Translate to Spanish (include the article)',
-            promptDisplay: it.en,
-            answer: it.es,
-            validAnswers: [it.es].concat(it.alt || []),
-            hint: 'the = el/la/los/las · a/an = un/una · some = unos/unas — watch gender & number'
-          };
-        }
-        return {
-          promptLabel: 'Translate to English',
-          promptDisplay: it.es,
-          answer: it.en,
-          validAnswers: enVariants(it.en),
-          hint: 'el/la/los/las = “the” · un/una = “a/an” · unos/unas = “some”'
         };
       }
     },
@@ -284,7 +227,6 @@
     { id: 'por-para',      icon: '🔀', title: 'Por o <em>para</em>',          desc: 'The classic Spanish puzzle — pick the right one for each sentence.', reward: 'up to 40 Lucas' },
     { id: 'ser-estar',     icon: '🅱️', title: 'Ser o <em>estar</em>',         desc: 'Two verbs for "to be." Type the correct form in context.', reward: 'up to 40 Lucas' },
     { id: 'antonyms',      icon: '↔️', title: 'Opposites · <em>antónimos</em>', desc: 'See a word, type its opposite. Builds vocabulary range.', reward: 'up to 35 Lucas' },
-    { id: 'articulos',     icon: '🔤', title: 'Articles · <em>artículos</em>',  desc: 'Translate phrases with the right article both ways — “a woman” ↔ “una mujer.”', reward: 'up to 35 Lucas' },
     { id: 'plurals',       icon: '➕', title: 'Singular → <em>plural</em>',     desc: 'Turn a noun plural — article and ending. Drawn from your decks.', reward: 'up to 30 Lucas' },
     { id: 'numbers-words', icon: '✳️', title: 'Numbers <em>in words</em>',     desc: 'Read the Spanish number, type the digits. (The reverse drill.)', reward: 'up to 30 Lucas' }
   ];
