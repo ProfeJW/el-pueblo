@@ -95,6 +95,27 @@
     showPage(page, param);
   }
 
+  // Lazy-load a route-specific companion script once (result cached), then run a
+  // callback. Keeps big single-page files (adquisicion.js, draw-templates.js)
+  // off the initial page load — they arrive only when that page is first opened.
+  var __scriptPromises = {};
+  function loadScriptOnce(src) {
+    if (__scriptPromises[src]) return __scriptPromises[src];
+    __scriptPromises[src] = new Promise(function (resolve, reject) {
+      var s = document.createElement('script');
+      s.src = src;
+      s.async = true;
+      s.onload = function () { resolve(); };
+      s.onerror = function (err) {
+        console.error('Failed to load ' + src, err);
+        __scriptPromises[src] = null;
+        reject(err);
+      };
+      document.head.appendChild(s);
+    });
+    return __scriptPromises[src];
+  }
+
   function showPage(page, param) {
     // Mundo subpath shortcut: #/mundo/known-for → page = 'mundo-known-for'
     // For nested paths like #/mundo/quiz/flags, convert slashes to hyphens:
@@ -178,14 +199,14 @@
     if (page === 'reading' && typeof renderReadingDetail === 'function') renderReadingDetail(param);
     if (page === 'juegos' && typeof renderGamesHub === 'function') renderGamesHub();
     if (page === 'vocabulario' && typeof updateRepasoBadges === 'function') updateRepasoBadges();
-    if (page === 'dibujar' && typeof window.initDrawActivity === 'function') window.initDrawActivity();
+    if (page === 'dibujar') loadScriptOnce('draw-templates.js').then(function () { if (typeof window.initDrawActivity === 'function') window.initDrawActivity(); }).catch(function () {});
     if (page === 'racha' && typeof renderRacha === 'function') renderRacha();
     if (page === 'repaso' && typeof renderRepaso === 'function') renderRepaso();
     if (page === 'abecedario' && typeof renderAbecedario === 'function') renderAbecedario();
     if (page === 'game' && typeof startGame === 'function') startGame(param);
     if (page === 'lecciones' && typeof renderLessonsList === 'function') renderLessonsList();
     if (page === 'linguistica' && typeof renderLinguistica === 'function') renderLinguistica();
-    if (page === 'adquisicion' && typeof renderAdquisicion === 'function') renderAdquisicion();
+    if (page === 'adquisicion') loadScriptOnce('adquisicion.js').then(function () { if (typeof renderAdquisicion === 'function') renderAdquisicion(); }).catch(function () {});
     if (page === 'lesson' && typeof renderLessonDetail === 'function') renderLessonDetail(param);
     // Move keyboard focus to the new section's heading on navigation so screen-reader
     // and keyboard users land in the fresh content instead of being stranded at the
