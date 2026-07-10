@@ -210,7 +210,13 @@
           ['el joven', 'los jóvenes'], ['la imagen', 'las imágenes'],
           ['la mano', 'las manos'], ['el problema', 'los problemas'],
           ['el mapa', 'los mapas'], ['la flor', 'las flores'],
-          ['el paraguas', 'los paraguas'], ['el cumpleaños', 'los cumpleaños']
+          ['el paraguas', 'los paraguas'], ['el cumpleaños', 'los cumpleaños'],
+          // Indefinite articles (un/una → unos/unas)
+          ['un hombre', 'unos hombres'], ['una mujer', 'unas mujeres'],
+          ['un animal', 'unos animales'], ['una flor', 'unas flores'],
+          ['un lápiz', 'unos lápices'],
+          // Feminine noun that takes "el" in the singular but "las" in the plural
+          ['el agua', 'las aguas'], ['el águila', 'las águilas']
         ];
         const pick = pairs[Math.floor(Math.random() * pairs.length)];
         const stripArticle = s => s.replace(/^(el|la|los|las)\s+/, '');

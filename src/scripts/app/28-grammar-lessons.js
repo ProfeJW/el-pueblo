@@ -52,6 +52,7 @@
     },
     'articles-gender': {
       decks: ['cotidiano', 'familia', 'salon', 'ropa', 'casa', 'lugares'],
+      games: ['articulos', 'plurals'],
       pdfs: [],
       links: [
         { label: 'Definite articles + making nouns plural/singular', url: 'https://docs.google.com/document/d/1cp8M5jaPe8K_DoESOWl00JT7HPV6ScuPDgQV9ADHjyY/edit?usp=sharing' },
@@ -60,6 +61,7 @@
     },
     'plural-basics': {
       decks: ['cotidiano', 'familia', 'salon', 'cuerpo'],
+      games: ['plurals', 'articulos'],
       pdfs: [],
       links: [
         { label: 'Definite articles + making nouns plural/singular', url: 'https://docs.google.com/document/d/1cp8M5jaPe8K_DoESOWl00JT7HPV6ScuPDgQV9ADHjyY/edit?usp=sharing' },
