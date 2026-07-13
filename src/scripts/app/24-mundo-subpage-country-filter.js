@@ -766,8 +766,8 @@
       '</div>';
       return '<div class="artwork-card" onclick="openArtworkModal(' + artistIdx + ',' + workIdx + ')">' +
         '<div class="artwork-image-wrap">' +
-          '<img src="' + escapeAttr(work.image) + '" alt="' + escapeAttr(work.title) + '" loading="lazy" ' +
-            'onerror="this.parentElement.innerHTML=\'' + fallback.replace(/'/g, "&#39;").replace(/"/g, '&quot;') + '\'">' +
+          '<img src="' + escapeAttr(window.ELP_imgSrc(work.image)) + '" data-remote="' + escapeAttr(work.image) + '" alt="' + escapeAttr(work.title) + '" loading="lazy" ' +
+            'onerror="if(!window.ELP_imgFallback(this)){this.parentElement.innerHTML=\'' + fallback.replace(/'/g, "&#39;").replace(/"/g, '&quot;') + '\'}">' +
         '</div>' +
         '<div class="artwork-info">' +
           '<div class="title">' + escapeHtml(work.title) + '</div>' +
@@ -802,9 +802,9 @@
 
     document.getElementById('modalFlag').innerHTML =
       '<div style="position: relative; background: var(--ink);">' +
-        '<img src="' + escapeAttr(work.image) + '" alt="' + escapeAttr(work.title) + '" loading="lazy" ' +
+        '<img src="' + escapeAttr(window.ELP_imgSrc(work.image)) + '" data-remote="' + escapeAttr(work.image) + '" alt="' + escapeAttr(work.title) + '" loading="lazy" ' +
           'style="width: 100%; max-height: 360px; object-fit: contain; display: block; background: #1a1410;" ' +
-          'onerror="this.parentElement.outerHTML=\'' + fallback.replace(/'/g, "&#39;").replace(/"/g, '&quot;') + '\'">' +
+          'onerror="if(!window.ELP_imgFallback(this)){this.parentElement.outerHTML=\'' + fallback.replace(/'/g, "&#39;").replace(/"/g, '&quot;') + '\'}">' +
       '</div>';
 
     document.getElementById('modalBody').innerHTML =
@@ -855,9 +855,9 @@
     '</div>';
 
     document.getElementById('artQuizImage').innerHTML =
-      '<img src="' + escapeAttr(target.work.image) + '" alt="artwork to identify" ' +
+      '<img src="' + escapeAttr(window.ELP_imgSrc(target.work.image)) + '" data-remote="' + escapeAttr(target.work.image) + '" alt="artwork to identify" ' +
         'style="width: 100%; height: 100%; object-fit: contain; background: #1a1410; display: block;" ' +
-        'onerror="this.parentElement.innerHTML=\'' + fallback.replace(/'/g, "&#39;").replace(/"/g, '&quot;') + '\'">';
+        'onerror="if(!window.ELP_imgFallback(this)){this.parentElement.innerHTML=\'' + fallback.replace(/'/g, "&#39;").replace(/"/g, '&quot;') + '\'}">';
 
     // Build question + options
     let questionText, options, correctValue, valueAttr;
