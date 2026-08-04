@@ -345,9 +345,9 @@
       const escapedFallback = fallbackHtml.replace(/"/g, '&quot;');
       document.getElementById('modalFlag').innerHTML = `
         <div style="position: relative; background: var(--ink);">
-          <img src="${d.img}" alt="${d.name}" loading="lazy"
+          <img src="${window.ELP_imgSrc(d.img)}" data-remote="${d.img}" alt="${d.name}" loading="lazy"
             style="width: 100%; height: 280px; object-fit: cover; display: block;"
-            onerror="this.parentElement.outerHTML='${escapedFallback.replace(/\n\s+/g, ' ').replace(/'/g, "&#39;")}'">
+            onerror="if(!window.ELP_imgFallback(this)){this.parentElement.outerHTML='${escapedFallback.replace(/\n\s+/g, ' ').replace(/'/g, "&#39;")}'}">
           <div style="position: absolute; bottom: 0; left: 0; right: 0; padding: 20px 24px; background: linear-gradient(180deg, transparent, rgba(31,26,20,0.85)); color: var(--paper);">
             <div style="display: flex; align-items: baseline; gap: 10px;">
               <span style="font-size: 24px; line-height: 1;">${flag}</span>

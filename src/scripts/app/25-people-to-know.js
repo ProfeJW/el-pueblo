@@ -445,7 +445,7 @@
       const flag = FLAGS[p.country] || '';
       const initials = (p.name || '?').split(' ').map(w => w[0]).filter(Boolean).slice(0, 2).join('');
       const photoHtml = p.img
-        ? `<img src="${p.img}" alt="${escapeHtml(p.name)}" loading="lazy" onerror="this.style.display='none'; this.nextElementSibling && (this.nextElementSibling.style.display='flex');"><div class="photo-fallback" style="display:none">${initials}</div>`
+        ? `<img src="${window.ELP_imgSrc(p.img)}" data-remote="${p.img}" alt="${escapeHtml(p.name)}" loading="lazy" onerror="if(!window.ELP_imgFallback(this)){this.style.display='none'; this.nextElementSibling && (this.nextElementSibling.style.display='flex');}"><div class="photo-fallback" style="display:none">${initials}</div>`
         : `<div class="photo-fallback">${initials}</div>`;
       return `
         <div class="person-card">
