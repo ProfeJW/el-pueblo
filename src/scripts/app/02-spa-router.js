@@ -17,6 +17,7 @@
     mundo: 'World',
     'mundo-known-for': 'Known For · World',
     'mundo-people': 'People · World',
+    'mundo-deportes': 'Deportes · World',
     'mundo-slang': 'Slang · World',
     'mundo-dishes': 'Dishes · World',
     historia: 'Historia',
@@ -167,6 +168,7 @@
     if (page === 'mundo' && typeof renderCountries === 'function') { renderCountries(); }
     if (page === 'mundo-known-for' && typeof renderKnownFor === 'function') renderKnownFor();
     if (page === 'mundo-people' && typeof renderPeople === 'function') renderPeople();
+    if (page === 'mundo-deportes' && typeof renderDeportes === 'function') renderDeportes();
     if (page === 'mundo-slang' && typeof renderSlang === 'function') renderSlang();
     if (page === 'mundo-dishes' && typeof renderDishes === 'function') renderDishes();
     if (page === 'mundo-arte' && typeof renderArte === 'function') renderArte();

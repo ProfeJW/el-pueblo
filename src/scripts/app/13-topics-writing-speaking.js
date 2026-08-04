@@ -222,6 +222,16 @@
       tips: ['Use the preterite to narrate the action (vio, embistió, rompió, cayó) and the imperfect for description (era, leía, creía)', 'Useful vocab from the Don Quijote deck: el hidalgo, el caballero andante, el escudero, la locura, el molino de viento, el gigante, embestir, idealista', 'Contrast the two characters with connectors: en cambio, sin embargo, mientras que, por otro lado', 'State and defend an opinion; aim for 150+ words'],
       date: ''
     },
+    // ========== HISTORY / CULTURE ==========
+    {
+      id: 'villa-zapata',
+      title: 'Villa y Zapata: <em>Tierra y Libertad</em>',
+      level: 'sp3',
+      category: 'cultural',
+      body: 'After reading "Tierra y Libertad" in Lectura (or the Mexican Revolution in Historia), write about it. Why did Mexico rise up against Porfirio Díaz in 1910? Compare the two heroes: Pancho Villa in the north and Emiliano Zapata in the south — where did each come from, and what did each fight for? What does the slogan "Tierra y Libertad" mean, and why is it still powerful today? End with your opinion: is it fair that both men were assassinated but became national symbols? What do you think they would say about Mexico today?',
+      tips: ['Use the preterite for events (estalló, se levantó, entraron, asesinaron) and the imperfect for description/background (era, luchaba, vivían, quería)', 'Useful vocab from the Revolución mexicana deck: el campesino, la tierra, el hacendado, la reforma agraria, sublevarse, el caudillo, el lema, traicionar', 'Compare the two leaders with connectors: mientras que, en cambio, por un lado… por otro lado', 'Give an opinion with "creo que…", "me parece que…", or "en mi opinión…"; aim for 150+ words'],
+      date: ''
+    },
     // ========== SPANISH 1 — PERSONAL ==========
     {
       id: 'my-family',
