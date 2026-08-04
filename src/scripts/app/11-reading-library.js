@@ -1036,6 +1036,64 @@
         ]}
       ]
     },
+    // ---------- HISTORY READING — Tierra y Libertad (Villa & Zapata) ----------
+    {
+      id: 'tierra-y-libertad',
+      kind: 'story', level: 'advanced',
+      title: '<em>Tierra y Libertad</em>: Villa y Zapata',
+      author: 'Original · El Pueblo',
+      year: '1910–1919',
+      attribution: 'Historia · La Revolución mexicana',
+      preview: 'En 1910 México se levantó contra un dictador. Dos hombres — Pancho Villa en el norte y Emiliano Zapata en el sur — se volvieron leyenda…',
+      text: [
+        'En 1910, México llevaba más de treinta años bajo el poder de un solo hombre: el dictador Porfirio Díaz. El país tenía ferrocarriles y ciudades modernas, pero unos pocos hacendados eran dueños de casi toda la tierra, mientras millones de campesinos vivían en la pobreza. Ese año estalló la Revolución mexicana, la lucha que definiría al México moderno.',
+        'En el norte se levantó Pancho Villa, un antiguo bandido que se convirtió en un brillante general de caballería. Su ejército, la División del Norte, ganó batalla tras batalla y lo convirtió en un héroe popular. Villa robaba a los ricos, repartía comida y tierra, y se movía por el desierto con una rapidez que asombraba a sus enemigos.',
+        'En el sur luchaba Emiliano Zapata, un campesino del estado de Morelos. Zapata no peleaba por el poder, sino por una idea sencilla y poderosa: la tierra debía ser de quien la trabaja. Su lema, «Tierra y Libertad», se convirtió en el grito de millones de campesinos indígenas que exigían una reforma agraria.',
+        'En diciembre de 1914, Villa y Zapata entraron juntos en la Ciudad de México y se sentaron, entre bromas, en la silla presidencial. Una famosa fotografía capturó aquel momento. Pero los dos hombres no querían gobernar, y su alianza no duró. Otros líderes más políticos, como Venustiano Carranza, tomaron el control del país.',
+        'El final de ambos fue trágico. En 1919, los enemigos de Zapata le tendieron una emboscada y lo asesinaron; en lugar de destruir su causa, lo convirtieron en un mito. Villa fue asesinado en 1923. Sin embargo, la Revolución ya había cambiado México para siempre: la Constitución de 1917 prometió tierra, derechos laborales y educación. Hasta hoy, cada movimiento que exige justicia en México invoca el nombre de Zapata y su promesa de «Tierra y Libertad».'
+      ],
+      gloss: {
+        'el dictador': 'dictator',
+        'el hacendado': 'large landowner',
+        'el campesino': 'peasant / farm worker',
+        'estalló': 'broke out',
+        'la caballería': 'cavalry',
+        'repartía': 'handed out / distributed',
+        'la reforma agraria': 'land reform',
+        'el lema': 'slogan',
+        'la alianza': 'alliance',
+        'la emboscada': 'ambush',
+        'asesinaron': 'assassinated',
+        'los derechos laborales': 'labor rights'
+      },
+      quiz: [
+        { q: '¿Contra quién se levantó México en 1910?', options: [
+          { text: 'El dictador Porfirio Díaz', correct: true },
+          { text: 'El rey de España', correct: false },
+          { text: 'Los Estados Unidos', correct: false }
+        ]},
+        { q: '¿Quién dirigía la lucha en el norte?', options: [
+          { text: 'Emiliano Zapata', correct: false },
+          { text: 'Pancho Villa', correct: true },
+          { text: 'Benito Juárez', correct: false }
+        ]},
+        { q: '¿Cuál era el lema de Zapata?', options: [
+          { text: '"Patria o Muerte"', correct: false },
+          { text: '"Tierra y Libertad"', correct: true },
+          { text: '"Viva la Independencia"', correct: false }
+        ]},
+        { q: 'Según Zapata, ¿de quién debía ser la tierra?', options: [
+          { text: 'De los hacendados', correct: false },
+          { text: 'De la iglesia', correct: false },
+          { text: 'De quien la trabaja', correct: true }
+        ]},
+        { q: '¿Qué le pasó a Zapata en 1919?', options: [
+          { text: 'Lo asesinaron en una emboscada', correct: true },
+          { text: 'Se convirtió en presidente', correct: false },
+          { text: 'Huyó del país', correct: false }
+        ]}
+      ]
+    },
     // ---------- BEGINNER STORIES (5 Lucas/correct, +5 bonus = max 20) ----------
     {
       id: 'mi-familia',

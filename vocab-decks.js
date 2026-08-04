@@ -663,6 +663,24 @@ window.ELP_DECKS = {
       { word: 'embestir', cat: 'Verb', back: 'to charge / attack', ex: '"Embistió contra el molino."', exEn: 'He charged at the windmill.' },
       { word: 'el ingenio', cat: 'Noun · Masculine', back: 'wit / ingenuity', ex: '"\'El ingenioso hidalgo\' es el título completo."', exEn: '\'The ingenious nobleman\' is the full title.' }
     ],
+    revolucion: [
+      { word: 'la revolución', cat: 'Noun · Feminine', back: 'revolution', ex: '"La Revolución mexicana empezó en 1910."', exEn: 'The Mexican Revolution began in 1910.' },
+      { word: 'el campesino', cat: 'Noun · Masculine', back: 'peasant / farm worker', ex: '"Zapata luchó por los campesinos."', exEn: 'Zapata fought for the peasants.' },
+      { word: 'la tierra', cat: 'Noun · Feminine', back: 'land / earth', ex: '"Pedían tierra para los pobres."', exEn: 'They demanded land for the poor.' },
+      { word: 'la libertad', cat: 'Noun · Feminine', back: 'freedom / liberty', ex: '"«Tierra y Libertad» era su lema."', exEn: '"Land and Liberty" was their slogan.' },
+      { word: 'el lema', cat: 'Noun · Masculine', back: 'slogan / motto', ex: '"El lema unió a los rebeldes."', exEn: 'The slogan united the rebels.' },
+      { word: 'la reforma agraria', cat: 'Noun · Feminine', back: 'land reform', ex: '"Exigían una reforma agraria."', exEn: 'They demanded land reform.' },
+      { word: 'el hacendado', cat: 'Noun · Masculine', back: 'large landowner', ex: '"Los hacendados controlaban la tierra."', exEn: 'The landowners controlled the land.' },
+      { word: 'el latifundio', cat: 'Noun · Masculine', back: 'huge private estate', ex: '"Un latifundio ocupaba pueblos enteros."', exEn: 'A single estate covered whole villages.' },
+      { word: 'sublevarse', cat: 'Reflexive verb', back: 'to rise up / revolt', ex: '"El pueblo se sublevó contra Díaz."', exEn: 'The people rose up against Díaz.' },
+      { word: 'derrocar', cat: 'Verb', back: 'to overthrow', ex: '"Derrocaron al dictador en 1911."', exEn: 'They overthrew the dictator in 1911.' },
+      { word: 'el caudillo', cat: 'Noun · Masculine', back: 'strongman / military leader', ex: '"Villa fue un caudillo del norte."', exEn: 'Villa was a strongman of the north.' },
+      { word: 'el ejército', cat: 'Noun · Masculine', back: 'army', ex: '"Villa comandaba un ejército de caballería."', exEn: 'Villa commanded a cavalry army.' },
+      { word: 'la lucha', cat: 'Noun · Feminine', back: 'struggle / fight', ex: '"La lucha duró diez años."', exEn: 'The struggle lasted ten years.' },
+      { word: 'traicionar', cat: 'Verb', back: 'to betray', ex: '"A Zapata lo traicionaron y lo mataron."', exEn: 'Zapata was betrayed and killed.' },
+      { word: 'la emboscada', cat: 'Noun · Feminine', back: 'ambush', ex: '"Murió en una emboscada en 1919."', exEn: 'He died in an ambush in 1919.' },
+      { word: 'la justicia', cat: 'Noun · Feminine', back: 'justice', ex: '"Peleaban por justicia social."', exEn: 'They fought for social justice.' }
+    ],
     familia: [
       { word: 'la madre', cat: 'Noun · Feminine', back: 'mother', ex: '"Mi madre cocina los domingos."', exEn: 'My mother cooks on Sundays.' },
       { word: 'el padre', cat: 'Noun · Masculine', back: 'father', ex: '"Mi padre trabaja en el hospital."', exEn: 'My father works at the hospital.' },

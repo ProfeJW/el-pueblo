@@ -1,9 +1,16 @@
 
     .hero-head { display: flex; align-items: center; justify-content: center; gap: 40px; flex-wrap: wrap; margin: 10px 0 14px; text-align: left; }
     .hero-head h1 { margin: 0; }
-    .hero-logo { width: clamp(120px, 17vw, 190px); height: auto; flex-shrink: 0; color: #2a2018; filter: drop-shadow(0 6px 16px rgba(0,0,0,0.14)); }
-    /* Theme-aware: solid ink on the daytime theme, accent-colored neon glow on cosmic */
-    [data-theme="cosmic"] .hero-logo { color: var(--rojo); filter: drop-shadow(0 0 4px var(--rojo)) drop-shadow(0 0 11px var(--rojo)); }
+    .hero-logo { width: clamp(130px, 18vw, 196px); height: auto; flex-shrink: 0; }
+        .hero-logo .ol-tile { fill: transparent; }
+        .hero-logo .ol-path { fill: url(#olmecWarm); }
+        .hero-logo .ol-lines { filter: none; }
+            :root[data-theme="cosmic"] .hero-logo { filter: drop-shadow(0 10px 30px rgba(0,0,0,0.35)); }
+            :root[data-theme="cosmic"] .hero-logo .ol-tile { fill: #0a0c18; }
+            :root[data-theme="cosmic"] .hero-logo .ol-path { fill: url(#olmecNeon); }
+            :root[data-theme="cosmic"] .hero-logo .ol-lines { filter: url(#olmecGlow); }
+    .page[data-page="home"] header .eyebrow { justify-content: center; }
+    .page[data-page="home"] header .lead { margin-left: auto; margin-right: auto; text-align: center; }
     @media (max-width: 560px) { .hero-head { gap: 18px; } .hero-logo { width: 104px; } }
     .site-search-results {
       position:absolute; left:0; right:0; top:calc(100% + 6px); z-index:50;

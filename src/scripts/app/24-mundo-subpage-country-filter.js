@@ -29,6 +29,7 @@
     // Refresh all 5 subpage renders so when student navigates to another subpage, it's pre-filtered
     if (typeof renderKnownFor === 'function') renderKnownFor();
     if (typeof renderPeople === 'function') renderPeople();
+    if (typeof renderDeportes === 'function') renderDeportes();
     if (typeof renderSlang === 'function') renderSlang();
     if (typeof renderDishes === 'function') renderDishes();
     if (typeof renderHistoria === 'function') renderHistoria();
