@@ -117,6 +117,66 @@ async function copyAsset(name, { minify }) {
   }
 }
 
+
+// ---- School edition ----------------------------------------------------
+// A second copy of the site at dist/school/ for classroom use: identical
+// content, but the Lucas coin system and the sign-in flow are hidden and
+// neutered. The main site at dist/ is untouched.
+const SCHOOL_OVERRIDE = `
+<style id="school-mode">
+  #signInBtn, #signOutBtn, #coinCounter, #nameChip, #toastContainer,
+  #lucasExplainer, a[href="#/lucas"],
+  .page[data-page="lucas"] { display: none !important; }
+</style>
+<script id="school-mode-js">
+(function(){
+  var noop = function(){};
+  window.awardCoins = noop;
+  window.showToast = noop;
+  window.openSignInModal = noop;
+  window.signOut = noop;
+  function offLucas(){ if ((location.hash||'').indexOf('#/lucas') === 0) location.hash = '#/'; }
+  window.addEventListener('hashchange', offLucas); offLucas();
+  // Scrub coin-reward phrasing from visible text (text nodes only; listeners untouched).
+  function scrub(){
+    var rx = [
+      [/\\s*[·•]\\s*\\+?\\d+\\s*Lucas\\b/g, ''],
+      [/Earn Lucas while you learn/gi, ''],
+      [/Get it right to earn Lucas\\.?\\s*/gi, ''],
+      [/Earn Lucas based on difficulty: harder texts pay more\\.?/gi, ''],
+      [/Earn Lucas based on accuracy —/gi, 'You get'],
+      [/to track progress and earn Lucas/gi, '']
+    ];
+    var w = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT);
+    var n; while ((n = w.nextNode())) {
+      var t = n.nodeValue; if (!t || t.indexOf('ucas') === -1) continue;
+      rx.forEach(function(p){ t = t.replace(p[0], p[1]); });
+      if (t !== n.nodeValue) n.nodeValue = t;
+    }
+  }
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', scrub);
+  else scrub();
+  setTimeout(scrub, 800); // catch late-rendered pages
+})();
+</script>
+`;
+
+async function buildSchool(html, minify) {
+  const SCHOOL = join(DIST, 'school');
+  await mkdir(SCHOOL, { recursive: true });
+  await writeFile(join(SCHOOL, 'index.html'), html.replace('</body>', SCHOOL_OVERRIDE + '</body>'));
+  // The school page lives one directory down, so it needs its own copies of
+  // the runtime assets its relative URLs point at.
+  for (const f of [...RUNTIME_JS, ...STATIC_ASSETS]) {
+    if (existsSync(join(DIST, f))) await cp(join(DIST, f), join(SCHOOL, f));
+  }
+  for (const d of STATIC_DIRS) {
+    if (existsSync(join(DIST, d))) await cp(join(DIST, d), join(SCHOOL, d), { recursive: true });
+  }
+  const bytes = (await stat(join(SCHOOL, 'index.html'))).size;
+  console.log('Built dist/school/ — index.html', (bytes / 1024).toFixed(0) + ' KB (school edition, no Lucas/sign-in)');
+}
+
 async function build() {
   const minify = !process.argv.includes('--no-minify');
   await rm(DIST, { recursive: true, force: true });
@@ -130,6 +190,8 @@ async function build() {
   for (const d of STATIC_DIRS) {
     if (existsSync(join(ROOT, d))) await cp(join(ROOT, d), join(DIST, d), { recursive: true });
   }
+
+  await buildSchool(html, minify);
 
   const outBytes = (await stat(join(DIST, 'index.html'))).size;
   console.log('Built dist/ — index.html', (outBytes / 1024).toFixed(0) + ' KB' + (minify ? ' (minified)' : ' (raw)'));
