@@ -161,10 +161,20 @@ const SCHOOL_OVERRIDE = `
 </script>
 `;
 
+// Set before anything else runs, so scripts/00-private-session.js can force a
+// no-trace session on the very first line of the page. It must not be inferred
+// from "nobody is signed in": dist/ and dist/school/ share one origin on GitHub
+// Pages, so a profile created on the main site is visible from the school page,
+// and inference alone would quietly switch the guard off for the whole class.
+const SCHOOL_FLAG = '<script>window.__EP_SCHOOL_EDITION=true;</script>';
+
 async function buildSchool(html, minify) {
   const SCHOOL = join(DIST, 'school');
   await mkdir(SCHOOL, { recursive: true });
-  await writeFile(join(SCHOOL, 'index.html'), html.replace('</body>', SCHOOL_OVERRIDE + '</body>'));
+  if (!html.includes('<head>')) throw new Error('school build: no <head> to mark as the school edition');
+  await writeFile(join(SCHOOL, 'index.html'),
+    html.replace('<head>', '<head>' + SCHOOL_FLAG)
+        .replace('</body>', SCHOOL_OVERRIDE + '</body>'));
   // The school page lives one directory down, so it needs its own copies of
   // the runtime assets its relative URLs point at.
   for (const f of [...RUNTIME_JS, ...STATIC_ASSETS]) {

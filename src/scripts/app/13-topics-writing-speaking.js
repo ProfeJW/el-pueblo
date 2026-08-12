@@ -1368,6 +1368,26 @@
   const AUDIO_STORE_NAME = 'recordings';
   let audioDbPromise = null;
 
+  // In a school session nobody has signed in, so a recording is a stranger's
+  // voice on a shared machine - the most identifying thing this site handles.
+  // It stays in memory and dies with the tab. Playback is unchanged; the only
+  // difference is that the recording never reaches the disk, so no crash,
+  // force-quit or lab-management kill can strand it there.
+  // See scripts/00-private-session.js.
+  const memAudio = new Map();
+  function audioIsEphemeral() {
+    return !!(window.__epSession && window.__epSession.ephemeral);
+  }
+  // Signing in mid-session is a request to keep the work, recordings included.
+  window.__epAudioPersist = function () {
+    if (!memAudio.size) return;
+    const pending = new Map(memAudio);
+    memAudio.clear();
+    pending.forEach((blob, key) => {
+      saveAudioBlob(key, blob).catch(() => { memAudio.set(key, blob); });
+    });
+  };
+
   function openAudioDB() {
     if (audioDbPromise) return audioDbPromise;
     audioDbPromise = new Promise((resolve, reject) => {
@@ -1386,6 +1406,7 @@
   }
 
   async function saveAudioBlob(audioKey, blob) {
+    if (audioIsEphemeral()) { memAudio.set(audioKey, blob); return; }
     const db = await openAudioDB();
     return new Promise((resolve, reject) => {
       const tx = db.transaction(AUDIO_STORE_NAME, 'readwrite');
@@ -1397,6 +1418,8 @@
   }
 
   async function loadAudioBlob(audioKey) {
+    if (memAudio.has(audioKey)) return memAudio.get(audioKey);
+    if (audioIsEphemeral()) return null;   // never opened the database this session
     const db = await openAudioDB();
     return new Promise((resolve, reject) => {
       const tx = db.transaction(AUDIO_STORE_NAME, 'readonly');
@@ -1408,6 +1431,8 @@
   }
 
   async function deleteAudioBlob(audioKey) {
+    if (memAudio.delete(audioKey)) return;
+    if (audioIsEphemeral()) return;
     const db = await openAudioDB();
     return new Promise((resolve, reject) => {
       const tx = db.transaction(AUDIO_STORE_NAME, 'readwrite');

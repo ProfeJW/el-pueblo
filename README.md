@@ -87,3 +87,67 @@ A GitHub Actions workflow (`.github/workflows/deploy.yml`) builds `src/` and
 publishes `dist/` to GitHub Pages on every push to `main`. The repo's Pages
 **Source** is set to **"GitHub Actions"**, so every push to `main` rebuilds and
 redeploys automatically — just edit `src/` (or the root data files) and push.
+
+---
+
+## The school edition leaves no trace
+
+`npm run build` produces two sites:
+
+- `dist/` — the full site, with the Lucas coin system and the opt-in sign-in.
+- `dist/school/` — the classroom edition. Same lessons, but no sign-in and no
+  Lucas at all.
+
+Because the school edition is used on shared machines by students who never
+identify themselves, it holds one hard rule:
+
+> **Nothing a student does on the school edition is ever written to the machine.**
+
+Not "wiped on the way out" — never written. An exit handler is optional in a
+computer lab: a crash, a force-quit, a pulled power cable or a lab-management
+tool killing the browser all skip it, and whatever was written stays for the
+next student. So `src/scripts/00-private-session.js` runs before anything else
+on the page and swaps `localStorage` for an in-memory store, and recordings are
+kept in memory instead of IndexedDB. Close the tab and it is gone, because it
+was never anywhere else.
+
+Two deliberate exceptions, both on the **main** site only: a student who signs
+in has asked for their work to be kept, and teacher mode (`?teacher`) keeps its
+own device notes. The school edition takes neither — it is flagged by the build
+(`window.__EP_SCHOOL_EDITION`) rather than inferring from "is anyone signed in",
+because `dist/` and `dist/school/` share one origin on GitHub Pages and a
+profile made on the main site is visible from the school page.
+
+The guard also clears work that **earlier builds already wrote** to classroom
+machines — anonymous responses, avatars, progress and the recordings they point
+at — on the next visit. A named profile is somebody's deliberate opt-in and is
+left alone.
+
+### Keeping it true
+
+```bash
+npm run build && npm run test:privacy
+```
+
+`tests/no-trace.mjs` drives a real browser and reads the browser's own storage
+from a page that never loads the app, so it cannot be fooled by the in-memory
+shim reporting what it likes. It checks that nothing is written during use or
+after close, that the next visitor inherits nothing, that old residue is
+cleared, that a named profile survives, that opting in still persists, and that
+nothing is uploaded anywhere. CI runs it on every pull request.
+
+**If you add a feature that stores something, run it.** One `localStorage.setItem`
+in a new game is all it takes to break the promise, and nothing else will tell
+you.
+
+### What this does not cover
+
+- Third-party hosts the page loads from — currently Google Fonts and Wikimedia
+  images — see the school's IP address in their logs. No student work leaves the
+  device (the test fails on any upload), but the requests themselves happen.
+  Self-hosting the fonts and images would remove that.
+- A student who deliberately signs in **on the main site** from a school machine
+  leaves a profile there, by design. Point classroom devices at `/school/`,
+  where sign-in does not exist.
+- Two students sharing one tab without closing it are in the same session, so
+  the second sees the first's work. Closing the tab is the boundary.

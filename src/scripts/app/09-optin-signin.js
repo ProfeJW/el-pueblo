@@ -30,6 +30,12 @@
       if (err) { err.textContent = 'Please enter a name to continue.'; err.style.display = 'block'; }
       return;
     }
+    // Until this moment the session has been writing to memory only, so nothing
+    // this student did is on the disk. Signing in is them asking for it to be
+    // kept, and it is the only thing that hands the session real storage.
+    // Do it before the lookup below, or an existing profile stays invisible.
+    try { window.__epSession && window.__epSession.persist(); } catch (e) {}
+
     // Check if this name already has saved progress
     const existingRaw = localStorage.getItem(STORAGE_KEY + ':' + name);
     if (existingRaw) {
