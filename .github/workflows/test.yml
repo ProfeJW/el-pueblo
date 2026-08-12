@@ -20,3 +20,20 @@ jobs:
       - run: npm ci
       - run: npm run build
       - run: npm test
+
+  # The school edition's promise is that it never writes a student's work to the
+  # machine. That is the kind of guarantee that decays silently - one innocuous
+  # localStorage call in a new feature and it is gone, with nothing to show for
+  # it - so it is checked on every change in a real browser, not trusted.
+  no-trace:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+      - run: npm ci
+      - run: npx playwright install --with-deps chromium
+      - run: npm run build
+      - run: npm run test:privacy
