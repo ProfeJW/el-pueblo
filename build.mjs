@@ -161,10 +161,25 @@ const SCHOOL_OVERRIDE = `
 </script>
 `;
 
+
+// School edition, part 2: no persistence between visits. Route every
+// localStorage access to sessionStorage, which the browser clears when the
+// window closes. In-class scores/timers keep working (and survive an
+// accidental reload of the same tab), but nothing about a student outlives
+// the window. Must run BEFORE the app scripts, so it is injected in <head>.
+const SCHOOL_EPHEMERAL = `<script id="school-ephemeral">(function(){try{var ss=window.sessionStorage;ss.setItem('__probe__','1');ss.removeItem('__probe__');Object.defineProperty(window,'localStorage',{configurable:true,get:function(){return ss;}});}catch(e){/* blocked storage: app's own safe-storage falls back to in-memory, which is even more ephemeral */}})();</script>`;
+
 async function buildSchool(html, minify) {
   const SCHOOL = join(DIST, 'school');
   await mkdir(SCHOOL, { recursive: true });
-  await writeFile(join(SCHOOL, 'index.html'), html.replace('</body>', SCHOOL_OVERRIDE + '</body>'));
+  let schoolHtml = html.replace('</body>', SCHOOL_OVERRIDE + '</body>');
+  // Inject the ephemeral-storage shim right after the charset meta so it runs
+  // before any app script, without displacing the charset from the head start.
+  const charsetRe = /(<meta charset=[^>]*>)/i;
+  schoolHtml = charsetRe.test(schoolHtml)
+    ? schoolHtml.replace(charsetRe, '$1' + SCHOOL_EPHEMERAL)
+    : schoolHtml.replace('<head>', '<head>' + SCHOOL_EPHEMERAL);
+  await writeFile(join(SCHOOL, 'index.html'), schoolHtml);
   // The school page lives one directory down, so it needs its own copies of
   // the runtime assets its relative URLs point at.
   for (const f of [...RUNTIME_JS, ...STATIC_ASSETS]) {
