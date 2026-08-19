@@ -586,6 +586,7 @@
   // COUNTRY QUIZ — given a country name, click the right country region.
   // =========================================================================
   function newCountryMapQuiz() {
+    clearTimeout(countryQuizState.autoNext);
     countryQuizState.answered = false;
     const svg = document.getElementById('mapQuizSvg');
     if (!svg) return;
@@ -632,6 +633,8 @@
       if (ansEl) ansEl.innerHTML = '✗ You clicked <strong>' + (clickedCountry ? clickedCountry.name : clickedCode) + '</strong>. The correct one is <strong>' + (correctCountry ? correctCountry.name : correctCode) + '</strong> (highlighted).';
     }
     updateCountryStats();
+    // Auto-advance: short pause on a correct answer, longer when the reveal is showing.
+    countryQuizState.autoNext = setTimeout(newCountryMapQuiz, clickedCode === correctCode ? 1500 : 3000);
   }
 
   function updateCountryStats() {
@@ -650,6 +653,7 @@
   // Uses different element IDs (cap* prefix) so doesn't clash with country quiz.
   // =========================================================================
   function newCapitalMapQuiz() {
+    clearTimeout(capitalQuizState.autoNext);
     capitalQuizState.answered = false;
     const svg = document.getElementById('capQuizSvg');
     if (!svg) return;
@@ -705,6 +709,7 @@
       if (ansEl) ansEl.innerHTML = msg;
     }
     updateCapitalStats();
+    capitalQuizState.autoNext = setTimeout(newCapitalMapQuiz, clickedId === correctId ? 1500 : 3000);
   }
 
   function updateCapitalStats() {

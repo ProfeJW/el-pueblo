@@ -43,3 +43,8 @@
     }
     .site-search-results .ss-chip:hover, .site-search-results .ss-chip:focus { border-color:var(--rojo); outline:none; }
   
+    /* Map & capitals quizzes: keep the whole game on one screen */
+    .page[data-page="mundo-quiz-map"] .section-header,
+    .page[data-page="mundo-quiz-capitales"] .section-header { margin-bottom: 4px; padding-bottom: 8px; }
+    .page[data-page="mundo-quiz-map"] .section-header h2,
+    .page[data-page="mundo-quiz-capitales"] .section-header h2 { font-size: 24px; }
