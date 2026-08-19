@@ -262,6 +262,13 @@
     <div id="siteSearchResults" class="site-search-results" style="display:none;"></div>
   </div>
 
+  <!-- Daily sub coverage — data in sub-coverage.js; auto-hides unless dated today -->
+  <div id="subCoverageCard" style="display:none; background: var(--card-bg); border: 1px solid var(--line); border-left: 4px solid var(--rojo); border-radius: 10px; padding: 14px 20px; margin: 18px 0 4px;">
+    <div style="font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--rojo); margin-bottom: 6px;">📋 Sub coverage · <span id="subCovDate"></span></div>
+    <ul id="subCovList" style="margin: 0; padding-left: 20px; font-size: 15px; line-height: 1.7; color: var(--ink);"></ul>
+    <div id="subCovNote" style="display:none; font-size: 13px; color: var(--ink-soft); margin-top: 6px;"></div>
+  </div>
+
   <div class="home-links">
     <a href="#/abecedario" class="hl"><span class="hl-ico">🔤</span><span class="hl-name">Abecedario</span><span class="hl-sub">Alphabet & sounds</span></a>
     <a href="#/vocabulario" class="hl"><span class="hl-ico">🃏</span><span class="hl-name">Vocabulario</span><span class="hl-sub">Vocabulary</span></a>
@@ -2376,6 +2383,7 @@
 </footer>
 
 <script src="vocab-decks.js"></script>
+<script src="sub-coverage.js"></script>
 <script>/*INCDIR:scripts/app*/</script>
 <script src="practice-games.js"></script>
 <script src="grammar-games.js"></script>
