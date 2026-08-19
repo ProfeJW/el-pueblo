@@ -114,3 +114,23 @@
     }).join('');
   }
 
+
+  // ===== Daily sub coverage card on home — data lives in sub-coverage.js =====
+  // Renders only when the data's date is *today* in Cincinnati time, so an
+  // un-updated file simply means no card (never yesterday's list).
+  function renderSubCoverage() {
+    var card = document.getElementById('subCoverageCard');
+    var data = window.ELP_SUB_COVERAGE;
+    if (!card || !data || !data.date || !Array.isArray(data.entries) || data.entries.length === 0) return;
+    var today = new Date().toLocaleDateString('en-CA', { timeZone: 'America/New_York' });
+    if (data.date !== today) return;
+    var d = document.getElementById('subCovDate');
+    if (d) d.textContent = new Date(data.date + 'T12:00:00').toLocaleDateString('en-US', { weekday: 'long', month: 'short', day: 'numeric', timeZone: 'America/New_York' });
+    var list = document.getElementById('subCovList');
+    if (list) list.innerHTML = data.entries.map(function (e) { return '<li>' + e + '</li>'; }).join('');
+    var note = document.getElementById('subCovNote');
+    if (note && data.note) { note.textContent = data.note; note.style.display = 'block'; }
+    card.style.display = 'block';
+  }
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', renderSubCoverage);
+  else renderSubCoverage();
