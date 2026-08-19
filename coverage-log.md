@@ -19,7 +19,7 @@ in any session and it gets appended here.
 
 | Date | Day | Type | Covered for |
 |---|---|---|---|
-| 2026-08-14 | Friday | CLD coverage | — *(confirm: was this CLD only, or also a teacher?)* |
+| 2026-08-14 | Friday | CLD coverage | — |
 | 2026-08-18 | Tuesday | Internal sub | Sauers |
 | 2026-08-18 | Tuesday | CLD coverage | — |
 
