@@ -37,7 +37,7 @@ const DIST = join(ROOT, 'dist');
 // Runtime assets that must ship alongside index.html. These are copied to dist/;
 // the .js ones are minified on the way.
 const RUNTIME_JS = [
-  'vocab-decks.js', 'draw-templates.js', 'practice-games.js', 'sub-coverage.js',
+  'vocab-decks.js', 'draw-templates.js', 'practice-games.js',
   'grammar-games.js', 'actfl.js', 'adquisicion.js', 'historia.js',
 ];
 const STATIC_ASSETS = ['hero-logo.svg', 'og-image.png', 'robots.txt', 'sitemap.xml'];
