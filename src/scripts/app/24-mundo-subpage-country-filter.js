@@ -693,52 +693,98 @@
   }
 
   // =========================================================================
-  // CAPITALS QUIZ — given a capital name, click the right dot on the map.
-  // Uses different element IDs (cap* prefix) so doesn't clash with country quiz.
+  // CAPITALS QUIZ — one round = every capital dot (all 21 nations; Bolivia has
+  // both La Paz and Sucre), shuffled, each asked once. First click counts;
+  // percent score at the end. Note: capitalQuizState was never declared after
+  // the monolith split, so this quiz was throwing on load — rebuilt whole.
   // =========================================================================
-  function newCapitalMapQuiz() {
+  let capitalQuizState = { round: [], roundIndex: 0, roundCorrect: 0, target: null, answered: false, finished: false, autoNext: null };
+
+  function startCapitalRound() {
+    clearTimeout(capitalQuizState.autoNext);
+    const svg = document.getElementById('capQuizSvg');
+    if (!svg) return;
+    const ids = Array.from(new Set(Array.from(svg.querySelectorAll('.capital-dot')).map(el => el.getAttribute('data-capital'))));
+    if (ids.length === 0) return;
+    for (let i = ids.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      const t = ids[i]; ids[i] = ids[j]; ids[j] = t;
+    }
+    capitalQuizState.round = ids;
+    capitalQuizState.roundIndex = 0;
+    capitalQuizState.roundCorrect = 0;
+    capitalQuizState.finished = false;
+    showCapitalQuestion();
+  }
+
+  function showCapitalQuestion() {
     clearTimeout(capitalQuizState.autoNext);
     capitalQuizState.answered = false;
     const svg = document.getElementById('capQuizSvg');
     if (!svg) return;
-    const dotIds = Array.from(svg.querySelectorAll('.capital-dot')).map(el => el.getAttribute('data-capital'));
-    if (dotIds.length === 0) return;
-    capitalQuizState.target = dotIds[Math.floor(Math.random() * dotIds.length)];
+    capitalQuizState.target = capitalQuizState.round[capitalQuizState.roundIndex];
     const dot = CAPITAL_DOTS.find(d => d.id === capitalQuizState.target);
     const promptEl = document.getElementById('capQuizPrompt');
     if (promptEl && dot) promptEl.innerHTML = 'Find <em style="color: var(--ocre);">' + dot.name + '</em>';
     const hintEl = document.getElementById('capQuizHint');
-    if (hintEl) hintEl.textContent = 'Click the red dot on the map';
+    if (hintEl) hintEl.textContent = 'Capital ' + (capitalQuizState.roundIndex + 1) + ' of ' + capitalQuizState.round.length + ' — click the dot on the map';
     svg.querySelectorAll('.capital-dot').forEach(el => el.classList.remove('correct', 'wrong', 'reveal'));
     const ansEl = document.getElementById('capQuizAnswer');
     if (ansEl) ansEl.textContent = '';
     updateCapitalStats();
   }
 
+  function finishCapitalRound() {
+    clearTimeout(capitalQuizState.autoNext);
+    capitalQuizState.finished = true;
+    capitalQuizState.answered = false;
+    const n = capitalQuizState.round.length;
+    const c = capitalQuizState.roundCorrect;
+    const pct = Math.round((c / n) * 100);
+    const promptEl = document.getElementById('capQuizPrompt');
+    if (promptEl) promptEl.innerHTML = '¡Ronda completa! <em style="color: var(--ocre);">' + c + '/' + n + ' — ' + pct + '%</em>';
+    const hintEl = document.getElementById('capQuizHint');
+    if (hintEl) hintEl.textContent =
+      pct === 100 ? '¡Perfecto! 🏆 Every single capital.' :
+      pct >= 90 ? '¡Excelente! Almost perfect.' :
+      pct >= 75 ? '¡Muy bien! Solid capital knowledge.' :
+      pct >= 50 ? 'Bien — a little more practice and you have this.' :
+      'Keep at it — every round makes the capitals stick.';
+    const ansEl = document.getElementById('capQuizAnswer');
+    if (ansEl) ansEl.innerHTML = 'Press <strong>Next capital ▸</strong> to play again in a fresh order.';
+    const best = loadStreak('elPueblo_capRoundBest');
+    if (pct > best) saveStreak('elPueblo_capRoundBest', pct);
+    if (pct === 100 && typeof awardCoins === 'function') awardCoins(15, 'Perfect capitals round — ' + c + '/' + n + '!');
+    updateCapitalStats();
+  }
+
+  function newCapitalMapQuiz() {
+    // Single entry point for the router, the Next button, and auto-advance.
+    if (!capitalQuizState.round.length || capitalQuizState.finished) { startCapitalRound(); return; }
+    if (capitalQuizState.answered) capitalQuizState.roundIndex++;
+    if (capitalQuizState.roundIndex >= capitalQuizState.round.length) { finishCapitalRound(); return; }
+    showCapitalQuestion();
+  }
+
   function handleCapitalMapClick(evt) {
-    if (capitalQuizState.answered) return;
+    if (capitalQuizState.answered || capitalQuizState.finished) return;
     const target = evt.target;
     if (!target.classList || !target.classList.contains('capital-dot')) return;
     capitalQuizState.answered = true;
-    capitalQuizState.tries++;
     const clickedId = target.getAttribute('data-capital');
     const correctId = capitalQuizState.target;
     const correctDot = CAPITAL_DOTS.find(d => d.id === correctId);
     const correctCountry = COUNTRIES.find(c => c.code === (correctDot ? correctDot.country : ''));
     const ansEl = document.getElementById('capQuizAnswer');
     if (clickedId === correctId) {
-      capitalQuizState.correct++;
-      capitalQuizState.streak++;
+      capitalQuizState.roundCorrect++;
       target.classList.add('correct');
       if (typeof awardCoins === 'function') awardCoins(3, 'Capitals quiz · correct');
       let msg = '✓ Correct! ' + (correctDot ? correctDot.name : '') + ' is ';
       if (correctDot && correctDot.note) msg += '<em>(' + correctDot.note + ')</em> ';
       msg += 'the capital of <strong>' + (correctCountry ? correctCountry.name : '') + '</strong>.';
       if (ansEl) ansEl.innerHTML = msg;
-      const best = loadStreak('elPueblo_mapStreak_capital');
-      if (capitalQuizState.streak > best) saveStreak('elPueblo_mapStreak_capital', capitalQuizState.streak);
     } else {
-      capitalQuizState.streak = 0;
       target.classList.add('wrong');
       const svg = document.getElementById('capQuizSvg');
       const correctEl = svg.querySelector('.capital-dot[data-capital="' + correctId + '"]');
@@ -747,24 +793,22 @@
       const clickedCountry = COUNTRIES.find(c => c.code === (clickedDot ? clickedDot.country : ''));
       let msg = '✗ That dot is <strong>' + (clickedDot ? clickedDot.name : clickedId) + '</strong>';
       if (clickedCountry) msg += ' (' + clickedCountry.name + ')';
-      msg += '. ' + (correctDot ? correctDot.name : '') + ' is the highlighted dot';
-      if (correctCountry) msg += ' in ' + correctCountry.name;
-      msg += '.';
+      msg += '. The correct dot is highlighted.';
       if (ansEl) ansEl.innerHTML = msg;
     }
     updateCapitalStats();
-    capitalQuizState.autoNext = setTimeout(newCapitalMapQuiz, clickedId === correctId ? 1500 : 3000);
+    // Auto-advance: short pause on a correct answer, longer when the reveal is showing.
+    capitalQuizState.autoNext = setTimeout(newCapitalMapQuiz, clickedId === correctId ? 1300 : 2800);
   }
 
   function updateCapitalStats() {
-    const correctEl = document.getElementById('capCorrect');
-    const triesEl = document.getElementById('capTries');
-    if (correctEl) correctEl.textContent = capitalQuizState.correct;
-    if (triesEl) triesEl.textContent = capitalQuizState.tries;
-    const streakEl = document.getElementById('capStreak');
-    const bestEl = document.getElementById('capBestStreak');
-    if (streakEl) streakEl.textContent = capitalQuizState.streak;
-    if (bestEl) bestEl.textContent = loadStreak('elPueblo_mapStreak_capital');
+    const n = capitalQuizState.round.length || 22;
+    const progEl = document.getElementById('capRoundProgress');
+    if (progEl) progEl.textContent = (capitalQuizState.finished ? n : Math.min(capitalQuizState.roundIndex + 1, n)) + '/' + n;
+    const scoreEl = document.getElementById('capRoundScore');
+    if (scoreEl) scoreEl.textContent = capitalQuizState.roundCorrect;
+    const bestEl = document.getElementById('capBestPct');
+    if (bestEl) { const b = loadStreak('elPueblo_capRoundBest'); bestEl.textContent = b > 0 ? b + '%' : '—'; }
   }
 
   // Backwards-compat aliases (in case anything else still calls these names)
