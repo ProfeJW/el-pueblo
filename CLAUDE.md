@@ -2,12 +2,14 @@
 
 ## Site structure
 - Source lives in `src/` (HTML shell + per-concern JS/CSS modules); `build.mjs`
-  assembles `dist/` and also emits `dist/school/` — the **school edition**
-  (same site with the Lucas coin system and sign-in hidden/neutered, and
-  localStorage routed to sessionStorage so no student data survives the
-  window closing). Never edit `dist/` directly; never remove the school build.
+  assembles `dist/`. Layout is domain-first (nchspanish.com points at the root):
+  the ROOT of `dist/` is the **school edition** (Lucas coin system and sign-in
+  hidden/neutered, localStorage routed to sessionStorage so no student data
+  survives the window closing); the FULL edition (coins + sign-in) is emitted
+  at `dist/profe/`; `dist/school/` is a legacy redirect to the root. Never edit
+  `dist/` directly; never remove the school transformation or /profe/.
 - Deploys to GitHub Pages automatically on push to `main`
-  (main: https://profejw.github.io/el-pueblo/ · school: https://profejw.github.io/el-pueblo/school/).
+  (students: nchspanish.com / profejw.github.io/el-pueblo/ · full site: …/profe/).
 
 ## Coverage log (personal tracker — keep maintaining this)
 `coverage-log.md` in the repo root tracks every time the user (Profe JW)

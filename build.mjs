@@ -169,28 +169,8 @@ const SCHOOL_OVERRIDE = `
 // the window. Must run BEFORE the app scripts, so it is injected in <head>.
 const SCHOOL_EPHEMERAL = `<script id="school-ephemeral">(function(){try{var ss=window.sessionStorage;ss.setItem('__probe__','1');ss.removeItem('__probe__');Object.defineProperty(window,'localStorage',{configurable:true,get:function(){return ss;}});}catch(e){/* blocked storage: app's own safe-storage falls back to in-memory, which is even more ephemeral */}})();</script>`;
 
-async function buildSchool(html, minify) {
-  const SCHOOL = join(DIST, 'school');
-  await mkdir(SCHOOL, { recursive: true });
-  let schoolHtml = html.replace('</body>', SCHOOL_OVERRIDE + '</body>');
-  // Inject the ephemeral-storage shim right after the charset meta so it runs
-  // before any app script, without displacing the charset from the head start.
-  const charsetRe = /(<meta charset=[^>]*>)/i;
-  schoolHtml = charsetRe.test(schoolHtml)
-    ? schoolHtml.replace(charsetRe, '$1' + SCHOOL_EPHEMERAL)
-    : schoolHtml.replace('<head>', '<head>' + SCHOOL_EPHEMERAL);
-  await writeFile(join(SCHOOL, 'index.html'), schoolHtml);
-  // The school page lives one directory down, so it needs its own copies of
-  // the runtime assets its relative URLs point at.
-  for (const f of [...RUNTIME_JS, ...STATIC_ASSETS]) {
-    if (existsSync(join(DIST, f))) await cp(join(DIST, f), join(SCHOOL, f));
-  }
-  for (const d of STATIC_DIRS) {
-    if (existsSync(join(DIST, d))) await cp(join(DIST, d), join(SCHOOL, d), { recursive: true });
-  }
-  const bytes = (await stat(join(SCHOOL, 'index.html'))).size;
-  console.log('Built dist/school/ — index.html', (bytes / 1024).toFixed(0) + ' KB (school edition, no Lucas/sign-in)');
-}
+// (school assembly now happens inside build() — root IS the school edition)
+
 
 async function build() {
   const minify = !process.argv.includes('--no-minify');
@@ -198,7 +178,17 @@ async function build() {
   await mkdir(DIST, { recursive: true });
 
   const html = await assemble({ minify });
-  await writeFile(join(DIST, 'index.html'), html);
+
+  // Layout (domain-first, nchspanish.com points at the site root):
+  //   dist/            -> SCHOOL edition (no Lucas, no sign-in, session-only storage)
+  //   dist/profe/      -> FULL edition (Lucas coins + sign-in) for the teacher
+  //   dist/school/     -> legacy redirect to / (old shared links keep working)
+  const schoolHtml = html.replace('</body>', SCHOOL_OVERRIDE + '</body>');
+  const charsetRe = /(<meta charset=[^>]*>)/i;
+  const schoolFinal = charsetRe.test(schoolHtml)
+    ? schoolHtml.replace(charsetRe, '$1' + SCHOOL_EPHEMERAL)
+    : schoolHtml.replace('<head>', '<head>' + SCHOOL_EPHEMERAL);
+  await writeFile(join(DIST, 'index.html'), schoolFinal);
 
   for (const js of RUNTIME_JS) await copyAsset(js, { minify });
   for (const a of STATIC_ASSETS) await copyAsset(a, { minify: false });
@@ -206,10 +196,28 @@ async function build() {
     if (existsSync(join(ROOT, d))) await cp(join(ROOT, d), join(DIST, d), { recursive: true });
   }
 
-  await buildSchool(html, minify);
+  // Full edition at /profe/ with its own copies of the relative-path assets.
+  const PROFE = join(DIST, 'profe');
+  await mkdir(PROFE, { recursive: true });
+  await writeFile(join(PROFE, 'index.html'), html);
+  for (const f of [...RUNTIME_JS, ...STATIC_ASSETS]) {
+    if (existsSync(join(DIST, f))) await cp(join(DIST, f), join(PROFE, f));
+  }
+  for (const d of STATIC_DIRS) {
+    if (existsSync(join(DIST, d))) await cp(join(DIST, d), join(PROFE, d), { recursive: true });
+  }
+
+  // Legacy /school/ links redirect to the new root (hash preserved).
+  const SCHOOL = join(DIST, 'school');
+  await mkdir(SCHOOL, { recursive: true });
+  await writeFile(join(SCHOOL, 'index.html'),
+    '<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><title>El Pueblo</title>' +
+    '<script>location.replace("../" + location.hash);</script>' +
+    '<meta http-equiv="refresh" content="0; url=../"></head>' +
+    '<body><p>Moved — <a href="../">continue to El Pueblo</a>.</p></body></html>');
 
   const outBytes = (await stat(join(DIST, 'index.html'))).size;
-  console.log('Built dist/ — index.html', (outBytes / 1024).toFixed(0) + ' KB' + (minify ? ' (minified)' : ' (raw)'));
+  console.log('Built dist/ (SCHOOL edition at root)', (outBytes / 1024).toFixed(0) + ' KB' + (minify ? ' (minified)' : ' (raw)') + ' · full edition at /profe/ · /school/ redirects to root');
 }
 
 // Run build unless imported for assemble().
