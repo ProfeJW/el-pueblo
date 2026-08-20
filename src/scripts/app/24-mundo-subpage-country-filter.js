@@ -571,60 +571,105 @@
   // =========================================================================
   // State — separate for each quiz so they don't interfere.
   // =========================================================================
-  let countryQuizState = { target: null, correct: 0, tries: 0, streak: 0, answered: false };
-  let capitalQuizState = { target: null, correct: 0, tries: 0, streak: 0, answered: false };
-
-  // Personal best streaks live in localStorage (per device)
+  // Persistence helpers for quiz bests (lost in the monolith split — the old
+  // code called these but they were never carried over). In the school edition
+  // localStorage maps to sessionStorage, so bests reset when the window closes.
   function loadStreak(key) {
-    try { return parseInt(localStorage.getItem(key) || '0', 10) || 0; } catch (e) { return 0; }
+    try { return parseInt(localStorage.getItem(key), 10) || 0; } catch (e) { return 0; }
   }
-  function saveStreak(key, value) {
-    try { localStorage.setItem(key, String(value)); } catch (e) {}
+  function saveStreak(key, val) {
+    try { localStorage.setItem(key, String(val)); } catch (e) {}
   }
 
+  let countryQuizState = { round: [], roundIndex: 0, roundCorrect: 0, target: null, answered: false, finished: false, autoNext: null };
+
   // =========================================================================
-  // COUNTRY QUIZ — given a country name, click the right country region.
+  // COUNTRY QUIZ — one round = all 21 countries, shuffled, each asked once.
+  // First click per country is the answer (no retries, no repeats), and the
+  // round ends with a percent score. Map has no hover names or inset labels,
+  // so the score reflects real knowledge.
   // =========================================================================
-  function newCountryMapQuiz() {
+  function startCountryRound() {
+    clearTimeout(countryQuizState.autoNext);
+    const svg = document.getElementById('mapQuizSvg');
+    if (!svg) return;
+    const codes = Array.from(new Set(Array.from(svg.querySelectorAll('.country-region')).map(el => el.getAttribute('data-country'))));
+    if (codes.length === 0) return;
+    for (let i = codes.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      const t = codes[i]; codes[i] = codes[j]; codes[j] = t;
+    }
+    countryQuizState.round = codes;
+    countryQuizState.roundIndex = 0;
+    countryQuizState.roundCorrect = 0;
+    countryQuizState.finished = false;
+    showCountryQuestion();
+  }
+
+  function showCountryQuestion() {
     clearTimeout(countryQuizState.autoNext);
     countryQuizState.answered = false;
     const svg = document.getElementById('mapQuizSvg');
     if (!svg) return;
-    const codes = Array.from(svg.querySelectorAll('.country-region')).map(el => el.getAttribute('data-country'));
-    if (codes.length === 0) return;
-    countryQuizState.target = codes[Math.floor(Math.random() * codes.length)];
+    countryQuizState.target = countryQuizState.round[countryQuizState.roundIndex];
     const country = COUNTRIES.find(c => c.code === countryQuizState.target);
     const promptEl = document.getElementById('mapQuizPrompt');
     if (promptEl) promptEl.innerHTML = 'Find <em style="color: var(--ocre);">' + (country ? country.name : countryQuizState.target) + '</em>';
     const hintEl = document.getElementById('mapQuizHint');
-    if (hintEl) hintEl.textContent = 'Click the country on the map';
+    if (hintEl) hintEl.textContent = 'Country ' + (countryQuizState.roundIndex + 1) + ' of ' + countryQuizState.round.length + ' — click it on the map';
     svg.querySelectorAll('.country-region').forEach(el => el.classList.remove('correct', 'wrong', 'reveal'));
     const ansEl = document.getElementById('mapQuizAnswer');
     if (ansEl) ansEl.textContent = '';
     updateCountryStats();
   }
 
+  function finishCountryRound() {
+    clearTimeout(countryQuizState.autoNext);
+    countryQuizState.finished = true;
+    countryQuizState.answered = false;
+    const n = countryQuizState.round.length;
+    const c = countryQuizState.roundCorrect;
+    const pct = Math.round((c / n) * 100);
+    const promptEl = document.getElementById('mapQuizPrompt');
+    if (promptEl) promptEl.innerHTML = '¡Ronda completa! <em style="color: var(--ocre);">' + c + '/' + n + ' — ' + pct + '%</em>';
+    const hintEl = document.getElementById('mapQuizHint');
+    if (hintEl) hintEl.textContent =
+      pct === 100 ? '¡Perfecto! 🏆 Every single country.' :
+      pct >= 90 ? '¡Excelente! Almost perfect.' :
+      pct >= 75 ? '¡Muy bien! Solid map skills.' :
+      pct >= 50 ? 'Bien — a little more practice and you have this.' :
+      'Keep exploring the map — every round makes it stick.';
+    const ansEl = document.getElementById('mapQuizAnswer');
+    if (ansEl) ansEl.innerHTML = 'Press <strong>Next country ▸</strong> to play again in a fresh order.';
+    const best = loadStreak('elPueblo_mapRoundBest');
+    if (pct > best) saveStreak('elPueblo_mapRoundBest', pct);
+    if (pct === 100 && typeof awardCoins === 'function') awardCoins(15, 'Perfect map round — ' + c + '/' + n + '!');
+    updateCountryStats();
+  }
+
+  function newCountryMapQuiz() {
+    // Single entry point for the router, the Next button, and auto-advance.
+    if (!countryQuizState.round.length || countryQuizState.finished) { startCountryRound(); return; }
+    if (countryQuizState.answered) countryQuizState.roundIndex++;
+    if (countryQuizState.roundIndex >= countryQuizState.round.length) { finishCountryRound(); return; }
+    showCountryQuestion();
+  }
+
   function handleCountryMapClick(evt) {
-    if (countryQuizState.answered) return;
+    if (countryQuizState.answered || countryQuizState.finished) return;
     const target = evt.target;
     if (!target.classList || !target.classList.contains('country-region')) return;
     countryQuizState.answered = true;
-    countryQuizState.tries++;
     const clickedCode = target.getAttribute('data-country');
     const correctCode = countryQuizState.target;
     const correctCountry = COUNTRIES.find(c => c.code === correctCode);
     const ansEl = document.getElementById('mapQuizAnswer');
     if (clickedCode === correctCode) {
-      countryQuizState.correct++;
-      countryQuizState.streak++;
+      countryQuizState.roundCorrect++;
       target.classList.add('correct');
       if (typeof awardCoins === 'function') awardCoins(3, 'Map quiz · correct');
       if (ansEl) ansEl.innerHTML = '✓ Correct! That\'s <strong>' + (correctCountry ? correctCountry.name : correctCode) + '</strong>.';
-      // Update best streak
-      const best = loadStreak('elPueblo_mapStreak_country');
-      if (countryQuizState.streak > best) saveStreak('elPueblo_mapStreak_country', countryQuizState.streak);
     } else {
-      countryQuizState.streak = 0;
       target.classList.add('wrong');
       const svg = document.getElementById('mapQuizSvg');
       const correctEl = svg.querySelector('.country-region[data-country="' + correctCode + '"]');
@@ -634,18 +679,17 @@
     }
     updateCountryStats();
     // Auto-advance: short pause on a correct answer, longer when the reveal is showing.
-    countryQuizState.autoNext = setTimeout(newCountryMapQuiz, clickedCode === correctCode ? 1500 : 3000);
+    countryQuizState.autoNext = setTimeout(newCountryMapQuiz, clickedCode === correctCode ? 1300 : 2800);
   }
 
   function updateCountryStats() {
-    const correctEl = document.getElementById('mapCorrect');
-    const triesEl = document.getElementById('mapTries');
-    if (correctEl) correctEl.textContent = countryQuizState.correct;
-    if (triesEl) triesEl.textContent = countryQuizState.tries;
-    const streakEl = document.getElementById('mapStreak');
-    const bestEl = document.getElementById('mapBestStreak');
-    if (streakEl) streakEl.textContent = countryQuizState.streak;
-    if (bestEl) bestEl.textContent = loadStreak('elPueblo_mapStreak_country');
+    const n = countryQuizState.round.length || 21;
+    const progEl = document.getElementById('mapRoundProgress');
+    if (progEl) progEl.textContent = (countryQuizState.finished ? n : Math.min(countryQuizState.roundIndex + 1, n)) + '/' + n;
+    const scoreEl = document.getElementById('mapRoundScore');
+    if (scoreEl) scoreEl.textContent = countryQuizState.roundCorrect;
+    const bestEl = document.getElementById('mapBestPct');
+    if (bestEl) { const b = loadStreak('elPueblo_mapRoundBest'); bestEl.textContent = b > 0 ? b + '%' : '—'; }
   }
 
   // =========================================================================
