@@ -22,6 +22,11 @@
   // lesson's "Related practice" section.
   // ============================================================================
   const LESSON_RESOURCES = {
+    'saludos-cortesia': {
+      decks: ['saludos', 'emociones', 'cotidiano'],
+      pdfs: [],
+      links: []
+    },
     'pronunciation-alphabet': {
       decks: ['saludos', 'cotidiano'],
       pdfs: [],
@@ -7560,6 +7565,109 @@
           { text: 'por', correct: false },
           { text: 'para', correct: true },
           { text: 'no preposition', correct: false }
+        ]}
+      ]
+    }
+,
+    {
+      id: 'saludos-cortesia',
+      num: '53',
+      level: 'sp1',
+      title: 'Saludos, despedidas y <em>cortesía</em>',
+      tag: 'Week 1 · Survival Spanish',
+      summary: 'How to say hello and goodbye, introduce yourself, say how you feel, and be polite — the phrases you will use every single day.',
+      sections: [
+        {
+          heading: 'Greetings — <em>saludos</em>',
+          body: 'These are the first words out of your mouth in any conversation. The time-of-day greetings are slightly formal; <strong>hola</strong> works anywhere, anytime. Note that <em>buenas noches</em> is both "good evening" when you arrive and "good night" when you leave.',
+          conjugation: [
+            ['hola', 'hello / hi (works anytime)'],
+            ['buenos días', 'good morning'],
+            ['buenas tardes', 'good afternoon'],
+            ['buenas noches', 'good evening / good night'],
+            ['¿qué tal?', 'how\'s it going? (casual)'],
+            ['¿qué pasa?', 'what\'s up? (very casual)']
+          ]
+        },
+        {
+          heading: 'Introducing <em>yourself</em>',
+          body: 'Spanish has two registers: <strong>tú</strong> (informal — friends, classmates, family) and <strong>usted</strong> (formal — teachers, elders, strangers). Use the <em>tú</em> forms with each other in class and the <em>usted</em> form with adults you don\'t know. When someone introduces themselves to you, answer with <strong>mucho gusto</strong> or <strong>encantado</strong> (if you\'re a boy) / <strong>encantada</strong> (if you\'re a girl).',
+          conjugation: [
+            ['¿Cómo te llamas?', 'What\'s your name? (informal)'],
+            ['¿Cómo se llama usted?', 'What\'s your name? (formal)'],
+            ['Me llamo…', 'My name is… (literally "I call myself…")'],
+            ['Soy…', 'I am…'],
+            ['¿Y tú?', 'And you? (informal)'],
+            ['¿Y usted?', 'And you? (formal)'],
+            ['Mucho gusto', 'Nice to meet you'],
+            ['Encantado / Encantada', 'Delighted (m. speaker / f. speaker)'],
+            ['Igualmente', 'Likewise / same here']
+          ]
+        },
+        {
+          heading: 'Farewells — <em>despedidas</em>',
+          body: 'Spanish speakers rarely leave with just one goodbye — you\'ll often hear two or three stacked together: <em>"Bueno, nos vemos. ¡Hasta mañana! ¡Chao!"</em> The <strong>hasta ___</strong> pattern means "until ___," so you can build almost any farewell with it.',
+          conjugation: [
+            ['adiós', 'goodbye'],
+            ['hasta luego', 'see you later'],
+            ['hasta mañana', 'see you tomorrow'],
+            ['hasta pronto', 'see you soon'],
+            ['nos vemos', 'see you (literally "we\'ll see each other")'],
+            ['chao', 'bye (casual, very common)'],
+            ['que te vaya bien', 'hope it goes well for you (warm send-off)']
+          ]
+        },
+        {
+          heading: 'How are you? — saying how people <em>feel</em>',
+          body: 'The question is <strong>¿Cómo estás?</strong> (informal) or <strong>¿Cómo está usted?</strong> (formal). Answers use <strong>estoy</strong> ("I am"). One key detail: feeling words that end in <strong>-o/-a</strong> match the speaker — a boy says <em>estoy cansado</em>, a girl says <em>estoy cansada</em>. Words like <em>bien, mal, feliz, triste</em> don\'t change.',
+          conjugation: [
+            ['¿Cómo estás?', 'How are you? (informal)'],
+            ['Estoy bien / muy bien', 'I\'m fine / very well'],
+            ['más o menos · así así', 'so-so'],
+            ['Estoy mal / fatal', 'I\'m doing badly / terrible'],
+            ['Estoy cansado/a', 'I\'m tired'],
+            ['Estoy feliz · contento/a', 'I\'m happy'],
+            ['Estoy triste', 'I\'m sad'],
+            ['Estoy nervioso/a', 'I\'m nervous'],
+            ['Estoy emocionado/a', 'I\'m excited'],
+            ['Estoy enfermo/a', 'I\'m sick']
+          ]
+        },
+        {
+          heading: 'Courtesy words — <em>palabras de cortesía</em>',
+          body: 'These little words carry a lot of weight — Spanish-speaking cultures notice politeness. Learn the difference between <strong>perdón</strong> (apologizing or getting attention), <strong>con permiso</strong> (excuse me — squeezing past someone), and <strong>lo siento</strong> (I\'m sorry — sympathy or a real apology).',
+          conjugation: [
+            ['por favor', 'please'],
+            ['gracias / muchas gracias', 'thank you / thank you very much'],
+            ['de nada', 'you\'re welcome'],
+            ['no hay de qué', 'don\'t mention it'],
+            ['perdón / disculpe', 'pardon me / excuse me (attention or small apology)'],
+            ['con permiso', 'excuse me (passing by someone)'],
+            ['lo siento (mucho)', 'I\'m (so) sorry'],
+            ['salud', 'bless you (after a sneeze) / cheers'],
+            ['bienvenido/a', 'welcome']
+          ]
+        },
+        {
+          heading: 'Putting it all <em>together</em>',
+          body: 'A complete first conversation, using everything above:<br><br><em>— ¡Hola! Buenos días.<br>— Buenos días. ¿Cómo te llamas?<br>— Me llamo Ana, ¿y tú?<br>— Soy Marcos. Mucho gusto.<br>— Igualmente. ¿Cómo estás?<br>— Estoy bien, gracias. ¿Y tú?<br>— Más o menos… estoy cansada.<br>— Lo siento. Bueno, ¡hasta luego!<br>— ¡Chao! Que te vaya bien.</em><br><br>Read it out loud with a partner, then swap roles — and swap in your own names and feelings.'
+        }
+      ],
+      quiz: [
+        { q: 'A classmate sneezes. What do you say?', options: [
+          { text: '¡Salud!', correct: true },
+          { text: '¡Con permiso!', correct: false },
+          { text: '¡De nada!', correct: false }
+        ]},
+        { q: 'A girl wants to say "I\'m tired." Which is correct?', options: [
+          { text: 'Estoy cansado', correct: false },
+          { text: 'Estoy cansada', correct: true },
+          { text: 'Soy cansada', correct: false }
+        ]},
+        { q: 'Someone says "Mucho gusto." A natural reply is:', options: [
+          { text: 'Igualmente', correct: true },
+          { text: 'Hasta mañana', correct: false },
+          { text: 'No hay de qué', correct: false }
         ]}
       ]
     }
