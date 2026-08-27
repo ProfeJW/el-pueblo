@@ -28,17 +28,18 @@
         { url: 'pdfs/bingo-gane.pdf', label: 'Bingo board ¡GANÉ! — fill with greetings vocab (PDF)' },
         { url: 'pdfs/bingo-gano.pdf', label: 'Bingo board GANO — second variant (PDF)' }
       ],
-      links: []
+      links: [
+        { label: "Preliminar Peardeck (intro)", url: 'https://docs.google.com/presentation/d/1rG79MZsmJJ_mKzoQRVvKUyXWQEgNi7Kuaz1h4e0vj1k/edit?usp=sharing' },
+        { label: "Preliminar Vocab List (saludos, despedidas)", url: 'https://docs.google.com/document/d/1Td_XUXiir4huthoS4pL6tiJgCu1ArufTqA8i8voq2-I/edit?usp=sharing' },
+        { label: "To-do list: Preliminar vocab", url: 'https://docs.google.com/document/d/1osMU2vDYDMvinhAkxr5GfG-xnQCsxMBH6Ia0JPV1GIs/edit?usp=sharing' },
+        { label: "Preliminar crossword (PDF)", url: 'https://drive.google.com/file/d/15PmhBVcRq0a2LvV-_00t02i7YwzywH86/view?usp=sharing' }
+      ]
     },
     'pronunciation-alphabet': {
       decks: ['saludos', 'cotidiano'],
       pdfs: [],
       links: [
-        { label: "Spanish Alphabet Presentation Link", url: 'https://docs.google.com/document/d/1bgAI3NydtqUZZhZN75oW7eExCqcn4es0v7GTj4ILqXY/edit?usp=sharing' },
-        { label: "Preliminar Peardeck (intro)", url: 'https://docs.google.com/presentation/d/1rG79MZsmJJ_mKzoQRVvKUyXWQEgNi7Kuaz1h4e0vj1k/edit?usp=sharing' },
-        { label: "Preliminar Vocab List (saludos, despedidas)", url: 'https://docs.google.com/document/d/1Td_XUXiir4huthoS4pL6tiJgCu1ArufTqA8i8voq2-I/edit?usp=sharing' },
-        { label: "To-do list: Preliminar vocab", url: 'https://docs.google.com/document/d/1osMU2vDYDMvinhAkxr5GfG-xnQCsxMBH6Ia0JPV1GIs/edit?usp=sharing' },
-        { label: "Preliminar crossword (PDF)", url: 'https://drive.google.com/file/d/15PmhBVcRq0a2LvV-_00t02i7YwzywH86/view?usp=sharing' }
+        { label: "Spanish Alphabet Presentation Link", url: 'https://docs.google.com/document/d/1bgAI3NydtqUZZhZN75oW7eExCqcn4es0v7GTj4ILqXY/edit?usp=sharing' }
       ]
     },
     'stress-and-accents': {
