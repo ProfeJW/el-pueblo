@@ -5178,7 +5178,10 @@
   .accent-bar {
     position: fixed;
     left: 50%;
+    top: auto;              /* guard: an earlier sticky-toolbar .accent-bar rule sets top,
+                               which combined with bottom:0 stretched this into a full-height wall */
     bottom: 0;
+    flex-wrap: nowrap;
     transform: translateX(-50%) translateY(110%);
     z-index: 250;
     display: flex;
@@ -5228,6 +5231,17 @@
       height: 36px;
       font-size: 20px;
     }
+  }
+  @media (min-width: 601px) {
+    .accent-bar {
+      left: auto;
+      right: 18px;
+      bottom: 12px;
+      border-radius: 12px;
+      transform: translateY(140%);
+    }
+    .accent-bar.visible { transform: translateY(0); }
+    .accent-bar button { min-width: 32px; height: 34px; font-size: 18px; }
   }
 
   .toast-container {

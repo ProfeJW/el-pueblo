@@ -7571,6 +7571,7 @@
 ,
     {
       id: 'saludos-cortesia',
+      pinned: true,
       num: '53',
       level: 'sp1',
       title: 'Saludos, despedidas y <em>cortesía</em>',
@@ -8112,6 +8113,8 @@
 
     // Linguistics lessons live in their own #/linguistica hub, not the grammar list
     let lessons = LESSONS.filter(l => l.level !== 'ling');
+    // Week-1 survival content stays findable: pinned lessons sort first.
+    lessons = lessons.slice().sort((a, b) => (b.pinned ? 1 : 0) - (a.pinned ? 1 : 0));
     if (lessonsFilter !== 'all') {
       lessons = lessons.filter(l => {
         const lv = getLessonLevel(l);
