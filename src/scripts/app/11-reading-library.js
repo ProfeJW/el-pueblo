@@ -1094,6 +1094,65 @@
         ]}
       ]
     },
+    // ---------- MODERN CLASSIC — La ciudad y los perros (about the novel; original text) ----------
+    {
+      id: 'ciudad-y-perros',
+      kind: 'story', level: 'advanced',
+      title: '<em>La ciudad y los perros</em>: cante cien veces «soy un perro»',
+      author: 'Original · El Pueblo',
+      year: '1963',
+      attribution: 'Sobre la novela de Mario Vargas Llosa · basado en la tesis de Profe Williamson',
+      preview: 'En un colegio militar de Lima, los cadetes de primer año son «los perros». La primera novela de Vargas Llosa escandalizó tanto a los militares que quemaron mil ejemplares…',
+      text: [
+        'En 1963, un peruano de veintisiete años publicó una novela que cambió la literatura latinoamericana. Mario Vargas Llosa había estudiado de adolescente en el Colegio Militar Leoncio Prado, en Lima, y de esa experiencia nació La ciudad y los perros. La reacción fue inmediata: los oficiales del colegio, furiosos por el retrato que hacía el libro, quemaron mil ejemplares en el patio de la escuela. La censura, como casi siempre, consiguió lo contrario: la novela se hizo famosa en todo el mundo.',
+        'En el colegio de la novela, los cadetes de primer año no tienen nombre: son «los perros». Los mayores los someten a novatadas crueles para «hacerlos hombres»: los humillan, los golpean y los obligan a cantar cien veces «soy un perro». Cada cadete sobrevive como puede, escondido detrás de un apodo — el Jaguar, el Poeta, el Esclavo — porque mostrar debilidad es el peor de los pecados.',
+        'La novela plantea una pregunta incómoda: ¿qué produce realmente ese sistema? El colegio promete disciplina y hombría, pero enseña violencia, silencio y miedo. Cuando ocurre una tragedia dentro de sus muros, la institución prefiere proteger su imagen antes que buscar la verdad. Delatar a un compañero es imperdonable entre los cadetes; decir la verdad, casi imposible dentro del sistema.',
+        'Como explica la tesis del Profe Williamson, el joven Vargas Llosa escribió esta novela como una confrontación contra el poder opresivo y la masculinidad tóxica que ese poder fabrica. Con los años, el autor evolucionó: de la crítica revolucionaria de su juventud pasó a defender la libertad del individuo frente a todo tipo de autoritarismo. Pero la semilla está aquí, en su primera novela: la sospecha de que las instituciones que prometen formar personas pueden terminar deformándolas.',
+        'Vargas Llosa ganó el Premio Nobel de Literatura en 2010 y murió en 2025, reconocido como uno de los gigantes del Boom latinoamericano. La ciudad y los perros sigue leyéndose en todo el mundo — y sigue haciendo la misma pregunta: cuando un sistema te ordena cantar «soy un perro», ¿obedeces, o te atreves a decir que no?'
+      ],
+      gloss: {
+        'el ejemplar': 'copy (of a book)',
+        'la censura': 'censorship',
+        'el cadete': 'cadet',
+        'la novatada': 'hazing ritual',
+        'someter': 'to subject / subdue',
+        'el apodo': 'nickname',
+        'la debilidad': 'weakness',
+        'plantear': 'to raise (a question)',
+        'la hombría': 'manliness',
+        'delatar': 'to inform on someone',
+        'imperdonable': 'unforgivable',
+        'la semilla': 'seed',
+        'atreverse': 'to dare'
+      },
+      quiz: [
+        { q: '¿En qué se basó Vargas Llosa para escribir la novela?', options: [
+          { text: 'En su propia experiencia en el Colegio Militar Leoncio Prado', correct: true },
+          { text: 'En la vida de su abuelo militar', correct: false },
+          { text: 'En una historia completamente inventada', correct: false }
+        ]},
+        { q: '¿Cómo reaccionaron los militares peruanos al libro?', options: [
+          { text: 'Lo celebraron como un homenaje', correct: false },
+          { text: 'Quemaron mil ejemplares en el patio del colegio', correct: true },
+          { text: 'Lo ignoraron por completo', correct: false }
+        ]},
+        { q: '¿Quiénes son «los perros» en la novela?', options: [
+          { text: 'Las mascotas del colegio', correct: false },
+          { text: 'Los oficiales más crueles', correct: false },
+          { text: 'Los cadetes de primer año', correct: true }
+        ]},
+        { q: 'Según la lectura, ¿qué enseña realmente el sistema del colegio?', options: [
+          { text: 'Violencia, silencio y miedo', correct: true },
+          { text: 'Honestidad y compasión', correct: false },
+          { text: 'Arte y literatura', correct: false }
+        ]},
+        { q: '¿Qué premio ganó Vargas Llosa en 2010?', options: [
+          { text: 'El Premio Cervantes', correct: false },
+          { text: 'El Premio Nobel de Literatura', correct: true },
+          { text: 'El Premio Planeta', correct: false }
+        ]}
+      ]
+    },
     // ---------- BEGINNER STORIES (5 Lucas/correct, +5 bonus = max 20) ----------
     {
       id: 'mi-familia',
