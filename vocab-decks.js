@@ -681,6 +681,24 @@ window.ELP_DECKS = {
       { word: 'la emboscada', cat: 'Noun · Feminine', back: 'ambush', ex: '"Murió en una emboscada en 1919."', exEn: 'He died in an ambush in 1919.' },
       { word: 'la justicia', cat: 'Noun · Feminine', back: 'justice', ex: '"Peleaban por justicia social."', exEn: 'They fought for social justice.' }
     ],
+    ciudadperros: [
+      { word: 'el cadete', cat: 'Noun · Masculine', back: 'cadet', ex: '"Los cadetes viven en el colegio militar."', exEn: 'The cadets live at the military academy.' },
+      { word: 'el colegio militar', cat: 'Noun · Masculine', back: 'military academy', ex: '"La novela ocurre en un colegio militar de Lima."', exEn: 'The novel takes place in a military academy in Lima.' },
+      { word: 'el perro', cat: 'Noun · Masculine (slang)', back: 'first-year cadet ("dog")', ex: '"A los nuevos los llaman perros."', exEn: 'The new cadets are called "dogs."' },
+      { word: 'la novatada', cat: 'Noun · Feminine', back: 'hazing / initiation ritual', ex: '"Las novatadas eran crueles y humillantes."', exEn: 'The hazing rituals were cruel and humiliating.' },
+      { word: 'el apodo', cat: 'Noun · Masculine', back: 'nickname', ex: '"Cada cadete tiene un apodo: el Jaguar, el Poeta…"', exEn: 'Every cadet has a nickname: the Jaguar, the Poet…' },
+      { word: 'la disciplina', cat: 'Noun · Feminine', back: 'discipline', ex: '"La disciplina del colegio era brutal."', exEn: 'The discipline at the academy was brutal.' },
+      { word: 'la jerarquía', cat: 'Noun · Feminine', back: 'hierarchy / pecking order', ex: '"La jerarquía lo controlaba todo."', exEn: 'The hierarchy controlled everything.' },
+      { word: 'obedecer', cat: 'Verb', back: 'to obey', ex: '"Los perros tenían que obedecer sin preguntar."', exEn: 'The "dogs" had to obey without asking.' },
+      { word: 'delatar', cat: 'Verb', back: 'to inform on / snitch', ex: '"Delatar a un compañero era imperdonable."', exEn: 'Informing on a classmate was unforgivable.' },
+      { word: 'el soplón', cat: 'Noun · Masculine', back: 'snitch / informer', ex: '"Nadie quería ser el soplón."', exEn: 'Nobody wanted to be the snitch.' },
+      { word: 'el castigo', cat: 'Noun · Masculine', back: 'punishment', ex: '"El castigo era quedarse sin salida el sábado."', exEn: 'The punishment was losing Saturday leave.' },
+      { word: 'la hombría', cat: 'Noun · Feminine', back: 'manliness / machismo', ex: '"El colegio confundía la violencia con la hombría."', exEn: 'The academy confused violence with manliness.' },
+      { word: 'la cobardía', cat: 'Noun · Feminine', back: 'cowardice', ex: '"Llorar se consideraba cobardía."', exEn: 'Crying was considered cowardice.' },
+      { word: 'el internado', cat: 'Noun · Masculine', back: 'boarding school', ex: '"El internado era un mundo cerrado con sus propias reglas."', exEn: 'The boarding school was a closed world with its own rules.' },
+      { word: 'desafiar', cat: 'Verb', back: 'to defy / challenge', ex: '"Desafiar el sistema tenía un precio."', exEn: 'Defying the system had a price.' },
+      { word: 'la censura', cat: 'Noun · Feminine', back: 'censorship', ex: '"Los militares quemaron mil ejemplares: pura censura."', exEn: 'The military burned a thousand copies: pure censorship.' }
+    ],
     familia: [
       { word: 'la madre', cat: 'Noun · Feminine', back: 'mother', ex: '"Mi madre cocina los domingos."', exEn: 'My mother cooks on Sundays.' },
       { word: 'el padre', cat: 'Noun · Masculine', back: 'father', ex: '"Mi padre trabaja en el hospital."', exEn: 'My father works at the hospital.' },

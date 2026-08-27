@@ -222,6 +222,15 @@
       tips: ['Use the preterite to narrate the action (vio, embistió, rompió, cayó) and the imperfect for description (era, leía, creía)', 'Useful vocab from the Don Quijote deck: el hidalgo, el caballero andante, el escudero, la locura, el molino de viento, el gigante, embestir, idealista', 'Contrast the two characters with connectors: en cambio, sin embargo, mientras que, por otro lado', 'State and defend an opinion; aim for 150+ words'],
       date: ''
     },
+    {
+      id: 'ciudad-perros',
+      title: 'La ciudad y los perros: ¿obedecer o <em>resistir</em>?',
+      level: 'sp3',
+      category: 'literature',
+      body: 'After reading about La ciudad y los perros in Lectura, write about it. What is the Colegio Militar Leoncio Prado like in the novel, and who are «los perros»? The academy claims its harsh system builds men — but what does it actually teach? Think about your own world: where do you see systems (school, sports, social media, friend groups) that pressure people to obey, stay silent, or hide weakness? Is it ever right to defy a system you belong to? End with your opinion: when a system tells you to sing «soy un perro», what should a person do — and what would YOU do?',
+      tips: ['Use the imperfect for describing the academy (era, había, los obligaban) and the present for your own analysis and opinion', 'Useful vocab from the La ciudad y los perros deck: el cadete, la novatada, la jerarquía, obedecer, delatar, la hombría, el castigo, desafiar', 'Connect the novel to your own experience with connectors: igual que, a diferencia de, en mi caso, hoy en día', 'Give and defend an opinion with "creo que…" / "me parece que…"; aim for 150+ words'],
+      date: ''
+    },
     // ========== HISTORY / CULTURE ==========
     {
       id: 'villa-zapata',
