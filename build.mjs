@@ -41,7 +41,7 @@ const RUNTIME_JS = [
   'grammar-games.js', 'actfl.js', 'adquisicion.js', 'historia.js',
 ];
 const STATIC_ASSETS = ['hero-logo.svg', 'og-image.png', 'robots.txt', 'sitemap.xml'];
-const STATIC_DIRS = ['images', 'standards'];
+const STATIC_DIRS = ['images', 'standards', 'pdfs'];
 
 const INC_RE = /\/\*INC:([^*]+?)\*\//g;
 const INCDIR_RE = /\/\*INCDIR:([^*]+?)\*\//g;
