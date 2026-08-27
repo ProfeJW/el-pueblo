@@ -1101,7 +1101,7 @@
       title: '<em>La ciudad y los perros</em>: cante cien veces «soy un perro»',
       author: 'Original · El Pueblo',
       year: '1963',
-      attribution: 'Sobre la novela de Mario Vargas Llosa · basado en la tesis de Profe Williamson',
+      attribution: 'Sobre la novela de Mario Vargas Llosa · basado en <a href="pdfs/williamson-thesis-vargas-llosa.pdf" target="_blank" rel="noopener" style="color: var(--ocre);">la tesis de Profe Williamson</a>',
       preview: 'En un colegio militar de Lima, los cadetes de primer año son «los perros». La primera novela de Vargas Llosa escandalizó tanto a los militares que quemaron mil ejemplares…',
       text: [
         'En 1963, un peruano de veintisiete años publicó una novela que cambió la literatura latinoamericana. Mario Vargas Llosa había estudiado de adolescente en el Colegio Militar Leoncio Prado, en Lima, y de esa experiencia nació La ciudad y los perros. La reacción fue inmediata: los oficiales del colegio, furiosos por el retrato que hacía el libro, quemaron mil ejemplares en el patio de la escuela. La censura, como casi siempre, consiguió lo contrario: la novela se hizo famosa en todo el mundo.',

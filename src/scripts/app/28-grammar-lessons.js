@@ -24,7 +24,10 @@
   const LESSON_RESOURCES = {
     'saludos-cortesia': {
       decks: ['saludos', 'emociones', 'cotidiano'],
-      pdfs: [],
+      pdfs: [
+        { url: 'pdfs/bingo-gane.pdf', label: 'Bingo board ¡GANÉ! — fill with greetings vocab (PDF)' },
+        { url: 'pdfs/bingo-gano.pdf', label: 'Bingo board GANO — second variant (PDF)' }
+      ],
       links: []
     },
     'pronunciation-alphabet': {
@@ -291,7 +294,8 @@
     },
     'yo-go-verbs': {
       drills: [{ tense: 'presente', group: 'irregular', label: 'Drill: Irregular verbs in present (includes yo-gos)' }],
-      pdfs: [],
+      pdfs: [
+        { url: 'pdfs/crossword-irregular-yos-reflexives.pdf', label: 'Crossword: Irregular yos, reflexives & daily routine (PDF)' },],
       links: []
     },
     'time-and-dates': {
