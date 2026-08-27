@@ -321,7 +321,9 @@
       games: ['reflexives'],
       drills: [{ tense: 'presente', group: 'reflexive', label: 'Drill: Reflexive verbs in present' }],
       decks: ['rutina', 'cuerpo'],
-      pdfs: [],
+      pdfs: [
+        { url: 'pdfs/crossword-irregular-yos-reflexives.pdf', label: 'Crossword: Irregular yos, reflexives & daily routine (PDF)' }
+      ],
       links: []
     },
     'direct-object-pronouns': {
@@ -7572,7 +7574,7 @@
     {
       id: 'saludos-cortesia',
       pinned: true,
-      num: '53',
+      num: 'P',  // Lección preliminar — pre-week-1 material, numbered like textbooks do
       level: 'sp1',
       title: 'Saludos, despedidas y <em>cortesía</em>',
       tag: 'Week 1 · Survival Spanish',
