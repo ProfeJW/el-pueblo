@@ -1401,10 +1401,9 @@
     line-height: 1.35;
   }
   .country-shape {
-    width: 42px;
-    height: 42px;
+    width: 48px;
+    height: 48px;
     flex-shrink: 0;
-    opacity: 0.8;
   }
   .country-shape path {
     fill: none;
@@ -1412,8 +1411,16 @@
     stroke-width: 2;
     vector-effect: non-scaling-stroke;
     stroke-linejoin: round;
+    opacity: 0.8;
   }
-  .country-card:hover .country-shape { opacity: 1; }
+  /* Star marking where the capital city sits inside the outline. It keeps full
+     opacity so it stays legible at this size — only the outline is muted. */
+  .country-shape .capital-star {
+    fill: var(--rojo);
+    stroke: none;
+    opacity: 1;
+  }
+  .country-card:hover .country-shape path { opacity: 1; }
   .country-info h4 {
     font-family: 'DM Serif Display', serif;
     font-size: 18px;
@@ -1517,6 +1524,46 @@
     margin-bottom: 8px;
   }
   .modal-section p { font-size: 16px; line-height: 1.5; }
+  /* CAPITAL CITY — one block per capital in the country modal (Bolivia has two) */
+  .capital-block {
+    border: 1px solid var(--line);
+    border-left: 3px solid var(--rojo);
+    background: var(--card-bg);
+    padding: 14px 16px;
+    margin-bottom: 10px;
+  }
+  .capital-block:last-child { margin-bottom: 0; }
+  .capital-block .capital-name {
+    font-family: 'DM Serif Display', serif;
+    font-size: 20px;
+    line-height: 1.15;
+  }
+  .capital-block .capital-role {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+    margin: 3px 0 12px;
+  }
+  .capital-block .capital-line {
+    font-size: 15px;
+    line-height: 1.5;
+    margin-bottom: 10px;
+  }
+  .capital-block .capital-line:last-child { margin-bottom: 0; }
+  /* Site chips sit on the block's own background, so lift them a shade. */
+  .capital-block .tag-list span { background: var(--paper); }
+  .capital-block .capital-line b {
+    display: block;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 9px;
+    font-weight: 400;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+    margin-bottom: 3px;
+  }
   /* MONEY — stylized bill + live exchange rate in the country modal */
   .money-bill {
     display: block;
