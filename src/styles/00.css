@@ -1388,7 +1388,32 @@
   }
   .country-info {
     padding: 14px 16px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
   }
+  .country-info-text { min-width: 0; }
+  .country-info .langs {
+    font-size: 11px;
+    color: var(--ink-soft);
+    margin-top: 4px;
+    line-height: 1.35;
+  }
+  .country-shape {
+    width: 42px;
+    height: 42px;
+    flex-shrink: 0;
+    opacity: 0.8;
+  }
+  .country-shape path {
+    fill: none;
+    stroke: var(--ocre);
+    stroke-width: 2;
+    vector-effect: non-scaling-stroke;
+    stroke-linejoin: round;
+  }
+  .country-card:hover .country-shape { opacity: 1; }
   .country-info h4 {
     font-family: 'DM Serif Display', serif;
     font-size: 18px;
