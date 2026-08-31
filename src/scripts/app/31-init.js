@@ -3,7 +3,6 @@
   applySavedUnlocks();
   renderAvatar();
   renderAvisos();
-  renderHoy();
   updateRachaWidget();
   updateRepasoBadges();
   renderCard();
