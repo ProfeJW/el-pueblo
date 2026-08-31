@@ -28,35 +28,35 @@
   const COUNTRIES = [
     { code: 'AR', name: 'Argentina', capital: 'Buenos Aires', langs: 'Español · Guaraní · Quechua · Mapudungun', region: 'america', pop: '46M', currency: 'Peso', dish: 'Asado · Empanadas · Dulce de leche', figures: 'Borges · Maradona · Gardel · Messi', fact: 'Hogar del tango y de la mejor carne del mundo. La cordillera de los Andes y la Pampa marcan su paisaje.',
       geo: { climate: 'Stretches from subtropical north to subantarctic south. Buenos Aires is humid subtropical; Patagonia is cold and windy; the northwest is dry and warm.', topography: 'The Andes form the entire western border. The Pampa (vast grassland) covers the center. Patagonia\'s steppes and glaciers cover the south. Includes Aconcagua, the tallest mountain in the Americas (6,961 m).' } },
-    { code: 'BO', name: 'Bolivia', capital: 'Sucre / La Paz', langs: 'Español · Quechua · Aimara · Guaraní', region: 'america', pop: '12M', currency: 'Boliviano', dish: 'Salteñas · Silpancho', figures: 'Evo Morales · Jaime Saenz', fact: 'Tiene el lago navegable más alto del mundo (Titicaca) y el salar de Uyuni, un desierto de sal espectacular.',
+    { code: 'BO', name: 'Bolivia', capital: 'Sucre / La Paz', langs: 'Español · Quechua · Aimara · Guaraní', region: 'america', pop: '12M', currency: 'Boliviano', dish: 'Salteñas · Silpancho', figures: 'Evo Morales · Jaime Saenz · Adela Zamudio', fact: 'Tiene el lago navegable más alto del mundo (Titicaca) y el salar de Uyuni, un desierto de sal espectacular.',
       geo: { climate: 'Varies dramatically with altitude. The high plateau (Altiplano) is cold and dry year-round; the Amazon lowlands are hot and humid; the valleys have a mild temperate climate.', topography: 'Two main Andean ranges enclose the Altiplano, a high plateau at ~3,800 m. Lake Titicaca sits at the border with Peru. The eastern lowlands are Amazon rainforest. Salar de Uyuni is the world\'s largest salt flat.' } },
     { code: 'CL', name: 'Chile', capital: 'Santiago', langs: 'Español · Mapudungun · Aimara · Rapa Nui', region: 'america', pop: '20M', currency: 'Peso chileno', dish: 'Empanadas · Pastel de choclo · Completos', figures: 'Pablo Neruda · Gabriela Mistral · Isabel Allende', fact: 'Un país largo y delgado con desierto, glaciares, y vino. Atacama es el desierto más seco del mundo.',
       geo: { climate: 'Every climate on Earth except polar. The north (Atacama) is the driest desert in the world; central Chile is Mediterranean (warm, dry summers); the south is rainy and cold; Patagonia is glacial.', topography: 'Long and thin: 4,300 km north-south, only 177 km wide on average. The Andes form the eastern wall; the Pacific coast runs the entire west. Includes deserts, fjords, glaciers, and Easter Island.' } },
     { code: 'CO', name: 'Colombia', capital: 'Bogotá', langs: 'Español · Wayuunaiki · Nasa Yuwe · Palenquero', region: 'america', pop: '52M', currency: 'Peso colombiano', dish: 'Bandeja paisa · Arepas · Ajiaco', figures: 'Gabriel García Márquez · Shakira · Botero', fact: 'Cuna del realismo mágico y del mejor café del mundo. Único país sudamericano con costas en el Pacífico y el Caribe.',
       geo: { climate: 'Tropical year-round, but altitude creates "thermal floors" — hot at the coast, eternal spring at 2,500 m (Bogotá), cold above 3,000 m. No real seasons, only wet and dry periods.', topography: 'Three Andean ranges run north-south, dividing the country. Coastlines on both the Caribbean and Pacific. The east is Amazon rainforest and grasslands (los Llanos).' } },
-    { code: 'CR', name: 'Costa Rica', capital: 'San José', langs: 'Español · Bribri · Cabécar', region: 'america', pop: '5M', currency: 'Colón', dish: 'Gallo pinto · Casado', figures: 'Óscar Arias · Carmen Lyra', fact: 'Sin ejército desde 1948. Un cuarto del país son áreas protegidas. "Pura vida" es su lema nacional.',
+    { code: 'CR', name: 'Costa Rica', capital: 'San José', langs: 'Español · Bribri · Cabécar', region: 'america', pop: '5M', currency: 'Colón', dish: 'Gallo pinto · Casado', figures: 'Óscar Arias · Carmen Lyra · Franklin Chang Díaz', fact: 'Sin ejército desde 1948. Un cuarto del país son áreas protegidas. "Pura vida" es su lema nacional.',
       geo: { climate: 'Tropical, with wet (May–Nov) and dry (Dec–Apr) seasons. The central highlands are mild year-round; the coasts are hot and humid.', topography: 'A volcanic backbone runs the length of the country, with several active volcanoes. Coasts on both the Caribbean and Pacific. Cloud forests, beaches, and rainforest in a small area — one of the most biodiverse countries on Earth.' } },
     { code: 'CU', name: 'Cuba', capital: 'La Habana', langs: 'Español', region: 'caribe', pop: '11M', currency: 'Peso cubano', dish: 'Ropa vieja · Moros y cristianos · Tostones', figures: 'José Martí · Celia Cruz · Alejo Carpentier', fact: 'La isla más grande del Caribe. Cuna del son, la salsa, y los habanos. Su capital es un patrimonio mundial.',
       geo: { climate: 'Tropical, warm and humid year-round (avg. 25°C). Hurricane season runs June through November. Trade winds keep the coast pleasant.', topography: 'Mostly flat or gently rolling, with three mountain ranges (Sierra Maestra in the southeast is the highest). Long, thin island — 1,250 km east-to-west. White-sand beaches, mangroves, and fertile farmland.' } },
     { code: 'DO', name: 'República Dominicana', capital: 'Santo Domingo', langs: 'Español', region: 'caribe', pop: '11M', currency: 'Peso dominicano', dish: 'La bandera · Mangú · Sancocho', figures: 'Juan Luis Guerra · Julia Álvarez · Oscar de la Renta', fact: 'Cuna del merengue y la bachata. Santo Domingo fue la primera ciudad europea de América (1496).',
       geo: { climate: 'Tropical, warm year-round. Slightly cooler in the central mountains. Hurricane season June–November.', topography: 'Shares the island of Hispaniola with Haiti. Has the highest mountain in the Caribbean (Pico Duarte, 3,098 m) and the lowest point (Lake Enriquillo, below sea level). Beaches, mountains, and tropical forest.' } },
-    { code: 'EC', name: 'Ecuador', capital: 'Quito', langs: 'Español · Kichwa · Shuar', region: 'america', pop: '18M', currency: 'Dólar estadounidense', dish: 'Ceviche · Llapingachos · Encebollado', figures: 'Eloy Alfaro · Oswaldo Guayasamín', fact: 'Atravesado por la línea ecuatorial. Las Islas Galápagos inspiraron la teoría de la evolución de Darwin.',
+    { code: 'EC', name: 'Ecuador', capital: 'Quito', langs: 'Español · Kichwa · Shuar', region: 'america', pop: '18M', currency: 'Dólar estadounidense', dish: 'Ceviche · Llapingachos · Encebollado', figures: 'Eloy Alfaro · Oswaldo Guayasamín · Manuela Sáenz', fact: 'Atravesado por la línea ecuatorial. Las Islas Galápagos inspiraron la teoría de la evolución de Darwin.',
       geo: { climate: 'Equatorial — but climate depends on altitude, not season. Quito (2,850 m) is mild year-round; the coast is hot and humid; the Amazon is tropical; the Galápagos are dry and breezy.', topography: 'Four distinct regions: the Pacific coast, the Andean Sierra (with active volcanoes like Cotopaxi), the Amazon basin (el Oriente), and the Galápagos Islands 1,000 km offshore.' } },
-    { code: 'SV', name: 'El Salvador', capital: 'San Salvador', langs: 'Español · Náhuat (pipil)', region: 'america', pop: '6M', currency: 'Dólar / Bitcoin', dish: 'Pupusas · Yuca frita', figures: 'Óscar Romero · Roque Dalton', fact: 'El país más pequeño de Centroamérica. Las pupusas son su plato nacional y patrimonio cultural.',
+    { code: 'SV', name: 'El Salvador', capital: 'San Salvador', langs: 'Español · Náhuat (pipil)', region: 'america', pop: '6M', currency: 'Dólar / Bitcoin', dish: 'Pupusas · Yuca frita', figures: 'Óscar Romero · Roque Dalton · Claudia Lars', fact: 'El país más pequeño de Centroamérica. Las pupusas son su plato nacional y patrimonio cultural.',
       geo: { climate: 'Tropical with two seasons: dry (Nov–Apr) and rainy (May–Oct). The highlands are pleasantly cooler than the coast.', topography: 'Smallest country in Central America. Two parallel mountain ranges of volcanoes (over 20 of them). Pacific coast only — no Caribbean side. Known as "the land of volcanoes."' } },
-    { code: 'GQ', name: 'Guinea Ecuatorial', capital: 'Malabo', langs: 'Español · Francés · Fang · Bubi', region: 'africa', pop: '1.6M', currency: 'Franco CFA', dish: 'Sopa de pescado · Plátano frito', figures: 'Donato Ndongo · Juan Tomás Ávila', fact: 'El único país hispanohablante de África. El español es lengua oficial junto al francés y el portugués.',
+    { code: 'GQ', name: 'Guinea Ecuatorial', capital: 'Malabo', langs: 'Español · Francés · Fang · Bubi', region: 'africa', pop: '1.6M', currency: 'Franco CFA', dish: 'Sopa de pescado · Plátano frito', figures: 'Donato Ndongo · Juan Tomás Ávila · Leoncio Evita', fact: 'El único país hispanohablante de África. El español es lengua oficial junto al francés y el portugués.',
       geo: { climate: 'Equatorial — hot and very humid year-round. Two rainy seasons. One of the wettest countries in Africa.', topography: 'Two parts: a mainland portion in West Africa and Bioko Island (where the capital sits). The mainland is mostly tropical rainforest. Bioko has volcanic peaks rising over 3,000 m. Tiny country — only 28,000 sq km.' } },
-    { code: 'GT', name: 'Guatemala', capital: 'Ciudad de Guatemala', langs: 'Español · K\'iche\' · Q\'eqchi\' · Mam', region: 'america', pop: '18M', currency: 'Quetzal', dish: 'Pepián · Tamales · Kak\'ik', figures: 'Miguel Ángel Asturias · Rigoberta Menchú', fact: 'Cuna de la civilización maya. Tikal y Antigua Guatemala son patrimonios mundiales de la UNESCO.',
+    { code: 'GT', name: 'Guatemala', capital: 'Ciudad de Guatemala', langs: 'Español · K\'iche\' · Q\'eqchi\' · Mam', region: 'america', pop: '18M', currency: 'Quetzal', dish: 'Pepián · Tamales · Kak\'ik', figures: 'Miguel Ángel Asturias · Rigoberta Menchú · Ricardo Arjona', fact: 'Cuna de la civilización maya. Tikal y Antigua Guatemala son patrimonios mundiales de la UNESCO.',
       geo: { climate: 'Mild "land of eternal spring" in the highlands; hot and humid in the lowlands. Wet season May–Oct, dry Nov–Apr.', topography: 'Mountainous interior with active volcanoes (Volcán de Fuego erupts regularly). Pacific and Caribbean coastlines. The Petén region in the north is dense lowland jungle, home to ancient Maya cities like Tikal.' } },
-    { code: 'HN', name: 'Honduras', capital: 'Tegucigalpa', langs: 'Español · Garífuna · Miskito · Lenca', region: 'america', pop: '10M', currency: 'Lempira', dish: 'Baleadas · Plato típico hondureño', figures: 'Lempira · Ramón Amaya Amador', fact: 'Hogar de las ruinas mayas de Copán. Sus playas caribeñas son de las más bellas del mundo.',
+    { code: 'HN', name: 'Honduras', capital: 'Tegucigalpa', langs: 'Español · Garífuna · Miskito · Lenca', region: 'america', pop: '10M', currency: 'Lempira', dish: 'Baleadas · Plato típico hondureño', figures: 'Lempira · Ramón Amaya Amador · Clementina Suárez', fact: 'Hogar de las ruinas mayas de Copán. Sus playas caribeñas son de las más bellas del mundo.',
       geo: { climate: 'Tropical on the coasts, temperate in the mountains. Caribbean side gets more rain. Hurricane risk on the Caribbean coast.', topography: 'Mostly mountainous (75%). Long Caribbean coast with the Bay Islands; small Pacific coast on the Gulf of Fonseca. Includes pristine cloud forests and the Mosquito Coast (la Mosquitia).' } },
     { code: 'MX', name: 'México', capital: 'Ciudad de México', langs: 'Español · Náhuatl · Maya · Zapoteco', region: 'america', pop: '128M', currency: 'Peso mexicano', dish: 'Tacos · Mole · Chiles en nogada · Pozole', figures: 'Frida Kahlo · Octavio Paz · Sor Juana · Diego Rivera', fact: 'El país con más hispanohablantes del mundo. Cuna de las civilizaciones azteca y maya. La CDMX está construida sobre un lago.',
       geo: { climate: 'Hugely varied: deserts in the north, tropical in the south, mild year-round in the central highlands. Mexico City sits at 2,240 m so it stays around 20°C most of the year.', topography: 'The Sierra Madre Occidental and Oriental flank the central plateau. Volcanic peaks rise above 5,000 m. Long coasts on the Pacific, Gulf of Mexico, and Caribbean. The Yucatán is flat tropical lowland; the north is desert (Sonoran, Chihuahuan).' } },
-    { code: 'NI', name: 'Nicaragua', capital: 'Managua', langs: 'Español · Miskito · Criollo costeño', region: 'america', pop: '7M', currency: 'Córdoba', dish: 'Gallo pinto · Nacatamal · Vigorón', figures: 'Rubén Darío · Ernesto Cardenal', fact: 'Tiene el lago más grande de Centroamérica con tiburones de agua dulce. Cuna del modernismo literario con Rubén Darío.',
+    { code: 'NI', name: 'Nicaragua', capital: 'Managua', langs: 'Español · Miskito · Criollo costeño', region: 'america', pop: '7M', currency: 'Córdoba', dish: 'Gallo pinto · Nacatamal · Vigorón', figures: 'Rubén Darío · Ernesto Cardenal · Gioconda Belli', fact: 'Tiene el lago más grande de Centroamérica con tiburones de agua dulce. Cuna del modernismo literario con Rubén Darío.',
       geo: { climate: 'Tropical, with hot lowlands and cooler highlands. Caribbean coast is much wetter than the Pacific side.', topography: 'Volcanic chain runs along the Pacific. Lake Nicaragua (Cocibolca) is the largest lake in Central America and contains volcanic islands and freshwater sharks. The Caribbean coast is sparsely populated rainforest.' } },
-    { code: 'PA', name: 'Panamá', capital: 'Ciudad de Panamá', langs: 'Español · Ngäbere · Guna · Emberá', region: 'america', pop: '4.4M', currency: 'Balboa / Dólar', dish: 'Sancocho · Ropa vieja · Patacones', figures: 'Rubén Blades · Mariano Rivera', fact: 'El canal conecta dos océanos. Su moneda comparte valor con el dólar estadounidense.',
+    { code: 'PA', name: 'Panamá', capital: 'Ciudad de Panamá', langs: 'Español · Ngäbere · Guna · Emberá', region: 'america', pop: '4.4M', currency: 'Balboa / Dólar', dish: 'Sancocho · Ropa vieja · Patacones', figures: 'Rubén Blades · Mariano Rivera · Roberto Durán', fact: 'El canal conecta dos océanos. Su moneda comparte valor con el dólar estadounidense.',
       geo: { climate: 'Tropical, hot and humid year-round. Wet season May–Dec; dry Jan–Apr. Caribbean side wetter than Pacific.', topography: 'A narrow S-shaped land bridge between North and South America. Mountainous spine with the highest peak (Volcán Barú, 3,475 m). Coastlines on both Caribbean and Pacific — only 80 km apart at the canal.' } },
-    { code: 'PY', name: 'Paraguay', capital: 'Asunción', langs: 'Español · Guaraní (cooficial)', region: 'america', pop: '7M', currency: 'Guaraní', dish: 'Sopa paraguaya · Chipá · Mandi\'o', figures: 'Augusto Roa Bastos · José Asunción Flores', fact: 'País bilingüe oficial: español y guaraní. La "sopa paraguaya" es en realidad un pastel de maíz, no una sopa.',
+    { code: 'PY', name: 'Paraguay', capital: 'Asunción', langs: 'Español · Guaraní (cooficial)', region: 'america', pop: '7M', currency: 'Guaraní', dish: 'Sopa paraguaya · Chipá · Mandi\'o', figures: 'Augusto Roa Bastos · José Asunción Flores · Josefina Plá', fact: 'País bilingüe oficial: español y guaraní. La "sopa paraguaya" es en realidad un pastel de maíz, no una sopa.',
       geo: { climate: 'Subtropical to tropical. Hot summers (often 35–40°C); mild winters. The Chaco (west) is much drier and hotter than the eastern region.', topography: 'Landlocked. The Paraguay River divides the country: fertile, populated east versus the dry, scrubby Chaco in the west. No mountains — mostly plains, low hills, and wetlands. Iguazú Falls is on the eastern border.' } },
     { code: 'PE', name: 'Perú', capital: 'Lima', langs: 'Español · Quechua · Aimara', region: 'america', pop: '34M', currency: 'Sol', dish: 'Ceviche · Lomo saltado · Ají de gallina', figures: 'Mario Vargas Llosa · César Vallejo · Inca Garcilaso', fact: 'Cuna del Imperio Inca y Machu Picchu. Su gastronomía es considerada una de las mejores del mundo.',
       geo: { climate: 'Three completely different climate zones: the coastal desert (Lima rarely sees rain), the Andean highlands (cool to cold, dry), and the Amazon (hot and rainy year-round).', topography: 'The Andes split Peru into three regions: la costa (narrow desert strip on the Pacific), la sierra (high Andes, including Cusco and Machu Picchu), and la selva (Amazon rainforest, covering 60% of the country). Lake Titicaca, the highest navigable lake, is on the Bolivian border.' } },
@@ -69,6 +69,123 @@
     { code: 'VE', name: 'Venezuela', capital: 'Caracas', langs: 'Español · Wayuunaiki · Pemón · Warao', region: 'caribe', pop: '28M', currency: 'Bolívar', dish: 'Arepas · Pabellón criollo · Hallacas', figures: 'Simón Bolívar · Rómulo Gallegos · Teresa Carreño', fact: 'Hogar del Salto Ángel, la cascada más alta del mundo. Las arepas son el plato nacional, comidas a cualquier hora.',
       geo: { climate: 'Tropical — hot and humid on the coast, milder in Caracas (at 900 m), cooler in the Andean foothills. Wet season May–Nov.', topography: 'Caribbean coast, the northern tip of the Andes (Pico Bolívar, 4,978 m), the vast Llanos grasslands in the center, and the ancient Guayana Highlands in the south — home to the tepuis (table-top mountains) and Salto Ángel, the world\'s tallest waterfall (979 m).' } }
   ];
+
+  // ============== CAPITAL CITIES ==============
+  // The city the star marks on each country card: how big it is, what the
+  // weather is like there, what to go see, and one thing worth remembering.
+  // Bolivia gets two entries — Sucre is the constitutional capital, La Paz is
+  // where the government actually sits.
+  const CAPITAL_INFO = {
+    AR: [{ name: 'Buenos Aires', pop: '3.1M city · 15.5M metro',
+      climate: 'Humid subtropical. Hot, sticky summers (Dec–Feb, often above 30°C) and mild winters that almost never freeze. Rain falls throughout the year.',
+      sites: 'Casa Rosada · Teatro Colón · Caminito (La Boca) · Cementerio de la Recoleta · El Obelisco · San Telmo',
+      fact: 'Porteños claim more bookstores per person than any other city on Earth, and Teatro Colón is ranked among the best concert halls in the world for its acoustics.' }],
+    BO: [{ name: 'La Paz', role: 'seat of government', pop: '0.8M city · 2.0M with El Alto',
+      climate: 'At 3,650 m it is the highest capital in the world — cool and thin-aired all year (12–18°C by day, near freezing at night), with a rainy season from December to March.',
+      sites: 'Plaza Murillo · Mercado de las Brujas · Valle de la Luna · Mi Teleférico · Iglesia de San Francisco',
+      fact: 'The city is built into a canyon, so commuters ride gondolas instead of subways: Mi Teleférico is the largest urban cable-car network on the planet.' },
+      { name: 'Sucre', role: 'constitutional capital', pop: '0.3M',
+      climate: 'A mild "eternal spring" at 2,750 m — 15–20°C nearly year-round, dry winters and wet summers.',
+      sites: 'Casa de la Libertad · Catedral Metropolitana · Parque Cretácico · Convento de San Felipe Neri',
+      fact: 'Bolivia\'s independence was signed here in 1825, and its whitewashed colonial center is a UNESCO World Heritage Site. Just outside town a limestone wall holds over 5,000 dinosaur footprints.' }],
+    CL: [{ name: 'Santiago', pop: '5.6M city · 7.1M metro',
+      climate: 'Mediterranean: hot dry summers above 30°C and cool damp winters. The Andes trap smog over the valley in winter.',
+      sites: 'Cerro San Cristóbal · Plaza de Armas · La Chascona (Neruda\'s house) · Palacio de La Moneda · Mercado Central',
+      fact: 'Snow-capped Andean peaks rise right at the edge of the city — you can ski in the morning and stand on the Pacific coast the same afternoon.' }],
+    CO: [{ name: 'Bogotá', pop: '8M city · 11M metro',
+      climate: 'At 2,640 m there is no summer or winter: days hover around 19°C year-round and nights drop near 7°C. Rain arrives suddenly and often.',
+      sites: 'Monserrate · La Candelaria · Museo del Oro · Museo Botero · Ciclovía',
+      fact: 'Every Sunday Bogotá closes 120 km of avenues to cars for the Ciclovía, and more than a million people walk, run, and cycle through the middle of the city.' }],
+    CR: [{ name: 'San José', pop: '0.35M city · 2.2M metro',
+      climate: 'A mild "eternal spring" at 1,170 m — 20–27°C all year, dry from December to April, with rainy afternoons May through November.',
+      sites: 'Teatro Nacional · Museo del Oro Precolombino · Mercado Central · Barrio Amón · Museo Nacional',
+      fact: 'The Teatro Nacional was paid for with a tax on coffee exports, after a touring opera singer skipped Costa Rica for lack of a proper venue.' }],
+    CU: [{ name: 'La Habana', pop: '2.1M',
+      climate: 'Tropical: warm and humid all year (22–32°C), with a rainy season May–October and hurricane risk June–November.',
+      sites: 'La Habana Vieja · El Malecón · El Capitolio · Castillo del Morro · Plaza de la Catedral',
+      fact: 'Havana\'s streets are still full of 1950s American cars kept running for seventy years on improvised parts, and the whole old city is a UNESCO World Heritage Site.' }],
+    DO: [{ name: 'Santo Domingo', pop: '1.1M city · 3.5M metro',
+      climate: 'Tropical all year (24–31°C), rainiest May–November, with hurricane season June–November.',
+      sites: 'Zona Colonial · Catedral Primada de América · Alcázar de Colón · Faro a Colón · Los Tres Ojos',
+      fact: 'Founded in 1496, it is the oldest continuously inhabited European city in the Americas — home to the first cathedral, first university, and first hospital of the New World.' }],
+    EC: [{ name: 'Quito', pop: '1.8M city · 2.8M metro',
+      climate: 'At 2,850 m and almost exactly on the equator: spring-like all year (10–21°C), fierce sun, and rain from October to May.',
+      sites: 'Centro Histórico · La Compañía de Jesús · Basílica del Voto Nacional · TelefériQo · Mitad del Mundo',
+      fact: 'Quito was the very first city named a UNESCO World Heritage Site, in 1978, and just north of town you can stand with one foot in each hemisphere.' }],
+    ES: [{ name: 'Madrid', pop: '3.3M city · 6.8M metro',
+      climate: 'Continental Mediterranean at 660 m — the highest capital in Europe. Very hot, dry summers above 35°C, cold winters, and little rain.',
+      sites: 'Museo del Prado · Palacio Real · Plaza Mayor · Parque del Retiro · Puerta del Sol · Reina Sofía',
+      fact: 'Kilómetro Cero in the Puerta del Sol is the point every Spanish highway is measured from, and the Retiro was a royal garden closed to the public until the 1800s.' }],
+    GQ: [{ name: 'Malabo', pop: '0.3M',
+      climate: 'Equatorial and among the wettest capitals anywhere: hot and humid at 24–31°C, with rain most of the year.',
+      sites: 'Catedral de Santa Isabel · Paseo Marítimo · Pico Basilé · Playa de Arena Blanca',
+      fact: 'Malabo sits on Bioko Island, 240 km of open sea from the mainland it governs, inside the flooded crater of a sunken volcano.' }],
+    GT: [{ name: 'Ciudad de Guatemala', pop: '1.0M city · 3.0M metro',
+      climate: 'At 1,500 m the city stays mild (15–28°C), dry from November to April and stormy in the afternoons May through October.',
+      sites: 'Palacio Nacional de la Cultura · Mapa en Relieve · Museo Popol Vuh · Centro Histórico · Kaminaljuyú',
+      fact: 'The city is built on top of Kaminaljuyú, a Maya capital more than 2,000 years old, and three volcanoes — Agua, Fuego, and Pacaya — are visible from downtown.' }],
+    HN: [{ name: 'Tegucigalpa', pop: '1.2M metro',
+      climate: 'In a mountain bowl at 1,000 m: mild and comparatively dry (18–30°C), with rain from May to October.',
+      sites: 'Basílica de Suyapa · Catedral de San Miguel · Parque La Leona · Museo para la Identidad Nacional · Cerro Juana Laínez',
+      fact: 'The name is usually read as "silver hill" — the city began as a 16th-century silver-mining camp — and it is one of the very few capitals in the world with no railway.' }],
+    MX: [{ name: 'Ciudad de México', pop: '9.2M city · 22M metro',
+      climate: 'At 2,240 m the weather is mild all year (12–26°C), dry from November to April, with daily afternoon downpours June through September.',
+      sites: 'Zócalo · Templo Mayor · Museo Nacional de Antropología · Bosque de Chapultepec · Casa Azul de Frida Kahlo · Xochimilco',
+      fact: 'It stands on the drained lakebed of the Aztec capital Tenochtitlan — and it is still sinking, with parts of the city dropping as much as 50 cm a year.' }],
+    NI: [{ name: 'Managua', pop: '1.1M city · 1.5M metro',
+      climate: 'Hot tropical lowland on the lakeshore: 24–34°C year-round, dry November–April and rainy May–October.',
+      sites: 'Catedral vieja de Santiago · Puerto Salvador Allende · Huellas de Acahualinca · Loma de Tiscapa · Malecón',
+      fact: 'Managua has no real downtown: a 1972 earthquake flattened the center and the ruined old cathedral was left standing as a memorial. Nearby, human footprints preserved in volcanic ash are over 2,000 years old.' }],
+    PA: [{ name: 'Ciudad de Panamá', pop: '0.9M city · 2.0M metro',
+      climate: 'Hot and humid all year (24–32°C), with heavy rain May–December and a drier stretch January–April.',
+      sites: 'Casco Viejo · Esclusas de Miraflores · Cinta Costera · Panamá Viejo · Biomuseo',
+      fact: 'It is the only capital in the world with a tropical rainforest inside the city limits, and from the skyline you can watch ships crossing between two oceans.' }],
+    PE: [{ name: 'Lima', pop: '9.7M metro',
+      climate: 'A coastal desert where it almost never rains: gray, humid, and cool from May to November under the garúa mist, then warm and bright December–April.',
+      sites: 'Plaza Mayor · Convento de San Francisco · Museo Larco · Miraflores y el Malecón · Huaca Pucllana · Barranco',
+      fact: 'Lima is the second-largest desert city on Earth after Cairo, and it is treated as the culinary capital of Latin America — several of its restaurants rank among the world\'s best.' }],
+    PR: [{ name: 'San Juan', pop: '0.34M city · 2.0M metro',
+      climate: 'Tropical marine: 24–31°C all year with steady trade winds, wettest August–November, hurricane season June–November.',
+      sites: 'El Morro · Castillo San Cristóbal · Viejo San Juan · La Fortaleza · Condado · El Yunque',
+      fact: 'Founded in 1521, San Juan is the oldest city under the US flag, and La Fortaleza is the oldest governor\'s residence still in use anywhere in the Americas.' }],
+    PY: [{ name: 'Asunción', pop: '0.5M city · 2.4M metro',
+      climate: 'Subtropical and one of the hottest capitals in South America: summers of 35–40°C, mild winters, humid year-round.',
+      sites: 'Palacio de los López · Panteón Nacional de los Héroes · Costanera · Casa de la Independencia · Mercado 4',
+      fact: 'Asunción is called "la madre de ciudades" — expeditions launched from here founded Santa Fe, Corrientes, and (on the second try) Buenos Aires.' }],
+    SV: [{ name: 'San Salvador', pop: '0.35M city · 1.8M metro',
+      climate: 'Tropical savanna at 660 m: warm all year (20–32°C), dry November–April and rainy May–October.',
+      sites: 'Catedral Metropolitana · Iglesia El Rosario · Puerta del Diablo · Joya de Cerén · Volcán de San Salvador',
+      fact: 'The city sits in the Valle de las Hamacas — the valley of the hammocks — nicknamed for the earthquakes that rock it, directly beneath an active volcano.' }],
+    UY: [{ name: 'Montevideo', pop: '1.3M city · 1.9M metro',
+      climate: 'Temperate with four real seasons: warm summers near 28°C, cool winters near 10°C, and a breeze off the Río de la Plata all year.',
+      sites: 'Ciudad Vieja · Mercado del Puerto · Rambla de Montevideo · Teatro Solís · Palacio Salvo · Plaza Independencia',
+      fact: 'Nearly half of all Uruguayans live here, and the Rambla runs more than 22 km along the water — one of the longest continuous waterfront promenades in the world.' }],
+    VE: [{ name: 'Caracas', pop: '2.2M city · 3.0M metro',
+      climate: 'In a valley at 900 m: mild year-round (19–27°C), rainy May–November, cooled by breezes off the Ávila.',
+      sites: 'Cerro El Ávila · Casa Natal de Simón Bolívar · Plaza Bolívar · Panteón Nacional · Ciudad Universitaria',
+      fact: 'A wall of mountains — Parque Nacional El Ávila — stands between Caracas and the Caribbean, so the city can never sprawl toward the sea.' }]
+  };
+
+  // One block per capital, headed by the same star that marks it on the card.
+  function capitalSection(code) {
+    const caps = CAPITAL_INFO[code];
+    if (!caps) return '';
+    return `
+      <div class="modal-section">
+        <h5>⭐ Capital city</h5>
+        ${caps.map(cap => `
+          <div class="capital-block">
+            <div class="capital-name">${cap.name}</div>
+            <div class="capital-role">${cap.role || 'capital'} · ${cap.pop}</div>
+            <div class="capital-line"><b>Climate</b>${cap.climate}</div>
+            <div class="capital-line"><b>What to see</b>
+              <div class="tag-list">${cap.sites.split(' · ').map(s => '<span>' + s + '</span>').join('')}</div>
+            </div>
+            <div class="capital-line"><b>Did you know…?</b>${cap.fact}</div>
+          </div>
+        `).join('')}
+      </div>`;
+  }
 
   let countryFilter = 'all';
   let countriesViewed = new Set();
@@ -251,6 +368,7 @@
         <h5>🗣️ Languages</h5>
         <div class="tag-list">${c.langs.split(' · ').map(l => '<span>' + l + '</span>').join('')}</div>
       </div>` : ''}
+      ${capitalSection(code)}
       <div class="modal-section">
         <h5>💵 Money</h5>
         ${buildBill(code)}
