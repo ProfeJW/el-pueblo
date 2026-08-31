@@ -126,6 +126,7 @@ const SCHOOL_OVERRIDE = `
 <style id="school-mode">
   #signInBtn, #signOutBtn, #coinCounter, #nameChip, #toastContainer,
   #lucasExplainer, a[href="#/lucas"],
+  #hoyPanel,
   .page[data-page="lucas"] { display: none !important; }
 </style>
 <script id="school-mode-js">
