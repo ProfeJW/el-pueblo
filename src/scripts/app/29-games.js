@@ -260,6 +260,23 @@
       isCustomFlow: true,
       generate: () => null
     },
+    // Completa el diálogo — two modes over the same Preliminar dialogues.
+    // Both run their own flow (see 29b-dialogo-game.js); these entries exist so
+    // they appear in the games grid and carry a reward tier.
+    'dialogo-type': {
+      title: 'Diálogo · <em>Type it</em>',
+      icon: '💬',
+      maxReward: 35,
+      isCustomFlow: true,
+      generate: () => null
+    },
+    'dialogo-mc': {
+      title: 'Diálogo · <em>Pick it</em>',
+      icon: '🗨️',
+      maxReward: 25,
+      isCustomFlow: true,
+      generate: () => null
+    },
     'dates': {
       title: 'Speaking <em>dates</em>',
       icon: '🗓️',
@@ -899,6 +916,8 @@
     }
     if (gameId === 'vocab-type') { startVocabGame('type'); return; }
     if (gameId === 'vocab-mc') { startVocabGame('mc'); return; }
+    if (gameId === 'dialogo-type') { startDialogoGame('type'); return; }
+    if (gameId === 'dialogo-mc') { startDialogoGame('mc'); return; }
     const game = GAMES[gameId];
     const container = document.getElementById('game-detail-content');
     if (!game) {
