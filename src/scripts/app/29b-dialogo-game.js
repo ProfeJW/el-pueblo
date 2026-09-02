@@ -209,6 +209,159 @@
       options: ['Por favor', 'Mucho gusto', 'Con permiso']
     },
     {
+      setting: 'A friend says thank you for the birthday present.',
+      lines: [
+        { who: 'Rosa', text: '¡Gracias por el regalo!' },
+        { who: 'Tú', text: '___. Me alegro de que te guste.' }
+      ],
+      answer: 'De nada', accept: ['de nada'],
+      options: ['Por favor', 'Con permiso', 'Lo siento']
+    },
+    {
+      setting: 'Answering the phone at three in the afternoon.',
+      lines: [
+        { who: 'Tú', text: '¿Aló? ___.' },
+        { who: 'Voz', text: 'Buenas tardes, ¿está la señora Ruiz?' }
+      ],
+      answer: 'Buenas tardes', accept: ['buenas tardes'],
+      options: ['Buenos días', 'Buenas noches', 'Hasta mañana'],
+      note: 'From about noon until dark it is buenas tardes.'
+    },
+    {
+      setting: 'You step on someone\'s foot on the bus.',
+      lines: [
+        { who: 'Tú', text: '¡Ay, ___!' },
+        { who: 'Pasajera', text: 'No pasa nada.' }
+      ],
+      answer: 'perdón', accept: ['perdón', 'lo siento', 'disculpe'],
+      options: ['de nada', 'por favor', 'igualmente'],
+      note: 'Perdón is the quick apology for something that already happened.'
+    },
+    {
+      setting: 'Two old friends run into each other downtown.',
+      lines: [
+        { who: 'Beto', text: '¡___! ¿Cómo estás?' },
+        { who: 'Nico', text: '¡Beto! Muy bien, ¿y tú?' }
+      ],
+      answer: 'Hola', accept: ['hola'],
+      options: ['Adiós', 'De nada', 'Bienvenido']
+    },
+    {
+      setting: 'Your teacher asks how you are, formally.',
+      lines: [
+        { who: 'Profesora', text: '¿Cómo está usted hoy?' },
+        { who: 'Estudiante', text: 'Bien, gracias. ¿___?' }
+      ],
+      answer: 'Y usted', accept: ['y usted'],
+      options: ['Y tú', 'Y él', 'Y ustedes'],
+      note: 'She used usted with you, so you return it: ¿y usted? Matching the level of formality is the whole point.'
+    },
+    {
+      setting: 'A friend your age asks how you are.',
+      lines: [
+        { who: 'Ana', text: 'Estoy muy bien. ¿___?' },
+        { who: 'Tú', text: 'Yo también, gracias.' }
+      ],
+      answer: 'Y tú', accept: ['y tú'],
+      options: ['Y usted', 'Y ustedes', 'Y ella']
+    },
+    {
+      setting: 'Addressing an older woman you do not know, in a shop.',
+      lines: [
+        { who: 'Tú', text: 'Disculpe, ___, ¿dónde está la salida?' },
+        { who: 'Señora', text: 'Al final del pasillo.' }
+      ],
+      answer: 'señora', accept: ['señora'],
+      options: ['señorita', 'señor', 'joven'],
+      note: 'Señora for an adult woman, señorita for a young one, señor for a man.'
+    },
+    {
+      setting: 'Greeting the man who runs the corner shop.',
+      lines: [
+        { who: 'Tú', text: 'Buenos días, ___ Ramírez.' },
+        { who: 'Sr. Ramírez', text: 'Buenos días, ¿qué necesitas?' }
+      ],
+      answer: 'señor', accept: ['señor'],
+      options: ['señora', 'señorita', 'profesora']
+    },
+    {
+      setting: 'A girl arrives at her host family\'s house in Spain.',
+      lines: [
+        { who: 'Madre', text: '¡___, Emma! Pasa, pasa.' },
+        { who: 'Emma', text: 'Gracias, señora.' }
+      ],
+      answer: 'Bienvenida', accept: ['bienvenida'],
+      options: ['Bienvenido', 'Encantado', 'Hasta pronto'],
+      note: 'Emma is feminine, so bienvenida — the ending agrees with the person being welcomed.'
+    },
+    {
+      setting: 'Two students meet at a summer exchange in Lima.',
+      lines: [
+        { who: 'Kai', text: 'Soy de Cincinnati. ¿Y tú? ¿___?' },
+        { who: 'Ximena', text: 'Soy de Arequipa.' }
+      ],
+      answer: 'De dónde eres', accept: ['de dónde eres', 'de dónde eres tú'],
+      options: ['Cómo te llamas', 'Cómo estás', 'Qué tal'],
+      note: 'Eres is the tú form — right for someone your own age.'
+    },
+    {
+      setting: 'A man is introduced to his friend\'s mother.',
+      lines: [
+        { who: 'Sra. Vidal', text: 'Mucho gusto, Andrés.' },
+        { who: 'Andrés', text: '___, señora.' }
+      ],
+      answer: 'Encantado', accept: ['encantado', 'igualmente', 'mucho gusto'],
+      options: ['Encantada', 'Bienvenida', 'De nada'],
+      note: 'Andrés is speaking about himself, so encantado.'
+    },
+    {
+      setting: 'Wrapping up a video call with a cousin abroad.',
+      lines: [
+        { who: 'Tú', text: 'Bueno, tengo que irme. ¡___!' },
+        { who: 'Prima', text: '¡Chao! Escríbeme.' }
+      ],
+      answer: 'Nos vemos', accept: ['nos vemos', 'chao', 'hasta pronto', 'adiós', 'hasta luego'],
+      options: ['Buenos días', 'Con permiso', 'Mucho gusto']
+    },
+    {
+      setting: 'Asking a classmate to repeat something.',
+      lines: [
+        { who: 'Tú', text: 'Otra vez, ___.' },
+        { who: 'Compañera', text: 'Claro. Dije que la tarea es para el viernes.' }
+      ],
+      answer: 'por favor', accept: ['por favor'],
+      options: ['de nada', 'lo siento', 'igualmente']
+    },
+    {
+      setting: 'Someone asks how your weekend was and it was fine, nothing special.',
+      lines: [
+        { who: 'Diego', text: '¿Qué tal el fin de semana?' },
+        { who: 'Tú', text: '___. Descansé un poco.' }
+      ],
+      answer: 'Regular', accept: ['regular', 'más o menos', 'bien'],
+      options: ['Encantado', 'Con permiso', 'Bienvenido'],
+      note: 'Regular here does not mean "regular" in English — it means so-so.'
+    },
+    {
+      setting: 'Leaving a shop where you did not buy anything.',
+      lines: [
+        { who: 'Dependiente', text: '¿Necesita algo más?' },
+        { who: 'Tú', text: 'No, ___. Hasta luego.' }
+      ],
+      answer: 'gracias', accept: ['gracias', 'muchas gracias'],
+      options: ['de nada', 'por favor', 'perdón']
+    },
+    {
+      setting: 'Introducing your friend to your grandmother.',
+      lines: [
+        { who: 'Tú', text: 'Abuela, ___ mi amiga Lucía.' },
+        { who: 'Abuela', text: 'Mucho gusto, Lucía.' }
+      ],
+      answer: 'te presento a', accept: ['te presento a', 'te presento'],
+      options: ['me llamo', 'soy de', 'encantada'],
+      note: 'Te presento a… — "let me introduce you to…" — is how introductions are actually made.'
+    },
+    {
       setting: 'Introducing yourself to a teacher on the first day.',
       lines: [
         { who: 'Estudiante', text: 'Buenos días. Me llamo Rosa Delgado.' },
@@ -218,6 +371,10 @@
       options: ['De nada', 'Hasta luego', 'Más o menos']
     }
   ];
+
+  // 20 questions a round, drawn from a larger pool so two plays are not the same
+  // set. Defined once: the tiers below and every "/N" label read from it.
+  const DIALOGO_ROUNDS = 20;
 
   let dialogoState = null;
 
@@ -237,8 +394,13 @@
   function startDialogoGame(mode) {
     dialogoState = {
       mode,
-      items: DIALOGOS.slice().sort(() => Math.random() - 0.5).slice(0, 10),
-      round: 0, score: 0, history: [], answered: false
+      items: DIALOGOS.slice().sort(() => Math.random() - 0.5).slice(0, DIALOGO_ROUNDS),
+      round: 0, score: 0, history: [], answered: false,
+      // Set only by renderDialogoResults, and only after the last round. A game
+      // abandoned partway — refreshed, closed, navigated away from — leaves this
+      // false and nothing is written: no best score, no Lucas. The state lives in
+      // memory alone, so a reload starts over from zero by construction.
+      finished: false
     };
     renderDialogoIntro();
   }
@@ -256,7 +418,7 @@
           A short conversation with one line missing. ${isMc
             ? 'Four options — choose the one that actually fits.'
             : 'Type the line that belongs in the blank.'}
-          10 rounds.${best > 0 ? ' Your best: ' + best + '/10.' : ''}
+          ${DIALOGO_ROUNDS} rounds.${best > 0 ? ' Your best: ' + best + '/' + DIALOGO_ROUNDS + '.' : ''}
         </p>
         <p style="color:var(--ink-soft);font-size:14px;margin-bottom:20px;">
           Everything comes from the <strong>Preliminar</strong> list — greetings, farewells, names and courtesy.
@@ -275,7 +437,7 @@
     dialogoState.round = 0;
     dialogoState.score = 0;
     dialogoState.history = [];
-    dialogoState.items = DIALOGOS.slice().sort(() => Math.random() - 0.5).slice(0, 10);
+    dialogoState.items = DIALOGOS.slice().sort(() => Math.random() - 0.5).slice(0, DIALOGO_ROUNDS);
     renderDialogoRound();
   }
 
@@ -405,15 +567,21 @@
     const score = ds.score;
     const baseTier = GAMES[gameId].maxReward;
 
+    // The same tiers as the other games, read as a share of the round so they
+    // keep their meaning now that a round is 20 rather than 10.
+    const pct = score / DIALOGO_ROUNDS;
     let reward = 0, verdict = '';
-    if (score === 10) { reward = baseTier; verdict = 'Perfect — flawless game'; }
-    else if (score >= 9) { reward = Math.floor(baseTier * 0.7); verdict = 'Excellent'; }
-    else if (score >= 7) { reward = Math.floor(baseTier * 0.5); verdict = 'Solid effort'; }
-    else if (score >= 5) { reward = Math.floor(baseTier * 0.25); verdict = 'Keep practicing'; }
-    else { reward = 0; verdict = 'Try again — you need 5+ to earn'; }
+    if (score === DIALOGO_ROUNDS) { reward = baseTier; verdict = 'Perfect — flawless game'; }
+    else if (pct >= 0.9) { reward = Math.floor(baseTier * 0.7); verdict = 'Excellent'; }
+    else if (pct >= 0.7) { reward = Math.floor(baseTier * 0.5); verdict = 'Solid effort'; }
+    else if (pct >= 0.5) { reward = Math.floor(baseTier * 0.25); verdict = 'Keep practicing'; }
+    else { reward = 0; verdict = 'Try again — you need half of them to earn'; }
 
+    // Only a finished game is worth anything. Reaching here means the final
+    // round was answered; a game left partway wrote nothing at all.
+    ds.finished = true;
     const isNewBest = score > getGameBestScore(gameId);
-    if (isNewBest && reward > 0) awardCoins(reward, verdict + ' (' + score + '/10) — new best!');
+    if (isNewBest && reward > 0) awardCoins(reward, verdict + ' (' + score + '/' + DIALOGO_ROUNDS + ') — new best!');
     setGameBestScore(gameId, score);
     saveState();
 
@@ -429,11 +597,11 @@
 
     container.innerHTML = `
       <div class="game-results">
-        <h3>${score}/10 — <em>${verdict}</em></h3>
+        <h3>${score}/${DIALOGO_ROUNDS} — <em>${verdict}</em></h3>
         <p style="color:var(--ink-soft);font-size:14px;margin-bottom:8px;">Completa el diálogo · ${ds.mode === 'mc' ? 'multiple choice' : 'typed'} · Preliminar</p>
         ${isNewBest && reward > 0
           ? `<p style="color:var(--verde);font-weight:600;margin-bottom:16px;">+${reward} Lucas — new personal best!</p>`
-          : `<p style="color:var(--ink-soft);font-size:13px;margin-bottom:16px;">${reward > 0 ? 'Lucas are only awarded when you beat your best score (' + getGameBestScore(gameId) + '/10).' : verdict}</p>`}
+          : `<p style="color:var(--ink-soft);font-size:13px;margin-bottom:16px;">${reward > 0 ? 'Lucas are only awarded when you beat your best score (' + getGameBestScore(gameId) + '/' + DIALOGO_ROUNDS + ').' : verdict}</p>`}
         <div style="margin:16px 0;">${reviewHtml}</div>
         <div style="display:flex;gap:10px;flex-wrap:wrap;justify-content:center;margin-top:20px;">
           <button class="btn primary" onclick="beginDialogoRound()">Play again</button>
