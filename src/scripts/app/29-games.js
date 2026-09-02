@@ -102,6 +102,59 @@
     return 'th';
   }
 
+  // ============================================================================
+  // ¿TÚ O USTED? — the 26 situations from Profe's worksheet
+  // ----------------------------------------------------------------------------
+  // Same items as pdfs/tu-o-usted-worksheet.pdf, so playing the game is practice
+  // for (or a review of) the handout. Each item: the situation in English, the
+  // Spanish sentence with the blank, the English gloss, the answer, and the WHY —
+  // the same justification the answer key accepts.
+  //
+  // #23 (grandmother) genuinely varies by family and country: the key accepts
+  // either form, so the game does too.
+  // ============================================================================
+  const TU_O_USTED_SITUATIONS = [
+    { situation: 'You are greeting your best friend before class.', sentence: '¡Hola! ¿Cómo estás ____?', gloss: 'Hi! How are you?', answer: 'tú', why: 'Close friend, same age — informal.' },
+    { situation: 'You are asking your school principal a question.', sentence: 'Perdón, ¿puede ____ ayudarme?', gloss: 'Excuse me, can you help me?', answer: 'usted', why: 'Authority figure at school — formal respect.' },
+    { situation: 'You are talking to your little brother.', sentence: '¿____ quieres jugar videojuegos?', gloss: 'Do you want to play video games?', answer: 'tú', why: 'Family member, younger — informal.' },
+    { situation: 'You meet your friend\'s grandfather for the first time.', sentence: 'Mucho gusto. ¿De dónde es ____?', gloss: 'Nice to meet you. Where are you from?', answer: 'usted', why: 'Elderly person you just met — formal respect.' },
+    { situation: 'A doctor is speaking with an adult patient she doesn\'t know.', sentence: '¿Cómo se siente ____ hoy?', gloss: 'How are you feeling today?', answer: 'usted', why: 'Professional setting with a stranger — formal.' },
+    { situation: 'You are texting your cousin about the weekend.', sentence: '¿____ vienes a la fiesta el sábado?', gloss: 'Are you coming to the party on Saturday?', answer: 'tú', why: 'Family member, close relationship — informal.' },
+    { situation: 'You are ordering food and speaking to the waiter, an adult you don\'t know.', sentence: '¿Puede ____ traerme la cuenta, por favor?', gloss: 'Can you bring me the check, please?', answer: 'usted', why: 'Adult stranger providing a service — formal.' },
+    { situation: 'Your teacher is talking to you, a student.', sentence: '¿Terminaste ____ la tarea?', gloss: 'Did you finish the homework?', answer: 'tú', why: 'Adults usually address young students informally.' },
+    { situation: 'You are speaking to a police officer who stopped to help you.', sentence: 'Gracias. ¿Me puede ____ decir dónde está la biblioteca?', gloss: 'Thank you. Can you tell me where the library is?', answer: 'usted', why: 'Authority figure and a stranger — formal respect.' },
+    { situation: 'You are talking to a new classmate your age.', sentence: '¿____ tienes la clase de historia también?', gloss: 'Do you have history class too?', answer: 'tú', why: 'Peer your own age — informal.' },
+    { situation: 'You are interviewing for your first job, speaking to the manager.', sentence: '¿Necesita ____ ver mi solicitud?', gloss: 'Do you need to see my application?', answer: 'usted', why: 'Job interview with a superior — formal.' },
+    { situation: 'You are talking to a five-year-old at a family party.', sentence: '¿Cuántos años tienes ____?', gloss: 'How old are you?', answer: 'tú', why: 'Speaking to a small child — always informal.' },
+    { situation: 'You call a company and speak with the receptionist.', sentence: 'Buenos días. ¿Me puede ____ comunicar con la oficina?', gloss: 'Good morning. Can you connect me with the office?', answer: 'usted', why: 'Phone call with a stranger at a business — formal.' },
+    { situation: 'You are asking your mom a question.', sentence: 'Mamá, ¿____ sabes dónde están mis llaves?', gloss: 'Mom, do you know where my keys are?', answer: 'tú', why: 'Immediate family — informal in most families.' },
+    { situation: 'An elderly neighbor greets you and you respond.', sentence: 'Buenas tardes, señora Vega. ¿Cómo está ____?', gloss: 'Good afternoon, Mrs. Vega. How are you?', answer: 'usted', why: 'Older adult, and you used a title (señora) — formal.' },
+    { situation: 'You are chatting with your teammate after practice.', sentence: '¿____ juegas el viernes también?', gloss: 'Are you playing on Friday too?', answer: 'tú', why: 'Friend and teammate your age — informal.' },
+    { situation: 'You are returning an item and speaking with the store clerk, an adult.', sentence: 'Disculpe, ¿puede ____ ayudarme con una devolución?', gloss: 'Excuse me, can you help me with a return?', answer: 'usted', why: 'Adult stranger — and "disculpe" already signals the formal register.' },
+    { situation: 'You are writing a birthday message to your best friend.', sentence: '¡Feliz cumpleaños! Espero que ____ tengas un día increíble.', gloss: 'Happy birthday! I hope you have an amazing day.', answer: 'tú', why: 'Close friend — informal.' },
+    { situation: 'A hotel employee is speaking to a guest.', sentence: 'Bienvenido. ¿Tiene ____ una reservación?', gloss: 'Welcome. Do you have a reservation?', answer: 'usted', why: 'Customer service with a guest — formal.' },
+    { situation: 'You are asking your dentist, Dr. Molina, a question.', sentence: 'Doctor Molina, ¿cree ____ que necesito frenos?', gloss: 'Dr. Molina, do you think I need braces?', answer: 'usted', why: 'A professional, addressed with a title (Doctor) — formal.' },
+    { situation: 'You are talking to your dog.', sentence: '¡____ eres un perro muy bueno!', gloss: 'You are a very good dog!', answer: 'tú', why: 'Pets always get tú — informal and affectionate.' },
+    { situation: 'You bump into a stranger on the bus and apologize.', sentence: 'Perdón, ¿está ____ bien?', gloss: 'Sorry, are you okay?', answer: 'usted', why: 'Adult stranger in public — formal.' },
+    { situation: 'Your grandmother asks about your day. You answer her question with one of your own.', sentence: 'Bien, abuela. ¿Y ____ cómo está?', gloss: 'Fine, Grandma. And how are you?', answer: 'usted', validAnswers: ['usted', 'tú'], why: 'Either works — many families use usted with grandparents to show respect, others use tú. It varies by family and country.' },
+    { situation: 'You are inviting a friend from Spanish class to study together.', sentence: '¿____ quieres estudiar conmigo después de la escuela?', gloss: 'Do you want to study with me after school?', answer: 'tú', why: 'Classmate and friend — informal.' },
+    { situation: 'You are emailing a college admissions officer.', sentence: '¿Podría ____ enviarme más información sobre el programa?', gloss: 'Could you send me more information about the program?', answer: 'usted', why: 'Formal written message to an official — formal.' },
+    { situation: 'You are asking your older sister for a favor.', sentence: 'Oye, ¿me puedes ____ llevar al centro comercial?', gloss: 'Hey, can you take me to the mall?', answer: 'tú', why: 'A sibling — informal, even an older one.' }
+  ];
+
+  // Shuffled queue so a single game never repeats a situation; refills (reshuffled)
+  // once all 26 have been served.
+  let tuOUstedQueue = [];
+  function nextTuOUstedSituation() {
+    if (!tuOUstedQueue.length) {
+      tuOUstedQueue = TU_O_USTED_SITUATIONS.map((_, i) => i);
+      for (let i = tuOUstedQueue.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [tuOUstedQueue[i], tuOUstedQueue[j]] = [tuOUstedQueue[j], tuOUstedQueue[i]];
+      }
+    }
+    return TU_O_USTED_SITUATIONS[tuOUstedQueue.pop()];
+  }
   const GAMES = {
     // Sprint games — all have isSprint:true. 10/10 to qualify for the leaderboard;
     // partial scores still earn Lucas based on accuracy.
@@ -510,6 +563,29 @@
           promptDisplay: pick.display,
           answer: pick.answer,
           validAnswers: [pick.answer],
+          hint: 'tú or usted?'
+        };
+      }
+    },
+    // The worksheet, playable: a real situation, the real Spanish sentence with
+    // the blank, and two buttons. Feedback explains WHY, the way the answer key
+    // does — the point is the reasoning, not a lucky coin flip.
+    'tu-o-usted': {
+      title: '¿Tú o <em>usted</em>?',
+      icon: '🤝',
+      maxReward: 30,
+      generate: () => {
+        const item = nextTuOUstedSituation();
+        return {
+          promptLabel: 'Read the situation · fill the blank',
+          promptDisplay: `<span class="tu-usted-situation">${item.situation}</span>
+             <span class="tu-usted-sentence">${item.sentence.replace('____', '<span class="tu-usted-blank">____</span>')}</span>
+             <span class="tu-usted-gloss">(${item.gloss})</span>`,
+          promptReview: item.situation,
+          answer: item.answer,
+          validAnswers: item.validAnswers || [item.answer],
+          choices: ['tú', 'usted'],
+          why: item.why,
           hint: 'tú or usted?'
         };
       }
@@ -1995,7 +2071,7 @@
           ${sprintTimerHtml}
         </div>
         <div class="game-prompt-label">${gameState.current.promptLabel}</div>
-        <div class="game-prompt-display${gameState.gameId === 'tu-usted' || gameState.gameId === 'object-pronouns' ? ' scenario' : ''}">${gameState.current.promptDisplay}</div>
+        <div class="game-prompt-display${gameState.gameId === 'tu-usted' || gameState.gameId === 'tu-o-usted' || gameState.gameId === 'object-pronouns' ? ' scenario' : ''}">${gameState.current.promptDisplay}</div>
         ${interactionHtml}
       </div>
     `;
@@ -2035,6 +2111,23 @@
     }
   }
 
+  // A round may carry a `why` — a one-line justification shown under the
+  // feedback (¿Tú o usted? uses the worksheet's answer-key reasoning). Rounds
+  // with a `why` linger a bit longer so it can actually be read.
+  function gameFeedbackWhy() {
+    return (gameState && gameState.current && gameState.current.why)
+      ? ' <span style="opacity:0.85;">— ' + gameState.current.why + '</span>'
+      : '';
+  }
+  function gameRoundDelay(base) {
+    return (gameState && gameState.current && gameState.current.why) ? 3200 : base;
+  }
+  // The prompt as it should read in the end-of-game review: a round whose
+  // display is rich markup can supply a plain `promptReview` instead.
+  function gameReviewPrompt() {
+    return gameState.current.promptReview || gameState.current.promptDisplay;
+  }
+
   function submitGameAnswer() {
     if (!gameState || !gameState.current) return;
     const input = document.getElementById('gameInput');
@@ -2055,29 +2148,29 @@
     if (isCorrect) {
       gameState.score++;
       input.classList.add('correct');
-      fb.textContent = '✓ Correct!';
+      fb.innerHTML = '✓ Correct!' + gameFeedbackWhy();
       fb.className = 'game-feedback correct';
     } else {
       input.classList.add('wrong');
-      fb.textContent = '✗ Correct answer: ' + gameState.current.answer;
+      fb.innerHTML = '✗ Correct answer: ' + escapeHtml(gameState.current.answer) + gameFeedbackWhy();
       fb.className = 'game-feedback wrong';
     }
     input.disabled = true;
 
     gameState.history.push({
-      prompt: gameState.current.promptDisplay,
+      prompt: gameReviewPrompt(),
       userAnswer: input.value,
       correctAnswer: gameState.current.answer,
       isCorrect
     });
 
-    setTimeout(() => renderGameRound(), 1500);
+    setTimeout(() => renderGameRound(), gameRoundDelay(1500));
   }
 
   function skipGameRound() {
     if (!gameState || !gameState.current) return;
     gameState.history.push({
-      prompt: gameState.current.promptDisplay,
+      prompt: gameReviewPrompt(),
       userAnswer: '(skipped)',
       correctAnswer: gameState.current.answer,
       isCorrect: false
@@ -2106,21 +2199,23 @@
     document.querySelectorAll('#choiceRow .game-choice').forEach(b => {
       b.disabled = true;
       const v = normalize(b.getAttribute('data-val') || '');
-      if (v === correct) { b.style.background = 'var(--verde)'; b.style.color = '#fff'; b.style.borderColor = 'var(--verde)'; }
+      // Green also covers a pick that isn't the primary answer but is an
+      // accepted alternate (¿Tú o usted? #23 takes either form).
+      if (v === correct || (isCorrect && v === userAnswer)) { b.style.background = 'var(--verde)'; b.style.color = '#fff'; b.style.borderColor = 'var(--verde)'; }
       else if (v === userAnswer && !isCorrect) { b.style.background = 'var(--rojo)'; b.style.color = '#fff'; b.style.borderColor = 'var(--rojo)'; }
     });
     if (fb) {
-      if (isCorrect) { fb.textContent = '✓ Correct!'; fb.className = 'game-feedback correct'; }
-      else { fb.textContent = '✗ Correct answer: ' + gameState.current.answer; fb.className = 'game-feedback wrong'; }
+      if (isCorrect) { fb.innerHTML = '✓ Correct!' + gameFeedbackWhy(); fb.className = 'game-feedback correct'; }
+      else { fb.innerHTML = '✗ Correct answer: ' + escapeHtml(gameState.current.answer) + gameFeedbackWhy(); fb.className = 'game-feedback wrong'; }
     }
 
     gameState.history.push({
-      prompt: gameState.current.promptDisplay,
+      prompt: gameReviewPrompt(),
       userAnswer: val,
       correctAnswer: gameState.current.answer,
       isCorrect
     });
-    setTimeout(() => renderGameRound(), 1300);
+    setTimeout(() => renderGameRound(), gameRoundDelay(1300));
   }
 
   function renderGameResults() {
