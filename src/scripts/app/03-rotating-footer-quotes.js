@@ -88,9 +88,34 @@
     return false;
   }
 
+  /* The bar is position:fixed against the LAYOUT viewport, and a phone does not
+   * shrink that when the on-screen keyboard opens — so the bar sat behind the
+   * keyboard exactly when a student had just tapped into a box and needed it.
+   * visualViewport reports how much of the layout viewport is currently covered;
+   * publish that as --kb-inset and the bar rides above the keys. Desktop and
+   * Android (which resizes instead) both report 0, so nothing moves there. */
+  function updateAccentBarInset() {
+    const vv = window.visualViewport;
+    const inset = vv
+      ? Math.max(0, Math.round(window.innerHeight - (vv.height + vv.offsetTop)))
+      : 0;
+    // Set on the root, not the bar: the verb drill's own .accent-bar is fixed to
+    // the bottom too, so it was hiding behind the keyboard in the same way.
+    document.documentElement.style.setProperty('--kb-inset', inset + 'px');
+  }
+  if (window.visualViewport) {
+    // resize fires when the keyboard opens/closes; scroll when the page is
+    // panned with it open.
+    window.visualViewport.addEventListener('resize', updateAccentBarInset);
+    window.visualViewport.addEventListener('scroll', updateAccentBarInset);
+  }
+  window.addEventListener('orientationchange', updateAccentBarInset);
+
   function showAccentBar() {
     const bar = document.getElementById('accentBar');
     if (!bar) return;
+    // Measure before showing: the keyboard is usually already up by focusin.
+    updateAccentBarInset();
     bar.classList.add('visible');
     bar.setAttribute('aria-hidden', 'false');
   }

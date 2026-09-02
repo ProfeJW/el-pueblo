@@ -5252,9 +5252,12 @@
     left: 50%;
     top: auto;              /* guard: an earlier sticky-toolbar .accent-bar rule sets top,
                                which combined with bottom:0 stretched this into a full-height wall */
-    bottom: 0;
+    bottom: var(--kb-inset, 0px);   /* lifted above the on-screen keyboard; see
+                                       updateAccentBarInset() — 0 on desktop */
     flex-wrap: nowrap;
-    transform: translateX(-50%) translateY(110%);
+    /* The hide transform has to clear the keyboard inset too, or a "hidden" bar
+       parks in mid-screen just above the keys instead of off-screen. */
+    transform: translateX(-50%) translateY(calc(110% + var(--kb-inset, 0px)));
     z-index: 250;
     display: flex;
     gap: 4px;
@@ -5308,9 +5311,9 @@
     .accent-bar {
       left: auto;
       right: 18px;
-      bottom: 12px;
+      bottom: calc(12px + var(--kb-inset, 0px));
       border-radius: 12px;
-      transform: translateY(140%);
+      transform: translateY(calc(140% + var(--kb-inset, 0px)));
     }
     .accent-bar.visible { transform: translateY(0); }
     .accent-bar button { min-width: 32px; height: 34px; font-size: 18px; }
