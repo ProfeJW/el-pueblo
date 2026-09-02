@@ -114,7 +114,7 @@
       if (parsed.completedReadings && typeof parsed.completedReadings === 'object') s.completedReadings = parsed.completedReadings;
       if (parsed.completedLessons && typeof parsed.completedLessons === 'object') s.completedLessons = parsed.completedLessons;
       // Game best scores
-      ['game_best_days', 'game_best_dates', 'game_best_numbers-small', 'game_best_numbers-mid', 'game_best_numbers-big', 'game_best_time', 'game_best_weather', 'game_best_tu-usted', 'game_best_adjectives', 'game_best_reflexives', 'game_best_object-pronouns', 'game_best_plurals', 'game_best_vocab-type', 'game_best_vocab-mc'].forEach(k => {
+      ['game_best_days', 'game_best_dates', 'game_best_numbers-small', 'game_best_numbers-mid', 'game_best_numbers-big', 'game_best_time', 'game_best_weather', 'game_best_tu-usted', 'game_best_tu-o-usted', 'game_best_adjectives', 'game_best_reflexives', 'game_best_object-pronouns', 'game_best_plurals', 'game_best_vocab-type', 'game_best_vocab-mc'].forEach(k => {
         if (parsed[k] != null) s[k] = parsed[k];
       });
       // Match game best times + listening progress
@@ -179,6 +179,7 @@
         game_best_adjectives: STATE.game_best_adjectives || 0,
         game_best_reflexives: STATE.game_best_reflexives || 0,
         'game_best_object-pronouns': STATE['game_best_object-pronouns'] || 0,
+        'game_best_tu-o-usted': STATE['game_best_tu-o-usted'] || 0,
         game_best_plurals: STATE.game_best_plurals || 0,
         'game_best_vocab-type': STATE['game_best_vocab-type'] || 0,
         'game_best_vocab-mc': STATE['game_best_vocab-mc'] || 0,
