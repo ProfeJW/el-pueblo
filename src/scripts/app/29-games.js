@@ -102,6 +102,99 @@
     return 'th';
   }
 
+  // ============================================================================
+  // TÚ VS. USTED — who you are speaking to (no sentence, just the person)
+  // ----------------------------------------------------------------------------
+  // Served from a shuffled queue like the worksheet game: a 20-round game would
+  // otherwise repeat people several times over.
+  // ============================================================================
+  const TU_USTED_PEOPLE = [
+    // tú scenarios
+    { display: 'Your best friend from elementary school.', answer: 'tú' },
+    { display: 'Your 8-year-old cousin.', answer: 'tú' },
+    { display: 'A classmate you sit next to in class.', answer: 'tú' },
+    { display: 'Your sister.', answer: 'tú' },
+    { display: 'Your boyfriend or girlfriend.', answer: 'tú' },
+    { display: 'A 10-year-old you meet at the park.', answer: 'tú' },
+    { display: 'A teammate on your soccer team.', answer: 'tú' },
+    { display: 'Your dog.', answer: 'tú' },
+    { display: 'God in a prayer.', answer: 'tú' },
+    { display: 'A teen your age at a friend\'s party.', answer: 'tú' },
+    { display: 'Your roommate.', answer: 'tú' },
+    { display: 'Your younger brother.', answer: 'tú' },
+    // usted scenarios
+    { display: 'Your Spanish teacher.', answer: 'usted' },
+    { display: 'A police officer.', answer: 'usted' },
+    { display: 'Your doctor.', answer: 'usted' },
+    { display: 'An 80-year-old stranger on the bus.', answer: 'usted' },
+    { display: 'A job interviewer.', answer: 'usted' },
+    { display: 'Your friend\'s grandfather you just met.', answer: 'usted' },
+    { display: 'The principal of your school.', answer: 'usted' },
+    { display: 'A waiter at a formal restaurant.', answer: 'usted' },
+    { display: 'A judge in court.', answer: 'usted' },
+    { display: 'A 60-year-old store clerk you don\'t know.', answer: 'usted' },
+    { display: 'A professor at a university.', answer: 'usted' },
+    { display: 'Your mother\'s elderly coworker.', answer: 'usted' },
+    { display: 'A senator giving a speech.', answer: 'usted' },
+    { display: 'The CEO of a company you\'re visiting.', answer: 'usted' }
+  ];
+
+  // Shuffled queues: hand out every item once, then reshuffle and start over, so
+  // a single game never repeats. `queue` is a plain array used as the store.
+  function nextFromQueue(items, queue) {
+    if (!queue.length) {
+      for (let i = 0; i < items.length; i++) queue.push(i);
+      for (let i = queue.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [queue[i], queue[j]] = [queue[j], queue[i]];
+      }
+    }
+    return items[queue.pop()];
+  }
+  const tuUstedQueue = [];
+
+  // ============================================================================
+  // ¿TÚ O USTED? — the 26 situations from Profe's worksheet
+  // ----------------------------------------------------------------------------
+  // Same items as pdfs/tu-o-usted-worksheet.pdf, so playing the game is practice
+  // for (or a review of) the handout. Each item: the situation in English, the
+  // Spanish sentence with the blank, the English gloss, the answer, and the WHY —
+  // the same justification the answer key accepts.
+  //
+  // #23 (grandmother) genuinely varies by family and country: the key accepts
+  // either form, so the game does too.
+  // ============================================================================
+  const TU_O_USTED_SITUATIONS = [
+    { situation: 'You are greeting your best friend before class.', sentence: '¡Hola! ¿Cómo estás ____?', gloss: 'Hi! How are you?', answer: 'tú', why: 'Close friend, same age — informal.' },
+    { situation: 'You are asking your school principal a question.', sentence: 'Perdón, ¿puede ____ ayudarme?', gloss: 'Excuse me, can you help me?', answer: 'usted', why: 'Authority figure at school — formal respect.' },
+    { situation: 'You are talking to your little brother.', sentence: '¿____ quieres jugar videojuegos?', gloss: 'Do you want to play video games?', answer: 'tú', why: 'Family member, younger — informal.' },
+    { situation: 'You meet your friend\'s grandfather for the first time.', sentence: 'Mucho gusto. ¿De dónde es ____?', gloss: 'Nice to meet you. Where are you from?', answer: 'usted', why: 'Elderly person you just met — formal respect.' },
+    { situation: 'A doctor is speaking with an adult patient she doesn\'t know.', sentence: '¿Cómo se siente ____ hoy?', gloss: 'How are you feeling today?', answer: 'usted', why: 'Professional setting with a stranger — formal.' },
+    { situation: 'You are texting your cousin about the weekend.', sentence: '¿____ vienes a la fiesta el sábado?', gloss: 'Are you coming to the party on Saturday?', answer: 'tú', why: 'Family member, close relationship — informal.' },
+    { situation: 'You are ordering food and speaking to the waiter, an adult you don\'t know.', sentence: '¿Puede ____ traerme la cuenta, por favor?', gloss: 'Can you bring me the check, please?', answer: 'usted', why: 'Adult stranger providing a service — formal.' },
+    { situation: 'Your teacher is talking to you, a student.', sentence: '¿Terminaste ____ la tarea?', gloss: 'Did you finish the homework?', answer: 'tú', why: 'Adults usually address young students informally.' },
+    { situation: 'You are speaking to a police officer who stopped to help you.', sentence: 'Gracias. ¿Me puede ____ decir dónde está la biblioteca?', gloss: 'Thank you. Can you tell me where the library is?', answer: 'usted', why: 'Authority figure and a stranger — formal respect.' },
+    { situation: 'You are talking to a new classmate your age.', sentence: '¿____ tienes la clase de historia también?', gloss: 'Do you have history class too?', answer: 'tú', why: 'Peer your own age — informal.' },
+    { situation: 'You are interviewing for your first job, speaking to the manager.', sentence: '¿Necesita ____ ver mi solicitud?', gloss: 'Do you need to see my application?', answer: 'usted', why: 'Job interview with a superior — formal.' },
+    { situation: 'You are talking to a five-year-old at a family party.', sentence: '¿Cuántos años tienes ____?', gloss: 'How old are you?', answer: 'tú', why: 'Speaking to a small child — always informal.' },
+    { situation: 'You call a company and speak with the receptionist.', sentence: 'Buenos días. ¿Me puede ____ comunicar con la oficina?', gloss: 'Good morning. Can you connect me with the office?', answer: 'usted', why: 'Phone call with a stranger at a business — formal.' },
+    { situation: 'You are asking your mom a question.', sentence: 'Mamá, ¿____ sabes dónde están mis llaves?', gloss: 'Mom, do you know where my keys are?', answer: 'tú', why: 'Immediate family — informal in most families.' },
+    { situation: 'An elderly neighbor greets you and you respond.', sentence: 'Buenas tardes, señora Vega. ¿Cómo está ____?', gloss: 'Good afternoon, Mrs. Vega. How are you?', answer: 'usted', why: 'Older adult, and you used a title (señora) — formal.' },
+    { situation: 'You are chatting with your teammate after practice.', sentence: '¿____ juegas el viernes también?', gloss: 'Are you playing on Friday too?', answer: 'tú', why: 'Friend and teammate your age — informal.' },
+    { situation: 'You are returning an item and speaking with the store clerk, an adult.', sentence: 'Disculpe, ¿puede ____ ayudarme con una devolución?', gloss: 'Excuse me, can you help me with a return?', answer: 'usted', why: 'Adult stranger — and "disculpe" already signals the formal register.' },
+    { situation: 'You are writing a birthday message to your best friend.', sentence: '¡Feliz cumpleaños! Espero que ____ tengas un día increíble.', gloss: 'Happy birthday! I hope you have an amazing day.', answer: 'tú', why: 'Close friend — informal.' },
+    { situation: 'A hotel employee is speaking to a guest.', sentence: 'Bienvenido. ¿Tiene ____ una reservación?', gloss: 'Welcome. Do you have a reservation?', answer: 'usted', why: 'Customer service with a guest — formal.' },
+    { situation: 'You are asking your dentist, Dr. Molina, a question.', sentence: 'Doctor Molina, ¿cree ____ que necesito frenos?', gloss: 'Dr. Molina, do you think I need braces?', answer: 'usted', why: 'A professional, addressed with a title (Doctor) — formal.' },
+    { situation: 'You are talking to your dog.', sentence: '¡____ eres un perro muy bueno!', gloss: 'You are a very good dog!', answer: 'tú', why: 'Pets always get tú — informal and affectionate.' },
+    { situation: 'You bump into a stranger on the bus and apologize.', sentence: 'Perdón, ¿está ____ bien?', gloss: 'Sorry, are you okay?', answer: 'usted', why: 'Adult stranger in public — formal.' },
+    { situation: 'Your grandmother asks about your day. You answer her question with one of your own.', sentence: 'Bien, abuela. ¿Y ____ cómo está?', gloss: 'Fine, Grandma. And how are you?', answer: 'usted', validAnswers: ['usted', 'tú'], why: 'Either works — many families use usted with grandparents to show respect, others use tú. It varies by family and country.' },
+    { situation: 'You are inviting a friend from Spanish class to study together.', sentence: '¿____ quieres estudiar conmigo después de la escuela?', gloss: 'Do you want to study with me after school?', answer: 'tú', why: 'Classmate and friend — informal.' },
+    { situation: 'You are emailing a college admissions officer.', sentence: '¿Podría ____ enviarme más información sobre el programa?', gloss: 'Could you send me more information about the program?', answer: 'usted', why: 'Formal written message to an official — formal.' },
+    { situation: 'You are asking your older sister for a favor.', sentence: 'Oye, ¿me puedes ____ llevar al centro comercial?', gloss: 'Hey, can you take me to the mall?', answer: 'tú', why: 'A sibling — informal, even an older one.' }
+  ];
+
+  const tuOUstedQueue = [];
+
   const GAMES = {
     // Sprint games — all have isSprint:true. 10/10 to qualify for the leaderboard;
     // partial scores still earn Lucas based on accuracy.
@@ -472,44 +565,41 @@
       title: 'Tú vs. <em>Usted</em>',
       icon: '🗣️',
       maxReward: 30,
+      rounds: 20,
+      dualMode: true,
       generate: () => {
-        // Random social scenario — student types tú or usted
-        const scenarios = [
-          // tú scenarios
-          { display: 'Your best friend from elementary school.', answer: 'tú' },
-          { display: 'Your 8-year-old cousin.', answer: 'tú' },
-          { display: 'A classmate you sit next to in class.', answer: 'tú' },
-          { display: 'Your sister.', answer: 'tú' },
-          { display: 'Your boyfriend or girlfriend.', answer: 'tú' },
-          { display: 'A 10-year-old you meet at the park.', answer: 'tú' },
-          { display: 'A teammate on your soccer team.', answer: 'tú' },
-          { display: 'Your dog.', answer: 'tú' },
-          { display: 'God in a prayer.', answer: 'tú' },
-          { display: 'A teen your age at a friend\'s party.', answer: 'tú' },
-          { display: 'Your roommate.', answer: 'tú' },
-          { display: 'Your younger brother.', answer: 'tú' },
-          // usted scenarios
-          { display: 'Your Spanish teacher.', answer: 'usted' },
-          { display: 'A police officer.', answer: 'usted' },
-          { display: 'Your doctor.', answer: 'usted' },
-          { display: 'An 80-year-old stranger on the bus.', answer: 'usted' },
-          { display: 'A job interviewer.', answer: 'usted' },
-          { display: 'Your friend\'s grandfather you just met.', answer: 'usted' },
-          { display: 'The principal of your school.', answer: 'usted' },
-          { display: 'A waiter at a formal restaurant.', answer: 'usted' },
-          { display: 'A judge in court.', answer: 'usted' },
-          { display: 'A 60-year-old store clerk you don\'t know.', answer: 'usted' },
-          { display: 'A professor at a university.', answer: 'usted' },
-          { display: 'Your mother\'s elderly coworker.', answer: 'usted' },
-          { display: 'A senator giving a speech.', answer: 'usted' },
-          { display: 'The CEO of a company you\'re visiting.', answer: 'usted' }
-        ];
-        const pick = scenarios[Math.floor(Math.random() * scenarios.length)];
+        const pick = nextFromQueue(TU_USTED_PEOPLE, tuUstedQueue);
         return {
           promptLabel: 'Speaking to this person, would you use…',
           promptDisplay: pick.display,
           answer: pick.answer,
           validAnswers: [pick.answer],
+          choices: ['tú', 'usted'],
+          hint: 'tú or usted?'
+        };
+      }
+    },
+    // The worksheet, playable: a real situation, the real Spanish sentence with
+    // the blank, and two buttons. Feedback explains WHY, the way the answer key
+    // does — the point is the reasoning, not a lucky coin flip.
+    'tu-o-usted': {
+      title: '¿Tú o <em>usted</em>?',
+      icon: '🤝',
+      maxReward: 30,
+      rounds: 20,
+      dualMode: true,
+      generate: () => {
+        const item = nextFromQueue(TU_O_USTED_SITUATIONS, tuOUstedQueue);
+        return {
+          promptLabel: 'Read the situation · fill the blank',
+          promptDisplay: `<span class="tu-usted-situation">${item.situation}</span>
+             <span class="tu-usted-sentence">${item.sentence.replace('____', '<span class="tu-usted-blank">____</span>')}</span>
+             <span class="tu-usted-gloss">(${item.gloss})</span>`,
+          promptReview: item.situation,
+          answer: item.answer,
+          validAnswers: item.validAnswers || [item.answer],
+          choices: ['tú', 'usted'],
+          why: item.why,
           hint: 'tú or usted?'
         };
       }
@@ -812,7 +902,7 @@
         <div class="best-score-card">
           <span class="name">${cleanTitle}</span>
           ${best > 0
-            ? `<span class="value">${best}/10</span>`
+            ? `<span class="value">${best}/${game.rounds || 10}</span>`
             : `<span class="empty">—</span>`}
         </div>
       `;
@@ -899,6 +989,7 @@
     }
     if (gameId === 'vocab-type') { startVocabGame('type'); return; }
     if (gameId === 'vocab-mc') { startVocabGame('mc'); return; }
+    if (GAMES[gameId] && GAMES[gameId].dualMode) { renderGameModePicker(gameId); return; }
     const game = GAMES[gameId];
     const container = document.getElementById('game-detail-content');
     if (!game) {
@@ -908,7 +999,7 @@
     gameState = {
       gameId,
       round: 0,
-      totalRounds: 10,
+      totalRounds: game.rounds || 10,
       score: 0,
       current: null,
       history: [],
@@ -917,6 +1008,60 @@
       isSprint: !!game.isSprint,
       sprintStart: null,
       sprintEnd: null
+    };
+    renderGameRound();
+  }
+
+  // ============================================================================
+  // MODE PICKER — for games flagged `dualMode`
+  // ----------------------------------------------------------------------------
+  // The same questions, two ways to answer: type the word, or tap one of the
+  // two buttons. Rounds whose generate() supplies `choices` show buttons unless
+  // the student picked 'type', in which case renderGameRound drops them and the
+  // standard typed input takes over.
+  // ============================================================================
+  function renderGameModePicker(gameId) {
+    const game = GAMES[gameId];
+    const container = document.getElementById('game-detail-content');
+    if (!game || !container) return;
+    const rounds = game.rounds || 10;
+    const best = getGameBestScore(gameId);
+    // No back link here — the game detail page already renders one above this
+    // container (the match intro's own link is a duplicate, kept as-is).
+    container.innerHTML =
+      '<div class="match-intro">'
+      +   '<h2 style="font-family:\'DM Serif Display\',serif;font-size:32px;font-weight:400;margin-bottom:8px;">' + game.title + '</h2>'
+      +   '<p style="color:var(--ink-soft);font-size:15px;margin-bottom:24px;">Pick how you want to answer. '
+      +     rounds + ' rounds either way, up to ' + game.maxReward + ' Lucas.'
+      +     (best > 0 ? ' Your best: ' + best + '/' + rounds + '.' : '') + '</p>'
+      +   '<div class="match-deck-grid">'
+      +     '<button class="match-deck-btn" onclick="beginDualModeGame(\'' + gameId + '\', \'type\')">'
+      +       '<span class="mdb-label">✍️ Fill in the blank</span>'
+      +       '<span class="mdb-best" style="text-transform:none;letter-spacing:0;">Type the answer yourself — no options to lean on.</span>'
+      +     '</button>'
+      +     '<button class="match-deck-btn" onclick="beginDualModeGame(\'' + gameId + '\', \'choice\')">'
+      +       '<span class="mdb-label">👆 Multiple choice</span>'
+      +       '<span class="mdb-best" style="text-transform:none;letter-spacing:0;">Tap tú or usted. Faster, and good for a first pass.</span>'
+      +     '</button>'
+      +   '</div>'
+      + '</div>';
+  }
+
+  function beginDualModeGame(gameId, mode) {
+    const game = GAMES[gameId];
+    if (!game) return;
+    gameState = {
+      gameId,
+      mode,
+      round: 0,
+      totalRounds: game.rounds || 10,
+      score: 0,
+      current: null,
+      history: [],
+      isSprint: false,
+      sprintStart: null,
+      sprintEnd: null,
+      _answered: false
     };
     renderGameRound();
   }
@@ -1966,7 +2111,9 @@
 
     // Interaction: either tappable choice buttons (when the round provides
     // `choices`, e.g. the article game) or the standard typed-answer input.
-    const interactionHtml = (gameState.current.choices && Array.isArray(gameState.current.choices))
+    const useChoices = gameState.current.choices && Array.isArray(gameState.current.choices)
+      && gameState.mode !== 'type';
+    const interactionHtml = useChoices
       ? `<div class="game-choice-row" id="choiceRow" style="display:flex;flex-wrap:wrap;gap:10px;margin-top:8px;">
            ${gameState.current.choices.map(ch =>
              `<button type="button" class="game-choice" data-val="${ch}"
@@ -1995,7 +2142,7 @@
           ${sprintTimerHtml}
         </div>
         <div class="game-prompt-label">${gameState.current.promptLabel}</div>
-        <div class="game-prompt-display${gameState.gameId === 'tu-usted' || gameState.gameId === 'object-pronouns' ? ' scenario' : ''}">${gameState.current.promptDisplay}</div>
+        <div class="game-prompt-display${gameState.gameId === 'tu-usted' || gameState.gameId === 'tu-o-usted' || gameState.gameId === 'object-pronouns' ? ' scenario' : ''}">${gameState.current.promptDisplay}</div>
         ${interactionHtml}
       </div>
     `;
@@ -2035,6 +2182,25 @@
     }
   }
 
+  // A round may carry a `why` — a one-line justification shown under the
+  // feedback (¿Tú o usted? uses the worksheet's answer-key reasoning). A wrong
+  // answer holds the explanation on screen long enough to read; a right one
+  // only pauses a beat, so a 20-round game doesn't turn into waiting.
+  function gameFeedbackWhy() {
+    return (gameState && gameState.current && gameState.current.why)
+      ? ' <span style="opacity:0.85;">— ' + gameState.current.why + '</span>'
+      : '';
+  }
+  function gameRoundDelay(base, isCorrect) {
+    if (!gameState || !gameState.current || !gameState.current.why) return base;
+    return isCorrect ? base + 400 : 3400;
+  }
+  // The prompt as it should read in the end-of-game review: a round whose
+  // display is rich markup can supply a plain `promptReview` instead.
+  function gameReviewPrompt() {
+    return gameState.current.promptReview || gameState.current.promptDisplay;
+  }
+
   function submitGameAnswer() {
     if (!gameState || !gameState.current) return;
     const input = document.getElementById('gameInput');
@@ -2055,29 +2221,29 @@
     if (isCorrect) {
       gameState.score++;
       input.classList.add('correct');
-      fb.textContent = '✓ Correct!';
+      fb.innerHTML = '✓ Correct!' + gameFeedbackWhy();
       fb.className = 'game-feedback correct';
     } else {
       input.classList.add('wrong');
-      fb.textContent = '✗ Correct answer: ' + gameState.current.answer;
+      fb.innerHTML = '✗ Correct answer: ' + escapeHtml(gameState.current.answer) + gameFeedbackWhy();
       fb.className = 'game-feedback wrong';
     }
     input.disabled = true;
 
     gameState.history.push({
-      prompt: gameState.current.promptDisplay,
+      prompt: gameReviewPrompt(),
       userAnswer: input.value,
       correctAnswer: gameState.current.answer,
       isCorrect
     });
 
-    setTimeout(() => renderGameRound(), 1500);
+    setTimeout(() => renderGameRound(), gameRoundDelay(1500, isCorrect));
   }
 
   function skipGameRound() {
     if (!gameState || !gameState.current) return;
     gameState.history.push({
-      prompt: gameState.current.promptDisplay,
+      prompt: gameReviewPrompt(),
       userAnswer: '(skipped)',
       correctAnswer: gameState.current.answer,
       isCorrect: false
@@ -2106,21 +2272,23 @@
     document.querySelectorAll('#choiceRow .game-choice').forEach(b => {
       b.disabled = true;
       const v = normalize(b.getAttribute('data-val') || '');
-      if (v === correct) { b.style.background = 'var(--verde)'; b.style.color = '#fff'; b.style.borderColor = 'var(--verde)'; }
+      // Green also covers a pick that isn't the primary answer but is an
+      // accepted alternate (¿Tú o usted? #23 takes either form).
+      if (v === correct || (isCorrect && v === userAnswer)) { b.style.background = 'var(--verde)'; b.style.color = '#fff'; b.style.borderColor = 'var(--verde)'; }
       else if (v === userAnswer && !isCorrect) { b.style.background = 'var(--rojo)'; b.style.color = '#fff'; b.style.borderColor = 'var(--rojo)'; }
     });
     if (fb) {
-      if (isCorrect) { fb.textContent = '✓ Correct!'; fb.className = 'game-feedback correct'; }
-      else { fb.textContent = '✗ Correct answer: ' + gameState.current.answer; fb.className = 'game-feedback wrong'; }
+      if (isCorrect) { fb.innerHTML = '✓ Correct!' + gameFeedbackWhy(); fb.className = 'game-feedback correct'; }
+      else { fb.innerHTML = '✗ Correct answer: ' + escapeHtml(gameState.current.answer) + gameFeedbackWhy(); fb.className = 'game-feedback wrong'; }
     }
 
     gameState.history.push({
-      prompt: gameState.current.promptDisplay,
+      prompt: gameReviewPrompt(),
       userAnswer: val,
       correctAnswer: gameState.current.answer,
       isCorrect
     });
-    setTimeout(() => renderGameRound(), 1300);
+    setTimeout(() => renderGameRound(), gameRoundDelay(1300, isCorrect));
   }
 
   function renderGameResults() {
@@ -2130,14 +2298,19 @@
     const score = gameState.score;
     const max = gameState.totalRounds;
 
-    // Reward tiers (matches verb drill philosophy: hard to earn, score-based)
+    // Reward tiers (matches verb drill philosophy: hard to earn, score-based).
+    // Written as a share of the round count so games that run longer than the
+    // usual 10 (the tú/usted pair runs 20) keep the same difficulty curve.
     let reward = 0, verdict = '';
     const baseTier = game.maxReward; // 25, 35, 50
-    if (score === 10) { reward = baseTier; verdict = 'Perfect — flawless game'; }
-    else if (score >= 9) { reward = Math.floor(baseTier * 0.7); verdict = 'Excellent'; }
-    else if (score >= 7) { reward = Math.floor(baseTier * 0.5); verdict = 'Solid effort'; }
-    else if (score >= 5) { reward = Math.floor(baseTier * 0.25); verdict = 'Keep practicing'; }
-    else { reward = 0; verdict = 'Try again — you need 5+ to earn'; }
+    const tierExcellent = Math.ceil(max * 0.9);
+    const tierSolid = Math.ceil(max * 0.7);
+    const tierEarning = Math.ceil(max * 0.5);
+    if (score === max) { reward = baseTier; verdict = 'Perfect — flawless game'; }
+    else if (score >= tierExcellent) { reward = Math.floor(baseTier * 0.7); verdict = 'Excellent'; }
+    else if (score >= tierSolid) { reward = Math.floor(baseTier * 0.5); verdict = 'Solid effort'; }
+    else if (score >= tierEarning) { reward = Math.floor(baseTier * 0.25); verdict = 'Keep practicing'; }
+    else { reward = 0; verdict = 'Try again — you need ' + tierEarning + '+ to earn'; }
 
     // Check if this is a personal best (score-wise)
     const previousBest = getGameBestScore(gameState.gameId);
@@ -2162,7 +2335,7 @@
       if (!STATE.sprintBest) STATE.sprintBest = {};
       sprintPreviousBestTime = STATE.sprintBest[gameState.gameId] || null;
 
-      if (score === 10) {
+      if (score === max) {
         // Qualified!
         sprintIsFirstQualify = sprintPreviousBestTime === null;
         sprintIsNewBestTime = sprintPreviousBestTime !== null && sprintTimeSeconds < sprintPreviousBestTime;
@@ -2177,12 +2350,12 @@
     let earned = 0;
     if (isNewBest && reward > 0) {
       earned = reward;
-      let awardLabel = verdict + ' (' + score + '/10) — new best!';
-      if (gameState.isSprint && sprintTimeSeconds !== null && score === 10) {
+      let awardLabel = verdict + ' (' + score + '/' + max + ') — new best!';
+      if (gameState.isSprint && sprintTimeSeconds !== null && score === max) {
         awardLabel = 'Sprint qualified · ' + sprintTimeSeconds.toFixed(1) + 's';
       }
       awardCoins(reward, awardLabel);
-    } else if (gameState.isSprint && score === 10 && sprintIsNewBestTime && reward > 0) {
+    } else if (gameState.isSprint && score === max && sprintIsNewBestTime && reward > 0) {
       // Sprint speed bonus: even if score isn't a new high (already had 10/10), a faster time gets +10 Lucas
       earned = 10;
       awardCoins(10, 'Sprint · faster time! ' + sprintTimeSeconds.toFixed(1) + 's');
@@ -2192,7 +2365,7 @@
 
     // Sprint banner (only for sprint games)
     if (gameState.isSprint) {
-      if (score === 10 && sprintIsFirstQualify) {
+      if (score === max && sprintIsFirstQualify) {
         // First time qualifying — ¡Te calificaste!
         sprintBanner = `
           <div style="background: linear-gradient(135deg, var(--verde), #6a8a4f); color: var(--paper); padding: 24px; border-radius: 4px; margin-top: 16px; text-align: center; box-shadow: 0 4px 16px rgba(122, 154, 95, 0.3);">
@@ -2201,7 +2374,7 @@
             <div style="margin-top: 12px; font-family: 'JetBrains Mono', monospace; font-size: 20px;">${sprintTimeSeconds.toFixed(1)}s</div>
             <div style="margin-top: 6px; font-size: 13px; opacity: 0.85;">You're on the leaderboard. Beat your time to keep climbing.</div>
           </div>`;
-      } else if (score === 10 && sprintIsNewBestTime) {
+      } else if (score === max && sprintIsNewBestTime) {
         // Beat your previous best time — ¡Ganaste!
         const improvement = (sprintPreviousBestTime - sprintTimeSeconds).toFixed(1);
         sprintBanner = `
@@ -2211,7 +2384,7 @@
             <div style="margin-top: 12px; font-family: 'JetBrains Mono', monospace; font-size: 20px;">${sprintTimeSeconds.toFixed(1)}s</div>
             <div style="margin-top: 6px; font-size: 13px; opacity: 0.85;">${improvement}s faster than your previous best of ${sprintPreviousBestTime.toFixed(1)}s.</div>
           </div>`;
-      } else if (score === 10) {
+      } else if (score === max) {
         // Perfect score but didn't beat best time
         sprintBanner = `
           <div style="background: rgba(212, 146, 44, 0.12); border: 1px solid rgba(212, 146, 44, 0.35); padding: 20px; border-radius: 4px; margin-top: 16px; text-align: center;">
@@ -2220,12 +2393,12 @@
             <div style="font-size: 13px; color: var(--ink-soft);">Your best for this mode is still <strong>${sprintPreviousBestTime.toFixed(1)}s</strong>. Try again to beat it.</div>
           </div>`;
       } else {
-        // Sprint but didn't qualify (less than 10/10)
-        const missed = 10 - score;
+        // Sprint but didn't qualify (less than a perfect score)
+        const missed = max - score;
         sprintBanner = `
           <div style="background: rgba(31, 26, 20, 0.05); border: 1px dashed var(--line); padding: 20px; border-radius: 4px; margin-top: 16px; text-align: center;">
             <div style="font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: 0.25em; text-transform: uppercase; color: var(--ink-soft); margin-bottom: 8px;">No qualification — ${missed} mistake${missed === 1 ? '' : 's'}</div>
-            <div style="font-family: 'Fraunces', serif; font-style: italic; font-size: 16px; color: var(--ink);">You need <strong>10/10</strong> to land on the sprint leaderboard.</div>
+            <div style="font-family: 'Fraunces', serif; font-style: italic; font-size: 16px; color: var(--ink);">You need <strong>${max}/${max}</strong> to land on the sprint leaderboard.</div>
             <div style="font-size: 13px; color: var(--ink-soft); margin-top: 6px;">Your time was ${sprintTimeSeconds ? sprintTimeSeconds.toFixed(1) + 's' : '—'}. Review your mistakes below and try again.</div>
           </div>`;
       }
@@ -2242,16 +2415,16 @@
 
     container.innerHTML = `
       <div class="game-results">
-        <h3>${score === 10 ? '¡<em>Perfecto</em>!' : score >= 7 ? 'Game <em>complete</em>' : 'Keep <em>going</em>'}</h3>
+        <h3>${score === max ? '¡<em>Perfecto</em>!' : score >= tierSolid ? 'Game <em>complete</em>' : 'Keep <em>going</em>'}</h3>
         <div class="verdict">${verdict}</div>
-        <div class="score-display">${score}/10</div>
+        <div class="score-display">${score}/${max}</div>
         ${sprintBanner}
         ${earned > 0
           ? `<div class="game-reward-banner" style="margin-top: 16px;"><span class="coin-icon"></span><strong style="color: var(--ocre); font-family: 'DM Serif Display', serif; font-size: 20px; font-style: italic;">+${earned} Lucas</strong></div>`
           : (isNewBest && !gameState.isSprint)
-            ? `<div class="game-reward-banner" style="margin-top: 16px; background: rgba(196, 61, 42, 0.08); border-color: rgba(196, 61, 42, 0.3);"><span style="font-size: 20px;">📈</span><strong>New best — but you need 5+ to earn Lucas</strong></div>`
+            ? `<div class="game-reward-banner" style="margin-top: 16px; background: rgba(196, 61, 42, 0.08); border-color: rgba(196, 61, 42, 0.3);"><span style="font-size: 20px;">📈</span><strong>New best — but you need ${tierEarning}+ to earn Lucas</strong></div>`
             : (!gameState.isSprint)
-              ? `<div class="game-reward-banner" style="margin-top: 16px; background: rgba(31,26,20,0.04); border-color: var(--line);"><span style="font-size: 20px;">↻</span><strong style="color: var(--ink-soft);">Already beat ${previousBest}/10 before — no new Lucas, but great practice</strong></div>`
+              ? `<div class="game-reward-banner" style="margin-top: 16px; background: rgba(31,26,20,0.04); border-color: var(--line);"><span style="font-size: 20px;">↻</span><strong style="color: var(--ink-soft);">Already beat ${previousBest}/${max} before — no new Lucas, but great practice</strong></div>`
               : ''
         }
         <div style="margin-top: 24px; padding-top: 24px; border-top: 1px solid var(--line);">

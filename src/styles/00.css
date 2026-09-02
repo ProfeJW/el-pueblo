@@ -4535,6 +4535,38 @@
     margin-left: auto;
     margin-right: auto;
   }
+  /* ¿Tú o usted? — three stacked parts inside one scenario prompt: the English
+     situation, the Spanish sentence with the blank, and the gloss. Muted tones
+     use currentColor so they hold up in every theme (the card flips ink/paper). */
+  .game-prompt-card .tu-usted-situation {
+    display: block;
+    font-family: 'Fraunces', serif;
+    font-style: italic;
+    font-size: clamp(15px, 2vw, 18px);
+    line-height: 1.4;
+    opacity: 0.72;
+    margin-bottom: 18px;
+  }
+  .game-prompt-card .tu-usted-sentence {
+    display: block;
+    font-family: 'DM Serif Display', serif;
+    font-style: normal;
+    font-size: clamp(24px, 4vw, 34px);
+    line-height: 1.25;
+  }
+  .game-prompt-card .tu-usted-blank {
+    color: var(--ocre);
+    letter-spacing: -0.04em;
+  }
+  .game-prompt-card .tu-usted-gloss {
+    display: block;
+    font-family: 'JetBrains Mono', monospace;
+    font-style: normal;
+    font-size: 12px;
+    line-height: 1.5;
+    opacity: 0.6;
+    margin-top: 12px;
+  }
   .game-prompt-card .game-prompt-display em {
     color: var(--ocre);
     font-style: italic;
@@ -4547,7 +4579,8 @@
   [data-theme="cosmic"] .game-prompt-card .game-prompt-label,
   [data-theme="cosmic"] .game-prompt-card .racha-tag,
   [data-theme="cosmic"] .game-prompt-card .game-progress strong,
-  [data-theme="cosmic"] .game-prompt-card .game-prompt-display em {
+  [data-theme="cosmic"] .game-prompt-card .game-prompt-display em,
+  [data-theme="cosmic"] .game-prompt-card .tu-usted-blank {
     color: #a05a00;
   }
   [data-theme="cosmic"] .game-prompt-card .game-progress {
@@ -5008,6 +5041,11 @@
     display: none;
   }
   body.teacher-mode #teacherPanel { display: block; }
+  /* Teacher-only resource cards (e.g. answer keys): hidden on the student view,
+     revealed by ?teacher like the rest of teacher mode. Not a security boundary —
+     the file is still reachable by URL — just kept out of students' way. */
+  .resource-card.teacher-only { display: none; }
+  body.teacher-mode .resource-card.teacher-only { display: flex; }
   #teacherPanel h2 {
     font-family: 'DM Serif Display', serif;
     font-size: 32px;
