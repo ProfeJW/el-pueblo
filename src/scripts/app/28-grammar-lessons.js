@@ -34,9 +34,11 @@
       decks: ['saludos', 'emociones', 'cotidiano'],
       pdfs: [
         { url: 'pdfs/bingo-gane.pdf', label: 'Bingo board ¡GANÉ! — fill with greetings vocab (PDF)' },
-        { url: 'pdfs/bingo-gano.pdf', label: 'Bingo board GANO — second variant (PDF)' }
+        { url: 'pdfs/bingo-gano.pdf', label: 'Bingo board GANO — second variant (PDF)' },
+        { url: 'pdfs/nombres-en-espanol.pdf', label: '¡Elige tu nombre en español! — 450 names with pronunciation (PDF)' }
       ],
       links: [
+        { label: "¡Elige tu nombre en español! — editable name sheet (Word)", url: 'pdfs/nombres-en-espanol.docx' },
         { label: "Preliminar Peardeck (intro)", url: 'https://docs.google.com/presentation/d/1rG79MZsmJJ_mKzoQRVvKUyXWQEgNi7Kuaz1h4e0vj1k/edit?usp=sharing' },
         { label: "Preliminar Vocab List (saludos, despedidas)", url: 'https://docs.google.com/document/d/1Td_XUXiir4huthoS4pL6tiJgCu1ArufTqA8i8voq2-I/edit?usp=sharing' },
         { label: "To-do list: Preliminar vocab", url: 'https://docs.google.com/document/d/1osMU2vDYDMvinhAkxr5GfG-xnQCsxMBH6Ia0JPV1GIs/edit?usp=sharing' },
@@ -308,6 +310,15 @@
       pdfs: [
         { url: 'pdfs/crossword-irregular-yos-reflexives.pdf', label: 'Crossword: Irregular yos, reflexives & daily routine (PDF)' },],
       links: []
+    },
+    'la-fecha': {
+      decks: ['calendario', 'numeros'],
+      games: ['dates', 'days', 'numbers-small'],
+      pdfs: [],
+      links: [
+        { label: "Pronunciation guide: Days, months, weather, seasons", url: 'https://docs.google.com/document/d/1X-hfLc8Co3tfr7xNG40nq9LfuleW33kvfC2E3W519eg/edit?usp=sharing' },
+        { label: 'Days of the week and dates practice', url: 'https://docs.google.com/document/d/18Vc0G6n39j9rdzhZem0kUjGctI8LroAvCCOX1Wgos30/edit?usp=sharing' }
+      ]
     },
     'time-and-dates': {
       decks: ['hora', 'calendario'],
@@ -3637,6 +3648,144 @@
           { text: 'La clase empieza son las ocho.', correct: false },
           { text: 'La clase empieza a las ocho.', correct: true },
           { text: 'La clase empieza es las ocho.', correct: false }
+        ]}
+      ]
+    },
+    {
+      id: 'la-fecha',
+      num: '28b',
+      level: 'sp1',
+      title: 'Giving the <em>date</em> — <em>la fecha</em>',
+      tag: 'Practical Spanish · La fecha',
+      summary: 'Every month and weekday with pronunciation, the day numbers 1-31 said out loud, and the one formula that builds any date in Spanish.',
+      sections: [
+        {
+          heading: 'The <em>formula</em>',
+          body: 'Every Spanish date is built from one pattern: <strong>el + [number] + de + [month]</strong>. Add <em>de [year]</em> on the end when you need it. There is no equivalent of "January <u>the</u> fifth" — Spanish uses a plain counting number for the day (dos, tres, cuatro…), with one exception: the 1st of the month is <strong>el primero</strong>.<br><br>To ask, use <strong>¿Cuál es la fecha de hoy?</strong> — literally "what is the date of today?"',
+          conjugation: [
+            ['The question', '<span class="ending">¿Cuál es la fecha de hoy?</span>  What\'s today\'s date?'],
+            ['The answer', '<span class="ending">Hoy es el [número] de [mes].</span>'],
+            ['March 15', '<span class="ending">el quince de marzo</span>'],
+            ['The 1st', '<span class="ending">el primero de mayo</span>  (primero, not "uno")'],
+            ['With a year', '<span class="ending">el cuatro de julio de dos mil veintiséis</span>'],
+            ['With a weekday', '<span class="ending">Hoy es martes, doce de mayo.</span>']
+          ]
+        },
+        {
+          heading: 'Los <em>meses</em> del año',
+          body: 'The twelve months. Notice how many look like their English cousins — and notice that <strong>they are never capitalized</strong> in Spanish unless they start a sentence. CAPITAL letters below show the stressed (loudest) syllable; the Spanish <em>j</em> sounds like an English "h."',
+          conjugation: [
+            ['January', '<span class="ending">enero</span>  ·  eh-NEH-roh'],
+            ['February', '<span class="ending">febrero</span>  ·  feh-BREH-roh'],
+            ['March', '<span class="ending">marzo</span>  ·  MAHR-soh'],
+            ['April', '<span class="ending">abril</span>  ·  ah-BREEL'],
+            ['May', '<span class="ending">mayo</span>  ·  MAH-yoh'],
+            ['June', '<span class="ending">junio</span>  ·  HOO-nee-oh'],
+            ['July', '<span class="ending">julio</span>  ·  HOO-lee-oh'],
+            ['August', '<span class="ending">agosto</span>  ·  ah-GOHS-toh'],
+            ['September', '<span class="ending">septiembre</span>  ·  sehp-tee-EHM-breh'],
+            ['October', '<span class="ending">octubre</span>  ·  ohk-TOO-breh'],
+            ['November', '<span class="ending">noviembre</span>  ·  noh-vee-EHM-breh'],
+            ['December', '<span class="ending">diciembre</span>  ·  dee-see-EHM-breh']
+          ]
+        },
+        {
+          heading: 'Los <em>días</em> de la semana',
+          body: 'Also lowercase. The Spanish week starts on <strong>lunes</strong>, not Sunday — so on a Spanish calendar, Monday is the first column. Note that <em>lunes</em> through <em>viernes</em> already end in -s: their singular and plural are identical (<em>el lunes</em> = Monday, <em>los lunes</em> = Mondays).',
+          conjugation: [
+            ['Monday', '<span class="ending">lunes</span>  ·  LOO-nehs'],
+            ['Tuesday', '<span class="ending">martes</span>  ·  MAHR-tehs'],
+            ['Wednesday', '<span class="ending">miércoles</span>  ·  mee-EHR-koh-lehs'],
+            ['Thursday', '<span class="ending">jueves</span>  ·  HWEH-vehs'],
+            ['Friday', '<span class="ending">viernes</span>  ·  vee-EHR-nehs'],
+            ['Saturday', '<span class="ending">sábado</span>  ·  SAH-bah-doh'],
+            ['Sunday', '<span class="ending">domingo</span>  ·  doh-MEEN-goh']
+          ]
+        },
+        {
+          heading: 'The day <em>numbers</em>, 1–31',
+          body: 'These are the only numbers a date ever needs. Say them out loud — dates get spoken fast in real conversation, and this is the range you will actually use for birthdays, due dates, and appointments.',
+          conjugation: [
+            ['1st', '<span class="ending">primero</span>  ·  pree-MEH-roh'],
+            ['2, 3', '<span class="ending">dos</span> (DOHS), <span class="ending">tres</span> (TREHS)'],
+            ['4, 5', '<span class="ending">cuatro</span> (KWAH-troh), <span class="ending">cinco</span> (SEEN-koh)'],
+            ['6, 7', '<span class="ending">seis</span> (SAYS), <span class="ending">siete</span> (see-EH-teh)'],
+            ['8, 9', '<span class="ending">ocho</span> (OH-choh), <span class="ending">nueve</span> (NWEH-veh)'],
+            ['10, 11', '<span class="ending">diez</span> (dee-EHS), <span class="ending">once</span> (OHN-seh)'],
+            ['12, 13', '<span class="ending">doce</span> (DOH-seh), <span class="ending">trece</span> (TREH-seh)'],
+            ['14, 15', '<span class="ending">catorce</span> (kah-TOHR-seh), <span class="ending">quince</span> (KEEN-seh)'],
+            ['16', '<span class="ending">dieciséis</span>  ·  dee-eh-see-SAYS'],
+            ['17', '<span class="ending">diecisiete</span>  ·  dee-eh-see-see-EH-teh'],
+            ['18', '<span class="ending">dieciocho</span>  ·  dee-eh-see-OH-choh'],
+            ['19', '<span class="ending">diecinueve</span>  ·  dee-eh-see-NWEH-veh'],
+            ['20', '<span class="ending">veinte</span>  ·  VEYN-teh'],
+            ['21', '<span class="ending">veintiuno</span>  ·  veyn-tee-OO-noh'],
+            ['22, 23', '<span class="ending">veintidós</span> (veyn-tee-DOHS), <span class="ending">veintitrés</span> (veyn-tee-TREHS)'],
+            ['24, 25', '<span class="ending">veinticuatro</span> (veyn-tee-KWAH-troh), <span class="ending">veinticinco</span> (veyn-tee-SEEN-koh)'],
+            ['26, 27', '<span class="ending">veintiséis</span> (veyn-tee-SAYS), <span class="ending">veintisiete</span> (veyn-tee-see-EH-teh)'],
+            ['28, 29', '<span class="ending">veintiocho</span> (veyn-tee-OH-choh), <span class="ending">veintinueve</span> (veyn-tee-NWEH-veh)'],
+            ['30', '<span class="ending">treinta</span>  ·  TREYN-tah'],
+            ['31', '<span class="ending">treinta y uno</span>  ·  TREYN-tah ee OO-noh']
+          ]
+        },
+        {
+          heading: 'Saying the <em>year</em>',
+          body: 'Spanish reads a year as one whole number — never as two pairs of digits. English says "twenty twenty-six"; Spanish says <em>two thousand twenty-six</em>. The word <strong>mil</strong> (thousand) never becomes "un mil."',
+          examples: [
+            { es: 'dos mil veintiséis', en: '2026 (NOT "veinte veintiséis")' },
+            { es: 'dos mil', en: '2000' },
+            { es: 'mil novecientos noventa y nueve', en: '1999 — "one thousand nine hundred ninety-nine"' },
+            { es: 'Nací el once de agosto de dos mil diez.', en: 'I was born on August 11, 2010.' }
+          ]
+        },
+        {
+          heading: 'Putting it all <em>together</em>',
+          body: 'Read these out loud. Once the formula is automatic, any date in the year is just three pieces snapped together.',
+          examples: [
+            { es: '¿Cuál es la fecha de hoy?', en: 'What is today\'s date?' },
+            { es: 'Hoy es el veintitrés de septiembre.', en: 'Today is September 23.' },
+            { es: 'Mi cumpleaños es el primero de febrero.', en: 'My birthday is February 1st.' },
+            { es: 'El examen es el viernes, trece de marzo.', en: 'The exam is Friday, March 13.' },
+            { es: 'Las clases empiezan el diecisiete de agosto de dos mil veintiséis.', en: 'Classes start August 17, 2026.' },
+            { es: 'Estamos a treinta y uno de octubre.', en: 'It\'s October 31. (a second, very common way to say it)' }
+          ]
+        },
+        {
+          type: 'tip',
+          heading: 'Pronunciation <em>traps</em> in the calendar',
+          body: 'The calendar words hide most of Spanish\'s tricky sounds in one place:<br><br>• <strong>junio</strong> and <strong>julio</strong> — the <em>j</em> is an English "h," not a "j." HOO-nee-oh, HOO-lee-oh. They sound almost identical, so listen for the middle: ju-<em>ni</em>-o vs. ju-<em>li</em>-o.<br><br>• <strong>jueves</strong> — same rule: HWEH-vehs. Not "JOO-vez."<br><br>• <strong>miércoles</strong> — three syllables of trouble. The accent tells you the stress lands early: mee-EHR-koh-lehs.<br><br>• <strong>marzo, diciembre, once, doce, quince, cinco</strong> — the <em>c</em> before e/i and the <em>z</em> are an "s" in Latin America (MAHR-soh, OHN-seh), a "th" in most of Spain (MAHR-thoh). Both are correct; pick one and stay consistent.<br><br>• <strong>veinte</strong> and the whole veinti- family — the Spanish <em>v</em> is softer than the English one, close to a "b." VEYN-teh, not "vine-tee."<br><br>• <strong>sábado</strong> and <strong>miércoles</strong> carry written accents; the rest of the days and every month do not. The accent is not decoration — it moves the stress, and moving stress changes the word.<br><br>• <strong>dieciséis</strong> keeps its accent (dee-eh-see-SAYS) but <em>diecisiete</em> and <em>dieciocho</em> do not. Same for <em>veintidós, veintitrés, veintiséis</em> — accented — while <em>veinticuatro</em> and <em>veinticinco</em> are bare.'
+        },
+        {
+          type: 'mistakes',
+          heading: 'Date <em>traps</em>',
+          body: 'The mistakes that show up on every first date quiz:',
+          items: [
+            'Capitalizing months and days — <strong>"Enero," "Lunes"</strong> are wrong mid-sentence. Spanish keeps them lowercase: <em>enero, lunes</em>. Only capitalize at the start of a sentence.',
+            'Saying <strong>"el uno de mayo"</strong> for May 1st in class — use <em>el primero de mayo</em>. (You will hear <em>el uno</em> in Spain, so it is not "wrong" everywhere, but <em>primero</em> is the standard across Latin America and what we use here.)',
+            'Using an ordinal for the other days — <strong>"el quinto de junio"</strong> is wrong for June 5th. Only the 1st is special. Every other day is a plain counting number: <em>el cinco de junio</em>.',
+            'Dropping the <strong>de</strong> — <em>"el quince marzo"</em> is wrong. The <em>de</em> is required between day and month, and again before the year: <em>el quince de marzo de dos mil veintiséis</em>.',
+            'Reading the year as <strong>two pairs</strong> — <em>"veinte veintiséis"</em> for 2026 is an English habit. Spanish reads the whole number: <em>dos mil veintiséis</em>.',
+            'Reading a numerical date in <strong>English order</strong> — <em>7/4</em> on a Spanish calendar is <em>el siete de abril</em>, not July 4th. Day comes first almost everywhere outside the US.',
+            'Using <strong>estar</strong> for the date — <em>"Hoy está lunes"</em> is wrong. Use ser: <em>Hoy es lunes.</em> (The one exception is the fixed expression <em>estamos a cinco de mayo</em>, which uses estar with <em>a</em>.)',
+            'Saying <strong>"en lunes"</strong> for "on Monday" — Spanish uses the article instead of a preposition: <em>el lunes</em> (this coming Monday), <em>los lunes</em> (every Monday). But months DO take <em>en</em>: <em>en enero</em>.'
+          ]
+        }
+      ],
+      quiz: [
+        { q: 'How do you write "March 15" in Spanish?', options: [
+          { text: 'el quince de Marzo', correct: false },
+          { text: 'el quince de marzo', correct: true },
+          { text: 'marzo quince', correct: false }
+        ]},
+        { q: 'Which day of the week is "jueves," and how is it pronounced?', options: [
+          { text: 'Tuesday — "JOO-vez"', correct: false },
+          { text: 'Thursday — "HWEH-vehs"', correct: true },
+          { text: 'Thursday — "JEW-eh-vess"', correct: false }
+        ]},
+        { q: 'How do you say the year 2026 in Spanish?', options: [
+          { text: 'veinte veintiséis', correct: false },
+          { text: 'dos mil veintiséis', correct: true },
+          { text: 'dos mil y veintiséis', correct: false }
         ]}
       ]
     },
@@ -7609,7 +7758,7 @@
         },
         {
           heading: 'Introducing <em>yourself</em>',
-          body: 'Spanish has two registers: <strong>tú</strong> (informal — friends, classmates, family) and <strong>usted</strong> (formal — teachers, elders, strangers). Use the <em>tú</em> forms with each other in class and the <em>usted</em> form with adults you don\'t know. When someone introduces themselves to you, answer with <strong>mucho gusto</strong> or <strong>encantado</strong> (if you\'re a boy) / <strong>encantada</strong> (if you\'re a girl).',
+          body: 'Spanish has two registers: <strong>tú</strong> (informal — friends, classmates, family) and <strong>usted</strong> (formal — teachers, elders, strangers). Use the <em>tú</em> forms with each other in class and the <em>usted</em> form with adults you don\'t know. When someone introduces themselves to you, answer with <strong>mucho gusto</strong> or <strong>encantado</strong> (if you\'re a boy) / <strong>encantada</strong> (if you\'re a girl).<br><br>Before you can answer <em>¿Cómo te llamas?</em>, you need a Spanish name — grab <a href="pdfs/nombres-en-espanol.pdf" target="_blank" rel="noopener" style="color: var(--rojo);"><strong>¡Elige tu nombre en español!</strong></a> from Related practice below. It lists 450 names with pronunciation and English equivalents. Pick the Spanish version of your own name, a name that starts with the same letter, or something totally new — it is yours all year.',
           conjugation: [
             ['¿Cómo te llamas?', 'What\'s your name? (informal)'],
             ['¿Cómo se llama usted?', 'What\'s your name? (formal)'],
