@@ -3,6 +3,24 @@
   // Authentic slang that Spanish learners rarely encounter in textbooks but hear daily
   // in Spanish-speaking countries. Includes tone notes where appropriate.
   const SLANG = [
+    // ============================================================================
+    // "KID" / "IMMATURE" — the same idea, a different word in every country
+    // ----------------------------------------------------------------------------
+    // Every one of these means roughly "kid", and most double as "act your age"
+    // when aimed at an adult. The point for students is that there is no single
+    // Spanish word for this: which one you hear tells you where you are. Tone
+    // matters — affectionate from a parent, an insult from a stranger.
+    // ============================================================================
+    { phrase: 'Mocoso / mocosa', literal: '"snotty" — from moco, snot', meaning: 'A brat, a snot-nosed kid. The one term on this list understood almost everywhere Spanish is spoken. Said to an adult it means "grow up" — that they are acting like a child.', example: 'No seas mocoso, ya tienes veinte años.', country: 'ES', where: 'Spain and nearly all of Latin America' },
+    { phrase: 'Escuincle / escuincla', literal: 'from Nahuatl itzcuintli, "dog"', meaning: 'Mexican for a kid, usually an annoying one underfoot. The word comes from the Nahuatl for the hairless dog (the xoloitzcuintli) — a reminder of how much Nahuatl sits inside Mexican Spanish.', example: '¡Bájate de ahí, escuincle!', country: 'MX', where: 'Mexico' },
+    { phrase: 'Chamaco / chamaca', literal: 'kid, youngster', meaning: 'The everyday Mexican word for a kid or a teenager — softer than escuincle and usually affectionate.', example: 'Los chamacos ya salieron de la escuela.', country: 'MX', where: 'Mexico, Cuba, Honduras' },
+    { phrase: 'Chibolo / chibola', literal: 'kid', meaning: 'Peruvian for a child or a young teenager. Calling a grown man chibolo says he is behaving like one.', example: 'Cuando era chibolo jugaba fútbol todos los días.', country: 'PE', where: 'Peru, and parts of Ecuador and Bolivia' },
+    { phrase: 'Pibe / piba', literal: 'kid', meaning: 'Argentine for a kid or a young guy. It carries no sting at all — a pibe can be five or twenty-five. Football commentary is full of it.', example: 'Ese pibe juega muy bien.', country: 'AR', where: 'Argentina, Uruguay' },
+    { phrase: 'Chaval / chavala', literal: 'kid', meaning: 'The standard word in Spain for a kid or a young person. Neutral and extremely common.', example: 'Hay unos chavales jugando en la plaza.', country: 'ES', where: 'Spain' },
+    { phrase: 'Cipote / cipota', literal: 'kid', meaning: 'Central American for a child. Ordinary and affectionate at home; it can sting if you aim it at an adult.', example: '¿Qué onda, cipote? Hace tiempo que no te veo.', country: 'ES', where: 'El Salvador, Honduras, Nicaragua' },
+    { phrase: 'Carajito / carajita', literal: 'little one', meaning: 'Caribbean for a small child, often one being a handful. Affectionate from family, sharp from anyone else.', example: 'Ese carajito no se queda quieto.', country: 'DO', where: 'Dominican Republic, Venezuela' },
+    { phrase: 'Chino / china', literal: 'confusingly, also the word for "Chinese"', meaning: 'In Colombia — especially Bogotá — a small child. Context does all the work here: the same word means Chinese, and in other countries a curly-haired person.', example: 'Los chinos están jugando en el patio.', country: 'CO', where: 'Colombia' },
+    { phrase: 'Guagua', literal: 'from Quechua wawa, "baby"', meaning: 'A baby or toddler in the Andes. Worth knowing that in Cuba, the Dominican Republic, Puerto Rico and the Canary Islands the same word means "bus" — one of the sharpest false friends in Spanish.', example: 'La guagua se durmió en los brazos de su mamá.', country: 'CL', where: 'Chile, Ecuador, Bolivia, Peru (but "bus" in the Caribbean)' },
     // ARGENTINA
     { phrase: 'Che', literal: 'hey / dude', meaning: 'The most iconic Argentine word — used to get someone\'s attention or as a filler like "you know." Where Che Guevara got his nickname (he used it constantly, so other Latin Americans called him "Che").', example: '¡Che, vení para acá!', country: 'AR', where: 'Argentina, Uruguay' },
     { phrase: 'Boludo', literal: 'sort of: "fool" or "idiot"', meaning: 'Among close friends, it means "dude" or "bro" — completely affectionate. But with strangers, it\'s an insult. Tone is everything.', example: 'Che boludo, ¿cómo andás?', country: 'AR', where: 'Argentina' },

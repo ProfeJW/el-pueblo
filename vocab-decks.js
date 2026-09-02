@@ -786,9 +786,11 @@ window.ELP_DECKS = {
       { word: 'muy bien', cat: 'Phrase', back: 'very well', ex: '"Muy bien, ¿y tú?"', exEn: 'Very well, and you?' },
       { word: 'mal', cat: 'Adverb', back: 'bad / poorly', ex: '"Hoy estoy mal."', exEn: 'I\'m doing badly today.' },
       { word: 'más o menos', cat: 'Phrase', back: 'so-so / okay', ex: '"Más o menos, gracias."', exEn: 'So-so, thanks.' },
+      { word: 'regular', cat: 'Adjective', back: 'so-so / not great, not bad', ex: '"¿Cómo estás? — Regular, un poco cansado."', exEn: 'How are you? — So-so, a little tired.' },
       { word: '¿y tú?', cat: 'Question', back: 'and you? (informal)', ex: '"Bien, ¿y tú?"', exEn: 'Fine, and you?' },
       { word: '¿y usted?', cat: 'Question', back: 'and you? (formal)', ex: '"Bien, ¿y usted?"', exEn: 'Fine, and you?' },
       { word: '¿cómo te llamas?', cat: 'Question', back: 'what\'s your name? (informal)', ex: '"Hola, ¿cómo te llamas?"', exEn: 'Hi, what\'s your name?' },
+      { word: '¿cómo se llama usted?', cat: 'Question', back: 'what\'s your name? (formal)', ex: '"Buenos días. ¿Cómo se llama usted?"', exEn: 'Good morning. What is your name?' },
       { word: 'me llamo…', cat: 'Phrase', back: 'my name is…', ex: '"Me llamo Ana."', exEn: 'My name is Ana.' },
       { word: 'mucho gusto', cat: 'Phrase', back: 'nice to meet you', ex: '"Mucho gusto, señor."', exEn: 'Nice to meet you, sir.' },
       { word: 'encantado', cat: 'Adjective (m.)', back: 'pleased to meet you (m.)', ex: '"Encantado de conocerte."', exEn: 'Pleased to meet you.' },
@@ -821,7 +823,9 @@ window.ELP_DECKS = {
       { word: 'el chico', cat: 'Noun · Masculine', back: 'boy / young guy', ex: '"El chico es muy simpático."', exEn: 'The boy is really nice.' },
       { word: 'la chica', cat: 'Noun · Feminine', back: 'girl / young woman', ex: '"La chica estudia medicina."', exEn: 'The girl studies medicine.' },
       { word: 'el joven', cat: 'Noun · Masculine', back: 'young man', ex: '"El joven trabaja en la tienda."', exEn: 'The young man works at the store.' },
-      { word: 'la joven', cat: 'Noun · Feminine', back: 'young woman', ex: '"La joven canta en el coro."', exEn: 'The young woman sings in the choir.' }
+      { word: 'la joven', cat: 'Noun · Feminine', back: 'young woman', ex: '"La joven canta en el coro."', exEn: 'The young woman sings in the choir.' },
+      { word: 'el tipo', cat: 'Noun · Masculine · informal', back: 'guy / dude (casual — friendly or dismissive depending on tone)', ex: '"Ese tipo es amigo de mi hermano."', exEn: 'That guy is my brother\'s friend.' },
+      { word: 'la tipa', cat: 'Noun · Feminine · informal', back: 'woman / gal (casual — often a bit dismissive, so use it carefully)', ex: '"La tipa de la tienda me ayudó."', exEn: 'The woman from the store helped me.' }
     ],
     pronombres: [
       { word: 'yo', cat: 'Pronoun · subject', back: 'I', ex: '"Yo soy estudiante."', exEn: 'I am a student.' },

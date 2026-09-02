@@ -22,7 +22,15 @@
   // lesson's "Related practice" section.
   // ============================================================================
   const LESSON_RESOURCES = {
+    'nombres-apellidos': {
+      decks: ['saludos', 'gente', 'familia'],
+      pdfs: [
+        { url: 'pdfs/nombres-y-apellidos.docx', label: 'Nombres y apellidos — name list + pronunciation guide (Word)' }
+      ],
+      links: []
+    },
     'saludos-cortesia': {
+      games: ['dialogo-type', 'dialogo-mc'],
       decks: ['saludos', 'emociones', 'cotidiano'],
       pdfs: [
         { url: 'pdfs/bingo-gane.pdf', label: 'Bingo board ¡GANÉ! — fill with greetings vocab (PDF)' },
@@ -8008,6 +8016,67 @@
         { q: 'Palenquero (Colombia) is best described as…', options: [{ text: 'A new creole language, not just an accent', correct: true }, { text: 'A Spanish accent', correct: false }, { text: 'A type of Italian', correct: false }] },
         { q: 'Chavacano is spoken in…', options: [{ text: 'The Philippines', correct: true }, { text: 'Argentina', correct: false }, { text: 'Spain', correct: false }] },
         { q: 'Mixing Spanish and English (parquear, el lonche) is called…', options: [{ text: 'Code-switching / Spanglish', correct: true }, { text: 'Seseo', correct: false }, { text: 'Voseo', correct: false }] },
+      ]
+    },
+    {
+      id: 'nombres-apellidos',
+      num: '54',
+      level: 'sp1',
+      title: 'Names &amp; <em>apellidos</em>',
+      tag: 'Cultural note · Identity',
+      summary: 'Why your Spanish-speaking friend has four names, which one is the "last name," and what happens — or does not happen — when someone marries.',
+      sections: [
+        {
+          heading: 'Two surnames, not <em>one</em>',
+          body: 'In most of the Spanish-speaking world a person carries <strong>two apellidos</strong>: the first from their father, the second from their mother. Both are real, both are legal, and neither is a middle name. Written out, a full name usually runs:<br><br><span style="font-family:\'JetBrains Mono\',monospace;font-size:14px;">nombre(s) &nbsp;·&nbsp; apellido paterno &nbsp;·&nbsp; apellido materno</span><br><br>So <strong>Diana Adela Rojas Núñez</strong> is Diana Adela, daughter of a Rojas and a Núñez. If you called her "Mrs. Núñez" you would be using her mother\'s family name as though it were her husband\'s — a mistake English speakers make constantly.'
+        },
+        {
+          heading: 'Which one do you actually <em>use</em>?',
+          body: 'Day to day, the <strong>first</strong> apellido — the father\'s. Diana Adela Rojas Núñez is <em>señora Rojas</em>. Gabriel García Márquez is <em>García Márquez</em> or just <em>García</em>, never "Márquez," which is why calling him "Márquez" marks you instantly as someone who does not know how the system works.<br><br>The exception is when the first surname is very common. <strong>Pablo Ruiz Picasso</strong> dropped Ruiz because half of Málaga was a Ruiz — Picasso, his mother\'s name, was the one nobody else had. Writers and artists do this often.'
+        },
+        {
+          heading: 'Where the second surname <em>goes</em>',
+          body: 'It does not disappear — it just gets used less. It shows up on documents, in formal address, and any time two people share a first surname. In a class with three students called <em>López</em>, the teacher will reach for <em>López Herrera</em>, <em>López Cano</em>, <em>López Ibarra</em>.<br><br>Alphabetising follows the first apellido too. In a Spanish phone book, <strong>Rojas Núñez</strong> files under R.'
+        },
+        {
+          heading: 'Two given names are <em>normal</em>',
+          body: 'Many people carry two nombres, and the second is not a "middle name" in the English sense — it is simply part of the name, often used in full at home or in religious contexts. <strong>María José</strong>, <strong>Juan Carlos</strong>, <strong>Ana Sofía</strong>, <strong>José Luis</strong> are single units to the people who own them. Some are traditionally paired across genders: a man may be <em>José María</em> and a woman <em>María José</em>.'
+        },
+        {
+          heading: 'What happens when someone <em>marries</em>',
+          body: 'In most of Latin America and Spain today, <strong>nothing</strong>. A woman keeps the name she was born with for life. Her legal identity does not change, and her children take her first apellido as their second. That is the modern default, and in Spain it is essentially universal.<br><br>The older, more traditional custom — still used, and still a personal choice — adds the husband\'s first surname to the end with <strong>de</strong>:<br><br><span style="font-family:\'JetBrains Mono\',monospace;font-size:14px;">Diana Adela &nbsp;Rojas &nbsp;Núñez &nbsp;<strong>de Williamson</strong></span><br><br>Read it apart: <em>Diana Adela</em>, her given names · <em>Rojas</em>, her father\'s · <em>Núñez</em>, her mother\'s · <em>de Williamson</em>, "of Williamson," marking the marriage. She has not lost anything — the <em>de</em> is added, never a replacement. A woman using this form might sign <em>Diana Rojas de Williamson</em> on a formal letter and <em>Diana Rojas</em> everywhere else, on the same day.',
+          examples: [
+            ['Diana Adela Rojas Núñez', 'the name she was born with — used all her life'],
+            ['Diana Adela Rojas Núñez de Williamson', 'the traditional married form: "of Williamson" added at the end'],
+            ['la señora de Williamson', 'formal, and increasingly old-fashioned'],
+            ['sus hijos: … Williamson Rojas', 'children take the father\'s first apellido, then the mother\'s']
+          ]
+        },
+        {
+          heading: 'Why the <em>de</em> is fading',
+          body: 'Because it says something. <em>De</em> is the same word as "of" in <em>el libro de María</em> — María\'s book. Applied to a person it once implied belonging, and plenty of women decline it for exactly that reason. Others keep it with affection, as a link to a family they joined. Both are ordinary; neither needs explaining.<br><br>What you should take from this: do not assume. Ask what someone would like to be called, and use that. That rule holds in any language.'
+        },
+        {
+          heading: 'What this means for <em>you</em>',
+          body: '<strong>Reading a name:</strong> count backwards. The last word is usually the mother\'s surname (or a married <em>de</em> form). The one before it is the father\'s, and it is the one to address someone by.<br><br><strong>Filling in an American form:</strong> this is where it gets messy. US forms want one "last name," so people are forced to choose — some hyphenate (<em>Rojas-Núñez</em>), some drop the mother\'s name, some end up with the mother\'s name recorded as their surname by a clerk who did not know. If a classmate\'s documents disagree with what they call themselves, this is usually why.'
+        }
+      ],
+      quiz: [
+        { q: 'In "Diana Adela Rojas Núñez," which is the father\'s surname?', options: [
+          { text: 'Rojas', correct: true },
+          { text: 'Núñez', correct: false },
+          { text: 'Adela', correct: false }
+        ]},
+        { q: 'How would you formally address her?', options: [
+          { text: 'Señora Núñez', correct: false },
+          { text: 'Señora Rojas', correct: true },
+          { text: 'Señora Adela', correct: false }
+        ]},
+        { q: 'What does the "de" in "Rojas Núñez de Williamson" tell you?', options: [
+          { text: 'She is married to a Williamson', correct: true },
+          { text: 'She was born in a town called Williamson', correct: false },
+          { text: 'Williamson replaced her surnames', correct: false }
+        ]}
       ]
     }
   ];
