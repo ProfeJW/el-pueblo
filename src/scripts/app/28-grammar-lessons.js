@@ -26,9 +26,11 @@
       decks: ['saludos', 'emociones', 'cotidiano'],
       pdfs: [
         { url: 'pdfs/bingo-gane.pdf', label: 'Bingo board ¡GANÉ! — fill with greetings vocab (PDF)' },
-        { url: 'pdfs/bingo-gano.pdf', label: 'Bingo board GANO — second variant (PDF)' }
+        { url: 'pdfs/bingo-gano.pdf', label: 'Bingo board GANO — second variant (PDF)' },
+        { url: 'pdfs/nombres-en-espanol.pdf', label: '¡Elige tu nombre en español! — 450 names with pronunciation (PDF)' }
       ],
       links: [
+        { label: "¡Elige tu nombre en español! — editable name sheet (Word)", url: 'pdfs/nombres-en-espanol.docx' },
         { label: "Preliminar Peardeck (intro)", url: 'https://docs.google.com/presentation/d/1rG79MZsmJJ_mKzoQRVvKUyXWQEgNi7Kuaz1h4e0vj1k/edit?usp=sharing' },
         { label: "Preliminar Vocab List (saludos, despedidas)", url: 'https://docs.google.com/document/d/1Td_XUXiir4huthoS4pL6tiJgCu1ArufTqA8i8voq2-I/edit?usp=sharing' },
         { label: "To-do list: Preliminar vocab", url: 'https://docs.google.com/document/d/1osMU2vDYDMvinhAkxr5GfG-xnQCsxMBH6Ia0JPV1GIs/edit?usp=sharing' },
@@ -7599,7 +7601,7 @@
         },
         {
           heading: 'Introducing <em>yourself</em>',
-          body: 'Spanish has two registers: <strong>tú</strong> (informal — friends, classmates, family) and <strong>usted</strong> (formal — teachers, elders, strangers). Use the <em>tú</em> forms with each other in class and the <em>usted</em> form with adults you don\'t know. When someone introduces themselves to you, answer with <strong>mucho gusto</strong> or <strong>encantado</strong> (if you\'re a boy) / <strong>encantada</strong> (if you\'re a girl).',
+          body: 'Spanish has two registers: <strong>tú</strong> (informal — friends, classmates, family) and <strong>usted</strong> (formal — teachers, elders, strangers). Use the <em>tú</em> forms with each other in class and the <em>usted</em> form with adults you don\'t know. When someone introduces themselves to you, answer with <strong>mucho gusto</strong> or <strong>encantado</strong> (if you\'re a boy) / <strong>encantada</strong> (if you\'re a girl).<br><br>Before you can answer <em>¿Cómo te llamas?</em>, you need a Spanish name — grab <a href="pdfs/nombres-en-espanol.pdf" target="_blank" rel="noopener" style="color: var(--rojo);"><strong>¡Elige tu nombre en español!</strong></a> from Related practice below. It lists 450 names with pronunciation and English equivalents. Pick the Spanish version of your own name, a name that starts with the same letter, or something totally new — it is yours all year.',
           conjugation: [
             ['¿Cómo te llamas?', 'What\'s your name? (informal)'],
             ['¿Cómo se llama usted?', 'What\'s your name? (formal)'],
