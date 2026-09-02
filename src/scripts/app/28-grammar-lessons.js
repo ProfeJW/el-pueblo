@@ -24,6 +24,7 @@
   const LESSON_RESOURCES = {
     'saludos-cortesia': {
       decks: ['saludos', 'emociones', 'cotidiano'],
+      games: ['dialogo'],
       pdfs: [
         { url: 'pdfs/bingo-gane.pdf', label: 'Bingo board ¡GANÉ! — fill with greetings vocab (PDF)' },
         { url: 'pdfs/bingo-gano.pdf', label: 'Bingo board GANO — second variant (PDF)' },

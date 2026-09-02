@@ -102,6 +102,157 @@
     return 'th';
   }
 
+  // ============================================================================
+  // COMPLETA EL DIÁLOGO
+  // ----------------------------------------------------------------------------
+  // Short two- and three-line exchanges with one line missing. 15 rounds per
+  // game, alternating multiple choice and fill-in-the-blank so students both
+  // recognize and produce the line.
+  //
+  // SCOPE: every prompt, answer and distractor is drawn only from the
+  // saludos / despedidas / cortesía vocabulary (the `saludos` deck and the
+  // Lección preliminar tables). Nothing here needs vocabulary from any other
+  // unit — that is deliberate, so this can run in week 1.
+  //
+  // '___' marks the missing line. `alts` lists other answers that are just as
+  // correct in the same slot (the grader also ignores accents and punctuation).
+  // `choices` are the four multiple-choice buttons; the wrong ones are chosen
+  // to be plausible — usually a formality slip or a courtesy word used in the
+  // wrong situation, not random noise.
+  // ============================================================================
+  const DIALOGO_ITEMS = [
+    // --- Saludos / introductions ---
+    { lines: ['— ¡Hola! ¿Cómo te llamas?', '___', '— Mucho gusto, Ana.'],
+      answer: 'Me llamo Ana.', alts: ['Soy Ana.', 'Me llamo Ana'],
+      choices: ['Me llamo Ana.', 'Te llamas Ana.', 'Se llama Ana.', 'Me llamas Ana.'],
+      hint: 'Say your name — "I call myself…"' },
+
+    { lines: ['— Mucho gusto.', '___'],
+      answer: 'Igualmente.', alts: ['Mucho gusto.', 'Encantado.', 'Encantada.'],
+      choices: ['Igualmente.', 'De nada.', 'Con permiso.', 'Hasta pronto.'],
+      hint: 'Likewise / same to you' },
+
+    { lines: ['— Buenos días, señorita. ¿Cómo está usted?', '___', '— Me alegro.'],
+      answer: 'Estoy muy bien, gracias.', alts: ['Muy bien, gracias.', 'Estoy bien, gracias.', 'Bien, gracias.'],
+      choices: ['Estoy muy bien, gracias.', 'Soy muy bien, gracias.', 'Estás muy bien, gracias.', 'Me llamo muy bien.'],
+      hint: 'Use estoy — "I am (feeling)…"' },
+
+    { lines: ['— ¡Hola, Carlos! ¿Qué tal?', '— Más o menos. Estoy cansado. ___', '— Yo estoy bien.'],
+      answer: '¿Y tú?', alts: ['Y tú', '¿Y tú'],
+      choices: ['¿Y tú?', '¿Y usted?', '¿Y él?', '¿Y ustedes?'],
+      hint: 'Bounce the question back — informal' },
+
+    { lines: ['— Buenas tardes, señor Ruiz.', '— Buenas tardes. ___', '— Estoy bien, gracias.'],
+      answer: '¿Cómo está usted?', alts: ['Como esta usted', '¿Cómo está?'],
+      choices: ['¿Cómo está usted?', '¿Cómo estás?', '¿Cómo te llamas?', '¿De dónde eres?'],
+      hint: 'Ask a teacher how they are — formal' },
+
+    { lines: ['— Son las diez de la noche.', '___', '— Buenas noches. Hasta mañana.'],
+      answer: 'Buenas noches.', alts: ['Buenas noches'],
+      choices: ['Buenas noches.', 'Buenos días.', 'Buenas tardes.', 'Bienvenido.'],
+      hint: 'The right greeting for 10 PM' },
+
+    { lines: ['— ¿De dónde eres?', '___'],
+      answer: 'Soy de México.', alts: ['Soy de Mexico', 'Soy de Colombia.', 'Soy de España.'],
+      choices: ['Soy de México.', 'Estoy de México.', 'Me llamo de México.', 'Soy México.'],
+      hint: 'I am from… (name any country)' },
+
+    { lines: ['— Hola, soy Marcos.', '— Encantada. ___', '— Mucho gusto, Lucía.'],
+      answer: 'Me llamo Lucía.', alts: ['Soy Lucía.', 'Me llamo Lucia'],
+      choices: ['Me llamo Lucía.', 'Te llamo Lucía.', 'Es Lucía.', 'Llamo Lucía.'],
+      hint: 'Give your own name back' },
+
+    { lines: ['— Buenos días. ¿Cómo estás hoy?', '___', '— Lo siento. ¿Estás enfermo?'],
+      answer: 'Estoy mal.', alts: ['Estoy fatal.', 'Mal.', 'Estoy muy mal.'],
+      choices: ['Estoy mal.', 'Estoy muy bien.', 'Soy mal.', 'Estoy bienvenido.'],
+      hint: 'The answer that explains why they say "lo siento"' },
+
+    // --- Cortesía ---
+    { lines: ['— Muchas gracias por tu ayuda.', '___'],
+      answer: 'De nada.', alts: ['No hay de qué.', 'De nada'],
+      choices: ['De nada.', 'Lo siento.', 'Mucho gusto.', 'Buenas noches.'],
+      hint: "You're welcome" },
+
+    { lines: ['— ¡Achís!', '___', '— Gracias.'],
+      answer: '¡Salud!', alts: ['Salud'],
+      choices: ['¡Salud!', '¡Bienvenido!', '¡Igualmente!', '¡De nada!'],
+      hint: 'What you say after a sneeze' },
+
+    { lines: ['— El autobús está lleno y necesitas pasar.', '___', '— Adelante.'],
+      answer: 'Con permiso.', alts: ['Con permiso', 'Perdón.', 'Disculpe.'],
+      choices: ['Con permiso.', 'De nada.', 'Igualmente.', 'Hasta luego.'],
+      hint: 'Excuse me — squeezing past someone' },
+
+    { lines: ['— Un café, ___.', '— Aquí tiene.', '— Gracias.'],
+      answer: 'por favor', alts: ['por favor.'],
+      choices: ['por favor', 'de nada', 'lo siento', 'con permiso'],
+      hint: 'The polite word that goes with a request' },
+
+    { lines: ['— Se murió mi perro ayer.', '___'],
+      answer: 'Lo siento mucho.', alts: ['Lo siento.', 'Lo siento mucho'],
+      choices: ['Lo siento mucho.', 'De nada.', 'Mucho gusto.', 'Con permiso.'],
+      hint: 'Sympathy — "I am so sorry"' },
+
+    { lines: ['— Perdón, señora, ¿qué hora es?', '— Son las tres.', '___'],
+      answer: 'Gracias.', alts: ['Muchas gracias.', 'Gracias'],
+      choices: ['Gracias.', 'De nada.', 'Salud.', 'Igualmente.'],
+      hint: 'Thank them' },
+
+    { lines: ['— Gracias por todo.', '— ___ Fue un placer.'],
+      answer: 'No hay de qué.', alts: ['De nada.', 'No hay de que'],
+      choices: ['No hay de qué.', 'Mucho gusto.', 'Mal, gracias.', 'Mañana.'],
+      hint: "Don't mention it" },
+
+    { lines: ['— Bienvenidos a nuestra casa.', '___'],
+      answer: 'Muchas gracias.', alts: ['Gracias.', 'Muchas gracias'],
+      choices: ['Muchas gracias.', 'Con permiso.', 'Hasta mañana.', 'Igualmente.'],
+      hint: 'Thank your host' },
+
+    { lines: ['— ___, ¿dónde está el baño?', '— Al final del pasillo.'],
+      answer: 'Disculpe', alts: ['Perdón', 'Disculpe.', 'Perdon'],
+      choices: ['Disculpe', 'De nada', 'Salud', 'Igualmente'],
+      hint: 'Getting a stranger’s attention politely' },
+
+    // --- Despedidas ---
+    { lines: ['— Bueno, tengo que irme.', '___', '— ¡Chao!'],
+      answer: 'Hasta luego.', alts: ['Adiós.', 'Nos vemos.', 'Hasta luego'],
+      choices: ['Hasta luego.', 'Buenos días.', 'Mucho gusto.', 'Bienvenido.'],
+      hint: 'See you later' },
+
+    { lines: ['— Nos vemos en clase el martes.', '___'],
+      answer: 'Hasta el martes.', alts: ['Hasta luego.', 'Hasta pronto.', 'Nos vemos.'],
+      choices: ['Hasta el martes.', 'Buenas tardes.', 'De nada.', 'Encantado.'],
+      hint: 'The "hasta ___" pattern — until then' },
+
+    { lines: ['— Te veo mañana en la escuela.', '___'],
+      answer: 'Hasta mañana.', alts: ['Hasta mañana', 'Hasta manana', 'Nos vemos mañana.'],
+      choices: ['Hasta mañana.', 'Hasta pronto.', 'Buenos días.', 'Con permiso.'],
+      hint: 'See you tomorrow' },
+
+    { lines: ['— ¡Adiós, Profe! ___', '— Igualmente. ¡Que te vaya bien!'],
+      answer: 'Que le vaya bien.', alts: ['Que te vaya bien.', 'Hasta luego.', 'Que le vaya bien'],
+      choices: ['Que le vaya bien.', 'De nada.', 'Mucho gusto.', 'Buenas noches.'],
+      hint: 'A warm send-off — "hope it goes well"' },
+
+    { lines: ['— Me voy. ¡Nos vemos!', '___'],
+      answer: 'Hasta pronto.', alts: ['Nos vemos.', 'Chao.', 'Adiós.', 'Hasta luego.'],
+      choices: ['Hasta pronto.', 'Buenos días.', 'Por favor.', 'Bienvenida.'],
+      hint: 'See you soon' },
+
+    { lines: ['— Es muy tarde. Me voy a dormir.', '___'],
+      answer: 'Buenas noches.', alts: ['Hasta mañana.', 'Buenas noches'],
+      choices: ['Buenas noches.', 'Buenas tardes.', 'Mucho gusto.', 'De nada.'],
+      hint: 'Both a greeting and a goodnight' }
+  ];
+
+  // Queue for the current game: 15 items, alternating multiple choice and
+  // fill-in-the-blank so a student always gets both formats.
+  let dialogoQueue = [];
+  function buildDialogoQueue() {
+    const shuffled = [...DIALOGO_ITEMS].sort(() => Math.random() - 0.5).slice(0, 15);
+    dialogoQueue = shuffled.map((item, i) => ({ item, mode: i % 2 === 0 ? 'mc' : 'type' }));
+  }
+
   const GAMES = {
     // Sprint games — all have isSprint:true. 10/10 to qualify for the leaderboard;
     // partial scores still earn Lucas based on accuracy.
@@ -514,6 +665,38 @@
         };
       }
     },
+    'dialogo': {
+      title: 'Completa el <em>diálogo</em>',
+      icon: '💬',
+      maxReward: 40,
+      totalRounds: 15,
+      generate: () => {
+        // A fresh 15-item queue at the start of each game (round is still 0
+        // when generate() is called for round 1).
+        if (!gameState || gameState.round === 0 || !dialogoQueue.length) buildDialogoQueue();
+        const q = dialogoQueue.shift();
+        const it = q.item;
+        // A blank is either a whole missing line ('___') or a gap inside a line.
+        const display = it.lines
+          .map(l => l === '___'
+            ? '— <strong>______________</strong>'
+            : l.replace('___', '<strong>__________</strong>'))
+          .join('<br>');
+        const round = {
+          promptDisplay: display,
+          answer: it.answer,
+          validAnswers: [it.answer].concat(it.alts || []),
+          hint: it.hint
+        };
+        if (q.mode === 'mc') {
+          round.promptLabel = 'Pick the line that completes the dialogue';
+          round.choices = [...it.choices].sort(() => Math.random() - 0.5);
+        } else {
+          round.promptLabel = 'Type the missing line';
+        }
+        return round;
+      }
+    },
     'adjectives': {
       title: 'Adjective <em>agreement</em>',
       icon: '✍️',
@@ -812,7 +995,7 @@
         <div class="best-score-card">
           <span class="name">${cleanTitle}</span>
           ${best > 0
-            ? `<span class="value">${best}/10</span>`
+            ? `<span class="value">${best}/${game.totalRounds || 10}</span>`
             : `<span class="empty">—</span>`}
         </div>
       `;
@@ -908,7 +1091,7 @@
     gameState = {
       gameId,
       round: 0,
-      totalRounds: 10,
+      totalRounds: game.totalRounds || 10,
       score: 0,
       current: null,
       history: [],
@@ -1933,6 +2116,15 @@
     }
   }
 
+  // Hints are prose and may contain quotes ("el 5 de mayo"), so they have to be
+  // escaped before going into an HTML attribute — an unescaped one closes the
+  // placeholder early and truncates the hint.
+  function escAttr(s) {
+    return String(s == null ? '' : s)
+      .replace(/&/g, '&amp;').replace(/"/g, '&quot;')
+      .replace(/</g, '&lt;').replace(/>/g, '&gt;');
+  }
+
   function renderGameRound() {
     if (!gameState) return;
     const game = GAMES[gameState.gameId];
@@ -1979,7 +2171,7 @@
          </div>`
       : `<div class="game-input-row">
            <input type="text" class="game-input" id="gameInput" autocomplete="off" autocapitalize="off" spellcheck="false"
-                  placeholder="${gameState.current.hint || 'Type your answer…'}"
+                  placeholder="${escAttr(gameState.current.hint || 'Type your answer…')}"
                   onkeypress="if(event.key==='Enter') submitGameAnswer()">
          </div>
          <div class="game-feedback" id="gameFeedback" role="status" aria-live="polite">&nbsp;</div>
@@ -1995,7 +2187,7 @@
           ${sprintTimerHtml}
         </div>
         <div class="game-prompt-label">${gameState.current.promptLabel}</div>
-        <div class="game-prompt-display${gameState.gameId === 'tu-usted' || gameState.gameId === 'object-pronouns' ? ' scenario' : ''}">${gameState.current.promptDisplay}</div>
+        <div class="game-prompt-display${gameState.gameId === 'tu-usted' || gameState.gameId === 'object-pronouns' || gameState.gameId === 'dialogo' ? ' scenario' : ''}">${gameState.current.promptDisplay}</div>
         ${interactionHtml}
       </div>
     `;
@@ -2133,11 +2325,16 @@
     // Reward tiers (matches verb drill philosophy: hard to earn, score-based)
     let reward = 0, verdict = '';
     const baseTier = game.maxReward; // 25, 35, 50
-    if (score === 10) { reward = baseTier; verdict = 'Perfect — flawless game'; }
-    else if (score >= 9) { reward = Math.floor(baseTier * 0.7); verdict = 'Excellent'; }
-    else if (score >= 7) { reward = Math.floor(baseTier * 0.5); verdict = 'Solid effort'; }
-    else if (score >= 5) { reward = Math.floor(baseTier * 0.25); verdict = 'Keep practicing'; }
-    else { reward = 0; verdict = 'Try again — you need 5+ to earn'; }
+    // Thresholds are proportions of the round count, so a 15-round game grades
+    // on the same curve as a 10-round one (at max=10 these are 10/9/7/5).
+    const tierExcellent = Math.ceil(max * 0.9);
+    const tierSolid = Math.ceil(max * 0.7);
+    const tierEarning = Math.ceil(max * 0.5);
+    if (score === max) { reward = baseTier; verdict = 'Perfect — flawless game'; }
+    else if (score >= tierExcellent) { reward = Math.floor(baseTier * 0.7); verdict = 'Excellent'; }
+    else if (score >= tierSolid) { reward = Math.floor(baseTier * 0.5); verdict = 'Solid effort'; }
+    else if (score >= tierEarning) { reward = Math.floor(baseTier * 0.25); verdict = 'Keep practicing'; }
+    else { reward = 0; verdict = 'Try again — you need ' + tierEarning + '+ to earn'; }
 
     // Check if this is a personal best (score-wise)
     const previousBest = getGameBestScore(gameState.gameId);
@@ -2177,7 +2374,7 @@
     let earned = 0;
     if (isNewBest && reward > 0) {
       earned = reward;
-      let awardLabel = verdict + ' (' + score + '/10) — new best!';
+      let awardLabel = verdict + ' (' + score + '/' + max + ') — new best!';
       if (gameState.isSprint && sprintTimeSeconds !== null && score === 10) {
         awardLabel = 'Sprint qualified · ' + sprintTimeSeconds.toFixed(1) + 's';
       }
@@ -2242,16 +2439,16 @@
 
     container.innerHTML = `
       <div class="game-results">
-        <h3>${score === 10 ? '¡<em>Perfecto</em>!' : score >= 7 ? 'Game <em>complete</em>' : 'Keep <em>going</em>'}</h3>
+        <h3>${score === max ? '¡<em>Perfecto</em>!' : score >= tierSolid ? 'Game <em>complete</em>' : 'Keep <em>going</em>'}</h3>
         <div class="verdict">${verdict}</div>
-        <div class="score-display">${score}/10</div>
+        <div class="score-display">${score}/${max}</div>
         ${sprintBanner}
         ${earned > 0
           ? `<div class="game-reward-banner" style="margin-top: 16px;"><span class="coin-icon"></span><strong style="color: var(--ocre); font-family: 'DM Serif Display', serif; font-size: 20px; font-style: italic;">+${earned} Lucas</strong></div>`
           : (isNewBest && !gameState.isSprint)
-            ? `<div class="game-reward-banner" style="margin-top: 16px; background: rgba(196, 61, 42, 0.08); border-color: rgba(196, 61, 42, 0.3);"><span style="font-size: 20px;">📈</span><strong>New best — but you need 5+ to earn Lucas</strong></div>`
+            ? `<div class="game-reward-banner" style="margin-top: 16px; background: rgba(196, 61, 42, 0.08); border-color: rgba(196, 61, 42, 0.3);"><span style="font-size: 20px;">📈</span><strong>New best — but you need ${tierEarning}+ to earn Lucas</strong></div>`
             : (!gameState.isSprint)
-              ? `<div class="game-reward-banner" style="margin-top: 16px; background: rgba(31,26,20,0.04); border-color: var(--line);"><span style="font-size: 20px;">↻</span><strong style="color: var(--ink-soft);">Already beat ${previousBest}/10 before — no new Lucas, but great practice</strong></div>`
+              ? `<div class="game-reward-banner" style="margin-top: 16px; background: rgba(31,26,20,0.04); border-color: var(--line);"><span style="font-size: 20px;">↻</span><strong style="color: var(--ink-soft);">Already beat ${previousBest}/${max} before — no new Lucas, but great practice</strong></div>`
               : ''
         }
         <div style="margin-top: 24px; padding-top: 24px; border-top: 1px solid var(--line);">
