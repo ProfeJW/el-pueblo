@@ -274,7 +274,7 @@
       ]
     },
     'tu-vs-usted': {
-      games: ['tu-usted', 'tu-o-usted'],
+      games: ['tu-o-usted'],
       drills: [{ tense: 'tu-usted', group: 'all', label: 'Drill: Tú vs. Usted (social scenarios)' }],
       pdfs: [
         { url: 'pdfs/tu-o-usted-worksheet.pdf', label: '¿Tú o usted? — 26 situations worksheet (PDF)' }
