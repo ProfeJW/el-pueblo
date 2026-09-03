@@ -102,43 +102,6 @@
     return 'th';
   }
 
-  // ============================================================================
-  // TÚ VS. USTED — who you are speaking to (no sentence, just the person)
-  // ----------------------------------------------------------------------------
-  // Served from a shuffled queue like the worksheet game: a 20-round game would
-  // otherwise repeat people several times over.
-  // ============================================================================
-  const TU_USTED_PEOPLE = [
-    // tú scenarios
-    { display: 'Your best friend from elementary school.', answer: 'tú' },
-    { display: 'Your 8-year-old cousin.', answer: 'tú' },
-    { display: 'A classmate you sit next to in class.', answer: 'tú' },
-    { display: 'Your sister.', answer: 'tú' },
-    { display: 'Your boyfriend or girlfriend.', answer: 'tú' },
-    { display: 'A 10-year-old you meet at the park.', answer: 'tú' },
-    { display: 'A teammate on your soccer team.', answer: 'tú' },
-    { display: 'Your dog.', answer: 'tú' },
-    { display: 'God in a prayer.', answer: 'tú' },
-    { display: 'A teen your age at a friend\'s party.', answer: 'tú' },
-    { display: 'Your roommate.', answer: 'tú' },
-    { display: 'Your younger brother.', answer: 'tú' },
-    // usted scenarios
-    { display: 'Your Spanish teacher.', answer: 'usted' },
-    { display: 'A police officer.', answer: 'usted' },
-    { display: 'Your doctor.', answer: 'usted' },
-    { display: 'An 80-year-old stranger on the bus.', answer: 'usted' },
-    { display: 'A job interviewer.', answer: 'usted' },
-    { display: 'Your friend\'s grandfather you just met.', answer: 'usted' },
-    { display: 'The principal of your school.', answer: 'usted' },
-    { display: 'A waiter at a formal restaurant.', answer: 'usted' },
-    { display: 'A judge in court.', answer: 'usted' },
-    { display: 'A 60-year-old store clerk you don\'t know.', answer: 'usted' },
-    { display: 'A professor at a university.', answer: 'usted' },
-    { display: 'Your mother\'s elderly coworker.', answer: 'usted' },
-    { display: 'A senator giving a speech.', answer: 'usted' },
-    { display: 'The CEO of a company you\'re visiting.', answer: 'usted' }
-  ];
-
   // Shuffled queues: hand out every item once, then reshuffle and start over, so
   // a single game never repeats. `queue` is a plain array used as the store.
   function nextFromQueue(items, queue) {
@@ -151,8 +114,6 @@
     }
     return items[queue.pop()];
   }
-  const tuUstedQueue = [];
-
   // ============================================================================
   // ¿TÚ O USTED? — the 26 situations from Profe's worksheet
   // ----------------------------------------------------------------------------
@@ -580,24 +541,6 @@
           answer: pick.primary,
           validAnswers: pick.answers,
           hint: pick.hint
-        };
-      }
-    },
-    'tu-usted': {
-      title: 'Tú vs. <em>Usted</em>',
-      icon: '🗣️',
-      maxReward: 30,
-      rounds: 20,
-      dualMode: true,
-      generate: () => {
-        const pick = nextFromQueue(TU_USTED_PEOPLE, tuUstedQueue);
-        return {
-          promptLabel: 'Speaking to this person, would you use…',
-          promptDisplay: pick.display,
-          answer: pick.answer,
-          validAnswers: [pick.answer],
-          choices: ['tú', 'usted'],
-          hint: 'tú or usted?'
         };
       }
     },
@@ -2166,7 +2109,7 @@
           ${sprintTimerHtml}
         </div>
         <div class="game-prompt-label">${gameState.current.promptLabel}</div>
-        <div class="game-prompt-display${gameState.gameId === 'tu-usted' || gameState.gameId === 'tu-o-usted' || gameState.gameId === 'object-pronouns' ? ' scenario' : ''}">${gameState.current.promptDisplay}</div>
+        <div class="game-prompt-display${gameState.gameId === 'tu-o-usted' || gameState.gameId === 'object-pronouns' ? ' scenario' : ''}">${gameState.current.promptDisplay}</div>
         ${interactionHtml}
       </div>
     `;
