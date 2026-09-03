@@ -7,10 +7,17 @@
        type  — the student writes the missing line
        mc    — four options, one best fit
 
-     Content is the Preliminar list (the `saludos` deck): greetings, farewells,
-     names, courtesy, and the formal/informal split. Every blank is answerable
-     from that deck alone, so a student who has studied Preliminar can finish
-     the game without meeting a word they have not seen.
+     Content is the Preliminar vocabulary list — the 50 words and phrases on the
+     handout, plus igualmente, ¿qué tal? and encantado/a. Every blank is one of
+     those items, and so is every wrong option, so the whole game is answerable
+     from the list alone and nothing here is a word the class has not met.
+
+     The list is covered exhaustively rather than sampled: the greetings by time
+     of day, all five farewells, the names pair, the three titles, the two forms
+     of "how are you" with their y tú / y usted replies, estoy · bien · mal · muy,
+     all six feelings words (both genders where the ending changes), the courtesy
+     words, the people nouns from niño up to hombre/mujer, and all eight subject
+     pronouns.
 
      Each dialogue: { setting, lines[], answer, accept[], options[], note? }
        lines   — { who, text }; exactly one line contains '___'
@@ -19,232 +26,205 @@
        options — the three wrong answers for multiple choice. They are chosen to
                  be plausible-but-wrong rather than silly, so picking the right
                  one means reading the exchange rather than eliminating jokes.
+                 They come off the list too — a distractor is always a real word
+                 the student is expected to know.
        note    — the "why" shown after answering, when there is something to say
      ============================================================================ */
 
   const DIALOGOS = [
+    /* --- Greetings by time of day ------------------------------------------ */
     {
-      setting: 'Two classmates pass in the hallway.',
+      setting: 'A student arrives at school at eight in the morning.',
       lines: [
-        { who: 'Ana', text: '¡Hola! ¿Cómo estás?' },
-        { who: 'Luis', text: '___, gracias. ¿Y tú?' },
-        { who: 'Ana', text: 'Bien también.' }
-      ],
-      answer: 'Muy bien', accept: ['muy bien', 'bien'],
-      options: ['De nada', 'Hasta luego', 'Mucho gusto']
-    },
-    {
-      setting: 'A student greets the teacher at 8 in the morning.',
-      lines: [
-        { who: 'Estudiante', text: '___, profesora.' },
-        { who: 'Profesora', text: 'Buenos días. Siéntate, por favor.' }
+        { who: 'Estudiante', text: '___, señora Ruiz.' },
+        { who: 'Sra. Ruiz', text: 'Buenos días, Marta. Pasa.' }
       ],
       answer: 'Buenos días', accept: ['buenos días'],
-      options: ['Buenas noches', 'Buenas tardes', 'Hasta mañana'],
+      options: ['Buenas tardes', 'Buenas noches', 'Hasta mañana'],
       note: 'Before noon it is buenos días — and it is plural, días, even for one morning.'
     },
     {
-      setting: 'Meeting someone your own age for the first time.',
+      setting: 'Arriving at a friend\'s house at four in the afternoon.',
       lines: [
-        { who: 'Marta', text: 'Hola, ¿cómo te llamas?' },
-        { who: 'Diego', text: '___ Diego. ¿Y tú?' },
-        { who: 'Marta', text: 'Soy Marta.' }
+        { who: 'Tú', text: '___, señor Peña. ¿Está Carlos?' },
+        { who: 'Sr. Peña', text: 'Buenas tardes. Sí, pasa.' }
       ],
-      answer: 'Me llamo', accept: ['me llamo'],
-      options: ['Te llamas', 'Se llama', 'Le llamo'],
-      note: 'Me llamo is literally "I call myself" — the reflexive, so me goes with llamo.'
+      answer: 'Buenas tardes', accept: ['buenas tardes'],
+      options: ['Buenos días', 'Buenas noches', 'Hasta luego'],
+      note: 'From about noon until dark it is buenas tardes.'
     },
     {
-      setting: 'A student is introduced to the new principal.',
+      setting: 'Arriving at a family dinner at nine at night.',
       lines: [
-        { who: 'Director', text: 'Buenas tardes. ¿___?' },
-        { who: 'Estudiante', text: 'Me llamo Carolina Rivas.' }
+        { who: 'Tú', text: '___, señora. Gracias por la invitación.' },
+        { who: 'Señora', text: 'Buenas noches. Pasa, por favor.' }
       ],
-      answer: 'Cómo se llama usted', accept: ['cómo se llama usted', 'cómo se llama', 'cuál es su nombre'],
-      options: ['Cómo te llamas', 'De dónde eres', 'Cómo estás tú'],
-      note: 'To an adult you have just met, use the formal usted — ¿cómo se llama usted?, never ¿cómo te llamas?'
+      answer: 'Buenas noches', accept: ['buenas noches'],
+      options: ['Buenos días', 'Buenas tardes', 'Hasta pronto'],
+      note: 'This is the first of the two meanings: buenas noches is "good evening" when you arrive.'
     },
     {
-      setting: 'Two people shake hands after being introduced.',
+      setting: 'Leaving a friend\'s house late at night.',
       lines: [
-        { who: 'Sr. Ortiz', text: 'Mucho gusto.' },
-        { who: 'Sra. Peña', text: '___.' }
+        { who: 'Tú', text: 'Ya es muy tarde. ___.' },
+        { who: 'Amigo', text: 'Buenas noches. Que descanses.' }
       ],
-      answer: 'Igualmente', accept: ['igualmente', 'mucho gusto', 'encantada'],
-      options: ['De nada', 'Con permiso', 'Lo siento'],
-      note: 'Igualmente — "likewise" — is the standard reply to mucho gusto.'
+      answer: 'Buenas noches', accept: ['buenas noches'],
+      options: ['Buenos días', 'Buenas tardes', 'Mucho gusto'],
+      note: 'And the second meaning: the same words also work as "good night" on the way out.'
     },
+
+    /* --- Farewells ---------------------------------------------------------- */
     {
-      setting: 'A woman introduces herself at a family party.',
+      setting: 'Saying goodbye to a classmate you will see in the morning.',
       lines: [
-        { who: 'Sofía', text: 'Hola, soy Sofía. ___ de conocerte.' },
-        { who: 'Pablo', text: 'Igualmente, Sofía.' }
+        { who: 'Elena', text: 'Ya es tarde. ___.' },
+        { who: 'Javier', text: 'Sí, en la clase de español.' }
       ],
-      answer: 'Encantada', accept: ['encantada'],
-      options: ['Encantado', 'Bienvenida', 'Gracias'],
-      note: 'Sofía is speaking about herself, so the adjective is feminine: encantada. A man would say encantado.'
-    },
-    {
-      setting: 'Someone holds the door open for you.',
-      lines: [
-        { who: 'Tú', text: 'Muchas gracias.' },
-        { who: 'Señor', text: '___.' }
-      ],
-      answer: 'De nada', accept: ['de nada'],
-      options: ['Por favor', 'Lo siento', 'Con permiso']
-    },
-    {
-      setting: 'Squeezing past people to reach your seat.',
-      lines: [
-        { who: 'Tú', text: '___, por favor.' },
-        { who: 'Señora', text: 'Sí, claro. Pase.' }
-      ],
-      answer: 'Con permiso', accept: ['con permiso', 'perdón'],
-      options: ['De nada', 'Mucho gusto', 'Hasta pronto'],
-      note: 'Con permiso is for moving past someone. Perdón is for when you have already bumped into them.'
-    },
-    {
-      setting: 'You arrive fifteen minutes late to class.',
-      lines: [
-        { who: 'Estudiante', text: '___, profesor. Perdí el autobús.' },
-        { who: 'Profesor', text: 'Está bien. Siéntate.' }
-      ],
-      answer: 'Lo siento', accept: ['lo siento', 'perdón', 'perdón profesor'],
-      options: ['De nada', 'Igualmente', 'Bienvenido']
-    },
-    {
-      setting: 'A friend asks how you are, and honestly it has been a rough week.',
-      lines: [
-        { who: 'Carlos', text: '¿Qué tal?' },
-        { who: 'Tú', text: '___. No dormí mucho anoche.' }
-      ],
-      answer: 'Más o menos', accept: ['más o menos', 'regular', 'mal'],
-      options: ['Muy bien', 'Mucho gusto', 'Hasta luego'],
-      note: 'Más o menos and regular both mean "so-so" — the honest middle between bien and mal.'
+      answer: 'Hasta mañana', accept: ['hasta mañana'],
+      options: ['Hasta pronto', 'Buenos días', 'Buenas tardes'],
+      note: 'Hasta mañana is the specific one: you know you will see them tomorrow.'
     },
     {
       setting: 'Leaving school on a Friday afternoon.',
       lines: [
         { who: 'Lucía', text: 'Bueno, me voy. ¡___!' },
-        { who: 'Mateo', text: 'Hasta el lunes.' }
+        { who: 'Mateo', text: 'Adiós, Lucía.' }
       ],
-      answer: 'Hasta luego', accept: ['hasta luego', 'adiós', 'nos vemos', 'chao', 'hasta pronto'],
+      answer: 'Hasta luego', accept: ['hasta luego', 'adiós', 'chau', 'chao', 'hasta pronto'],
       options: ['Buenos días', 'Mucho gusto', 'Por favor']
     },
     {
-      setting: 'Saying goodbye to a classmate you will see in the morning.',
+      setting: 'Two cousins say goodbye at the airport, hoping it will not be long.',
       lines: [
-        { who: 'Elena', text: 'Ya es tarde. ___.' },
-        { who: 'Javier', text: 'Sí, nos vemos mañana.' }
+        { who: 'Prima', text: 'Fue muy bueno verte. ¡___!' },
+        { who: 'Tú', text: 'Sí, muy pronto.' }
       ],
-      answer: 'Hasta mañana', accept: ['hasta mañana'],
-      options: ['Hasta el año', 'Buenas tardes', 'De nada']
+      answer: 'Hasta pronto', accept: ['hasta pronto', 'hasta luego'],
+      options: ['Buenas noches', 'Mucho gusto', 'Por favor'],
+      note: 'Hasta pronto — "see you soon" — when you do not know the day, but it will not be long.'
     },
     {
-      setting: 'A new student joins the class in October.',
+      setting: 'Two friends end a text conversation with the most casual goodbye there is.',
       lines: [
-        { who: 'Profesora', text: '¡___ a nuestra clase, Miguel!' },
-        { who: 'Miguel', text: 'Gracias, profesora.' }
+        { who: 'Nico', text: 'Bueno, me voy a dormir. ¡___!' },
+        { who: 'Beto', text: 'Igual yo. Hasta mañana.' }
       ],
-      answer: 'Bienvenido', accept: ['bienvenido'],
-      options: ['Bienvenida', 'Encantada', 'Igualmente'],
-      note: 'Miguel is masculine, so bienvenido. For a girl it would be bienvenida.'
+      answer: 'Chau', accept: ['chau', 'chao', 'adiós', 'hasta luego'],
+      options: ['Buenos días', 'Mucho gusto', 'Por favor'],
+      note: 'Chau (also written chao) is the most casual goodbye — friends, never the principal.'
     },
     {
-      setting: 'Two people meet on an exchange trip.',
+      setting: 'Leaving a shop after buying something.',
       lines: [
-        { who: 'Nora', text: '¿De dónde eres?' },
-        { who: 'Tomás', text: '___ Guatemala. ¿Y tú?' },
-        { who: 'Nora', text: 'Soy de Ohio.' }
+        { who: 'Dependienta', text: 'Gracias por su compra.' },
+        { who: 'Tú', text: '___, señora.' }
       ],
-      answer: 'Soy de', accept: ['soy de'],
-      options: ['Eres de', 'Es de', 'Estoy de']
+      answer: 'Adiós', accept: ['adiós', 'hasta luego', 'chau', 'chao'],
+      options: ['Buenos días', 'Mucho gusto', 'Perdón']
+    },
+
+    /* --- Names -------------------------------------------------------------- */
+    {
+      setting: 'Meeting someone your own age for the first time.',
+      lines: [
+        { who: 'Marta', text: 'Hola. ¿___?' },
+        { who: 'Diego', text: 'Me llamo Diego. ¿Y tú?' }
+      ],
+      answer: 'Cómo te llamas', accept: ['cómo te llamas'],
+      options: ['Cómo estás', 'Cómo está', 'Qué tal'],
+      note: 'Te llamas is the tú form — right for someone your own age.'
     },
     {
-      setting: 'Ordering at a café.',
+      setting: 'Answering that question in class.',
       lines: [
-        { who: 'Cliente', text: 'Un café, ___.' },
-        { who: 'Camarero', text: 'Enseguida.' }
+        { who: 'Profesora', text: '¿Cómo te llamas?' },
+        { who: 'Estudiante', text: '___ Carolina Rivas.' }
       ],
-      answer: 'por favor', accept: ['por favor'],
-      options: ['de nada', 'gracias', 'lo siento']
+      answer: 'Me llamo', accept: ['me llamo', 'yo me llamo'],
+      options: ['Te llamas', 'Mucho gusto', 'Igualmente'],
+      note: 'Me llamo is literally "I call myself" — the me goes with llamo.'
     },
     {
-      setting: 'Greeting a neighbour at nine in the evening.',
+      setting: 'A new student writes her name on the board and turns around.',
       lines: [
-        { who: 'Tú', text: '___, señora Gómez.' },
-        { who: 'Sra. Gómez', text: 'Buenas noches. Que descanses.' }
+        { who: 'Emma', text: '___ Emma. Soy de Ohio.' },
+        { who: 'Clase', text: '¡Hola, Emma!' }
       ],
-      answer: 'Buenas noches', accept: ['buenas noches'],
-      options: ['Buenos días', 'Buenas tardes', 'Hasta pronto'],
-      note: 'Buenas noches works as both "good evening" when you arrive and "good night" when you leave.'
+      answer: 'Me llamo', accept: ['me llamo', 'yo me llamo'],
+      options: ['Te llamas', 'Encantada', 'Igualmente']
+    },
+
+    /* --- Titles ------------------------------------------------------------- */
+    {
+      setting: 'Addressing an adult woman you do not know, in a shop.',
+      lines: [
+        { who: 'Tú', text: 'Perdón, ___, ¿dónde está la salida?' },
+        { who: 'Mujer', text: 'Al final del pasillo.' }
+      ],
+      answer: 'señora', accept: ['señora'],
+      options: ['señor', 'señorita', 'niña'],
+      note: 'Señora for an adult woman, señorita for a young one, señor for a man.'
     },
     {
-      setting: 'Asking a friend how she is doing.',
+      setting: 'Greeting the man who runs the corner shop.',
       lines: [
-        { who: 'Tú', text: '¿___?' },
+        { who: 'Tú', text: 'Buenos días, ___ Ramírez.' },
+        { who: 'Sr. Ramírez', text: 'Buenos días. ¿Qué necesitas?' }
+      ],
+      answer: 'señor', accept: ['señor'],
+      options: ['señora', 'señorita', 'joven']
+    },
+    {
+      setting: 'A waiter takes the order of a young woman at a restaurant.',
+      lines: [
+        { who: 'Camarero', text: '¿Y para usted, ___?' },
+        { who: 'Joven', text: 'Un café, por favor.' }
+      ],
+      answer: 'señorita', accept: ['señorita', 'señora'],
+      options: ['señor', 'niño', 'hombre'],
+      note: 'Señorita is the polite title for a young woman.'
+    },
+
+    /* --- ¿Cómo estás? · estoy · bien · mal · muy · y ------------------------ */
+    {
+      setting: 'Asking a friend your own age how she is.',
+      lines: [
+        { who: 'Tú', text: 'Hola, Ana. ¿___?' },
         { who: 'Ana', text: 'Muy bien, gracias.' }
       ],
-      answer: 'Cómo estás', accept: ['cómo estás', 'qué tal', 'cómo estás tú'],
-      options: ['Cómo está usted', 'Cómo se llama', 'De dónde es usted'],
+      answer: 'Cómo estás', accept: ['cómo estás', 'qué tal'],
+      options: ['Cómo está', 'Cómo te llamas', 'Mucho gusto'],
       note: 'A friend your age takes the informal tú form: ¿cómo estás?'
     },
     {
       setting: 'Asking your friend\'s grandmother the same question.',
       lines: [
-        { who: 'Tú', text: 'Buenas tardes. ¿___?' },
+        { who: 'Tú', text: 'Buenas tardes, señora. ¿___?' },
         { who: 'Abuela', text: 'Muy bien, gracias, hijo.' }
       ],
-      answer: 'Cómo está usted', accept: ['cómo está usted', 'cómo está'],
-      options: ['Cómo estás', 'Qué tal tú', 'Cómo te llamas'],
-      note: 'An older adult you do not know well takes usted — the same question, a different form.'
+      answer: 'Cómo está', accept: ['cómo está', 'cómo está usted'],
+      options: ['Cómo estás', 'Cómo te llamas', 'Qué tal'],
+      note: 'An adult you do not know well takes usted — the same question, a different form.'
     },
     {
-      setting: 'Someone thanks you for helping carry a box.',
+      setting: 'Two friends pass in the hallway, as casually as it gets.',
       lines: [
-        { who: 'Vecino', text: 'Gracias por la ayuda.' },
-        { who: 'Tú', text: '___, no fue nada.' }
+        { who: 'Beto', text: '¡Hola! ¿___?' },
+        { who: 'Nico', text: 'Bien, ¿y tú?' }
       ],
-      answer: 'De nada', accept: ['de nada'],
-      options: ['Por favor', 'Mucho gusto', 'Con permiso']
+      answer: 'Qué tal', accept: ['qué tal', 'cómo estás'],
+      options: ['Cómo está', 'Mucho gusto', 'Por favor'],
+      note: '¿Qué tal? is the casual version of ¿cómo estás? — for friends, not for the principal.'
     },
     {
-      setting: 'A friend says thank you for the birthday present.',
+      setting: 'A friend your age asks how you are, and you ask back.',
       lines: [
-        { who: 'Rosa', text: '¡Gracias por el regalo!' },
-        { who: 'Tú', text: '___. Me alegro de que te guste.' }
+        { who: 'Ana', text: 'Estoy muy bien. ¿___?' },
+        { who: 'Tú', text: 'Bien también, gracias.' }
       ],
-      answer: 'De nada', accept: ['de nada'],
-      options: ['Por favor', 'Con permiso', 'Lo siento']
-    },
-    {
-      setting: 'Answering the phone at three in the afternoon.',
-      lines: [
-        { who: 'Tú', text: '¿Aló? ___.' },
-        { who: 'Voz', text: 'Buenas tardes, ¿está la señora Ruiz?' }
-      ],
-      answer: 'Buenas tardes', accept: ['buenas tardes'],
-      options: ['Buenos días', 'Buenas noches', 'Hasta mañana'],
-      note: 'From about noon until dark it is buenas tardes.'
-    },
-    {
-      setting: 'You step on someone\'s foot on the bus.',
-      lines: [
-        { who: 'Tú', text: '¡Ay, ___!' },
-        { who: 'Pasajera', text: 'No pasa nada.' }
-      ],
-      answer: 'perdón', accept: ['perdón', 'lo siento', 'disculpe'],
-      options: ['de nada', 'por favor', 'igualmente'],
-      note: 'Perdón is the quick apology for something that already happened.'
-    },
-    {
-      setting: 'Two old friends run into each other downtown.',
-      lines: [
-        { who: 'Beto', text: '¡___! ¿Cómo estás?' },
-        { who: 'Nico', text: '¡Beto! Muy bien, ¿y tú?' }
-      ],
-      answer: 'Hola', accept: ['hola'],
-      options: ['Adiós', 'De nada', 'Bienvenido']
+      answer: 'Y tú', accept: ['y tú'],
+      options: ['Y usted', 'Y ustedes', 'Y ella']
     },
     {
       setting: 'Your teacher asks how you are, formally.',
@@ -253,113 +233,185 @@
         { who: 'Estudiante', text: 'Bien, gracias. ¿___?' }
       ],
       answer: 'Y usted', accept: ['y usted'],
-      options: ['Y tú', 'Y él', 'Y ustedes'],
+      options: ['Y tú', 'Y él', 'Y ellos'],
       note: 'She used usted with you, so you return it: ¿y usted? Matching the level of formality is the whole point.'
     },
     {
-      setting: 'A friend your age asks how you are.',
+      setting: 'Answering "how are you" with the full sentence, not just one word.',
       lines: [
-        { who: 'Ana', text: 'Estoy muy bien. ¿___?' },
-        { who: 'Tú', text: 'Yo también, gracias.' }
+        { who: 'Carlos', text: '¿Cómo estás?' },
+        { who: 'Tú', text: '___ bien, gracias.' }
       ],
-      answer: 'Y tú', accept: ['y tú'],
-      options: ['Y usted', 'Y ustedes', 'Y ella']
+      answer: 'Estoy', accept: ['estoy', 'yo estoy'],
+      options: ['Estás', 'Está', 'Me llamo'],
+      note: 'Estoy is the yo form — how I am right now.'
     },
     {
-      setting: 'Addressing an older woman you do not know, in a shop.',
+      setting: 'Everything is going well today.',
       lines: [
-        { who: 'Tú', text: 'Disculpe, ___, ¿dónde está la salida?' },
-        { who: 'Señora', text: 'Al final del pasillo.' }
+        { who: 'Ana', text: '¿Qué tal?' },
+        { who: 'Tú', text: 'Muy ___, gracias. ¿Y tú?' }
       ],
-      answer: 'señora', accept: ['señora'],
-      options: ['señorita', 'señor', 'joven'],
-      note: 'Señora for an adult woman, señorita for a young one, señor for a man.'
+      answer: 'bien', accept: ['bien'],
+      options: ['mal', 'triste', 'enojado']
     },
     {
-      setting: 'Greeting the man who runs the corner shop.',
+      setting: 'You lost your homework and missed the bus, and a friend asks how you are.',
       lines: [
-        { who: 'Tú', text: 'Buenos días, ___ Ramírez.' },
-        { who: 'Sr. Ramírez', text: 'Buenos días, ¿qué necesitas?' }
+        { who: 'Luis', text: '¿Cómo estás?' },
+        { who: 'Tú', text: 'Estoy ___. Perdí la tarea y llegué tarde.' }
       ],
-      answer: 'señor', accept: ['señor'],
-      options: ['señora', 'señorita', 'profesora']
+      answer: 'mal', accept: ['mal', 'muy mal'],
+      options: ['bien', 'muy bien', 'feliz'],
+      note: 'Mal is the honest opposite of bien.'
     },
     {
-      setting: 'A girl arrives at her host family\'s house in Spain.',
+      setting: 'Making bien stronger — not just fine, but really fine.',
       lines: [
-        { who: 'Madre', text: '¡___, Emma! Pasa, pasa.' },
-        { who: 'Emma', text: 'Gracias, señora.' }
+        { who: 'Profesor', text: '¿Cómo está usted?' },
+        { who: 'Sra. Peña', text: 'Estoy ___ bien, gracias.' }
       ],
-      answer: 'Bienvenida', accept: ['bienvenida'],
-      options: ['Bienvenido', 'Encantado', 'Hasta pronto'],
-      note: 'Emma is feminine, so bienvenida — the ending agrees with the person being welcomed.'
+      answer: 'muy', accept: ['muy'],
+      options: ['mucho', 'mal', 'y'],
+      note: 'Muy goes in front of an adjective or adverb: muy bien, muy cansado. Mucho cannot do that job.'
+    },
+
+    /* --- Feelings ----------------------------------------------------------- */
+    {
+      setting: 'A boy did not sleep last night and it shows.',
+      lines: [
+        { who: 'Profesora', text: '¿Estás bien, Miguel?' },
+        { who: 'Miguel', text: 'Estoy ___. No dormí anoche.' }
+      ],
+      answer: 'cansado', accept: ['cansado', 'muy cansado'],
+      options: ['cansada', 'feliz', 'enojado'],
+      note: 'Miguel is masculine, so cansado. A girl would say cansada.'
     },
     {
-      setting: 'Two students meet at a summer exchange in Lima.',
+      setting: 'A girl comes home after a long practice.',
       lines: [
-        { who: 'Kai', text: 'Soy de Cincinnati. ¿Y tú? ¿___?' },
-        { who: 'Ximena', text: 'Soy de Arequipa.' }
+        { who: 'Madre', text: '¿Cómo estás, Lucía?' },
+        { who: 'Lucía', text: 'Estoy muy ___. Fue un día largo.' }
       ],
-      answer: 'De dónde eres', accept: ['de dónde eres', 'de dónde eres tú'],
-      options: ['Cómo te llamas', 'Cómo estás', 'Qué tal'],
-      note: 'Eres is the tú form — right for someone your own age.'
+      answer: 'cansada', accept: ['cansada'],
+      options: ['cansado', 'feliz', 'enojada'],
+      note: 'Lucía is speaking about herself, so the ending is feminine: cansada.'
     },
     {
-      setting: 'A man is introduced to his friend\'s mother.',
+      setting: 'A friend\'s dog died last week.',
       lines: [
-        { who: 'Sra. Vidal', text: 'Mucho gusto, Andrés.' },
-        { who: 'Andrés', text: '___, señora.' }
+        { who: 'Tú', text: '¿Cómo estás, Nora?' },
+        { who: 'Nora', text: 'Estoy ___. Murió mi perro.' }
       ],
-      answer: 'Encantado', accept: ['encantado', 'igualmente', 'mucho gusto'],
-      options: ['Encantada', 'Bienvenida', 'De nada'],
-      note: 'Andrés is speaking about himself, so encantado.'
+      answer: 'triste', accept: ['triste', 'muy triste'],
+      options: ['feliz', 'cansada', 'enojada'],
+      note: 'Triste does not change for gender — un chico triste, una chica triste.'
     },
     {
-      setting: 'Wrapping up a video call with a cousin abroad.',
+      setting: 'Someone just found out she got into her first-choice school.',
       lines: [
-        { who: 'Tú', text: 'Bueno, tengo que irme. ¡___!' },
-        { who: 'Prima', text: '¡Chao! Escríbeme.' }
+        { who: 'Tomás', text: '¿Qué tal?' },
+        { who: 'Ximena', text: '¡Estoy muy ___! Buenas noticias.' }
       ],
-      answer: 'Nos vemos', accept: ['nos vemos', 'chao', 'hasta pronto', 'adiós', 'hasta luego'],
-      options: ['Buenos días', 'Con permiso', 'Mucho gusto']
+      answer: 'feliz', accept: ['feliz', 'muy feliz'],
+      options: ['triste', 'enferma', 'aburrida'],
+      note: 'Feliz, like triste, is the same for a boy or a girl.'
     },
     {
-      setting: 'Asking a classmate to repeat something.',
+      setting: 'A boy is stuck at home on a rainy Saturday with nothing to do.',
       lines: [
-        { who: 'Tú', text: 'Otra vez, ___.' },
-        { who: 'Compañera', text: 'Claro. Dije que la tarea es para el viernes.' }
+        { who: 'Hermana', text: '¿Qué haces?' },
+        { who: 'Pablo', text: 'Nada. Estoy ___.' }
+      ],
+      answer: 'aburrido', accept: ['aburrido', 'muy aburrido'],
+      options: ['aburrida', 'feliz', 'cansado'],
+      note: 'Pablo is masculine: aburrido. A girl would say aburrida.'
+    },
+    {
+      setting: 'A girl is stuck in a long meeting with her parents.',
+      lines: [
+        { who: 'Madre', text: '¿Estás bien, Marta?' },
+        { who: 'Marta', text: 'Sí, pero estoy ___. No hay nada que hacer aquí.' }
+      ],
+      answer: 'aburrida', accept: ['aburrida', 'muy aburrida'],
+      options: ['aburrido', 'feliz', 'enferma']
+    },
+    {
+      setting: 'A student calls the school to say she cannot come in.',
+      lines: [
+        { who: 'Secretaria', text: '¿Qué pasa, Rosa?' },
+        { who: 'Rosa', text: 'Estoy ___. No puedo ir a clase hoy.' }
+      ],
+      answer: 'enferma', accept: ['enferma', 'muy enferma'],
+      options: ['enfermo', 'cansada', 'triste']
+    },
+    {
+      setting: 'A boy wakes up with a fever.',
+      lines: [
+        { who: 'Padre', text: '¿Vas a la escuela hoy?' },
+        { who: 'Tomás', text: 'No puedo. Estoy ___.' }
+      ],
+      answer: 'enfermo', accept: ['enfermo', 'muy enfermo'],
+      options: ['enferma', 'cansado', 'aburrido']
+    },
+    {
+      setting: 'His brother broke his bike and never said so.',
+      lines: [
+        { who: 'Madre', text: '¿Por qué no hablas con tu hermano?' },
+        { who: 'Andrés', text: 'Porque estoy ___ con él.' }
+      ],
+      answer: 'enojado', accept: ['enojado', 'muy enojado'],
+      options: ['enojada', 'feliz', 'aburrido'],
+      note: 'The ending agrees with the person who is angry, so Andrés says enojado.'
+    },
+    {
+      setting: 'Someone read her diary without asking.',
+      lines: [
+        { who: 'Amiga', text: '¿Qué te pasa, Nora?' },
+        { who: 'Nora', text: 'Estoy ___. Alguien leyó mi diario.' }
+      ],
+      answer: 'enojada', accept: ['enojada', 'muy enojada'],
+      options: ['enojado', 'triste', 'cansada']
+    },
+
+    /* --- Courtesy ----------------------------------------------------------- */
+    {
+      setting: 'Someone holds the door open for you.',
+      lines: [
+        { who: 'Señor', text: 'Pase usted.' },
+        { who: 'Tú', text: 'Muchas ___.' }
+      ],
+      answer: 'gracias', accept: ['gracias'],
+      options: ['por favor', 'perdón', 'igualmente']
+    },
+    {
+      setting: 'Ordering at a café.',
+      lines: [
+        { who: 'Cliente', text: 'Un café, ___.' },
+        { who: 'Camarero', text: 'Enseguida.' }
       ],
       answer: 'por favor', accept: ['por favor'],
-      options: ['de nada', 'lo siento', 'igualmente']
+      options: ['gracias', 'perdón', 'mucho gusto']
     },
     {
-      setting: 'Someone asks how your weekend was and it was fine, nothing special.',
+      setting: 'You step on someone\'s foot on the bus.',
       lines: [
-        { who: 'Diego', text: '¿Qué tal el fin de semana?' },
-        { who: 'Tú', text: '___. Descansé un poco.' }
+        { who: 'Tú', text: '¡Ay, ___!' },
+        { who: 'Pasajera', text: 'No pasa nada.' }
       ],
-      answer: 'Regular', accept: ['regular', 'más o menos', 'bien'],
-      options: ['Encantado', 'Con permiso', 'Bienvenido'],
-      note: 'Regular here does not mean "regular" in English — it means so-so.'
+      answer: 'perdón', accept: ['perdón', 'lo siento'],
+      options: ['gracias', 'por favor', 'igualmente'],
+      note: 'Perdón is the quick apology for something that just happened.'
     },
     {
-      setting: 'Leaving a shop where you did not buy anything.',
+      setting: 'A classmate tells you her grandfather died on Saturday.',
       lines: [
-        { who: 'Dependiente', text: '¿Necesita algo más?' },
-        { who: 'Tú', text: 'No, ___. Hasta luego.' }
+        { who: 'Compañera', text: 'Murió mi abuelo el sábado.' },
+        { who: 'Tú', text: '___ mucho.' }
       ],
-      answer: 'gracias', accept: ['gracias', 'muchas gracias'],
-      options: ['de nada', 'por favor', 'perdón']
-    },
-    {
-      setting: 'Introducing your friend to your grandmother.',
-      lines: [
-        { who: 'Tú', text: 'Abuela, ___ mi amiga Lucía.' },
-        { who: 'Abuela', text: 'Mucho gusto, Lucía.' }
-      ],
-      answer: 'te presento a', accept: ['te presento a', 'te presento'],
-      options: ['me llamo', 'soy de', 'encantada'],
-      note: 'Te presento a… — "let me introduce you to…" — is how introductions are actually made.'
+      answer: 'Lo siento', accept: ['lo siento'],
+      options: ['Perdón', 'Mucho gusto', 'Igualmente'],
+      note: 'Lo siento is the heavier one — real sympathy, not just bumping into someone.'
     },
     {
       setting: 'Introducing yourself to a teacher on the first day.',
@@ -368,7 +420,223 @@
         { who: 'Profesor', text: '___, Rosa. Soy el señor Ramos.' }
       ],
       answer: 'Mucho gusto', accept: ['mucho gusto', 'encantado'],
-      options: ['De nada', 'Hasta luego', 'Más o menos']
+      options: ['Lo siento', 'Hasta luego', 'Por favor']
+    },
+    {
+      setting: 'Two people shake hands after being introduced.',
+      lines: [
+        { who: 'Sr. Ortiz', text: 'Mucho gusto.' },
+        { who: 'Sra. Peña', text: '___.' }
+      ],
+      answer: 'Igualmente', accept: ['igualmente', 'mucho gusto', 'encantada'],
+      options: ['Por favor', 'Lo siento', 'Perdón'],
+      note: 'Igualmente — "likewise" — is the standard reply to mucho gusto.'
+    },
+    {
+      setting: 'A woman introduces herself at a family party.',
+      lines: [
+        { who: 'Sofía', text: 'Hola, soy Sofía. ___.' },
+        { who: 'Pablo', text: 'Igualmente, Sofía.' }
+      ],
+      answer: 'Encantada', accept: ['encantada', 'mucho gusto'],
+      options: ['Encantado', 'Lo siento', 'Por favor'],
+      note: 'Sofía is speaking about herself, so the adjective is feminine: encantada. A man would say encantado.'
+    },
+    {
+      setting: 'A man is introduced to his friend\'s mother.',
+      lines: [
+        { who: 'Sra. Vidal', text: 'Mucho gusto, Andrés.' },
+        { who: 'Andrés', text: '___, señora.' }
+      ],
+      answer: 'Encantado', accept: ['encantado', 'igualmente', 'mucho gusto'],
+      options: ['Encantada', 'Perdón', 'Por favor'],
+      note: 'Andrés is speaking about himself, so encantado.'
+    },
+    {
+      setting: 'Thanking a neighbour for a big favour — not just thanks, many thanks.',
+      lines: [
+        { who: 'Vecino', text: 'Aquí tienes las llaves.' },
+        { who: 'Tú', text: '¡___ gracias!' }
+      ],
+      answer: 'Muchas', accept: ['muchas'],
+      options: ['Mucho', 'Mucha', 'Muy'],
+      note: 'Gracias is feminine and plural, so mucho agrees with it: muchas gracias.'
+    },
+
+    /* --- People ------------------------------------------------------------- */
+    {
+      setting: 'Pointing out a six-year-old boy in the park.',
+      lines: [
+        { who: 'Ana', text: '¿Quién es?' },
+        { who: 'Tú', text: 'Es ___ de la señora Ruiz. Tiene seis años.' }
+      ],
+      answer: 'el niño', accept: ['el niño', 'niño'],
+      options: ['la niña', 'el joven', 'el hombre'],
+      note: 'Niño is a young child, joven is a teenager, hombre is a grown man.'
+    },
+    {
+      setting: 'A small girl is lost in the shop.',
+      lines: [
+        { who: 'Dependiente', text: '¿De quién es ___?' },
+        { who: 'Madre', text: '¡Es mía! ¡Sofía!' }
+      ],
+      answer: 'la niña', accept: ['la niña', 'niña'],
+      options: ['el niño', 'la joven', 'la mujer']
+    },
+    {
+      setting: 'Talking about the new boy in class.',
+      lines: [
+        { who: 'Marta', text: '¿Quién es él?' },
+        { who: 'Diego', text: 'Es ___ nuevo. Se llama Kai.' }
+      ],
+      answer: 'el chico', accept: ['el chico', 'chico', 'el joven', 'el estudiante'],
+      options: ['la chica', 'la niña', 'la mujer']
+    },
+    {
+      setting: 'Talking about a girl who just joined the team.',
+      lines: [
+        { who: 'Nico', text: '¿Y ella?' },
+        { who: 'Beto', text: 'Es ___ nueva del equipo. Es de Perú.' }
+      ],
+      answer: 'la chica', accept: ['la chica', 'chica', 'la joven', 'la estudiante'],
+      options: ['el chico', 'la niña', 'la señora']
+    },
+    {
+      setting: 'A teacher describes the sixteen-year-old who came looking for you.',
+      lines: [
+        { who: 'Profesora', text: 'Te buscó ___ de la clase de música. Tiene dieciséis años.' },
+        { who: 'Tú', text: 'Ah, es Mateo.' }
+      ],
+      answer: 'el joven', accept: ['el joven', 'joven', 'el chico', 'el estudiante'],
+      options: ['el niño', 'el hombre', 'la joven'],
+      note: 'At sixteen he is a joven — old enough that niño no longer fits, young enough that hombre does not either.'
+    },
+    {
+      setting: 'Explaining who you are at a school open house.',
+      lines: [
+        { who: 'Visitante', text: '¿Usted es profesora?' },
+        { who: 'Emma', text: 'No, soy ___. Estoy en la clase de español.' }
+      ],
+      answer: 'la estudiante', accept: ['la estudiante', 'estudiante'],
+      options: ['el estudiante', 'la mujer', 'la niña'],
+      note: 'Estudiante never changes its ending — only the article does: el estudiante, la estudiante.'
+    },
+    {
+      setting: 'Describing the adult waiting outside the office.',
+      lines: [
+        { who: 'Secretaria', text: '¿Quién espera?' },
+        { who: 'Tú', text: 'Una ___ con su hija. Dice que es la madre de Ana.' }
+      ],
+      answer: 'mujer', accept: ['mujer', 'señora'],
+      options: ['hombre', 'niña', 'joven']
+    },
+    {
+      setting: 'Describing a grown man to a police officer.',
+      lines: [
+        { who: 'Policía', text: '¿Quién le ayudó?' },
+        { who: 'Tú', text: 'Un ___ alto, de unos cuarenta años.' }
+      ],
+      answer: 'hombre', accept: ['hombre', 'señor'],
+      options: ['niño', 'joven', 'chico'],
+      note: 'At forty he is an hombre — chico or joven would be someone much younger.'
+    },
+
+    /* --- Subject pronouns --------------------------------------------------- */
+    {
+      setting: 'The teacher asks who finished the homework.',
+      lines: [
+        { who: 'Profesor', text: '¿Quién terminó la tarea?' },
+        { who: 'Rosa', text: '¡___! La terminé anoche.' }
+      ],
+      answer: 'Yo', accept: ['yo'],
+      options: ['Tú', 'Él', 'Nosotros']
+    },
+    {
+      setting: 'Deciding which "you" to use with a classmate your own age.',
+      lines: [
+        { who: 'Profesora', text: 'Con un compañero de clase, ¿usas tú o usted?' },
+        { who: 'Estudiante', text: 'Uso ___, porque es mi amigo.' }
+      ],
+      answer: 'tú', accept: ['tú'],
+      options: ['usted', 'ustedes', 'él'],
+      note: 'Tú is the informal you — friends, family, people your own age.'
+    },
+    {
+      setting: 'Deciding which "you" to use with the principal.',
+      lines: [
+        { who: 'Profesora', text: '¿Y con el director?' },
+        { who: 'Estudiante', text: 'Uso ___, porque es un adulto que no conozco bien.' }
+      ],
+      answer: 'usted', accept: ['usted'],
+      options: ['tú', 'ustedes', 'ella'],
+      note: 'Usted is the formal you — adults you do not know well, and anyone you want to show respect.'
+    },
+    {
+      setting: 'Saying which boy told you.',
+      lines: [
+        { who: 'Ana', text: '¿Quién te lo dijo?' },
+        { who: 'Tú', text: '___. Mateo me lo dijo esta mañana.' }
+      ],
+      answer: 'Él', accept: ['él'],
+      options: ['Ella', 'Yo', 'Ellos']
+    },
+    {
+      setting: 'Saying which girl won the prize.',
+      lines: [
+        { who: 'Profesor', text: '¿Quién ganó el premio?' },
+        { who: 'Tú', text: '___. Ximena, la estudiante nueva.' }
+      ],
+      answer: 'Ella', accept: ['ella'],
+      options: ['Él', 'Yo', 'Ellas']
+    },
+    {
+      setting: 'Two boys volunteer together.',
+      lines: [
+        { who: 'Profesora', text: '¿Quiénes quieren ayudar?' },
+        { who: 'Beto', text: '¡___! Nico y yo.' }
+      ],
+      answer: 'Nosotros', accept: ['nosotros'],
+      options: ['Nosotras', 'Ellos', 'Ustedes'],
+      note: 'Nosotros for a group with at least one male; nosotras only when everyone is female.'
+    },
+    {
+      setting: 'Two girls volunteer to sing together.',
+      lines: [
+        { who: 'Profesora', text: '¿Quiénes van a cantar?' },
+        { who: 'Lucía', text: '¡___! Marta y yo.' }
+      ],
+      answer: 'Nosotras', accept: ['nosotras'],
+      options: ['Nosotros', 'Ellas', 'Ustedes'],
+      note: 'Lucía and Marta are both female, so nosotras.'
+    },
+    {
+      setting: 'Saying which two girls are waiting outside.',
+      lines: [
+        { who: 'Secretaria', text: '¿Quiénes esperan?' },
+        { who: 'Tú', text: '___. Marta y Lucía, de mi clase.' }
+      ],
+      answer: 'Ellas', accept: ['ellas'],
+      options: ['Ellos', 'Nosotras', 'Ustedes'],
+      note: 'Marta and Lucía are both female, so ellas. Add one boy to the group and it becomes ellos.'
+    },
+    {
+      setting: 'Saying which boys are playing in the park.',
+      lines: [
+        { who: 'Madre', text: '¿Quiénes juegan en el parque?' },
+        { who: 'Tú', text: '___. Mateo, Nico y Beto.' }
+      ],
+      answer: 'Ellos', accept: ['ellos'],
+      options: ['Ellas', 'Nosotros', 'Ustedes']
+    },
+    {
+      setting: 'A teacher in Latin America addresses the whole class at once.',
+      lines: [
+        { who: 'Profesora', text: '¿Y ___? ¿Terminaron la tarea?' },
+        { who: 'Clase', text: 'Sí, profesora.' }
+      ],
+      answer: 'ustedes', accept: ['ustedes'],
+      options: ['usted', 'tú', 'nosotros'],
+      note: 'Ustedes is the plural you — more than one person you are speaking to.'
     }
   ];
 
