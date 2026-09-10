@@ -1017,10 +1017,20 @@
 
   // ============================================================================
   // TRANSLATOR WIDGET (Resources page)
-  // - Auto-detects Spanish vs English from input
-  // - Live preview via MyMemory free API (no key, ~5000 chars/day per IP)
+  // - Auto-detects Spanish vs English from input (local heuristic first, then
+  //   corrected by Google's own detection once a result comes back)
+  // - Live preview through a chain of engines, first one to answer wins:
+  //     1. Google Translate — the public "gtx" endpoint browsers can call with
+  //        no key. Real Google quality, no hard length cap. It is unofficial
+  //        and can rate-limit a busy shared IP (a whole class at school), so:
+  //     2. MyMemory — keyless backup. Translation-memory lookup, so it is weak
+  //        on sentences it has not seen, capped at 500 chars per request and
+  //        ~5000 chars/day per IP. Its failure modes come back as HTTP 200
+  //        with an error sentence in the translatedText field, so the reply
+  //        is validated, not just checked for non-empty.
+  //   The status line says which engine answered.
   // - "Look up in WordReference" button always works, URL changes by direction
-  // - Graceful failure: if MyMemory blocked/fails, status shows but WR button still works
+  // - Graceful failure: if every engine fails, status shows but WR button still works
   // ============================================================================
   (function setupTranslator() {
     let trInitialized = false;
@@ -1089,6 +1099,76 @@
       }
     }
 
+    // --- Engines -------------------------------------------------------------
+    // Each takes (text, from, to) with two-letter codes and resolves to
+    // { text, detected } or throws. `detected` is the engine's own opinion of
+    // the source language when it has one, else null.
+
+    function fetchWithTimeout(url, ms) {
+      const controller = new AbortController();
+      const timeoutId = setTimeout(() => controller.abort(), ms);
+      return fetch(url, { signal: controller.signal }).finally(() => clearTimeout(timeoutId));
+    }
+
+    async function engineGoogle(text, from, to) {
+      // dt=t asks for the translation segments only. With sl=auto Google also
+      // reports the language it detected in data[2].
+      const url = 'https://translate.googleapis.com/translate_a/single?client=gtx'
+        + '&sl=' + encodeURIComponent(from) + '&tl=' + encodeURIComponent(to)
+        + '&dt=t&q=' + encodeURIComponent(text);
+      const resp = await fetchWithTimeout(url, 8000);
+      if (!resp.ok) throw new Error('Google HTTP ' + resp.status);
+      const data = await resp.json();
+      // Shape: [ [ [translatedSeg, sourceSeg, ...], ... ], null, 'detectedLang', ... ]
+      const segs = Array.isArray(data) && Array.isArray(data[0]) ? data[0] : null;
+      if (!segs) throw new Error('Google: unexpected response');
+      const out = segs.map(seg => (Array.isArray(seg) && typeof seg[0] === 'string') ? seg[0] : '').join('');
+      if (!out.trim()) throw new Error('Google: empty translation');
+      const detected = typeof data[2] === 'string' ? data[2].slice(0, 2).toLowerCase() : null;
+      return { text: out, detected };
+    }
+
+    async function engineMyMemory(text, from, to) {
+      // Hard 500-char cap per request; over it MyMemory answers with an error
+      // sentence instead of a translation. Send the first 500 and say so.
+      const MAX = 500;
+      const clipped = text.length > MAX;
+      const q = clipped ? text.slice(0, MAX) : text;
+      const url = 'https://api.mymemory.translated.net/get?q=' + encodeURIComponent(q)
+        + '&langpair=' + encodeURIComponent(from + '|' + to);
+      const resp = await fetchWithTimeout(url, 8000);
+      if (!resp.ok) throw new Error('MyMemory HTTP ' + resp.status);
+      const data = await resp.json();
+      const rd = data && data.responseData;
+      const out = rd && typeof rd.translatedText === 'string' ? rd.translatedText : '';
+      // Quota, bad langpair and length errors all arrive as 200 + prose here.
+      if (!out.trim()) throw new Error('MyMemory: empty');
+      if (data.responseStatus && Number(data.responseStatus) !== 200) throw new Error('MyMemory status ' + data.responseStatus);
+      if (/MYMEMORY WARNING|QUOTA|INVALID|PLEASE SELECT TWO DISTINCT|QUERY LENGTH LIMIT/i.test(out)) throw new Error('MyMemory: ' + out.slice(0, 60));
+      return { text: clipped ? out + ' …' : out, detected: null, clipped };
+    }
+
+    const ENGINES = [
+      { name: 'Google Translate', run: engineGoogle },
+      { name: 'MyMemory', run: engineMyMemory, backup: true }
+    ];
+
+    // Run the chain. `from` may be 'auto' for engines that support detection;
+    // MyMemory does not, so it gets the concrete guess instead.
+    async function translateViaChain(text, from, to, guess) {
+      let lastErr = null;
+      for (const engine of ENGINES) {
+        try {
+          const src = (from === 'auto' && engine.name === 'MyMemory') ? guess : from;
+          const result = await engine.run(text, src, to);
+          return Object.assign({ engine }, result);
+        } catch (err) {
+          lastErr = err;
+        }
+      }
+      throw lastErr || new Error('No engine available');
+    }
+
     async function fetchTranslation(text) {
       const statusEl = document.getElementById('trStatus');
       const outEl = document.getElementById('trOutput');
@@ -1097,30 +1177,45 @@
       if (!q) {
         outEl.textContent = '';
         if (statusEl) statusEl.textContent = '';
+        trLastFetched = '';
         return;
       }
-      if (q === trLastFetched) return; // skip if same as previous
-      trLastFetched = q;
+      if (q === trLastFetched) return; // same text already shown
+      const requestId = (fetchTranslation.seq = (fetchTranslation.seq || 0) + 1);
       if (statusEl) statusEl.textContent = 'translating…';
       try {
-        const langpair = trCurrentDirection === 'es-en' ? 'es|en' : 'en|es';
-        const url = 'https://api.mymemory.translated.net/get?q=' + encodeURIComponent(q) + '&langpair=' + langpair;
-        const controller = new AbortController();
-        const timeoutId = setTimeout(() => controller.abort(), 8000);
-        const resp = await fetch(url, { signal: controller.signal });
-        clearTimeout(timeoutId);
-        if (!resp.ok) throw new Error('HTTP ' + resp.status);
-        const data = await resp.json();
-        const translated = data && data.responseData && data.responseData.translatedText;
-        if (translated) {
-          outEl.textContent = translated;
-          if (statusEl) statusEl.textContent = '';
-        } else {
-          throw new Error('No translation in response');
+        // Direction: a manual flip is authoritative. Otherwise let Google
+        // detect (sl=auto) and only use the local heuristic to pick a target.
+        let from = trCurrentDirection === 'es-en' ? 'es' : 'en';
+        let to = trCurrentDirection === 'es-en' ? 'en' : 'es';
+        const guess = from;
+        let result = await translateViaChain(q, trManualDirection ? from : 'auto', to, guess);
+
+        // If Google detected the source as the language we asked it to
+        // translate INTO, the local guess was wrong: flip and go again.
+        if (!trManualDirection && result.detected && result.detected === to) {
+          const flippedTo = to === 'es' ? 'en' : 'es';
+          updateDirectionUI(to);
+          const input = document.getElementById('trInput');
+          if (input) updateWordReferenceLink(input.value);
+          result = await translateViaChain(q, to, flippedTo, to);
+        } else if (!trManualDirection && result.detected && result.detected !== from
+                   && (result.detected === 'es' || result.detected === 'en')) {
+          updateDirectionUI(result.detected);
+        }
+
+        if (requestId !== fetchTranslation.seq) return; // a newer request superseded this one
+        outEl.textContent = result.text;
+        trLastFetched = q; // only remember text that actually rendered
+        if (statusEl) {
+          statusEl.textContent = 'via ' + result.engine.name
+            + (result.engine.backup ? ' · backup' : '')
+            + (result.clipped ? ' · first 500 characters' : '');
         }
       } catch (err) {
-        // Graceful fallback — show message and direct to WordReference
-        outEl.innerHTML = '<span style="color: var(--ink-soft); font-style: italic;">Live preview unavailable. Click "Look up in WordReference" below for the dictionary entry.</span>';
+        if (requestId !== fetchTranslation.seq) return;
+        trLastFetched = ''; // let the same text be retried
+        outEl.innerHTML = '<span style="color: var(--ink-soft); font-style: italic;">Live preview unavailable right now. Click "Look up in WordReference" below for the dictionary entry.</span>';
         if (statusEl) statusEl.textContent = 'preview offline';
       }
     }
