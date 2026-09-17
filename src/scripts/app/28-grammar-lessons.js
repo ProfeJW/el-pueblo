@@ -108,6 +108,7 @@
       links: []
     },
     'subject-pronouns': {
+      games: ['subject-pronouns'],
       drills: [{ tense: 'presente', group: 'all', label: 'Practice with the verb drill' }],
       decks: ['pronombres', 'saludos'],
       pdfs: [],

@@ -156,6 +156,160 @@
 
   const tuOUstedQueue = [];
 
+  // ============================================================================
+  // SUBJECT PRONOUNS — which pronoun stands in for a person or group?
+  // ----------------------------------------------------------------------------
+  // Each item: the noun phrase, the pronoun that replaces it, any accepted
+  // alternates (Spain's vosotros/-as for "you all"; nosotras when a
+  // group with "yo" could be all female), and the WHY shown with the feedback.
+  // Names and groups only — a student never has to guess who "yo" is.
+  // ============================================================================
+  const SUBJECT_PRONOUN_ITEMS = [
+    // One man / boy → él
+    { phrase: 'Marcos', answer: 'él', why: 'One male → él.' },
+    { phrase: 'mi papá', answer: 'él', why: 'One male → él.' },
+    { phrase: 'el señor García', answer: 'él', why: 'One man → él. (You would still say usted TO him.)' },
+    { phrase: 'mi amigo', answer: 'él', why: 'One male → él.' },
+    { phrase: 'el profesor', answer: 'él', why: 'One man → él.' },
+    { phrase: 'el doctor Ruiz', answer: 'él', why: 'One man → él.' },
+    { phrase: 'mi hermano', answer: 'él', why: 'One male → él.' },
+    // One woman / girl → ella
+    { phrase: 'Roberta', answer: 'ella', why: 'One female → ella.' },
+    { phrase: 'mi mamá', answer: 'ella', why: 'One female → ella.' },
+    { phrase: 'la señora López', answer: 'ella', why: 'One woman → ella. (You would still say usted TO her.)' },
+    { phrase: 'mi amiga', answer: 'ella', why: 'One female → ella.' },
+    { phrase: 'la profesora', answer: 'ella', why: 'One woman → ella.' },
+    { phrase: 'la doctora Pérez', answer: 'ella', why: 'One woman → ella.' },
+    { phrase: 'mi hermana', answer: 'ella', why: 'One female → ella.' },
+    // Group with "yo" → nosotros (nosotras if everyone is female)
+    { phrase: 'María y yo', answer: 'nosotros', validAnswers: ['nosotros', 'nosotras'], why: 'Any group that includes yo → nosotros (nosotras if everyone in it is female).' },
+    { phrase: 'Marcos y yo', answer: 'nosotros', why: 'Any group that includes yo → nosotros. With a male in the group it is never nosotras.' },
+    { phrase: 'tú y yo', answer: 'nosotros', validAnswers: ['nosotros', 'nosotras'], why: 'tú + yo = we → nosotros (nosotras if both are female).' },
+    { phrase: 'usted y yo', answer: 'nosotros', validAnswers: ['nosotros', 'nosotras'], why: 'usted + yo = we → nosotros (nosotras if both are female).' },
+    { phrase: 'mi hermana y yo', answer: 'nosotros', validAnswers: ['nosotros', 'nosotras'], why: 'Any group that includes yo → nosotros (nosotras if everyone in it is female).' },
+    { phrase: 'mis amigos y yo', answer: 'nosotros', why: 'Any group that includes yo → nosotros. Amigos is a male or mixed group, so never nosotras.' },
+    { phrase: 'mis amigas y yo', answer: 'nosotros', validAnswers: ['nosotros', 'nosotras'], why: 'Group with yo → nosotros; if the speaker is female too, nosotras.' },
+    { phrase: 'ellos y yo', answer: 'nosotros', why: 'Any group that includes yo → nosotros. Ellos makes it a male or mixed group.' },
+    { phrase: 'ellas y yo', answer: 'nosotros', validAnswers: ['nosotros', 'nosotras'], why: 'Group with yo → nosotros; nosotras if the speaker is female too.' },
+    { phrase: 'ustedes y yo', answer: 'nosotros', validAnswers: ['nosotros', 'nosotras'], why: 'Any group that includes yo → nosotros.' },
+    { phrase: 'los profesores y yo', answer: 'nosotros', why: 'Any group that includes yo → nosotros.' },
+    // Group with "tú" / "usted" (and no "yo") → ustedes (vosotros/-as in Spain)
+    { phrase: 'ella y tú', answer: 'ustedes', vos: ['vosotros', 'vosotras'], why: 'A group that includes tú (but not yo) = you all → ustedes.' },
+    { phrase: 'tú y él', answer: 'ustedes', vos: ['vosotros'], why: 'A group with tú but no yo = you all → ustedes.' },
+    { phrase: 'tú y ella', answer: 'ustedes', vos: ['vosotros', 'vosotras'], why: 'A group with tú but no yo = you all → ustedes.' },
+    { phrase: 'Marcos y tú', answer: 'ustedes', vos: ['vosotros'], why: 'A group with tú but no yo = you all → ustedes.' },
+    { phrase: 'Roberta y tú', answer: 'ustedes', vos: ['vosotros', 'vosotras'], why: 'A group with tú but no yo = you all → ustedes.' },
+    { phrase: 'tus amigos y tú', answer: 'ustedes', vos: ['vosotros'], why: 'A group with tú but no yo = you all → ustedes.' },
+    { phrase: 'usted y él', answer: 'ustedes', why: 'A group with usted but no yo = you all → ustedes.' },
+    { phrase: 'usted y ella', answer: 'ustedes', why: 'A group with usted but no yo = you all → ustedes.' },
+    { phrase: 'la señora López y usted', answer: 'ustedes', why: 'A group with usted but no yo = you all → ustedes.' },
+    // Group of males or mixed → ellos
+    { phrase: 'Marcos y Roberta', answer: 'ellos', why: 'A mixed group (at least one male) → ellos.' },
+    { phrase: 'Ana y Luis', answer: 'ellos', why: 'A mixed group (at least one male) → ellos.' },
+    { phrase: 'mis amigos', answer: 'ellos', why: 'Amigos = a group of males, or a mixed group → ellos.' },
+    { phrase: 'los estudiantes', answer: 'ellos', why: 'A male or mixed group → ellos.' },
+    { phrase: 'mis padres', answer: 'ellos', why: 'Padres (mom and dad) is a mixed group → ellos.' },
+    { phrase: 'los niños', answer: 'ellos', why: 'A male or mixed group → ellos.' },
+    { phrase: 'Carlos, Pedro y Juan', answer: 'ellos', why: 'All males → ellos.' },
+    { phrase: 'mis hermanos', answer: 'ellos', why: 'Hermanos = brothers, or brothers and sisters → ellos.' },
+    { phrase: 'el señor y la señora García', answer: 'ellos', why: 'A mixed group → ellos.' },
+    { phrase: 'ella y él', answer: 'ellos', why: 'A mixed group (at least one male) → ellos.' },
+    // Group of all females → ellas
+    { phrase: 'mis amigas', answer: 'ellas', why: 'Amigas = all female → ellas.' },
+    { phrase: 'Ana y Lucía', answer: 'ellas', why: 'All female → ellas.' },
+    { phrase: 'las profesoras', answer: 'ellas', why: 'All female → ellas.' },
+    { phrase: 'mis abuelas', answer: 'ellas', why: 'All female → ellas.' },
+    { phrase: 'las niñas', answer: 'ellas', why: 'All female → ellas.' },
+    { phrase: 'Sofía, Elena y Carmen', answer: 'ellas', why: 'All female → ellas.' },
+    { phrase: 'mis hermanas', answer: 'ellas', why: 'Hermanas = all sisters → ellas.' },
+    { phrase: 'las estudiantes', answer: 'ellas', why: 'Las estudiantes = all female → ellas.' }
+  ];
+
+  // Rounds that only exist when the vosotros toggle is on — Spain's informal
+  // "you all". ustedes is still accepted for the other "you all" groups above;
+  // these are the ones where the phrase itself says we're in Spain.
+  const SUBJECT_PRONOUN_SPAIN_ITEMS = [
+    { phrase: 'ella y tú (en España)', answer: 'vosotros', validAnswers: ['vosotros', 'vosotras'], why: 'In Spain, a group with tú but no yo → vosotros (vosotras if everyone is female). There, ustedes is only for formal groups.' },
+    { phrase: 'Marcos y tú (en España)', answer: 'vosotros', why: 'In Spain, a group with tú but no yo → vosotros. With a male in the group it is never vosotras.' },
+    { phrase: 'tú y él (en España)', answer: 'vosotros', why: 'In Spain, a group with tú but no yo → vosotros.' },
+    { phrase: 'tus amigas y tú (en España)', answer: 'vosotros', validAnswers: ['vosotros', 'vosotras'], why: 'In Spain, a group with tú but no yo → vosotros; vosotras if you (tú) are female too.' },
+    { phrase: 'Roberta y tú (en España)', answer: 'vosotros', validAnswers: ['vosotros', 'vosotras'], why: 'In Spain, a group with tú but no yo → vosotros (vosotras if everyone is female).' },
+    { phrase: 'tú y ella (en España)', answer: 'vosotros', validAnswers: ['vosotros', 'vosotras'], why: 'In Spain, a group with tú but no yo → vosotros (vosotras if everyone is female).' },
+    { phrase: 'usted y ella (en España)', answer: 'ustedes', why: 'Even in Spain, a group with usted (formal) → ustedes. Vosotros is only for informal groups.' },
+    { phrase: 'el señor García y usted (en España)', answer: 'ustedes', why: 'Even in Spain, a group with usted (formal) → ustedes. Vosotros is only for informal groups.' }
+  ];
+  const SUBJECT_PRONOUN_ITEMS_SPAIN = SUBJECT_PRONOUN_ITEMS.concat(SUBJECT_PRONOUN_SPAIN_ITEMS);
+
+  // Two queues because the two banks are different arrays (see nextFromQueue).
+  const subjectPronounQueue = [];
+  const subjectPronounQueueSpain = [];
+
+  // Start-screen toggle. Off by default (Latin American Spanish, no vosotros);
+  // remembered for the rest of the visit so a replay keeps the choice.
+  let subjectPronounVosotros = false;
+
+  // What each pronoun means — used to explain a wrong answer in the student's
+  // own terms ("ellas means they, all female — but…").
+  const SUBJECT_PRONOUN_MEANINGS = {
+    'yo': 'I — only the speaker',
+    'tú': 'you — one person, informal',
+    'él': 'he — one male',
+    'ella': 'she — one female',
+    'usted': 'you — one person, formal',
+    'nosotros': 'we — a group that includes yo',
+    'nosotras': 'we — a group that includes yo, all female',
+    'vosotros': "you all — Spain's informal plural you",
+    'vosotras': "you all — Spain's informal plural you, all female",
+    'ellos': 'they — a group of males, or a mixed group',
+    'ellas': 'they — a group that is all female',
+    'ustedes': 'you all — a group that includes tú or usted but not yo'
+  };
+  function subjectPronounExplain(item, userAnswer) {
+    const a = normalize(userAnswer);
+    const key = Object.keys(SUBJECT_PRONOUN_MEANINGS).find(k => normalize(k) === a);
+    let lead;
+    if (!key) {
+      lead = '"' + escapeHtml(userAnswer) + '" isn\'t a subject pronoun.';
+    } else if (!subjectPronounVosotros && (key === 'vosotros' || key === 'vosotras')) {
+      lead = '<strong>' + key + '</strong> is Spain\'s informal "you all". This game is set to Latin American Spanish, where "you all" is always <strong>ustedes</strong> — turn on vosotros on the start screen to practice it.';
+      return lead;
+    } else {
+      lead = '<strong>' + key + '</strong> = ' + SUBJECT_PRONOUN_MEANINGS[key] + '.';
+    }
+    return lead + ' ' + item.why;
+  }
+
+  // Multiple-choice distractors: the confusable pair first, then random fill,
+  // so a round asking for "ellas" always offers "ellos" too.
+  const SUBJECT_PRONOUN_CHOICES = ['yo', 'tú', 'él', 'ella', 'usted', 'nosotros', 'nosotras', 'ellos', 'ellas', 'ustedes'];
+  const SUBJECT_PRONOUN_CHOICES_SPAIN = SUBJECT_PRONOUN_CHOICES.concat(['vosotros', 'vosotras']);
+  const SUBJECT_PRONOUN_CONFUSERS = {
+    'él': ['ella', 'ellos'],
+    'ella': ['él', 'ellas'],
+    'nosotros': ['ellos', 'ustedes'],
+    'ustedes': ['ellos', 'nosotros', 'vosotros'],
+    'vosotros': ['ustedes', 'nosotros'],
+    'ellos': ['ellas', 'nosotros'],
+    'ellas': ['ellos', 'nosotras']
+  };
+  function subjectPronounChoices(item, accepted) {
+    const pool = subjectPronounVosotros ? SUBJECT_PRONOUN_CHOICES_SPAIN : SUBJECT_PRONOUN_CHOICES;
+    const out = [item.answer];
+    (SUBJECT_PRONOUN_CONFUSERS[item.answer] || []).forEach(c => {
+      if (pool.includes(c) && !accepted.includes(c) && !out.includes(c)) out.push(c);
+    });
+    const rest = pool.filter(c => !accepted.includes(c) && !out.includes(c));
+    while (out.length < 4 && rest.length) {
+      out.push(rest.splice(Math.floor(Math.random() * rest.length), 1)[0]);
+    }
+    out.length = Math.min(out.length, 4);
+    for (let i = out.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [out[i], out[j]] = [out[j], out[i]];
+    }
+    return out;
+  }
+
   const GAMES = {
     // Sprint games — all have isSprint:true. 10/10 to qualify for the leaderboard;
     // partial scores still earn Lucas based on accuracy.
@@ -553,6 +707,8 @@
       maxReward: 30,
       rounds: 20,
       dualMode: true,
+      scenarioPrompt: true,
+      choiceBlurb: 'Tap tú or usted. Faster, and good for a first pass.',
       generate: () => {
         const item = nextFromQueue(TU_O_USTED_SITUATIONS, tuOUstedQueue);
         return {
@@ -566,6 +722,39 @@
           choices: ['tú', 'usted'],
           why: item.why,
           hint: 'tú or usted?'
+        };
+      }
+    },
+    'subject-pronouns': {
+      title: 'Subject <em>pronouns</em>',
+      icon: '🙋',
+      maxReward: 30,
+      rounds: 20,
+      dualMode: true,
+      scenarioPrompt: true,
+      choiceBlurb: 'Tap one of four pronouns. Faster, and good for a first pass.',
+      // Rendered on the mode picker; read back by beginDualModeGame.
+      optionToggle: { id: 'subjectPronounVosotros', label: 'Include <strong>vosotros / vosotras</strong> (Spain)', get: () => subjectPronounVosotros, set: v => { subjectPronounVosotros = v; } },
+      generate: () => {
+        const item = subjectPronounVosotros
+          ? nextFromQueue(SUBJECT_PRONOUN_ITEMS_SPAIN, subjectPronounQueueSpain)
+          : nextFromQueue(SUBJECT_PRONOUN_ITEMS, subjectPronounQueue);
+        // Spain's forms are accepted (and offered) only when the toggle is on.
+        const accepted = (item.validAnswers || [item.answer]).concat(subjectPronounVosotros ? (item.vos || []) : []);
+        const why = item.why + (subjectPronounVosotros && item.vos ? ' In Spain: ' + item.vos.join(' / ') + '.' : '');
+        return {
+          promptLabel: 'Which subject pronoun replaces this?',
+          promptDisplay: `<span class="tu-usted-sentence">${item.phrase}</span>
+             <span class="tu-usted-gloss">→ ____</span>`,
+          promptReview: item.phrase,
+          answer: item.answer,
+          validAnswers: accepted,
+          choices: subjectPronounChoices(item, accepted),
+          why,
+          explainWrong: ans => subjectPronounExplain({ why }, ans),
+          hint: subjectPronounVosotros
+            ? 'yo, tú, él, ella, nosotros, vosotros, ellos…'
+            : 'yo, tú, él, ella, nosotros, ustedes, ellos…'
         };
       }
     },
@@ -727,6 +916,7 @@
       title: 'Object <em>pronouns</em>',
       icon: '🎯',
       maxReward: 35,
+      scenarioPrompt: true,
       generate: () => {
         // Each item: { phrase (the noun phrase to replace), kind (DO/IO), answer (the pronoun), context (a short sentence showing the noun) }
         const items = [
@@ -983,7 +1173,7 @@
   // MODE PICKER — for games flagged `dualMode`
   // ----------------------------------------------------------------------------
   // The same questions, two ways to answer: type the word, or tap one of the
-  // two buttons. Rounds whose generate() supplies `choices` show buttons unless
+  // choice buttons. Rounds whose generate() supplies `choices` show buttons unless
   // the student picked 'type', in which case renderGameRound drops them and the
   // standard typed input takes over.
   // ============================================================================
@@ -1001,6 +1191,11 @@
       +   '<p style="color:var(--ink-soft);font-size:15px;margin-bottom:24px;">Pick how you want to answer. '
       +     rounds + ' rounds either way, up to ' + game.maxReward + ' Lucas.'
       +     (best > 0 ? ' Your best: ' + best + '/' + rounds + '.' : '') + '</p>'
+      +   (game.optionToggle
+            ? '<label class="game-option-toggle" style="display:inline-flex;align-items:center;gap:10px;margin:-8px 0 20px;font-size:15px;color:var(--ink-soft);cursor:pointer;">'
+              + '<input type="checkbox" id="' + game.optionToggle.id + '"' + (game.optionToggle.get() ? ' checked' : '') + ' style="width:18px;height:18px;accent-color:var(--rojo);">'
+              + '<span>' + game.optionToggle.label + '</span></label>'
+            : '')
       +   '<div class="match-deck-grid">'
       +     '<button class="match-deck-btn" onclick="beginDualModeGame(\'' + gameId + '\', \'type\')">'
       +       '<span class="mdb-label">✍️ Fill in the blank</span>'
@@ -1008,7 +1203,7 @@
       +     '</button>'
       +     '<button class="match-deck-btn" onclick="beginDualModeGame(\'' + gameId + '\', \'choice\')">'
       +       '<span class="mdb-label">👆 Multiple choice</span>'
-      +       '<span class="mdb-best" style="text-transform:none;letter-spacing:0;">Tap tú or usted. Faster, and good for a first pass.</span>'
+      +       '<span class="mdb-best" style="text-transform:none;letter-spacing:0;">' + (game.choiceBlurb || 'Tap the right answer. Faster, and good for a first pass.') + '</span>'
       +     '</button>'
       +   '</div>'
       + '</div>';
@@ -1017,6 +1212,10 @@
   function beginDualModeGame(gameId, mode) {
     const game = GAMES[gameId];
     if (!game) return;
+    if (game.optionToggle) {
+      const box = document.getElementById(game.optionToggle.id);
+      if (box) game.optionToggle.set(!!box.checked);
+    }
     gameState = {
       gameId,
       mode,
@@ -2109,7 +2308,7 @@
           ${sprintTimerHtml}
         </div>
         <div class="game-prompt-label">${gameState.current.promptLabel}</div>
-        <div class="game-prompt-display${gameState.gameId === 'tu-o-usted' || gameState.gameId === 'object-pronouns' ? ' scenario' : ''}">${gameState.current.promptDisplay}</div>
+        <div class="game-prompt-display${GAMES[gameState.gameId] && GAMES[gameState.gameId].scenarioPrompt ? ' scenario' : ''}">${gameState.current.promptDisplay}</div>
         ${interactionHtml}
       </div>
     `;
@@ -2153,14 +2352,23 @@
   // feedback (¿Tú o usted? uses the worksheet's answer-key reasoning). A wrong
   // answer holds the explanation on screen long enough to read; a right one
   // only pauses a beat, so a 20-round game doesn't turn into waiting.
-  function gameFeedbackWhy() {
-    return (gameState && gameState.current && gameState.current.why)
+  // A round may also supply `explainWrong(userAnswer)` — a fuller message built
+  // around what the student actually put (Subject pronouns says what their
+  // pronoun means before saying why the right one fits). Pass the wrong answer
+  // to get it; with no argument you get the plain `why`.
+  function gameFeedbackWhy(wrongAnswer) {
+    if (!gameState || !gameState.current) return '';
+    if (wrongAnswer != null && typeof gameState.current.explainWrong === 'function') {
+      return ' <span style="opacity:0.85;">— ' + gameState.current.explainWrong(wrongAnswer) + '</span>';
+    }
+    return gameState.current.why
       ? ' <span style="opacity:0.85;">— ' + gameState.current.why + '</span>'
       : '';
   }
   function gameRoundDelay(base, isCorrect) {
     if (!gameState || !gameState.current || !gameState.current.why) return base;
-    return isCorrect ? base + 400 : 3400;
+    if (isCorrect) return base + 400;
+    return typeof gameState.current.explainWrong === 'function' ? 5200 : 3400;
   }
   // The prompt as it should read in the end-of-game review: a round whose
   // display is rich markup can supply a plain `promptReview` instead.
@@ -2192,7 +2400,7 @@
       fb.className = 'game-feedback correct';
     } else {
       input.classList.add('wrong');
-      fb.innerHTML = '✗ Correct answer: ' + escapeHtml(gameState.current.answer) + gameFeedbackWhy();
+      fb.innerHTML = '✗ Correct answer: ' + escapeHtml(gameState.current.answer) + gameFeedbackWhy(input.value);
       fb.className = 'game-feedback wrong';
     }
     input.disabled = true;
@@ -2246,7 +2454,7 @@
     });
     if (fb) {
       if (isCorrect) { fb.innerHTML = '✓ Correct!' + gameFeedbackWhy(); fb.className = 'game-feedback correct'; }
-      else { fb.innerHTML = '✗ Correct answer: ' + escapeHtml(gameState.current.answer) + gameFeedbackWhy(); fb.className = 'game-feedback wrong'; }
+      else { fb.innerHTML = '✗ Correct answer: ' + escapeHtml(gameState.current.answer) + gameFeedbackWhy(val); fb.className = 'game-feedback wrong'; }
     }
 
     gameState.history.push({
