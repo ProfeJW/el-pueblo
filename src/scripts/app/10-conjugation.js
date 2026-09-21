@@ -121,6 +121,11 @@
     drillItems = [];
     drillSubmitted = false;
 
+    if (drillTense === 'serestar-forms') {
+      buildSerEstarFormsDrill();
+      return;
+    }
+
     if (drillTense === 'serestar') {
       buildSerEstarDrill();
       return;
@@ -325,6 +330,95 @@
         userInput: '',
         isCorrect: null,
         isSerEstar: true
+      });
+    });
+  }
+
+  // SER / ESTAR — VERB GIVEN (Spanish 1 entry level)
+  // Same present-tense forms as the ser-vs-estar drill above, but the student
+  // never has to decide WHICH verb: each sentence names it — "Yo ___ (ser)
+  // estudiante." — so the only task is producing the right conjugation for
+  // the subject. Sub-groups: mixed, ser only, estar only.
+  // Each prompt: { sentence (with ___), pidx, verb ('ser'|'estar') }
+  //   pidx 5 covers ellos/ellas AND ustedes; pidx 4 (vosotros) is filtered out
+  //   unless the vosotros toggle is on.
+  const SER_ESTAR_FORMS_PROMPTS = [
+    // SER
+    { sentence: 'Yo ___ estudiante.', pidx: 0, verb: 'ser' },
+    { sentence: 'Yo ___ de los Estados Unidos.', pidx: 0, verb: 'ser' },
+    { sentence: 'Yo ___ alto.', pidx: 0, verb: 'ser' },
+    { sentence: 'Tú ___ mi amigo.', pidx: 1, verb: 'ser' },
+    { sentence: 'Tú ___ muy inteligente.', pidx: 1, verb: 'ser' },
+    { sentence: 'Tú ___ de México, ¿no?', pidx: 1, verb: 'ser' },
+    { sentence: 'Él ___ mi hermano.', pidx: 2, verb: 'ser' },
+    { sentence: 'Ella ___ profesora.', pidx: 2, verb: 'ser' },
+    { sentence: 'Usted ___ el director.', pidx: 2, verb: 'ser' },
+    { sentence: 'Mi madre ___ doctora.', pidx: 2, verb: 'ser' },
+    { sentence: 'La clase ___ interesante.', pidx: 2, verb: 'ser' },
+    { sentence: 'Hoy ___ viernes.', pidx: 2, verb: 'ser' },
+    { sentence: 'El libro ___ de Marta.', pidx: 2, verb: 'ser' },
+    { sentence: 'Nosotros ___ amigos.', pidx: 3, verb: 'ser' },
+    { sentence: 'Nosotras ___ de Ohio.', pidx: 3, verb: 'ser' },
+    { sentence: 'Mi amigo y yo ___ estudiantes.', pidx: 3, verb: 'ser' },
+    { sentence: 'Vosotros ___ simpáticos.', pidx: 4, verb: 'ser' },
+    { sentence: 'Vosotras ___ de España.', pidx: 4, verb: 'ser' },
+    { sentence: 'Ellos ___ hermanos.', pidx: 5, verb: 'ser' },
+    { sentence: 'Ellas ___ altas.', pidx: 5, verb: 'ser' },
+    { sentence: 'Ustedes ___ mis profesores.', pidx: 5, verb: 'ser' },
+    { sentence: 'Mis padres ___ de Colombia.', pidx: 5, verb: 'ser' },
+    { sentence: 'Los estudiantes ___ inteligentes.', pidx: 5, verb: 'ser' },
+    { sentence: '___ las dos de la tarde.', pidx: 5, verb: 'ser' },
+    { sentence: 'Juan y María ___ amigos.', pidx: 5, verb: 'ser' },
+
+    // ESTAR
+    { sentence: 'Yo ___ bien, gracias.', pidx: 0, verb: 'estar' },
+    { sentence: 'Yo ___ en la clase.', pidx: 0, verb: 'estar' },
+    { sentence: 'Yo ___ cansado.', pidx: 0, verb: 'estar' },
+    { sentence: '¿Cómo ___ tú?', pidx: 1, verb: 'estar' },
+    { sentence: 'Tú ___ en casa.', pidx: 1, verb: 'estar' },
+    { sentence: 'Tú ___ contento hoy.', pidx: 1, verb: 'estar' },
+    { sentence: 'Él ___ enfermo.', pidx: 2, verb: 'estar' },
+    { sentence: 'Ella ___ en la biblioteca.', pidx: 2, verb: 'estar' },
+    { sentence: '¿Cómo ___ usted?', pidx: 2, verb: 'estar' },
+    { sentence: 'Mi abuela ___ triste.', pidx: 2, verb: 'estar' },
+    { sentence: 'El café ___ frío.', pidx: 2, verb: 'estar' },
+    { sentence: 'La escuela ___ cerca de mi casa.', pidx: 2, verb: 'estar' },
+    { sentence: 'La puerta ___ abierta.', pidx: 2, verb: 'estar' },
+    { sentence: 'Nosotros ___ muy bien.', pidx: 3, verb: 'estar' },
+    { sentence: 'Nosotras ___ en el parque.', pidx: 3, verb: 'estar' },
+    { sentence: 'Mi familia y yo ___ en México.', pidx: 3, verb: 'estar' },
+    { sentence: 'Vosotros ___ en la cafetería.', pidx: 4, verb: 'estar' },
+    { sentence: '¿Cómo ___ vosotras?', pidx: 4, verb: 'estar' },
+    { sentence: 'Ellos ___ nerviosos.', pidx: 5, verb: 'estar' },
+    { sentence: 'Ellas ___ en el gimnasio.', pidx: 5, verb: 'estar' },
+    { sentence: '¿Cómo ___ ustedes?', pidx: 5, verb: 'estar' },
+    { sentence: 'Mis amigos ___ aburridos.', pidx: 5, verb: 'estar' },
+    { sentence: 'Los libros ___ en la mochila.', pidx: 5, verb: 'estar' },
+    { sentence: 'Las ventanas ___ cerradas.', pidx: 5, verb: 'estar' },
+    { sentence: 'Pedro y Ana ___ en la clase.', pidx: 5, verb: 'estar' }
+  ];
+
+  function buildSerEstarFormsDrill() {
+    let allowed = includeVosotros
+      ? SER_ESTAR_FORMS_PROMPTS
+      : SER_ESTAR_FORMS_PROMPTS.filter(p => p.pidx !== 4);
+    // Sub-group: 'ser' / 'estar' narrow to one verb; anything else = mixed
+    if (drillGroup === 'ser' || drillGroup === 'estar') {
+      allowed = allowed.filter(p => p.verb === drillGroup);
+    }
+    const shuffled = [...allowed].sort(() => Math.random() - 0.5);
+    const picked = shuffled.slice(0, 20);
+    picked.forEach(p => {
+      const conjArray = p.verb === 'ser' ? SER_PRESENT : ESTAR_PRESENT;
+      drillItems.push({
+        verb: { inf: p.verb, conj: { presente: conjArray } },
+        tense: 'presente',
+        pronounIdx: p.pidx,
+        answer: conjArray[p.pidx],
+        sentence: p.sentence,
+        userInput: '',
+        isCorrect: null,
+        isSerEstarForms: true
       });
     });
   }
@@ -1511,6 +1605,25 @@
           </div>
         `;
       }
+      if (item.isSerEstarForms) {
+        // Sentence with the blank highlighted AND the verb to conjugate shown
+        // right after it — the student only supplies the form.
+        const parts = item.sentence.split('___');
+        return `
+          <div class="drill-row">
+            <div class="drill-num">${String(idx + 1).padStart(2, '0')}</div>
+            <div class="drill-prompt-text" style="grid-column: 2 / span 2; padding-right: 12px;">
+              <span style="font-family: 'Fraunces', serif; font-size: 16px; line-height: 1.5;">${parts[0]}<span style="color: var(--rojo); font-weight: 600;">___</span> <span style="font-family: 'JetBrains Mono', monospace; font-size: 12px; letter-spacing: 0.06em; color: var(--ocre); font-weight: 600;">(${item.verb.inf})</span>${parts[1] || ''}</span>
+            </div>
+            <div style="grid-column: 4;">
+              <input type="text" class="drill-input" data-idx="${idx}" autocomplete="off" spellcheck="false"
+                     oninput="updateDrillInput(${idx}, this.value)"
+                     onkeydown="if(event.key==='Enter'){event.preventDefault();focusNextDrillInput(${idx});}"
+                     placeholder="conjugate ${item.verb.inf}">
+            </div>
+          </div>
+        `;
+      }
       if (item.isSerEstar) {
         // Show sentence with blank highlighted
         const parts = item.sentence.split('___');
@@ -1768,6 +1881,9 @@
     if (drillTense === 'possessive-pronouns' && !POSSESSIVE_PRONOUNS_DATA[drillGroup]) {
       drillGroup = 'all';
     }
+    if (drillTense === 'serestar-forms' && !['all', 'ser', 'estar'].includes(drillGroup)) {
+      drillGroup = 'all';
+    }
     newDrill();
   }
 
@@ -1851,7 +1967,14 @@
       <button class="pill ${drillGroup === 'ours' ? 'active' : ''}" onclick="setDrillGroup('ours', this)">Ours (nuestro)</button>
       <button class="pill ${drillGroup === 'after-ser' ? 'active' : ''}" onclick="setDrillGroup('after-ser', this)">After ser (bare form)</button>
     `;
-    if (drillTense === 'tu-commands') {
+    const SER_ESTAR_FORMS_GROUPS = `
+      <button class="pill ${drillGroup === 'all' ? 'active' : ''}" onclick="setDrillGroup('all', this)">Ser + Estar (mixed)</button>
+      <button class="pill ${drillGroup === 'ser' ? 'active' : ''}" onclick="setDrillGroup('ser', this)">Ser only</button>
+      <button class="pill ${drillGroup === 'estar' ? 'active' : ''}" onclick="setDrillGroup('estar', this)">Estar only</button>
+    `;
+    if (drillTense === 'serestar-forms') {
+      picker.innerHTML = SER_ESTAR_FORMS_GROUPS;
+    } else if (drillTense === 'tu-commands') {
       picker.innerHTML = COMMAND_GROUPS;
     } else if (drillTense === 'usted-commands') {
       picker.innerHTML = USTED_GROUPS;
