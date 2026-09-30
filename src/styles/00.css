@@ -2339,6 +2339,35 @@
     display: block;
     margin-top: 1px;
   }
+  .drill-prompt-text .drill-meaning {
+    font-size: 11px;
+    font-style: italic;
+    color: var(--ink-soft);
+    opacity: 0.8;
+    display: block;
+    margin-top: 2px;
+  }
+
+  /* Activity stamp at the top of every results screen — inherits the box's
+     text color so it reads on both the dark drill panel and light game cards. */
+  .result-stamp {
+    border: 1px dashed currentColor;
+    padding: 8px 12px;
+    margin-bottom: 16px;
+    text-align: left;
+  }
+  .result-stamp .rs-title {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+  .result-stamp .rs-meta {
+    font-size: 12px;
+    opacity: 0.75;
+    margin-top: 2px;
+  }
   .drill-input {
     background: transparent;
     border: none;

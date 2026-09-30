@@ -117,6 +117,38 @@
       .replace(/\s+/g, ' ');
   }
 
+  // Hard mode grader: same forgiveness for caps/punctuation, but accents and ñ
+  // must be typed. NFC so a composed "á" and "a"+combining accent compare equal.
+  function normalizeStrict(s) {
+    return String(s == null ? '' : s).normalize('NFC').toLowerCase().trim()
+      .replace(/['‘’"“”]/g, '')
+      .replace(/^[¡¿.,;:!?\s]+/, '')
+      .replace(/[¡¿.,;:!?\s]+$/, '')
+      .replace(/[,;:]/g, '')
+      .replace(/\s+/g, ' ');
+  }
+
+  // "Receipt" line for every results screen. Students screenshot only the score
+  // box, so the activity name, settings, and a timestamp live INSIDE that box.
+  function activityStampHtml(title, details) {
+    const plain = s => String(s == null ? '' : s).replace(/<[^>]+>/g, '').replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
+    const when = new Date().toLocaleString([], { weekday: 'short', month: 'short', day: 'numeric', hour: 'numeric', minute: '2-digit' });
+    const meta = (details || []).filter(Boolean).map(plain).concat(when).join(' · ');
+    return `<div class="result-stamp"><div class="rs-title">${plain(title)}</div><div class="rs-meta">${meta}</div></div>`;
+  }
+
+  // Verb drill difficulty: 'easy' (hints, accents forgiven) · 'normal' ·
+  // 'hard' (no hints, accents required). Saved per device like vosotros.
+  const DRILL_DIFFICULTY_LABELS = { easy: 'Easy', normal: 'Normal', hard: 'Hard' };
+  let drillDifficulty = 'normal';
+
+  // Easy-mode hint: the first letters of the answer (first word for sentences).
+  function drillHint(item) {
+    const ans = String(item.answer || '');
+    if (/\s/.test(ans)) return ans.split(/\s+/)[0] + ' …';
+    return ans.slice(0, Math.min(2, Math.max(1, ans.length - 2))) + '…';
+  }
+
   function buildDrill() {
     drillItems = [];
     drillSubmitted = false;
@@ -1696,15 +1728,37 @@
         </div>
       `;
     }).join('');
+    // Easy mode scaffolds: starter letters in the blank + the verb's meaning.
+    // Items where the first letters would give away the whole point (tú vs
+    // usted, ser vs estar, saber vs conocer, which pronoun) stay hint-free.
+    if (drillDifficulty === 'easy') {
+      drillItems.forEach((item, idx) => {
+        const input = board.querySelector('.drill-input[data-idx="' + idx + '"]');
+        if (!input) return;
+        const choiceItem = item.isTuUsted || item.isSerEstar || item.isPossessive ||
+          item.isPronounRewrite || item.isProgressive ||
+          (item.isConfusable && drillTense === 'confusable-verbs');
+        if (!choiceItem) input.placeholder = 'hint: ' + drillHint(item);
+        if (item.verb && item.verb.meaning) {
+          const prompt = input.closest('.drill-row').querySelector('.drill-prompt-text');
+          if (prompt) {
+            const m = document.createElement('span');
+            m.className = 'drill-meaning';
+            m.textContent = item.verb.meaning;
+            prompt.appendChild(m);
+          }
+        }
+      });
+    }
     document.getElementById('drill-filled').textContent = '0';
     document.getElementById('drill-submit').disabled = false;
     document.getElementById('drill-submit').textContent = 'Submit drill';
     document.getElementById('drill-results').classList.remove('open');
     document.getElementById('drill-results').innerHTML = '';
     // Show best score for current tense
-    const bestKey = 'drillBest_' + drillTense;
-    const best = STATE[bestKey];
-    document.getElementById('drill-best').textContent = best != null ? `Best (${tenseLabels[drillTense] || 'mixed'}): ${best}/20` : 'Best score: —';
+    const best = STATE[drillBestKey()];
+    const bestLabel = (tenseLabels[drillTense] || 'mixed') + (drillDifficulty === 'normal' ? '' : ', ' + DRILL_DIFFICULTY_LABELS[drillDifficulty].toLowerCase());
+    document.getElementById('drill-best').textContent = best != null ? `Best (${bestLabel}): ${best}/20` : 'Best score: —';
   }
 
   function updateDrillInput(idx, value) {
@@ -1751,23 +1805,16 @@
       const input = document.querySelector('.drill-input[data-idx="' + idx + '"]');
       if (!input) return;
       // Pronoun-rewrite and command items need sentence-aware normalization
-      let userAns, correctAns;
-      if (item.isPronounRewrite || item.isCommandTu || item.isProgressive) {
-        userAns = normalizeSentence(item.userInput);
-        correctAns = normalizeSentence(item.answer);
-      } else {
-        userAns = normalize(item.userInput);
-        correctAns = normalize(item.answer);
-      }
+      // Hard mode: one accent-sensitive grader for every item type.
+      const norm = drillDifficulty === 'hard' ? normalizeStrict
+        : (item.isPronounRewrite || item.isCommandTu || item.isProgressive) ? normalizeSentence : normalize;
+      const userAns = norm(item.userInput);
       // Accept either the primary answer OR any of the alternates
-      let matched = userAns && userAns === correctAns;
-      if (!matched && item.answerAlt && Array.isArray(item.answerAlt)) {
-        for (const alt of item.answerAlt) {
-          const altNorm = (item.isPronounRewrite || item.isCommandTu || item.isProgressive)
-            ? normalizeSentence(alt) : normalize(alt);
-          if (userAns === altNorm) { matched = true; break; }
-        }
-      }
+      const accepted = [item.answer].concat(Array.isArray(item.answerAlt) ? item.answerAlt : []);
+      const matched = !!userAns && accepted.some(a => norm(a) === userAns);
+      // Right letters, wrong/missing accents — flag it so Hard mode feels fair
+      item.accentOnly = !matched && drillDifficulty === 'hard' && !!userAns &&
+        accepted.some(a => normalizeSentence(a) === normalizeSentence(item.userInput));
       item.isCorrect = matched;
       if (item.isCorrect) {
         score++;
@@ -1784,6 +1831,7 @@
           if (item.answerAlt && item.answerAlt.length > 0) {
             correctionText += ' (or: ' + item.answerAlt.join(', ') + ')';
           }
+          if (item.accentOnly) correctionText += ' · check your accents';
           correction.textContent = correctionText;
           row.appendChild(correction);
         }
@@ -1799,16 +1847,19 @@
     else if (score >= 15) { reward = 8;  verdict = 'Solid effort'; }
     else if (score >= 10) { reward = 3;  verdict = 'Keep practicing'; }
     else { reward = 0; verdict = 'Try the drill again'; }
+    // Easy pays half, Hard pays half again as much
+    if (drillDifficulty === 'easy') reward = Math.floor(reward / 2);
+    else if (drillDifficulty === 'hard') reward = Math.round(reward * 1.5);
 
     // Track stats
     STATE.verbsAttempted += 20;
     STATE.verbsCorrect += score;
     STATE.drillsCompleted = (STATE.drillsCompleted || 0) + 1;
     if (score >= 20) STATE.perfectDrills = (STATE.perfectDrills || 0) + 1;
-    const bestKey = 'drillBest_' + drillTense;
+    const bestKey = drillBestKey();
     if (score > (STATE[bestKey] || 0)) STATE[bestKey] = score;
 
-    if (reward > 0) awardCoins(reward, verdict + ' (' + score + '/20)');
+    if (reward > 0) awardCoins(reward, verdict + ' (' + score + '/20' + (drillDifficulty === 'normal' ? '' : ', ' + DRILL_DIFFICULTY_LABELS[drillDifficulty]) + ')');
     else { saveState(); checkAchievements(); }
 
     // Build results panel
@@ -1816,6 +1867,7 @@
     const accuracy = Math.round((score / 20) * 100);
     const results = document.getElementById('drill-results');
     results.innerHTML = `
+      ${activityStampHtml('Verb drill · ' + drillActivityName(), drillActivityDetails())}
       <h3>${score >= 18 ? '¡<em>Bien hecho</em>!' : score >= 10 ? 'Drill <em>complete</em>' : 'Keep <em>going</em>'}</h3>
       <div class="verdict">${verdict}</div>
       <div class="score-row">
@@ -2018,6 +2070,46 @@
     document.getElementById('vosotros-on').classList.toggle('active', on);
     document.getElementById('vosotros-off').classList.toggle('active', !on);
     newDrill();
+  }
+
+  // Normal keeps the original key so existing best scores carry over.
+  function drillBestKey() {
+    return 'drillBest_' + drillTense + (drillDifficulty === 'normal' ? '' : '_' + drillDifficulty);
+  }
+
+  // Names for the results stamp, read from the active pills so the wording
+  // matches exactly what the student clicked.
+  function drillActivityName() {
+    const pill = document.querySelector('#drill-tense-picker .pill.active');
+    return pill ? pill.textContent.trim() : (tenseLabels[drillTense] || drillTense);
+  }
+  function drillActivityDetails() {
+    const noGroupModes = ['serestar', 'possessives', 'tu-usted', 'pronouns'];
+    const groupPill = document.querySelector('#drill-group-picker .pill.active');
+    return [
+      !noGroupModes.includes(drillTense) && groupPill ? groupPill.textContent.trim() : '',
+      'Difficulty: ' + DRILL_DIFFICULTY_LABELS[drillDifficulty],
+      includeVosotros ? 'vosotros on' : ''
+    ];
+  }
+
+  function setDrillDifficulty(level) {
+    if (!DRILL_DIFFICULTY_LABELS[level]) level = 'normal';
+    drillDifficulty = level;
+    try { localStorage.setItem('tertulia_drill_difficulty', level); } catch (e) {}
+    document.querySelectorAll('#drill-difficulty-picker .pill').forEach(p => {
+      p.classList.toggle('active', p.dataset.level === level);
+    });
+    newDrill();
+  }
+
+  function applyDrillDifficultyPreference() {
+    let saved = null;
+    try { saved = localStorage.getItem('tertulia_drill_difficulty'); } catch (e) {}
+    drillDifficulty = DRILL_DIFFICULTY_LABELS[saved] ? saved : 'normal';
+    document.querySelectorAll('#drill-difficulty-picker .pill').forEach(p => {
+      p.classList.toggle('active', p.dataset.level === drillDifficulty);
+    });
   }
 
   function applyVosotrosPreference() {

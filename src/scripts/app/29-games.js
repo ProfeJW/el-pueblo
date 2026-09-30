@@ -1456,6 +1456,7 @@
     if (!container) return;
     container.innerHTML = `
       <div class="match-results">
+        ${activityStampHtml('Match it', [MATCH_DECK_LABELS[deckKey] || deckKey])}
         <div class="match-results-icon">🎉</div>
         <h2 style="font-family:'DM Serif Display',serif;font-size:32px;font-weight:400;margin-bottom:8px;">¡Completado!</h2>
         <div class="match-final-time">${formatMatchTime(finalTime)}</div>
@@ -1749,6 +1750,7 @@
 
     container.innerHTML = `
       <div class="game-results">
+        ${activityStampHtml(GAMES[gameId].title, [MATCH_DECK_LABELS[vs.deck] || vs.deck, 'answered in ' + (vs.direction === 'es' ? 'Spanish' : vs.direction === 'en' ? 'English' : 'mixed languages')])}
         <h3>${score}/10 — <em>${verdict}</em></h3>
         <p style="color:var(--ink-soft);font-size:14px;margin-bottom:8px;">${MATCH_DECK_LABELS[vs.deck] || vs.deck} · answered in ${vs.direction === 'es' ? 'Spanish' : vs.direction === 'en' ? 'English' : 'mixed languages'}</p>
         ${isNewBest && reward > 0
@@ -2102,6 +2104,7 @@
 
     container.innerHTML = `
       <div class="game-results">
+        ${activityStampHtml('La Racha · daily challenge', [])}
         <div style="font-size:52px;line-height:1;">${rs.score === RACHA_LEN ? '🌟' : rs.score >= 3 ? '🔥' : '🌱'}</div>
         <h3>${rs.score}/${RACHA_LEN} hoy</h3>
         <p style="font-size:16px;color:var(--ink);margin-bottom:6px;">${streakMsg}</p>
@@ -2590,6 +2593,7 @@
 
     container.innerHTML = `
       <div class="game-results">
+        ${activityStampHtml(game.title, [gameState.isSprint && sprintTimeSeconds !== null ? 'time ' + sprintTimeSeconds.toFixed(1) + 's' : ''])}
         <h3>${score === max ? '¡<em>Perfecto</em>!' : score >= tierSolid ? 'Game <em>complete</em>' : 'Keep <em>going</em>'}</h3>
         <div class="verdict">${verdict}</div>
         <div class="score-display">${score}/${max}</div>

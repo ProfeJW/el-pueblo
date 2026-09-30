@@ -528,6 +528,18 @@
       <p style="font-size: 18px; color: var(--ink-soft); line-height: 1.5; max-width: 520px;">
         Twenty random verbs. Fill in every blank, then hit <strong>Submit drill</strong> for instant feedback and your score. Earn Lucas based on accuracy — but you only get one shot per drill.
       </p>
+      <div class="deck-stat" style="margin-top: 24px; margin-bottom: 8px;">Difficulty:</div>
+      <div class="tense-picker" id="drill-difficulty-picker">
+        <button class="pill" data-level="easy" onclick="setDrillDifficulty('easy')">Easy</button>
+        <button class="pill active" data-level="normal" onclick="setDrillDifficulty('normal')">Normal</button>
+        <button class="pill" data-level="hard" onclick="setDrillDifficulty('hard')">Hard</button>
+      </div>
+      <p style="font-size: 13px; color: var(--ink-soft); line-height: 1.5; max-width: 520px; margin-top: 8px;">
+        <strong>Easy:</strong> starter letters in each blank + the verb's meaning. <strong>Normal:</strong> no hints, accents optional. <strong>Hard:</strong> no hints, and accents &amp; ñ must be correct.
+      </p>
+      <p style="font-size: 13px; color: var(--ink-soft); line-height: 1.5; max-width: 520px; margin-top: 8px;">
+        📸 Sending your score to Profe? Screenshot the whole results box — the top line shows the activity, settings, and time.
+      </p>
     </div>
     <div>
       <div class="deck-stat" style="margin-bottom: 12px;">Choose your tense:</div>
