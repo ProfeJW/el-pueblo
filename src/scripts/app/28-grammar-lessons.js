@@ -8555,6 +8555,7 @@
       const total = currentLessonAnswers.length;
       const banner = document.getElementById('lesson-completion-banner');
       const alreadyCompleted = isLessonCompleted(currentLesson.id);
+      const stamp = activityStampHtml('Grammar lesson · ' + currentLesson.title, ['check-your-understanding quiz']);
 
       if (score === total && !alreadyCompleted) {
         if (!STATE.completedLessons) STATE.completedLessons = {};
@@ -8564,6 +8565,7 @@
           <div class="reading-completion-banner">
             <span class="coin-icon"></span>
             <div>
+              ${stamp}
               <div style="font-family: 'DM Serif Display', serif; font-size: 22px; font-style: italic; color: var(--ocre);">${score} / ${total}</div>
               <div style="color: rgba(244,237,224,0.8); font-size: 14px; margin-top: 2px;">Earned 15 Lucas — lesson complete!</div>
             </div>
@@ -8574,6 +8576,7 @@
           <div class="reading-completion-banner">
             <span class="coin-icon"></span>
             <div>
+              ${stamp}
               <div style="font-family: 'DM Serif Display', serif; font-size: 22px; font-style: italic; color: var(--ocre);">${score} / ${total}</div>
               <div style="color: rgba(244,237,224,0.8); font-size: 14px; margin-top: 2px;">Already completed earlier — great review!</div>
             </div>
@@ -8583,6 +8586,7 @@
         banner.innerHTML = `
           <div class="reading-completion-banner" style="background: rgba(196, 61, 42, 0.08); border-color: rgba(196, 61, 42, 0.3);">
             <div>
+              ${stamp}
               <div style="font-family: 'DM Serif Display', serif; font-size: 22px; font-style: italic; color: var(--rojo);">${score} / ${total}</div>
               <div style="color: rgba(244,237,224,0.8); font-size: 14px; margin-top: 2px;">Read again and retry to earn full credit.</div>
             </div>

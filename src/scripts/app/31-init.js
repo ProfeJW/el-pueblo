@@ -7,6 +7,7 @@
   updateRepasoBadges();
   renderCard();
   applyVosotrosPreference();
+  applyDrillDifficultyPreference();
   newDrill();
   renderCountries();
   renderKnownFor();
