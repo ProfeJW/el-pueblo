@@ -40,7 +40,8 @@
     linguistica: 'Lingüística',
     adquisicion: 'Adquisición',
     lesson: 'Lesson',
-    recursos: 'Student Resources'
+    recursos: 'Student Resources',
+    revisar: 'Check a result'
   };
 
 
