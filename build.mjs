@@ -126,7 +126,7 @@ const SCHOOL_OVERRIDE = `
 <style id="school-mode">
   #signInBtn, #signOutBtn, #coinCounter, #nameChip, #toastContainer,
   #lucasExplainer, a[href="#/lucas"],
-  .page[data-page="lucas"] { display: none !important; }
+  .page[data-page="lucas"], .page[data-page="revisar"] { display: none !important; }
 </style>
 <script id="school-mode-js">
 (function(){
@@ -135,7 +135,7 @@ const SCHOOL_OVERRIDE = `
   window.showToast = noop;
   window.openSignInModal = noop;
   window.signOut = noop;
-  function offLucas(){ if ((location.hash||'').indexOf('#/lucas') === 0) location.hash = '#/'; }
+  function offLucas(){ var h = location.hash||''; if (h.indexOf('#/lucas') === 0 || h.indexOf('#/revisar') === 0) location.hash = '#/'; }
   window.addEventListener('hashchange', offLucas); offLucas();
   // Scrub coin-reward phrasing from visible text (text nodes only; listeners untouched).
   function scrub(){
