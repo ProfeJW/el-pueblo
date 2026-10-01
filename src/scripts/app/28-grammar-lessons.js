@@ -8555,7 +8555,7 @@
       const total = currentLessonAnswers.length;
       const banner = document.getElementById('lesson-completion-banner');
       const alreadyCompleted = isLessonCompleted(currentLesson.id);
-      const stamp = activityStampHtml('Grammar lesson · ' + currentLesson.title, ['check-your-understanding quiz']);
+      const stamp = activityStampHtml('Grammar lesson · ' + currentLesson.title, ['check-your-understanding quiz'], score + '/' + total);
 
       if (score === total && !alreadyCompleted) {
         if (!STATE.completedLessons) STATE.completedLessons = {};

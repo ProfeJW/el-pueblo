@@ -130,11 +130,18 @@
 
   // "Receipt" line for every results screen. Students screenshot only the score
   // box, so the activity name, settings, and a timestamp live INSIDE that box.
-  function activityStampHtml(title, details) {
-    const plain = s => String(s == null ? '' : s).replace(/<[^>]+>/g, '').replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
-    const when = new Date().toLocaleString([], { weekday: 'short', month: 'short', day: 'numeric', hour: 'numeric', minute: '2-digit' });
-    const meta = (details || []).filter(Boolean).map(plain).concat(when).join(' · ');
-    return `<div class="result-stamp"><div class="rs-title">${plain(title)}</div><div class="rs-meta">${meta}</div></div>`;
+  // Also remembers the result so the "Send to Profe" button (10b) can turn it
+  // into a picture the student shares, copies, saves, or emails.
+  function activityStampHtml(title, details, score) {
+    const strip = s => String(s == null ? '' : s).replace(/<[^>]+>/g, '').replace(/&amp;/g, '&');
+    const plain = s => strip(s).replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
+    const now = new Date();
+    const when = now.toLocaleString([], { weekday: 'short', month: 'short', day: 'numeric', hour: 'numeric', minute: '2-digit' });
+    const parts = (details || []).filter(Boolean);
+    LAST_RESULT = { title: strip(title), details: parts.map(strip), score: strip(score), when, at: now };
+    const meta = parts.map(plain).concat(when).join(' · ');
+    return `<div class="result-stamp"><div class="rs-title">${plain(title)}</div><div class="rs-meta">${meta}</div>` +
+      `<button type="button" class="btn send-profe-btn" onclick="openSendProfe()">📤 Send to Profe</button></div>`;
   }
 
   // Verb drill difficulty: 'easy' (hints, accents forgiven) · 'normal' ·
@@ -1867,7 +1874,7 @@
     const accuracy = Math.round((score / 20) * 100);
     const results = document.getElementById('drill-results');
     results.innerHTML = `
-      ${activityStampHtml('Verb drill · ' + drillActivityName(), drillActivityDetails())}
+      ${activityStampHtml('Verb drill · ' + drillActivityName(), drillActivityDetails(), score + '/20')}
       <h3>${score >= 18 ? '¡<em>Bien hecho</em>!' : score >= 10 ? 'Drill <em>complete</em>' : 'Keep <em>going</em>'}</h3>
       <div class="verdict">${verdict}</div>
       <div class="score-row">

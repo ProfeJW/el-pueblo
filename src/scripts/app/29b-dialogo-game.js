@@ -865,7 +865,7 @@
 
     container.innerHTML = `
       <div class="game-results">
-        ${activityStampHtml('Completa el diálogo', [ds.mode === 'mc' ? 'multiple choice' : 'typed', 'Preliminar'])}
+        ${activityStampHtml('Completa el diálogo', [ds.mode === 'mc' ? 'multiple choice' : 'typed', 'Preliminar'], score + '/' + DIALOGO_ROUNDS)}
         <h3>${score}/${DIALOGO_ROUNDS} — <em>${verdict}</em></h3>
         <p style="color:var(--ink-soft);font-size:14px;margin-bottom:8px;">Completa el diálogo · ${ds.mode === 'mc' ? 'multiple choice' : 'typed'} · Preliminar</p>
         ${isNewBest && reward > 0
