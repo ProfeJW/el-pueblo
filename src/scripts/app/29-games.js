@@ -633,6 +633,10 @@
             promptDisplay: display,
             answer: validAnswers[0], // primary answer shown if wrong
             validAnswers: validAnswers, // accept any of these
+            // ...plus anything else that means the same clock time
+            // (y media / y treinta, y cuarto / y quince, menos cuarto,
+            // cinco para las nueve, faltan diez para las dos, …)
+            accept: input => spanishTimeMatches(input, hour, minute),
             hint: 'Es la una... / Son las dos y media / Son las tres menos cuarto / Andean: cinco para las nueve'
           };
         }
@@ -1031,6 +1035,95 @@
       paraLasPhrase(remainingMin, nextHour).forEach(a => answers.push(a));
     }
     return answers;
+  }
+
+  // Parse a student's written Spanish time and check it against hour:minute.
+  // Grades by meaning, so every correct form counts: "son las dos y media",
+  // "las dos y treinta", "dos y media", "son las tres menos cuarto",
+  // "son las tres menos quince", "cuarto para las tres", "faltan quince para
+  // las tres", "es un cuarto para las tres", "2 y 45", "… de la tarde", etc.
+  // Input arrives already normalize()d (lowercase, no accents). If the student
+  // writes the article/verb it must agree with the hour (no "son la una").
+  let _timeWordMap = null;
+  function timeWordMap() {
+    if (_timeWordMap) return _timeWordMap;
+    const m = {};
+    const strip = w => w.normalize('NFD').replace(/[̀-ͯ]/g, '');
+    for (let n = 1; n <= 59; n++) {
+      m[strip(numberToSpanish(n))] = n;
+      m[String(n)] = n;
+      m[String(n).padStart(2, '0')] = n;
+    }
+    for (let n = 1; n <= 9; n++) m['veinte y ' + strip(numberToSpanish(n))] = 20 + n;
+    m['una'] = 1; m['un'] = 1;
+    _timeWordMap = m;
+    return m;
+  }
+
+  function spanishTimeMatches(input, hour, minute) {
+    const words = timeWordMap();
+    let s = ' ' + String(input || '').toLowerCase()
+      .normalize('NFD').replace(/[̀-ͯ]/g, '')
+      .replace(/[¡¿.,;:!?]/g, ' ').replace(/\s+/g, ' ').trim() + ' ';
+    // Drop time-of-day tails and filler that don't change the clock time
+    s = s.replace(/ (de|por) la (manana|tarde|noche|madrugada) /g, ' ')
+         .replace(/ del (mediodia|dia) /g, ' ')
+         .replace(/ (exactamente|mas o menos|aproximadamente) /g, ' ')
+         .replace(/ minutos? /g, ' ')
+         .replace(/\s+/g, ' ').trim();
+
+    // Number (1-59) from words or digits
+    const num = t => (t in words ? words[t] : null);
+    // Minute amount: number, "cuarto", "un cuarto", "media"
+    const mins = t => {
+      if (t === 'cuarto' || t === 'un cuarto') return 15;
+      if (t === 'media') return 30;
+      const n = num(t);
+      return n != null && n < 60 ? n : null;
+    };
+    // Hour with optional article; the article must agree (la una / las dos)
+    const hourOf = t => {
+      const m = t.match(/^(?:(la|las) )?(.+)$/);
+      const h = num(m[2]);
+      if (h == null || h < 1 || h > 12) return null;
+      if (m[1] && (m[1] === 'la') !== (h === 1)) return null;
+      return h;
+    };
+    // Leading verb must agree too (es la una / son las dos), if present
+    const verbOk = (verb, h) => !verb || (verb === 'es') === (h === 1);
+
+    const target = (hour % 12) * 60 + minute;
+    const same = (h, m) => (((h % 12) * 60 + m) % 720 + 720) % 720 === target;
+    let r;
+
+    // "(faltan|es|son) X para (la|las) H"
+    r = s.match(/^(?:(?:ya )?(?:faltan|falta|son|es) )?(.+?) para (.+)$/);
+    if (r) {
+      const m = mins(r[1]), h = hourOf(r[2]);
+      if (m != null && h != null && m > 0 && m < 60) return same(h - 1, 60 - m);
+      return false;
+    }
+    // "(es|son) (la|las) H menos X"
+    r = s.match(/^(?:(es|son) )?(.+?) menos (.+)$/);
+    if (r) {
+      const h = hourOf(r[2]), m = mins(r[3]);
+      if (h != null && m != null && verbOk(r[1], h) && m > 0) return same(h - 1, 60 - m);
+      return false;
+    }
+    // "(es|son) (la|las) H (y|con) X"
+    r = s.match(/^(?:(es|son) )?(.+?) (?:y|con) (.+)$/);
+    if (r) {
+      const h = hourOf(r[2]), m = mins(r[3]);
+      if (h != null && m != null && verbOk(r[1], h)) return same(h, m);
+      // fall through: "veinte y cinco"-style hour isn't possible, so no match
+    }
+    // "(es|son) (la|las) H (en punto)"
+    r = s.match(/^(?:(es|son) )?(.+?)(?: en punto)?$/);
+    if (r) {
+      const h = hourOf(r[2]);
+      if (h != null && verbOk(r[1], h)) return same(h, 0);
+    }
+    return false;
   }
 
   function getGameBestScore(gameId) {
@@ -2395,6 +2488,10 @@
       isCorrect = gameState.current.validAnswers.some(ans => normalize(ans) === userAnswer);
     } else {
       isCorrect = userAnswer === correctAnswer;
+    }
+    // Some games grade by meaning (e.g. time-telling accepts every correct form)
+    if (!isCorrect && typeof gameState.current.accept === 'function') {
+      isCorrect = !!gameState.current.accept(input.value);
     }
     if (isCorrect) {
       gameState.score++;
