@@ -137,22 +137,6 @@
       .replace(/\s+/g, ' ');
   }
 
-  // "Receipt" line for every results screen. Students screenshot only the score
-  // box, so the activity name, settings, and a timestamp live INSIDE that box.
-  // Also remembers the result so the "Send to Profe" button (10b) can turn it
-  // into a picture the student shares, copies, saves, or emails.
-  function activityStampHtml(title, details, score) {
-    const strip = s => String(s == null ? '' : s).replace(/<[^>]+>/g, '').replace(/&amp;/g, '&');
-    const plain = s => strip(s).replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
-    const now = new Date();
-    const when = now.toLocaleString([], { weekday: 'short', month: 'short', day: 'numeric', hour: 'numeric', minute: '2-digit' });
-    const parts = (details || []).filter(Boolean);
-    LAST_RESULT = { title: strip(title), details: parts.map(strip), score: strip(score), when, at: now };
-    const meta = parts.map(plain).concat(when).join(' · ');
-    return `<div class="result-stamp"><div class="rs-title">${plain(title)}</div><div class="rs-meta">${meta}</div>` +
-      `<button type="button" class="btn send-profe-btn" onclick="openSendProfe()">📤 Send to Profe</button></div>`;
-  }
-
   // Verb drill difficulty: 'easy' (hints, accents forgiven) · 'normal' ·
   // 'hard' (no hints, accents required). Saved per device like vosotros.
   const DRILL_DIFFICULTY_LABELS = { easy: 'Easy', normal: 'Normal', hard: 'Hard' };

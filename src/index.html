@@ -2430,6 +2430,26 @@
 </div>
 
 
+<div class="page" data-page="revisar"><section id="revisar">
+  <div class="section-header">
+    <h2>Check a <em>result</em></h2>
+    <div class="section-num">✓ · Profe only · verify a student's screenshot</div>
+  </div>
+  <div style="max-width: 620px;">
+    <p style="font-size: 16px; color: var(--ink-soft); line-height: 1.6; margin-bottom: 20px;">
+      Copy these from the stamp at the top of the student's results box. Spaces, capitals, accents and punctuation don't matter.
+    </p>
+    <div class="rc-form">
+      <label>Name <input id="rc-name" autocomplete="off"></label>
+      <label>Score <input id="rc-score" autocomplete="off" placeholder="e.g. 17/20"></label>
+      <label>Check code <input id="rc-code" autocomplete="off" placeholder="e.g. 4QX-7KM-2PA" style="text-transform: uppercase;"></label>
+      <label>Activity <span style="opacity:.7;font-weight:400;">(optional: the top line plus the settings line, skip the date)</span> <input id="rc-activity" autocomplete="off" placeholder="e.g. Verb drill present tense regular ar difficulty hard"></label>
+      <button type="button" class="btn primary" onclick="rcRunCheck()">Check</button>
+    </div>
+    <div id="rc-result" class="rc-result" aria-live="polite"></div>
+  </div>
+</section></div>
+
 <div class="page" data-page="lucas"><section id="lucas">
   <div class="section-header">
     <h2>Lucas &amp; <em>shop</em></h2>

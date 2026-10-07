@@ -2368,6 +2368,54 @@
     opacity: 0.75;
     margin-top: 2px;
   }
+  .result-stamp .rs-id {
+    font-size: 13px;
+    margin-top: 6px;
+    padding-top: 6px;
+    border-top: 1px dotted currentColor;
+  }
+  .result-stamp .rs-code {
+    font-family: 'JetBrains Mono', monospace;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+  }
+  .result-stamp .rs-name-input {
+    background: transparent;
+    color: inherit;
+    border: none;
+    border-bottom: 1px solid currentColor;
+    font: inherit;
+    padding: 2px 4px;
+    width: 12em;
+    max-width: 100%;
+  }
+  .result-stamp .rs-ok,
+  .result-stamp .rs-edit {
+    background: transparent;
+    color: inherit;
+    border: 1px solid currentColor;
+    font: inherit;
+    font-size: 12px;
+    padding: 1px 8px;
+    cursor: pointer;
+  }
+  .result-stamp .rs-edit { border: none; padding: 0 2px; opacity: 0.6; }
+  .rc-form { display: grid; gap: 14px; }
+  .rc-form label { display: grid; gap: 4px; font-weight: 600; font-size: 14px; }
+  .rc-form input {
+    font: inherit;
+    font-weight: 400;
+    padding: 8px 10px;
+    border: 1px solid var(--line);
+    background: transparent;
+    color: var(--ink);
+  }
+  .rc-form .btn { justify-self: start; }
+  .rc-result { margin-top: 18px; font-size: 15px; line-height: 1.6; }
+  .rc-result.rc-good, .rc-result.rc-bad, .rc-result.rc-warn { padding: 12px 14px; border: 1px solid var(--line); }
+  .rc-result.rc-good { border-color: var(--verde); }
+  .rc-result.rc-bad { border-color: var(--rojo); }
+  .rc-result.rc-warn { border-color: var(--ocre); }
   .result-stamp .send-profe-btn {
     color: inherit;
     border-color: currentColor;

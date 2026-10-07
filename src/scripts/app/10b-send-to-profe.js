@@ -78,7 +78,7 @@
   function onSendProfeName() {
     try { localStorage.setItem(SEND_NAME_KEY, sendProfeName()); } catch (e) {}
     clearTimeout(_sendNameTimer);
-    _sendNameTimer = setTimeout(renderSendProfeCard, 150);
+    _sendNameTimer = setTimeout(() => { renderSendProfeCard(); rcRefreshStamps(); }, 150);
   }
 
   function sendProfeMsg(text, isError) {
@@ -102,6 +102,12 @@
     }
     if (line) { ctx.fillText(line, x, y); y += lineH; }
     return y;
+  }
+
+  // Same code the stamp shows; Profe verifies it at /profe/#/revisar.
+  function sendProfeCheckCode() {
+    const name = sendProfeName();
+    return name ? rcMakeCode(name, LAST_RESULT.score, LAST_RESULT.activity, LAST_RESULT.ms) : '';
   }
 
   function drawSendProfeCard() {
@@ -138,6 +144,17 @@
     ctx.fillStyle = '#6b5f50';
     ctx.font = '20px "JetBrains Mono", monospace';
     ctx.fillText(r.at.toLocaleString([], { weekday: 'long', month: 'long', day: 'numeric', year: 'numeric', hour: 'numeric', minute: '2-digit' }), P, H - 56);
+    const code = sendProfeCheckCode();
+    if (code) {
+      ctx.textAlign = 'right';
+      ctx.fillStyle = '#6b5f50';
+      ctx.font = '600 16px "JetBrains Mono", monospace';
+      ctx.fillText('CHECK CODE', W - P, H - 100);
+      ctx.fillStyle = '#1f1a14';
+      ctx.font = '700 32px "JetBrains Mono", monospace';
+      ctx.fillText(code, W - P, H - 60);
+      ctx.textAlign = 'left';
+    }
     return c;
   }
 
@@ -162,7 +179,8 @@
       'Activity: ' + r.title,
       r.details.length ? 'Settings: ' + r.details.join(' · ') : '',
       'Score: ' + r.score,
-      'Finished: ' + r.when
+      'Finished: ' + r.when,
+      sendProfeName() ? 'Check code: ' + sendProfeCheckCode() : ''
     ].filter(Boolean).join('\n');
   }
 
