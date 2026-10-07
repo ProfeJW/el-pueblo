@@ -2416,6 +2416,45 @@
   .rc-result.rc-good { border-color: var(--verde); }
   .rc-result.rc-bad { border-color: var(--rojo); }
   .rc-result.rc-warn { border-color: var(--ocre); }
+  .result-stamp .send-profe-btn {
+    color: inherit;
+    border-color: currentColor;
+    margin-top: 10px;
+    padding: 8px 14px;
+  }
+  .result-stamp .send-profe-btn:hover { background: var(--rojo); border-color: var(--rojo); color: #fff; }
+
+  /* Send-to-Profe panel (built by 10b-send-to-profe.js) */
+  .send-profe-modal { max-width: 560px; }
+  .send-profe-modal .modal-body { padding: 32px; }
+  .send-profe-label {
+    display: block;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+    margin: 12px 0 6px;
+  }
+  .send-profe-input {
+    width: 100%;
+    box-sizing: border-box;
+    font: inherit;
+    font-size: 16px;
+    padding: 10px 12px;
+    border: 1px solid var(--line);
+    background: var(--card-bg, transparent);
+    color: var(--ink);
+  }
+  .send-profe-preview {
+    display: block;
+    width: 100%;
+    height: auto;
+    margin: 16px 0;
+    border: 1px solid var(--line);
+  }
+  .send-profe-actions { display: flex; flex-wrap: wrap; gap: 8px; }
+  .send-profe-help { font-size: 13px; color: var(--ink-soft); line-height: 1.5; margin-top: 12px; }
   .drill-input {
     background: transparent;
     border: none;

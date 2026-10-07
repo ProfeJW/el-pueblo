@@ -11,7 +11,7 @@
   const RC_EPOCH = Date.UTC(2026, 0, 1);
   const RC_TIME_SPAN = 1 << 20;          // minutes kept in the code (~2 years, then wraps)
   const RC_ALPHABET = '0123456789ABCDEFGHJKMNPQRSTVWXYZ'; // Crockford base32
-  const RC_NAME_KEY = 'elp_result_name';
+  const RC_NAME_KEY = 'elpueblo_send_name';   // shared with Send to Profe (10b)
 
   function rcHash(str) {                  // cyrb53 — small, sync, 53-bit
     let h1 = 0xdeadbeef, h2 = 0x41c6ce57;
@@ -85,7 +85,8 @@
         (d.score ? ` · Score <strong>${rcEsc(d.score)}</strong>` : '') +
         ` · Check code <span class="rs-code">${rcMakeCode(name, d.score, d.activity, d.ms)}</span>`
       : `<label>Type your name to get your check code:</label> <input class="rs-name-input" maxlength="40" autocomplete="off" onkeydown="if(event.key==='Enter')rcSetName(this)"> <button type="button" class="rs-ok" onclick="rcSetName(this)">OK</button>`;
-    return `<div class="rs-title">${rcEsc(d.title)}</div><div class="rs-meta">${meta}</div><div class="rs-id">${id}</div>`;
+    return `<div class="rs-title">${rcEsc(d.title)}</div><div class="rs-meta">${meta}</div><div class="rs-id">${id}</div>` +
+      `<button type="button" class="btn send-profe-btn" onclick="openSendProfe()">📤 Send to Profe</button>`;
   }
 
   // score: the result as shown on screen ("17/20", "0:42.3"); it is what the
@@ -103,6 +104,11 @@
       ms: Date.now()
     };
     d.activity = d.title + ' ' + d.details.join(' ');
+    // Latest result, for the Send to Profe picture/email (10b).
+    LAST_RESULT = {
+      title: d.title, details: d.details, score: d.score, activity: d.activity, ms: d.ms, at: new Date(d.ms),
+      when: new Date(d.ms).toLocaleString([], { weekday: 'short', month: 'short', day: 'numeric', hour: 'numeric', minute: '2-digit' })
+    };
     return `<div class="result-stamp" data-rc="${rcEsc(JSON.stringify(d))}">${rcStampInner(d)}</div>`;
   }
 
