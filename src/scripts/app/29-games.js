@@ -507,10 +507,11 @@
             promptLabel: 'Write this date in Spanish',
             promptDisplay: MONTHS_EN[month] + ' ' + day,
             answer: esDate,
-            validAnswers: day === 1
-              ? [esDate, 'el uno de ' + MONTHS_ES[month]]
-              : [esDate],
-            hint: 'Format: "el [day] de [month]" — use "primero" for the 1st'
+            // Students may write the day as a numeral ("el 5 de marzo") —
+            // the month still has to be in Spanish.
+            validAnswers: [esDate, 'el ' + day + ' de ' + MONTHS_ES[month]]
+              .concat(day === 1 ? ['el uno de ' + MONTHS_ES[month], 'el 1º de ' + MONTHS_ES[month], 'el 1° de ' + MONTHS_ES[month]] : []),
+            hint: 'Format: "el [day] de [month]" — write the day as a word or a number (use "primero" or 1 for the 1st)'
           };
         } else {
           const mEn = MONTHS_EN[month];
