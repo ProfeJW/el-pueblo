@@ -507,11 +507,11 @@
             promptLabel: 'Write this date in Spanish',
             promptDisplay: MONTHS_EN[month] + ' ' + day,
             answer: esDate,
-            // Students may write the day as a numeral ("el 5 de marzo") —
-            // the month still has to be in Spanish.
-            validAnswers: [esDate, 'el ' + day + ' de ' + MONTHS_ES[month]]
-              .concat(day === 1 ? ['el uno de ' + MONTHS_ES[month], 'el 1º de ' + MONTHS_ES[month], 'el 1° de ' + MONTHS_ES[month]] : []),
-            hint: 'Format: "el [day] de [month]" — write the day as a word or a number (use "primero" or 1 for the 1st)'
+            validAnswers: [esDate],
+            // The day may be a word or a numeral ("el 5 de marzo", "05 de
+            // marzo"); "el" and "de" are optional. The month must be Spanish.
+            accept: input => spanishDateMatches(input, day, month),
+            hint: 'Format: "el [day] de [month]" — the day can be a word or a number, like "el 5 de marzo"'
           };
         } else {
           const mEn = MONTHS_EN[month];
@@ -1059,6 +1059,19 @@
     m['una'] = 1; m['un'] = 1;
     _timeWordMap = m;
     return m;
+  }
+
+  // Grade a written Spanish date against day + month index. The day may be
+  // a word ("cinco", "primero") or a numeral ("5", "05", "1º"); "el" and "de"
+  // are optional ("5 de marzo", "el 5 marzo"). The month must be in Spanish.
+  function spanishDateMatches(input, day, month) {
+    const strip = w => w.normalize('NFD').replace(/[\u0300-\u036f]/g, '');
+    const m = normalize(input).replace(/^el\s+/, '')
+      .match(/^(.+?)\s+(?:de\s+)?([a-z]+)$/);
+    if (!m || m[2] !== strip(MONTHS_ES[month])) return false;
+    const dayText = m[1].replace(/^(\d+)\s*(?:º|°|o|ro)$/, '$1');
+    if (day === 1 && dayText === 'primero') return true;
+    return timeWordMap()[dayText] === day;
   }
 
   function spanishTimeMatches(input, hour, minute) {
