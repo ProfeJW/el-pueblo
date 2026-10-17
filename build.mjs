@@ -140,7 +140,7 @@ const SCHOOL_OVERRIDE = `
   // Scrub coin-reward phrasing from visible text (text nodes only; listeners untouched).
   function scrub(){
     var rx = [
-      [/\\s*[·•]\\s*\\+?\\d+\\s*Lucas\\b/g, ''],
+      [/[·•]\\s*\\+?\\d+\\s*Lucas\\b/g, ''], // no leading \\s*: it backtracked on every whitespace run
       [/Earn Lucas while you learn/gi, ''],
       [/Get it right to earn Lucas\\.?\\s*/gi, ''],
       [/Earn Lucas based on difficulty: harder texts pay more\\.?/gi, ''],
