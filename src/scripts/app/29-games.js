@@ -592,6 +592,7 @@
       title: 'Numbers <em>100–9999</em>',
       icon: '💯',
       maxReward: 50,
+      rounds: 20,
       generate: () => {
         // Mix of round numbers and tricky ones
         const r = Math.random();
