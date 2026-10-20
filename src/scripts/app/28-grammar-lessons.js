@@ -285,7 +285,9 @@
     'numbers-0-100': {
       decks: ['numeros'],
       games: ['numbers-small', 'numbers-mid'],
-      pdfs: [],
+      pdfs: [
+        { url: 'pdfs/numeros-grandes-worksheet.pdf', label: 'Los números grandes — 20 numbers 100–10,000, words → numerals (PDF)' }
+      ],
       links: [
         { label: 'Numbers 0–100 pronunciation guide (for English speakers)', url: 'https://docs.google.com/document/d/1h8xo16VPf3sbB9SpaRsnMvNGK0oU_94NLSga2anbb6M/edit?usp=sharing' },
         { label: 'Numbers 0–100 practice', url: 'https://docs.google.com/document/d/1uqLpUKrRUan29RVUtWrM4DYn1noNb6JPqiOuA2X0nkc/edit?usp=sharing' },
