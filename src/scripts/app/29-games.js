@@ -490,6 +490,32 @@
       isCustomFlow: true,
       generate: () => null
     },
+    // La sílaba tónica — three custom-flow games (29c-tonica-games.js). `rounds`
+    // mirrors TONICA_ROUNDS so the hub's best-score card reads the right "/N".
+    'tonica-id': {
+      title: '¿Dónde está el <em>golpe</em>?',
+      icon: '🎯',
+      maxReward: 35,
+      rounds: 20,
+      isCustomFlow: true,
+      generate: () => null
+    },
+    'tonica-escucha': {
+      title: 'Escucha el <em>golpe</em>',
+      icon: '👂',
+      maxReward: 30,
+      rounds: 15,
+      isCustomFlow: true,
+      generate: () => null
+    },
+    'tonica-voz': {
+      title: 'Lee en voz <em>alta</em>',
+      icon: '🎙️',
+      maxReward: 25,
+      rounds: 10,
+      isCustomFlow: true,
+      generate: () => null
+    },
     'dates': {
       title: 'Speaking <em>dates</em>',
       icon: '🗓️',
@@ -1254,6 +1280,7 @@
     if (gameId === 'vocab-mc') { startVocabGame('mc'); return; }
     if (gameId === 'dialogo-type') { startDialogoGame('type'); return; }
     if (gameId === 'dialogo-mc') { startDialogoGame('mc'); return; }
+    if (gameId === 'tonica-id' || gameId === 'tonica-escucha' || gameId === 'tonica-voz') { startTonicaGame(gameId); return; }
     if (GAMES[gameId] && GAMES[gameId].dualMode) { renderGameModePicker(gameId); return; }
     const game = GAMES[gameId];
     const container = document.getElementById('game-detail-content');
