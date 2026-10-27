@@ -22,6 +22,11 @@
   // lesson's "Related practice" section.
   // ============================================================================
   const LESSON_RESOURCES = {
+    'silaba-tonica': {
+      games: ['tonica-id', 'tonica-escucha', 'tonica-voz'],
+      pdfs: [],
+      links: []
+    },
     'nombres-apellidos': {
       decks: ['saludos', 'gente', 'familia'],
       pdfs: [
@@ -8079,6 +8084,99 @@
           { text: 'She is married to a Williamson', correct: true },
           { text: 'She was born in a town called Williamson', correct: false },
           { text: 'Williamson replaced her surnames', correct: false }
+        ]}
+      ]
+    },
+    {
+      id: 'silaba-tonica',
+      num: '55',
+      level: 'sp1',
+      title: 'La sílaba <em>tónica</em>',
+      tag: 'Foundations · Pronunciation &amp; spelling',
+      summary: 'Every Spanish word has one syllable that gets the punch. Find it, name the word (aguda, llana, esdrújula), and you know exactly when to write an accent mark.',
+      sections: [
+        {
+          heading: 'One word, one <em>golpe</em>',
+          body: 'Say <em>camino</em> out loud. One syllable is louder and longer than the others: ca-<strong>MI</strong>-no. That syllable is the <strong>sílaba tónica</strong> — the stressed syllable. Every word with two or more syllables has exactly one.<br><br>Don\'t confuse the <strong>stress</strong> (the sound) with the <strong>tilde</strong> (the written mark: á, é, í, ó, ú). Every word has stress; only some words write a tilde. <em>Camino</em> has stress on MI and no tilde. <em>Médico</em> has stress on MÉ and a tilde.'
+        },
+        {
+          heading: 'How to <em>find</em> it',
+          body: 'Two tricks that work:<br><br>• <strong>Call it across the room.</strong> Shout the word like you\'re calling someone: <em>¡ca-MI-no!</em> The syllable you stretch is the stressed one.<br>• <strong>Try the wrong ones.</strong> Say it three ways — <em>CA-mi-no, ca-MI-no, ca-mi-NO</em>. Only one sounds like Spanish.<br><br>To split syllables, remember Spanish likes consonant + vowel: <em>ca-sa, ven-ta-na, es-cue-la</em>. Two vowels like <em>ue, ia, io</em> usually stay together in one syllable (<em>es-cue-la, can-ción</em>).'
+        },
+        {
+          heading: 'The four <em>kinds</em> of words',
+          body: 'Count from the <strong>end</strong> of the word. Where the stress lands gives the word its name:',
+          conjugation: [
+            ['<strong>Aguda</strong>', 'Stress on the <strong>last</strong> syllable: ca-<strong>FÉ</strong>, can-<strong>CIÓN</strong>, ciu-<strong>DAD</strong>, ha-<strong>BLAR</strong>'],
+            ['<strong>Llana</strong> (grave)', 'Stress on the <strong>second-to-last</strong>: <strong>CA</strong>-sa, ca-<strong>MI</strong>-no, <strong>ÁR</strong>-bol, <strong>LÁ</strong>-piz'],
+            ['<strong>Esdrújula</strong>', 'Stress on the <strong>third-to-last</strong>: <strong>MÉ</strong>-di-co, <strong>MÚ</strong>-si-ca, te-<strong>LÉ</strong>-fo-no'],
+            ['<strong>Sobresdrújula</strong>', 'Stress <strong>before</strong> the third-to-last: <strong>DÍ</strong>-ga-me-lo, ex-<strong>PLÍ</strong>-ca-se-lo']
+          ]
+        },
+        {
+          heading: 'When to write the <em>tilde</em>',
+          body: 'Once you know the kind of word, the accent rule is one line each. The magic letters are <strong>vowel, n, s</strong>:',
+          conjugation: [
+            ['<strong>Aguda</strong>', 'Tilde if it ends in a <strong>vowel, -n or -s</strong>: <em>café, canción, inglés</em>. No tilde otherwise: <em>ciudad, reloj, hablar</em>.'],
+            ['<strong>Llana</strong>', 'The opposite: tilde if it does <strong>NOT</strong> end in vowel, -n or -s: <em>árbol, lápiz, fácil, azúcar</em>. No tilde for <em>casa, joven, examen</em>.'],
+            ['<strong>Esdrújula</strong>', '<strong>Always</strong> a tilde: <em>médico, sábado, música, jóvenes</em>.'],
+            ['<strong>Sobresdrújula</strong>', '<strong>Always</strong> a tilde: <em>dígamelo, cómpraselo</em>.']
+          ]
+        },
+        {
+          heading: 'Reading it the other <em>way</em>',
+          body: 'The same rules tell you how to <strong>pronounce</strong> a word you\'ve never seen. No tilde? Ends in a vowel, n or s → stress the second-to-last syllable (<em>za-PA-tos, HA-blan</em>). Ends in any other consonant → stress the last (<em>pa-PEL, re-LOJ</em>). See a tilde? Stress that syllable, no matter what.',
+          examples: [
+            { es: 'joven → jóvenes', en: 'JO-ven is llana ending in -n (no tilde). Add -es and it becomes esdrújula JÓ-ve-nes — the tilde appears.' },
+            { es: 'canción → canciones', en: 'can-CIÓN is aguda ending in -n (tilde). In can-CIO-nes it\'s llana ending in -s — the tilde disappears.' },
+            { es: 'examen → exámenes', en: 'Same pattern as joven: the stress stays on the same vowel, the word type changes.' }
+          ]
+        },
+        {
+          heading: 'Stress changes the <em>word</em>',
+          body: 'Move the stress and you can land on a completely different word. That\'s why the tilde matters — and why your ear matters.',
+          examples: [
+            { es: 'papa · papá', en: 'potato · dad' },
+            { es: 'esta · está', en: 'this · is' },
+            { es: 'hablo · habló', en: 'I speak · he/she spoke' },
+            { es: 'término · termino · terminó', en: 'term, end · I finish · he/she finished' },
+            { es: 'público · publico · publicó', en: 'audience · I publish · he/she published' },
+            { es: 'sábana · sabana', en: 'bed sheet · savanna' }
+          ]
+        },
+        {
+          type: 'tip',
+          heading: 'Practice it <em>out loud</em>',
+          body: 'This is a pronunciation skill, so use your voice. The three games for this lesson build it in order:<br><br>• <strong>¿Dónde está el golpe?</strong> — find the stress, name the word, decide on the tilde.<br>• <strong>Escucha el golpe</strong> — hear a word and pick where the stress fell (<em>papa</em> or <em>papá</em>?).<br>• <strong>Lee en voz alta</strong> — read words aloud while the computer (or a partner) listens.'
+        },
+        {
+          type: 'mistakes',
+          heading: 'Stress <em>traps</em>',
+          body: 'What English speakers usually get wrong:',
+          items: [
+            'Stressing the first syllable out of English habit — <em>CA-mi-no</em>, <em>HOS-pi-tal</em>. Spanish is <em>ca-MI-no</em> and <em>hos-pi-TAL</em> (aguda, ends in -l).',
+            'Thinking every word has a tilde somewhere. Most don\'t — the rules cover them. The tilde only marks the <strong>exceptions</strong>.',
+            'Forgetting the tilde moves with the word: <em>canción</em> but <em>canciones</em>; <em>joven</em> but <em>jóvenes</em>. Re-check the rule every time the ending changes.',
+            'Saying <em>termino</em> (I finish) when you mean <em>terminó</em> (he finished) — the stress is the only difference, and it changes the tense.',
+            'Writing the tilde on the wrong vowel in a pair like <em>ue</em> or <em>io</em>: it goes on the strong vowel (a, e, o) — <em>canción, después, también</em>.'
+          ]
+        }
+      ],
+      quiz: [
+        { q: 'In <em>ventana</em>, which syllable is stressed?', options: [
+          { text: 'ven', correct: false },
+          { text: 'ta', correct: true },
+          { text: 'na', correct: false }
+        ]},
+        { q: '<em>Médico</em> is stressed on the third-to-last syllable. It is…', options: [
+          { text: 'aguda', correct: false },
+          { text: 'llana', correct: false },
+          { text: 'esdrújula', correct: true }
+        ]},
+        { q: '<em>ciudad</em> is aguda and ends in -d. Does it need a tilde?', options: [
+          { text: 'No — agudas only take one when they end in a vowel, -n or -s', correct: true },
+          { text: 'Yes — all agudas have a tilde', correct: false },
+          { text: 'Yes, on the u: ciúdad', correct: false }
         ]}
       ]
     }
