@@ -13,26 +13,54 @@
 
   const DELETREO_ROUNDS = 15;
 
-  // [word, gloss] — chosen for the letters that trip spellers up: silent h,
-  // ll, rr, ñ, qu/gu, j vs g, b vs v, z vs c, ü, and accent marks.
+  // Word bank: ~50 everyday words. Common enough that students know them,
+  // and between them they cover the letters spellers trip on: silent h, ll,
+  // rr, ñ, qu, j/g, b/v, z/c, plus a few accented words.
   const DELETREO_WORDS = [
     ['casa', 'house'], ['perro', 'dog'], ['gato', 'cat'], ['hola', 'hello'],
-    ['hermano', 'brother'], ['hijo', 'son'], ['huevo', 'egg'], ['ahora', 'now'],
-    ['llave', 'key'], ['calle', 'street'], ['lluvia', 'rain'], ['pollo', 'chicken'],
-    ['carro', 'car'], ['guitarra', 'guitar'], ['ratón', 'mouse'], ['niño', 'child'],
-    ['año', 'year'], ['mañana', 'tomorrow, morning'], ['España', 'Spain'], ['señora', 'Mrs., lady'],
-    ['pequeño', 'small'], ['queso', 'cheese'], ['quince', 'fifteen'], ['guerra', 'war'],
-    ['juguete', 'toy'], ['jirafa', 'giraffe'], ['gente', 'people'], ['girasol', 'sunflower'],
-    ['vaca', 'cow'], ['verde', 'green'], ['abuela', 'grandmother'], ['vivir', 'to live'],
-    ['zapato', 'shoe'], ['cielo', 'sky'], ['azul', 'blue'], ['lápiz', 'pencil'],
-    ['árbol', 'tree'], ['café', 'coffee'], ['también', 'also'], ['música', 'music'],
-    ['teléfono', 'telephone'], ['sábado', 'Saturday'], ['miércoles', 'Wednesday'], ['inglés', 'English'],
-    ['pingüino', 'penguin'], ['vergüenza', 'embarrassment'], ['examen', 'test'], ['México', 'Mexico'],
-    ['taxi', 'taxi'], ['playa', 'beach'], ['ayer', 'yesterday'], ['joven', 'young'],
-    ['canción', 'song'], ['corazón', 'heart'], ['avión', 'airplane'], ['fácil', 'easy'],
-    ['difícil', 'difficult'], ['escuela', 'school'], ['ciudad', 'city'], ['reloj', 'watch, clock'],
-    ['plátano', 'banana'], ['murciélago', 'bat'], ['bicicleta', 'bicycle'], ['ventana', 'window']
+    ['gracias', 'thank you'], ['amigo', 'friend'], ['familia', 'family'], ['escuela', 'school'],
+    ['agua', 'water'], ['comida', 'food'], ['libro', 'book'], ['mesa', 'table'],
+    ['silla', 'chair'], ['puerta', 'door'], ['ventana', 'window'], ['hermano', 'brother'],
+    ['madre', 'mother'], ['padre', 'father'], ['niño', 'child'], ['año', 'year'],
+    ['mañana', 'tomorrow, morning'], ['noche', 'night'], ['día', 'day'], ['hoy', 'today'],
+    ['ayer', 'yesterday'], ['calle', 'street'], ['llave', 'key'], ['pollo', 'chicken'],
+    ['carro', 'car'], ['rojo', 'red'], ['verde', 'green'], ['azul', 'blue'],
+    ['blanco', 'white'], ['grande', 'big'], ['pequeño', 'small'], ['bueno', 'good'],
+    ['feliz', 'happy'], ['queso', 'cheese'], ['gente', 'people'], ['trabajo', 'work, job'],
+    ['juego', 'game'], ['playa', 'beach'], ['ciudad', 'city'], ['zapato', 'shoe'],
+    ['cabeza', 'head'], ['mano', 'hand'], ['corazón', 'heart'], ['música', 'music'],
+    ['café', 'coffee'], ['tiempo', 'time, weather'], ['hora', 'hour'], ['cielo', 'sky']
   ];
+
+  // A shuffled pile that games deal from in turn, so the whole bank comes up
+  // before any word repeats, and no two games come in the same order. When the
+  // pile runs out it is reshuffled, never starting the way the last pile did.
+  let deletreoPile = [];
+  let deletreoLastPile = null;
+  function deletreoShuffle(a) {
+    const b = a.slice();
+    for (let i = b.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [b[i], b[j]] = [b[j], b[i]];
+    }
+    return b;
+  }
+  function deletreoDeal(n) {
+    const out = [];
+    while (out.length < n) {
+      if (!deletreoPile.length) {
+        let next;
+        do { next = deletreoShuffle(DELETREO_WORDS); }
+        while (deletreoLastPile && next[0][0] === deletreoLastPile[0][0]);
+        deletreoLastPile = next;
+        deletreoPile = next.slice();
+      }
+      const w = deletreoPile.shift();
+      // Across a reshuffle, don't let a word show up twice in one game.
+      if (!out.some(o => o[0] === w[0])) out.push(w);
+    }
+    return out;
+  }
 
   const DELETREO_ACCENT_NAME = { 'á': 'a', 'é': 'e', 'í': 'i', 'ó': 'o', 'ú': 'u' };
 
@@ -130,7 +158,7 @@
 
   function beginDeletreoGame() {
     deletreoState = {
-      items: DELETREO_WORDS.slice().sort(() => Math.random() - 0.5).slice(0, DELETREO_ROUNDS),
+      items: deletreoDeal(DELETREO_ROUNDS),
       round: 0, score: 0, history: [], answered: false
     };
     renderDeletreoRound();
