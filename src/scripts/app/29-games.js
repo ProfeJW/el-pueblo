@@ -2304,7 +2304,7 @@
     { L: 'V', name: 'uve',        word: 'vaca',     en: 'cow',      cat: 'plosive',   manner: 'Plosive /b/ — sounds like B',           say: 'like “b” (V = B in Spanish!)', mouth: 'lips together, soft' },
     { L: 'W', name: 'uve doble',  word: 'wifi',     en: 'wifi',     cat: 'glide',     manner: 'Glide · /w/ (foreign words)',           say: 'like “w” in week',            mouth: 'lips rounded, then glide' },
     { L: 'X', name: 'equis',      word: 'taxi',     en: 'taxi',     cat: 'fricative', manner: 'Fricative /ks/ (guttural /x/ in “México”)', say: 'like “x” in taxi',        mouth: '“k” + “s” run together' },
-    { L: 'Y', name: 'ye',         word: 'yate',     en: 'yacht',    cat: 'glide',     manner: 'Palatal glide /ʝ/ — or vowel /i/',      say: 'like “y” in yes',             mouth: 'middle of tongue toward roof' },
+    { L: 'Y', name: 'i griega', word: 'yate',     en: 'yacht',    cat: 'glide',     manner: 'Palatal glide /ʝ/ — or vowel /i/',      say: 'like “y” in yes',             mouth: 'middle of tongue toward roof' },
     { L: 'Z', name: 'zeta',       word: 'zapato',   en: 'shoe',     cat: 'fricative', manner: 'Fricative /s/ (or “th” in Spain)',      say: 'like “s” (or “th” in Spain)', mouth: 'tongue near ridge, hiss' }
   ];
   // Sound-family → color + label for the tags and legend
