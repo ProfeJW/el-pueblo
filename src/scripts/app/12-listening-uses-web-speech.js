@@ -42,25 +42,43 @@
     renderDictation();
   }
 
-  // Pick the Spanish voice: Latin American by default, Peruvian when the device
-  // has one (Edge does; Chrome usually offers Mexico or US Spanish). Spain's
-  // Spanish is the last resort. Returns { voice, lang } — voice may be null
-  // when the browser hasn't loaded voices yet; lang still asks for es-419.
+  // Pick the Spanish voice. Sound quality comes first, accent second:
+  //   1. natural voices — Google's online voices (the good ones on Chromebooks),
+  //      Microsoft "Online (Natural)", Apple enhanced/premium
+  //   2. other built-in voices
+  //   3. eSpeak — the fast, robotic offline voice Chromebooks also list
+  // Within a tier: Peruvian first, then other Latin American Spanish, Spain last.
+  // Returns { voice, lang, slow } — voice may be null when the browser hasn't
+  // loaded voices yet (lang still asks for es-419); slow < 1 for a robotic
+  // voice, so callers can take it down a notch and keep it understandable.
   const LATAM_VOICE_ORDER = ['es-pe', 'es-419', 'es-mx', 'es-us', 'es-co', 'es-cl', 'es-ar', 'es-ec', 'es-bo',
     'es-ve', 'es-uy', 'es-py', 'es-cr', 'es-pa', 'es-gt', 'es-hn', 'es-sv', 'es-ni', 'es-do', 'es-pr', 'es-cu'];
+  function spanishVoiceTier(v) {
+    const name = String(v.name || '');
+    if (/espeak/i.test(name)) return 2;
+    if (/google|natural|online|neural|premium|enhanced/i.test(name) || v.localService === false) return 0;
+    return 1;
+  }
   function pickSpanishVoice() {
     const voices = ('speechSynthesis' in window) ? window.speechSynthesis.getVoices() : [];
     const tag = v => String(v.lang || '').toLowerCase().replace('_', '-');
-    const rank = v => {
+    const accent = v => {
       const t = tag(v);
-      if (!t.startsWith('es')) return 999;
       const i = LATAM_VOICE_ORDER.indexOf(t);
       if (i >= 0) return i;
-      return t === 'es-es' ? 900 : 800; // other/unknown Spanish beats Spain
+      return t === 'es-es' ? 90 : 80; // other/unknown Spanish beats Spain
     };
+    const score = v => spanishVoiceTier(v) * 100 + accent(v);
     let best = null;
-    voices.forEach(v => { if (rank(v) < 999 && (!best || rank(v) < rank(best))) best = v; });
-    return { voice: best, lang: best ? best.lang.replace('_', '-') : 'es-419' };
+    voices.forEach(v => {
+      if (!tag(v).startsWith('es')) return;
+      if (!best || score(v) < score(best)) best = v;
+    });
+    return {
+      voice: best,
+      lang: best ? best.lang.replace('_', '-') : 'es-419',
+      slow: best && spanishVoiceTier(best) === 2 ? 0.8 : 1
+    };
   }
 
   // Speak a Spanish text aloud
@@ -74,7 +92,7 @@
     const u = new SpeechSynthesisUtterance(text);
     const pick = pickSpanishVoice();
     u.lang = pick.lang;
-    u.rate = listenSpeed;
+    u.rate = listenSpeed * pick.slow;
     if (pick.voice) u.voice = pick.voice;
     u.onend = () => { if (onEnd) onEnd(); };
     u.onerror = () => { if (onEnd) onEnd(); };
@@ -834,7 +852,7 @@
       const u = new SpeechSynthesisUtterance(text);
       const pick = pickSpanishVoice();
       u.lang = pick.lang;
-      u.rate = 0.9;
+      u.rate = 0.9 * pick.slow;
       if (pick.voice) u.voice = pick.voice;
       card.classList.add('playing');
       u.onend = () => {
