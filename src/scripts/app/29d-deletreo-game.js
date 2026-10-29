@@ -146,8 +146,8 @@
           <em>be, ce, hache, jota, eñe…</em> — then the word again. Type it exactly.
         </p>
         <p style="color:var(--ink-soft);font-size:14px;margin-bottom:20px;">
-          Every letter counts, including the <strong>ñ</strong> — use the <strong>ñ</strong> button if your keyboard
-          doesn't have one. Accent marks won't count against you, but you can add them with the buttons too. ${DELETREO_ROUNDS} rounds.${best > 0 ? ' Your best: ' + best + '/' + DELETREO_ROUNDS + '.' : ''}
+          Accent marks (á, é, í, ó, ú) won't count against you. <strong>The only one that does is the ñ</strong> —
+          typing n instead of ñ is wrong. Use the <strong>ñ</strong> button if your keyboard doesn't have one. ${DELETREO_ROUNDS} rounds.${best > 0 ? ' Your best: ' + best + '/' + DELETREO_ROUNDS + '.' : ''}
           Need the letter names? <a href="#/abecedario" class="aviso-link">El abecedario</a>.
         </p>
         ${noVoice
@@ -196,6 +196,9 @@
           ${['á', 'é', 'í', 'ó', 'ú', 'ü'].map(c =>
             `<button type="button" class="btn" style="${tiny}padding:6px 12px;font-size:16px;min-width:40px;text-transform:none;letter-spacing:0;opacity:0.8;"
                      onmousedown="event.preventDefault()" onclick="deletreoInsert('${c}')">${c}</button>`).join('')}
+        </div>
+        <div style="font-size:13px;opacity:0.8;margin-top:8px;">
+          Accent marks won't count against you. <strong>Only the ñ does</strong> — n instead of ñ is wrong.
         </div>
         <div class="game-feedback" id="gameFeedback" role="status" aria-live="polite">&nbsp;</div>
         <div style="margin-top:20px;">
