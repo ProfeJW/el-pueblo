@@ -717,7 +717,7 @@
             ['v', 'name: "uve"'],
             ['w', 'name: "doble uve" (rare in Spanish)'],
             ['x', 'name: "equis"'],
-            ['y', 'name: "ye" or "i griega"'],
+            ['y', 'name: "i griega" (also "ye")'],
             ['z', 'name: "zeta"']
           ]
         },
