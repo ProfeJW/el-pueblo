@@ -282,7 +282,8 @@
         <h2 style="font-family:'DM Serif Display',serif;font-size:32px;font-weight:400;margin-bottom:8px;">${meta.title}</h2>
         <p style="color:var(--ink-soft);font-size:15px;margin-bottom:6px;">${meta.intro}</p>
         <p style="color:var(--ink-soft);font-size:14px;margin-bottom:20px;">${rounds} rounds.${best > 0 ? ' Your best: ' + best + '/' + rounds + '.' : ''}
-          Need a refresher? <a href="#/lesson/silaba-tonica" class="aviso-link">La sílaba tónica</a>.</p>
+          Need a refresher? <a href="#/lesson/silaba-tonica" class="aviso-link">La sílaba tónica</a>.
+          ${gameId === 'tonica-id' ? '' : 'Voice hard to understand? <a href="javascript:void(0)" class="aviso-link" onclick="openVoicePicker()">Choose another voice 🔊</a>.'}</p>
         ${buttons}
       </div>`;
   }
