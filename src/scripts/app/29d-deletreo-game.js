@@ -3,8 +3,9 @@
   // ----------------------------------------------------------------------------
   // The voice says the word, spells it with Spanish letter names (be, ce, de,
   // hache, jota, eñe… "e con tilde"), then says it again. The student types it.
-  // Graded exactly: every letter, the ñ, and the accent marks have to be right —
-  // that's the point of spelling. Letters right but an accent off gets told so.
+  // Graded on the letters, including ñ. Accent marks (á é í ó ú ü) don't count
+  // either way; a right answer without them shows the accented spelling.
+  // n for ñ is wrong, and gets its own message.
   //
   // Own flow (like the sílaba tónica games) because the shared engine ignores
   // accents. Letter names come from ABC_LETTERS (29-games.js).
@@ -115,8 +116,8 @@
           <em>be, ce, hache, jota, eñe…</em> — then the word again. Type it exactly.
         </p>
         <p style="color:var(--ink-soft);font-size:14px;margin-bottom:20px;">
-          Spelling counts: every letter, the <strong>ñ</strong>, and the accent marks. When you hear
-          "<em>e con tilde</em>", type <strong>é</strong>. ${DELETREO_ROUNDS} rounds.${best > 0 ? ' Your best: ' + best + '/' + DELETREO_ROUNDS + '.' : ''}
+          Every letter counts, including the <strong>ñ</strong> — use the <strong>ñ</strong> button if your keyboard
+          doesn't have one. Accent marks won't count against you, but you can add them with the buttons too. ${DELETREO_ROUNDS} rounds.${best > 0 ? ' Your best: ' + best + '/' + DELETREO_ROUNDS + '.' : ''}
           Need the letter names? <a href="#/abecedario" class="aviso-link">El abecedario</a>.
         </p>
         ${noVoice
@@ -159,6 +160,13 @@
           <input type="text" class="game-input" id="deletreoInput" autocomplete="off" autocapitalize="off" spellcheck="false"
                  placeholder="Escribe la palabra…" onkeypress="if(event.key==='Enter') submitDeletreo()">
         </div>
+        <div style="display:flex;gap:6px;justify-content:center;flex-wrap:wrap;margin-top:10px;">
+          <button type="button" class="btn" style="${tiny}padding:6px 18px;font-size:20px;text-transform:none;letter-spacing:0;font-weight:600;"
+                  onmousedown="event.preventDefault()" onclick="deletreoInsert('ñ')" title="Add ñ">ñ</button>
+          ${['á', 'é', 'í', 'ó', 'ú', 'ü'].map(c =>
+            `<button type="button" class="btn" style="${tiny}padding:6px 12px;font-size:16px;min-width:40px;text-transform:none;letter-spacing:0;opacity:0.8;"
+                     onmousedown="event.preventDefault()" onclick="deletreoInsert('${c}')">${c}</button>`).join('')}
+        </div>
         <div class="game-feedback" id="gameFeedback" role="status" aria-live="polite">&nbsp;</div>
         <div style="margin-top:20px;">
           <button class="btn primary" style="border-color:var(--paper);background:var(--paper);color:var(--ink);" onclick="submitDeletreo()">Submit ↵</button>
@@ -167,6 +175,18 @@
       </div>`;
     setTimeout(() => { const i = document.getElementById('deletreoInput'); if (i) i.focus(); }, 50);
     setTimeout(() => { if (deletreoAlive(ds) && !ds.answered) deletreoPlay('all'); }, 300);
+  }
+
+  // On-screen letter buttons. mousedown is cancelled on the button so the
+  // input keeps its cursor; the letter goes where the student was typing.
+  function deletreoInsert(ch) {
+    const i = document.getElementById('deletreoInput');
+    if (!i || i.disabled) return;
+    const a = i.selectionStart != null ? i.selectionStart : i.value.length;
+    const b = i.selectionEnd != null ? i.selectionEnd : i.value.length;
+    i.value = i.value.slice(0, a) + ch + i.value.slice(b);
+    i.focus();
+    i.setSelectionRange(a + 1, a + 1);
   }
 
   function submitDeletreo(skip) {
@@ -179,8 +199,9 @@
     ds.answered = true;
     if ('speechSynthesis' in window) { deletreoSpeakId++; window.speechSynthesis.cancel(); }
     const [word, gloss] = ds.items[ds.round];
-    const ok = !skip && deletreoNorm(raw) === deletreoNorm(word);
-    const accentOnly = !skip && !ok && deletreoBare(raw) === deletreoBare(word);
+    const ok = !skip && deletreoBare(raw) === deletreoBare(word);
+    const exact = ok && deletreoNorm(raw) === deletreoNorm(word);
+    const missedEnye = !skip && !ok && deletreoBare(raw).replace(/ñ/g, 'n') === deletreoBare(word).replace(/ñ/g, 'n');
     if (ok) ds.score++;
     input.disabled = true;
     input.classList.add(ok ? 'correct' : 'wrong');
@@ -195,9 +216,9 @@
     if (fb) {
       fb.className = 'game-feedback ' + (ok ? 'correct' : 'wrong');
       fb.innerHTML = ok
-        ? '✓ ¡Perfecto! <strong>' + escapeHtml(word) + '</strong> <span style="opacity:0.85;">— ' + escapeHtml(gloss) + '</span>'
-        : accentOnly
-          ? '✗ Almost — the letters are right, but check the accent marks: <strong>' + escapeHtml(word) + '</strong> <span style="opacity:0.85;">— ' + escapeHtml(gloss) + '</span>'
+        ? (exact ? '✓ ¡Perfecto! ' : '✓ ¡Correcto! With its accents: ') + '<strong>' + escapeHtml(word) + '</strong> <span style="opacity:0.85;">— ' + escapeHtml(gloss) + '</span>'
+        : missedEnye
+          ? '✗ Almost — that needs an <strong>ñ</strong> (eñe), not an n: <strong>' + escapeHtml(word) + '</strong> <span style="opacity:0.85;">— ' + escapeHtml(gloss) + '</span>'
           : '✗ <strong>' + escapeHtml(word) + '</strong> <span style="opacity:0.85;">— ' + escapeHtml(gloss) + ' · ' + escapeHtml(deletreoLetterNames(word).join(', ')) + '</span>';
     }
     ds.history.push({ isCorrect: ok, prompt: '🔊 ' + gloss, userAnswer: skip ? '(skipped)' : raw, correctAnswer: word });
