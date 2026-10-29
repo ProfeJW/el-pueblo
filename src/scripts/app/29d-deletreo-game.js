@@ -3,8 +3,9 @@
   // ----------------------------------------------------------------------------
   // The voice says the word, spells it with Spanish letter names (be, ce, de,
   // hache, jota, eñe… "e con tilde"), then says it again. The student types it.
-  // Graded exactly: every letter, the ñ, and the accent marks have to be right —
-  // that's the point of spelling. Letters right but an accent off gets told so.
+  // Graded on the letters, including ñ. Accent marks (á é í ó ú ü) don't count
+  // either way; a right answer without them shows the accented spelling.
+  // n for ñ is wrong, and gets its own message.
   //
   // Own flow (like the sílaba tónica games) because the shared engine ignores
   // accents. Letter names come from ABC_LETTERS (29-games.js).
@@ -12,33 +13,63 @@
 
   const DELETREO_ROUNDS = 15;
 
-  // [word, gloss] — chosen for the letters that trip spellers up: silent h,
-  // ll, rr, ñ, qu/gu, j vs g, b vs v, z vs c, ü, and accent marks.
+  // Word bank: ~50 everyday words. Common enough that students know them,
+  // and between them they cover the letters spellers trip on: silent h, ll,
+  // rr, ñ, qu, j/g, b/v, z/c, plus a few accented words.
   const DELETREO_WORDS = [
     ['casa', 'house'], ['perro', 'dog'], ['gato', 'cat'], ['hola', 'hello'],
-    ['hermano', 'brother'], ['hijo', 'son'], ['huevo', 'egg'], ['ahora', 'now'],
-    ['llave', 'key'], ['calle', 'street'], ['lluvia', 'rain'], ['pollo', 'chicken'],
-    ['carro', 'car'], ['guitarra', 'guitar'], ['ratón', 'mouse'], ['niño', 'child'],
-    ['año', 'year'], ['mañana', 'tomorrow, morning'], ['España', 'Spain'], ['señora', 'Mrs., lady'],
-    ['pequeño', 'small'], ['queso', 'cheese'], ['quince', 'fifteen'], ['guerra', 'war'],
-    ['juguete', 'toy'], ['jirafa', 'giraffe'], ['gente', 'people'], ['girasol', 'sunflower'],
-    ['vaca', 'cow'], ['verde', 'green'], ['abuela', 'grandmother'], ['vivir', 'to live'],
-    ['zapato', 'shoe'], ['cielo', 'sky'], ['azul', 'blue'], ['lápiz', 'pencil'],
-    ['árbol', 'tree'], ['café', 'coffee'], ['también', 'also'], ['música', 'music'],
-    ['teléfono', 'telephone'], ['sábado', 'Saturday'], ['miércoles', 'Wednesday'], ['inglés', 'English'],
-    ['pingüino', 'penguin'], ['vergüenza', 'embarrassment'], ['examen', 'test'], ['México', 'Mexico'],
-    ['taxi', 'taxi'], ['playa', 'beach'], ['ayer', 'yesterday'], ['joven', 'young'],
-    ['canción', 'song'], ['corazón', 'heart'], ['avión', 'airplane'], ['fácil', 'easy'],
-    ['difícil', 'difficult'], ['escuela', 'school'], ['ciudad', 'city'], ['reloj', 'watch, clock'],
-    ['plátano', 'banana'], ['murciélago', 'bat'], ['bicicleta', 'bicycle'], ['ventana', 'window']
+    ['gracias', 'thank you'], ['amigo', 'friend'], ['familia', 'family'], ['escuela', 'school'],
+    ['agua', 'water'], ['comida', 'food'], ['libro', 'book'], ['mesa', 'table'],
+    ['silla', 'chair'], ['puerta', 'door'], ['ventana', 'window'], ['hermano', 'brother'],
+    ['madre', 'mother'], ['padre', 'father'], ['niño', 'child'], ['año', 'year'],
+    ['mañana', 'tomorrow, morning'], ['noche', 'night'], ['día', 'day'], ['hoy', 'today'],
+    ['ayer', 'yesterday'], ['calle', 'street'], ['llave', 'key'], ['pollo', 'chicken'],
+    ['carro', 'car'], ['rojo', 'red'], ['verde', 'green'], ['azul', 'blue'],
+    ['blanco', 'white'], ['grande', 'big'], ['pequeño', 'small'], ['bueno', 'good'],
+    ['feliz', 'happy'], ['queso', 'cheese'], ['gente', 'people'], ['trabajo', 'work, job'],
+    ['juego', 'game'], ['playa', 'beach'], ['ciudad', 'city'], ['zapato', 'shoe'],
+    ['cabeza', 'head'], ['mano', 'hand'], ['corazón', 'heart'], ['música', 'music'],
+    ['café', 'coffee'], ['tiempo', 'time, weather'], ['hora', 'hour'], ['cielo', 'sky']
   ];
+
+  // A shuffled pile that games deal from in turn, so the whole bank comes up
+  // before any word repeats, and no two games come in the same order. When the
+  // pile runs out it is reshuffled, never starting the way the last pile did.
+  let deletreoPile = [];
+  let deletreoLastPile = null;
+  function deletreoShuffle(a) {
+    const b = a.slice();
+    for (let i = b.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [b[i], b[j]] = [b[j], b[i]];
+    }
+    return b;
+  }
+  function deletreoDeal(n) {
+    const out = [];
+    while (out.length < n) {
+      if (!deletreoPile.length) {
+        let next;
+        do { next = deletreoShuffle(DELETREO_WORDS); }
+        while (deletreoLastPile && next[0][0] === deletreoLastPile[0][0]);
+        deletreoLastPile = next;
+        deletreoPile = next.slice();
+      }
+      const w = deletreoPile.shift();
+      // Across a reshuffle, don't let a word show up twice in one game.
+      if (!out.some(o => o[0] === w[0])) out.push(w);
+    }
+    return out;
+  }
 
   const DELETREO_ACCENT_NAME = { 'á': 'a', 'é': 'e', 'í': 'i', 'ó': 'o', 'ú': 'u' };
 
   // One spoken chunk per letter: "ce", "a", "efe", "e con tilde", "u con diéresis".
-  function deletreoLetterNames(word) {
+  // spoken=true gives what the voice should say (G is fed as 'je' so TTS
+  // says /xe/, not a hard-g 'gay'); otherwise the written letter names.
+  function deletreoLetterNames(word, spoken) {
     const names = {};
-    ABC_LETTERS.forEach(l => { names[l.L.toLowerCase()] = l.name; });
+    ABC_LETTERS.forEach(l => { names[l.L.toLowerCase()] = spoken && l.speak ? l.speak : l.name; });
     return Array.from(word.toLowerCase()).map(ch => {
       if (DELETREO_ACCENT_NAME[ch]) return DELETREO_ACCENT_NAME[ch] + ' con tilde';
       if (ch === 'ü') return 'u con diéresis';
@@ -86,7 +117,7 @@
       if (onstart) u.onstart = () => { if (myId === deletreoSpeakId) onstart(); };
       synth.speak(u);
     };
-    const letters = deletreoLetterNames(item[0]);
+    const letters = deletreoLetterNames(item[0], true);
     const mark = i => {
       document.querySelectorAll('#deletreoBlanks span').forEach((b, k) => {
         b.style.borderBottomColor = k === i ? 'var(--ocre)' : '';
@@ -115,8 +146,8 @@
           <em>be, ce, hache, jota, eñe…</em> — then the word again. Type it exactly.
         </p>
         <p style="color:var(--ink-soft);font-size:14px;margin-bottom:20px;">
-          Spelling counts: every letter, the <strong>ñ</strong>, and the accent marks. When you hear
-          "<em>e con tilde</em>", type <strong>é</strong>. ${DELETREO_ROUNDS} rounds.${best > 0 ? ' Your best: ' + best + '/' + DELETREO_ROUNDS + '.' : ''}
+          Every letter counts, including the <strong>ñ</strong> — use the <strong>ñ</strong> button if your keyboard
+          doesn't have one. Accent marks won't count against you, but you can add them with the buttons too. ${DELETREO_ROUNDS} rounds.${best > 0 ? ' Your best: ' + best + '/' + DELETREO_ROUNDS + '.' : ''}
           Need the letter names? <a href="#/abecedario" class="aviso-link">El abecedario</a>.
         </p>
         ${noVoice
@@ -127,7 +158,7 @@
 
   function beginDeletreoGame() {
     deletreoState = {
-      items: DELETREO_WORDS.slice().sort(() => Math.random() - 0.5).slice(0, DELETREO_ROUNDS),
+      items: deletreoDeal(DELETREO_ROUNDS),
       round: 0, score: 0, history: [], answered: false
     };
     renderDeletreoRound();
@@ -159,6 +190,13 @@
           <input type="text" class="game-input" id="deletreoInput" autocomplete="off" autocapitalize="off" spellcheck="false"
                  placeholder="Escribe la palabra…" onkeypress="if(event.key==='Enter') submitDeletreo()">
         </div>
+        <div style="display:flex;gap:6px;justify-content:center;flex-wrap:wrap;margin-top:10px;">
+          <button type="button" class="btn" style="${tiny}padding:6px 18px;font-size:20px;text-transform:none;letter-spacing:0;font-weight:600;"
+                  onmousedown="event.preventDefault()" onclick="deletreoInsert('ñ')" title="Add ñ">ñ</button>
+          ${['á', 'é', 'í', 'ó', 'ú', 'ü'].map(c =>
+            `<button type="button" class="btn" style="${tiny}padding:6px 12px;font-size:16px;min-width:40px;text-transform:none;letter-spacing:0;opacity:0.8;"
+                     onmousedown="event.preventDefault()" onclick="deletreoInsert('${c}')">${c}</button>`).join('')}
+        </div>
         <div class="game-feedback" id="gameFeedback" role="status" aria-live="polite">&nbsp;</div>
         <div style="margin-top:20px;">
           <button class="btn primary" style="border-color:var(--paper);background:var(--paper);color:var(--ink);" onclick="submitDeletreo()">Submit ↵</button>
@@ -167,6 +205,18 @@
       </div>`;
     setTimeout(() => { const i = document.getElementById('deletreoInput'); if (i) i.focus(); }, 50);
     setTimeout(() => { if (deletreoAlive(ds) && !ds.answered) deletreoPlay('all'); }, 300);
+  }
+
+  // On-screen letter buttons. mousedown is cancelled on the button so the
+  // input keeps its cursor; the letter goes where the student was typing.
+  function deletreoInsert(ch) {
+    const i = document.getElementById('deletreoInput');
+    if (!i || i.disabled) return;
+    const a = i.selectionStart != null ? i.selectionStart : i.value.length;
+    const b = i.selectionEnd != null ? i.selectionEnd : i.value.length;
+    i.value = i.value.slice(0, a) + ch + i.value.slice(b);
+    i.focus();
+    i.setSelectionRange(a + 1, a + 1);
   }
 
   function submitDeletreo(skip) {
@@ -179,8 +229,9 @@
     ds.answered = true;
     if ('speechSynthesis' in window) { deletreoSpeakId++; window.speechSynthesis.cancel(); }
     const [word, gloss] = ds.items[ds.round];
-    const ok = !skip && deletreoNorm(raw) === deletreoNorm(word);
-    const accentOnly = !skip && !ok && deletreoBare(raw) === deletreoBare(word);
+    const ok = !skip && deletreoBare(raw) === deletreoBare(word);
+    const exact = ok && deletreoNorm(raw) === deletreoNorm(word);
+    const missedEnye = !skip && !ok && deletreoBare(raw).replace(/ñ/g, 'n') === deletreoBare(word).replace(/ñ/g, 'n');
     if (ok) ds.score++;
     input.disabled = true;
     input.classList.add(ok ? 'correct' : 'wrong');
@@ -195,9 +246,9 @@
     if (fb) {
       fb.className = 'game-feedback ' + (ok ? 'correct' : 'wrong');
       fb.innerHTML = ok
-        ? '✓ ¡Perfecto! <strong>' + escapeHtml(word) + '</strong> <span style="opacity:0.85;">— ' + escapeHtml(gloss) + '</span>'
-        : accentOnly
-          ? '✗ Almost — the letters are right, but check the accent marks: <strong>' + escapeHtml(word) + '</strong> <span style="opacity:0.85;">— ' + escapeHtml(gloss) + '</span>'
+        ? (exact ? '✓ ¡Perfecto! ' : '✓ ¡Correcto! With its accents: ') + '<strong>' + escapeHtml(word) + '</strong> <span style="opacity:0.85;">— ' + escapeHtml(gloss) + '</span>'
+        : missedEnye
+          ? '✗ Almost — that needs an <strong>ñ</strong> (eñe), not an n: <strong>' + escapeHtml(word) + '</strong> <span style="opacity:0.85;">— ' + escapeHtml(gloss) + '</span>'
           : '✗ <strong>' + escapeHtml(word) + '</strong> <span style="opacity:0.85;">— ' + escapeHtml(gloss) + ' · ' + escapeHtml(deletreoLetterNames(word).join(', ')) + '</span>';
     }
     ds.history.push({ isCorrect: ok, prompt: '🔊 ' + gloss, userAnswer: skip ? '(skipped)' : raw, correctAnswer: word });
