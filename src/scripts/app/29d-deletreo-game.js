@@ -186,6 +186,7 @@
           <button class="btn" style="${tiny}" onclick="deletreoPlay('slow')">🐢 Spell it slowly</button>
           <button class="btn" style="${tiny}" onclick="deletreoPlay('word')">🗣️ Just the word</button>
         </div>
+        <div style="margin:-6px 0 10px;">${voiceLinkHtml()}</div>
         <div class="game-input-row">
           <input type="text" class="game-input" id="deletreoInput" autocomplete="off" autocapitalize="off" spellcheck="false"
                  placeholder="Escribe la palabra…" onkeypress="if(event.key==='Enter') submitDeletreo()">

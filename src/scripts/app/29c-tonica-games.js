@@ -323,7 +323,8 @@
       <div style="display:flex;gap:10px;justify-content:center;margin:4px 0 14px;">
         <button class="btn" style="border-color:var(--paper);color:var(--paper);" onclick="tonicaSay(false)">🔊 Again</button>
         <button class="btn" style="border-color:var(--paper);color:var(--paper);" onclick="tonicaSay(true)">🐢 Slow</button>
-      </div>` : '';
+      </div>
+      <div style="margin:-8px 0 10px;">${voiceLinkHtml()}</div>` : '';
     container.innerHTML = `
       <div class="game-prompt-card">
         <div class="game-progress">Round <strong>${ts.round + 1}</strong> / ${ts.items.length} · Score: <strong>${ts.score}</strong></div>
@@ -412,6 +413,7 @@
         <div class="game-prompt-display">${escapeHtml(w.word)}</div>
         <div style="opacity:0.75;margin:-10px 0 10px;font-size:14px;">${escapeHtml(w.gloss)}</div>
         ${controls}
+        <div style="margin-top:8px;">${voiceLinkHtml()}</div>
         <div class="game-feedback" id="gameFeedback" role="status" aria-live="polite">&nbsp;</div>
         <div style="margin-top:18px;">
           <button class="btn" style="border-color:var(--paper);color:var(--paper);" onclick="tonicaVoiceResult(false, '(skipped)')">Skip</button>

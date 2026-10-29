@@ -2285,7 +2285,7 @@
     { L: 'D', name: 'de',         word: 'dedo',     en: 'finger',   cat: 'plosive',   manner: 'Plosive · dental /d/',                  say: 'like “d”, softer',            mouth: 'tongue tip on the upper teeth' },
     { L: 'E', name: 'e',          word: 'elefante', en: 'elephant', cat: 'vowel',     manner: 'Vowel · mid',                           say: 'like “e” in bed',             mouth: 'lips relaxed, slightly open' },
     { L: 'F', name: 'efe',        word: 'flor',     en: 'flower',   cat: 'fricative', manner: 'Fricative · labiodental /f/',           say: 'like “f” in fun',             mouth: 'top teeth on bottom lip, blow' },
-    { L: 'G', name: 'ge', speak: 'jé', word: 'gato',     en: 'cat',      cat: 'plosive',   manner: 'Plosive /g/ — guttural /x/ before e,i', say: '“g” in go (raspy “h” before e/i)', mouth: 'back of tongue to soft palate' },
+    { L: 'G', name: 'ge', speak: 'jei', word: 'gato',     en: 'cat',      cat: 'plosive',   manner: 'Plosive /g/ — guttural /x/ before e,i', say: '“g” in go (raspy “h” before e/i)', mouth: 'back of tongue to soft palate' },
     { L: 'H', name: 'hache',      word: 'hola',     en: 'hello',    cat: 'silent',    manner: 'Silent (muda) — no sound',              say: 'no sound at all',             mouth: 'do nothing — skip the h' },
     { L: 'I', name: 'i',          word: 'isla',     en: 'island',   cat: 'vowel',     manner: 'Vowel · close',                         say: 'like “ee” in see',            mouth: 'lips spread, like a smile' },
     { L: 'J', name: 'jota',       word: 'jirafa',   en: 'giraffe',  cat: 'fricative', manner: 'Guttural fricative · velar /x/',        say: 'a raspy “h” (as in “loch”)',  mouth: 'back of tongue to throat, push air' },
@@ -2385,8 +2385,9 @@
     // Say the letter name, a short pause, then the example word
     // `speak` overrides how the voice says a name. Short names get read wrong
     // by some voices (spelled as letters, or 'ge' with a hard g), so they're fed
-    // with a written accent, which forces a plain Spanish reading: G 'jé' →
-    // "heh", M 'éme', N 'éne'. Q is fed as 'ku' ("koo").
+    // with a written accent, which forces a plain Spanish reading: M 'éme',
+    // N 'éne'. G is fed as 'jei' so it comes out "hay" (Spanish j = English h);
+    // Q is fed as 'ku' ("koo").
     const phrase = (item.speak || item.name) + '. ' + item.word;
     if (typeof speakSpanish === 'function') {
       speakSpanish(phrase, done);

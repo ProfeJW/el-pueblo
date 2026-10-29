@@ -116,3 +116,10 @@
     });
   }
   document.addEventListener('keydown', e => { if (e.key === 'Escape') closeVoicePicker(); });
+
+  // Small "change voice" link for game screens (light text on the dark card).
+  function voiceLinkHtml() {
+    return '<button type="button" onclick="openVoicePicker()" '
+      + 'style="background:none;border:none;color:var(--paper);opacity:0.8;font-size:13px;text-decoration:underline;cursor:pointer;padding:4px 6px;">'
+      + '🔊 Voice hard to understand? Change voice</button>';
+  }
