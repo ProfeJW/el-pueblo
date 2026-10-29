@@ -37,9 +37,11 @@
   const DELETREO_ACCENT_NAME = { 'á': 'a', 'é': 'e', 'í': 'i', 'ó': 'o', 'ú': 'u' };
 
   // One spoken chunk per letter: "ce", "a", "efe", "e con tilde", "u con diéresis".
-  function deletreoLetterNames(word) {
+  // spoken=true gives what the voice should say (G is fed as 'je' so TTS
+  // says /xe/, not a hard-g 'gay'); otherwise the written letter names.
+  function deletreoLetterNames(word, spoken) {
     const names = {};
-    ABC_LETTERS.forEach(l => { names[l.L.toLowerCase()] = l.name; });
+    ABC_LETTERS.forEach(l => { names[l.L.toLowerCase()] = spoken && l.speak ? l.speak : l.name; });
     return Array.from(word.toLowerCase()).map(ch => {
       if (DELETREO_ACCENT_NAME[ch]) return DELETREO_ACCENT_NAME[ch] + ' con tilde';
       if (ch === 'ü') return 'u con diéresis';
@@ -87,7 +89,7 @@
       if (onstart) u.onstart = () => { if (myId === deletreoSpeakId) onstart(); };
       synth.speak(u);
     };
-    const letters = deletreoLetterNames(item[0]);
+    const letters = deletreoLetterNames(item[0], true);
     const mark = i => {
       document.querySelectorAll('#deletreoBlanks span').forEach((b, k) => {
         b.style.borderBottomColor = k === i ? 'var(--ocre)' : '';
