@@ -93,8 +93,7 @@
   }
 
   function deletreoVoice() {
-    const voices = window.speechSynthesis ? window.speechSynthesis.getVoices() : [];
-    return voices.find(v => v.lang && v.lang.startsWith('es')) || null;
+    return pickSpanishVoice(); // Latin American first, Peruvian if available
   }
 
   // Say the word, spell it, say it again. Each letter is its own utterance so
@@ -107,13 +106,13 @@
     const synth = window.speechSynthesis;
     synth.cancel();
     const myId = ++deletreoSpeakId;
-    const voice = deletreoVoice();
+    const pick = deletreoVoice();
     const slow = mode === 'slow';
     const say = (text, rate, onstart) => {
       const u = new SpeechSynthesisUtterance(text);
-      u.lang = 'es-ES';
+      u.lang = pick.lang;
       u.rate = rate;
-      if (voice) u.voice = voice;
+      if (pick.voice) u.voice = pick.voice;
       if (onstart) u.onstart = () => { if (myId === deletreoSpeakId) onstart(); };
       synth.speak(u);
     };
