@@ -23,7 +23,7 @@
   // ============================================================================
   const LESSON_RESOURCES = {
     'silaba-tonica': {
-      games: ['tonica-id', 'tonica-escucha', 'tonica-voz'],
+      games: ['tonica-id', 'tonica-escucha', 'tonica-voz', 'deletreo'],
       pdfs: [],
       links: []
     },
@@ -49,6 +49,7 @@
       ]
     },
     'pronunciation-alphabet': {
+      games: ['deletreo'],
       decks: ['saludos', 'cotidiano'],
       pdfs: [],
       links: [
