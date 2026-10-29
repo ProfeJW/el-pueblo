@@ -516,6 +516,15 @@
       isCustomFlow: true,
       generate: () => null
     },
+    // Deletreo — hear a word spelled letter by letter, type it (29d-deletreo-game.js).
+    'deletreo': {
+      title: 'Deletreo · <em>escucha y escribe</em>',
+      icon: '🔤',
+      maxReward: 30,
+      rounds: 15,
+      isCustomFlow: true,
+      generate: () => null
+    },
     'dates': {
       title: 'Speaking <em>dates</em>',
       icon: '🗓️',
@@ -1280,6 +1289,7 @@
     if (gameId === 'vocab-mc') { startVocabGame('mc'); return; }
     if (gameId === 'dialogo-type') { startDialogoGame('type'); return; }
     if (gameId === 'dialogo-mc') { startDialogoGame('mc'); return; }
+    if (gameId === 'deletreo') { startDeletreoGame(); return; }
     if (gameId === 'tonica-id' || gameId === 'tonica-escucha' || gameId === 'tonica-voz') { startTonicaGame(gameId); return; }
     if (GAMES[gameId] && GAMES[gameId].dualMode) { renderGameModePicker(gameId); return; }
     const game = GAMES[gameId];
