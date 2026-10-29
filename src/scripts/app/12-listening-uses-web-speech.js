@@ -42,6 +42,27 @@
     renderDictation();
   }
 
+  // Pick the Spanish voice: Latin American by default, Peruvian when the device
+  // has one (Edge does; Chrome usually offers Mexico or US Spanish). Spain's
+  // Spanish is the last resort. Returns { voice, lang } — voice may be null
+  // when the browser hasn't loaded voices yet; lang still asks for es-419.
+  const LATAM_VOICE_ORDER = ['es-pe', 'es-419', 'es-mx', 'es-us', 'es-co', 'es-cl', 'es-ar', 'es-ec', 'es-bo',
+    'es-ve', 'es-uy', 'es-py', 'es-cr', 'es-pa', 'es-gt', 'es-hn', 'es-sv', 'es-ni', 'es-do', 'es-pr', 'es-cu'];
+  function pickSpanishVoice() {
+    const voices = ('speechSynthesis' in window) ? window.speechSynthesis.getVoices() : [];
+    const tag = v => String(v.lang || '').toLowerCase().replace('_', '-');
+    const rank = v => {
+      const t = tag(v);
+      if (!t.startsWith('es')) return 999;
+      const i = LATAM_VOICE_ORDER.indexOf(t);
+      if (i >= 0) return i;
+      return t === 'es-es' ? 900 : 800; // other/unknown Spanish beats Spain
+    };
+    let best = null;
+    voices.forEach(v => { if (rank(v) < 999 && (!best || rank(v) < rank(best))) best = v; });
+    return { voice: best, lang: best ? best.lang.replace('_', '-') : 'es-419' };
+  }
+
   // Speak a Spanish text aloud
   function speakSpanish(text, onEnd) {
     if (!('speechSynthesis' in window)) {
@@ -51,11 +72,10 @@
     }
     window.speechSynthesis.cancel();
     const u = new SpeechSynthesisUtterance(text);
-    u.lang = 'es-ES';
+    const pick = pickSpanishVoice();
+    u.lang = pick.lang;
     u.rate = listenSpeed;
-    const voices = window.speechSynthesis.getVoices();
-    const spanish = voices.find(v => v.lang.startsWith('es'));
-    if (spanish) u.voice = spanish;
+    if (pick.voice) u.voice = pick.voice;
     u.onend = () => { if (onEnd) onEnd(); };
     u.onerror = () => { if (onEnd) onEnd(); };
     window.speechSynthesis.speak(u);
@@ -812,11 +832,10 @@
     if ('speechSynthesis' in window) {
       window.speechSynthesis.cancel();
       const u = new SpeechSynthesisUtterance(text);
-      u.lang = 'es-ES';
+      const pick = pickSpanishVoice();
+      u.lang = pick.lang;
       u.rate = 0.9;
-      const voices = window.speechSynthesis.getVoices();
-      const spanish = voices.find(v => v.lang.startsWith('es'));
-      if (spanish) u.voice = spanish;
+      if (pick.voice) u.voice = pick.voice;
       card.classList.add('playing');
       u.onend = () => {
         card.classList.remove('playing');

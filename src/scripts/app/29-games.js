@@ -2296,7 +2296,7 @@
     { L: 'Ñ', name: 'eñe',        word: 'niño',     en: 'child',    cat: 'nasal',     manner: 'Nasal · palatal /ɲ/',                   say: 'like “ny” in canyon',         mouth: 'middle of tongue to roof' },
     { L: 'O', name: 'o',          word: 'oso',      en: 'bear',     cat: 'vowel',     manner: 'Vowel · mid',                           say: 'like “o” in note',            mouth: 'lips rounded' },
     { L: 'P', name: 'pe',         word: 'perro',    en: 'dog',      cat: 'plosive',   manner: 'Plosive · bilabial /p/',                say: 'like “p”, no puff of air',    mouth: 'lips together, soft release' },
-    { L: 'Q', name: 'cu',         word: 'queso',    en: 'cheese',   cat: 'plosive',   manner: 'Plosive · velar /k/ (qu)',              say: 'like “k” (always written “qu”)', mouth: 'back of tongue up, then release' },
+    { L: 'Q', name: 'cu', speak: 'ku', word: 'queso',    en: 'cheese',   cat: 'plosive',   manner: 'Plosive · velar /k/ (qu)',              say: 'like “k” (always written “qu”)', mouth: 'back of tongue up, then release' },
     { L: 'R', name: 'erre',       word: 'ratón',    en: 'mouse',    cat: 'liquid',    manner: 'Vibrant · tap /ɾ/ or rolled /r/',       say: 'tap like “tt” in butter; or rolled', mouth: 'tongue tip flicks/flutters the ridge' },
     { L: 'S', name: 'ese',        word: 'sol',      en: 'sun',      cat: 'fricative', manner: 'Fricative · alveolar /s/',              say: 'like “s” in sun',             mouth: 'tongue near ridge, hiss' },
     { L: 'T', name: 'te',         word: 'tortuga',  en: 'turtle',   cat: 'plosive',   manner: 'Plosive · dental /t/',                  say: 'like “t”, on the teeth',      mouth: 'tongue tip on upper teeth' },
@@ -2384,7 +2384,7 @@
     const done = () => { if (tile) tile.classList.remove('speaking'); };
     // Say the letter name, a short pause, then the example word
     // `speak` overrides how the voice says a name: TTS reads 'ge' with a hard g,
-    // so G is fed as 'je' to come out as /xe/ ("heh").
+    // so G is fed as 'je' to come out as /xe/ ("heh"); Q is fed as 'ku' ("koo").
     const phrase = (item.speak || item.name) + '. ' + item.word;
     if (typeof speakSpanish === 'function') {
       speakSpanish(phrase, done);
