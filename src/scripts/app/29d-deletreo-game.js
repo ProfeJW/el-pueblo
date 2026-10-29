@@ -148,6 +148,7 @@
           Accent marks (á, é, í, ó, ú) won't count against you. <strong>The only one that does is the ñ</strong> —
           typing n instead of ñ is wrong. Use the <strong>ñ</strong> button if your keyboard doesn't have one. ${DELETREO_ROUNDS} rounds.${best > 0 ? ' Your best: ' + best + '/' + DELETREO_ROUNDS + '.' : ''}
           Need the letter names? <a href="#/abecedario" class="aviso-link">El abecedario</a>.
+          Voice hard to understand? <a href="javascript:void(0)" class="aviso-link" onclick="openVoicePicker()">Choose another voice 🔊</a>.
         </p>
         ${noVoice
           ? '<p style="color:var(--rojo);font-size:14px;">This browser can\'t speak, so this game won\'t work here. Try Chrome.</p>'

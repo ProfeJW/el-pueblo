@@ -59,8 +59,13 @@
     if (/google|natural|online|neural|premium|enhanced/i.test(name) || v.localService === false) return 0;
     return 1;
   }
-  function pickSpanishVoice() {
+  function pickSpanishVoice(opts) {
     const voices = ('speechSynthesis' in window) ? window.speechSynthesis.getVoices() : [];
+    // A voice the student chose in the 🔊 menu wins, if this device has it.
+    const chosen = !(opts && opts.ignoreSaved) && typeof savedSpanishVoice === 'function' ? savedSpanishVoice(voices) : null;
+    if (chosen) {
+      return { voice: chosen, lang: String(chosen.lang).replace('_', '-'), slow: spanishVoiceTier(chosen) === 2 ? 0.8 : 1 };
+    }
     const tag = v => String(v.lang || '').toLowerCase().replace('_', '-');
     const accent = v => {
       const t = tag(v);
