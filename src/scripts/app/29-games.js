@@ -2285,14 +2285,14 @@
     { L: 'D', name: 'de',         word: 'dedo',     en: 'finger',   cat: 'plosive',   manner: 'Plosive · dental /d/',                  say: 'like “d”, softer',            mouth: 'tongue tip on the upper teeth' },
     { L: 'E', name: 'e',          word: 'elefante', en: 'elephant', cat: 'vowel',     manner: 'Vowel · mid',                           say: 'like “e” in bed',             mouth: 'lips relaxed, slightly open' },
     { L: 'F', name: 'efe',        word: 'flor',     en: 'flower',   cat: 'fricative', manner: 'Fricative · labiodental /f/',           say: 'like “f” in fun',             mouth: 'top teeth on bottom lip, blow' },
-    { L: 'G', name: 'ge', speak: 'je', word: 'gato',     en: 'cat',      cat: 'plosive',   manner: 'Plosive /g/ — guttural /x/ before e,i', say: '“g” in go (raspy “h” before e/i)', mouth: 'back of tongue to soft palate' },
+    { L: 'G', name: 'ge', speak: 'jé', word: 'gato',     en: 'cat',      cat: 'plosive',   manner: 'Plosive /g/ — guttural /x/ before e,i', say: '“g” in go (raspy “h” before e/i)', mouth: 'back of tongue to soft palate' },
     { L: 'H', name: 'hache',      word: 'hola',     en: 'hello',    cat: 'silent',    manner: 'Silent (muda) — no sound',              say: 'no sound at all',             mouth: 'do nothing — skip the h' },
     { L: 'I', name: 'i',          word: 'isla',     en: 'island',   cat: 'vowel',     manner: 'Vowel · close',                         say: 'like “ee” in see',            mouth: 'lips spread, like a smile' },
     { L: 'J', name: 'jota',       word: 'jirafa',   en: 'giraffe',  cat: 'fricative', manner: 'Guttural fricative · velar /x/',        say: 'a raspy “h” (as in “loch”)',  mouth: 'back of tongue to throat, push air' },
     { L: 'K', name: 'ka',         word: 'koala',    en: 'koala',    cat: 'plosive',   manner: 'Plosive · velar /k/',                   say: 'like “k” in kite',            mouth: 'back of tongue up, then release' },
     { L: 'L', name: 'ele',        word: 'luna',     en: 'moon',     cat: 'liquid',    manner: 'Lateral · alveolar /l/',                say: 'like “l” in light',           mouth: 'tongue tip on ridge behind teeth' },
-    { L: 'M', name: 'eme',        word: 'mano',     en: 'hand',     cat: 'nasal',     manner: 'Nasal · bilabial /m/',                  say: 'like “m” in mom',             mouth: 'lips together, hum through nose' },
-    { L: 'N', name: 'ene',        word: 'nariz',    en: 'nose',     cat: 'nasal',     manner: 'Nasal · alveolar /n/',                  say: 'like “n” in no',              mouth: 'tongue on ridge, hum' },
+    { L: 'M', name: 'eme', speak: 'éme', word: 'mano',     en: 'hand',     cat: 'nasal',     manner: 'Nasal · bilabial /m/',                  say: 'like “m” in mom',             mouth: 'lips together, hum through nose' },
+    { L: 'N', name: 'ene', speak: 'éne', word: 'nariz',    en: 'nose',     cat: 'nasal',     manner: 'Nasal · alveolar /n/',                  say: 'like “n” in no',              mouth: 'tongue on ridge, hum' },
     { L: 'Ñ', name: 'eñe',        word: 'niño',     en: 'child',    cat: 'nasal',     manner: 'Nasal · palatal /ɲ/',                   say: 'like “ny” in canyon',         mouth: 'middle of tongue to roof' },
     { L: 'O', name: 'o',          word: 'oso',      en: 'bear',     cat: 'vowel',     manner: 'Vowel · mid',                           say: 'like “o” in note',            mouth: 'lips rounded' },
     { L: 'P', name: 'pe',         word: 'perro',    en: 'dog',      cat: 'plosive',   manner: 'Plosive · bilabial /p/',                say: 'like “p”, no puff of air',    mouth: 'lips together, soft release' },
@@ -2302,7 +2302,7 @@
     { L: 'T', name: 'te',         word: 'tortuga',  en: 'turtle',   cat: 'plosive',   manner: 'Plosive · dental /t/',                  say: 'like “t”, on the teeth',      mouth: 'tongue tip on upper teeth' },
     { L: 'U', name: 'u',          word: 'uvas',     en: 'grapes',   cat: 'vowel',     manner: 'Vowel · close',                         say: 'like “oo” in food',           mouth: 'lips tight and rounded' },
     { L: 'V', name: 'uve',        word: 'vaca',     en: 'cow',      cat: 'plosive',   manner: 'Plosive /b/ — sounds like B',           say: 'like “b” (V = B in Spanish!)', mouth: 'lips together, soft' },
-    { L: 'W', name: 'uve doble',  word: 'wifi',     en: 'wifi',     cat: 'glide',     manner: 'Glide · /w/ (foreign words)',           say: 'like “w” in week',            mouth: 'lips rounded, then glide' },
+    { L: 'W', name: 'doble ve',   word: 'wifi',     en: 'wifi',     cat: 'glide',     manner: 'Glide · /w/ (foreign words)',           say: 'like “w” in week',            mouth: 'lips rounded, then glide' },
     { L: 'X', name: 'equis',      word: 'taxi',     en: 'taxi',     cat: 'fricative', manner: 'Fricative /ks/ (guttural /x/ in “México”)', say: 'like “x” in taxi',        mouth: '“k” + “s” run together' },
     { L: 'Y', name: 'i griega', word: 'yate',     en: 'yacht',    cat: 'glide',     manner: 'Palatal glide /ʝ/ — or vowel /i/',      say: 'like “y” in yes',             mouth: 'middle of tongue toward roof' },
     { L: 'Z', name: 'zeta',       word: 'zapato',   en: 'shoe',     cat: 'fricative', manner: 'Fricative /s/ (or “th” in Spain)',      say: 'like “s” (or “th” in Spain)', mouth: 'tongue near ridge, hiss' }
@@ -2383,8 +2383,10 @@
     }
     const done = () => { if (tile) tile.classList.remove('speaking'); };
     // Say the letter name, a short pause, then the example word
-    // `speak` overrides how the voice says a name: TTS reads 'ge' with a hard g,
-    // so G is fed as 'je' to come out as /xe/ ("heh"); Q is fed as 'ku' ("koo").
+    // `speak` overrides how the voice says a name. Short names get read wrong
+    // by some voices (spelled as letters, or 'ge' with a hard g), so they're fed
+    // with a written accent, which forces a plain Spanish reading: G 'jé' →
+    // "heh", M 'éme', N 'éne'. Q is fed as 'ku' ("koo").
     const phrase = (item.speak || item.name) + '. ' + item.word;
     if (typeof speakSpanish === 'function') {
       speakSpanish(phrase, done);

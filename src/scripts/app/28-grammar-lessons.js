@@ -715,7 +715,7 @@
             ['t', 'name: "te"'],
             ['u', 'name: "u" (like "oo")'],
             ['v', 'name: "uve"'],
-            ['w', 'name: "doble uve" (rare in Spanish)'],
+            ['w', 'name: "doble ve" (rare in Spanish)'],
             ['x', 'name: "equis"'],
             ['y', 'name: "i griega" (also "ye")'],
             ['z', 'name: "zeta"']
