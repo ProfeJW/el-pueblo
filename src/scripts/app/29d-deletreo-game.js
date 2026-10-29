@@ -111,7 +111,7 @@
     const say = (text, rate, onstart) => {
       const u = new SpeechSynthesisUtterance(text);
       u.lang = pick.lang;
-      u.rate = rate;
+      u.rate = rate * pick.slow;
       if (pick.voice) u.voice = pick.voice;
       if (onstart) u.onstart = () => { if (myId === deletreoSpeakId) onstart(); };
       synth.speak(u);
