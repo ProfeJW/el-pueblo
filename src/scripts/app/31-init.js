@@ -425,7 +425,7 @@
     return {
       promptLabel: indef ? 'Which article? ( a / some … )' : 'Which article? ( the … )',
       promptDisplay: '<span style="font-size:36px;font-family:\'DM Serif Display\',serif;">' + bare + '</span>'
-        + (gloss ? '<div style="margin-top:10px;font-size:14px;color:var(--ink-soft);">“' + gloss + '”</div>' : ''),
+        + (gloss ? '<div style="margin-top:10px;font-size:14px;color:inherit;opacity:0.85;">“' + gloss + '”</div>' : ''),
       promptReview: bare + (gloss ? ' (' + gloss + ')' : ''),
       answer: answer,
       validAnswers: [answer],
