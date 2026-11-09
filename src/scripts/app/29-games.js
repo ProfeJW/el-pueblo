@@ -402,6 +402,7 @@
       title: 'Singular ↔ <em>plural</em>',
       icon: '🔁',
       maxReward: 35,
+      rounds: 25,
       generate: () => {
         // Pairs grouped by difficulty (the level picker sets gameState.level):
         //  1 vowel +s · 2 consonant +es · 3 -z→-ces / accents / no-change ·
@@ -410,28 +411,75 @@
           1: [
             ['el libro', 'los libros'], ['la mesa', 'las mesas'], ['la casa', 'las casas'],
             ['el estudiante', 'los estudiantes'], ['la clase', 'las clases'],
-            ['la mano', 'las manos'], ['el mapa', 'los mapas'], ['el problema', 'los problemas']
+            ['la mano', 'las manos'], ['el mapa', 'los mapas'], ['el problema', 'los problemas'],
+            ['el amigo', 'los amigos'], ['la amiga', 'las amigas'], ['el gato', 'los gatos'], ['el perro', 'los perros'],
+            ['la silla', 'las sillas'], ['el cuaderno', 'los cuadernos'], ['la pluma', 'las plumas'],
+            ['el bolígrafo', 'los bolígrafos'], ['la escuela', 'las escuelas'], ['el niño', 'los niños'],
+            ['la niña', 'las niñas'], ['el coche', 'los coches'], ['la puerta', 'las puertas'],
+            ['la ventana', 'las ventanas'], ['la mochila', 'las mochilas'], ['el cuarto', 'los cuartos'],
+            ['la computadora', 'las computadoras'], ['el teléfono', 'los teléfonos'], ['el vaso', 'los vasos'],
+            ['la taza', 'las tazas'], ['el plato', 'los platos'], ['la manzana', 'las manzanas'],
+            ['el zapato', 'los zapatos'], ['la camisa', 'las camisas'], ['el sombrero', 'los sombreros'],
+            ['la pelota', 'las pelotas'], ['el tema', 'los temas'], ['la foto', 'las fotos'],
+            ['el pueblo', 'los pueblos'], ['la playa', 'las playas'], ['el queso', 'los quesos'],
+            ['la fiesta', 'las fiestas'], ['el viaje', 'los viajes'], ['la noche', 'las noches']
           ],
           2: [
             ['el papel', 'los papeles'], ['el profesor', 'los profesores'],
-            ['la ciudad', 'las ciudades'], ['el reloj', 'los relojes'], ['la flor', 'las flores']
+            ['la ciudad', 'las ciudades'], ['el reloj', 'los relojes'], ['la flor', 'las flores'],
+            ['el árbol', 'los árboles'], ['el color', 'los colores'], ['la mujer', 'las mujeres'],
+            ['el doctor', 'los doctores'], ['la pared', 'las paredes'], ['el animal', 'los animales'],
+            ['el hotel', 'los hoteles'], ['la verdad', 'las verdades'], ['el favor', 'los favores'],
+            ['el motor', 'los motores'], ['el sol', 'los soles'], ['el mes', 'los meses'],
+            ['la universidad', 'las universidades'], ['el control', 'los controles'],
+            ['el hospital', 'los hospitales'], ['el comedor', 'los comedores'], ['el jugador', 'los jugadores'],
+            ['la amistad', 'las amistades'], ['el actor', 'los actores'], ['el señor', 'los señores'],
+            ['la libertad', 'las libertades'], ['el error', 'los errores'], ['el amor', 'los amores'],
+            ['el valor', 'los valores'], ['la ley', 'las leyes'], ['el rey', 'los reyes'],
+            ['el pastel', 'los pasteles'], ['el cartel', 'los carteles'], ['el mostrador', 'los mostradores']
           ],
           3: [
             ['el lápiz', 'los lápices'], ['la luz', 'las luces'], ['la voz', 'las voces'],
             ['el pez', 'los peces'], ['la canción', 'las canciones'], ['la región', 'las regiones'],
             ['el autobús', 'los autobuses'], ['el examen', 'los exámenes'],
             ['el joven', 'los jóvenes'], ['la imagen', 'las imágenes'],
-            ['el paraguas', 'los paraguas'], ['el cumpleaños', 'los cumpleaños']
+            ['el paraguas', 'los paraguas'], ['el cumpleaños', 'los cumpleaños'],
+            ['la vez', 'las veces'], ['la nariz', 'las narices'], ['la actriz', 'las actrices'],
+            ['el juez', 'los jueces'], ['la cruz', 'las cruces'], ['la raíz', 'las raíces'],
+            ['la lección', 'las lecciones'], ['la estación', 'las estaciones'], ['el camión', 'los camiones'],
+            ['el balcón', 'los balcones'], ['el avión', 'los aviones'], ['el jamón', 'los jamones'],
+            ['el francés', 'los franceses'], ['el inglés', 'los ingleses'], ['el alemán', 'los alemanes'],
+            ['la razón', 'las razones'], ['el limón', 'los limones'], ['el origen', 'los orígenes'],
+            ['el volumen', 'los volúmenes'], ['la orden', 'las órdenes'], ['el resumen', 'los resúmenes'],
+            ['el país', 'los países'],
+            ['el lunes', 'los lunes'], ['el martes', 'los martes'], ['el miércoles', 'los miércoles'],
+            ['el jueves', 'los jueves'], ['el viernes', 'los viernes'],
+            ['el sábado', 'los sábados'], ['el domingo', 'los domingos'],
+            ['la crisis', 'las crisis'], ['el análisis', 'los análisis'], ['la tesis', 'las tesis'],
+            ['el sacapuntas', 'los sacapuntas'], ['el lavaplatos', 'los lavaplatos'],
+            ['el abrelatas', 'los abrelatas'], ['el rascacielos', 'los rascacielos'],
+            ['el cascanueces', 'los cascanueces'], ['el microondas', 'los microondas']
           ],
           4: [
             ['un hombre', 'unos hombres'], ['una mujer', 'unas mujeres'],
             ['un animal', 'unos animales'], ['una flor', 'unas flores'], ['un lápiz', 'unos lápices'],
-            ['el agua', 'las aguas'], ['el águila', 'las águilas']
+            ['el agua', 'las aguas'], ['el águila', 'las águilas'],
+            ['un amigo', 'unos amigos'], ['una amiga', 'unas amigas'], ['un libro', 'unos libros'],
+            ['una casa', 'unas casas'], ['un profesor', 'unos profesores'], ['una ciudad', 'unas ciudades'],
+            ['un país', 'unos países'], ['una canción', 'unas canciones'], ['un joven', 'unos jóvenes'],
+            ['una luz', 'unas luces'], ['un examen', 'unos exámenes'], ['un autobús', 'unos autobuses'],
+            ['un pez', 'unos peces'], ['una voz', 'unas voces'], ['un paraguas', 'unos paraguas'],
+            ['un lunes', 'unos lunes'], ['un sábado', 'unos sábados'], ['un árbol', 'unos árboles'],
+            ['un papel', 'unos papeles'], ['un reloj', 'unos relojes'], ['una pared', 'unas paredes'],
+            ['un doctor', 'unos doctores'], ['una actriz', 'unas actrices'], ['un cumpleaños', 'unos cumpleaños'],
+            ['el alma', 'las almas'], ['el área', 'las áreas'], ['el arma', 'las armas'],
+            ['el hacha', 'las hachas'], ['el ala', 'las alas'], ['el aula', 'las aulas'],
+            ['el ave', 'las aves'], ['el arpa', 'las arpas'], ['el ancla', 'las anclas']
           ]
         };
         const level = (gameState && gameState.level) || 1;
         const pairs = LEVELS[level] || LEVELS[1];
-        const pick = pairs[Math.floor(Math.random() * pairs.length)];
+        const pick = elpPickFresh(pairs, p => p[0]);
         const stripArticle = s => s.replace(/^(el|la|los|las|un|una|unos|unas)\s+/, '');
         // Half the time singular→plural, half plural→singular
         if (Math.random() < 0.5) {

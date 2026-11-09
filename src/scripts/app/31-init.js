@@ -57,21 +57,21 @@
   // ============================================================================
   // ARTICLE GAMES — el/la/los/las and un/una/unos/unas, with levels
   // ----------------------------------------------------------------------------
-  // Two games sharing one engine:
-  //   • articles            → see a noun, tap the correct article.
-  //   • articles-translate  → see "a ball", type "una pelota" (article + noun).
-  // Both open a level chooser first (like Match), so students play whichever
-  // they want:  L1 el/la · L2 el/la/los/las · L3 un/una · L4 un/una/unos/unas.
+  // Games sharing one engine (each runs 25 questions, no repeats within a game):
+  //   • articles               → see a noun, tap the correct article. EIGHT levels:
+  //                              el/la · +"either" · +plurals · everything (el/la,
+  //                              los/las, el/los for days), then the same four
+  //                              with un/una/unos/unas.
+  //   • articles-translate     → see "a ball", type "una pelota" (article + noun).
+  //   • articles-translate-en  → see "una pelota", type "a ball".
+  // Each opens a level chooser first (like Match).
   //
-  // Accuracy note: we ONLY use nouns that already carry an explicit definite
-  // article in the deck (el/la/los/las ...). The definite answer is that literal
-  // article (so "el agua" stays "el", never the naive "la"), and the indefinite
-  // is mapped by FORM — el→un, la→una, los→unos, las→unas — which also handles
-  // the stressed-a exception correctly ("un agua"). No noun is ever pluralized,
-  // so we never invent an irregular plural.
+  // Vocabulary: every deck noun with an explicit article, plus EXTRA_NOUNS
+  // (gender-pattern nouns), COMMON_NOUNS (el/la periodista …) and the days.
   // ============================================================================
   const DEF_ARTICLES = ['el', 'la', 'los', 'las'];
   const DEF_TO_INDEF = { el: 'un', la: 'una', los: 'unos', las: 'unas' };
+  const ARTICLE_ROUNDS = 25;   // every article/plural game runs 25 questions
 
   function elpCleanGloss(back) {
     let g = String(back || '');
@@ -95,10 +95,234 @@
     return /^[aeiou]/i.test(String(word).trim()) ? 'an' : 'a';
   }
 
+  function elpPick(arr) { return arr[Math.floor(Math.random() * arr.length)]; }
+
+  // Pick an item that has not come up yet this game (gameState._seen is reset
+  // by beginArticleGame). Once everything has been seen, any item is fair game.
+  function elpPickFresh(arr, keyFn) {
+    const seen = gameState && gameState._seen;
+    if (!seen) return elpPick(arr);
+    const fresh = arr.filter(x => !seen[keyFn(x)]);
+    const x = elpPick(fresh.length ? fresh : arr);
+    seen[keyFn(x)] = 1;
+    return x;
+  }
+
+  function elpFold(s) {
+    return String(s || '').toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g, '');
+  }
+
+  // ---- Nouns that take EITHER article -----------------------------------------
+  // Same form for a man or a woman (el periodista / la periodista). Each row:
+  // [singular, plural, English (senses separated by " / "), English plural].
+  const COMMON_NOUNS = [
+    ['periodista', 'periodistas', 'journalist / reporter', 'journalists / reporters'],
+    ['policía', 'policías', 'police officer', 'police officers'],
+    ['bebé', 'bebés', 'baby', 'babies'],
+    ['estudiante', 'estudiantes', 'student', 'students'],
+    ['artista', 'artistas', 'artist', 'artists'],
+    ['dentista', 'dentistas', 'dentist', 'dentists'],
+    ['turista', 'turistas', 'tourist', 'tourists'],
+    ['deportista', 'deportistas', 'athlete / sportsperson', 'athletes / sportspeople'],
+    ['atleta', 'atletas', 'athlete', 'athletes'],
+    ['cantante', 'cantantes', 'singer', 'singers'],
+    ['joven', 'jóvenes', 'young person / youth', 'young people / youths'],
+    ['colega', 'colegas', 'colleague', 'colleagues'],
+    ['pianista', 'pianistas', 'pianist', 'pianists'],
+    ['guitarrista', 'guitarristas', 'guitarist', 'guitarists'],
+    ['violinista', 'violinistas', 'violinist', 'violinists'],
+    ['taxista', 'taxistas', 'taxi driver', 'taxi drivers'],
+    ['electricista', 'electricistas', 'electrician', 'electricians'],
+    ['ciclista', 'ciclistas', 'cyclist', 'cyclists'],
+    ['futbolista', 'futbolistas', 'soccer player / football player', 'soccer players / football players'],
+    ['cliente', 'clientes', 'customer / client', 'customers / clients'],
+    ['paciente', 'pacientes', 'patient', 'patients'],
+    ['intérprete', 'intérpretes', 'interpreter', 'interpreters'],
+    ['testigo', 'testigos', 'witness', 'witnesses'],
+    ['líder', 'líderes', 'leader', 'leaders'],
+    ['modelo', 'modelos', 'model', 'models'],
+    ['piloto', 'pilotos', 'pilot', 'pilots'],
+    ['presidente', 'presidentes', 'president', 'presidents'],
+    ['agente', 'agentes', 'agent', 'agents'],
+    ['adolescente', 'adolescentes', 'teenager', 'teenagers'],
+    ['comerciante', 'comerciantes', 'merchant / shopkeeper', 'merchants / shopkeepers'],
+    ['dependiente', 'dependientes', 'store clerk / salesperson', 'store clerks / salespeople'],
+    ['ayudante', 'ayudantes', 'assistant / helper', 'assistants / helpers'],
+    ['pariente', 'parientes', 'relative', 'relatives'],
+    ['residente', 'residentes', 'resident', 'residents'],
+    ['terapeuta', 'terapeutas', 'therapist', 'therapists'],
+    ['psiquiatra', 'psiquiatras', 'psychiatrist', 'psychiatrists'],
+    ['pediatra', 'pediatras', 'pediatrician', 'pediatricians'],
+    ['astronauta', 'astronautas', 'astronaut', 'astronauts'],
+    ['recepcionista', 'recepcionistas', 'receptionist', 'receptionists'],
+    ['contable', 'contables', 'accountant', 'accountants'],
+    ['gerente', 'gerentes', 'manager', 'managers'],
+    ['participante', 'participantes', 'participant', 'participants'],
+    ['habitante', 'habitantes', 'inhabitant / resident', 'inhabitants / residents'],
+    ['inmigrante', 'inmigrantes', 'immigrant', 'immigrants'],
+    ['compatriota', 'compatriotas', 'fellow countryman / compatriot', 'fellow countrymen / compatriots'],
+    ['cónyuge', 'cónyuges', 'spouse', 'spouses']
+  ];
+  // Any deck noun built on one of these is dropped from the one-right-answer
+  // levels (a bare "el estudiante" has no single correct article); the nouns
+  // are covered by COMMON_NOUNS instead. "guía" (guide / guidebook) is
+  // ambiguous in meaning as well as gender.
+  const COMMON_BARES = {};
+  COMMON_NOUNS.forEach(c => { COMMON_BARES[elpFold(c[0])] = 1; COMMON_BARES[elpFold(c[1])] = 1; });
+  COMMON_BARES['guia'] = 1; COMMON_BARES['guias'] = 1;
+
+  // ---- Days of the week ---------------------------------------------------------
+  // Monday–Friday are identical in the plural, so "lunes" alone fits both
+  // "el lunes" (on Monday) and "los lunes" (on Mondays). Saturday/Sunday change.
+  const DAYS_SAME = [
+    ['lunes', 'Monday'], ['martes', 'Tuesday'], ['miércoles', 'Wednesday'],
+    ['jueves', 'Thursday'], ['viernes', 'Friday']
+  ];
+  const DAYS_WEEKEND = [['sábado', 'sábados', 'Saturday', 'Saturdays'], ['domingo', 'domingos', 'Sunday', 'Sundays']];
+
+  // Feminine nouns that take el/un in the singular (stressed a- sound).
+  const STRESSED_A = { agua: 1, aguila: 1, alma: 1, area: 1, arma: 1, hacha: 1, ala: 1, aula: 1, ave: 1, arpa: 1, ancla: 1, hambre: 1, asma: 1 };
+
+  // ---- Extra vocabulary, on top of every deck noun ------------------------------
+  // [article, noun, English]. Chosen for the gender patterns students get
+  // wrong; anything already in a deck is skipped automatically.
+  const EXTRA_NOUNS = [
+    // -ma nouns that are masculine, and -o nouns that are feminine
+    ['el','problema','problem'],['el','tema','topic / theme'],['el','sistema','system'],['el','programa','program'],
+    ['el','idioma','language'],['el','clima','climate'],['el','mapa','map'],['el','día','day'],['el','planeta','planet'],
+    ['el','poema','poem'],['el','diploma','diploma'],['el','esquema','outline / diagram'],['el','dilema','dilemma'],
+    ['el','telegrama','telegram'],['el','cometa','comet'],['el','pijama','pajamas'],['el','sofá','sofa'],['el','tranvía','streetcar'],
+    ['la','mano','hand'],['la','foto','photo'],['la','moto','motorcycle'],['la','radio','radio'],
+    // -ión / -ción / -sión (feminine) and the masculine exceptions
+    ['la','nación','nation'],['la','lección','lesson'],['la','estación','station / season'],['la','decisión','decision'],
+    ['la','televisión','television'],['la','información','information'],['la','conversación','conversation'],
+    ['la','habitación','room'],['la','reunión','meeting'],['la','opinión','opinion'],['la','ocasión','occasion'],
+    ['la','sección','section'],['la','acción','action'],['la','emoción','emotion'],['la','tradición','tradition'],
+    ['la','educación','education'],['la','dirección','address / direction'],
+    ['el','avión','airplane'],['el','camión','truck'],['el','millón','million'],['el','corazón','heart'],['el','limón','lemon'],
+    ['el','balcón','balcony'],['el','salón','living room / hall'],['el','botón','button'],['el','jabón','soap'],
+    ['el','ratón','mouse'],['el','pantalón','pants'],['el','montón','pile'],['el','colchón','mattress'],['el','cajón','drawer'],['el','sillón','armchair'],
+    // -dad / -tad / -tud (feminine)
+    ['la','ciudad','city'],['la','universidad','university'],['la','amistad','friendship'],['la','libertad','freedom'],
+    ['la','verdad','truth'],['la','felicidad','happiness'],['la','realidad','reality'],['la','actividad','activity'],
+    ['la','dificultad','difficulty'],['la','identidad','identity'],['la','comunidad','community'],['la','habilidad','skill'],
+    ['la','juventud','youth'],['la','actitud','attitude'],['la','virtud','virtue'],
+    // -aje (masculine)
+    ['el','viaje','trip'],['el','paisaje','landscape'],['el','equipaje','luggage'],['el','mensaje','message'],['el','garaje','garage'],
+    ['el','masaje','massage'],['el','lenguaje','language'],['el','personaje','character'],['el','pasaje','passage / ticket'],
+    ['el','coraje','courage'],['el','peaje','toll'],['el','tatuaje','tattoo'],
+    // -or (masculine) and the feminine exceptions
+    ['el','amor','love'],['el','color','color'],['el','calor','heat'],['el','sabor','flavor'],['el','motor','motor / engine'],
+    ['el','valor','value / courage'],['el','error','mistake'],['el','humor','humor / mood'],['el','olor','smell'],
+    ['el','favor','favor'],['el','honor','honor'],
+    ['la','flor','flower'],['la','labor','work / labor'],['la','coliflor','cauliflower'],
+    // -umbre, -sis
+    ['la','costumbre','custom / habit'],['la','cumbre','summit'],['la','muchedumbre','crowd'],['la','legumbre','legume'],
+    ['la','crisis','crisis'],['la','tesis','thesis'],['la','dosis','dose'],['la','hipótesis','hypothesis'],
+    ['el','análisis','analysis'],['el','paréntesis','parenthesis'],['el','énfasis','emphasis'],
+    // feminine nouns that take el (stressed a-)
+    ['el','agua','water'],['el','águila','eagle'],['el','alma','soul'],['el','área','area'],['el','arma','weapon'],
+    ['el','hacha','axe'],['el','ala','wing'],['el','aula','classroom'],['el','ave','bird'],['el','arpa','harp'],
+    ['el','ancla','anchor'],['el','hambre','hunger'],['el','asma','asthma'],
+    // time
+    ['la','mañana','morning'],['la','tarde','afternoon'],['la','noche','night'],['el','mediodía','noon'],['la','medianoche','midnight'],
+    ['la','semana','week'],['el','mes','month'],['el','año','year'],['la','hora','hour'],['el','minuto','minute'],
+    ['el','fin de semana','weekend'],['el','siglo','century'],['la','época','era / period'],
+    // everyday nouns with tricky or consonant endings
+    ['la','pared','wall'],['la','sal','salt'],['la','sangre','blood'],['la','leche','milk'],['la','miel','honey'],
+    ['la','nariz','nose'],['la','piel','skin'],['la','cárcel','jail'],['la','catedral','cathedral'],['la','ley','law'],
+    ['la','fe','faith'],['la','red','net / network'],['la','gente','people'],['la','nieve','snow'],['la','torre','tower'],
+    ['la','llave','key'],['la','carne','meat'],['el','pie','foot'],['el','árbol','tree'],['el','papel','paper'],
+    ['el','lápiz','pencil'],['la','luz','light'],['la','voz','voice'],['el','pez','fish'],['la','cruz','cross'],['la','raíz','root'],
+    ['el','país','country'],['el','reloj','clock / watch'],['la','mujer','woman'],['el','hombre','man'],
+    // geography
+    ['el','volcán','volcano'],['el','valle','valley'],['la','isla','island'],['el','río','river'],['el','lago','lake'],
+    ['la','selva','jungle'],['el','desierto','desert'],['el','bosque','forest'],['la','costa','coast'],['la','colina','hill'],
+    ['el','océano','ocean'],['la','península','peninsula'],['el','cañón','canyon'],['el','glaciar','glacier'],
+    ['la','cascada','waterfall'],['el','arroyo','stream'],['la','cueva','cave'],['la','nube','cloud'],['la','tormenta','storm'],
+    // food
+    ['el','pan','bread'],['la','sopa','soup'],['el','arroz','rice'],['el','frijol','bean'],['la','fruta','fruit'],['el','jugo','juice'],
+    ['el','queso','cheese'],['el','huevo','egg'],['la','ensalada','salad'],['el','pollo','chicken'],['la','hamburguesa','hamburger'],
+    ['el','helado','ice cream'],['la','galleta','cookie'],['el','pastel','cake / pastry'],['el','desayuno','breakfast'],
+    ['el','almuerzo','lunch'],['la','cena','dinner'],['la','merienda','snack'],['la','mantequilla','butter'],['el','azúcar','sugar'],
+    // clothing
+    ['la','camiseta','T-shirt'],['el','abrigo','coat'],['la','bufanda','scarf'],['el','guante','glove'],['la','gorra','cap'],
+    ['el','calcetín','sock'],['la','falda','skirt'],['el','vestido','dress'],['la','chaqueta','jacket'],['el','cinturón','belt'],
+    // home
+    ['la','cocina','kitchen'],['el','baño','bathroom'],['la','sala','living room'],['el','comedor','dining room'],['la','cama','bed'],
+    ['el','espejo','mirror'],['la','lámpara','lamp'],['la','alfombra','rug'],['la','cortina','curtain'],['el','refrigerador','refrigerator'],
+    ['la','estufa','stove'],['la','ducha','shower'],['el','techo','roof / ceiling'],['el','piso','floor'],['la','escalera','stairs / ladder'],
+    // school & tech
+    ['el','pizarrón','chalkboard / whiteboard'],['la','tiza','chalk'],['el','borrador','eraser'],['la','regla','ruler'],
+    ['el','pegamento','glue'],['la','carpeta','folder'],['el','escritorio','desk'],['el','pupitre','student desk'],
+    ['la','calculadora','calculator'],['la','tarea','homework / task'],['la','nota','grade / note'],['la','asignatura','school subject'],
+    ['el','horario','schedule'],['el','recreo','recess'],['el','teclado','keyboard'],['la','pantalla','screen'],
+    ['el','celular','cell phone'],['el','cargador','charger'],['la','contraseña','password'],['el','correo','mail / email'],
+    ['la','aplicación','app'],['el','enlace','link'],['el','archivo','file']
+  ];
+
+  // Countable plurals, so the plural levels aren't thin. Entries are written
+  // as the plural phrase students would see: [article, noun, English plural].
+  const EXTRA_PLURALS = [
+    ['los','libros','books'],['los','cuadernos','notebooks'],['los','lápices','pencils'],['las','plumas','pens'],
+    ['las','mesas','tables'],['las','sillas','chairs'],['las','puertas','doors'],['las','ventanas','windows'],
+    ['las','mochilas','backpacks'],['las','clases','classes'],['los','profesores','teachers'],['las','profesoras','teachers (f.)'],
+    ['los','alumnos','students'],['las','alumnas','students (f.)'],['los','amigos','friends'],['las','amigas','friends (f.)'],
+    ['los','niños','children / boys'],['las','niñas','girls'],['los','perros','dogs'],['los','gatos','cats'],
+    ['los','caballos','horses'],['las','vacas','cows'],['los','pájaros','birds'],['los','peces','fish'],
+    ['las','flores','flowers'],['los','árboles','trees'],['las','montañas','mountains'],['los','ríos','rivers'],
+    ['las','playas','beaches'],['las','ciudades','cities'],['los','países','countries'],['las','casas','houses'],
+    ['los','coches','cars'],['los','autobuses','buses'],['los','trenes','trains'],['los','aviones','airplanes'],
+    ['las','bicicletas','bicycles'],['las','calles','streets'],['las','tiendas','stores'],['los','restaurantes','restaurants'],
+    ['las','escuelas','schools'],['las','manzanas','apples'],['los','plátanos','bananas'],['las','naranjas','oranges'],
+    ['las','uvas','grapes'],['los','tomates','tomatoes'],['los','huevos','eggs'],['las','galletas','cookies'],
+    ['los','helados','ice creams'],['las','camisas','shirts'],['los','vestidos','dresses'],['las','faldas','skirts'],
+    ['los','sombreros','hats'],['los','relojes','watches / clocks'],['los','teléfonos','phones'],['las','computadoras','computers'],
+    ['las','pantallas','screens'],['los','ojos','eyes'],['las','manos','hands'],['las','orejas','ears'],
+    ['las','narices','noses'],['los','brazos','arms'],['las','piernas','legs'],['los','dedos','fingers'],
+    ['los','días','days'],['las','semanas','weeks'],['los','meses','months'],['los','años','years'],
+    ['las','horas','hours'],['los','minutos','minutes'],['las','noches','nights'],['las','mañanas','mornings'],
+    ['las','canciones','songs'],['las','lecciones','lessons'],['los','exámenes','exams'],['las','tareas','homework assignments'],
+    ['los','deportes','sports'],['los','equipos','teams'],['los','partidos','games / matches'],['las','fiestas','parties'],
+    ['los','regalos','gifts'],['los','viajes','trips'],['las','vacaciones','vacation'],['las','noticias','news'],
+    ['las','gafas','glasses'],['las','llaves','keys'],['los','dulces','candies / sweets'],['las','frutas','fruits'],
+    ['las','verduras','vegetables'],['los','problemas','problems'],['las','ideas','ideas'],['las','preguntas','questions'],
+    ['las','respuestas','answers'],['las','palabras','words'],['las','letras','letters'],['los','números','numbers'],
+    ['los','colores','colors'],['las','historias','stories'],['los','cuentos','tales / short stories'],['las','películas','movies'],
+    ['los','programas','programs / shows'],['las','nubes','clouds'],['las','estrellas','stars'],['las','islas','islands'],
+    ['los','lagos','lakes'],['las','cuevas','caves'],['los','abrigos','coats'],['los','guantes','gloves']
+  ];
+
+  // The nouns the one-answer levels draw on: every deck noun that carries an
+  // explicit article, plus EXTRA_NOUNS, EXTRA_PLURALS and the weekend days.
+  // Accuracy note: the definite answer is that literal article (so "el agua"
+  // stays "el", never the naive "la"), and the indefinite is mapped by FORM —
+  // el→un, la→una, los→unos, las→unas. Nothing is ever pluralized here, so we
+  // never invent an irregular plural.
   let _articleNouns = null;
   function articleNounPool() {
     if (_articleNouns) return _articleNouns;
     _articleNouns = [];
+    const seenKeys = {};
+    function add(art, bare, back) {
+      if (!bare) return;
+      if (COMMON_BARES[elpFold(bare)]) return;               // handled by COMMON_NOUNS
+      const key = art + ' ' + elpFold(bare);
+      if (seenKeys[key]) return;
+      seenKeys[key] = 1;
+      const first = elpFold(bare.split(/\s+/)[0]);
+      _articleNouns.push({
+        def: art,
+        indef: DEF_TO_INDEF[art],
+        plural: (art === 'los' || art === 'las'),
+        bare: bare,
+        gloss: elpCleanGloss(back),
+        senses: glossSenses(back),
+        why: (art === 'el' && STRESSED_A[first] && bare.split(/\s+/).length === 1)
+          ? '<b>' + art + ' ' + bare + '</b> is a feminine noun, but it takes <b>el</b> in the singular (stressed <i>a</i>) — <b>las ' + bare + 's</b> in the plural.'
+          : ''
+      });
+    }
     for (const k in decks) {
       const arr = decks[k];
       if (!Array.isArray(arr)) continue;
@@ -107,52 +331,123 @@
         const parts = String(c.word).trim().split(/\s+/);
         const art = parts[0].toLowerCase();
         if (DEF_ARTICLES.indexOf(art) === -1) continue;
-        const bare = parts.slice(1).join(' ');
-        if (!bare) continue;
-        _articleNouns.push({
-          def: art,
-          indef: DEF_TO_INDEF[art],
-          plural: (art === 'los' || art === 'las'),
-          bare: bare,
-          gloss: elpCleanGloss(c.back),
-          senses: glossSenses(c.back)
-        });
+        add(art, parts.slice(1).join(' '), c.back);
       }
     }
+    EXTRA_NOUNS.forEach(e => add(e[0], e[1], e[2]));
+    EXTRA_PLURALS.forEach(e => add(e[0], e[1], e[2]));
+    DAYS_WEEKEND.forEach(d => { add('el', d[0], d[2]); add('los', d[1], d[3]); });
     return _articleNouns;
   }
 
-  function elpPick(arr) { return arr[Math.floor(Math.random() * arr.length)]; }
+  // The translate games use the same nouns plus the either-article ones:
+  // each common noun appears as el X / la X (and los / las), and either
+  // article is accepted when translating into Spanish.
+  let _translateNouns = null;
+  function translateNounPool() {
+    if (_translateNouns) return _translateNouns;
+    _translateNouns = articleNounPool().filter(n => n.gloss).slice();
+    COMMON_NOUNS.forEach(c => {
+      [['el', 'la', false, c[0], c[2]], ['la', 'el', false, c[0], c[2]],
+       ['los', 'las', true, c[1], c[3]], ['las', 'los', true, c[1], c[3]]].forEach(f => {
+        _translateNouns.push({
+          def: f[0], indef: DEF_TO_INDEF[f[0]], plural: f[2], bare: f[3],
+          gloss: elpCleanGloss(f[4]), senses: glossSenses(f[4]),
+          altDef: f[1], altIndef: DEF_TO_INDEF[f[1]], common: true
+        });
+      });
+    });
+    return _translateNouns;
+  }
+
+  // ---- The article game: eight levels ------------------------------------------
+  // 1 el·la · 2 + "either" · 3 + plurals · 4 everything (el/la, los/las, el/los)
+  // 5 un·una · 6 + "either" · 7 + plurals · 8 everything (un/una, unos/unas, un/unos)
+  const ARTICLE_LEVEL_CFG = {
+    1: { indef: false, options: ['el', 'la'],                                                      plural: false, mix: {} },
+    2: { indef: false, options: ['el', 'la', 'el/la'],                                             plural: false, mix: { commonSing: 0.35 } },
+    3: { indef: false, options: ['el', 'la', 'los', 'las'],                                        plural: true,  mix: {} },
+    4: { indef: false, options: ['el', 'la', 'los', 'las', 'el/la', 'los/las', 'el/los'],          plural: true,  mix: { commonSing: 0.12, commonPl: 0.12, days: 0.14 } },
+    5: { indef: true,  options: ['un', 'una'],                                                      plural: false, mix: {} },
+    6: { indef: true,  options: ['un', 'una', 'un/una'],                                            plural: false, mix: { commonSing: 0.35 } },
+    7: { indef: true,  options: ['un', 'una', 'unos', 'unas'],                                      plural: true,  mix: {} },
+    8: { indef: true,  options: ['un', 'una', 'unos', 'unas', 'un/una', 'unos/unas', 'un/unos'],    plural: true,  mix: { commonSing: 0.12, commonPl: 0.12, days: 0.14 } }
+  };
+
+  function articleBothWhy(c, indef, plural) {
+    const w = plural ? c[1] : c[0];
+    if (indef) {
+      return plural
+        ? '<b>unos ' + w + '</b> or <b>unas ' + w + '</b> — the noun stays the same; the article shows whether they are men or women.'
+        : '<b>un ' + w + '</b> (a man) or <b>una ' + w + '</b> (a woman) — the noun stays the same; only the article changes.';
+    }
+    return plural
+      ? '<b>los ' + w + '</b> or <b>las ' + w + '</b> — the noun stays the same; the article shows whether they are men or women.'
+      : '<b>el ' + w + '</b> (a man) or <b>la ' + w + '</b> (a woman) — the noun stays the same; only the article changes.';
+  }
 
   function articleRound(level) {
-    const pool = articleNounPool();
-    let options, candidates, indef;
-    if (level === 2)      { options = ['el', 'la', 'los', 'las'];          candidates = pool;                       indef = false; }
-    else if (level === 3) { options = ['un', 'una'];                       candidates = pool.filter(n => !n.plural); indef = true;  }
-    else if (level === 4) { options = ['un', 'una', 'unos', 'unas'];       candidates = pool;                       indef = true;  }
-    else                  { options = ['el', 'la'];                        candidates = pool.filter(n => !n.plural); indef = false; }
-    if (!candidates.length) candidates = pool;
-    const n = elpPick(candidates);
-    const answer = indef ? n.indef : n.def;
+    const cfg = ARTICLE_LEVEL_CFG[level] || ARTICLE_LEVEL_CFG[1];
+    const indef = cfg.indef;
+    const m = cfg.mix || {};
+    const r = Math.random();
+    let acc = 0, bare, gloss, answer, why = '';
+
+    if (m.commonSing && r < (acc += m.commonSing)) {
+      const c = elpPickFresh(COMMON_NOUNS, x => 'c:' + x[0]);
+      bare = c[0]; gloss = elpCleanGloss(c[2]);
+      answer = indef ? 'un/una' : 'el/la';
+      why = articleBothWhy(c, indef, false);
+    } else if (m.commonPl && r < (acc += m.commonPl)) {
+      const c = elpPickFresh(COMMON_NOUNS, x => 'cp:' + x[0]);
+      bare = c[1]; gloss = elpCleanGloss(c[3]);
+      answer = indef ? 'unos/unas' : 'los/las';
+      why = articleBothWhy(c, indef, true);
+    } else if (m.days && r < (acc += m.days)) {
+      const d = elpPickFresh(DAYS_SAME, x => 'd:' + x[0]);
+      bare = d[0]; gloss = d[1] + '(s)';
+      answer = indef ? 'un/unos' : 'el/los';
+      why = indef
+        ? '<b>un ' + d[0] + '</b> = a ' + d[1] + ' · <b>unos ' + d[0] + '</b> = some ' + d[1] + 's. Monday–Friday look the same in singular and plural — only the article changes.'
+        : '<b>el ' + d[0] + '</b> = on ' + d[1] + ' (one day) · <b>los ' + d[0] + '</b> = on ' + d[1] + 's (every week). Monday–Friday look the same in singular and plural — only the article changes.';
+    } else {
+      let cands = articleNounPool();
+      if (!cfg.plural) {
+        cands = cands.filter(n => !n.plural);
+      } else {
+        // plural levels: roughly 45% plural, 55% singular
+        const wantPl = Math.random() < 0.45;
+        const sub = cands.filter(n => n.plural === wantPl);
+        if (sub.length) cands = sub;
+      }
+      const n = elpPickFresh(cands, x => x.def + ' ' + x.bare);
+      bare = n.bare; gloss = n.gloss;
+      answer = indef ? n.indef : n.def;
+      why = n.why;
+    }
     return {
       promptLabel: indef ? 'Which article? ( a / some … )' : 'Which article? ( the … )',
-      promptDisplay: '<span style="font-size:36px;font-family:\'DM Serif Display\',serif;">' + n.bare + '</span>'
-        + (n.gloss ? '<div style="margin-top:10px;font-size:14px;color:var(--ink-soft);">“' + n.gloss + '”</div>' : ''),
+      promptDisplay: '<span style="font-size:36px;font-family:\'DM Serif Display\',serif;">' + bare + '</span>'
+        + (gloss ? '<div style="margin-top:10px;font-size:14px;color:var(--ink-soft);">“' + gloss + '”</div>' : ''),
+      promptReview: bare + (gloss ? ' (' + gloss + ')' : ''),
       answer: answer,
       validAnswers: [answer],
-      choices: options
+      choices: cfg.options,
+      why: why
     };
   }
 
+  // The translate games keep four levels:
+  // 1 the (sing.) · 2 the (sing. + pl.) · 3 a / an · 4 a / some
   function articleTranslateRound(level) {
-    const pool = articleNounPool().filter(n => n.gloss);
+    const pool = translateNounPool();
     let candidates, indef;
     if (level === 2)      { candidates = pool;                       indef = false; }
     else if (level === 3) { candidates = pool.filter(n => !n.plural); indef = true;  }
     else if (level === 4) { candidates = pool;                       indef = true;  }
     else                  { candidates = pool.filter(n => !n.plural); indef = false; }
     if (!candidates.length) candidates = pool;
-    const n = elpPick(candidates);
+    const n = elpPickFresh(candidates, x => x.common ? 'c:' + x.bare : x.def + ' ' + x.bare);
     let english, answer;
     if (indef) {
       english = (n.plural ? 'some ' : 'a ') + n.gloss;
@@ -161,12 +456,15 @@
       english = 'the ' + n.gloss;
       answer = n.def + ' ' + n.bare;
     }
+    const valid = [answer];
+    if (n.common) valid.push((indef ? n.altIndef : n.altDef) + ' ' + n.bare);   // el or la
     return {
       promptLabel: 'Translate to Spanish — include the article',
       promptDisplay: '<span style="font-size:30px;font-family:\'DM Serif Display\',serif;">' + english + '</span>',
       answer: answer,
-      validAnswers: [answer],
-      hint: indef ? 'e.g., una casa' : 'e.g., la casa'
+      validAnswers: valid,
+      hint: indef ? 'e.g., una casa' : 'e.g., la casa',
+      why: n.common ? '<b>' + n.bare + '</b> works with either article — ' + (indef ? 'un/una' : 'el/la') + ' (and los/las in the plural).' : ''
     };
   }
 
@@ -174,14 +472,14 @@
   // leniently — every sense in the gloss counts, "a"/"an" are both accepted,
   // and a plural takes either "some books" or just "books".
   function articleTranslateEnRound(level) {
-    const pool = articleNounPool().filter(n => n.senses && n.senses.length);
+    const pool = translateNounPool().filter(n => n.senses && n.senses.length);
     let candidates, indef;
     if (level === 2)      { candidates = pool;                        indef = false; }
     else if (level === 3) { candidates = pool.filter(n => !n.plural); indef = true;  }
     else if (level === 4) { candidates = pool;                        indef = true;  }
     else                  { candidates = pool.filter(n => !n.plural); indef = false; }
     if (!candidates.length) candidates = pool;
-    const n = elpPick(candidates);
+    const n = elpPickFresh(candidates, x => x.common ? 'c:' + x.bare : x.def + ' ' + x.bare);
     const spanish = (indef ? n.indef : n.def) + ' ' + n.bare;
     const valid = [];
     let display = '';
@@ -210,22 +508,37 @@
     title: 'El · la · <em>los · las</em>',
     icon: '🏷️',
     maxReward: 30,
+    rounds: ARTICLE_ROUNDS,
     generate: function () { return articleRound((gameState && gameState.level) || 1); }
   };
   GAMES['articles-translate'] = {
     title: 'Articles <em>translate</em>',
     icon: '🔁',
     maxReward: 40,
+    rounds: ARTICLE_ROUNDS,
     generate: function () { return articleTranslateRound((gameState && gameState.level) || 1); }
   };
   GAMES['articles-translate-en'] = {
     title: 'Articles <em>→ English</em>',
     icon: '🔀',
     maxReward: 40,
+    rounds: ARTICLE_ROUNDS,
     generate: function () { return articleTranslateEnRound((gameState && gameState.level) || 1); }
   };
 
   const ARTICLE_LEVELS = [
+    { n: 1, sub: 'el · la',                          desc: 'Singular “the” — masculine vs. feminine.' },
+    { n: 2, sub: 'el · la · el/la',                  desc: 'Some nouns take either one — el/la periodista, el/la policía, el/la bebé.' },
+    { n: 3, sub: 'el · la · los · las',              desc: 'Add plurals — singular & plural “the”.' },
+    { n: 4, sub: '+ el/la · los/las · el/los',       desc: 'Everything: either-gender nouns, plurals, and days (el/los lunes).' },
+    { n: 5, sub: 'un · una',                         desc: 'Singular “a / an”.' },
+    { n: 6, sub: 'un · una · un/una',                desc: 'Some nouns take either one — un/una periodista, un/una bebé.' },
+    { n: 7, sub: 'un · una · unos · unas',           desc: '“a” and “some” — singular & plural.' },
+    { n: 8, sub: '+ un/una · unos/unas · un/unos',   desc: 'Everything: either-gender nouns, plurals, and days (un/unos lunes).' }
+  ];
+
+  // The two translate games keep four levels.
+  const ARTICLE_LEVELS_TRANSLATE = [
     { n: 1, sub: 'el · la',                desc: 'Singular “the” — masculine vs. feminine.' },
     { n: 2, sub: 'el · la · los · las',    desc: 'Add plurals — singular & plural “the”.' },
     { n: 3, sub: 'un · una',               desc: 'Singular “a / an”.' },
@@ -235,26 +548,26 @@
   const PLURAL_LEVELS = [
     { n: 1, sub: 'regular + s',          desc: 'Vowel-ending nouns — just add -s.' },
     { n: 2, sub: '+ es',                 desc: 'Consonant-ending nouns — add -es.' },
-    { n: 3, sub: '-z → -ces · accents',  desc: 'Spelling changes, accent shifts, no-change words.' },
+    { n: 3, sub: '-z → -ces · accents',  desc: 'Spelling changes, accent shifts, and no-change words (los lunes).' },
     { n: 4, sub: 'un · una · el agua',   desc: 'Indefinite articles and the “el agua → las aguas” case.' }
   ];
 
   const ARTICLE_GAME_INFO = {
     'articles': {
       title: 'El · la · <em style="color:var(--rojo);font-style:italic;">los · las</em>',
-      blurb: 'Pick a level, then tap the correct article for each noun. 10 rounds.'
+      blurb: 'Pick a level, then tap the correct article for each noun. ' + ARTICLE_ROUNDS + ' questions.'
     },
     'articles-translate': {
       title: 'Articles <em style="color:var(--rojo);font-style:italic;">translate</em>',
-      blurb: 'Pick a level, then translate each phrase with its article — “a ball” → “una pelota”. 10 rounds.'
+      blurb: 'Pick a level, then translate each phrase with its article — “a ball” → “una pelota”. ' + ARTICLE_ROUNDS + ' questions.'
     },
     'articles-translate-en': {
       title: 'Articles <em style="color:var(--rojo);font-style:italic;">→ English</em>',
-      blurb: 'Pick a level, then translate the Spanish into English — “una pelota” → “a ball”. 10 rounds.'
+      blurb: 'Pick a level, then translate the Spanish into English — “una pelota” → “a ball”. ' + ARTICLE_ROUNDS + ' questions.'
     },
     'plurals': {
       title: 'Singular ↔ <em style="color:var(--rojo);font-style:italic;">plural</em>',
-      blurb: 'Pick a level, then turn each noun singular↔plural — article and ending. 10 rounds.'
+      blurb: 'Pick a level, then turn each noun singular↔plural — article and ending. ' + ARTICLE_ROUNDS + ' questions.'
     }
   };
 
@@ -264,7 +577,8 @@
     const container = document.getElementById('game-detail-content');
     if (!container) return;
     const info = ARTICLE_GAME_INFO[gameId] || ARTICLE_GAME_INFO['articles'];
-    const levels = gameId === 'plurals' ? PLURAL_LEVELS : ARTICLE_LEVELS;
+    const levels = gameId === 'plurals' ? PLURAL_LEVELS
+      : (gameId === 'articles' ? ARTICLE_LEVELS : ARTICLE_LEVELS_TRANSLATE);
     const title = info.title;
     const blurb = info.blurb;
     container.innerHTML =
@@ -289,17 +603,19 @@
       gameId: gameId,
       level: level,
       round: 0,
-      totalRounds: 10,
+      totalRounds: GAMES[gameId].rounds || ARTICLE_ROUNDS,
       score: 0,
       current: null,
       history: [],
       isSprint: false,
       sprintStart: null,
       sprintEnd: null,
+      _seen: {},
       _answered: false
     };
     renderGameRound();
   }
+
 
   // ============================================================================
   // SITE SEARCH — the home-page "find anything" box
