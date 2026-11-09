@@ -30,9 +30,6 @@
   // Show/hide sign-in vs avatar/coin counter based on whether the student has signed in
   refreshAuthUI();
 
-  // Initialize router — handles deep links like #/verbos
-  { const r = getRouteFromHash(); showPage(r.page, r.param); }
-
   // Welcome message
   const welcomeEl = document.getElementById('studentWelcome');
   if (welcomeEl) welcomeEl.textContent = STUDENT_NAME;
@@ -1267,3 +1264,9 @@
   // Bridge for external modules (e.g. practice-games.js) so we can keep growing
   // content without pushing index.html past GitHub's single-file size limit.
   window.ELP = { decks, GAMES };
+
+  // Initialize router — handles deep links like #/verbos. Runs LAST so every
+  // const the pages depend on (e.g. the article-game level tables) is already
+  // initialised; earlier, a reload on #/game/articles hit a TDZ error and
+  // left the page blank.
+  { const r = getRouteFromHash(); showPage(r.page, r.param); }
