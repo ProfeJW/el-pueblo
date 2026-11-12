@@ -546,7 +546,9 @@
     { n: 1, sub: 'regular + s',          desc: 'Vowel-ending nouns — just add -s.' },
     { n: 2, sub: '+ es',                 desc: 'Consonant-ending nouns — add -es.' },
     { n: 3, sub: '-z → -ces · accents',  desc: 'Spelling changes, accent shifts, and no-change words (los lunes).' },
-    { n: 4, sub: 'un · una · el agua',   desc: 'Indefinite articles and the “el agua → las aguas” case.' }
+    { n: 4, sub: 'el · la · los · las',  desc: 'Mixed review with definite articles only — including “el agua → las aguas”.' },
+    { n: 5, sub: 'un · una · unos · unas', desc: 'The same mixed review with indefinite articles only.' },
+    { n: 6, sub: 'everything',           desc: 'All of the above — definite and indefinite, every ending.' }
   ];
 
   const ARTICLE_GAME_INFO = {
