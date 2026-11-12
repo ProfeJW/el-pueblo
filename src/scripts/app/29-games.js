@@ -406,7 +406,9 @@
       generate: () => {
         // Pairs grouped by difficulty (the level picker sets gameState.level):
         //  1 vowel +s · 2 consonant +es · 3 -z→-ces / accents / no-change ·
-        //  4 indefinite articles + the feminine "el agua → las aguas".
+        //  4 mixed review, definite articles only (incl. "el agua → las aguas") ·
+        //  5 the same nouns with indefinite articles (un/una/unos/unas) ·
+        //  6 everything: levels 4 + 5 together.
         const LEVELS = {
           1: [
             ['el libro', 'los libros'], ['la mesa', 'las mesas'], ['la casa', 'las casas'],
@@ -460,7 +462,7 @@
             ['el abrelatas', 'los abrelatas'], ['el rascacielos', 'los rascacielos'],
             ['el cascanueces', 'los cascanueces'], ['el microondas', 'los microondas']
           ],
-          4: [
+          indef: [
             ['un hombre', 'unos hombres'], ['una mujer', 'unas mujeres'],
             ['un animal', 'unos animales'], ['una flor', 'unas flores'], ['un lápiz', 'unos lápices'],
             ['el agua', 'las aguas'], ['el águila', 'las águilas'],
@@ -477,6 +479,18 @@
             ['el ave', 'las aves'], ['el arpa', 'las arpas'], ['el ancla', 'las anclas']
           ]
         };
+        // Feminine nouns that take "el" in the singular (stressed a-/ha-).
+        const ELFEM = LEVELS.indef.filter(p => /^el /.test(p[0]));
+        const DEF_ALL = LEVELS[1].concat(LEVELS[2], LEVELS[3], ELFEM);
+        // el/la/los/las → un/una/unos/unas ("el agua" → "un agua", "unas aguas" — correct).
+        const INDEF_ART = { el: 'un', la: 'una', los: 'unos', las: 'unas' };
+        const toIndef = p => p.map(x => x.replace(/^(el|la|los|las) /, (m, a) => INDEF_ART[a] + ' '));
+        const seenIndef = {};
+        const INDEF_ALL = DEF_ALL.map(toIndef).concat(LEVELS.indef.filter(p => /^una? /.test(p[0])))
+          .filter(p => !seenIndef[p[0]] && (seenIndef[p[0]] = true));
+        LEVELS[4] = DEF_ALL;
+        LEVELS[5] = INDEF_ALL;
+        LEVELS[6] = DEF_ALL.concat(INDEF_ALL);
         const level = (gameState && gameState.level) || 1;
         const pairs = LEVELS[level] || LEVELS[1];
         const pick = elpPickFresh(pairs, p => p[0]);
@@ -488,7 +502,7 @@
             promptDisplay: pick[0],
             answer: pick[1],
             validAnswers: [pick[1], stripArticle(pick[1])],
-            hint: 'los / las / unos / unas + plural noun'
+            hint: level === 4 ? 'los / las + plural noun' : level === 5 ? 'unos / unas + plural noun' : 'los / las / unos / unas + plural noun'
           };
         }
         return {
@@ -496,7 +510,7 @@
           promptDisplay: pick[1],
           answer: pick[0],
           validAnswers: [pick[0], stripArticle(pick[0])],
-          hint: 'el / la / un / una + singular noun'
+          hint: level === 4 ? 'el / la + singular noun' : level === 5 ? 'un / una + singular noun' : 'el / la / un / una + singular noun'
         };
       }
     },
@@ -2795,7 +2809,7 @@
 
     container.innerHTML = `
       <div class="game-results">
-        ${activityStampHtml(game.title, [gameState.isSprint && sprintTimeSeconds !== null ? 'time ' + sprintTimeSeconds.toFixed(1) + 's' : ''], score + '/' + max)}
+        ${activityStampHtml(game.title, [gameState.level ? 'Level ' + gameState.level : '', gameState.isSprint && sprintTimeSeconds !== null ? 'time ' + sprintTimeSeconds.toFixed(1) + 's' : ''], score + '/' + max)}
         <h3>${score === max ? '¡<em>Perfecto</em>!' : score >= tierSolid ? 'Game <em>complete</em>' : 'Keep <em>going</em>'}</h3>
         <div class="verdict">${verdict}</div>
         <div class="score-display">${score}/${max}</div>
