@@ -2519,7 +2519,7 @@
     container.innerHTML = `
       <div class="game-prompt-card">
         <div class="game-progress">
-          Round <strong>${gameState.round}</strong> / ${gameState.totalRounds} · Score: <strong>${gameState.score}</strong>
+          ${gameLevelLabel(gameState) ? '<strong>' + escapeHtml(gameLevelLabel(gameState)) + '</strong> · ' : ''}Round <strong>${gameState.round}</strong> / ${gameState.totalRounds} · Score: <strong>${gameState.score}</strong>
           ${sprintTimerHtml}
         </div>
         <div class="game-prompt-label">${gameState.current.promptLabel}</div>
@@ -2809,7 +2809,7 @@
 
     container.innerHTML = `
       <div class="game-results">
-        ${activityStampHtml(game.title, [gameState.level ? 'Level ' + gameState.level : '', gameState.isSprint && sprintTimeSeconds !== null ? 'time ' + sprintTimeSeconds.toFixed(1) + 's' : ''], score + '/' + max)}
+        ${activityStampHtml(game.title, [gameLevelLabel(gameState), gameState.isSprint && sprintTimeSeconds !== null ? 'time ' + sprintTimeSeconds.toFixed(1) + 's' : ''], score + '/' + max)}
         <h3>${score === max ? '¡<em>Perfecto</em>!' : score >= tierSolid ? 'Game <em>complete</em>' : 'Keep <em>going</em>'}</h3>
         <div class="verdict">${verdict}</div>
         <div class="score-display">${score}/${max}</div>
