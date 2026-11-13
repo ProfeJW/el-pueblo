@@ -2384,6 +2384,7 @@
     opacity: 0.75;
     margin-top: 2px;
   }
+  .result-stamp .rs-meta .rs-level { opacity: 1; font-size: 14px; }
   .result-stamp .rs-id {
     font-size: 13px;
     margin-top: 6px;

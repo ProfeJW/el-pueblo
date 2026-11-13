@@ -570,6 +570,20 @@
     }
   };
 
+  // "Level 3 of 8 · el · la · los · las" — spelled out so a screenshot of a
+  // round or a results box says exactly which level was played (a bare
+  // "Level 3" is ambiguous: the games have 4, 6 or 8 levels). '' for games
+  // without levels.
+  function gameLevelLabel(gs) {
+    if (!gs || !gs.level) return '';
+    const levels = gs.gameId === 'plurals' ? PLURAL_LEVELS
+      : gs.gameId === 'articles' ? ARTICLE_LEVELS
+      : (gs.gameId === 'articles-translate' || gs.gameId === 'articles-translate-en') ? ARTICLE_LEVELS_TRANSLATE
+      : null;
+    const lv = levels && levels.find(l => l.n === gs.level);
+    return 'Level ' + gs.level + (levels ? ' of ' + levels.length : '') + (lv ? ' · ' + lv.sub : '');
+  }
+
   // Shared level picker for the article games and the plurals game — each sets
   // gameState.level, which their generate() reads.
   function renderArticleLevelPicker(gameId) {

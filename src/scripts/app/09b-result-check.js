@@ -78,7 +78,9 @@
 
   function rcStampInner(d) {
     const when = new Date(d.ms).toLocaleString([], { weekday: 'short', month: 'short', day: 'numeric', hour: 'numeric', minute: '2-digit' });
-    const meta = d.details.concat(when).map(rcEsc).join(' · ');
+    // The level is the thing Profe looks for first in a screenshot — make it stand out.
+    const meta = d.details.map(x => /^Level \d/.test(x) ? '<strong class="rs-level">' + rcEsc(x) + '</strong>' : rcEsc(x))
+      .concat(rcEsc(when)).join(' · ');
     const name = rcGetName();
     const id = name
       ? `<strong>${rcEsc(name)}</strong> <button type="button" class="rs-edit" onclick="rcChangeName()" title="Not you? Change the name">✎</button>` +
